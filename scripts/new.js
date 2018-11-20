@@ -12,11 +12,21 @@ console.log(`creating: ${dir}`)
 sh.mkdir(dir)
 
 // package.json
-sh.echo('./defaults/package.json').to(dir + '/package.json');
+sh.cat(__dirname + '/defaults/package.json').to(dir + '/package.json');
+
+// index.html
+sh.cat(__dirname + '/defaults/index.html').to(dir + '/index.html');
+
+// index.js
+sh.cat(__dirname + '/defaults/index.js').to(dir + '/index.js');
 
 // spencer.min.css
-sh.cp('./node_modules/spencer-css/builds/spencer.min.css', dir)
+sh.mkdir(dir + '/assets')
+sh.cp('./node_modules/spencer-css/builds/spencer.min.css', dir + '/assets')
 
-setTimeout(() => {
-  sh.exec(`rm -rf ${dir}`)
-}, 7000)
+
+// setTimeout(() => {
+//   sh.exec(`rm -rf ${dir}`)
+// }, 7000)
+
+// sh.cd(dir)
