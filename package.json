@@ -1,0 +1,23 @@
+{
+  "name": "frown",
+  "version": "0.0.1",
+  "description": "why not?",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "new":"node ./scripts/new.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spencermountain/frown.git"
+  },
+  "author": "Spencer Kelly (spencermountain)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spencermountain/frown/issues"
+  },
+  "homepage": "https://github.com/spencermountain/frown#readme",
+  "devDependencies": {
+    "shelljs": "^0.8.3"
+  }
+}
