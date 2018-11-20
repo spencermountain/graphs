@@ -11,8 +11,11 @@ let dir = `./${year}/${num}`
 console.log(`creating: ${dir}`)
 sh.mkdir(dir)
 
+// package.json
 sh.echo('./defaults/package.json').to(dir + '/package.json');
-// sh.echo(JSON.stringify(pkg, null, 2)).to(dir + '/package.json');
+
+// spencer.min.css
+sh.cp('./node_modules/spencer-css/builds/spencer.min.css', dir)
 
 setTimeout(() => {
   sh.exec(`rm -rf ${dir}`)
