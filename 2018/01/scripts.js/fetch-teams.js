@@ -14,22 +14,33 @@ const coercePlace = {
   'Landover, Maryland': 'Washington, D.C.',
   'Carson, California': 'Los Angeles',
   'Anaheim, California': 'Los Angeles',
-  'Santa Clara, California': 'San Jose, California'
+  'Santa Clara, California': 'San Jose, California',
+  'Commerce City, Colorado': 'Denver',
+  'Frisco, Texas': 'Dallas',
+  'Arlington, Texas': 'Dallas',
+  'Sandy, Utah': 'Salt Lake City',
+  'Seattle, Washington': 'Seattle',
+  'Bridgeview, Illinois': 'Chicago',
+  'Chester, Pennsylvania': 'Philadelphia',
+  'Atlanta, Georgia': 'Atlanta',
+  'Kansas City, Kansas': 'Kansas City, Missouri',
+  'Harrison, New Jersey': 'Newark, New Jersey'
 };
 
 const getRows = function(table) {
   let rows = table.json();
   rows.forEach((o) => {
     o.City = o.City || o['City/State'];
-    if (coercePlace[o.City]) {
-      o.City = coercePlace[o.City];
-    }
     o.Team = o.Team || o['Club'];
   });
   rows = rows.filter((o) => o.Team.links && o.City.links);
   rows = rows.map((o) => {
+    let city = o.City.links[0].page;
+    if (coercePlace[city]) {
+      city = coercePlace[city];
+    }
     return [
-      o.City.links[0].page,
+      city,
       o.Team.links[0].page,
     ];
   });
@@ -49,30 +60,31 @@ const toObj = function(arr, obj, league) {
 (async () => {
   let cities = {};
 
-  // var doc = await wtf.fetch('National_Hockey_League');
-  // let table = doc.section('list of teams').tables(0);
-  // let nhl = getRows(table);
-  //
-  // doc = await wtf.fetch('Major_League_Baseball');
-  // table = doc.section('teams').tables(0);
-  // let mlb = getRows(table);
-  //
-  // doc = await wtf.fetch('National_Basketball_Association');
-  // table = doc.section('teams').tables(0);
-  // let nba = getRows(table);
-  //
-  // doc = await wtf.fetch('National_Football_League');
-  // table = doc.section('teams').tables(0);
-  // let nfl = getRows(table);
+  var doc = await wtf.fetch('National_Hockey_League');
+  let table = doc.section('list of teams').tables(0);
+  let nhl = getRows(table);
+
+  doc = await wtf.fetch('Major_League_Baseball');
+  table = doc.section('teams').tables(0);
+  let mlb = getRows(table);
+
+  doc = await wtf.fetch('National_Basketball_Association');
+  table = doc.section('teams').tables(0);
+  let nba = getRows(table);
+
+  doc = await wtf.fetch('National_Football_League');
+  table = doc.section('teams').tables(0);
+  let nfl = getRows(table);
 
   doc = await wtf.fetch('Major_League_Soccer');
   table = doc.section('current').tables(0);
   let mls = getRows(table);
-  // cities = toObj(nhl, cities, 'nhl');
-  // cities = toObj(mlb, cities, 'mlb');
-  // cities = toObj(nba, cities, 'nba');
-  // cities = toObj(nfl, cities, 'nfl');
-  // cities = toObj(mls, cities, 'mls');
+
+  cities = toObj(nhl, cities, 'nhl');
+  cities = toObj(mlb, cities, 'mlb');
+  cities = toObj(nba, cities, 'nba');
+  cities = toObj(nfl, cities, 'nfl');
+  cities = toObj(mls, cities, 'mls');
 
   console.log(cities);
 })();

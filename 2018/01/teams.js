@@ -2,10 +2,13 @@ module.exports = {
   Boston: {
     nhl: ['Boston Bruins'],
     mlb: ['Boston Red Sox'],
-    nba: ['Boston Celtics']
+    nba: ['Boston Celtics'],
+    nfl: ['New England Patriots'],
+    mls: ['New England Revolution']
   },
   'Buffalo, New York': {
-    nhl: ['Buffalo Sabres']
+    nhl: ['Buffalo Sabres'],
+    nfl: ['Buffalo Bills']
   },
   Detroit: {
     nhl: ['Detroit Red Wings'],
@@ -13,43 +16,54 @@ module.exports = {
     nba: ['Detroit Pistons'],
     nfl: ['Detroit Lions']
   },
-  'Sunrise, Florida': {
-    nhl: ['Florida Panthers']
+  Miami: {
+    nhl: ['Florida Panthers'],
+    mlb: ['Miami Marlins'],
+    nba: ['Miami Heat'],
+    nfl: ['Miami Dolphins']
   },
   Montreal: {
-    nhl: ['Montreal Canadiens']
+    nhl: ['Montreal Canadiens'],
+    mls: ['Montreal Impact']
   },
   Ottawa: {
     nhl: ['Ottawa Senators']
   },
   'Tampa, Florida': {
     nhl: ['Tampa Bay Lightning'],
+    mlb: ['Tampa Bay Rays'],
     nfl: ['Tampa Bay Buccaneers']
   },
   Toronto: {
     nhl: ['Toronto Maple Leafs'],
     mlb: ['Toronto Blue Jays'],
-    nba: ['Toronto Raptors']
+    nba: ['Toronto Raptors'],
+    mls: ['Toronto FC']
   },
   'Raleigh, North Carolina': {
     nhl: ['Carolina Hurricanes']
   },
   'Columbus, Ohio': {
-    nhl: ['Columbus Blue Jackets']
+    nhl: ['Columbus Blue Jackets'],
+    mls: ['Columbus Crew SC']
   },
   'Newark, New Jersey': {
-    nhl: ['New Jersey Devils']
+    nhl: ['New Jersey Devils'],
+    nfl: ['New York Jets', 'New York Giants'],
+    mls: ['New York Red Bulls']
   },
   'New York City': {
     nhl: ['New York Islanders', 'New York Rangers'],
     mlb: ['New York Yankees', 'New York Mets'],
-    nba: ['Brooklyn Nets', 'New York Knicks']
+    nba: ['Brooklyn Nets', 'New York Knicks'],
+    mls: ['New York City FC']
   },
   Philadelphia: {
     nhl: ['Philadelphia Flyers'],
     mlb: ['Philadelphia Phillies'],
     nba: ['Philadelphia 76ers'],
-    nfl: ['Philadelphia Eagles']
+    nfl: ['Philadelphia Eagles'],
+    mls: ['Philadelphia Union']
   },
   Pittsburgh: {
     nhl: ['Pittsburgh Penguins'],
@@ -59,26 +73,37 @@ module.exports = {
   'Washington, D.C.': {
     nhl: ['Washington Capitals'],
     mlb: ['Washington Nationals'],
-    nba: ['Washington Wizards']
+    nba: ['Washington Wizards'],
+    nfl: ['Washington Redskins'],
+    mls: ['D.C. United']
   },
   Chicago: {
     nhl: ['Chicago Blackhawks'],
     mlb: ['Chicago White Sox', 'Chicago Cubs'],
     nba: ['Chicago Bulls'],
-    nfl: ['Chicago Bears']
+    nfl: ['Chicago Bears'],
+    mls: ['Chicago Fire Soccer Club']
   },
   Denver: {
     nhl: ['Colorado Avalanche'],
     mlb: ['Colorado Rockies'],
     nba: ['Denver Nuggets'],
-    nfl: ['Denver Broncos']
+    nfl: ['Denver Broncos'],
+    mls: ['Colorado Rapids']
   },
   Dallas: {
     nhl: ['Dallas Stars'],
-    nba: ['Dallas Mavericks']
+    mlb: ['Texas Rangers (baseball)'],
+    nba: ['Dallas Mavericks'],
+    nfl: ['Dallas Cowboys'],
+    mls: ['FC Dallas']
   },
-  'Saint Paul, Minnesota': {
-    nhl: ['Minnesota Wild']
+  Minneapolis: {
+    nhl: ['Minnesota Wild'],
+    mlb: ['Minnesota Twins'],
+    nba: ['Minnesota Timberwolves'],
+    nfl: ['Minnesota Vikings'],
+    mls: ['Minnesota United FC']
   },
   'Nashville, Tennessee': {
     nhl: ['Nashville Predators'],
@@ -91,12 +116,17 @@ module.exports = {
   Winnipeg: {
     nhl: ['Winnipeg Jets']
   },
-  'Anaheim, California': {
-    nhl: ['Anaheim Ducks'],
-    mlb: ['Los Angeles Angels']
+  'Los Angeles': {
+    nhl: ['Anaheim Ducks', 'Los Angeles Kings'],
+    mlb: ['Los Angeles Angels', 'Los Angeles Dodgers'],
+    nba: ['Los Angeles Clippers', 'Los Angeles Lakers'],
+    nfl: ['Los Angeles Chargers', 'Los Angeles Rams'],
+    mls: ['LA Galaxy', 'Los Angeles FC']
   },
-  'Glendale, Arizona': {
+  'Phoenix, Arizona': {
     nhl: ['Arizona Coyotes'],
+    mlb: ['Arizona Diamondbacks'],
+    nba: ['Phoenix Suns'],
     nfl: ['Arizona Cardinals']
   },
   Calgary: {
@@ -105,27 +135,21 @@ module.exports = {
   Edmonton: {
     nhl: ['Edmonton Oilers']
   },
-  'Los Angeles': {
-    nhl: ['Los Angeles Kings'],
-    mlb: ['Los Angeles Dodgers'],
-    nba: ['Los Angeles Clippers', 'Los Angeles Lakers'],
-    nfl: ['Los Angeles Rams']
-  },
   'San Jose, California': {
-    nhl: ['San Jose Sharks']
+    nhl: ['San Jose Sharks'],
+    nfl: ['San Francisco 49ers'],
+    mls: ['San Jose Earthquakes']
   },
   Vancouver: {
-    nhl: ['Vancouver Canucks']
+    nhl: ['Vancouver Canucks'],
+    mls: ['Vancouver Whitecaps FC']
   },
-  'Paradise, Nevada': {
+  'Las Vegas': {
     nhl: ['Vegas Golden Knights']
   },
   Baltimore: {
     mlb: ['Baltimore Orioles'],
     nfl: ['Baltimore Ravens']
-  },
-  'St. Petersburg, Florida': {
-    mlb: ['Tampa Bay Rays']
   },
   Cleveland: {
     mlb: ['Cleveland Indians'],
@@ -134,17 +158,14 @@ module.exports = {
   },
   'Kansas City, Missouri': {
     mlb: ['Kansas City Royals'],
-    nfl: ['Kansas City Chiefs']
-  },
-  Minneapolis: {
-    mlb: ['Minnesota Twins'],
-    nba: ['Minnesota Timberwolves'],
-    nfl: ['Minnesota Vikings']
+    nfl: ['Kansas City Chiefs'],
+    mls: ['Sporting Kansas City']
   },
   Houston: {
     mlb: ['Houston Astros'],
     nba: ['Houston Rockets'],
-    nfl: ['Houston Texans']
+    nfl: ['Houston Texans'],
+    mls: ['Houston Dynamo']
   },
   'Oakland, California': {
     mlb: ['Oakland Athletics'],
@@ -153,20 +174,14 @@ module.exports = {
   },
   Seattle: {
     mlb: ['Seattle Mariners'],
-    nfl: ['Seattle Seahawks']
-  },
-  'Arlington, Texas': {
-    mlb: ['Texas Rangers (baseball)'],
-    nfl: ['Dallas Cowboys']
+    nfl: ['Seattle Seahawks'],
+    mls: ['Seattle Sounders FC']
   },
   Atlanta: {
     mlb: ['Atlanta Braves'],
     nba: ['Atlanta Hawks'],
-    nfl: ['Atlanta Falcons']
-  },
-  Miami: {
-    mlb: ['Miami Marlins'],
-    nba: ['Miami Heat']
+    nfl: ['Atlanta Falcons'],
+    mls: ['Atlanta United FC']
   },
   Cincinnati: {
     mlb: ['Cincinnati Reds'],
@@ -175,10 +190,6 @@ module.exports = {
   Milwaukee: {
     mlb: ['Milwaukee Brewers'],
     nba: ['Milwaukee Bucks']
-  },
-  'Phoenix, Arizona': {
-    mlb: ['Arizona Diamondbacks'],
-    nba: ['Phoenix Suns']
   },
   'San Diego': {
     mlb: ['San Diego Padres']
@@ -195,16 +206,19 @@ module.exports = {
     nfl: ['Carolina Panthers']
   },
   'Orlando, Florida': {
-    nba: ['Orlando Magic']
+    nba: ['Orlando Magic'],
+    mls: ['Orlando City SC']
   },
   'Oklahoma City': {
     nba: ['Oklahoma City Thunder']
   },
   'Portland, Oregon': {
-    nba: ['Portland Trail Blazers']
+    nba: ['Portland Trail Blazers'],
+    mls: ['Portland Timbers']
   },
   'Salt Lake City': {
-    nba: ['Utah Jazz']
+    nba: ['Utah Jazz'],
+    mls: ['Real Salt Lake']
   },
   'Sacramento, California': {
     nba: ['Sacramento Kings']
@@ -219,31 +233,10 @@ module.exports = {
   'San Antonio': {
     nba: ['San Antonio Spurs']
   },
-  'Orchard Park (town), New York': {
-    nfl: ['Buffalo Bills']
-  },
-  'Miami Gardens, Florida': {
-    nfl: ['Miami Dolphins']
-  },
-  'Foxborough, Massachusetts': {
-    nfl: ['New England Patriots']
-  },
-  'East Rutherford, New Jersey': {
-    nfl: ['New York Jets', 'New York Giants']
-  },
   'Jacksonville, Florida': {
     nfl: ['Jacksonville Jaguars']
   },
-  'Carson, California': {
-    nfl: ['Los Angeles Chargers']
-  },
-  'Landover, Maryland': {
-    nfl: ['Washington Redskins']
-  },
   'Green Bay, Wisconsin': {
     nfl: ['Green Bay Packers']
-  },
-  'Santa Clara, California': {
-    nfl: ['San Francisco 49ers']
   }
 };
