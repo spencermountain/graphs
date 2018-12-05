@@ -1,10 +1,22 @@
 {
-  "name": "frown-out",
+  "name": "frowwn-out",
   "description": "",
   "version": "0.0.1",
   "author": "Spencer Kelly (spencermountain)",
   "homepage": "https://github.com/spencermountain/frown#readme",
-  "scripts": {},
+  "scripts": {
+    "start": "budo index.js:assets/_bundle.js --live",
+    "watch": "npm run start",
+    "build": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | uglifyjs -m -c > ./assets/_bundle.js"
+  },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "babelify": "^10.0.0",
+    "budo": "^11.5.0",
+    "uglify-js": "^3.4.9",
+    "wtf-mlb": "^0.2.0",
+    "wtf_wikipedia": "^7.0.0"
+  }
 }
