@@ -9,7 +9,10 @@
     "watch": "npm run start",
     "build": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | uglifyjs -m -c > ./assets/_bundle.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "spacetime": "^4.5.1",
+    "spencer-color": "0.0.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
