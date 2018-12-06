@@ -5,10 +5,10 @@
   "author": "Spencer Kelly (spencermountain)",
   "homepage": "https://github.com/spencermountain/frown#readme",
   "scripts": {
-    "start": "budo index.js:assets/_bundle.js --live",
+    "start": "budo index.js:assets/bundle.js --live",
     "watch": "npm run start",
-    "build": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | derequire > ./assets/_bundle.js",
-    "build:old": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | uglifyjs -m -c > ./assets/_bundle.js"
+    "build": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | derequire > ./assets/bundle.js",
+    "build:old": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | uglifyjs -m -c > ./assets/bundle.js"
   },
   "dependencies": {
     "spacetime": "^4.5.1",
