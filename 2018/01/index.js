@@ -1,4 +1,4 @@
-let el = document.querySelector('body');
+let el = document.querySelector('#stage');
 
 // const somehow = require('./assets/somehow');
 const spacetime = require('spacetime');
