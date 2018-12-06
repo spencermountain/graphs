@@ -1,9 +1,5 @@
 let el = document.querySelector('body');
-el.innerHTML = `
 
-<div id="boston"> </div>
-<div id="toronto"> </div>
-`;
 // const somehow = require('./assets/somehow');
 const spacetime = require('spacetime');
 const colors = require('spencer-color');
@@ -82,21 +78,55 @@ const drawCity = function(name, id) {
     city[k] = city[k] || [];
     city[k].forEach((team) => {
       let y = i * 10 + 'px';
-      if (k === 'nhl' || k === 'nba') {
+      if (k === 'nhl' || k === 'nba' || k === 'nfl') {
         drawTwoLines(w, league.start, league.end, y, team, league.color);
       } else {
         drawLine(w, league.start, league.end, y, team, league.color);
       }
+
+      team = team.replace(name, '').trim();
+      team = w.text(team);
+      team.fontSize(10);
+      team.color('lightgrey');
+      team.set(`110%, ${y}`);
+      let leg = w.line();
+      leg.width(2);
+      leg.color(league.color);
+      y = ((i * 10) + 6) + 'px';
+      leg.set(`108%, ${y}
+        109%, ${y}`);
+
       i += 1;
     });
   });
+
+  let now = w.line();
+  now.color('lightgrey');
+  now.width(1);
+  let iso = spacetime.now().format('iso');
+  let y = (i * 10) + 25 + 'px';
+  now.set(`${iso}, 14px
+    ${iso}, ${y}`);
+
   w.y.fit(0, 9);
   w.x.fit('Jan 1 2018', 'Dec 31 2018');
   w.xAxis.ticks(12);
   w.yAxis.remove();
+
+
   w.build();
 };
 
+let chosen = Object.keys(cities).slice(0, 5);
+el.innerHTML = chosen.reduce((str, k) => {
+  let id = k.replace(/[ \.,]/g, '').toLowerCase();
+  str += `<div id="${id}"> </div>`;
+  return str;
+}, '');
 
-drawCity('Boston', '#boston');
-drawCity('Toronto', '#toronto');
+chosen.forEach((k) => {
+  let id = k.replace(/[ \.,]/g, '').toLowerCase();
+  drawCity(k, '#' + id);
+});
+// drawCity('Boston', '#Boston');
+// drawCity('Toronto', '#Toronto');
