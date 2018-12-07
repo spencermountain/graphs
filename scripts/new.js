@@ -24,9 +24,9 @@ sh.cat(__dirname + '/defaults/index.js').to(dir + '/index.js');
 sh.mkdir(dir + '/assets')
 sh.cp('./node_modules/spencer-css/builds/spencer.min.css', dir + '/assets')
 
+sh.mkdir(dir + '/scripts')
 
 // setTimeout(() => {
 //   sh.exec(`rm -rf ${dir}`)
 // }, 7000)
-
-// sh.cd(dir)
+sh.cd(dir)
