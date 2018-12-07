@@ -1,39 +1,10 @@
 let el = document.querySelector('#stage');
 
-// const somehow = require('./assets/somehow');
+const somehow = require('./assets/somehow');
+// const somehow = require('/Users/spencer/mountain/somehow/src/index.js');
 const spacetime = require('spacetime');
-const colors = require('spencer-color');
-const somehow = require('/Users/spencer/mountain/somehow/src/index.js');
 const cities = require('./data/cities');
-
-const leagues = {
-  mls: {
-    color: colors.brown,
-    start: 'March 3 2018',
-    end: 'October 28 2018',
-  },
-  nfl: {
-    color: colors.orange,
-    start: 'September 6 2018',
-    end: 'February 3 2019',
-  },
-  mlb: {
-    color: colors.blue,
-    start: 'March 29 2018',
-    end: 'October 1 2018',
-  },
-  nhl: {
-    color: colors.red,
-    start: 'October 3 2018',
-    end: 'April 6 2019',
-  },
-  nba: {
-    color: colors.green,
-    start: 'October 16 2018',
-    end: 'April 10 2019',
-  },
-};
-
+const leagues = require('./data/leagues');
 
 const drawTwoLines = function(w, start, end, index, label, color) {
   let yearEnd = spacetime('Dec 31 2018');
@@ -44,7 +15,6 @@ const drawTwoLines = function(w, start, end, index, label, color) {
   let newEnd = spacetime(end).minus(1, 'year').format('iso');
   l1.set(`${yearStart}, ${index}
     ${newEnd}, ${index}`);
-
   let l2 = w.line();
   l2.color(color);
   l2.set(`${start}, ${index}
@@ -57,17 +27,12 @@ const drawLine = function(w, start, end, index, label, color) {
   l.color(color);
   l.set(`${start}, ${index}
 ${end}, ${index}`);
-
-// let txt = w.text(label);
-// txt.fontSize(10);
-// txt.set(`${start}, ${index}`);
 };
 
-const drawCity = function(name, id) {
+const drawCity = function(name) {
   let w = somehow({
     height: 200,
     aspect: 'widescreen',
-    el: document.querySelector(id)
   });
   let city = cities[name];
   let txt = w.text(name);
@@ -114,19 +79,15 @@ const drawCity = function(name, id) {
   w.yAxis.remove();
 
 
-  w.build();
+  return w.build();
 };
 
+console.time('draw')
 let chosen = Object.keys(cities).slice(0, 5);
-el.innerHTML = chosen.reduce((str, k) => {
-  let id = k.replace(/[ \.,]/g, '').toLowerCase();
-  str += `<div id="${id}"> </div>`;
-  return str;
-}, '');
+el.innerHTML = chosen.map((k) => {
+  return drawCity(k);
+}).join(' ')
+console.timeEnd('draw')
 
-chosen.forEach((k) => {
-  let id = k.replace(/[ \.,]/g, '').toLowerCase();
-  drawCity(k, '#' + id);
-});
-// drawCity('Boston', '#Boston');
-// drawCity('Toronto', '#Toronto');
+// drawCity('Boston');
+// drawCity('Toronto');
