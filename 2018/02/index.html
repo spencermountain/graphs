@@ -6,11 +6,28 @@
   <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   <title></title>
   <link href="./assets/spencer.min.css" rel="stylesheet">
+  <style>
+    .slider-wrapper {
+      display: inline-block;
+      width: 20px;
+      height: 150px;
+      padding: 0;
+    }
+
+    .slider-wrapper input {
+      width: 150px;
+      height: 20px;
+      margin: 0;
+      transform-origin: 75px 75px;
+      transform: rotate(-90deg);
+    }
+  </style>
 </head>
 
 <body class="body p4 flexcol">
   <div class="flex">
-    <div id="stage" class="flexcol" />
+    <div id="stage" class="flexcol"></div>
+    <div class="m5" id="slider"></div>
   </div>
   <script src="./assets/bundle.js"></script>
 </body>

@@ -3,7 +3,7 @@
 // const somehow = require('somehow');
 const somehow = require('/Users/spencer/mountain/somehow/src');
 const latitudes = require('./data/by-latitude')
-let el = document.querySelector('#stage');
+let stage = document.querySelector('#stage')
 
 let w = somehow({
   height: 250,
@@ -71,4 +71,26 @@ mid.dotted(true)
 w.y.fit(-40, 40);
 w.x.fit('Jan 1 2018', 'Dec 31 2018');
 
-el.innerHTML = w.build()
+let num = w.text(w.state.lat)
+num.at('50%', '50%')
+
+stage.innerHTML = w.build()
+
+//make slider
+let slider = w.slider({
+  max: 60,
+  min: -30,
+  id: 'lat'
+})
+slider.title('Latitude:')
+let labels = Object.keys(latitudes).map((v) => {
+  let str = v + '°  ' + latitudes[v].city
+  return [str, v]
+})
+slider.labels(labels)
+slider.callback = function(e) {
+  console.log('hi')
+  console.log(e.target.value)
+  stage.innerHTML = w.build()
+}
+document.querySelector('#slider').innerHTML = slider.build()
