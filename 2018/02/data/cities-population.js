@@ -840,7 +840,7 @@ module.exports = [
     "population": 2500000
   },
   {
-    "city": "Medellin",
+    "city": "Medellín",
     "country": "🇨🇴",
     "population": 2497870
   },
@@ -1115,7 +1115,7 @@ module.exports = [
     "population": 1496035
   },
   {
-    "city": "T'bilisi",
+    "city": "Tbilisi",
     "country": "🇬🇪",
     "population": 1485293
   },
@@ -1155,7 +1155,7 @@ module.exports = [
     "population": 1250619
   },
   {
-    "city": "Saitama, Saitama",
+    "city": "Saitama",
     "country": "🇯🇵",
     "population": 1226656
   },

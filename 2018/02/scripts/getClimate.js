@@ -2,6 +2,7 @@ const wtf = require('/Users/spencer/mountain/wtf_wikipedia/')
 let cities = require('../data/cities-population')
 cities = cities.map((c) => c.city)
 // cities = cities.slice(4, 6)
+cities = ['Houston', 'San Diego']
 
 const parseBox = function(doc) {
   let tmpl = doc.templates('weather box') || []
@@ -10,10 +11,10 @@ const parseBox = function(doc) {
   }
   tmpl = tmpl[0] || {}
   let byMonth = tmpl.byMonth || {}
-  delete byMonth['high c']
-  delete byMonth['high f']
-  delete byMonth['low c']
-  delete byMonth['low f']
+  // delete byMonth['high c']
+  // delete byMonth['high f']
+  // delete byMonth['low c']
+  // delete byMonth['low f']
   delete byMonth['record high c']
   delete byMonth['record high f']
   delete byMonth['record low c']
@@ -26,28 +27,29 @@ const parseBox = function(doc) {
   return byMonth
 }
 
-// wtf.fetch(cities, (err, docs) => {
-//   let data = docs.map((doc) => {
-//     let result = {
-//       title: doc.title(),
-//     }
-//     //get geolocation
-//     let coord = doc.coordinates(0)
-//     if (coord) {
-//       result.lat = coord.lat
-//       result.lon = coord.lon
-//     }
-//     result.weather = parseBox(doc)
-//   })
-//   console.log(JSON.stringify(data, null, 2))
-// })
+wtf.fetch(cities, (err, docs) => {
+  let data = docs.map((doc) => {
+    let result = {
+      title: doc.title(),
+    }
+    //get geolocation
+    let coord = doc.coordinates(0)
+    if (coord) {
+      result.lat = coord.lat
+      result.lon = coord.lon
+    }
+    result.weather = parseBox(doc)
+    return result
+  })
+  console.log(JSON.stringify(data, null, 2))
+})
 
 // let missing = [
 //   'Seoul',
 //   'Cairo',
 //   'Shanghai',
 //   'Delhi',
-//   'New York City',
+// 'New York City',
 //   'Guangzhou',
 //   'Mumbai',
 //   'Beijing',
@@ -67,7 +69,7 @@ const parseBox = function(doc) {
 //   'Johannesburg',
 //   'Phoenix, Arizona',
 //   'Milan',
-//   'San Diego',
+// 'San Diego',
 //   'San Antonio',
 //   'Peshawar',
 //   'Islamabad',
@@ -89,19 +91,19 @@ const parseBox = function(doc) {
 // })
 
 //combine the two data-sets
-let allCities = require('../data/cities-weather')
-const more = require('../data/cities-more-weather')
-allCities.forEach((o) => {
-  if (!o.lat) {
-    console.log(o.title + ' geo')
-  }
-  if (Object.keys(o.weather).length === 0) {
-    let w = more.find((m) => m.title === o.title)
-    if (!w) {
-      console.log(o.title + ' - weather')
-    } else {
-      o.weather = w.weather
-    }
-  }
-})
-console.log(JSON.stringify(allCities, null, 2))
+// let allCities = require('../data/cities-weather')
+// const more = require('../data/cities-more-weather')
+// allCities.forEach((o) => {
+//   if (!o.lat) {
+//     console.log(o.title + ' geo')
+//   }
+//   if (Object.keys(o.weather).length === 0) {
+//     let w = more.find((m) => m.title === o.title)
+//     if (!w) {
+//       console.log(o.title + ' - weather')
+//     } else {
+//       o.weather = w.weather
+//     }
+//   }
+// })
+// console.log(JSON.stringify(allCities, null, 2))
