@@ -8,6 +8,7 @@ let stage = document.querySelector('#stage')
 let w = somehow({
   height: 250,
   aspect: 'widescreen',
+  el: stage
 });
 
 const months = [
@@ -74,23 +75,32 @@ w.x.fit('Jan 1 2018', 'Dec 31 2018');
 let num = w.text(w.state.lat)
 num.at('50%', '50%')
 
-stage.innerHTML = w.build()
 
 //make slider
 let slider = w.slider({
-  max: 60,
-  min: -30,
+  max: 50,
+  min: -50,
+  value: 37,
   id: 'lat'
 })
 slider.title('Latitude:')
-let labels = Object.keys(latitudes).map((v) => {
+let labels = Object.keys(latitudes)
+console.log(labels)
+labels = labels.map((v) => {
   let str = v + '°  ' + latitudes[v].city
   return [str, v]
 })
 slider.labels(labels)
-slider.callback = function(e) {
-  console.log('hi')
-  console.log(e.target.value)
-  stage.innerHTML = w.build()
-}
+// slider.callback = function(e) {
+//   console.log('hi')
+//   console.log(e.target.value)
+//   stage.innerHTML = w.build()
+// }
+
+
+// console.log(w.state.lat)
+// let label = w.text('cool' + w.state.lat).at('50%', '50%')
+// label.bind('lat')
+
+stage.innerHTML = w.build()
 document.querySelector('#slider').innerHTML = slider.build()
