@@ -44,7 +44,7 @@ w.y.fit(-40, 40);
 w.x.fit('Jan 1 2018', 'Dec 31 2018');
 
 // logging
-let num = w.text(w.state.lat)
-num.at('50%', '50%')
+// let num = w.text(w.state.lat)
+// num.at('50%', '50%')
 
 stage.innerHTML = w.build()

@@ -6814,7 +6814,7 @@ return h;
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<svg ...", ">\n    <text>", "</text>\n      ", "\n    </svg>"]);
+  var data = _taggedTemplateLiteral(["<svg ...", ">\n      ", "\n    </svg>"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -6985,7 +6985,7 @@ function (_Component) {
         style: 'overflow:visible; margin: 10px 20px 25px 25px;' // border:1px solid lightgrey;
 
       };
-      return h(_templateObject(), attrs, this.state.lat, elements);
+      return h(_templateObject(), attrs, elements);
     }
   }]);
 
@@ -8373,7 +8373,7 @@ function (_Shape) {
     key: "dx",
     value: function dx() {
       var n = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      this._dodge.x += n;
+      this._dodge.x = n;
       return this;
     }
   }, {

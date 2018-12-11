@@ -26,6 +26,7 @@ const drawCity = function(w, city) {
   label.text(city.city)
   let june = arr[6]
   label.set([june])
+  label.dx(-12)
   label.dy(7)
 // console.log(arr[6])
 }

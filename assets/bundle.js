@@ -2,7 +2,7 @@
 "use strict";
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<div class=\"left flex-start outline w30 m2\" >\n    <span class=\"m3 olive\" >", "</span>\n    <a href=\"", "\" class=\"link\">", "</a>\n      <img class=\"block\" style=\"margin-left:90px; max-width:450px; max-height:100px;\" src=\"", "\" />\n  </div>\n  "]);
+  var data = _taggedTemplateLiteral(["<a href=\"", "\" class=\"left flex-start w30 m2\" >\n    <span class=\"m3 olive\" >", "</span>\n    <span class=\"link\">", "</span>\n    <img class=\"block\" style=\"margin-left:95px; max-width:450px; max-height:100px;\" src=\"", "\" />\n  </a>\n  "]);
 
   _templateObject = function _templateObject() {
     return data;

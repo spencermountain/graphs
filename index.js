@@ -5,11 +5,11 @@ const manifest = require('./manifest')
 let el = document.querySelector('#stage');
 
 let pages = manifest.map((o) => {
-  return h`<div class="left flex-start outline w30 m2" >
+  return h`<a href="${o.path}" class="left flex-start w30 m2" >
     <span class="m3 olive" >${o.path}</span>
-    <a href="${o.path}" class="link">${o.title}</a>
-      <img class="block" style="margin-left:90px; max-width:450px; max-height:100px;" src="${o.path + '/' + o.thumb}" />
-  </div>
+    <span class="link">${o.title}</span>
+    <img class="block" style="margin-left:95px; max-width:450px; max-height:100px;" src="${o.path + '/' + o.thumb}" />
+  </a>
   `
 })
 el.innerHTML = pages.join(' ')

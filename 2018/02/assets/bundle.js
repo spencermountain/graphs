@@ -16,6 +16,7 @@ var drawCity = function drawCity(w, city) {
   label.text(city.city);
   var june = arr[6];
   label.set([june]);
+  label.dx(-12);
   label.dy(7); // console.log(arr[6])
 };
 
@@ -10337,7 +10338,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
       }
 
       function _templateObject() {
-        var data = _taggedTemplateLiteral(["<svg ...", ">\n    <text>", "</text>\n      ", "\n    </svg>"]);
+        var data = _taggedTemplateLiteral(["<svg ...", ">\n      ", "\n    </svg>"]);
 
         _templateObject = function _templateObject() {
           return data;
@@ -10571,7 +10572,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
               style: 'overflow:visible; margin: 10px 20px 25px 25px;' // border:1px solid lightgrey;
 
             };
-            return h(_templateObject(), attrs, this.state.lat, elements);
+            return h(_templateObject(), attrs, elements);
           }
         }]);
 
@@ -12525,7 +12526,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
           key: "dx",
           value: function dx() {
             var n = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-            this._dodge.x += n;
+            this._dodge.x = n;
             return this;
           }
         }, {
@@ -13144,9 +13145,9 @@ mid.width(1);
 mid.dotted(true);
 w.y.fit(-40, 40);
 w.x.fit('Jan 1 2018', 'Dec 31 2018'); // logging
+// let num = w.text(w.state.lat)
+// num.at('50%', '50%')
 
-var num = w.text(w.state.lat);
-num.at('50%', '50%');
 stage.innerHTML = w.build();
 
 },{"./_drawCity":1,"./_slider":2,"./assets/somehow":3,"./data/by-latitude":4}]},{},[6]);
