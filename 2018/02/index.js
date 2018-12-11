@@ -1,7 +1,6 @@
 
-// const somehow = require('./assets/somehow');
-// const somehow = require('somehow');
-const somehow = require('/Users/spencer/mountain/somehow/src');
+const somehow = require('./assets/somehow');
+// const somehow = require('/Users/spencer/mountain/somehow/src');
 const makeSlider = require('./_slider')
 // const drawCities = require('./_cities')
 let stage = document.querySelector('#stage')

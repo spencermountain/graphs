@@ -108,14 +108,7 @@ const drawCity = function(name) {
 
 
       //normalize their team name
-      let firstName = name.split(/,/)[0]
-      let teamName = team.replace(firstName, '')
-      teamName = teamName.replace(/(new york|new england|minnesota|colorado|arizona)/i, '')
-      teamName = teamName.trim();
-      if (teamName === 'FC') {
-        teamName = team
-      }
-      team = w.text(teamName);
+      team = w.text(team);
       team.font(10);
       team.color('lightgrey');
       team.set(`110%, ${(i * 10) + 3}px`);

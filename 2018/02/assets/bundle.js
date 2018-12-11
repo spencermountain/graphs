@@ -1,4 +1,103 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
+"use strict";
+
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+var drawCity = function drawCity(w, city) {
+  var arr = city.weather.split(',').map(function (temp, i) {
+    var date = months[i] + ' 1 2018';
+    return [date, Number(temp)];
+  }); //add start to very end
+
+  arr.push(['Dec 31 2018', arr[0][1]]);
+  var line = w.getShape('line');
+  line.set(arr);
+  var label = w.getShape('label');
+  label.text(city.city);
+  var june = arr[6];
+  label.set([june]);
+  label.dy(7); // console.log(arr[6])
+};
+
+module.exports = drawCity; // Object.keys(latitudes).forEach((k, n) => {
+//   let city = latitudes[k]
+//   let arr = city.weather.split(',').map((temp, i) => {
+//     let date = months[i] + ' 1 2018'
+//     return [date, Number(temp)]
+//   })
+//   //add start to very end
+//   arr.push(['Dec 31 2018', arr[0][1]])
+//   let color = colors[n]
+//   let l = w.line()
+//   l.set(arr)
+//   l.color(color)
+//   let t = w.text(latitudes[k].city).font(8)
+//   t.dx(5).color(color)
+//   t.after('Dec 31 2018', arr[arr.length - 1][1])
+// })
+
+},{}],2:[function(_dereq_,module,exports){
+"use strict";
+
+var labels = _dereq_('./data/labels');
+
+var latitudes = _dereq_('./data/by-latitude');
+
+var drawCity = _dereq_('./_drawCity');
+
+var sliderEl = document.querySelector('#slider');
+
+var findClosest = function findClosest(num) {
+  num = parseInt(num, 10);
+
+  for (var i = 0; i < 50; i += 1) {
+    var str = String(num + i);
+
+    if (latitudes.hasOwnProperty(str)) {
+      console.log(str);
+      return latitudes[str];
+    }
+
+    str = String(num - i);
+
+    if (latitudes.hasOwnProperty(str)) {
+      console.log(str);
+      return latitudes[str];
+    }
+  }
+
+  console.log('missing latitude: ' + num);
+  return null;
+}; // console.log(findClosest(89))
+
+
+var makeSlider = function makeSlider(w) {
+  var slider = w.slider({
+    max: 55,
+    min: -55,
+    value: 37,
+    id: 'lat'
+  });
+  slider.title('Latitude:');
+  labels = labels.map(function (a) {
+    var str = a[1] + '°  ' + a[0];
+    return [str, a[1]];
+  });
+  slider.labels(labels);
+
+  slider.callback = function (e) {
+    this.world.state[this.id] = e.target.value;
+    var city = findClosest(e.target.value);
+    drawCity(this.world, city);
+    this.world.redraw();
+  };
+
+  sliderEl.innerHTML = slider.build();
+};
+
+module.exports = makeSlider;
+
+},{"./_drawCity":1,"./data/by-latitude":4,"./data/labels":5}],3:[function(_dereq_,module,exports){
 (function (global){
 "use strict";
 
@@ -6938,2240 +7037,6 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
       }).call(this, typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {}],
     12: [function (_dereq_, module, exports) {
-      !function (t, n) {
-        "object" == _typeof2(exports) && "undefined" != typeof module ? n(exports) : "function" == typeof define && define.amd ? define(["exports"], n) : n(t.flubber = t.flubber || {});
-      }(this, function (t) {
-        "use strict";
-
-        function n(t) {
-          return 10 === t || 13 === t || 8232 === t || 8233 === t || 32 === t || 9 === t || 11 === t || 12 === t || 160 === t || t >= 5760 && an.indexOf(t) >= 0;
-        }
-
-        function e(t) {
-          switch (32 | t) {
-            case 109:
-            case 122:
-            case 108:
-            case 104:
-            case 118:
-            case 99:
-            case 115:
-            case 113:
-            case 116:
-            case 97:
-            case 114:
-              return !0;
-          }
-
-          return !1;
-        }
-
-        function r(t) {
-          return t >= 48 && t <= 57;
-        }
-
-        function i(t) {
-          return t >= 48 && t <= 57 || 43 === t || 45 === t || 46 === t;
-        }
-
-        function a(t) {
-          this.index = 0, this.path = t, this.max = t.length, this.result = [], this.param = 0, this.err = "", this.segmentStart = 0, this.data = [];
-        }
-
-        function o(t) {
-          for (; t.index < t.max && n(t.path.charCodeAt(t.index));) {
-            t.index++;
-          }
-        }
-
-        function s(t) {
-          var n,
-              e = t.index,
-              i = e,
-              a = t.max,
-              o = !1,
-              s = !1,
-              h = !1,
-              u = !1;
-          if (i >= a) return void (t.err = "SvgPath: missed param (at pos " + i + ")");
-          if (n = t.path.charCodeAt(i), 43 !== n && 45 !== n || (i++, n = i < a ? t.path.charCodeAt(i) : 0), !r(n) && 46 !== n) return void (t.err = "SvgPath: param should start with 0..9 or `.` (at pos " + i + ")");
-
-          if (46 !== n) {
-            if (o = 48 === n, i++, n = i < a ? t.path.charCodeAt(i) : 0, o && i < a && n && r(n)) return void (t.err = "SvgPath: numbers started with `0` such as `09` are ilegal (at pos " + e + ")");
-
-            for (; i < a && r(t.path.charCodeAt(i));) {
-              i++, s = !0;
-            }
-
-            n = i < a ? t.path.charCodeAt(i) : 0;
-          }
-
-          if (46 === n) {
-            for (u = !0, i++; r(t.path.charCodeAt(i));) {
-              i++, h = !0;
-            }
-
-            n = i < a ? t.path.charCodeAt(i) : 0;
-          }
-
-          if (101 === n || 69 === n) {
-            if (u && !s && !h) return void (t.err = "SvgPath: invalid float exponent (at pos " + i + ")");
-            if (i++, n = i < a ? t.path.charCodeAt(i) : 0, 43 !== n && 45 !== n || i++, !(i < a && r(t.path.charCodeAt(i)))) return void (t.err = "SvgPath: invalid float exponent (at pos " + i + ")");
-
-            for (; i < a && r(t.path.charCodeAt(i));) {
-              i++;
-            }
-          }
-
-          t.index = i, t.param = parseFloat(t.path.slice(e, i)) + 0;
-        }
-
-        function h(t) {
-          var n, e;
-          n = t.path[t.segmentStart], e = n.toLowerCase();
-          var r = t.data;
-          if ("m" === e && r.length > 2 && (t.result.push([n, r[0], r[1]]), r = r.slice(2), e = "l", n = "m" === n ? "l" : "L"), "r" === e) t.result.push([n].concat(r));else for (; r.length >= rn[e] && (t.result.push([n].concat(r.splice(0, rn[e]))), rn[e]);) {
-            ;
-          }
-        }
-
-        function u(t) {
-          var n,
-              r,
-              a,
-              u,
-              c = t.max;
-          if (t.segmentStart = t.index, n = t.path.charCodeAt(t.index), !e(n)) return void (t.err = "SvgPath: bad command " + t.path[t.index] + " (at pos " + t.index + ")");
-          if (a = rn[t.path[t.index].toLowerCase()], t.index++, o(t), t.data = [], !a) return void h(t);
-
-          for (r = !1;;) {
-            for (u = a; u > 0; u--) {
-              if (s(t), t.err.length) return;
-              t.data.push(t.param), o(t), r = !1, t.index < c && 44 === t.path.charCodeAt(t.index) && (t.index++, o(t), r = !0);
-            }
-
-            if (!r) {
-              if (t.index >= t.max) break;
-              if (!i(t.path.charCodeAt(t.index))) break;
-            }
-          }
-
-          h(t);
-        }
-
-        function c(t, n) {
-          return [t[0] * n[0] + t[2] * n[1], t[1] * n[0] + t[3] * n[1], t[0] * n[2] + t[2] * n[3], t[1] * n[2] + t[3] * n[3], t[0] * n[4] + t[2] * n[5] + t[4], t[1] * n[4] + t[3] * n[5] + t[5]];
-        }
-
-        function f() {
-          if (!(this instanceof f)) return new f();
-          this.queue = [], this.cache = null;
-        }
-
-        function l(t, n, e, r) {
-          var i = t * r - n * e < 0 ? -1 : 1,
-              a = Math.sqrt(t * t + n * n),
-              o = Math.sqrt(t * t + n * n),
-              s = t * e + n * r,
-              h = s / (a * o);
-          return h > 1 && (h = 1), h < -1 && (h = -1), i * Math.acos(h);
-        }
-
-        function p(t, n, e, r, i, a, o, s, h, u) {
-          var c = u * (t - e) / 2 + h * (n - r) / 2,
-              f = -h * (t - e) / 2 + u * (n - r) / 2,
-              p = o * o,
-              g = s * s,
-              v = c * c,
-              x = f * f,
-              y = p * g - p * x - g * v;
-          y < 0 && (y = 0), y /= p * x + g * v, y = Math.sqrt(y) * (i === a ? -1 : 1);
-          var d = y * o / s * f,
-              m = y * -s / o * c,
-              M = u * d - h * m + (t + e) / 2,
-              w = h * d + u * m + (n + r) / 2,
-              b = (c - d) / o,
-              L = (f - m) / s,
-              A = (-c - d) / o,
-              q = (-f - m) / s,
-              k = l(1, 0, b, L),
-              P = l(b, L, A, q);
-          return 0 === a && P > 0 && (P -= ln), 1 === a && P < 0 && (P += ln), [M, w, k, P];
-        }
-
-        function g(t, n) {
-          var e = 4 / 3 * Math.tan(n / 4),
-              r = Math.cos(t),
-              i = Math.sin(t),
-              a = Math.cos(t + n),
-              o = Math.sin(t + n);
-          return [r, i, r - i * e, i + r * e, a + o * e, o - a * e, a, o];
-        }
-
-        function v(t, n, e) {
-          if (!(this instanceof v)) return new v(t, n, e);
-          this.rx = t, this.ry = n, this.ax = e;
-        }
-
-        function x(t) {
-          if (!(this instanceof x)) return new x(t);
-          var n = on(t);
-          this.segments = n.segments, this.err = n.err, this.__stack = [];
-        }
-
-        function y(t) {
-          var n = t.match(wn);
-          return n ? n.map(Number) : [];
-        }
-
-        function d(t, n, e, r, i, a, o, s) {
-          this.a = {
-            x: t,
-            y: n
-          }, this.b = {
-            x: e,
-            y: r
-          }, this.c = {
-            x: i,
-            y: a
-          }, this.d = {
-            x: o,
-            y: s
-          }, null !== o && void 0 !== o && null !== s && void 0 !== s ? (this.getArcLength = _, this.getPoint = L, this.getDerivative = M) : (this.getArcLength = A, this.getPoint = b, this.getDerivative = m), this.init();
-        }
-
-        function m(t, n, e) {
-          return {
-            x: 2 * (1 - e) * (t[1] - t[0]) + 2 * e * (t[2] - t[1]),
-            y: 2 * (1 - e) * (n[1] - n[0]) + 2 * e * (n[2] - n[1])
-          };
-        }
-
-        function M(t, n, e) {
-          return b([3 * (t[1] - t[0]), 3 * (t[2] - t[1]), 3 * (t[3] - t[2])], [3 * (n[1] - n[0]), 3 * (n[2] - n[1]), 3 * (n[3] - n[2])], e);
-        }
-
-        function w(t, n, e, r, i) {
-          for (var a = 1, o = t / n, s = (t - e(r, i, o)) / n; a > .001;) {
-            var h = e(r, i, o + s),
-                u = e(r, i, o - s),
-                c = Math.abs(t - h) / n,
-                f = Math.abs(t - u) / n;
-            c < a ? (a = c, o += s) : f < a ? (a = f, o -= s) : s /= 2;
-          }
-
-          return o;
-        }
-
-        function b(t, n, e) {
-          return {
-            x: (1 - e) * (1 - e) * t[0] + 2 * (1 - e) * e * t[1] + e * e * t[2],
-            y: (1 - e) * (1 - e) * n[0] + 2 * (1 - e) * e * n[1] + e * e * n[2]
-          };
-        }
-
-        function L(t, n, e) {
-          return {
-            x: (1 - e) * (1 - e) * (1 - e) * t[0] + 3 * (1 - e) * (1 - e) * e * t[1] + 3 * (1 - e) * e * e * t[2] + e * e * e * t[3],
-            y: (1 - e) * (1 - e) * (1 - e) * n[0] + 3 * (1 - e) * (1 - e) * e * n[1] + 3 * (1 - e) * e * e * n[2] + e * e * e * n[3]
-          };
-        }
-
-        function A(t, n, e) {
-          void 0 === e && (e = 1);
-          var r = t[0] - 2 * t[1] + t[2],
-              i = n[0] - 2 * n[1] + n[2],
-              a = 2 * t[1] - 2 * t[0],
-              o = 2 * n[1] - 2 * n[0],
-              s = 4 * (r * r + i * i),
-              h = 4 * (r * a + i * o),
-              u = a * a + o * o;
-          if (0 === s) return e * Math.sqrt(Math.pow(t[2] - t[0], 2) + Math.pow(n[2] - n[0], 2));
-          var c = h / (2 * s),
-              f = u / s,
-              l = e + c,
-              p = f - c * c;
-          return Math.sqrt(s) / 2 * (l * Math.sqrt(l * l + p) - c * Math.sqrt(c * c + p) + p * Math.log(Math.abs((l + Math.sqrt(l * l + p)) / (c + Math.sqrt(c * c + p)))));
-        }
-
-        function q(t, n) {
-          return qn[t][n];
-        }
-
-        function k(t, n, e) {
-          var r,
-              i,
-              a,
-              o = e.length - 1;
-          if (0 === o) return 0;
-
-          if (0 === t) {
-            for (i = 0, a = 0; a <= o; a++) {
-              i += q(o, a) * Math.pow(1 - n, o - a) * Math.pow(n, a) * e[a];
-            }
-
-            return i;
-          }
-
-          for (r = new Array(o), a = 0; a < o; a++) {
-            r[a] = o * (e[a + 1] - e[a]);
-          }
-
-          return k(t - 1, n, r);
-        }
-
-        function P(t, n, e) {
-          var r = k(1, e, t),
-              i = k(1, e, n),
-              a = r * r + i * i;
-          return Math.sqrt(a);
-        }
-
-        function _(t, n, e) {
-          var r, i, a, o;
-          void 0 === e && (e = 1);
-
-          for (r = e / 2, i = 0, a = 0; a < 20; a++) {
-            o = r * Ln[20][a] + r, i += An[20][a] * P(t, n, o);
-          }
-
-          return r * i;
-        }
-
-        function E(t, n, e, r) {
-          var i = t * r - n * e < 0 ? -1 : 1,
-              a = t * e + n * r;
-          return a > 1 && (a = 1), a < -1 && (a = -1), i * Math.acos(a);
-        }
-
-        function S(t, n, e, r, i, a, o, s, h, u) {
-          var c = u * (t - e) / 2 + h * (n - r) / 2,
-              f = -h * (t - e) / 2 + u * (n - r) / 2,
-              l = o * o,
-              p = s * s,
-              g = c * c,
-              v = f * f,
-              x = l * p - l * v - p * g;
-          x < 0 && (x = 0), x /= l * v + p * g, x = Math.sqrt(x) * (i === a ? -1 : 1);
-          var y = x * o / s * f,
-              d = x * -s / o * c,
-              m = u * y - h * d + (t + e) / 2,
-              M = h * y + u * d + (n + r) / 2,
-              w = (c - y) / o,
-              b = (f - d) / s,
-              L = (-c - y) / o,
-              A = (-f - d) / s,
-              q = E(1, 0, w, b),
-              k = E(w, b, L, A);
-          return 0 === a && k > 0 && (k -= kn), 1 === a && k < 0 && (k += kn), [m, M, q, k];
-        }
-
-        function C(t, n) {
-          var e = 4 / 3 * Math.tan(n / 4),
-              r = Math.cos(t),
-              i = Math.sin(t),
-              a = Math.cos(t + n),
-              o = Math.sin(t + n);
-          return [r, i, r - i * e, i + r * e, a + o * e, o - a * e, a, o];
-        }
-
-        function Z(t, n, e, r, i, a, o, s, h) {
-          var u = 0,
-              c = [],
-              f = [];
-          Pn(t, n, e, r, i, a, o, s, h).forEach(function (t) {
-            var n = new bn(t[0], t[1], t[2], t[3], t[4], t[5], t[6], t[7]),
-                e = n.getTotalLength();
-            u += e, c.push(e), f.push(n);
-          }), this.length = u, this.partialLengths = c, this.curves = f;
-        }
-
-        function T(t, n, e, r) {
-          this.x0 = t, this.x1 = n, this.y0 = e, this.y1 = r;
-        }
-
-        function F(t, n) {
-          return Math.sqrt((t[0] - n[0]) * (t[0] - n[0]) + (t[1] - n[1]) * (t[1] - n[1]));
-        }
-
-        function z(t, n, e) {
-          return [t[0] + (n[0] - t[0]) * e, t[1] + (n[1] - t[1]) * e];
-        }
-
-        function j(t, n) {
-          return F(t, n) < 1e-9;
-        }
-
-        function I(t, n, e) {
-          var r = t.map(function (t, e) {
-            return V(t, n[e]);
-          });
-          return function (t) {
-            var n = r.map(function (n) {
-              return n(t);
-            });
-            return e ? H(n) : n;
-          };
-        }
-
-        function V(t, n) {
-          return function (e) {
-            return t.map(function (t, r) {
-              return t + e * (n[r] - t);
-            });
-          };
-        }
-
-        function X(t) {
-          return "number" == typeof t && isFinite(t);
-        }
-
-        function Y(t) {
-          return G(t) ? nn(t) : [(t[0][0] + t[t.length - 1][0]) / 2, (t[0][1] + t[t.length - 1][1]) / 2];
-        }
-
-        function G(t) {
-          for (var n = 0; n < t.length - 2; n++) {
-            var e = t[n],
-                r = t[n + 1],
-                i = t[n + 2];
-            if (e[0] * (r[1] - i[1]) + r[0] * (i[1] - e[1]) + i[0] * (e[1] - r[1])) return !0;
-          }
-
-          return !1;
-        }
-
-        function O(t) {
-          return new yn(t).abs();
-        }
-
-        function D(t) {
-          return t.toString().split("M").map(function (t, n) {
-            return t = t.trim(), n && t ? "M" + t : t;
-          }).filter(function (t) {
-            return t;
-          });
-        }
-
-        function H(t) {
-          return "M" + t.join("L") + "Z";
-        }
-
-        function N(t) {
-          return D(O(t));
-        }
-
-        function Q(t, n) {
-          var e = O(t);
-          return U(e) || R(e, n);
-        }
-
-        function U(t) {
-          var n = t.segments || [],
-              e = [];
-          if (!n.length || "M" !== n[0][0]) return !1;
-
-          for (var r = 0; r < n.length; r++) {
-            var i = n[r],
-                a = i[0],
-                o = i[1],
-                s = i[2];
-            if ("M" === a && r || "Z" === a) break;
-            if ("M" === a || "L" === a) e.push([o, s]);else if ("H" === a) e.push([o, e[e.length - 1][1]]);else {
-              if ("V" !== a) return !1;
-              e.push([e[e.length - 1][0], o]);
-            }
-          }
-
-          return !!e.length && {
-            ring: e
-          };
-        }
-
-        function R(t, n) {
-          var e,
-              r,
-              i = D(t)[0],
-              a = [],
-              o = 3;
-          if (!i) throw new TypeError(Cn);
-          r = B(i), e = r.getTotalLength(), n && X(n) && n > 0 && (o = Math.max(o, Math.ceil(e / n)));
-
-          for (var s = 0; s < o; s++) {
-            var h = r.getPointAtLength(e * s / o);
-            a.push([h.x, h.y]);
-          }
-
-          return {
-            ring: a,
-            skipBisect: !0
-          };
-        }
-
-        function B(t) {
-          if ("undefined" != typeof window && window && window.document) try {
-            var n = window.document.createElementNS("http://www.w3.org/2000/svg", "path");
-            return n.setAttributeNS(null, "d", t), n;
-          } catch (t) {}
-          return Sn(t);
-        }
-
-        function W(t, n) {
-          for (var e = t.length + n, r = en(t) / n, i = 0, a = 0, o = r / 2; t.length < e;) {
-            var s = t[i],
-                h = t[(i + 1) % t.length],
-                u = F(s, h);
-            o <= a + u ? (t.splice(i + 1, 0, u ? z(s, h, (o - a) / u) : s.slice(0)), o += r) : (a += u, i++);
-          }
-        }
-
-        function $(t, n) {
-          void 0 === n && (n = 1 / 0);
-
-          for (var e = 0; e < t.length; e++) {
-            for (var r = t[e], i = e === t.length - 1 ? t[0] : t[e + 1]; F(r, i) > n;) {
-              i = z(r, i, .5), t.splice(e + 1, 0, i);
-            }
-          }
-        }
-
-        function J(t, n) {
-          var e, r, i;
-
-          if ("string" == typeof t) {
-            var a = Q(t, n);
-            t = a.ring, i = a.skipBisect;
-          } else if (!Array.isArray(t)) throw new TypeError(Cn);
-
-          if (e = t.slice(0), !K(e)) throw new TypeError(Cn);
-          return e.length > 1 && j(e[0], e[e.length - 1]) && e.pop(), r = tn(e), r > 0 && e.reverse(), !i && n && X(n) && n > 0 && $(e, n), e;
-        }
-
-        function K(t) {
-          return t.every(function (t) {
-            return Array.isArray(t) && t.length >= 2 && X(t[0]) && X(t[1]);
-          });
-        }
-
-        function tt(t, n, e) {
-          var r;
-          return r = t.length - n.length, W(t, r < 0 ? -1 * r : 0), W(n, r > 0 ? r : 0), Tn(t, n), I(t, n, e);
-        }
-
-        function nt(t, n, e) {
-          e = e || 2;
-          var r = n && n.length,
-              i = r ? n[0] * e : t.length,
-              a = et(t, 0, i, e, !0),
-              o = [];
-          if (!a) return o;
-          var s, h, u, c, f, l, p;
-
-          if (r && (a = ut(t, n, a, e)), t.length > 80 * e) {
-            s = u = t[0], h = c = t[1];
-
-            for (var g = e; g < i; g += e) {
-              f = t[g], l = t[g + 1], f < s && (s = f), l < h && (h = l), f > u && (u = f), l > c && (c = l);
-            }
-
-            p = Math.max(u - s, c - h);
-          }
-
-          return it(a, o, e, s, h, p), o;
-        }
-
-        function et(t, n, e, r, i) {
-          var a, o;
-          if (i === Et(t, n, e, r) > 0) for (a = n; a < e; a += r) {
-            o = kt(a, t[a], t[a + 1], o);
-          } else for (a = e - r; a >= n; a -= r) {
-            o = kt(a, t[a], t[a + 1], o);
-          }
-          return o && Mt(o, o.next) && (Pt(o), o = o.next), o;
-        }
-
-        function rt(t, n) {
-          if (!t) return t;
-          n || (n = t);
-          var e,
-              r = t;
-
-          do {
-            if (e = !1, r.steiner || !Mt(r, r.next) && 0 !== mt(r.prev, r, r.next)) r = r.next;else {
-              if (Pt(r), (r = n = r.prev) === r.next) return null;
-              e = !0;
-            }
-          } while (e || r !== n);
-
-          return n;
-        }
-
-        function it(t, n, e, r, i, a, o) {
-          if (t) {
-            !o && a && pt(t, r, i, a);
-
-            for (var s, h, u = t; t.prev !== t.next;) {
-              if (s = t.prev, h = t.next, a ? ot(t, r, i, a) : at(t)) n.push(s.i / e), n.push(t.i / e), n.push(h.i / e), Pt(t), t = h.next, u = h.next;else if ((t = h) === u) {
-                o ? 1 === o ? (t = st(t, n, e), it(t, n, e, r, i, a, 2)) : 2 === o && ht(t, n, e, r, i, a) : it(rt(t), n, e, r, i, a, 1);
-                break;
-              }
-            }
-          }
-        }
-
-        function at(t) {
-          var n = t.prev,
-              e = t,
-              r = t.next;
-          if (mt(n, e, r) >= 0) return !1;
-
-          for (var i = t.next.next; i !== t.prev;) {
-            if (yt(n.x, n.y, e.x, e.y, r.x, r.y, i.x, i.y) && mt(i.prev, i, i.next) >= 0) return !1;
-            i = i.next;
-          }
-
-          return !0;
-        }
-
-        function ot(t, n, e, r) {
-          var i = t.prev,
-              a = t,
-              o = t.next;
-          if (mt(i, a, o) >= 0) return !1;
-
-          for (var s = i.x < a.x ? i.x < o.x ? i.x : o.x : a.x < o.x ? a.x : o.x, h = i.y < a.y ? i.y < o.y ? i.y : o.y : a.y < o.y ? a.y : o.y, u = i.x > a.x ? i.x > o.x ? i.x : o.x : a.x > o.x ? a.x : o.x, c = i.y > a.y ? i.y > o.y ? i.y : o.y : a.y > o.y ? a.y : o.y, f = vt(s, h, n, e, r), l = vt(u, c, n, e, r), p = t.nextZ; p && p.z <= l;) {
-            if (p !== t.prev && p !== t.next && yt(i.x, i.y, a.x, a.y, o.x, o.y, p.x, p.y) && mt(p.prev, p, p.next) >= 0) return !1;
-            p = p.nextZ;
-          }
-
-          for (p = t.prevZ; p && p.z >= f;) {
-            if (p !== t.prev && p !== t.next && yt(i.x, i.y, a.x, a.y, o.x, o.y, p.x, p.y) && mt(p.prev, p, p.next) >= 0) return !1;
-            p = p.prevZ;
-          }
-
-          return !0;
-        }
-
-        function st(t, n, e) {
-          var r = t;
-
-          do {
-            var i = r.prev,
-                a = r.next.next;
-            !Mt(i, a) && wt(i, r, r.next, a) && Lt(i, a) && Lt(a, i) && (n.push(i.i / e), n.push(r.i / e), n.push(a.i / e), Pt(r), Pt(r.next), r = t = a), r = r.next;
-          } while (r !== t);
-
-          return r;
-        }
-
-        function ht(t, n, e, r, i, a) {
-          var o = t;
-
-          do {
-            for (var s = o.next.next; s !== o.prev;) {
-              if (o.i !== s.i && dt(o, s)) {
-                var h = qt(o, s);
-                return o = rt(o, o.next), h = rt(h, h.next), it(o, n, e, r, i, a), void it(h, n, e, r, i, a);
-              }
-
-              s = s.next;
-            }
-
-            o = o.next;
-          } while (o !== t);
-        }
-
-        function ut(t, n, e, r) {
-          var i,
-              a,
-              o,
-              s,
-              h,
-              u = [];
-
-          for (i = 0, a = n.length; i < a; i++) {
-            o = n[i] * r, s = i < a - 1 ? n[i + 1] * r : t.length, h = et(t, o, s, r, !1), h === h.next && (h.steiner = !0), u.push(xt(h));
-          }
-
-          for (u.sort(ct), i = 0; i < u.length; i++) {
-            ft(u[i], e), e = rt(e, e.next);
-          }
-
-          return e;
-        }
-
-        function ct(t, n) {
-          return t.x - n.x;
-        }
-
-        function ft(t, n) {
-          if (n = lt(t, n)) {
-            var e = qt(n, t);
-            rt(e, e.next);
-          }
-        }
-
-        function lt(t, n) {
-          var e,
-              r = n,
-              i = t.x,
-              a = t.y,
-              o = -1 / 0;
-
-          do {
-            if (a <= r.y && a >= r.next.y) {
-              var s = r.x + (a - r.y) * (r.next.x - r.x) / (r.next.y - r.y);
-
-              if (s <= i && s > o) {
-                if (o = s, s === i) {
-                  if (a === r.y) return r;
-                  if (a === r.next.y) return r.next;
-                }
-
-                e = r.x < r.next.x ? r : r.next;
-              }
-            }
-
-            r = r.next;
-          } while (r !== n);
-
-          if (!e) return null;
-          if (i === o) return e.prev;
-          var h,
-              u = e,
-              c = e.x,
-              f = e.y,
-              l = 1 / 0;
-
-          for (r = e.next; r !== u;) {
-            i >= r.x && r.x >= c && yt(a < f ? i : o, a, c, f, a < f ? o : i, a, r.x, r.y) && ((h = Math.abs(a - r.y) / (i - r.x)) < l || h === l && r.x > e.x) && Lt(r, t) && (e = r, l = h), r = r.next;
-          }
-
-          return e;
-        }
-
-        function pt(t, n, e, r) {
-          var i = t;
-
-          do {
-            null === i.z && (i.z = vt(i.x, i.y, n, e, r)), i.prevZ = i.prev, i.nextZ = i.next, i = i.next;
-          } while (i !== t);
-
-          i.prevZ.nextZ = null, i.prevZ = null, gt(i);
-        }
-
-        function gt(t) {
-          var n,
-              e,
-              r,
-              i,
-              a,
-              o,
-              s,
-              h,
-              u = 1;
-
-          do {
-            for (e = t, t = null, a = null, o = 0; e;) {
-              for (o++, r = e, s = 0, n = 0; n < u && (s++, r = r.nextZ); n++) {
-                ;
-              }
-
-              for (h = u; s > 0 || h > 0 && r;) {
-                0 === s ? (i = r, r = r.nextZ, h--) : 0 !== h && r ? e.z <= r.z ? (i = e, e = e.nextZ, s--) : (i = r, r = r.nextZ, h--) : (i = e, e = e.nextZ, s--), a ? a.nextZ = i : t = i, i.prevZ = a, a = i;
-              }
-
-              e = r;
-            }
-
-            a.nextZ = null, u *= 2;
-          } while (o > 1);
-
-          return t;
-        }
-
-        function vt(t, n, e, r, i) {
-          return t = 32767 * (t - e) / i, n = 32767 * (n - r) / i, t = 16711935 & (t | t << 8), t = 252645135 & (t | t << 4), t = 858993459 & (t | t << 2), t = 1431655765 & (t | t << 1), n = 16711935 & (n | n << 8), n = 252645135 & (n | n << 4), n = 858993459 & (n | n << 2), n = 1431655765 & (n | n << 1), t | n << 1;
-        }
-
-        function xt(t) {
-          var n = t,
-              e = t;
-
-          do {
-            n.x < e.x && (e = n), n = n.next;
-          } while (n !== t);
-
-          return e;
-        }
-
-        function yt(t, n, e, r, i, a, o, s) {
-          return (i - o) * (n - s) - (t - o) * (a - s) >= 0 && (t - o) * (r - s) - (e - o) * (n - s) >= 0 && (e - o) * (a - s) - (i - o) * (r - s) >= 0;
-        }
-
-        function dt(t, n) {
-          return t.next.i !== n.i && t.prev.i !== n.i && !bt(t, n) && Lt(t, n) && Lt(n, t) && At(t, n);
-        }
-
-        function mt(t, n, e) {
-          return (n.y - t.y) * (e.x - n.x) - (n.x - t.x) * (e.y - n.y);
-        }
-
-        function Mt(t, n) {
-          return t.x === n.x && t.y === n.y;
-        }
-
-        function wt(t, n, e, r) {
-          return !!(Mt(t, n) && Mt(e, r) || Mt(t, r) && Mt(e, n)) || mt(t, n, e) > 0 != mt(t, n, r) > 0 && mt(e, r, t) > 0 != mt(e, r, n) > 0;
-        }
-
-        function bt(t, n) {
-          var e = t;
-
-          do {
-            if (e.i !== t.i && e.next.i !== t.i && e.i !== n.i && e.next.i !== n.i && wt(e, e.next, t, n)) return !0;
-            e = e.next;
-          } while (e !== t);
-
-          return !1;
-        }
-
-        function Lt(t, n) {
-          return mt(t.prev, t, t.next) < 0 ? mt(t, n, t.next) >= 0 && mt(t, t.prev, n) >= 0 : mt(t, n, t.prev) < 0 || mt(t, t.next, n) < 0;
-        }
-
-        function At(t, n) {
-          var e = t,
-              r = !1,
-              i = (t.x + n.x) / 2,
-              a = (t.y + n.y) / 2;
-
-          do {
-            e.y > a != e.next.y > a && i < (e.next.x - e.x) * (a - e.y) / (e.next.y - e.y) + e.x && (r = !r), e = e.next;
-          } while (e !== t);
-
-          return r;
-        }
-
-        function qt(t, n) {
-          var e = new _t(t.i, t.x, t.y),
-              r = new _t(n.i, n.x, n.y),
-              i = t.next,
-              a = n.prev;
-          return t.next = n, n.prev = t, e.next = i, i.prev = e, r.next = e, e.prev = r, a.next = r, r.prev = a, r;
-        }
-
-        function kt(t, n, e, r) {
-          var i = new _t(t, n, e);
-          return r ? (i.next = r.next, i.prev = r, r.next.prev = i, r.next = i) : (i.prev = i, i.next = i), i;
-        }
-
-        function Pt(t) {
-          t.next.prev = t.prev, t.prev.next = t.next, t.prevZ && (t.prevZ.nextZ = t.nextZ), t.nextZ && (t.nextZ.prevZ = t.prevZ);
-        }
-
-        function _t(t, n, e) {
-          this.i = t, this.x = n, this.y = e, this.prev = null, this.next = null, this.z = null, this.prevZ = null, this.nextZ = null, this.steiner = !1;
-        }
-
-        function Et(t, n, e, r) {
-          for (var i = 0, a = n, o = e - r; a < e; a += r) {
-            i += (t[o] - t[a]) * (t[a + 1] + t[o + 1]), o = a;
-          }
-
-          return i;
-        }
-
-        function St(t, n) {
-          var e = n.id,
-              r = n.bbox,
-              i = null == n.properties ? {} : n.properties,
-              a = Ct(t, n);
-          return null == e && null == r ? {
-            type: "Feature",
-            properties: i,
-            geometry: a
-          } : null == r ? {
-            type: "Feature",
-            id: e,
-            properties: i,
-            geometry: a
-          } : {
-            type: "Feature",
-            id: e,
-            bbox: r,
-            properties: i,
-            geometry: a
-          };
-        }
-
-        function Ct(t, n) {
-          function e(t, n) {
-            n.length && n.pop();
-
-            for (var e = u[t < 0 ? ~t : t], r = 0, i = e.length; r < i; ++r) {
-              n.push(h(e[r], r));
-            }
-
-            t < 0 && Vn(n, i);
-          }
-
-          function r(t) {
-            return h(t);
-          }
-
-          function i(t) {
-            for (var n = [], r = 0, i = t.length; r < i; ++r) {
-              e(t[r], n);
-            }
-
-            return n.length < 2 && n.push(n[0]), n;
-          }
-
-          function a(t) {
-            for (var n = i(t); n.length < 4;) {
-              n.push(n[0]);
-            }
-
-            return n;
-          }
-
-          function o(t) {
-            return t.map(a);
-          }
-
-          function s(t) {
-            var n,
-                e = t.type;
-
-            switch (e) {
-              case "GeometryCollection":
-                return {
-                  type: e,
-                  geometries: t.geometries.map(s)
-                };
-
-              case "Point":
-                n = r(t.coordinates);
-                break;
-
-              case "MultiPoint":
-                n = t.coordinates.map(r);
-                break;
-
-              case "LineString":
-                n = i(t.arcs);
-                break;
-
-              case "MultiLineString":
-                n = t.arcs.map(i);
-                break;
-
-              case "Polygon":
-                n = o(t.arcs);
-                break;
-
-              case "MultiPolygon":
-                n = t.arcs.map(o);
-                break;
-
-              default:
-                return null;
-            }
-
-            return {
-              type: e,
-              coordinates: n
-            };
-          }
-
-          var h = In(t.transform),
-              u = t.arcs;
-          return s(n);
-        }
-
-        function Zt(t) {
-          for (var n, e = -1, r = t.length, i = t[r - 1], a = 0; ++e < r;) {
-            n = i, i = t[e], a += n[0] * i[1] - n[1] * i[0];
-          }
-
-          return Math.abs(a);
-        }
-
-        function Tt(t, n) {
-          function e(t) {
-            switch (t.type) {
-              case "GeometryCollection":
-                t.geometries.forEach(e);
-                break;
-
-              case "Polygon":
-                r(t.arcs);
-                break;
-
-              case "MultiPolygon":
-                t.arcs.forEach(r);
-            }
-          }
-
-          function r(t) {
-            t.forEach(function (n) {
-              n.forEach(function (n) {
-                (a[n = n < 0 ? ~n : n] || (a[n] = [])).push(t);
-              });
-            }), o.push(t);
-          }
-
-          function i(n) {
-            return Zt(Ct(t, {
-              type: "Polygon",
-              arcs: [n]
-            }).coordinates[0]);
-          }
-
-          var a = {},
-              o = [],
-              s = [];
-          return n.forEach(e), o.forEach(function (t) {
-            if (!t._) {
-              var n = [],
-                  e = [t];
-
-              for (t._ = 1, s.push(n); t = e.pop();) {
-                n.push(t), t.forEach(function (t) {
-                  t.forEach(function (t) {
-                    a[t < 0 ? ~t : t].forEach(function (t) {
-                      t._ || (t._ = 1, e.push(t));
-                    });
-                  });
-                });
-              }
-            }
-          }), o.forEach(function (t) {
-            delete t._;
-          }), {
-            type: "MultiPolygon",
-            arcs: s.map(function (n) {
-              var e,
-                  r = [];
-              if (n.forEach(function (t) {
-                t.forEach(function (t) {
-                  t.forEach(function (t) {
-                    a[t < 0 ? ~t : t].length < 2 && r.push(t);
-                  });
-                });
-              }), r = Yn(t, r), (e = r.length) > 1) for (var o, s, h = 1, u = i(r[0]); h < e; ++h) {
-                (o = i(r[h])) > u && (s = r[0], r[0] = r[h], r[h] = s, u = o);
-              }
-              return r;
-            })
-          };
-        }
-
-        function Ft(t) {
-          return function (n, e) {
-            return Dn(t(n), e);
-          };
-        }
-
-        function zt(t, n) {
-          var e = {},
-              r = {
-            type: "Topology",
-            objects: {
-              triangles: {
-                type: "GeometryCollection",
-                geometries: []
-              }
-            },
-            arcs: []
-          };
-          return t.forEach(function (t) {
-            var i = [];
-            t.forEach(function (t, a) {
-              var o = t[0] < t[1] ? t.join(",") : t[1] + "," + t[0],
-                  s = t.map(function (t) {
-                return n[t];
-              });
-              o in e ? i.push(~e[o]) : (i.push(e[o] = r.arcs.length), r.arcs.push(s));
-            }), r.objects.triangles.geometries.push({
-              type: "Polygon",
-              area: Math.abs(tn(t.map(function (t) {
-                return n[t[0]];
-              }))),
-              arcs: [i]
-            });
-          }), r.objects.triangles.geometries.sort(function (t, n) {
-            return t.area - n.area;
-          }), r;
-        }
-
-        function jt(t, n) {
-          for (var e = t.objects.triangles.geometries, r = Hn(function (t) {
-            return t.area;
-          }).left; e.length > n;) {
-            !function () {
-              var n = e[0],
-                  i = On(e)[0][0],
-                  a = e[i],
-                  o = Tt(t, [n, a]);
-              o.area = n.area + a.area, o.type = "Polygon", o.arcs = o.arcs[0], e.splice(i, 1), e.shift(), e.splice(r(e, o.area), 0, o);
-            }();
-          }
-
-          if (n > e.length) throw new RangeError("Can't collapse topology into " + n + " pieces.");
-          return Xn(t, t.objects.triangles).features.map(function (t) {
-            return t.geometry.coordinates[0].pop(), t.geometry.coordinates[0];
-          });
-        }
-
-        function It(t) {
-          for (var n = zn(t.reduce(function (t, n) {
-            return t.concat([n[0]], [n[1]]);
-          }, [])), e = [], r = 0, i = n.length; r < i; r += 3) {
-            e.push([[n[r], n[r + 1]], [n[r + 1], n[r + 2]], [n[r + 2], n[r]]]);
-          }
-
-          return e;
-        }
-
-        function Vt(t, n, e) {
-          function r(t, n, o) {
-            void 0 === n && (n = []), void 0 === o && (o = 0);
-
-            for (var s = 0; s < t.length; s++) {
-              var h = t.splice(s, 1),
-                  u = e[h[0]][n.length];
-              o + u < i && (t.length ? r(t.slice(), n.concat(h), o + u) : (i = o + u, a = n.concat(h))), t.length && t.splice(s, 0, h[0]);
-            }
-          }
-
-          var i = 1 / 0,
-              a = t.map(function (t, n) {
-            return n;
-          });
-          return r(a), a;
-        }
-
-        function Xt(t, n) {
-          var e = F(Y(t), Y(n));
-          return e * e;
-        }
-
-        function Yt(t, n, e) {
-          void 0 === e && (e = {});
-          var r = e.maxSegmentLength;
-          void 0 === r && (r = 10);
-          var i = e.string;
-          void 0 === i && (i = !0);
-          var a = e.single;
-          void 0 === a && (a = !1);
-          var o = J(t, r);
-          o.length < n.length + 2 && W(o, n.length + 2 - o.length);
-          var s,
-              h = Qn(o, n.length),
-              u = n.map(function (t) {
-            return J(t, r);
-          }),
-              c = "string" == typeof t && t;
-          return a && !n.every(function (t) {
-            return "string" == typeof t;
-          }) || (s = n.slice(0)), Dt(h, u, {
-            match: !0,
-            string: i,
-            single: a,
-            t0: c,
-            t1: s
-          });
-        }
-
-        function Gt(t, n, e) {
-          void 0 === e && (e = {});
-          var r = e.maxSegmentLength;
-          void 0 === r && (r = 10);
-          var i = e.string;
-          void 0 === i && (i = !0);
-          var a = e.single;
-          void 0 === a && (a = !1);
-          var o = Yt(n, t, {
-            maxSegmentLength: r,
-            string: i,
-            single: a
-          });
-          return a ? function (t) {
-            return o(1 - t);
-          } : o.map(function (t) {
-            return function (n) {
-              return t(1 - n);
-            };
-          });
-        }
-
-        function Ot(t, n, e) {
-          void 0 === e && (e = {});
-          var r = e.maxSegmentLength;
-          void 0 === r && (r = 10);
-          var i = e.string;
-          void 0 === i && (i = !0);
-          var a = e.single;
-          if (void 0 === a && (a = !1), !Array.isArray(t) || !Array.isArray(n) || t.length !== n.length || !t.length) throw new TypeError(Zn);
-
-          var o,
-              s,
-              h = function h(t) {
-            return J(t, r);
-          },
-              u = t.map(h),
-              c = n.map(h);
-
-          return a ? (t.every(function (t) {
-            return "string" == typeof t;
-          }) && (o = t.slice(0)), n.every(function (t) {
-            return "string" == typeof t;
-          }) && (s = n.slice(0))) : (o = t.slice(0), s = n.slice(0)), Dt(u, c, {
-            string: i,
-            single: a,
-            t0: o,
-            t1: s,
-            match: !1
-          });
-        }
-
-        function Dt(t, n, e) {
-          void 0 === e && (e = {});
-          var r = e.string,
-              i = e.single,
-              a = e.t0,
-              o = e.t1,
-              s = e.match,
-              h = s ? Un(t, n) : t.map(function (t, n) {
-            return n;
-          }),
-              u = h.map(function (e, i) {
-            return tt(t[e], n[i], r);
-          });
-
-          if (s && Array.isArray(a) && (a = h.map(function (t) {
-            return a[t];
-          })), i && r && (Array.isArray(a) && (a = a.join(" ")), Array.isArray(o) && (o = o.join(" "))), i) {
-            var c = r ? function (t) {
-              return u.map(function (n) {
-                return n(t);
-              }).join(" ");
-            } : function (t) {
-              return u.map(function (n) {
-                return n(t);
-              });
-            };
-            return r && (a || o) ? function (t) {
-              return t < 1e-4 && a || 1 - t < 1e-4 && o || c(t);
-            } : c;
-          }
-
-          return r ? (a = Array.isArray(a) ? a.map(function (t) {
-            return "string" == typeof t && t;
-          }) : [], o = Array.isArray(o) ? o.map(function (t) {
-            return "string" == typeof t && t;
-          }) : [], u.map(function (t, n) {
-            return a[n] || o[n] ? function (e) {
-              return e < 1e-4 && a[n] || 1 - e < 1e-4 && o[n] || t(e);
-            } : t;
-          })) : u;
-        }
-
-        function Ht(t, n, e, r, i) {
-          return Rt(Bt(t, n, e), r, Jt(t, n, e), 2 * Math.PI * e, i);
-        }
-
-        function Nt(t, n, e, r, i) {
-          var a = Ht(n, e, r, t, i);
-          return function (t) {
-            return a(1 - t);
-          };
-        }
-
-        function Qt(t, n, e, r, i, a) {
-          return Rt(Wt(t, n, e, r), i, Kt(t, n, e, r), 2 * e + 2 * r, a);
-        }
-
-        function Ut(t, n, e, r, i, a) {
-          var o = Qt(n, e, r, i, t, a);
-          return function (t) {
-            return o(1 - t);
-          };
-        }
-
-        function Rt(t, n, e, r, i) {
-          void 0 === i && (i = {});
-          var a = i.maxSegmentLength;
-          void 0 === a && (a = 10);
-          var o = i.string;
-          void 0 === o && (o = !0);
-          var s,
-              h,
-              u = J(n, a);
-          return X(r) && u.length < r / a && W(u, Math.ceil(r / a - u.length)), s = t(u), h = I(s, u, o), o ? function (t) {
-            return t < 1e-4 ? e : h(t);
-          } : h;
-        }
-
-        function Bt(t, n, e) {
-          return function (r) {
-            var i = Y(r),
-                a = en(r.concat([r[0]])),
-                o = Math.atan2(r[0][1] - i[1], r[0][0] - i[0]),
-                s = 0;
-            return r.map(function (i, h) {
-              var u;
-              return h && (s += F(i, r[h - 1])), u = o + 2 * Math.PI * (a ? s / a : h / r.length), [Math.cos(u) * e + t, Math.sin(u) * e + n];
-            });
-          };
-        }
-
-        function Wt(t, n, e, r) {
-          return function (i) {
-            var a = Y(i),
-                o = en(i.concat([i[0]])),
-                s = Math.atan2(i[0][1] - a[1], i[0][0] - a[0]),
-                h = 0;
-            s < 0 && (s = 2 * Math.PI + s);
-            var u = s / (2 * Math.PI);
-            return i.map(function (a, s) {
-              s && (h += F(a, i[s - 1]));
-              var c = $t((u + (o ? h / o : s / i.length)) % 1);
-              return [t + c[0] * e, n + c[1] * r];
-            });
-          };
-        }
-
-        function $t(t) {
-          return t <= 1 / 8 ? [1, .5 + 4 * t] : t <= 3 / 8 ? [1.5 - 4 * t, 1] : t <= 5 / 8 ? [0, 2.5 - 4 * t] : t <= 7 / 8 ? [4 * t - 2.5, 0] : [1, 4 * t - 3.5];
-        }
-
-        function Jt(t, n, e) {
-          var r = t - e + "," + n,
-              i = t + e + "," + n,
-              a = "A" + e + "," + e + ",0,1,1,";
-          return "M" + r + a + i + a + r + "Z";
-        }
-
-        function Kt(t, n, e, r) {
-          var i = t + e,
-              a = n + r;
-          return "M" + t + "," + n + "L" + i + "," + n + "L" + i + "," + a + "L" + t + "," + a + "Z";
-        }
-
-        var tn = function tn(t) {
-          for (var n, e = -1, r = t.length, i = t[r - 1], a = 0; ++e < r;) {
-            n = i, i = t[e], a += n[1] * i[0] - n[0] * i[1];
-          }
-
-          return a / 2;
-        },
-            nn = function nn(t) {
-          for (var n, e, r = -1, i = t.length, a = 0, o = 0, s = t[i - 1], h = 0; ++r < i;) {
-            n = s, s = t[r], h += e = n[0] * s[1] - s[0] * n[1], a += (n[0] + s[0]) * e, o += (n[1] + s[1]) * e;
-          }
-
-          return h *= 3, [a / h, o / h];
-        },
-            en = function en(t) {
-          for (var n, e, r = -1, i = t.length, a = t[i - 1], o = a[0], s = a[1], h = 0; ++r < i;) {
-            n = o, e = s, a = t[r], o = a[0], s = a[1], n -= o, e -= s, h += Math.sqrt(n * n + e * e);
-          }
-
-          return h;
-        },
-            rn = {
-          a: 7,
-          c: 6,
-          h: 1,
-          l: 2,
-          m: 2,
-          r: 4,
-          q: 4,
-          s: 4,
-          t: 2,
-          v: 1,
-          z: 0
-        },
-            an = [5760, 6158, 8192, 8193, 8194, 8195, 8196, 8197, 8198, 8199, 8200, 8201, 8202, 8239, 8287, 12288, 65279],
-            on = function on(t) {
-          var n = new a(t),
-              e = n.max;
-
-          for (o(n); n.index < e && !n.err.length;) {
-            u(n);
-          }
-
-          return n.err.length ? n.result = [] : n.result.length && ("mM".indexOf(n.result[0][0]) < 0 ? (n.err = "SvgPath: string should start with `M` or `m`", n.result = []) : n.result[0][0] = "M"), {
-            err: n.err,
-            segments: n.result
-          };
-        };
-
-        f.prototype.matrix = function (t) {
-          return 1 === t[0] && 0 === t[1] && 0 === t[2] && 1 === t[3] && 0 === t[4] && 0 === t[5] ? this : (this.cache = null, this.queue.push(t), this);
-        }, f.prototype.translate = function (t, n) {
-          return 0 === t && 0 === n || (this.cache = null, this.queue.push([1, 0, 0, 1, t, n])), this;
-        }, f.prototype.scale = function (t, n) {
-          return 1 === t && 1 === n || (this.cache = null, this.queue.push([t, 0, 0, n, 0, 0])), this;
-        }, f.prototype.rotate = function (t, n, e) {
-          var r, i, a;
-          return 0 !== t && (this.translate(n, e), r = t * Math.PI / 180, i = Math.cos(r), a = Math.sin(r), this.queue.push([i, a, -a, i, 0, 0]), this.cache = null, this.translate(-n, -e)), this;
-        }, f.prototype.skewX = function (t) {
-          return 0 !== t && (this.cache = null, this.queue.push([1, 0, Math.tan(t * Math.PI / 180), 1, 0, 0])), this;
-        }, f.prototype.skewY = function (t) {
-          return 0 !== t && (this.cache = null, this.queue.push([1, Math.tan(t * Math.PI / 180), 0, 1, 0, 0])), this;
-        }, f.prototype.toArray = function () {
-          var t = this;
-          if (this.cache) return this.cache;
-          if (!this.queue.length) return this.cache = [1, 0, 0, 1, 0, 0], this.cache;
-          if (this.cache = this.queue[0], 1 === this.queue.length) return this.cache;
-
-          for (var n = 1; n < this.queue.length; n++) {
-            t.cache = c(t.cache, t.queue[n]);
-          }
-
-          return this.cache;
-        }, f.prototype.calc = function (t, n, e) {
-          var r;
-          return this.queue.length ? (this.cache || (this.cache = this.toArray()), r = this.cache, [t * r[0] + n * r[2] + (e ? 0 : r[4]), t * r[1] + n * r[3] + (e ? 0 : r[5])]) : [t, n];
-        };
-
-        var sn = f,
-            hn = {
-          matrix: !0,
-          scale: !0,
-          rotate: !0,
-          translate: !0,
-          skewX: !0,
-          skewY: !0
-        },
-            un = /\s*(matrix|translate|scale|rotate|skewX|skewY)\s*\(\s*(.+?)\s*\)[\s,]*/,
-            cn = /[\s,]+/,
-            fn = function fn(t) {
-          var n,
-              e,
-              r = new sn();
-          return t.split(un).forEach(function (t) {
-            if (t.length) {
-              if (void 0 !== hn[t]) return void (n = t);
-
-              switch (e = t.split(cn).map(function (t) {
-                return +t || 0;
-              }), n) {
-                case "matrix":
-                  return void (6 === e.length && r.matrix(e));
-
-                case "scale":
-                  return void (1 === e.length ? r.scale(e[0], e[0]) : 2 === e.length && r.scale(e[0], e[1]));
-
-                case "rotate":
-                  return void (1 === e.length ? r.rotate(e[0], 0, 0) : 3 === e.length && r.rotate(e[0], e[1], e[2]));
-
-                case "translate":
-                  return void (1 === e.length ? r.translate(e[0], 0) : 2 === e.length && r.translate(e[0], e[1]));
-
-                case "skewX":
-                  return void (1 === e.length && r.skewX(e[0]));
-
-                case "skewY":
-                  return void (1 === e.length && r.skewY(e[0]));
-              }
-            }
-          }), r;
-        },
-            ln = 2 * Math.PI,
-            pn = function pn(t, n, e, r, i, a, o, s, h) {
-          var u = Math.sin(h * ln / 360),
-              c = Math.cos(h * ln / 360),
-              f = c * (t - e) / 2 + u * (n - r) / 2,
-              l = -u * (t - e) / 2 + c * (n - r) / 2;
-          if (0 === f && 0 === l) return [];
-          if (0 === o || 0 === s) return [];
-          o = Math.abs(o), s = Math.abs(s);
-          var v = f * f / (o * o) + l * l / (s * s);
-          v > 1 && (o *= Math.sqrt(v), s *= Math.sqrt(v));
-          var x = p(t, n, e, r, i, a, o, s, u, c),
-              y = [],
-              d = x[2],
-              m = x[3],
-              M = Math.max(Math.ceil(Math.abs(m) / (ln / 4)), 1);
-          m /= M;
-
-          for (var w = 0; w < M; w++) {
-            y.push(g(d, m)), d += m;
-          }
-
-          return y.map(function (t) {
-            for (var n = 0; n < t.length; n += 2) {
-              var e = t[n + 0],
-                  r = t[n + 1];
-              e *= o, r *= s;
-              var i = c * e - u * r,
-                  a = u * e + c * r;
-              t[n + 0] = i + x[0], t[n + 1] = a + x[1];
-            }
-
-            return t;
-          });
-        },
-            gn = Math.PI / 180;
-
-        v.prototype.transform = function (t) {
-          var n = Math.cos(this.ax * gn),
-              e = Math.sin(this.ax * gn),
-              r = [this.rx * (t[0] * n + t[2] * e), this.rx * (t[1] * n + t[3] * e), this.ry * (-t[0] * e + t[2] * n), this.ry * (-t[1] * e + t[3] * n)],
-              i = r[0] * r[0] + r[2] * r[2],
-              a = r[1] * r[1] + r[3] * r[3],
-              o = ((r[0] - r[3]) * (r[0] - r[3]) + (r[2] + r[1]) * (r[2] + r[1])) * ((r[0] + r[3]) * (r[0] + r[3]) + (r[2] - r[1]) * (r[2] - r[1])),
-              s = (i + a) / 2;
-          if (o < 1e-10 * s) return this.rx = this.ry = Math.sqrt(s), this.ax = 0, this;
-          var h = r[0] * r[1] + r[2] * r[3];
-          o = Math.sqrt(o);
-          var u = s + o / 2,
-              c = s - o / 2;
-          return this.ax = Math.abs(h) < 1e-10 && Math.abs(u - a) < 1e-10 ? 90 : 180 * Math.atan(Math.abs(h) > Math.abs(u - a) ? (u - i) / h : h / (u - a)) / Math.PI, this.ax >= 0 ? (this.rx = Math.sqrt(u), this.ry = Math.sqrt(c)) : (this.ax += 90, this.rx = Math.sqrt(c), this.ry = Math.sqrt(u)), this;
-        }, v.prototype.isDegenerate = function () {
-          return this.rx < 1e-10 * this.ry || this.ry < 1e-10 * this.rx;
-        };
-        var vn = v;
-        x.prototype.__matrix = function (t) {
-          var n,
-              e = this;
-          t.queue.length && this.iterate(function (r, i, a, o) {
-            var s, h, u, c;
-
-            switch (r[0]) {
-              case "v":
-                s = t.calc(0, r[1], !0), h = 0 === s[0] ? ["v", s[1]] : ["l", s[0], s[1]];
-                break;
-
-              case "V":
-                s = t.calc(a, r[1], !1), h = s[0] === t.calc(a, o, !1)[0] ? ["V", s[1]] : ["L", s[0], s[1]];
-                break;
-
-              case "h":
-                s = t.calc(r[1], 0, !0), h = 0 === s[1] ? ["h", s[0]] : ["l", s[0], s[1]];
-                break;
-
-              case "H":
-                s = t.calc(r[1], o, !1), h = s[1] === t.calc(a, o, !1)[1] ? ["H", s[0]] : ["L", s[0], s[1]];
-                break;
-
-              case "a":
-              case "A":
-                var f = t.toArray(),
-                    l = vn(r[1], r[2], r[3]).transform(f);
-
-                if (f[0] * f[3] - f[1] * f[2] < 0 && (r[5] = r[5] ? "0" : "1"), s = t.calc(r[6], r[7], "a" === r[0]), "A" === r[0] && r[6] === a && r[7] === o || "a" === r[0] && 0 === r[6] && 0 === r[7]) {
-                  h = ["a" === r[0] ? "l" : "L", s[0], s[1]];
-                  break;
-                }
-
-                h = l.isDegenerate() ? ["a" === r[0] ? "l" : "L", s[0], s[1]] : [r[0], l.rx, l.ry, l.ax, r[4], r[5], s[0], s[1]];
-                break;
-
-              case "m":
-                c = i > 0, s = t.calc(r[1], r[2], c), h = ["m", s[0], s[1]];
-                break;
-
-              default:
-                for (u = r[0], h = [u], c = u.toLowerCase() === u, n = 1; n < r.length; n += 2) {
-                  s = t.calc(r[n], r[n + 1], c), h.push(s[0], s[1]);
-                }
-
-            }
-
-            e.segments[i] = h;
-          }, !0);
-        }, x.prototype.__evaluateStack = function () {
-          var t,
-              n,
-              e = this;
-
-          if (this.__stack.length) {
-            if (1 === this.__stack.length) return this.__matrix(this.__stack[0]), void (this.__stack = []);
-
-            for (t = sn(), n = this.__stack.length; --n >= 0;) {
-              t.matrix(e.__stack[n].toArray());
-            }
-
-            this.__matrix(t), this.__stack = [];
-          }
-        }, x.prototype.toString = function () {
-          var t,
-              n,
-              e = this,
-              r = [];
-
-          this.__evaluateStack();
-
-          for (var i = 0; i < this.segments.length; i++) {
-            n = e.segments[i][0], t = i > 0 && "m" !== n && "M" !== n && n === e.segments[i - 1][0], r = r.concat(t ? e.segments[i].slice(1) : e.segments[i]);
-          }
-
-          return r.join(" ").replace(/ ?([achlmqrstvz]) ?/gi, "$1").replace(/ \-/g, "-").replace(/zm/g, "z m");
-        }, x.prototype.translate = function (t, n) {
-          return this.__stack.push(sn().translate(t, n || 0)), this;
-        }, x.prototype.scale = function (t, n) {
-          return this.__stack.push(sn().scale(t, n || 0 === n ? n : t)), this;
-        }, x.prototype.rotate = function (t, n, e) {
-          return this.__stack.push(sn().rotate(t, n || 0, e || 0)), this;
-        }, x.prototype.skewX = function (t) {
-          return this.__stack.push(sn().skewX(t)), this;
-        }, x.prototype.skewY = function (t) {
-          return this.__stack.push(sn().skewY(t)), this;
-        }, x.prototype.matrix = function (t) {
-          return this.__stack.push(sn().matrix(t)), this;
-        }, x.prototype.transform = function (t) {
-          return t.trim() ? (this.__stack.push(fn(t)), this) : this;
-        }, x.prototype.round = function (t) {
-          var n,
-              e = 0,
-              r = 0,
-              i = 0,
-              a = 0;
-          return t = t || 0, this.__evaluateStack(), this.segments.forEach(function (o) {
-            var s = o[0].toLowerCase() === o[0];
-
-            switch (o[0]) {
-              case "H":
-              case "h":
-                return s && (o[1] += i), i = o[1] - o[1].toFixed(t), void (o[1] = +o[1].toFixed(t));
-
-              case "V":
-              case "v":
-                return s && (o[1] += a), a = o[1] - o[1].toFixed(t), void (o[1] = +o[1].toFixed(t));
-
-              case "Z":
-              case "z":
-                return i = e, void (a = r);
-
-              case "M":
-              case "m":
-                return s && (o[1] += i, o[2] += a), i = o[1] - o[1].toFixed(t), a = o[2] - o[2].toFixed(t), e = i, r = a, o[1] = +o[1].toFixed(t), void (o[2] = +o[2].toFixed(t));
-
-              case "A":
-              case "a":
-                return s && (o[6] += i, o[7] += a), i = o[6] - o[6].toFixed(t), a = o[7] - o[7].toFixed(t), o[1] = +o[1].toFixed(t), o[2] = +o[2].toFixed(t), o[3] = +o[3].toFixed(t + 2), o[6] = +o[6].toFixed(t), void (o[7] = +o[7].toFixed(t));
-
-              default:
-                return n = o.length, s && (o[n - 2] += i, o[n - 1] += a), i = o[n - 2] - o[n - 2].toFixed(t), a = o[n - 1] - o[n - 1].toFixed(t), void o.forEach(function (n, e) {
-                  e && (o[e] = +o[e].toFixed(t));
-                });
-            }
-          }), this;
-        }, x.prototype.iterate = function (t, n) {
-          var e,
-              r,
-              i,
-              a = this.segments,
-              o = {},
-              s = !1,
-              h = 0,
-              u = 0,
-              c = 0,
-              f = 0;
-          if (n || this.__evaluateStack(), a.forEach(function (n, e) {
-            var r = t(n, e, h, u);
-            Array.isArray(r) && (o[e] = r, s = !0);
-            var i = n[0] === n[0].toLowerCase();
-
-            switch (n[0]) {
-              case "m":
-              case "M":
-                return h = n[1] + (i ? h : 0), u = n[2] + (i ? u : 0), c = h, void (f = u);
-
-              case "h":
-              case "H":
-                return void (h = n[1] + (i ? h : 0));
-
-              case "v":
-              case "V":
-                return void (u = n[1] + (i ? u : 0));
-
-              case "z":
-              case "Z":
-                return h = c, void (u = f);
-
-              default:
-                h = n[n.length - 2] + (i ? h : 0), u = n[n.length - 1] + (i ? u : 0);
-            }
-          }), !s) return this;
-
-          for (i = [], e = 0; e < a.length; e++) {
-            if (void 0 !== o[e]) for (r = 0; r < o[e].length; r++) {
-              i.push(o[e][r]);
-            } else i.push(a[e]);
-          }
-
-          return this.segments = i, this;
-        }, x.prototype.abs = function () {
-          return this.iterate(function (t, n, e, r) {
-            var i,
-                a = t[0],
-                o = a.toUpperCase();
-            if (a !== o) switch (t[0] = o, a) {
-              case "v":
-                return void (t[1] += r);
-
-              case "a":
-                return t[6] += e, void (t[7] += r);
-
-              default:
-                for (i = 1; i < t.length; i++) {
-                  t[i] += i % 2 ? e : r;
-                }
-
-            }
-          }, !0), this;
-        }, x.prototype.rel = function () {
-          return this.iterate(function (t, n, e, r) {
-            var i,
-                a = t[0],
-                o = a.toLowerCase();
-            if (a !== o && (0 !== n || "M" !== a)) switch (t[0] = o, a) {
-              case "V":
-                return void (t[1] -= r);
-
-              case "A":
-                return t[6] -= e, void (t[7] -= r);
-
-              default:
-                for (i = 1; i < t.length; i++) {
-                  t[i] -= i % 2 ? e : r;
-                }
-
-            }
-          }, !0), this;
-        }, x.prototype.unarc = function () {
-          return this.iterate(function (t, n, e, r) {
-            var i,
-                a,
-                o,
-                s = [],
-                h = t[0];
-            return "A" !== h && "a" !== h ? null : ("a" === h ? (a = e + t[6], o = r + t[7]) : (a = t[6], o = t[7]), i = pn(e, r, a, o, t[4], t[5], t[1], t[2], t[3]), 0 === i.length ? [["a" === t[0] ? "l" : "L", t[6], t[7]]] : (i.forEach(function (t) {
-              s.push(["C", t[2], t[3], t[4], t[5], t[6], t[7]]);
-            }), s));
-          }), this;
-        }, x.prototype.unshort = function () {
-          var t,
-              n,
-              e,
-              r,
-              i,
-              a = this.segments;
-          return this.iterate(function (o, s, h, u) {
-            var c,
-                f = o[0],
-                l = f.toUpperCase();
-            s && ("T" === l ? (c = "t" === f, e = a[s - 1], "Q" === e[0] ? (t = e[1] - h, n = e[2] - u) : "q" === e[0] ? (t = e[1] - e[3], n = e[2] - e[4]) : (t = 0, n = 0), r = -t, i = -n, c || (r += h, i += u), a[s] = [c ? "q" : "Q", r, i, o[1], o[2]]) : "S" === l && (c = "s" === f, e = a[s - 1], "C" === e[0] ? (t = e[3] - h, n = e[4] - u) : "c" === e[0] ? (t = e[3] - e[5], n = e[4] - e[6]) : (t = 0, n = 0), r = -t, i = -n, c || (r += h, i += u), a[s] = [c ? "c" : "C", r, i, o[1], o[2], o[3], o[4]]));
-          }), this;
-        };
-
-        var xn = x,
-            yn = xn,
-            dn = {
-          a: 7,
-          c: 6,
-          h: 1,
-          l: 2,
-          m: 2,
-          q: 4,
-          s: 4,
-          t: 2,
-          v: 1,
-          z: 0
-        },
-            mn = /([astvzqmhlc])([^astvzqmhlc]*)/gi,
-            Mn = function Mn(t) {
-          var n = [];
-          return t.replace(mn, function (t, e, r) {
-            var i = e.toLowerCase();
-
-            for (r = y(r), "m" === i && r.length > 2 && (n.push([e].concat(r.splice(0, 2))), i = "l", e = "m" === e ? "l" : "L"); r.length >= 0;) {
-              if (r.length === dn[i]) return r.unshift(e), n.push(r);
-              if (r.length < dn[i]) throw new Error("malformed path data");
-              n.push([e].concat(r.splice(0, dn[i])));
-            }
-          }), n;
-        },
-            wn = /-?[0-9]*\.?[0-9]+(?:e[-+]?\d+)?/gi,
-            bn = function bn(t, n, e, r, i, a, o, s) {
-          return new d(t, n, e, r, i, a, o, s);
-        };
-
-        d.prototype = {
-          constructor: d,
-          init: function init() {
-            this.length = this.getArcLength([this.a.x, this.b.x, this.c.x, this.d.x], [this.a.y, this.b.y, this.c.y, this.d.y]);
-          },
-          getTotalLength: function getTotalLength() {
-            return this.length;
-          },
-          getPointAtLength: function getPointAtLength(t) {
-            var n = w(t, this.length, this.getArcLength, [this.a.x, this.b.x, this.c.x, this.d.x], [this.a.y, this.b.y, this.c.y, this.d.y]);
-            return this.getPoint([this.a.x, this.b.x, this.c.x, this.d.x], [this.a.y, this.b.y, this.c.y, this.d.y], n);
-          },
-          getTangentAtLength: function getTangentAtLength(t) {
-            var n = w(t, this.length, this.getArcLength, [this.a.x, this.b.x, this.c.x, this.d.x], [this.a.y, this.b.y, this.c.y, this.d.y]),
-                e = this.getDerivative([this.a.x, this.b.x, this.c.x, this.d.x], [this.a.y, this.b.y, this.c.y, this.d.y], n),
-                r = Math.sqrt(e.x * e.x + e.y * e.y);
-            return r > 0 ? {
-              x: e.x / r,
-              y: e.y / r
-            } : {
-              x: 0,
-              y: 0
-            };
-          },
-          getPropertiesAtLength: function getPropertiesAtLength(t) {
-            var n,
-                e = w(t, this.length, this.getArcLength, [this.a.x, this.b.x, this.c.x, this.d.x], [this.a.y, this.b.y, this.c.y, this.d.y]),
-                r = this.getDerivative([this.a.x, this.b.x, this.c.x, this.d.x], [this.a.y, this.b.y, this.c.y, this.d.y], e),
-                i = Math.sqrt(r.x * r.x + r.y * r.y);
-            n = i > 0 ? {
-              x: r.x / i,
-              y: r.y / i
-            } : {
-              x: 0,
-              y: 0
-            };
-            var a = this.getPoint([this.a.x, this.b.x, this.c.x, this.d.x], [this.a.y, this.b.y, this.c.y, this.d.y], e);
-            return {
-              x: a.x,
-              y: a.y,
-              tangentX: n.x,
-              tangentY: n.y
-            };
-          }
-        };
-
-        var Ln = [[], [], [-.5773502691896257, .5773502691896257], [0, -.7745966692414834, .7745966692414834], [-.33998104358485626, .33998104358485626, -.8611363115940526, .8611363115940526], [0, -.5384693101056831, .5384693101056831, -.906179845938664, .906179845938664], [.6612093864662645, -.6612093864662645, -.2386191860831969, .2386191860831969, -.932469514203152, .932469514203152], [0, .4058451513773972, -.4058451513773972, -.7415311855993945, .7415311855993945, -.9491079123427585, .9491079123427585], [-.1834346424956498, .1834346424956498, -.525532409916329, .525532409916329, -.7966664774136267, .7966664774136267, -.9602898564975363, .9602898564975363], [0, -.8360311073266358, .8360311073266358, -.9681602395076261, .9681602395076261, -.3242534234038089, .3242534234038089, -.6133714327005904, .6133714327005904], [-.14887433898163122, .14887433898163122, -.4333953941292472, .4333953941292472, -.6794095682990244, .6794095682990244, -.8650633666889845, .8650633666889845, -.9739065285171717, .9739065285171717], [0, -.26954315595234496, .26954315595234496, -.5190961292068118, .5190961292068118, -.7301520055740494, .7301520055740494, -.8870625997680953, .8870625997680953, -.978228658146057, .978228658146057], [-.1252334085114689, .1252334085114689, -.3678314989981802, .3678314989981802, -.5873179542866175, .5873179542866175, -.7699026741943047, .7699026741943047, -.9041172563704749, .9041172563704749, -.9815606342467192, .9815606342467192], [0, -.2304583159551348, .2304583159551348, -.44849275103644687, .44849275103644687, -.6423493394403402, .6423493394403402, -.8015780907333099, .8015780907333099, -.9175983992229779, .9175983992229779, -.9841830547185881, .9841830547185881], [-.10805494870734367, .10805494870734367, -.31911236892788974, .31911236892788974, -.5152486363581541, .5152486363581541, -.6872929048116855, .6872929048116855, -.827201315069765, .827201315069765, -.9284348836635735, .9284348836635735, -.9862838086968123, .9862838086968123], [0, -.20119409399743451, .20119409399743451, -.3941513470775634, .3941513470775634, -.5709721726085388, .5709721726085388, -.7244177313601701, .7244177313601701, -.8482065834104272, .8482065834104272, -.937273392400706, .937273392400706, -.9879925180204854, .9879925180204854], [-.09501250983763744, .09501250983763744, -.2816035507792589, .2816035507792589, -.45801677765722737, .45801677765722737, -.6178762444026438, .6178762444026438, -.755404408355003, .755404408355003, -.8656312023878318, .8656312023878318, -.9445750230732326, .9445750230732326, -.9894009349916499, .9894009349916499], [0, -.17848418149584785, .17848418149584785, -.3512317634538763, .3512317634538763, -.5126905370864769, .5126905370864769, -.6576711592166907, .6576711592166907, -.7815140038968014, .7815140038968014, -.8802391537269859, .8802391537269859, -.9506755217687678, .9506755217687678, -.9905754753144174, .9905754753144174], [-.0847750130417353, .0847750130417353, -.2518862256915055, .2518862256915055, -.41175116146284263, .41175116146284263, -.5597708310739475, .5597708310739475, -.6916870430603532, .6916870430603532, -.8037049589725231, .8037049589725231, -.8926024664975557, .8926024664975557, -.9558239495713977, .9558239495713977, -.9915651684209309, .9915651684209309], [0, -.16035864564022537, .16035864564022537, -.31656409996362983, .31656409996362983, -.46457074137596094, .46457074137596094, -.600545304661681, .600545304661681, -.7209661773352294, .7209661773352294, -.8227146565371428, .8227146565371428, -.9031559036148179, .9031559036148179, -.96020815213483, .96020815213483, -.9924068438435844, .9924068438435844], [-.07652652113349734, .07652652113349734, -.22778585114164507, .22778585114164507, -.37370608871541955, .37370608871541955, -.5108670019508271, .5108670019508271, -.636053680726515, .636053680726515, -.7463319064601508, .7463319064601508, -.8391169718222188, .8391169718222188, -.912234428251326, .912234428251326, -.9639719272779138, .9639719272779138, -.9931285991850949, .9931285991850949], [0, -.1455618541608951, .1455618541608951, -.2880213168024011, .2880213168024011, -.4243421202074388, .4243421202074388, -.5516188358872198, .5516188358872198, -.6671388041974123, .6671388041974123, -.7684399634756779, .7684399634756779, -.8533633645833173, .8533633645833173, -.9200993341504008, .9200993341504008, -.9672268385663063, .9672268385663063, -.9937521706203895, .9937521706203895], [-.06973927331972223, .06973927331972223, -.20786042668822127, .20786042668822127, -.34193582089208424, .34193582089208424, -.469355837986757, .469355837986757, -.5876404035069116, .5876404035069116, -.6944872631866827, .6944872631866827, -.7878168059792081, .7878168059792081, -.8658125777203002, .8658125777203002, -.926956772187174, .926956772187174, -.9700604978354287, .9700604978354287, -.9942945854823992, .9942945854823992], [0, -.1332568242984661, .1332568242984661, -.26413568097034495, .26413568097034495, -.3903010380302908, .3903010380302908, -.5095014778460075, .5095014778460075, -.6196098757636461, .6196098757636461, -.7186613631319502, .7186613631319502, -.8048884016188399, .8048884016188399, -.8767523582704416, .8767523582704416, -.9329710868260161, .9329710868260161, -.9725424712181152, .9725424712181152, -.9947693349975522, .9947693349975522], [-.06405689286260563, .06405689286260563, -.1911188674736163, .1911188674736163, -.3150426796961634, .3150426796961634, -.4337935076260451, .4337935076260451, -.5454214713888396, .5454214713888396, -.6480936519369755, .6480936519369755, -.7401241915785544, .7401241915785544, -.820001985973903, .820001985973903, -.8864155270044011, .8864155270044011, -.9382745520027328, .9382745520027328, -.9747285559713095, .9747285559713095, -.9951872199970213, .9951872199970213]],
-            An = [[], [], [1, 1], [.8888888888888888, .5555555555555556, .5555555555555556], [.6521451548625461, .6521451548625461, .34785484513745385, .34785484513745385], [.5688888888888889, .47862867049936647, .47862867049936647, .23692688505618908, .23692688505618908], [.3607615730481386, .3607615730481386, .46791393457269104, .46791393457269104, .17132449237917036, .17132449237917036], [.4179591836734694, .3818300505051189, .3818300505051189, .27970539148927664, .27970539148927664, .1294849661688697, .1294849661688697], [.362683783378362, .362683783378362, .31370664587788727, .31370664587788727, .22238103445337448, .22238103445337448, .10122853629037626, .10122853629037626], [.3302393550012598, .1806481606948574, .1806481606948574, .08127438836157441, .08127438836157441, .31234707704000286, .31234707704000286, .26061069640293544, .26061069640293544], [.29552422471475287, .29552422471475287, .26926671930999635, .26926671930999635, .21908636251598204, .21908636251598204, .1494513491505806, .1494513491505806, .06667134430868814, .06667134430868814], [.2729250867779006, .26280454451024665, .26280454451024665, .23319376459199048, .23319376459199048, .18629021092773426, .18629021092773426, .1255803694649046, .1255803694649046, .05566856711617366, .05566856711617366], [.24914704581340277, .24914704581340277, .2334925365383548, .2334925365383548, .20316742672306592, .20316742672306592, .16007832854334622, .16007832854334622, .10693932599531843, .10693932599531843, .04717533638651183, .04717533638651183], [.2325515532308739, .22628318026289723, .22628318026289723, .2078160475368885, .2078160475368885, .17814598076194574, .17814598076194574, .13887351021978725, .13887351021978725, .09212149983772845, .09212149983772845, .04048400476531588, .04048400476531588], [.2152638534631578, .2152638534631578, .2051984637212956, .2051984637212956, .18553839747793782, .18553839747793782, .15720316715819355, .15720316715819355, .12151857068790319, .12151857068790319, .08015808715976021, .08015808715976021, .03511946033175186, .03511946033175186], [.2025782419255613, .19843148532711158, .19843148532711158, .1861610000155622, .1861610000155622, .16626920581699392, .16626920581699392, .13957067792615432, .13957067792615432, .10715922046717194, .10715922046717194, .07036604748810812, .07036604748810812, .03075324199611727, .03075324199611727], [.1894506104550685, .1894506104550685, .18260341504492358, .18260341504492358, .16915651939500254, .16915651939500254, .14959598881657674, .14959598881657674, .12462897125553388, .12462897125553388, .09515851168249279, .09515851168249279, .062253523938647894, .062253523938647894, .027152459411754096, .027152459411754096], [.17944647035620653, .17656270536699264, .17656270536699264, .16800410215645004, .16800410215645004, .15404576107681028, .15404576107681028, .13513636846852548, .13513636846852548, .11188384719340397, .11188384719340397, .08503614831717918, .08503614831717918, .0554595293739872, .0554595293739872, .02414830286854793, .02414830286854793], [.1691423829631436, .1691423829631436, .16427648374583273, .16427648374583273, .15468467512626524, .15468467512626524, .14064291467065065, .14064291467065065, .12255520671147846, .12255520671147846, .10094204410628717, .10094204410628717, .07642573025488905, .07642573025488905, .0497145488949698, .0497145488949698, .02161601352648331, .02161601352648331], [.1610544498487837, .15896884339395434, .15896884339395434, .15276604206585967, .15276604206585967, .1426067021736066, .1426067021736066, .12875396253933621, .12875396253933621, .11156664554733399, .11156664554733399, .09149002162245, .09149002162245, .06904454273764123, .06904454273764123, .0448142267656996, .0448142267656996, .019461788229726478, .019461788229726478], [.15275338713072584, .15275338713072584, .14917298647260374, .14917298647260374, .14209610931838204, .14209610931838204, .13168863844917664, .13168863844917664, .11819453196151841, .11819453196151841, .10193011981724044, .10193011981724044, .08327674157670475, .08327674157670475, .06267204833410907, .06267204833410907, .04060142980038694, .04060142980038694, .017614007139152118, .017614007139152118], [.14608113364969041, .14452440398997005, .14452440398997005, .13988739479107315, .13988739479107315, .13226893863333747, .13226893863333747, .12183141605372853, .12183141605372853, .10879729916714838, .10879729916714838, .09344442345603386, .09344442345603386, .0761001136283793, .0761001136283793, .057134425426857205, .057134425426857205, .036953789770852494, .036953789770852494, .016017228257774335, .016017228257774335], [.13925187285563198, .13925187285563198, .13654149834601517, .13654149834601517, .13117350478706238, .13117350478706238, .12325237681051242, .12325237681051242, .11293229608053922, .11293229608053922, .10041414444288096, .10041414444288096, .08594160621706773, .08594160621706773, .06979646842452049, .06979646842452049, .052293335152683286, .052293335152683286, .03377490158481415, .03377490158481415, .0146279952982722, .0146279952982722], [.13365457218610619, .1324620394046966, .1324620394046966, .12890572218808216, .12890572218808216, .12304908430672953, .12304908430672953, .11499664022241136, .11499664022241136, .10489209146454141, .10489209146454141, .09291576606003515, .09291576606003515, .07928141177671895, .07928141177671895, .06423242140852585, .06423242140852585, .04803767173108467, .04803767173108467, .030988005856979445, .030988005856979445, .013411859487141771, .013411859487141771], [.12793819534675216, .12793819534675216, .1258374563468283, .1258374563468283, .12167047292780339, .12167047292780339, .1155056680537256, .1155056680537256, .10744427011596563, .10744427011596563, .09761865210411388, .09761865210411388, .08619016153195327, .08619016153195327, .0733464814110803, .0733464814110803, .05929858491543678, .05929858491543678, .04427743881741981, .04427743881741981, .028531388628933663, .028531388628933663, .0123412297999872, .0123412297999872]],
-            qn = [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]],
-            kn = 2 * Math.PI,
-            Pn = function Pn(t, n, e, r, i, a, o, s, h) {
-          var u = Math.sin(i * kn / 360),
-              c = Math.cos(i * kn / 360),
-              f = c * (t - s) / 2 + u * (n - h) / 2,
-              l = -u * (t - s) / 2 + c * (n - h) / 2;
-          if (0 === f && 0 === l) return [];
-          if (0 === e || 0 === r) return [];
-          e = Math.abs(e), r = Math.abs(r);
-          var p = f * f / (e * e) + l * l / (r * r);
-          p > 1 && (e *= Math.sqrt(p), r *= Math.sqrt(p));
-          var g = S(t, n, s, h, a, o, e, r, u, c),
-              v = [],
-              x = g[2],
-              y = g[3],
-              d = Math.max(Math.ceil(Math.abs(y) / (kn / 4)), 1);
-          y /= d;
-
-          for (var m = 0; m < d; m++) {
-            v.push(C(x, y)), x += y;
-          }
-
-          return v.map(function (t) {
-            for (var n = 0; n < t.length; n += 2) {
-              var i = t[n + 0],
-                  a = t[n + 1];
-              i *= e, a *= r;
-              var o = c * i - u * a,
-                  s = u * i + c * a;
-              t[n + 0] = o + g[0], t[n + 1] = s + g[1];
-            }
-
-            return t;
-          });
-        },
-            _n = function _n(t, n, e, r, i, a, o, s, h) {
-          return new Z(t, n, e, r, i, a, o, s, h);
-        };
-
-        Z.prototype = {
-          constructor: Z,
-          init: function init() {},
-          getTotalLength: function getTotalLength() {
-            return this.length;
-          },
-          getPointAtLength: function getPointAtLength(t) {
-            var n = this;
-            t < 0 ? t = 0 : t > this.length && (t = this.length);
-
-            for (var e = this.partialLengths.length - 1; this.partialLengths[e] >= t && this.partialLengths[e] > 0;) {
-              e--;
-            }
-
-            e < this.partialLengths.length - 1 && e++;
-
-            for (var r = 0, i = 0; i < e; i++) {
-              r += n.partialLengths[i];
-            }
-
-            return this.curves[e].getPointAtLength(t - r);
-          },
-          getTangentAtLength: function getTangentAtLength(t) {
-            var n = this;
-            t < 0 ? t = 0 : t > this.length && (t = this.length);
-
-            for (var e = this.partialLengths.length - 1; this.partialLengths[e] >= t && this.partialLengths[e] > 0;) {
-              e--;
-            }
-
-            e < this.partialLengths.length - 1 && e++;
-
-            for (var r = 0, i = 0; i < e; i++) {
-              r += n.partialLengths[i];
-            }
-
-            return this.curves[e].getTangentAtLength(t - r);
-          },
-          getPropertiesAtLength: function getPropertiesAtLength(t) {
-            var n = this.getTangentAtLength(t),
-                e = this.getPointAtLength(t);
-            return {
-              x: e.x,
-              y: e.y,
-              tangentX: n.x,
-              tangentY: n.y
-            };
-          }
-        };
-
-        var En = function En(t, n, e, r) {
-          return new T(t, n, e, r);
-        };
-
-        T.prototype.getTotalLength = function () {
-          return Math.sqrt(Math.pow(this.x0 - this.x1, 2) + Math.pow(this.y0 - this.y1, 2));
-        }, T.prototype.getPointAtLength = function (t) {
-          var n = t / Math.sqrt(Math.pow(this.x0 - this.x1, 2) + Math.pow(this.y0 - this.y1, 2)),
-              e = (this.x1 - this.x0) * n,
-              r = (this.y1 - this.y0) * n;
-          return {
-            x: this.x0 + e,
-            y: this.y0 + r
-          };
-        }, T.prototype.getTangentAtLength = function () {
-          var t = Math.sqrt((this.x1 - this.x0) * (this.x1 - this.x0) + (this.y1 - this.y0) * (this.y1 - this.y0));
-          return {
-            x: (this.x1 - this.x0) / t,
-            y: (this.y1 - this.y0) / t
-          };
-        }, T.prototype.getPropertiesAtLength = function (t) {
-          var n = this.getPointAtLength(t),
-              e = this.getTangentAtLength();
-          return {
-            x: n.x,
-            y: n.y,
-            tangentX: e.x,
-            tangentY: e.y
-          };
-        };
-
-        var Sn = function Sn(t) {
-          function n(t) {
-            if (!t) return null;
-
-            for (var a, o = Mn(t), s = [0, 0], h = [0, 0], u = 0; u < o.length; u++) {
-              "M" === o[u][0] ? (s = [o[u][1], o[u][2]], i.push(null)) : "m" === o[u][0] ? (s = [o[u][1] + s[0], o[u][2] + s[1]], i.push(null)) : "L" === o[u][0] ? (e += Math.sqrt(Math.pow(s[0] - o[u][1], 2) + Math.pow(s[1] - o[u][2], 2)), i.push(new En(s[0], o[u][1], s[1], o[u][2])), s = [o[u][1], o[u][2]]) : "l" === o[u][0] ? (e += Math.sqrt(Math.pow(o[u][1], 2) + Math.pow(o[u][2], 2)), i.push(new En(s[0], o[u][1] + s[0], s[1], o[u][2] + s[1])), s = [o[u][1] + s[0], o[u][2] + s[1]]) : "H" === o[u][0] ? (e += Math.abs(s[0] - o[u][1]), i.push(new En(s[0], o[u][1], s[1], s[1])), s[0] = o[u][1]) : "h" === o[u][0] ? (e += Math.abs(o[u][1]), i.push(new En(s[0], s[0] + o[u][1], s[1], s[1])), s[0] = o[u][1] + s[0]) : "V" === o[u][0] ? (e += Math.abs(s[1] - o[u][1]), i.push(new En(s[0], s[0], s[1], o[u][1])), s[1] = o[u][1]) : "v" === o[u][0] ? (e += Math.abs(o[u][1]), i.push(new En(s[0], s[0], s[1], s[1] + o[u][1])), s[1] = o[u][1] + s[1]) : "z" === o[u][0] || "Z" === o[u][0] ? (e += Math.sqrt(Math.pow(o[0][1] - s[0], 2) + Math.pow(o[0][2] - s[1], 2)), i.push(new En(s[0], o[0][1], s[1], o[0][2])), s = [o[0][1], o[0][2]]) : "C" === o[u][0] ? (a = new bn(s[0], s[1], o[u][1], o[u][2], o[u][3], o[u][4], o[u][5], o[u][6]), e += a.getTotalLength(), s = [o[u][5], o[u][6]], i.push(a)) : "c" === o[u][0] ? (a = new bn(s[0], s[1], s[0] + o[u][1], s[1] + o[u][2], s[0] + o[u][3], s[1] + o[u][4], s[0] + o[u][5], s[1] + o[u][6]), e += a.getTotalLength(), s = [o[u][5] + s[0], o[u][6] + s[1]], i.push(a)) : "S" === o[u][0] ? (a = u > 0 && ["C", "c", "S", "s"].indexOf(o[u - 1][0]) > -1 ? new bn(s[0], s[1], 2 * s[0] - o[u - 1][o[u - 1].length - 4], 2 * s[1] - o[u - 1][o[u - 1].length - 3], o[u][1], o[u][2], o[u][3], o[u][4]) : new bn(s[0], s[1], s[0], s[1], o[u][1], o[u][2], o[u][3], o[u][4]), e += a.getTotalLength(), s = [o[u][3], o[u][4]], i.push(a)) : "s" === o[u][0] ? (a = u > 0 && ["C", "c", "S", "s"].indexOf(o[u - 1][0]) > -1 ? new bn(s[0], s[1], s[0] + a.d.x - a.c.x, s[1] + a.d.y - a.c.y, s[0] + o[u][1], s[1] + o[u][2], s[0] + o[u][3], s[1] + o[u][4]) : new bn(s[0], s[1], s[0], s[1], s[0] + o[u][1], s[1] + o[u][2], s[0] + o[u][3], s[1] + o[u][4]), e += a.getTotalLength(), s = [o[u][3] + s[0], o[u][4] + s[1]], i.push(a)) : "Q" === o[u][0] ? (a = new bn(s[0], s[1], o[u][1], o[u][2], o[u][3], o[u][4]), e += a.getTotalLength(), i.push(a), s = [o[u][3], o[u][4]], h = [o[u][1], o[u][2]]) : "q" === o[u][0] ? (a = new bn(s[0], s[1], s[0] + o[u][1], s[1] + o[u][2], s[0] + o[u][3], s[1] + o[u][4]), e += a.getTotalLength(), h = [s[0] + o[u][1], s[1] + o[u][2]], s = [o[u][3] + s[0], o[u][4] + s[1]], i.push(a)) : "T" === o[u][0] ? (a = u > 0 && ["Q", "q", "T", "t"].indexOf(o[u - 1][0]) > -1 ? new bn(s[0], s[1], 2 * s[0] - h[0], 2 * s[1] - h[1], o[u][1], o[u][2]) : new En(s[0], o[u][1], s[1], o[u][2]), i.push(a), e += a.getTotalLength(), h = [2 * s[0] - h[0], 2 * s[1] - h[1]], s = [o[u][1], o[u][2]]) : "t" === o[u][0] ? (a = u > 0 && ["Q", "q", "T", "t"].indexOf(o[u - 1][0]) > -1 ? new bn(s[0], s[1], 2 * s[0] - h[0], 2 * s[1] - h[1], s[0] + o[u][1], s[1] + o[u][2]) : new En(s[0], s[0] + o[u][1], s[1], s[1] + o[u][2]), e += a.getTotalLength(), h = [2 * s[0] - h[0], 2 * s[1] - h[1]], s = [o[u][1] + s[0], o[u][2] + s[0]], i.push(a)) : "A" === o[u][0] ? (a = new _n(s[0], s[1], o[u][1], o[u][2], o[u][3], o[u][4], o[u][5], o[u][6], o[u][7]), e += a.getTotalLength(), s = [o[u][6], o[u][7]], i.push(a)) : "a" === o[u][0] && (a = new _n(s[0], s[1], o[u][1], o[u][2], o[u][3], o[u][4], o[u][5], s[0] + o[u][6], s[1] + o[u][7]), e += a.getTotalLength(), s = [s[0] + o[u][6], s[1] + o[u][7]], i.push(a)), r.push(e);
-            }
-
-            return n;
-          }
-
-          var e = 0,
-              r = [],
-              i = [];
-          n.getTotalLength = function () {
-            return e;
-          }, n.getPointAtLength = function (t) {
-            var n = a(t);
-            return i[n.i].getPointAtLength(n.fraction);
-          }, n.getTangentAtLength = function (t) {
-            var n = a(t);
-            return i[n.i].getTangentAtLength(n.fraction);
-          }, n.getPropertiesAtLength = function (t) {
-            var n = a(t);
-            return i[n.i].getPropertiesAtLength(n.fraction);
-          };
-
-          var a = function a(t) {
-            t < 0 ? t = 0 : t > e && (t = e);
-
-            for (var n = r.length - 1; r[n] >= t && r[n] > 0;) {
-              n--;
-            }
-
-            return n++, {
-              fraction: t - r[n - 1],
-              i: n
-            };
-          };
-
-          return n(t);
-        },
-            Cn = 'All shapes must be supplied as arrays of [x, y] points or an SVG path string (https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d).\nExample valid ways of supplying a shape would be:\n[[0, 0], [10, 0], [10, 10]]\n"M0,0 L10,0 L10,10Z"\n',
-            Zn = "flubber.all() expects two arrays of equal length as arguments. Each element in both arrays should be an array of [x, y] points or an SVG path string (https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d).",
-            Tn = function Tn(t, n) {
-          for (var e, r, i, a = t.length, o = 1 / 0, s = 0; s < a; s++) {
-            !function (i) {
-              r = 0, n.forEach(function (n, e) {
-                var o = F(t[(i + e) % a], n);
-                r += o * o;
-              }), r < o && (o = r, e = i);
-            }(s);
-          }
-
-          e && (i = t.splice(0, e), t.splice.apply(t, [t.length, 0].concat(i)));
-        },
-            Fn = function Fn(t, n, e) {
-          void 0 === e && (e = {});
-          var r = e.maxSegmentLength;
-          void 0 === r && (r = 10);
-          var i = e.string;
-          void 0 === i && (i = !0);
-          var a = J(t, r),
-              o = J(n, r),
-              s = tt(a, o, i);
-          return !i || "string" != typeof t && "string" != typeof n ? s : function (e) {
-            return e < 1e-4 && "string" == typeof t ? t : 1 - e < 1e-4 && "string" == typeof n ? n : s(e);
-          };
-        },
-            zn = nt;
-
-        nt.deviation = function (t, n, e, r) {
-          var i = n && n.length,
-              a = i ? n[0] * e : t.length,
-              o = Math.abs(Et(t, 0, a, e));
-          if (i) for (var s = 0, h = n.length; s < h; s++) {
-            var u = n[s] * e,
-                c = s < h - 1 ? n[s + 1] * e : t.length;
-            o -= Math.abs(Et(t, u, c, e));
-          }
-          var f = 0;
-
-          for (s = 0; s < r.length; s += 3) {
-            var l = r[s] * e,
-                p = r[s + 1] * e,
-                g = r[s + 2] * e;
-            f += Math.abs((t[l] - t[g]) * (t[p + 1] - t[l + 1]) - (t[l] - t[p]) * (t[g + 1] - t[l + 1]));
-          }
-
-          return 0 === o && 0 === f ? 0 : Math.abs((f - o) / o);
-        }, nt.flatten = function (t) {
-          for (var n = t[0][0].length, e = {
-            vertices: [],
-            holes: [],
-            dimensions: n
-          }, r = 0, i = 0; i < t.length; i++) {
-            for (var a = 0; a < t[i].length; a++) {
-              for (var o = 0; o < n; o++) {
-                e.vertices.push(t[i][a][o]);
-              }
-            }
-
-            i > 0 && (r += t[i - 1].length, e.holes.push(r));
-          }
-
-          return e;
-        };
-
-        var jn = function jn(t) {
-          return t;
-        },
-            In = function In(t) {
-          if (null == t) return jn;
-          var n,
-              e,
-              r = t.scale[0],
-              i = t.scale[1],
-              a = t.translate[0],
-              o = t.translate[1];
-          return function (t, s) {
-            s || (n = e = 0);
-            var h = 2,
-                u = t.length,
-                c = new Array(u);
-
-            for (c[0] = (n += t[0]) * r + a, c[1] = (e += t[1]) * i + o; h < u;) {
-              c[h] = t[h], ++h;
-            }
-
-            return c;
-          };
-        },
-            Vn = function Vn(t, n) {
-          for (var e, r = t.length, i = r - n; i < --r;) {
-            e = t[i], t[i++] = t[r], t[r] = e;
-          }
-        },
-            Xn = function Xn(t, n) {
-          return "GeometryCollection" === n.type ? {
-            type: "FeatureCollection",
-            features: n.geometries.map(function (n) {
-              return St(t, n);
-            })
-          } : St(t, n);
-        },
-            Yn = function Yn(t, n) {
-          function e(n) {
-            var e,
-                r = t.arcs[n < 0 ? ~n : n],
-                i = r[0];
-            return t.transform ? (e = [0, 0], r.forEach(function (t) {
-              e[0] += t[0], e[1] += t[1];
-            })) : e = r[r.length - 1], n < 0 ? [e, i] : [i, e];
-          }
-
-          function r(t, n) {
-            for (var e in t) {
-              var r = t[e];
-              delete n[r.start], delete r.start, delete r.end, r.forEach(function (t) {
-                i[t < 0 ? ~t : t] = 1;
-              }), s.push(r);
-            }
-          }
-
-          var i = {},
-              a = {},
-              o = {},
-              s = [],
-              h = -1;
-          return n.forEach(function (e, r) {
-            var i,
-                a = t.arcs[e < 0 ? ~e : e];
-            a.length < 3 && !a[1][0] && !a[1][1] && (i = n[++h], n[h] = e, n[r] = i);
-          }), n.forEach(function (t) {
-            var n,
-                r,
-                i = e(t),
-                s = i[0],
-                h = i[1];
-            if (n = o[s]) {
-              if (delete o[n.end], n.push(t), n.end = h, r = a[h]) {
-                delete a[r.start];
-                var u = r === n ? n : n.concat(r);
-                a[u.start = n.start] = o[u.end = r.end] = u;
-              } else a[n.start] = o[n.end] = n;
-            } else if (n = a[h]) {
-              if (delete a[n.start], n.unshift(t), n.start = s, r = o[s]) {
-                delete o[r.end];
-                var c = r === n ? n : r.concat(n);
-                a[c.start = r.start] = o[c.end = n.end] = c;
-              } else a[n.start] = o[n.end] = n;
-            } else n = [t], a[n.start = s] = o[n.end = h] = n;
-          }), r(o, a), r(a, o), n.forEach(function (t) {
-            i[t < 0 ? ~t : t] || s.push([t]);
-          }), s;
-        },
-            Gn = function Gn(t, n) {
-          for (var e = 0, r = t.length; e < r;) {
-            var i = e + r >>> 1;
-            t[i] < n ? e = i + 1 : r = i;
-          }
-
-          return e;
-        },
-            On = function On(t) {
-          function n(t, n) {
-            t.forEach(function (t) {
-              t < 0 && (t = ~t);
-              var e = i[t];
-              e ? e.push(n) : i[t] = [n];
-            });
-          }
-
-          function e(t, e) {
-            t.forEach(function (t) {
-              n(t, e);
-            });
-          }
-
-          function r(t, n) {
-            "GeometryCollection" === t.type ? t.geometries.forEach(function (t) {
-              r(t, n);
-            }) : t.type in o && o[t.type](t.arcs, n);
-          }
-
-          var i = {},
-              a = t.map(function () {
-            return [];
-          }),
-              o = {
-            LineString: n,
-            MultiLineString: e,
-            Polygon: e,
-            MultiPolygon: function MultiPolygon(t, n) {
-              t.forEach(function (t) {
-                e(t, n);
-              });
-            }
-          };
-          t.forEach(r);
-
-          for (var s in i) {
-            for (var h = i[s], u = h.length, c = 0; c < u; ++c) {
-              for (var f = c + 1; f < u; ++f) {
-                var l,
-                    p = h[c],
-                    g = h[f];
-                (l = a[p])[s = Gn(l, g)] !== g && l.splice(s, 0, g), (l = a[g])[s = Gn(l, p)] !== p && l.splice(s, 0, p);
-              }
-            }
-          }
-
-          return a;
-        },
-            Dn = function Dn(t, n) {
-          return t < n ? -1 : t > n ? 1 : t >= n ? 0 : NaN;
-        },
-            Hn = function Hn(t) {
-          return 1 === t.length && (t = Ft(t)), {
-            left: function left(n, e, r, i) {
-              for (null == r && (r = 0), null == i && (i = n.length); r < i;) {
-                var a = r + i >>> 1;
-                t(n[a], e) < 0 ? r = a + 1 : i = a;
-              }
-
-              return r;
-            },
-            right: function right(n, e, r, i) {
-              for (null == r && (r = 0), null == i && (i = n.length); r < i;) {
-                var a = r + i >>> 1;
-                t(n[a], e) > 0 ? i = a : r = a + 1;
-              }
-
-              return r;
-            }
-          };
-        },
-            Nn = Hn(Dn),
-            Qn = (Nn.right, Math.sqrt(50), Math.sqrt(10), Math.sqrt(2), function (t, n) {
-          return jt(zt(It(t), t), n);
-        }),
-            Un = function Un(t, n) {
-          if (t.length > 8) return t.map(function (t, n) {
-            return n;
-          });
-          var e = t.map(function (t) {
-            return n.map(function (n) {
-              return Xt(t, n);
-            });
-          });
-          return Vt(t, n, e);
-        };
-
-        t.interpolate = Fn, t.separate = Yt, t.combine = Gt, t.interpolateAll = Ot, t.splitPathString = N, t.toPathString = H, t.fromCircle = Ht, t.toCircle = Nt, t.fromRect = Qt, t.toRect = Ut, Object.defineProperty(t, "__esModule", {
-          value: !0
-        });
-      });
-    }, {}],
-    13: [function (_dereq_, module, exports) {
       !function (e, t) {
         "object" == _typeof2(exports) && "undefined" != typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define(t) : e.htm = t();
       }(this, function () {
@@ -9224,7 +7089,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         };
       });
     }, {}],
-    14: [function (_dereq_, module, exports) {
+    13: [function (_dereq_, module, exports) {
       !function () {
         'use strict';
 
@@ -9816,7 +7681,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         if ('undefined' != typeof module) module.exports = preact;else self.preact = preact;
       }();
     }, {}],
-    15: [function (_dereq_, module, exports) {
+    14: [function (_dereq_, module, exports) {
       (function (global) {
         /* spacetime v4.5.1
           
@@ -12302,7 +10167,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         });
       }).call(this, typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {}],
-    16: [function (_dereq_, module, exports) {
+    15: [function (_dereq_, module, exports) {
       (function (global) {
         !function (e) {
           if ("object" == _typeof2(exports) && "undefined" != typeof module) module.exports = e();else if ("function" == typeof define && define.amd) define([], e);else {
@@ -12383,7 +10248,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         });
       }).call(this, typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
     }, {}],
-    17: [function (_dereq_, module, exports) {
+    16: [function (_dereq_, module, exports) {
       (function (global, factory) {
         _typeof2(exports) === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : global.vhtml = factory();
       })(this, function () {
@@ -12454,7 +10319,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         return h;
       });
     }, {}],
-    18: [function (_dereq_, module, exports) {
+    17: [function (_dereq_, module, exports) {
       "use strict";
 
       function _typeof(obj) {
@@ -12471,18 +10336,8 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         return _typeof(obj);
       }
 
-      function _templateObject2() {
-        var data = _taggedTemplateLiteral(["<svg ...", ">\n      ", "\n    </svg>"]);
-
-        _templateObject2 = function _templateObject2() {
-          return data;
-        };
-
-        return data;
-      }
-
       function _templateObject() {
-        var data = _taggedTemplateLiteral(["<div>", "</div>"]);
+        var data = _taggedTemplateLiteral(["<svg ...", ">\n    <text>", "</text>\n      ", "\n    </svg>"]);
 
         _templateObject = function _templateObject() {
           return data;
@@ -12628,23 +10483,11 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
           _this.inputs = [];
           _this.state = {};
           _this.state.time = Date.now();
+          _this.el = obj.el || null;
           return _this;
         }
 
         _createClass(World, [{
-          key: "componentDidMount",
-          value: function componentDidMount() {
-            var _this2 = this;
-
-            console.log('mount'); // update time every second
-
-            this.timer = setInterval(function () {
-              _this2.setState({
-                time: Date.now()
-              });
-            }, 1000);
-          }
-        }, {
           key: "bind",
           value: function bind(fn) {
             this.html = htm.bind(fn);
@@ -12685,11 +10528,20 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
             return slider;
           }
         }, {
-          key: "render",
-          value: function render() {
-            console.log('render');
-            var h = this.html;
-            return h(_templateObject(), this.state.time);
+          key: "getShape",
+          value: function getShape(id) {
+            return this.shapes.find(function (shape) {
+              return shape.id === id;
+            });
+          }
+        }, {
+          key: "redraw",
+          value: function redraw() {
+            if (this.el) {
+              this.el.innerHTML = this.build();
+            } else {
+              console.log('must define world html element');
+            }
           }
         }, {
           key: "build",
@@ -12719,7 +10571,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
               style: 'overflow:visible; margin: 10px 20px 25px 25px;' // border:1px solid lightgrey;
 
             };
-            return h(_templateObject2(), attrs, elements);
+            return h(_templateObject(), attrs, this.state.lat, elements);
           }
         }]);
 
@@ -12731,22 +10583,22 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
       });
       module.exports = World;
     }, {
-      "./axis/XAxis": 21,
-      "./axis/YAxis": 22,
-      "./inputs/Slider": 25,
-      "./methods": 26,
-      "./scales/Scale": 28,
-      "./scales/YScale": 29,
-      "./shapes/Dot": 30,
-      "./shapes/Line": 31,
-      "./shapes/Shape": 32,
-      "./shapes/Text": 33,
+      "./axis/XAxis": 20,
+      "./axis/YAxis": 21,
+      "./inputs/Slider": 24,
+      "./methods": 25,
+      "./scales/Scale": 27,
+      "./scales/YScale": 28,
+      "./shapes/Dot": 29,
+      "./shapes/Line": 30,
+      "./shapes/Shape": 31,
+      "./shapes/Text": 32,
       "fit-aspect-ratio": 11,
-      "htm": 13,
-      "preact": 14,
-      "vhtml": 17
+      "htm": 12,
+      "preact": 13,
+      "vhtml": 16
     }],
-    19: [function (_dereq_, module, exports) {
+    18: [function (_dereq_, module, exports) {
       "use strict";
 
       var extent = function extent(arr) {
@@ -12782,7 +10634,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         uuid: uuid
       };
     }, {}],
-    20: [function (_dereq_, module, exports) {
+    19: [function (_dereq_, module, exports) {
       "use strict";
 
       function _classCallCheck(instance, Constructor) {
@@ -12860,9 +10712,9 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
       module.exports = Axis;
     }, {
-      "./_ticks": 23
+      "./_ticks": 22
     }],
-    21: [function (_dereq_, module, exports) {
+    20: [function (_dereq_, module, exports) {
       "use strict";
 
       function _typeof(obj) {
@@ -13032,9 +10884,9 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
       module.exports = XAxis;
     }, {
-      "./Axis": 20
+      "./Axis": 19
     }],
-    22: [function (_dereq_, module, exports) {
+    21: [function (_dereq_, module, exports) {
       "use strict";
 
       function _typeof(obj) {
@@ -13204,9 +11056,9 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
       module.exports = YAxis;
     }, {
-      "./Axis": 20
+      "./Axis": 19
     }],
-    23: [function (_dereq_, module, exports) {
+    22: [function (_dereq_, module, exports) {
       "use strict";
 
       var spacetime = _dereq_('spacetime');
@@ -13275,9 +11127,9 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         date: date
       };
     }, {
-      "spacetime": 15
+      "spacetime": 14
     }],
-    24: [function (_dereq_, module, exports) {
+    23: [function (_dereq_, module, exports) {
       "use strict";
 
       var World = _dereq_('./World'); //
@@ -13289,9 +11141,9 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
       module.exports = somehow;
     }, {
-      "./World": 18
+      "./World": 17
     }],
-    25: [function (_dereq_, module, exports) {
+    24: [function (_dereq_, module, exports) {
       "use strict";
 
       function _templateObject2() {
@@ -13346,9 +11198,8 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         if (protoProps) _defineProperties(Constructor.prototype, protoProps);
         if (staticProps) _defineProperties(Constructor, staticProps);
         return Constructor;
-      }
+      } // const fns = require('../_fns')
 
-      var fns = _dereq_('../_fns');
 
       var colors = _dereq_('spencer-color');
 
@@ -13363,6 +11214,8 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
       /*#__PURE__*/
       function () {
         function Slider() {
+          var _this = this;
+
           var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
           var world = arguments.length > 1 ? arguments[1] : undefined;
 
@@ -13388,13 +11241,14 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
             this._value = 50;
           }
 
-          this.id = obj.id || fns.uuid();
+          this.id = obj.id || 'slider';
+          this.world.state[this.id] = this._value;
 
           this.callback = function (e) {
-            console.log(e.target.value);
-          };
+            _this.world.state[_this.id] = e.target.value;
 
-          this.world.state[this.id] = this._value;
+            _this.world.redraw();
+          };
         }
 
         _createClass(Slider, [{
@@ -13424,11 +11278,11 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         }, {
           key: "makeLabels",
           value: function makeLabels() {
-            var _this = this;
+            var _this2 = this;
 
             var h = this.world.html;
             return this._labels.map(function (o) {
-              var y = _this.place(o.value);
+              var y = _this2.place(o.value);
 
               var style = "position:absolute; top:".concat(y, "px; font-size:10px; color:").concat(colors.lightgrey, "; left:10px;");
               return h(_templateObject(), style, o.label);
@@ -13442,7 +11296,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         }, {
           key: "build",
           value: function build() {
-            var _this2 = this;
+            var _this3 = this;
 
             var h = this.world.html;
             var size = this.attrs.size;
@@ -13452,11 +11306,11 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
               title: "position:absolute; top:-20px; left:-20px; color:".concat(colors.lightgrey, "; font-size:14px;")
             };
             setTimeout(function () {
-              var el = document.getElementById(_this2.id);
+              var el = document.getElementById(_this3.id);
               el.addEventListener('input', function (e) {
-                _this2.world.state[_this2.id] = e.target.value;
+                _this3.world.state[_this3.id] = e.target.value;
 
-                _this2.callback(e);
+                _this3.callback(e);
               });
             }, 50);
             return h(_templateObject2(), styles.box, styles.title, this._title, this.makeLabels(), this.id, styles.input, this._value, this.attrs);
@@ -13468,10 +11322,9 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
       module.exports = Slider;
     }, {
-      "../_fns": 19,
-      "spencer-color": 16
+      "spencer-color": 15
     }],
-    26: [function (_dereq_, module, exports) {
+    25: [function (_dereq_, module, exports) {
       "use strict";
 
       var _require = _dereq_('./parse'),
@@ -13591,10 +11444,10 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
       };
       module.exports = methods;
     }, {
-      "./_fns": 19,
-      "./parse": 27
+      "./_fns": 18,
+      "./parse": 26
     }],
-    27: [function (_dereq_, module, exports) {
+    26: [function (_dereq_, module, exports) {
       "use strict";
 
       var spacetime = _dereq_('spacetime'); //
@@ -13678,9 +11531,9 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         parseY: parseY
       };
     }, {
-      "spacetime": 15
+      "spacetime": 14
     }],
-    28: [function (_dereq_, module, exports) {
+    27: [function (_dereq_, module, exports) {
       "use strict";
 
       function _classCallCheck(instance, Constructor) {
@@ -13799,10 +11652,10 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
       module.exports = Scale;
     }, {
-      "../parse": 27,
+      "../parse": 26,
       "d3-scale": 7
     }],
-    29: [function (_dereq_, module, exports) {
+    28: [function (_dereq_, module, exports) {
       "use strict";
 
       function _typeof(obj) {
@@ -13930,11 +11783,11 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
       module.exports = YScale;
     }, {
-      "../parse": 27,
-      "./Scale": 28,
+      "../parse": 26,
+      "./Scale": 27,
       "d3-scale": 7
     }],
-    30: [function (_dereq_, module, exports) {
+    29: [function (_dereq_, module, exports) {
       "use strict";
 
       function _typeof(obj) {
@@ -14095,10 +11948,10 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
       module.exports = Dot;
     }, {
-      "./Shape": 32,
-      "spencer-color": 16
+      "./Shape": 31,
+      "spencer-color": 15
     }],
-    31: [function (_dereq_, module, exports) {
+    30: [function (_dereq_, module, exports) {
       "use strict";
 
       function _typeof(obj) {
@@ -14253,11 +12106,11 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
       module.exports = Line;
     }, {
-      "./Shape": 32,
+      "./Shape": 31,
       "d3-shape": 8,
-      "spencer-color": 16
+      "spencer-color": 15
     }],
-    32: [function (_dereq_, module, exports) {
+    31: [function (_dereq_, module, exports) {
       "use strict";
 
       function _templateObject() {
@@ -14302,20 +12155,23 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         if (protoProps) _defineProperties(Constructor.prototype, protoProps);
         if (staticProps) _defineProperties(Constructor, staticProps);
         return Constructor;
-      }
+      } // const flubber = require('flubber')
 
-      var flubber = _dereq_('flubber');
 
-      var colors = _dereq_('spencer-color'); // const {parseX, parseY} = require('../parse')
+      var d3Shape = _dereq_('d3-shape');
 
+      var colors = _dereq_('spencer-color');
+
+      var _require = _dereq_('../parse'),
+          parseY = _require.parseY;
 
       var fns = _dereq_('../_fns');
 
       var parseInput = _dereq_('./lib/parseInput');
 
       var defaults = {
-        fill: 'red',
-        stroke: colors.blue,
+        fill: colors.blue,
+        stroke: 'none',
         'shape-rendering': 'optimizeQuality'
       };
 
@@ -14330,6 +12186,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
           this.world = world;
           this.data = obj.data || [];
+          this.id = obj.id;
           this.attrs = Object.assign({}, defaults, obj);
           this.style = {};
           this._shape = 1;
@@ -14413,7 +12270,15 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
         }, {
           key: "path",
           value: function path() {
-            return flubber.toPathString(this.points());
+            // return flubber.toPathString(this.points())
+            var zero = this.world.y.place(parseY(0));
+            console.log(zero);
+            var points = this.points();
+            return d3Shape.area().x0(function (d) {
+              return d[0];
+            }).y0(function (d) {
+              return d[1];
+            }).y1(zero).curve(d3Shape.curveMonotoneX)(points);
           }
         }, {
           key: "drawSyle",
@@ -14440,12 +12305,13 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
       module.exports = Shape;
     }, {
-      "../_fns": 19,
-      "./lib/parseInput": 34,
-      "flubber": 12,
-      "spencer-color": 16
+      "../_fns": 18,
+      "../parse": 26,
+      "./lib/parseInput": 33,
+      "d3-shape": 8,
+      "spencer-color": 15
     }],
-    33: [function (_dereq_, module, exports) {
+    32: [function (_dereq_, module, exports) {
       "use strict";
 
       function _typeof(obj) {
@@ -14587,7 +12453,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
           _classCallCheck(this, Text);
 
-          var text = [];
+          var text = null;
 
           if (typeof obj === 'string') {
             text = [obj];
@@ -14599,7 +12465,12 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
           obj = Object.assign({}, defaults, obj);
           _this = _possibleConstructorReturn(this, _getPrototypeOf(Text).call(this, obj, world));
-          _this.textLines = text;
+          _this.textLines = text || obj.text || [];
+
+          if (typeof _this.textLines === 'string') {
+            _this.textLines = [_this.textLines];
+          }
+
           _this._order = 0;
           _this.data = [{
             x: {
@@ -14647,7 +12518,7 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
           key: "dy",
           value: function dy() {
             var n = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-            this._dodge.y += n * -1;
+            this._dodge.y = n * -1;
             return this;
           }
         }, {
@@ -14779,10 +12650,10 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
       module.exports = Text;
     }, {
-      "./Shape": 32,
-      "spencer-color": 16
+      "./Shape": 31,
+      "spencer-color": 15
     }],
-    34: [function (_dereq_, module, exports) {
+    33: [function (_dereq_, module, exports) {
       "use strict";
 
       var _require = _dereq_('../../parse'),
@@ -14826,542 +12697,456 @@ function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.itera
 
       module.exports = parseInput;
     }, {
-      "../../parse": 27
+      "../../parse": 26
     }]
-  }, {}, [24])(24);
+  }, {}, [23])(23);
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],2:[function(_dereq_,module,exports){
-"use strict";
-
-module.exports = {
-  Boston: {
-    nhl: ['Bruins'],
-    mlb: ['Red Sox'],
-    nba: ['Celtics'],
-    nfl: ['Patriots'],
-    mls: ['Revolution']
-  },
-  'Buffalo, New York': {
-    nhl: ['Sabres'],
-    nfl: ['Bills']
-  },
-  Detroit: {
-    nhl: ['Red Wings'],
-    mlb: ['Tigers'],
-    nba: ['Pistons'],
-    nfl: ['Lions']
-  },
-  Miami: {
-    nhl: ['Panthers'],
-    mlb: ['Marlins'],
-    nba: ['Heat'],
-    nfl: ['Dolphins']
-  },
-  Montreal: {
-    nhl: ['Canadiens'],
-    mls: ['Impact']
-  },
-  Ottawa: {
-    nhl: ['Senators']
-  },
-  'Tampa, Florida': {
-    nhl: ['Lightning'],
-    mlb: ['Rays'],
-    nfl: ['Buccaneers']
-  },
-  Toronto: {
-    nhl: ['Maple Leafs'],
-    mlb: ['Blue Jays'],
-    nba: ['Raptors'],
-    mls: ['Toronto FC']
-  },
-  'Raleigh, North Carolina': {
-    nhl: ['Hurricanes']
-  },
-  'Columbus, Ohio': {
-    nhl: ['Blue Jackets'],
-    mls: ['Crew SC']
-  },
-  'Newark, New Jersey': {
-    nhl: ['Devils'],
-    nfl: ['Jets', 'Giants'],
-    mls: ['Red Bulls']
-  },
-  'New York City': {
-    nhl: ['Islanders', 'Rangers'],
-    mlb: ['Yankees', 'Mets'],
-    nba: ['Brooklyn Nets', 'Knicks'],
-    mls: ['NY City FC']
-  },
-  Philadelphia: {
-    nhl: ['Flyers'],
-    mlb: ['Phillies'],
-    nba: ['76ers'],
-    nfl: ['Eagles'],
-    mls: ['Union']
-  },
-  Pittsburgh: {
-    nhl: ['Penguins'],
-    mlb: ['Pirates'],
-    nfl: ['Steelers']
-  },
-  'Washington, D.C.': {
-    nhl: ['Capitals'],
-    mlb: ['Nationals'],
-    nba: ['Wizards'],
-    nfl: ['Redskins'],
-    mls: ['D.C. United']
-  },
-  Chicago: {
-    nhl: ['Blackhawks'],
-    mlb: ['White Sox', 'Cubs'],
-    nba: ['Bulls'],
-    nfl: ['Bears'],
-    mls: ['Fire Soccer Club']
-  },
-  Denver: {
-    nhl: ['Avalanche'],
-    mlb: ['Rockies'],
-    nba: ['Nuggets'],
-    nfl: ['Broncos'],
-    mls: ['Rapids']
-  },
-  Dallas: {
-    nhl: ['Stars'],
-    mlb: ['Texas Rangers'],
-    nba: ['Mavericks'],
-    nfl: ['Cowboys'],
-    mls: ['FC Dallas']
-  },
-  Minneapolis: {
-    nhl: ['Wild'],
-    mlb: ['Twins'],
-    nba: ['Timberwolves'],
-    nfl: ['Vikings'],
-    mls: ['United FC']
-  },
-  'Nashville, Tennessee': {
-    nhl: ['Predators'],
-    nfl: ['Titans']
-  },
-  'St. Louis': {
-    nhl: ['Blues'],
-    mlb: ['Cardinals']
-  },
-  Winnipeg: {
-    nhl: ['Jets']
-  },
-  'Los Angeles': {
-    nhl: ['Anaheim Ducks', 'Kings'],
-    mlb: ['Angels', 'Dodgers'],
-    nba: ['Clippers', 'Lakers'],
-    nfl: ['Chargers', 'Rams'],
-    mls: ['LA Galaxy', 'LA FC']
-  },
-  'Phoenix, Arizona': {
-    nhl: ['Coyotes'],
-    mlb: ['Diamondbacks'],
-    nba: ['Phoenix Suns'],
-    nfl: ['Cardinals']
-  },
-  Calgary: {
-    nhl: ['Flames']
-  },
-  Edmonton: {
-    nhl: ['Oilers']
-  },
-  'San Jose, California': {
-    nhl: ['Sharks'],
-    mls: ['Earthquakes']
-  },
-  Vancouver: {
-    nhl: ['Canucks'],
-    mls: ['Whitecaps FC']
-  },
-  'Las Vegas': {
-    nhl: ['Golden Knights']
-  },
-  Baltimore: {
-    mlb: ['Orioles'],
-    nfl: ['Ravens']
-  },
-  Cleveland: {
-    mlb: ['Indians'],
-    nba: ['Cavaliers'],
-    nfl: ['Browns']
-  },
-  'Kansas City, Missouri': {
-    mlb: ['Royals'],
-    nfl: ['Chiefs'],
-    mls: ['Sporting Kansas City']
-  },
-  Houston: {
-    mlb: ['Astros'],
-    nba: ['Rockets'],
-    nfl: ['Texans'],
-    mls: ['Dynamo']
-  },
-  'Oakland, California': {
-    mlb: ['Athletics'],
-    nba: ['Golden State Warriors'],
-    nfl: ['Raiders']
-  },
-  Seattle: {
-    mlb: ['Mariners'],
-    nfl: ['Seahawks'],
-    mls: ['Sounders FC']
-  },
-  Atlanta: {
-    mlb: ['Braves'],
-    nba: ['Hawks'],
-    nfl: ['Falcons'],
-    mls: ['United FC']
-  },
-  Cincinnati: {
-    mlb: ['Reds'],
-    nfl: ['Bengals']
-  },
-  Milwaukee: {
-    mlb: ['Brewers'],
-    nba: ['Bucks']
-  },
-  'San Diego': {
-    mlb: ['San Diego Padres']
-  },
-  'San Francisco': {
-    mlb: ['Giants'],
-    nfl: ['49ers']
-  },
-  Indianapolis: {
-    nba: ['Indiana Pacers'],
-    nfl: ['Colts']
-  },
-  'Charlotte, North Carolina': {
-    nba: ['Hornets'],
-    nfl: ['Panthers']
-  },
-  'Orlando, Florida': {
-    nba: ['Magic'],
-    mls: ['Orlando City SC']
-  },
-  'Oklahoma City': {
-    nba: ['Thunder']
-  },
-  'Portland, Oregon': {
-    nba: ['Trail Blazers'],
-    mls: ['Timbers']
-  },
-  'Salt Lake City': {
-    nba: ['Utah Jazz'],
-    mls: ['Real Salt Lake']
-  },
-  'Sacramento, California': {
-    nba: ['Kings']
-  },
-  'Memphis, Tennessee': {
-    nba: ['Grizzlies']
-  },
-  'New Orleans': {
-    nba: ['Pelicans'],
-    nfl: ['Saints']
-  },
-  'San Antonio': {
-    nba: ['Spurs']
-  },
-  'Jacksonville, Florida': {
-    nfl: ['Jaguars']
-  },
-  'Green Bay, Wisconsin': {
-    nfl: ['Packers']
-  }
-};
-
-},{}],3:[function(_dereq_,module,exports){
-"use strict";
-
-module.exports = {
-  "Buffalo, New York": 42,
-  "Detroit": 42,
-  "Miami": 25,
-  "Montreal": 45,
-  "Boston": 42,
-  "Columbus, Ohio": 39,
-  "Ottawa": 45,
-  "Raleigh, North Carolina": 35,
-  "Toronto": 43,
-  "Tampa, Florida": 27,
-  "Pittsburgh": 40,
-  "Philadelphia": 39,
-  "Newark, New Jersey": 40,
-  "Washington, D.C.": 38,
-  "New York City": 40,
-  "Chicago": 41,
-  "Denver": 39,
-  "Nashville, Tennessee": 36,
-  "Dallas": 32,
-  "Minneapolis": 44,
-  "Los Angeles": 34,
-  "St. Louis": 38,
-  "Phoenix, Arizona": 33,
-  "Winnipeg": 49,
-  "Calgary": 51,
-  "Vancouver": 49,
-  "Las Vegas": 36,
-  "San Jose, California": 37,
-  "Edmonton": 53,
-  "Baltimore": 39,
-  "Cleveland": 41,
-  "Houston": 29,
-  "Kansas City, Missouri": 39,
-  "Oakland, California": 37,
-  "Seattle": 47,
-  "Atlanta": 33,
-  "San Diego": 32,
-  "San Francisco": 37,
-  "Milwaukee": 43,
-  "Cincinnati": 39,
-  "Portland, Oregon": 45,
-  "Charlotte, North Carolina": 35,
-  "Indianapolis": 39,
-  "Oklahoma City": 35,
-  "Orlando, Florida": 28,
-  "Sacramento, California": 38,
-  "Memphis, Tennessee": 35,
-  "Salt Lake City": 40,
-  "New Orleans": 29,
-  "San Antonio": 29,
-  "Jacksonville, Florida": 30,
-  "Green Bay, Wisconsin": 44
-};
-
 },{}],4:[function(_dereq_,module,exports){
 "use strict";
 
-var colors = _dereq_('spencer-color');
-
-var leagues = {
-  mls: {
-    color: colors.brown,
-    start: 'March 3 2018',
-    end: 'October 28 2018',
-    playoff: 'Dec 8 2018'
+module.exports = {
+  '0': {
+    city: 'Quito',
+    population: 4700000,
+    weather: '15.5,15.6,15.5,15.6,15.6,15.5,15.5,15.9,15.9,15.7,15.5,15.5'
   },
-  nfl: {
-    color: colors.orange,
-    start: 'September 6 2018',
-    end: 'Dec 30 2018',
-    playoff: 'February 3 2018'
+  '1': {
+    city: 'Singapore',
+    population: 5535000,
+    weather: '26.5,27.1,27.5,28,28.3,28.3,27.9,27.9,27.6,27.6,27,26.4'
   },
-  mlb: {
-    color: colors.blue,
-    start: 'March 29 2018',
-    end: 'October 1 2018',
-    playoff: 'Oct 28 2018'
+  '3': {
+    city: 'Kuala Lumpur',
+    population: 7200000,
+    weather: '27.7,28.2,28.6,28.7,28.8,28.6,28.1,28.1,28,28,27.8,27.6'
   },
-  nhl: {
-    color: colors.red,
-    start: 'October 3 2018',
-    end: 'April 6 2018',
-    playoff: 'June 13 2018'
+  '4': {
+    city: 'Bogotá',
+    population: 9520000,
+    weather: '14.3,14.5,14.9,14.9,15,14.5,14.6,14.1,14.3,14.3,14.4,14.6'
   },
-  nba: {
-    color: colors.green,
-    start: 'October 16 2018',
-    end: 'April 10 2018',
-    playoff: 'June 8 2018'
+  '5': {
+    city: 'Abidjan',
+    population: 4765000,
+    weather: '26.8,27.7,27.9,27.7,26.9,25.8,24.7,24.5,25.6,26.8,27.4,27'
+  },
+  '6': {
+    city: 'Lagos',
+    population: 13123000,
+    weather: '27.3,28.4,28.5,28,27,25.6,25.2,25,25.5,26.4,27.2,27.2'
+  },
+  '7': {
+    city: 'Ibadan',
+    population: 3375000,
+    weather: '25.7,26.9,26.9,26.3,25.6,25.1,23.6,23.1,23.9,24.3,25.6,25.5'
+  },
+  '9': {
+    city: 'Addis Ababa',
+    population: 3384569,
+    weather: '15.4,16.6,17.9,17.9,18,17,15.9,15.8,16.2,15.7,14.8,14.9'
+  },
+  '10': {
+    city: 'Ho Chi Minh City',
+    population: 13542900,
+    weather: '26,26.8,28,29.2,28.8,27.8,27.5,27.4,27.2,27,26.7,26'
+  },
+  '11': {
+    city: 'Phnom Penh',
+    population: 2234566,
+    weather: '26.6,28,29.4,30.2,30,29.2,28.7,28.5,28.2,27.2,27.1,26.3'
+  },
+  '12': {
+    city: 'Managua',
+    population: 2205676,
+    weather: '26.3,27.2,28.5,29.3,29.3,27.2,26.8,27.2,26.8,26.5,26.3,26.2'
+  },
+  '13': {
+    city: 'Bangkok',
+    population: 15645000,
+    weather: '27,28.3,29.5,30.5,29.9,29.5,29,28.8,28.3,28.1,27.8,26.5'
+  },
+  '14': {
+    city: 'Manila',
+    population: 24123000,
+    weather: '26.7,27.4,28.7,30.1,30,29.3,28.5,28.3,28.4,28.4,28,27'
+  },
+  '15': {
+    city: 'Khartoum',
+    population: 5345000,
+    weather: '23.2,25,28.7,31.9,34.5,34.3,32.1,31.5,32.5,32.4,28.1,24.5'
+  },
+  '16': {
+    city: 'Yangon',
+    population: 5214000,
+    weather: '25,26.3,28.6,30.6,29.6,27.4,26.9,26.9,27.4,27.9,27.4,25.4'
+  },
+  '17': {
+    city: 'Hyderabad',
+    population: 7749334,
+    weather: '22.2,25.1,28.4,31.5,33,29.3,27,26.2,26.6,25.7,23.2,21.6'
+  },
+  '18': {
+    city: 'Pune',
+    population: 3115431,
+    weather: '15,22,25.6,28.8,29.7,27.4,25.3,24.5,25.1,25,22.3,16'
+  },
+  '19': {
+    city: 'Mexico City',
+    population: 21178959,
+    weather: '14.6,15.9,18.1,19.6,20,19.4,18.2,18.3,18,17.1,16.3,15'
+  },
+  '20': {
+    city: 'Guadalajara',
+    population: 4424252,
+    weather: '17.1,18.4,20.7,22.8,24.5,23.9,22,21.9,21.8,21,19.2,17.5'
+  },
+  '21': {
+    city: 'Hanoi',
+    population: 6844100,
+    weather: '16.4,17.2,20,23.9,27.4,28.9,29.2,28.6,27.5,24.9,21.5,18.2'
+  },
+  '22': {
+    city: 'Kolkata',
+    population: 14617882,
+    weather: '20.1,23,27.6,30.2,30.7,30.3,29.2,29.1,29.1,28.2,24.9,20.8'
+  },
+  '23': {
+    city: 'Guangzhou',
+    population: 20800654,
+    weather: '13.9,15.2,18.1,22.4,25.8,27.8,28.9,28.8,27.5,24.7,20.1,15.5'
+  },
+  '24': {
+    city: 'Karachi',
+    population: 14910352,
+    weather: '18.1,20.2,24.5,28.3,30.5,31.4,30.3,28.9,28.9,27.9,23.9,19.5'
+  },
+  '25': {
+    city: 'Taipei',
+    population: 7045488,
+    weather: '16.1,16.5,18.5,21.9,25.2,27.7,29.6,29.2,27.4,24.5,21.5,17.9'
+  },
+  '26': {
+    city: 'Fuzhou',
+    population: 4468076,
+    weather: '11.4,12.1,14.3,18.9,23,26.4,29.3,28.8,26.6,22.7,18.4,13.8'
+  },
+  '27': {
+    city: 'Zunyi',
+    population: 6127009,
+    weather: '4.5,6,10.3,15.8,19.7,22.7,25.1,24.6,21,16.2,11.3,6.7'
+  },
+  '28': {
+    city: 'Delhi',
+    population: 21753486,
+    weather: '14.3,16.8,22.3,28.8,32.5,33.4,30.8,30,29.5,26.3,20.8,15.7'
+  },
+  '29': {
+    city: 'Chongqing',
+    population: 8165500,
+    weather: '7.9,10,13.8,18.5,22.6,25.1,28.3,28.3,24.1,18.6,14.2,9.3'
+  },
+  '30': {
+    city: 'Cairo',
+    population: 22439541,
+    weather: '14,15.1,17.6,21.5,24.9,27,28.4,28.2,26.6,23.3,19.5,15.4'
+  },
+  '31': {
+    city: 'Shanghai',
+    population: 23416000,
+    weather: '4.8,6.6,10,15.3,20.7,24.4,28.6,28.3,24.9,19.7,13.7,7.6'
+  },
+  '32': {
+    city: 'Nanjing',
+    population: 12652000,
+    weather: '2.7,5,9.3,15.6,21.1,24.8,28.1,27.6,23.3,17.6,10.9,4.9'
+  },
+  '33': {
+    city: 'Baghdad',
+    population: 7180889,
+    weather: '9.7,12,16.6,22.6,28.3,32.3,34.8,34,30.5,24.7,16.5,11.2'
+  },
+  '34': {
+    city: 'Osaka',
+    population: 17444000,
+    weather: '6,6.3,9.4,15.1,19.7,23.5,27.4,28.8,25,19,13.6,8.6'
+  },
+  '35': {
+    city: 'Tokyo',
+    population: 36923000,
+    weather: '5.2,5.7,8.7,13.9,18.2,21.4,25,26.4,22.8,17.5,12.1,7.6'
+  },
+  '36': {
+    city: 'Qingdao',
+    population: 6188100,
+    weather: '-0.2,1.6,5.6,11.3,16.7,20.5,24.4,25.4,22,16.5,9.2,2.5'
+  },
+  '37': {
+    city: 'Seoul',
+    population: 25520000,
+    weather: '-2.4,0.4,5.7,12.5,17.8,22.2,24.9,25.7,21.2,14.8,7.2,0.4'
+  },
+  '38': {
+    city: 'Shijiazhuang',
+    population: 4303700,
+    weather: '-2.3,0.8,7.3,15.3,20.9,25.7,26.8,25.4,20.7,14.1,5.9,-0.1'
+  },
+  '39': {
+    city: 'Philadelphia',
+    population: 7183479,
+    weather: '0.55,2.05,6.38,12.22,17.72,22.94,25.61,24.77,20.61,14.16,8.66,3.05'
+  },
+  '40': {
+    city: 'Madrid',
+    population: 6378297,
+    weather: '6.3,7.9,11.2,12.9,16.7,22.2,25.6,25.1,20.9,15.1,9.9,6.9'
+  },
+  '41': {
+    city: 'Istanbul',
+    population: 14657000,
+    weather: '6,6.1,7.7,12,16.7,21.4,23.8,23.8,20.1,15.7,11.7,8.3'
+  },
+  '42': {
+    city: 'Sofia',
+    population: 1547472,
+    weather: '-0.5,1.1,5.4,10.6,15.4,18.9,21.2,21,16.5,11.3,5.1,0.7'
+  },
+  '43': {
+    city: 'Toronto',
+    population: 6129900,
+    weather: '-3.7,-2.6,1.4,7.9,14.1,19.4,22.3,21.5,17.2,10.7,4.9,-0.5'
+  },
+  '44': {
+    city: 'Bucharest',
+    population: 1931000,
+    weather: '-1.3,0.4,5.4,11.2,16.8,20.6,22.5,22,16.9,11,4.7,0.2'
+  },
+  '45': {
+    city: 'Harbin',
+    population: 6704573,
+    weather: '-17.6,-12.4,-2.8,7.8,15.3,21,23.1,21.6,15.1,6.4,-4.9,-14.3'
+  },
+  '47': {
+    city: 'Budapest',
+    population: 3303786,
+    weather: '0.4,2.3,6.1,12,16.6,19.7,21.5,21.2,16.9,11.8,5.4,1.8'
+  },
+  '48': {
+    city: 'Paris',
+    population: 10601122,
+    weather: '4.9,5.6,8.8,11.5,15.2,18.3,20.5,20.3,16.9,13,8.3,5.5'
+  },
+  '50': {
+    city: 'Cologne',
+    population: 3573500,
+    weather: '2.6,2.9,6.3,9.7,14,16.6,18.8,18.1,14.5,10.6,6.3,3.3'
+  },
+  '51': {
+    city: 'London',
+    population: 9787426,
+    weather: '5.2,5.3,7.6,9.9,13.3,16.4,18.7,18.5,15.7,12,8,5.5'
+  },
+  '52': {
+    city: 'Berlin',
+    population: 5871022,
+    weather: '0.6,1.4,4.8,8.9,14.3,17.1,19.2,18.9,14.5,9.7,4.7,2'
+  },
+  '53': {
+    city: 'Hamburg',
+    population: 5046182,
+    weather: '1,1.6,4.6,7.8,12.5,15.2,17.4,17.4,13.7,9.5,4.9,2.3'
+  },
+  '54': {
+    city: 'Omsk',
+    population: 1154116,
+    weather: '-16.3,-15,-7.3,3.7,12.5,18,19.6,16.9,10.4,3.5,-7.3,-13.8'
+  },
+  '55': {
+    city: 'Moscow',
+    population: 16800000,
+    weather: '-9.3,-7.7,-2.2,5.8,13.1,16.6,18.2,16.4,11.1,5.1,-1.2,-6.1'
+  },
+  '56': {
+    city: 'Yekaterinburg',
+    population: 1428042,
+    weather: '-12.6,-11.1,-3.8,4.3,11.3,17.1,19,15.9,9.8,3.4,-5.8,-11'
+  },
+  '59': {
+    city: 'Saint Petersburg',
+    population: 6200000,
+    weather: '-5.5,-5.8,-1.3,5.1,11.3,15.7,18.8,16.9,11.6,6.2,0.1,-3.7'
+  },
+  '-23': {
+    city: 'São Paulo',
+    population: 36842102,
+    weather: '22.1,22.4,21.8,19.7,17.4,16.3,15.8,17.1,17.9,19,20.2,21.1'
+  },
+  '-6': {
+    city: 'Jakarta',
+    population: 30075310,
+    weather: '26.1,26.1,26.4,27,27.2,26.7,26.4,26.7,27,27.2,27,26.4'
+  },
+  '-22': {
+    city: 'Rio de Janeiro',
+    population: 13973505,
+    weather: '26.3,26.6,26,24.4,22.8,21.8,21.3,21.8,22.2,22.9,24,25.3'
+  },
+  '-4': {
+    city: 'Kinshasa',
+    population: 13265000,
+    weather: '25.9,26.4,26.8,26.9,26.3,24,22.5,23.7,25.4,26.2,26,25.6'
+  },
+  '-34': {
+    city: 'Buenos Aires',
+    population: 13074000,
+    weather: '24.9,23.6,21.9,17.9,14.6,11.6,11,12.8,14.6,17.9,20.6,23.3'
+  },
+  '-12': {
+    city: 'Lima',
+    population: 9886647,
+    weather: '22.1,22.7,22.2,20.6,18.8,17.5,16.7,16.2,16.4,17.3,18.7,20.7'
+  },
+  '-7': {
+    city: 'Surabaya',
+    population: 9115485,
+    weather: '26.8,26.8,27,27.3,27.3,26.7,26.2,26.5,27.2,28.2,28.3,27.3'
+  },
+  '-33': {
+    city: 'Santiago',
+    population: 6683852,
+    weather: '20.4,19.5,17.5,13.7,10.3,8.3,7.5,8.9,11.1,14.1,16.9,19.3'
+  },
+  '-8': {
+    city: 'Luanda',
+    population: 6542944,
+    weather: '26.7,28.5,28.6,28.2,27,23.9,22.1,22.1,23.5,25.2,26.7,26.9'
+  },
+  '-19': {
+    city: 'Belo Horizonte',
+    population: 5156217,
+    weather: '23.4,23.8,23.4,22.5,20.5,19.3,19.1,20.3,21.6,22.6,22.7,22.9'
+  },
+  '-2': {
+    city: 'Guayaquil',
+    population: 5000000,
+    weather: '27.1,27.3,28,27.8,26.9,25.7,25,25.2,25.5,25.6,26.2,27.1'
+  },
+  '-37': {
+    city: 'Melbourne',
+    population: 4741929,
+    weather: '21,21.3,19.5,16.4,13.7,11.4,10.7,11.8,13.5,15.4,17.6,19.3'
+  },
+  '-26': {
+    city: 'Johannesburg',
+    population: 4434827,
+    weather: '19.5,19,18,15.3,12.6,9.6,10,12.5,15.9,17.1,17.9,19'
+  },
+  '-30': {
+    city: 'Porto Alegre',
+    population: 4405769,
+    weather: '24.7,24.5,23.5,20.3,16.9,14.4,13.8,15.3,16.7,19.4,21.5,23.6'
+  },
+  '-3': {
+    city: 'Fortaleza',
+    population: 4019213,
+    weather: '27.1,26.9,26.4,26.2,26.2,25.8,25.6,26,26.4,26.9,27.2,27.3'
+  },
+  '-15': {
+    city: 'Brasília',
+    population: 3919864,
+    weather: '21.6,21.7,21.6,21.3,20.2,19,19,20.6,22.2,22.4,21.5,21.4'
+  },
+  '-29': {
+    city: 'Durban',
+    population: 3442361,
+    weather: '24.1,24.3,23.7,21.6,19.1,16.6,16.5,17.7,19.2,20.1,21.4,23.1'
+  },
+  '-25': {
+    city: 'Curitiba',
+    population: 3400000,
+    weather: '20.9,21,20.1,18.3,15.1,13.9,13.5,14.6,15.3,17.1,18.9,20.2'
+  },
+  '-1': {
+    city: 'Nairobi',
+    population: 3138369,
+    weather: '18,18.8,19.4,19.2,17.8,16.3,15.6,15.9,17.3,18.5,18.4,18.1'
+  },
+  '-17': {
+    city: 'Santa Cruz de la Sierra',
+    population: 1749000,
+    weather: '26.8,26.6,26.2,24.7,22.8,20.4,21.1,23,25.2,26.4,27.1,27'
+  },
+  '-36': {
+    city: 'Auckland',
+    population: 1614300,
+    weather: '19.1,19.7,18.4,16.1,14,11.8,10.9,11.3,12.7,14.2,15.7,17.8'
+  },
+  '-31': {
+    city: 'Córdoba, Argentina',
+    population: 1528000,
+    weather: '24.3,23.1,21.7,18,14.5,11.4,10.8,13.3,15.7,19.5,21.8,23.7'
+  },
+  '-32': {
+    city: 'Rosario, Santa Fe',
+    population: 1276000,
+    weather: '24.6,23.2,21.4,17.3,13.8,10.7,10,12.1,14.5,18.1,21,23.4'
   }
 };
-module.exports = leagues;
 
-},{"spencer-color":9}],5:[function(_dereq_,module,exports){
+},{}],5:[function(_dereq_,module,exports){
 "use strict";
 
-var el = document.querySelector('#stage');
+module.exports = [["Calgary", 50], ["Toronto", 40], ["Philadelphia", 30], ["Havana", 20], ["Mexico City", 10], ["Medellín", 0], ["Lima", -10], ["São Paulo", -20], ["Buenos Aires", -30], ["Patagonia", -40], ["Falklands", -50]];
 
-var somehow = _dereq_('./assets/somehow'); // const somehow = require('/Users/spencer/mountain/somehow/src/index.js');
+},{}],6:[function(_dereq_,module,exports){
+"use strict";
+
+var somehow = _dereq_('./assets/somehow'); // const somehow = require('/Users/spencer/mountain/somehow/src');
 
 
-var spacetime = _dereq_('spacetime');
+var makeSlider = _dereq_('./_slider'); // const drawCities = require('./_cities')
 
-var cities = _dereq_('./data/cities');
 
-var leagues = _dereq_('./data/leagues');
+var stage = document.querySelector('#stage');
+var value = 37;
 
-var latitudes = _dereq_('./data/latitudes');
+var latitudes = _dereq_('./data/by-latitude');
 
-var yearEnd = spacetime('Dec 31 2018');
-var yearStart = spacetime('Jan 1 2018').format('iso');
-var draw = {
-  nhl: function nhl(w, label, y) {
-    var _leagues$nhl = leagues.nhl,
-        color = _leagues$nhl.color,
-        start = _leagues$nhl.start,
-        end = _leagues$nhl.end,
-        playoff = _leagues$nhl.playoff;
-    w.line().color(color).set([[start, y], [yearEnd, y]]);
-    w.line().color(color).set([[yearStart, y], [end, y]]);
-    w.line().color(color).opacity(0.4).dotted(5).set([[end, y], [playoff, y]]);
-  },
-  mlb: function mlb(w, label, y) {
-    var _leagues$mlb = leagues.mlb,
-        color = _leagues$mlb.color,
-        start = _leagues$mlb.start,
-        end = _leagues$mlb.end,
-        playoff = _leagues$mlb.playoff;
-    w.line().color(color).set([[start, y], [end, y]]);
-    w.line().color(color).opacity(0.4).dotted(5).set([[end, y], [playoff, y]]);
-  },
-  nba: function nba(w, label, y) {
-    var _leagues$nba = leagues.nba,
-        color = _leagues$nba.color,
-        start = _leagues$nba.start,
-        end = _leagues$nba.end,
-        playoff = _leagues$nba.playoff;
-    w.line().color(color).set([[start, y], [yearEnd, y]]);
-    w.line().color(color).set([[yearStart, y], [end, y]]);
-    w.line().color(color).opacity(0.4).dotted(5).set([[end, y], [playoff, y]]);
-  },
-  nfl: function nfl(w, label, y) {
-    var _leagues$nfl = leagues.nfl,
-        color = _leagues$nfl.color,
-        start = _leagues$nfl.start,
-        end = _leagues$nfl.end,
-        playoff = _leagues$nfl.playoff;
-    w.line().color(color).set([[end, y], [start, y]]);
-    w.line().color(color).opacity(0.4).dotted(5).set([[yearStart, y], [playoff, y]]);
-  },
-  mls: function mls(w, label, y) {
-    var _leagues$mls = leagues.mls,
-        color = _leagues$mls.color,
-        start = _leagues$mls.start,
-        end = _leagues$mls.end,
-        playoff = _leagues$mls.playoff;
-    w.line().color(color).set([[start, y], [end, y]]);
-    w.line().color(color).opacity(0.4).dotted(5).set([[end, y], [playoff, y]]);
-  }
-};
+var drawCity = _dereq_('./_drawCity');
 
-var drawCity = function drawCity(name) {
-  if (!latitudes[name]) {
-    console.log(name);
-  }
+var w = somehow({
+  height: 250,
+  aspect: 'widescreen',
+  el: stage
+}); //make initial line to share around
 
-  var w = somehow({
-    height: 200,
-    aspect: 'widescreen'
-  });
-  var city = cities[name];
-  var lat = w.text(latitudes[name] + '° ');
-  lat.font(11);
-  lat.set('-150px, 50%');
-  var cityName = w.text(name);
-  cityName.set('-125px, 50%');
-  var i = 1;
-  Object.keys(leagues).forEach(function (k) {
-    var league = leagues[k];
-    city[k] = city[k] || [];
-    city[k].forEach(function (team) {
-      var y = i * 10 + 'px';
-      draw[k](w, team, y); //draw the main-line
-      // if (k === 'nhl' || k === 'nba' || k === 'nfl') {
-      //   drawTwoLines(w, league.start, league.end, y, team, league.color);
-      // } else {
-      //   drawLine(w, league.start, league.end, y, team, league.color);
-      // }
-      //draw the playoff line
-      // drawPlayoff(w, league.end, league.playoff, y, team, league.color);
-      //normalize their team name
+w.line({
+  id: 'line'
+}).color('blue');
+w.text({
+  text: 'hi',
+  id: 'label'
+}).color('blue');
+makeSlider(w);
+drawCity(w, latitudes[value]); //today line
 
-      team = w.text(team);
-      team.font(10);
-      team.color('lightgrey');
-      team.set("110%, ".concat(i * 10 + 3, "px"));
-      var leg = w.line();
-      leg.width(2);
-      leg.color(league.color);
-      y = i * 10 + 6 + 'px';
-      leg.set("108%, ".concat(y, "\n        109%, ").concat(y));
-      i += 1;
-    });
-  });
-  var now = w.line();
-  now.color('lightgrey');
-  now.dotted(true);
-  now.width(1);
-  var iso = spacetime.now().format('iso');
-  var y = i * 10 + 25 + 'px';
-  now.set("".concat(iso, ", 0px\n    ").concat(iso, ", ").concat(y));
-  w.y.fit(0, 9);
-  w.x.fit('Jan 1 2018', 'Dec 31 2018');
-  w.xAxis.ticks(12);
-  w.yAxis.remove();
-  return w.build();
-};
+var day = w.line();
+var d = new Date().getTime();
+day.at(d, null);
+day.color('lightgrey');
+day.width(1); // 0-line
 
-var chosen = Object.keys(cities);
-chosen = chosen.sort(function (a, b) {
-  return latitudes[a] < latitudes[b] ? 1 : -1;
-});
-el.innerHTML = chosen.map(function (k) {
-  return drawCity(k);
-}).join(' '); // drawCity('Boston');
-// drawCity('Toronto');
+var mid = w.line();
+mid.at(null, 0);
+mid.color('lightgrey');
+mid.width(1);
+mid.dotted(true);
+w.y.fit(-40, 40);
+w.x.fit('Jan 1 2018', 'Dec 31 2018'); // logging
 
-},{"./assets/somehow":1,"./data/cities":2,"./data/latitudes":3,"./data/leagues":4,"spacetime":6}],6:[function(_dereq_,module,exports){
-(function (global){
-/* spacetime v4.5.1
-  
-*/
+var num = w.text(w.state.lat);
+num.at('50%', '50%');
+stage.innerHTML = w.build();
 
-!function(n){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=n();else if("function"==typeof define&&define.amd)define([],n);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).spacetime=n()}}(function(){return function a(i,s,u){function c(t,n){if(!s[t]){if(!i[t]){var e="function"==typeof _dereq_&&_dereq_;if(!n&&e)return e(t,!0);if(h)return h(t,!0);var r=new Error("Cannot find module '"+t+"'");throw r.code="MODULE_NOT_FOUND",r}var o=s[t]={exports:{}};i[t][0].call(o.exports,function(n){return c(i[t][1][n]||n)},o,o.exports,a,i,s,u)}return s[t].exports}for(var h="function"==typeof _dereq_&&_dereq_,n=0;n<u.length;n++)c(u[n]);return c}({1:[function(n,t,e){"use strict";var o,a,r=n("./zonefile.2018.json"),i={Australia:!0,Chile:!0,Brazil:!0,Antarctica:!0},s=(o=r,a={},Object.keys(o).forEach(function(r){Object.keys(o[r]).forEach(function(n){var t=r+"/"+n,e=o[r][n];a[t]={o:e[0],h:e[1]},e[2]&&(a[t].dst=e[2]),!0===i[r]&&(a[t].h="s")})}),a["Etc/UTC"]={o:0,h:"n"},a.UTC=a["Etc/UTC"],a);t.exports=s},{"./zonefile.2018.json":2}],2:[function(n,t,e){t.exports={Africa:{Abidjan:[0,"n"],Accra:[0,"n"],Addis_Ababa:[3,"n"],Algiers:[1,"n"],Asmara:[3,"n"],Asmera:[3,"n"],Bamako:[0,"n"],Bangui:[1,"n"],Banjul:[0,"n"],Bissau:[0,"n"],Blantyre:[2,"n"],Brazzaville:[1,"n"],Bujumbura:[2,"n"],Cairo:[2,"n"],Casablanca:[1,"n","07/02:03->10/29:02"],Ceuta:[2,"n","03/25:02->10/28:03"],Conakry:[0,"n"],Dakar:[0,"n"],Dar_es_Salaam:[3,"n"],Djibouti:[3,"n"],Douala:[1,"n"],El_Aaiun:[1,"n","07/02:03->10/29:02"],Freetown:[0,"n"],Gaborone:[2,"s"],Harare:[2,"s"],Johannesburg:[2,"s"],Juba:[3,"n"],Kampala:[3,"n"],Khartoum:[2,"n"],Kigali:[2,"n"],Kinshasa:[1,"s"],Lagos:[1,"n"],Libreville:[1,"n"],Lome:[0,"n"],Luanda:[1,"s"],Lubumbashi:[2,"s"],Lusaka:[2,"s"],Malabo:[1,"n"],Maputo:[2,"s"],Maseru:[2,"s"],Mbabane:[2,"s"],Mogadishu:[3,"n"],Monrovia:[0,"n"],Nairobi:[3,"n"],Ndjamena:[1,"n"],Niamey:[1,"n"],Nouakchott:[0,"n"],Ouagadougou:[0,"n"],"Porto-Novo":[1,"n"],Sao_Tome:[0,"n"],Timbuktu:[0,"n"],Tripoli:[2,"n"],Tunis:[1,"n"],Windhoek:[1,"s","04/02:01->09/03:03"]},America:{Adak:[-9,"n","03/11:02->11/04:02"],Anchorage:[-8,"n","03/11:02->11/04:02"],Anguilla:[-4,"n"],Antigua:[-4,"n"],Araguaina:[-3,"n"],Argentina:[-3,"s"],Aruba:[-4,"n"],Asuncion:[-4,"s","03/24:24->10/07:00"],Atikokan:[-5,"n"],Atka:[-9,"n","03/11:02->11/04:02"],Bahia:[-3,"n"],Bahia_Banderas:[-5,"n","04/01:02->10/28:02"],Barbados:[-4,"n"],Belem:[-3,"n"],Belize:[-6,"n"],"Blanc-Sablon":[-4,"n"],Boa_Vista:[-4,"n"],Bogota:[-5,"n"],Boise:[-6,"n","03/11:02->11/04:02"],Buenos_Aires:[-3,"s"],Cambridge_Bay:[-6,"n","03/11:02->11/04:02"],Campo_Grande:[-4,"s","02/17:24->11/04:00"],Cancun:[-5,"n"],Caracas:[-4,"n"],Catamarca:[-3,"n"],Cayenne:[-3,"n"],Cayman:[-5,"n"],Chicago:[-5,"n","03/11:02->11/04:02"],Chihuahua:[-6,"n","04/01:02->10/28:02"],Coral_Harbour:[-5,"n"],Cordoba:[-3,"s"],Costa_Rica:[-6,"n"],Creston:[-7,"n"],Cuiaba:[-4,"s","02/17:24->11/04:00"],Curacao:[-4,"n"],Danmarkshavn:[0,"n"],Dawson:[-7,"n","03/11:02->11/04:02"],Dawson_Creek:[-7,"n"],Denver:[-6,"n","03/11:02->11/04:02"],Detroit:[-4,"n","03/11:02->11/04:02"],Dominica:[-4,"n"],Edmonton:[-6,"n","03/11:02->11/04:02"],Eirunepe:[-5,"n"],El_Salvador:[-6,"n"],Ensenada:[-7,"n","03/11:02->11/04:02"],Fort_Wayne:[-4,"n","03/11:02->11/04:02"],Fortaleza:[-3,"n"],Glace_Bay:[-3,"n","03/11:02->11/04:02"],Godthab:[-2,"n","03/24:22->10/27:23"],Goose_Bay:[-3,"n","03/11:02->11/04:02"],Grand_Turk:[-4,"n","03/11:02->11/04:02"],Grenada:[-4,"n"],Guadeloupe:[-4,"n"],Guatemala:[-6,"n"],Guayaquil:[-5,"n"],Guyana:[-4,"n"],Halifax:[-3,"n","03/11:02->11/04:02"],Havana:[-4,"n","03/11:00->11/04:01"],Hermosillo:[-7,"n"],Indiana:[-4,"n","03/12:03->11/05:01"],Indianapolis:[-4,"n","03/11:02->11/04:02"],Inuvik:[-6,"n","03/11:02->11/04:02"],Iqaluit:[-4,"n","03/11:02->11/04:02"],Jamaica:[-5,"n"],Jujuy:[-3,"n"],Juneau:[-8,"n","03/11:02->11/04:02"],Kentucky:[-4,"n","03/12:03->11/05:01"],Knox_IN:[-5,"n","03/11:02->11/04:02"],Kralendijk:[-4,"n"],La_Paz:[-4,"s"],Lima:[-5,"s"],Los_Angeles:[-7,"n","03/11:02->11/04:02"],Louisville:[-4,"n","03/11:02->11/04:02"],Lower_Princes:[-4,"n"],Maceio:[-3,"n"],Managua:[-6,"n"],Manaus:[-4,"s"],Marigot:[-4,"n"],Martinique:[-4,"n"],Matamoros:[-5,"n","03/11:02->11/04:02"],Mazatlan:[-6,"n","04/01:02->10/28:02"],Mendoza:[-3,"n"],Menominee:[-5,"n","03/11:02->11/04:02"],Merida:[-5,"n","04/01:02->10/28:02"],Metlakatla:[-8,"n","03/11:02->11/04:02"],Mexico_City:[-5,"n","04/01:02->10/28:02"],Miquelon:[-2,"n","03/11:02->11/04:02"],Moncton:[-3,"n","03/11:02->11/04:02"],Monterrey:[-5,"n","04/01:02->10/28:02"],Montevideo:[-3,"s"],Montreal:[-4,"n","03/11:02->11/04:02"],Montserrat:[-4,"n"],Nassau:[-4,"n","03/11:02->11/04:02"],New_York:[-4,"n","03/11:02->11/04:02"],Nipigon:[-4,"n","03/11:02->11/04:02"],Nome:[-8,"n","03/11:02->11/04:02"],Noronha:[-2,"n"],North_Dakota:[-5,"n","03/12:03->11/05:01"],Ojinaga:[-6,"n","03/11:02->11/04:02"],Panama:[-5,"n"],Pangnirtung:[-4,"n","03/11:02->11/04:02"],Paramaribo:[-3,"n"],Phoenix:[-7,"n"],"Port-au-Prince":[-4,"n","03/11:02->11/04:02"],Port_of_Spain:[-4,"n"],Porto_Acre:[-5,"n"],Porto_Velho:[-4,"n"],Puerto_Rico:[-4,"n"],Punta_Arenas:[-3,"s"],Rainy_River:[-5,"n","03/11:02->11/04:02"],Rankin_Inlet:[-5,"n","03/11:02->11/04:02"],Recife:[-3,"n"],Regina:[-6,"n"],Resolute:[-5,"n","03/11:02->11/04:02"],Rio_Branco:[-5,"n"],Rosario:[-3,"n"],Santa_Isabel:[-7,"n","03/11:02->11/04:02"],Santarem:[-3,"n"],Santiago:[-4,"s","05/12:24->08/12:00"],Santo_Domingo:[-4,"n"],Sao_Paulo:[-3,"s","02/17:24->11/04:00"],Scoresbysund:[0,"n","03/25:00->10/28:01"],Shiprock:[-6,"n","03/11:02->11/04:02"],Sitka:[-8,"n","03/11:02->11/04:02"],St_Barthelemy:[-4,"n"],St_Johns:[-2.5,"n","03/11:02->11/04:02"],St_Kitts:[-4,"n"],St_Lucia:[-4,"n"],St_Thomas:[-4,"n"],St_Vincent:[-4,"n"],Swift_Current:[-6,"n"],Tegucigalpa:[-6,"n"],Thule:[-3,"n","03/11:02->11/04:02"],Thunder_Bay:[-4,"n","03/11:02->11/04:02"],Tijuana:[-7,"n","03/11:02->11/04:02"],Toronto:[-4,"n","03/11:02->11/04:02"],Tortola:[-4,"n"],Vancouver:[-7,"n","03/11:02->11/04:02"],Virgin:[-4,"n"],Whitehorse:[-7,"n","03/11:02->11/04:02"],Winnipeg:[-5,"n","03/11:02->11/04:02"],Yakutat:[-8,"n","03/11:02->11/04:02"],Yellowknife:[-6,"n","03/11:02->11/04:02"]},Antarctica:{Casey:[8,"s"],Davis:[7,"s"],DumontDUrville:[10,"s"],Macquarie:[11,"s"],Mawson:[5,"s"],McMurdo:[12,"s","04/01:03->09/30:02"],Palmer:[-4,"s","05/13:23->08/13:01"],Rothera:[-3,"s"],South_Pole:[12,"s","04/01:03->09/30:02"],Syowa:[3,"s"],Troll:[2,"s","03/25:02->10/28:02"],Vostok:[6,"s"]},Arctic:{Longyearbyen:[2,"n","03/25:02->10/28:03"]},Asia:{Aden:[3,"n"],Almaty:[6,"n"],Amman:[3,"n","03/30:00->10/26:01"],Anadyr:[12,"n"],Aqtau:[5,"n"],Aqtobe:[5,"n"],Ashgabat:[5,"n"],Ashkhabad:[5,"n"],Atyrau:[5,"n"],Baghdad:[3,"n"],Bahrain:[3,"n"],Baku:[5,"n"],Bangkok:[7,"n"],Barnaul:[7,"n"],Beirut:[3,"n","03/25:00->10/27:24"],Bishkek:[6,"n"],Brunei:[8,"n"],Calcutta:[5.5,"n"],Chita:[9,"n"],Choibalsan:[8,"n"],Chongqing:[8,"n"],Chungking:[8,"n"],Colombo:[5.5,"n"],Dacca:[6,"n"],Damascus:[3,"n","03/30:00->10/25:24"],Dhaka:[6,"n"],Dili:[9,"s"],Dubai:[4,"n"],Dushanbe:[5,"n"],Gaza:[3,"n","03/24:01->10/27:01"],Harbin:[8,"n"],Hebron:[3,"n","03/24:01->10/27:01"],Ho_Chi_Minh:[7,"n"],Hong_Kong:[8,"n"],Hovd:[7,"n"],Irkutsk:[8,"n"],Istanbul:[3,"n"],Jakarta:[7,"s"],Jayapura:[9,"n"],Jerusalem:[3,"n","03/23:02->10/28:02"],Kabul:[4.5,"n"],Kamchatka:[12,"n"],Karachi:[5,"n"],Kashgar:[6,"n"],Kathmandu:[5.75,"n"],Katmandu:[5.75,"n"],Khandyga:[9,"n"],Kolkata:[5.5,"n"],Krasnoyarsk:[7,"n"],Kuala_Lumpur:[8,"s"],Kuching:[8,"n"],Kuwait:[3,"n"],Macao:[8,"n"],Macau:[8,"n"],Magadan:[11,"n"],Makassar:[8,"s"],Manila:[8,"n"],Muscat:[4,"n"],Nicosia:[3,"n","03/25:03->10/28:04"],Novokuznetsk:[7,"n"],Novosibirsk:[7,"n"],Omsk:[6,"n"],Oral:[5,"n"],Phnom_Penh:[7,"n"],Pontianak:[7,"n"],Pyongyang:[9,"n"],Qatar:[3,"n"],Qyzylorda:[6,"n"],Rangoon:[6.5,"n"],Riyadh:[3,"n"],Saigon:[7,"n"],Sakhalin:[11,"n"],Samarkand:[5,"n"],Seoul:[9,"n"],Shanghai:[8,"n"],Singapore:[8,"s"],Srednekolymsk:[12,"n"],Taipei:[8,"n"],Tashkent:[5,"n"],Tbilisi:[4,"n"],Tehran:[4.5,"n","03/22:00->09/21:24"],Tel_Aviv:[3,"n","03/23:02->10/28:02"],Thimbu:[6,"n"],Thimphu:[6,"n"],Tokyo:[9,"n"],Ujung_Pandang:[8,"n"],Ulaanbaatar:[8,"n"],Ulan_Bator:[8,"n","03/25:03->09/29:23"],Urumqi:[6,"n"],"Ust-Nera":[10,"n"],Vientiane:[7,"n"],Vladivostok:[10,"n"],Yakutsk:[10,"n"],Yekaterinburg:[5,"n"],Yerevan:[4,"n"]},Atlantic:{Azores:[0,"n","03/25:00->10/28:01"],Bermuda:[-3,"n","03/11:02->11/04:02"],Canary:[1,"n","03/25:01->10/28:02"],Cape_Verde:[-1,"n"],Faeroe:[1,"n","03/25:01->10/28:02"],Faroe:[1,"n","03/25:01->10/28:02"],Jan_Mayen:[2,"n","03/25:02->10/28:03"],Madeira:[1,"n","03/25:01->10/28:02"],Reykjavik:[0,"n"],South_Georgia:[-2,"n"],St_Helena:[0,"n"],Stanley:[-3,"n"]},Australia:{ACT:[10,"s","04/01:03->10/07:02"],Adelaide:[9.5,"s","04/01:03->10/07:02"],Brisbane:[10,"s"],Broken_Hill:[9.5,"s","04/01:03->10/07:02"],Canberra:[10,"s","04/01:03->10/07:02"],Currie:[10,"s","04/01:03->10/07:02"],Darwin:[9.5,"s"],Eucla:[8.75,"s"],Hobart:[10,"s","04/01:03->10/07:02"],LHI:[10.5,"s","04/01:01->10/07:02"],Lindeman:[10,"s"],Lord_Howe:[10.5,"s","04/01:01->10/07:02"],Melbourne:[10,"s","04/01:03->10/07:02"],NSW:[10,"s","04/01:03->10/07:02"],North:[9.5,"s"],Perth:[8,"s"],Queensland:[10,"s"],South:[9.5,"s","04/01:03->10/07:02"],Sydney:[10,"s","04/01:03->10/07:02"],Tasmania:[10,"s","04/01:03->10/07:02"],Victoria:[10,"s","04/01:03->10/07:02"],West:[8,"s"],Yancowinna:[9.5,"s","04/01:03->10/07:02"]},Brazil:{Acre:[-5,"s"],DeNoronha:[-2,"s"],East:[-3,"s","02/17:24->11/04:00"],West:[-4,"s"]},Canada:{Atlantic:[-3,"n","03/11:02->11/04:02"],Central:[-5,"n","03/11:02->11/04:02"],"East-Saskatchewan":[-6,"n"],Eastern:[-4,"n","03/11:02->11/04:02"],Mountain:[-6,"n","03/11:02->11/04:02"],Newfoundland:[-2.5,"n","03/11:02->11/04:02"],Pacific:[-7,"n","03/11:02->11/04:02"],Saskatchewan:[-6,"n"],Yukon:[-7,"n","03/11:02->11/04:02"]},Chile:{Continental:[-4,"s","05/12:24->08/12:00"],EasterIsland:[-6,"s","05/12:22->08/11:22"]},Etc:{GMT:[0,"n"],"GMT+0":[0,"n"],"GMT+1":[-1,"n"],"GMT+10":[-10,"n"],"GMT+11":[-11,"n"],"GMT+12":[-12,"n"],"GMT+2":[-2,"n"],"GMT+3":[-3,"n"],"GMT+4":[-4,"n"],"GMT+5":[-5,"n"],"GMT+6":[-6,"n"],"GMT+7":[-7,"n"],"GMT+8":[-8,"n"],"GMT+9":[-9,"n"],"GMT-0":[0,"n"],"GMT-1":[1,"n"],"GMT-10":[10,"n"],"GMT-11":[11,"n"],"GMT-12":[12,"n"],"GMT-13":[13,"n"],"GMT-14":[14,"n"],"GMT-2":[2,"n"],"GMT-3":[3,"n"],"GMT-4":[4,"n"],"GMT-5":[5,"n"],"GMT-6":[6,"n"],"GMT-7":[7,"n"],"GMT-8":[8,"n"],"GMT-9":[9,"n"],GMT0:[0,"n"],Greenwich:[0,"n"],UCT:[0,"n"],UTC:[0,"n"],Universal:[0,"n"],Zulu:[0,"n"]},Europe:{Amsterdam:[2,"n","03/25:02->10/28:03"],Andorra:[2,"n","03/25:02->10/28:03"],Astrakhan:[4,"n"],Athens:[3,"n","03/25:03->10/28:04"],Belfast:[1,"n","03/25:01->10/28:02"],Belgrade:[2,"n","03/25:02->10/28:03"],Berlin:[2,"n","03/25:02->10/28:03"],Bratislava:[2,"n","03/25:02->10/28:03"],Brussels:[2,"n","03/25:02->10/28:03"],Bucharest:[3,"n","03/25:03->10/28:04"],Budapest:[2,"n","03/25:02->10/28:03"],Busingen:[2,"n","03/25:02->10/28:03"],Chisinau:[3,"n","03/25:02->10/28:03"],Copenhagen:[2,"n","03/25:02->10/28:03"],Dublin:[1,"n","03/25:01->10/28:02"],Gibraltar:[2,"n","03/25:02->10/28:03"],Guernsey:[1,"n","03/25:01->10/28:02"],Helsinki:[3,"n","03/25:03->10/28:04"],Isle_of_Man:[1,"n","03/25:01->10/28:02"],Istanbul:[3,"n"],Jersey:[1,"n","03/25:01->10/28:02"],Kaliningrad:[2,"n"],Kirov:[3,"n"],Kiev:[3,"n","03/25:03->10/28:04"],Lisbon:[1,"n","03/25:01->10/28:02"],Ljubljana:[2,"n","03/25:02->10/28:03"],London:[1,"n","03/25:01->10/28:02"],Luxembourg:[2,"n","03/25:02->10/28:03"],Madrid:[2,"n","03/25:02->10/28:03"],Malta:[2,"n","03/25:02->10/28:03"],Mariehamn:[3,"n","03/25:03->10/28:04"],Minsk:[3,"n"],Monaco:[2,"n","03/25:02->10/28:03"],Moscow:[3,"n"],Nicosia:[3,"n","03/25:03->10/28:04"],Oslo:[2,"n","03/25:02->10/28:03"],Paris:[2,"n","03/25:02->10/28:03"],Podgorica:[2,"n","03/25:02->10/28:03"],Prague:[2,"n","03/25:02->10/28:03"],Riga:[3,"n","03/25:03->10/28:04"],Rome:[2,"n","03/25:02->10/28:03"],Samara:[4,"n"],Saratov:[4,"n"],San_Marino:[2,"n","03/25:02->10/28:03"],Sarajevo:[2,"n","03/25:02->10/28:03"],Simferopol:[3,"n"],Skopje:[2,"n","03/25:02->10/28:03"],Sofia:[3,"n","03/25:03->10/28:04"],Stockholm:[2,"n","03/25:02->10/28:03"],Tallinn:[3,"n","03/25:03->10/28:04"],Tirane:[2,"n","03/25:02->10/28:03"],Tiraspol:[3,"n","03/25:02->10/28:03"],Ulyanovsk:[4,"n"],Uzhgorod:[3,"n","03/25:03->10/28:04"],Vaduz:[2,"n","03/25:02->10/28:03"],Vatican:[2,"n","03/25:02->10/28:03"],Vienna:[2,"n","03/25:02->10/28:03"],Vilnius:[3,"n","03/25:03->10/28:04"],Volgograd:[3,"n"],Warsaw:[2,"n","03/25:02->10/28:03"],Zagreb:[2,"n","03/25:02->10/28:03"],Zaporozhye:[3,"n","03/25:03->10/28:04"],Zurich:[2,"n","03/25:02->10/28:03"]},Indian:{Antananarivo:[3,"s"],Chagos:[6,"n"],Christmas:[7,"n"],Cocos:[6.5,"n"],Comoro:[3,"n"],Kerguelen:[5,"s"],Mahe:[4,"n"],Maldives:[5,"n"],Mauritius:[4,"n"],Mayotte:[3,"n"],Reunion:[4,"s"]},Mexico:{BajaNorte:[-7,"n","03/11:02->11/04:02"],BajaSur:[-6,"n","04/01:02->10/28:02"],General:[-5,"n","04/01:02->10/28:02"]},Pacific:{Apia:[13,"s","04/01:04->09/30:03"],Auckland:[12,"s","04/01:03->09/30:02"],Chatham:[12.75,"s","04/07:03->09/29:02"],Chuuk:[10,"n"],Easter:[-6,"s","05/12:22->08/11:22"],Efate:[11,"n"],Enderbury:[13,"n"],Fakaofo:[13,"n"],Fiji:[12,"s","01/14:03->11/04:02"],Funafuti:[12,"n"],Galapagos:[-6,"n"],Gambier:[-9,"n"],Guadalcanal:[11,"n"],Guam:[10,"n"],Honolulu:[-10,"n"],Johnston:[-10,"n"],Kiritimati:[14,"n"],Kosrae:[11,"n"],Kwajalein:[12,"n"],Majuro:[12,"n"],Marquesas:[-9.5,"n"],Midway:[-11,"n"],Nauru:[12,"n"],Niue:[-11,"n"],Norfolk:[11.5,"n"],Noumea:[11,"n"],Pago_Pago:[-11,"n"],Palau:[9,"n"],Pitcairn:[-8,"n"],Pohnpei:[11,"n"],Ponape:[11,"n"],Port_Moresby:[10,"n"],Rarotonga:[-10,"n"],Saipan:[10,"n"],Samoa:[-11,"n"],Tahiti:[-10,"n"],Tarawa:[12,"n"],Tongatapu:[13,"s","01/15:02->11/05:03"],Truk:[10,"n"],Wake:[12,"n"],Wallis:[12,"n"],Yap:[10,"n"]}}},{}],3:[function(n,t,e){var r,o,a=t.exports={};function i(){throw new Error("setTimeout has not been defined")}function s(){throw new Error("clearTimeout has not been defined")}function u(t){if(r===setTimeout)return setTimeout(t,0);if((r===i||!r)&&setTimeout)return r=setTimeout,setTimeout(t,0);try{return r(t,0)}catch(n){try{return r.call(null,t,0)}catch(n){return r.call(this,t,0)}}}!function(){try{r="function"==typeof setTimeout?setTimeout:i}catch(n){r=i}try{o="function"==typeof clearTimeout?clearTimeout:s}catch(n){o=s}}();var c,h=[],d=!1,f=-1;function l(){d&&c&&(d=!1,c.length?h=c.concat(h):f=-1,h.length&&m())}function m(){if(!d){var n=u(l);d=!0;for(var t=h.length;t;){for(c=h,h=[];++f<t;)c&&c[f].run();f=-1,t=h.length}c=null,d=!1,function(t){if(o===clearTimeout)return clearTimeout(t);if((o===s||!o)&&clearTimeout)return o=clearTimeout,clearTimeout(t);try{o(t)}catch(n){try{return o.call(null,t)}catch(n){return o.call(this,t)}}}(n)}}function p(n,t){this.fun=n,this.array=t}function y(){}a.nextTick=function(n){var t=new Array(arguments.length-1);if(1<arguments.length)for(var e=1;e<arguments.length;e++)t[e-1]=arguments[e];h.push(new p(n,t)),1!==h.length||d||u(m)},p.prototype.run=function(){this.fun.apply(null,this.array)},a.title="browser",a.browser=!0,a.env={},a.argv=[],a.version="",a.versions={},a.on=y,a.addListener=y,a.once=y,a.off=y,a.removeListener=y,a.removeAllListeners=y,a.emit=y,a.prependListener=y,a.prependOnceListener=y,a.listeners=function(n){return[]},a.binding=function(n){throw new Error("process.binding is not supported")},a.cwd=function(){return"/"},a.chdir=function(n){throw new Error("process.chdir is not supported")},a.umask=function(){return 0}},{}],4:[function(n,t,e){t.exports={name:"spacetime",version:"4.5.1",description:"represent dates in remote timezones",main:"./spacetime.js",license:"Apache-2.0",scripts:{precommit:"lint-staged",build:"node ./scripts/build.js","build:tz":"node ./scripts/updateZonefile.js",demo:"node ./scripts/demo.js",watch:"amble ./scratch.js",test:"TESTENV=dev tape ./test/**/*.test.js | tap-dancer","test-spec":"TESTENV=dev tape ./test/**/*.test.js | tap-spec",t:"TESTENV=dev tape ./test/**/immutable.test.js",testb:"TESTENV=prod tape ./test/**/*.test.js | tap-dancer",lint:"eslint .",size:"./node_modules/.bin/size-limit",coverage:"node ./scripts/coverage.js"},repository:{type:"git",url:"https://github.com/smallwins/spacetime.git"},files:["spacetime.js","immutable.js"],dependencies:{},devDependencies:{amble:"0.0.6","babel-cli":"6.26.0","babel-preset-env":"1.7.0",babelify:"8.0.0",browserify:"16.2.3",derequire:"2.0.6",eslint:"5.6.1",nyc:"13.0.1",shelljs:"0.8.2","tap-dancer":"0.0.3","tap-spec":"^5.0.0",tape:"4.9.1",timekeeper:"2.1.2","uglify-js":"3.4.9"},"size-limit":[{path:"./spacetime.js",limit:"16 KB"}]}},{}],5:[function(n,t,e){"use strict";var r=["sun","mon","tue","wed","thu","fri","sat"],o=["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];t.exports={short:function(){return r},long:function(){return o},set:function(n){r=n.short,o=n.long}}},{}],6:[function(n,t,e){"use strict";var r={millisecond:1,second:1e3,minute:6e4,hour:36e5,day:864e5,date:864e5,month:25488e5,week:6048e5,year:3154e7};Object.keys(r).forEach(function(n){r[n+"s"]=r[n]}),t.exports=r},{}],7:[function(n,t,e){"use strict";t.exports=[31,28,31,30,31,30,31,31,30,31,30,31]},{}],8:[function(n,t,e){"use strict";var r=["jan","feb","mar","apr","may","jun","jul","aug","sept","oct","nov","dec"],o=["january","february","march","april","may","june","july","august","september","october","november","december"];t.exports={short:function(){return r},long:function(){return o},mapping:function(){return function(){for(var n={},t=0;t<r.length;t++)n[r[t]]=t;for(var e=0;e<o.length;e++)n[o[e]]=e;return n}()},set:function(n){r=n.short,o=n.long}}},{}],9:[function(n,t,e){"use strict";t.exports=[null,[0,1],[3,1],[6,1],[9,1]]},{}],10:[function(n,t,e){"use strict";t.exports={north:[["spring",2,1],["summer",5,1],["fall",8,1],["autumn",8,1],["winter",11,1]],south:[["fall",2,1],["autumn",2,1],["winter",5,1],["spring",8,1],["summer",11,1]]}},{}],11:[function(n,t,e){"use strict";var s=n("./spacetime");e.whereIts=function(n,t){var r=new s(null),o=new s(null);r.time(n),t?o.time(t):o=r.clone().add(59,"minutes");var a=r.hour(),i=o.hour();return Object.keys(r.timezones).filter(function(n){var t=new s(null,n),e=t.hour();return a<=e&&e<=i&&(!(e===a&&t.minute()<r.minute())&&!(e===i&&t.minute()>o.minute()))})}},{"./spacetime":37}],12:[function(n,t,e){"use strict";e.isLeapYear=function(n){return n%4==0&&n%100!=0||n%400==0},e.isDate=function(n){return"[object Date]"===Object.prototype.toString.call(n)&&!isNaN(n.valueOf())},e.isArray=function(n){return"[object Array]"===Object.prototype.toString.call(n)},e.isObject=function(n){return"[object Object]"===Object.prototype.toString.call(n)},e.zeroPad=function(n,t){return(n+="").length>=(t=t||2)?n:new Array(t-n.length+1).join("0")+n},e.titleCase=function(n){return n?n[0].toUpperCase()+n.substr(1).toLowerCase():""},e.ordinal=function(n){var t=n%10,e=n%100;return 1===t&&11!==e?n+"st":2===t&&12!==e?n+"nd":3===t&&13!==e?n+"rd":n+"th"},e.toCardinal=function(n){return n=(n=String(n)).replace(/([0-9])(st|nd|rd|th)$/i,"$1"),parseInt(n,10)},e.normalize=function(n){return"day"===(n=(n=n.toLowerCase()).replace(/s$/,""))?"date":n},e.getEpoch=function(n){return"number"==typeof n?n:e.isDate(n)?n.getTime():n.epoch?n.epoch:null},e.beADate=function(n,t){return!1===e.isObject(n)?t.clone().set(n):n}},{}],13:[function(n,t,e){"use strict";var r=n("./spacetime"),o=n("./findTz").whereIts,a=n("../package.json"),i=function(n,t,e){return new r(n,t,e)};i.now=function(n,t){return new r((new Date).getTime(),n,t)},i.today=function(n,t){return new r((new Date).getTime(),n,t).startOf("day")},i.tomorrow=function(n,t){return new r((new Date).getTime(),n,t).add(1,"day").startOf("day")},i.yesterday=function(n,t){return new r((new Date).getTime(),n,t).subtract(1,"day").startOf("day")},i.extend=function(t){return Object.keys(t).forEach(function(n){r.prototype[n]=t[n]}),this},i.whereIts=o,i.version=a.version,i.plugin=i.extend,t.exports=i},{"../package.json":4,"./findTz":11,"./spacetime":37}],14:[function(n,t,e){"use strict";var r=n("../data/monthLengths"),o=n("../fns").isLeapYear;t.exports=function(n){if(!0!==r.hasOwnProperty(n.month))return!1;if(1===n.month)return!!(o(n.year)&&n.date<=29)||n.date<=28;var t=r[n.month]||0;return n.date<=t}},{"../data/monthLengths":7,"../fns":12}],15:[function(n,t,e){"use strict";var a=n("./strParse"),i=n("../fns"),s=n("./named-dates");t.exports=function(n,t,e){if("number"!=typeof t){if(n.epoch=Date.now(),null!=t)if(!0!==i.isDate(t))if(!0!==i.isArray(t)){if(!0===i.isObject(t))return t.epoch?void(n.epoch=t.epoch):void function(n,t){for(var e=Object.keys(t),r=0;r<e.length;r++){var o=e[r];if(void 0!==n[o]){var a=t[o]||0;n[o](a)}}}(n,t);if("string"==typeof t)if(t=t.trim().replace(/ +/g," "),!0!==s.hasOwnProperty(t)){for(var r=0;r<a.length;r++){var o=t.match(a[r].reg);if(o)return void a[r].parse(n,o,e)}!1===n.silent&&console.warn("Warning: couldn't parse date-string: '"+t+"'"),n.epoch=null}else n=s[t](n)}else!function(n,t){for(var e=["year","month","date","hour","minute","second","millisecond"],r=0;r<t.length;r++){var o=t[r]||0;n[e[r]](o)}}(n,t);else n.epoch=t.getTime()}else 0<(n.epoch=t)&&t<25e8&&!1===n.silent&&(console.warn("  - Warning: You are setting the date to January 1970."),console.warn("       -   did input seconds instead of milliseconds?"))}},{"../fns":12,"./named-dates":16,"./strParse":18}],16:[function(n,t,e){"use strict";var r={now:function(n){return n.epoch=Date.now(),n},tonight:function(n){return n.epoch=Date.now(),n.hour(18),n},today:function(n){return n.epoch=Date.now(),n},tomorrow:function(n){return n.epoch=Date.now(),n.add(1,"day"),n.startOf("day"),n},yesterday:function(n){return n.epoch=Date.now(),n.subtract(1,"day"),n.startOf("day"),n},christmas:function(n){var t=(new Date).getFullYear();return n.set([t,11,25,18,0,0]),n},"new years":function(n){var t=(new Date).getFullYear();return n.set([t,11,31,18,0,0]),n}};r["new years eve"]=r["new years"],t.exports=r},{}],17:[function(n,t,e){(function(i){"use strict";t.exports=function(n,t,e){if(!t)return n;"Z"===t&&(t="+0000"),!0===/:00/.test(t)&&(t=t.replace(/:00/,"")),!0===/:00/.test(t)&&(t=t.replace(/:00/,".5"));var r=parseInt(t,10);if(100<Math.abs(r)&&(r/=100),n.timezone().current.offset===r)return n;0<=(r*=-1)&&(r="+"+r);var o="Etc/GMT"+r,a=n.timezones;return a[o]&&(e&&a[e]&&a[e].o!==a[o].o&&!1===n.silent&&void 0!==i&&i.env&&!i.env.TESTENV&&(console.warn("  - Setting timezone to: '"+o+"'"),console.warn("     from ISO string '"+t+"'"),console.warn("     overwriting given timezone: '"+e+"'\n")),n.tz=o),n}}).call(this,n("_process"))},{_process:3}],18:[function(n,t,e){"use strict";var i=n("../methods/set/walk"),o=n("../data/months"),s=n("./parseOffset"),u=n("./hasDate"),a=n("../fns"),c=function(n,t){var e=(t=t.replace(/^\s+/,"")).match(/([0-9]{1,2}):([0-9]{1,2}):?([0-9]{1,2})?[:\.]?([0-9]{1,4})?/);e&&(n.hour(e[1]),n.minute(e[2]),e[3]&&n.seconds(e[3]),e[4]&&n.millisecond(e[4]))},h=function(n){n=n||"";var t=parseInt(n.trim(),10);return t=t||(new Date).getFullYear()},r=[{reg:/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})[T| ]([0-9.:]+)(Z|[0-9\-\+:]+)?$/,parse:function(n,t,e,r){var o=parseInt(t[2],10)-1,a={year:t[1],month:o,date:t[3]};!1!==u(a)?(s(n,t[5],e,r),i(n,a),c(n,t[4])):n.epoch=null}},{reg:/^([0-9]{4})[\-\/]([0-9]{1,2})[\-\/]([0-9]{1,2})$/,parse:function(n,t){var e={year:t[1],month:parseInt(t[2],10)-1,date:parseInt(t[3],10)};12<=e.month&&(e.date=parseInt(t[2],10),e.month=parseInt(t[3],10)-1),!1!==u(e)?i(n,e):n.epoch=null}},{reg:/^([0-9]{1,2})[\-\/]([0-9]{1,2})[\-\/]?([0-9]{4})?$/,parse:function(n,t){var e=parseInt(t[1],10)-1,r=parseInt(t[2],10);12<=e&&(e=parseInt(t[2],10)-1,r=parseInt(t[1],10));var o={year:t[3]||(new Date).getFullYear(),month:e,date:r};!1!==u(o)?i(n,o):n.epoch=null}},{reg:/^([a-z]+) ([0-9]{1,2}(?:st|nd|rd|th)?),?( [0-9]{4})?( ([0-9:]+))?$/i,parse:function(n,t){var e=o.mapping()[t[1].toLowerCase()],r={year:h(t[3]),month:e,date:a.toCardinal(t[2]||"")};!1!==u(r)?(i(n,r),t[4]&&c(n,t[4])):n.epoch=null}},{reg:/^([0-9]{1,2}(?:st|nd|rd|th)?) ([a-z]+),?( [0-9]{4})?$/i,parse:function(n,t){var e=o.mapping()[t[2].toLowerCase()],r={year:h(t[3]),month:e,date:a.toCardinal(t[1])};!1!==u(r)?i(n,r):n.epoch=null}},{reg:/^[0-9]{4}$/i,parse:function(n,t){var e=h(t[0]),r=new Date,o={year:e,month:r.getMonth(),date:r.getDate()};!1!==u(o)?i(n,o):n.epoch=null}},{reg:/^[0-9,]+ ?b\.?c\.?$/i,parse:function(n,t){var e=t[0]||"";e=(e=e.replace(/^([0-9,]+) ?b\.?c\.?$/i,"-$1")).replace(/,/g,"");var r=parseInt(e.trim(),10),o=new Date,a={year:r,month:o.getMonth(),date:o.getDate()};!1!==u(a)?i(n,a):n.epoch=null}}];t.exports=r},{"../data/months":8,"../fns":12,"../methods/set/walk":34,"./hasDate":14,"./parseOffset":17}],19:[function(n,t,e){"use strict";var r=n("./methods/format"),o=n("./methods/progress"),a=n("./methods/nearest"),i=n("./methods/diff"),s=n("./methods/since"),u=n("./methods/startOf"),c=n("./timezone/index"),h=n("./input"),d=n("./fns"),f={set:function(n){return h(this,n),this},timezone:function(){return c(this)},isDST:function(){return c(this).current.isDST},hasDST:function(){return c(this).hasDst},offset:function(){return c(this).current.offset/60},hemisphere:function(){return c(this).hemisphere},format:function(n){return r(this,n)},startOf:function(n){return u.startOf(this,n)},endOf:function(n){return u.endOf(this,n)},leapYear:function(){var n=this.year();return d.isLeapYear(n)},progress:function(){return o(this)},nearest:function(n){return a(this,n)},diff:function(n,t){return i(this,n,t)},since:function(n){return n||(n=this.clone().set()),s(this,n)},isValid:function(){return!(!this.epoch&&0!==this.epoch)&&!isNaN(this.d.getTime())},goto:function(n){return this.tz=n,this},isAwake:function(){var n=this.hour();return!(n<8||22<n)},isAsleep:function(){return!this.isAwake()},log:function(){return console.log(""),console.log(r(this,"nice-short")),this},logYear:function(){return console.log(""),console.log(r(this,"full-short")),this},debug:function(){var n=this.timezone(),t=this.format("MM")+" "+this.format("date-ordinal")+" "+this.year();return t+="\n     - "+this.format("time"),console.log("\n\n",t+"\n     - "+n.name+" ("+n.current.offset+")"),this}};f.inDST=f.isDST,f.round=f.nearest,t.exports=f},{"./fns":12,"./input":15,"./methods/diff":22,"./methods/format":23,"./methods/nearest":26,"./methods/progress":27,"./methods/since":35,"./methods/startOf":36,"./timezone/index":39}],20:[function(n,t,e){"use strict";var a=n("./set/walk"),i=n("../data/milliseconds"),s=n("../data/monthLengths"),u=n("../fns"),r=["millisecond","second","minute","hour","date","month"],c={second:r.slice(0,1),minute:r.slice(0,2),quarterhour:r.slice(0,2),hour:r.slice(0,3),date:r.slice(0,4),month:r.slice(0,4),quarter:r.slice(0,4),season:r.slice(0,4),year:r};c.week=c.date,c.season=c.date,c.quarter=c.date;var h={month:!0,quarter:!0,season:!0,year:!0};t.exports=function(n){n.prototype.add=function(n,t){var e=this.clone();t=u.normalize(t),i[t]?this.epoch+=i[t]*n:"week"===t?this.epoch+=i.day*(7*n):"quarter"===t||"season"===t?this.epoch+=i.month*(4*n):"season"===t?this.epoch+=i.month*(4*n):"quarterhour"===t&&(this.epoch+=15*i.minute);var r={};if(c[t]&&c[t].forEach(function(n){r[n]=e[n]()}),"month"===t?(r.month=e.month()+n,r=function(n,t){if(0<n.month){var e=parseInt(n.month/12,10);n.year=t.year()+e,n.month=n.month%12}else if(n.month<0){var r=Math.floor(Math.abs(n.month)/13,10);r=Math.abs(r)+1,n.year=t.year()-r,n.month=n.month%12,n.month=n.month+12,12===n.month&&(n.month=0)}return n}(r,e)):"date"===t&&0!==n&&e.isSame(this,"day")?r.date=e.date()+n:"year"===t&&this.year()===e.year()&&(this.epoch+=i.week),h[t]){var o=s[r.month];r.date=e.date(),r.date>o&&(r.date=o)}return a(this,r),this},n.prototype.subtract=function(n,t){return this.add(-1*n,t),this},n.prototype.minus=n.prototype.subtract,n.prototype.plus=n.prototype.add}},{"../data/milliseconds":6,"../data/monthLengths":7,"../fns":12,"./set/walk":34}],21:[function(n,t,e){"use strict";var o=n("../fns");t.exports=function(t){var e={isAfter:function(n){n=o.beADate(n,this);var t=o.getEpoch(n);return null===t?null:this.epoch>t},isBefore:function(n){n=o.beADate(n,this);var t=o.getEpoch(n);return null===t?null:this.epoch<t},isEqual:function(n){n=o.beADate(n,this);var t=o.getEpoch(n);return null===t?null:this.epoch===t},isBetween:function(n,t){n=o.beADate(n,this),t=o.beADate(t,this);var e=o.getEpoch(n);if(null===e)return null;var r=o.getEpoch(t);return null===r?null:e<this.epoch&&this.epoch<r}};Object.keys(e).forEach(function(n){t.prototype[n]=e[n]})}},{"../fns":12}],22:[function(n,t,e){"use strict";var r=n("../fns"),o=function(){},a=function(n,t,e){var r=0;for(n=n.clone();n.isBefore(t);)n.add(1,e),r+=1;return n.isSame(t,e)||(r-=1),r},i=function(n,t){var e=t.epoch-n.epoch,r={milliseconds:e,seconds:parseInt(e/1e3,10)};return r.minutes=parseInt(r.seconds/60,10),r.hours=parseInt(r.minutes/60,10),r},s=function(n,t,e){return t=r.beADate(t,n),e?(e=r.normalize(e),!0!==/s$/.test(e)&&(e+="s"),"milliseconds"===e||"seconds"===e||"minutes"===e?i(n,t)[e]:n.isBefore(t)?a(n,t,e):-1*a(t,n,e)):o(n,t)};o=function(n,t){var e=i(n,t);return e.years=s(n,t,"year"),e.months=s(n,t,"month"),e.weeks=s(n,t,"week"),e.days=s(n,t,"day"),0===e.years&&(e.hours=s(n,t,"hour")),e},t.exports=s},{"../fns":12}],23:[function(n,t,e){"use strict";var h=n("../../fns"),r=n("../../data/months"),o=n("../../data/days"),a=n("./unixFmt"),i={day:function(n){return h.titleCase(o.long()[n.day()])},"day-short":function(n){return h.titleCase(o.short()[n.day()])},date:function(n){return""+n.date()},"date-ordinal":function(n){return h.ordinal(n.date())},month:function(n){return h.titleCase(r.long()[n.month()])},"month-short":function(n){return h.titleCase(r.short()[n.month()])},time:function(n){return n.h12()+":"+h.zeroPad(n.minute())+n.ampm()},"time-24h":function(n){return n.hour()+":"+h.zeroPad(n.minute())},year:function(n){var t=n.year();return t<0?(t=Math.abs(t),t+" BC"):""+t},"year-short":function(n){return"'"+(""+n.year()).substr(2,4)},"numeric-us":function(n){return h.zeroPad(n.month()+1)+"/"+h.zeroPad(n.date())+"/"+n.year()},"numeric-uk":function(n){return h.zeroPad(n.date())+"/"+h.zeroPad(n.month()+1)+"/"+n.year()},"numeric-cn":function(n){return n.year()+"/"+h.zeroPad(n.month()+1)+"/"+h.zeroPad(n.date())},iso:function(n){var t,e,r=h.zeroPad(n.month()+1),o=h.zeroPad(n.date()),a=h.zeroPad(n.h24()),i=h.zeroPad(n.minute()),s=h.zeroPad(n.second()),u=h.zeroPad(n.millisecond(),3),c=(t=n.timezone().current.offset,e="00",t%1==.5&&(e="30",t=Math.floor(t)),"+00:00"==(t=(t=t<0?(t*=-1,"-"+(t=h.zeroPad(t,2))):"+"+(t=h.zeroPad(t,2)))+":"+e)&&(t="Z"),t);return n.year()+"-"+r+"-"+o+"T"+a+":"+i+":"+s+"."+u+c},"iso-short":function(n){var t=h.zeroPad(n.month()+1),e=h.zeroPad(n.date());return n.year()+"-"+t+"-"+e},"iso-utc":function(n){return new Date(n.epoch).toISOString()},nice:function(n){return i.month(n)+" "+i["date-ordinal"](n)+", "+i.time(n)},"nice-day":function(n){return i.day(n)+" "+i.month(n)+" "+i["date-ordinal"](n)+", "+i.time(n)},"nice-short":function(n){return i["month-short"](n)+" "+i["date-ordinal"](n)+", "+i.time(n)},full:function(n){return i.day(n)+" "+i.month(n)+" "+i["date-ordinal"](n)+", "+n.year()},"full-short":function(n){return i["day-short"](n)+" "+i["month-short"](n)+" "+i["date-ordinal"](n)+", "+n.year()}};i.ordinal=i["date-ordinal"],i["date-short"]=i.date,i["time-12h"]=i.time,i["time-12"]=i.time,i["time-h12"]=i["time-12h"],i["time-h24"]=i["time-24h"],i["time-24"]=i["time-24h"],i.numeric=i["numeric-us"],i.mdy=i["numeric-us"],i.dmy=i["numeric-uk"],i.ymd=i["numeric-cn"],i["little-endian"]=i["numeric-uk"],i["big-endian"]=i["numeric-cn"];t.exports=function(e,n){return!0!==e.isValid()?"":i&&i[n]?i[n](e):"string"==typeof n?a(n,e):Object.keys(i).reduce(function(n,t){return n[t]=i[t](e),n},{})}},{"../../data/days":5,"../../data/months":8,"../../fns":12,"./unixFmt":24}],24:[function(n,t,e){"use strict";var r=n("../../fns").zeroPad,i={G:function(n){return n.era()},GG:function(n){return n.era()},GGG:function(n){return n.era()},GGGG:function(n){return"AD"===n.era()?"Anno Domini":"Before Christ"},y:function(n){return n.year()},yy:function(n){return parseInt(String(n.year()).substr(2,4),10)},yyy:function(n){return n.year()},yyyy:function(n){return n.year()},yyyyy:function(n){return"0"+n.year()},Q:function(n){return n.quarter()},QQ:function(n){return n.quarter()},QQQ:function(n){return n.quarter()},QQQQ:function(n){return n.quarter()},M:function(n){return n.month()+1},MM:function(n){return r(n.month()+1)},MMM:function(n){return n.format("month-short")},MMMM:function(n){return n.format("month")},w:function(n){return n.week()},ww:function(n){return r(n.week())},d:function(n){return n.date()},dd:function(n){return r(n.date())},D:function(n){return n.dayOfYear()},DD:function(n){return r(n.dayOfYear())},DDD:function(n){return r(n.dayOfYear(),3)},E:function(n){return n.format("day-short")},EE:function(n){return n.format("day-short")},EEE:function(n){return n.format("day-short")},EEEE:function(n){return n.format("day")},EEEEE:function(n){return n.format("day")[0]},e:function(n){return n.day()},ee:function(n){return n.day()},eee:function(n){return n.format("day-short")},eeee:function(n){return n.format("day")},eeeee:function(n){return n.format("day")[0]},a:function(n){return n.ampm().toUpperCase()},aa:function(n){return n.ampm().toUpperCase()},aaa:function(n){return n.ampm().toUpperCase()},aaaa:function(n){return n.ampm().toUpperCase()},h:function(n){return n.h12()},hh:function(n){return r(n.h12())},H:function(n){return n.hour()},HH:function(n){return r(n.hour())},m:function(n){return n.minute()},mm:function(n){return r(n.minute())},s:function(n){return n.second()},ss:function(n){return r(n.second())},A:function(n){return n.epoch-n.startOf("day").epoch},z:function(n){return n.tz},zz:function(n){return n.tz},zzz:function(n){return n.tz},zzzz:function(n){return n.tz},Z:function(n){return n.timezone().current.offset+"00"},ZZ:function(n){return n.timezone().current.offset+"00"},ZZZ:function(n){return n.timezone().current.offset+"00"},ZZZZ:function(n){return n.timezone().current.offset+":00"}},o=function(n,t,e){for(var r=n,o=t,a=0;a<e;a+=1)i[r]=i[o],r+=n,o+=t};o("q","Q",4),o("L","M",4),o("Y","y",4),o("c","e",4),o("k","H",2),o("K","h",2),o("S","s",2),o("v","z",4),o("V","Z",4);t.exports=function(n,e){for(var t=n.split(""),r=[t[0]],o=!1,a=1;a<t.length;a+=1){if("'"===t[a]){if(!0!=(o=!o)||!t[a+1]||"'"!==t[a+1])continue;o=!0}!0===o||t[a]===r[r.length-1][0]?r[r.length-1]+=t[a]:r.push(t[a])}return r.reduce(function(n,t){return void 0!==i[t]?n+=i[t](e)||"":n+=t,n},"")}},{"../../fns":12}],25:[function(n,t,e){"use strict";var r=n("../fns"),o=n("../data/days"),a=n("../data/months");t.exports=function(t){var e={i18n:function(n){if(!(r.isObject(n)&&r.isObject(n.days)&&r.isObject(n.months)&&r.isArray(n.days.short)&&r.isArray(n.days.long)&&r.isArray(n.months.short)&&r.isArray(n.months.long)))throw new Error("Invalid i18n payload passed.");o.set(n.days),a.set(n.months)}};Object.keys(e).forEach(function(n){t.prototype[n]=e[n]})}},{"../data/days":5,"../data/months":8,"../fns":12}],26:[function(n,t,e){"use strict";t.exports=function(n,t){t=(t=t.toLowerCase()).replace(/s$/,"");var e=n.progress();return void 0!==e[t]?(.5<e[t]&&n.add(1,t),n.startOf(t)):console.warn("no known unit '"+t+"'"),n}},{}],27:[function(n,t,e){"use strict";t.exports=function(o){var a={};return["year","season","quarter","month","week","day","quarterHour","hour","minute"].forEach(function(n){var t=o.clone().startOf(n),e=o.clone().endOf(n).epoch-t.epoch,r=(o.epoch-t.epoch)/e;a[n]=parseFloat(r.toFixed(2))}),a}},{}],28:[function(n,t,e){"use strict";var o=n("../../data/quarters"),a=n("../../data/seasons"),i=n("../set/set"),s=function(n){n.minute(0),n.second(0),n.millisecond(1)};t.exports={time:function(n){return void 0!==n?(this.epoch=i.time(this,n),this):this.format("time-h12")},week:function(n){if(void 0!==n)return this.month(0),this.date(1),this.day("monday"),s(this),"december"===this.monthName()&&this.add(1,"week"),n-=1,this.add(n,"weeks"),this;var t=this.clone();t.month(0),t.date(1),s(t),t.day("monday"),"december"===t.monthName()&&t.add(1,"week");var e=this.epoch;if(t.epoch>e)return 1;for(var r=0;r<52;r++){if(t.epoch>e)return r;t.add(1,"week")}return 52},quarter:function(n){if(void 0!==n&&("string"==typeof n&&(n=n.replace(/^q/i,""),n=parseInt(n,10)),o[n])){var t=o[n][0];return this.month(t),this.date(1),this.hour(0),s(this),this}for(var e=this.d.getMonth(),r=1;r<o.length;r++)if(e<o[r][0])return r-1;return 4},hourFloat:function(n){if(void 0!==n){var t=n%1;t*=60;var e=parseInt(n,10);return this.epoch=i.hours(this,e),this.epoch=i.minutes(this,t),this}var r=this.d,o=r.getHours(),a=r.getMinutes();return o+(a/=60)},season:function(n){var t="north";if("South"===this.timezone().hemisphere&&(t="south"),void 0!==n){for(var e=0;e<a[t].length;e++)n===a[t][e][0]&&(this.month(a[t][e][1]),this.date(1),this.hour(0),s(this));return this}for(var r=this.d.getMonth(),o=0;o<a[t].length-1;o++)if(r>=a[t][o][1]&&r<a[t][o+1][1])return a[t][o][0];return"winter"}}},{"../../data/quarters":9,"../../data/seasons":10,"../set/set":33}],29:[function(n,t,e){"use strict";var r=n("./normal"),o=n("./destructive"),a=n("./tricky");t.exports=function(t){Object.keys(r).forEach(function(n){t.prototype[n]=r[n]}),Object.keys(o).forEach(function(n){t.prototype[n]=o[n]}),Object.keys(a).forEach(function(n){t.prototype[n]=a[n]})}},{"./destructive":28,"./normal":30,"./tricky":31}],30:[function(n,t,e){"use strict";var a=n("../set/set"),r=n("../set/walk"),o={millisecond:function(n){return void 0!==n?(this.epoch=a.milliseconds(this,n),this):this.d.getMilliseconds()},second:function(n){return void 0!==n?(this.epoch=a.seconds(this,n),this):this.d.getSeconds()},minute:function(n){return void 0!==n?(this.epoch=a.minutes(this,n),this):this.d.getMinutes()},hour:function(n){var t=this.d;return void 0!==n?(this.epoch=a.hours(this,n),r(this,{hour:n}),this):t.getHours()},hour12:function(n){var t=this.d;if(void 0!==n){var e=(n=""+n).match(/^([0-9]+)(am|pm)$/);if(e){var r=parseInt(e[1],10);"pm"===e[2]&&(r+=12),this.epoch=a.hours(this,r)}return this}var o=t.getHours();return 12<o&&(o-=12),0===o&&(o=12),o},date:function(n){return void 0!==n?(this.epoch=a.date(this,n),this):this.d.getDate()},month:function(n){return void 0!==n?(this.epoch=a.month(this,n),this):this.d.getMonth()},year:function(n){return void 0!==n?(this.epoch=a.year(this,n),this):this.d.getFullYear()},dayTime:function(n){if(void 0!==n){var t={morning:"7:00am",breakfast:"7:00am",noon:"12:00am",lunch:"12:00pm",afternoon:"2:00pm",evening:"6:00pm",dinner:"6:00pm",night:"11:00pm",midnight:"23:59pm"};return t[n=(n=n||"").toLowerCase()]&&this.time(t[n]),this}var e=this.hour();return e<6?"night":e<12?"morning":e<17?"afternoon":e<22?"evening":"night"},dayOfYear:function(n){if(void 0!==n)return this.epoch=a.dayOfYear(this,n),this;for(var t=0,e=this.d.getMonth(),r=void 0,o=1;o<=e;o++)(r=new Date).setDate(1),r.setYear(this.d.getFullYear()),r.setHours(1),r.setMinutes(1),r.setMonth(o),r.setHours(-2),t+=r.getDate();return t+this.d.getDate()},era:function(n){if(void 0===n)return this.d.getFullYear()<0?"BC":"AD";n=n.toLowerCase();var t=this.d.getFullYear();return"bc"===n&&0<t&&(this.epoch=a.year(this,-1*t)),"ad"===n&&t<0&&(this.epoch=a.year(this,-1*t)),this},from:function(n){return(n=this.clone().set(n)).since(this)},fromNow:function(){return this.clone().set(Date.now()).since(this)}};o.milliseconds=o.millisecond,o.seconds=o.second,o.minutes=o.minute,o.hours=o.hour,o.hour24=o.hour,o.h12=o.hour12,o.h24=o.hour24,o.days=o.day,t.exports=o},{"../set/set":33,"../set/walk":34}],31:[function(n,t,e){"use strict";var i=n("../../data/days"),r=n("../../data/months"),s=n("../set/walk");t.exports={day:function(n){if(void 0===n)return this.d.getDay();var t=this.clone(),e=n;"string"==typeof n&&(n=n.toLowerCase(),-1===(e=i.short().indexOf(n))&&(e=i.long().indexOf(n)));var r=this.d.getDay(),o=r-e,a=this.subtract(24*o,"hours");return s(a,{hour:t.hour(),minute:t.minute(),second:t.second()}),this.epoch=a.epoch,a},ampm:function(n){var t="am";return 12<=this.hour()&&(t="pm"),void 0===n?t:(n===t||("am"===n?this.subtract(12,"hours"):this.add(12,"hours")),this)},dayName:function(n){return void 0===n?i.long()[this.day()]:(this.day(n),this)},monthName:function(n){return void 0===n?r.long()[this.month()]:(this.month(n),this)}}},{"../../data/days":5,"../../data/months":8,"../set/walk":34}],32:[function(n,t,e){"use strict";var r={millisecond:function(n){return n.epoch},second:function(n){return[n.year(),n.month(),n.date(),n.hour(),n.minute(),n.second()].join("-")},minute:function(n){return[n.year(),n.month(),n.date(),n.hour(),n.minute()].join("-")},hour:function(n){return[n.year(),n.month(),n.date(),n.hour()].join("-")},day:function(n){return[n.year(),n.month(),n.date()].join("-")},week:function(n){return[n.year(),n.week()].join("-")},month:function(n){return[n.year(),n.month()].join("-")},quarter:function(n){return[n.year(),n.quarter()].join("-")},year:function(n){return n.year()}};r.date=r.day;t.exports=function(e){e.prototype.isSame=function(n,t){return"string"!=typeof n&&"number"!=typeof n||(n=new e(n,this.timezone.name)),t=t.replace(/s$/,""),r[t]?r[t](this)===r[t](n):null}}},{}],33:[function(n,t,e){"use strict";var o=n("../../data/milliseconds"),r=n("../../data/months"),a=n("../../data/monthLengths"),i=n("./walk"),s=function(n){return"string"==typeof n&&(n=parseInt(n,10)),n},u=["year","month","date","hour","minute","second","millisecond"],c=function(n,t,e){for(var r=u.indexOf(e),o=u.slice(r,u.length),a=0;a<o.length;a++){var i=t[o[a]]();n[o[a]](i)}return n};t.exports={milliseconds:function(n,t){t=s(t);var e=n.millisecond()-t;return n.epoch-e},seconds:function(n,t){t=s(t);var e=(n.second()-t)*o.second;return n.epoch-e},minutes:function(n,t){t=s(t);var e=n.clone(),r=(n.minute()-t)*o.minute;return n.epoch-=r,c(n,e,"second"),n.epoch},hours:function(n,t){t=s(t);var e=n.clone(),r=(n.hour()-t)*o.hour;return n.epoch-=r,c(n,e,"minute"),n.epoch},time:function(n,t){var e=t.match(/([0-9]{1,2}):([0-9]{1,2})(am|pm)?/);if(!e){if(!(e=t.match(/([0-9]{1,2})(am|pm)/)))return n.epoch;e.splice(2,0,"0")}var r=!1,o=parseInt(e[1],10),a=parseInt(e[2],10);return 12<o&&(r=!0),!1===r&&("am"===e[3]&&12===o&&(o=0),"pm"===e[3]&&o<12&&(o+=12)),n.hour(o),n.minute(a),n.second(0),n.millisecond(0),n.epoch},date:function(n,t){return t=s(t),i(n,{date:t}),n.epoch},month:function(n,t){"string"==typeof t&&(t=r.mapping()[t.toLowerCase()]),t=s(t);var e=n.date();return e>a[t]&&(e=a[t]),i(n,{month:t,date:e}),n.epoch},year:function(n,t){return t=s(t),i(n,{year:t}),n.epoch},dayOfYear:function(n,t){t=s(t);var e=n.clone(),r=(t-n.dayOfYear())*o.day;return n.epoch+=r,c(n,e,"hour"),n.epoch}}},{"../../data/milliseconds":6,"../../data/monthLengths":7,"../../data/months":8,"./walk":34}],34:[function(n,t,e){"use strict";var h=n("../../data/milliseconds"),r=function(n,t,e,r,o){var a=n.d[e]();if(a!==t){var i=null===o?null:n.d[o](),s=n.epoch,u=t-a;n.epoch+=h[r]*u;for(var c=h[r]/2;n.d[e]()<t;)n.epoch+=c;for(;n.d[e]()>t;)n.epoch-=c;null!==o&&i!==n.d[o]()&&(n.epoch=s)}},s={year:{valid:function(n){return-4e3<n&&n<4e3},walkTo:function(n,t){return r(n,t,"getFullYear","year",null)}},month:{valid:function(n){return 0<=n&&n<=11},walkTo:function(n,t){var e=n.d.getMonth(),r=n.epoch,o=n.d.getYear();if(e!==t){var a=t-e;for(n.epoch+=h.day*(28*a),o!==n.d.getYear()&&(n.epoch=r);n.d.getMonth()<t;)n.epoch+=h.day;for(;n.d.getMonth()>t;)n.epoch-=h.day}}},date:{valid:function(n){return 0<n&&n<=31},walkTo:function(n,t){return r(n,t,"getDate","day","getMonth")}},hour:{valid:function(n){return 0<=n&&n<24},walkTo:function(n,t){return r(n,t,"getHours","hour","getDate")}},minute:{valid:function(n){return 0<=n&&n<60},walkTo:function(n,t){return r(n,t,"getMinutes","minute","getHours")}},second:{valid:function(n){return 0<=n&&n<60},walkTo:function(n,t){return r(n,t,"getSeconds","second","getMinutes")}},millisecond:{valid:function(n){return 0<=n&&n<1e3},walkTo:function(n,t){n.milliseconds(t)}}};t.exports=function(n,t){for(var e=Object.keys(s),r=n.clone(),o=0;o<e.length;o++){var a=e[o],i=t[a];if(void 0===i&&(i=r[a]()),"string"==typeof i&&(i=parseInt(i,10)),!s[a].valid(i))return n.epoch=null,void console.warn("invalid "+a+": "+i);s[a].walkTo(n,i)}}},{"../../data/milliseconds":6}],35:[function(n,t,e){"use strict";var r=n("../fns"),d={months:{almost:10,over:4},days:{almost:25,over:10},hours:{almost:20,over:8},minutes:{almost:50,over:20},seconds:{almost:50,over:20}};function f(n,t){return 1===n&&(t=t.slice(0,-1)),n+" "+t}t.exports=function(n,t){var s=function(n,t){var e=n.isBefore(t),r=e?t:n,o=e?n:t;o=o.clone();var a={years:0,months:0,days:0,hours:0,minutes:0,seconds:0};return Object.keys(a).forEach(function(n){if(!o.isSame(r,n)){var t=o.diff(r,n);o.add(t,n),o.epoch>r.epoch+10&&(o.subtract(1,n),t-=1),a[n]=t}}),e&&Object.keys(a).forEach(function(n){0!==a[n]&&(a[n]*=-1)}),a}(n,t=r.beADate(t,n));if(!0===Object.keys(s).every(function(n){return!s[n]}))return{diff:s,rounded:"now",qualified:"now",precise:"now"};var u=void 0,c=void 0,e=void 0,h=[];return Object.keys(s).forEach(function(n,t,e){var r=Math.abs(s[n]);if(0!==r){var o=f(r,n);if(h.push(o),!u){if(u=c=o,4<t)return;var a=e[t+1],i=Math.abs(s[a]);i>d[a].almost?(u=f(r+1,n),c="almost "+u):i>d[a].over&&(c="over "+o)}}}),e=h.splice(0,2).join(", "),!0===n.isAfter(t)?(u+=" ago",c+=" ago",e+=" ago"):(u="in "+u,c="in "+c,e="in "+e),{diff:s,rounded:u,qualified:c,precise:e}}},{"../fns":12}],36:[function(n,t,e){"use strict";var a=n("../data/seasons"),r=n("../data/quarters"),i=n("./set/walk"),o={minute:function(n){return i(n,{second:0,millisecond:0}),n},quarterHour:function(n){var t=n.minutes();return 45<=t?n.minutes(45):30<=t?n.minutes(30):15<=t?n.minutes(15):n.minutes(0),i(n,{second:0,millisecond:0}),n},hour:function(n){return i(n,{minute:0,second:0,millisecond:0}),n},day:function(n){return i(n,{hour:0,minute:0,second:0,millisecond:0}),n},week:function(n){var t=n.clone();return n.day(1),n.isAfter(t)&&n.subtract(1,"week"),i(n,{hour:0,minute:0,second:0,millisecond:0}),n},month:function(n){return i(n,{date:1,hour:0,minute:0,second:0,millisecond:0}),n},quarter:function(n){var t=n.quarter();return r[t]&&i(n,{month:r[t][0],date:r[t][1],hour:0,minute:0,second:0,millisecond:0}),n},season:function(n){var t=n.season(),e="north";"South"===n.timezone().hemisphere&&(e="south");for(var r=0;r<a[e].length;r++)if(a[e][r][0]===t){var o=n.year();return"winter"===t&&n.month()<3&&(o-=1),i(n,{year:o,month:a[e][r][1],date:a[e][r][2],hour:0,minute:0,second:0,millisecond:0}),n}return n},year:function(n){return i(n,{month:0,date:1,hour:0,minute:0,second:0,millisecond:0}),n}};o.date=o.day;t.exports={startOf:function(n,t){return o[t]?o[t](n):"summer"===t||"winter"===t?(n.season(t),o.season(n)):n},endOf:function(n,t){return o[t]&&((n=o[t](n)).add(1,t),n.subtract(1,"milliseconds")),n}}},{"../data/quarters":9,"../data/seasons":10,"./set/walk":34}],37:[function(n,t,e){"use strict";var r=n("./timezone/guessTz"),o=n("./timezone/index"),a=n("./input"),i=n("./methods"),s=n("../data"),u=function(n,t,e){e=e||{},this.tz=t||r(),this.silent=e.silent||!1,Object.defineProperty(this,"d",{get:function(){var n=o(this)||{},t=(new Date(this.epoch).getTimezoneOffset()||0)+60*n.current.offset;t=60*t*1e3;var e=this.epoch+t;return new Date(e)}}),Object.defineProperty(this,"timezones",{get:function(){return s},set:function(n){return s=n}}),a(this,n,t,e)};Object.keys(i).forEach(function(n){u.prototype[n]=i[n]}),u.prototype.clone=function(){return new u(this.epoch,this.tz,{silent:this.silent})},n("./methods/query")(u),n("./methods/add")(u),n("./methods/same")(u),n("./methods/compare")(u),n("./methods/i18n")(u),t.exports=u},{"../data":1,"./input":15,"./methods":19,"./methods/add":20,"./methods/compare":21,"./methods/i18n":25,"./methods/query":29,"./methods/same":32,"./timezone/guessTz":38,"./timezone/index":39}],38:[function(n,t,e){"use strict";t.exports=function(){var n=function(){if("undefined"==typeof Intl||void 0===Intl.DateTimeFormat)return null;var n=Intl.DateTimeFormat();if(void 0===n||void 0===n.resolvedOptions)return null;var t=n.resolvedOptions().timeZone;return!t||-1===t.indexOf("/")&&"UTC"===t?null:t}();return null===n?"Asia/Shanghai":n}},{}],39:[function(n,t,e){"use strict";var c=n("./summerTime");t.exports=function(n){var t=n.tz||"",e=n.timezones,r=t.split("/");if(!1===e.hasOwnProperty(t)&&2<r.length&&(t=r[0]+"/"+r[1]),!1===e.hasOwnProperty(t))return console.warn("Warn: could not find given or local timezone - '"+t+"'"),{current:{epochShift:0}};var o,a={name:t,hasDst:Boolean(e[t].dst),hemisphere:"s"===e[t].h?"South":"North",change:{},current:{}};if(!0===a.hasDst){var i=(o=e[t].dst)?o.split("->"):[];a.change={start:i[0],back:i[1]}}var s=e[t].o,u=s;return!0===a.hasDst&&(u="North"===a.hemisphere?s-1:e[t].o+1),!1===a.hasDst?(a.current.offset=s,a.current.isDST=!1):!0===c(n,a,s)?(a.current.offset=s,a.current.isDST="North"===a.hemisphere):(a.current.offset=u,a.current.isDST="South"===a.hemisphere),a}},{"./summerTime":40}],40:[function(n,t,e){"use strict";var s=n("../fns").zeroPad;t.exports=function(n,t,e){if(!0!==t.hasDst||!t.change.start||!t.change.back)return!1;var r=new Date(n.epoch),o=(r.getTimezoneOffset()||0)+60*e;o=60*o*1e3,r=new Date(n.epoch+o);var a,i=s((a=r).getMonth()+1)+"/"+s(a.getDate())+":"+s(a.getHours());return i>=t.change.start&&i<t.change.back}},{"../fns":12}]},{},[13])(13)});
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],7:[function(_dereq_,module,exports){
-let colors = {
-  blue: '#6699cc',
-  green: '#6accb2',
-  yellow: '#e1e6b3',
-  red: '#cc7066',
-  pink: '#e6b8b3',
-  brown: '#9c896c',
-  orange: '#cc8a66',
-  purple: '#d8b3e6',
-
-  navy: '#335799',
-  olive: '#7f9c6c',
-  burnt: '#603a39',
-  beige: '#e6d7b3',
-  fuscia: '#603960',
-// cherry: '#cc6966',
-// rose: '#cc6f66',
-// rose:'#',
-// rose:'#',
-// pink: '#e6b3bc',
-}
-module.exports = colors
-
-},{}],8:[function(_dereq_,module,exports){
-
-const greys = {
-  white: '#fbfbfb',
-  // grey2: '#4d4d4d',
-  grey: '#4d4d4d',
-  // light: '#a3a5a5',
-  dim: '#d7d5d2',
-  light2: '#949a9e',
-  // slate: '#51433e',
-  dark: '#443d3d',
-  bluegrey: '#606c74',
-  black: '#333333'
-}
-module.exports = greys
-
-},{}],9:[function(_dereq_,module,exports){
-const greys = _dereq_('./greys')
-const colors = _dereq_('./colors')
-
-module.exports = Object.assign({}, colors, greys)
-
-},{"./colors":7,"./greys":8}]},{},[5]);
+},{"./_drawCity":1,"./_slider":2,"./assets/somehow":3,"./data/by-latitude":4}]},{},[6]);
