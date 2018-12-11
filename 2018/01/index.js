@@ -5,55 +5,120 @@ const somehow = require('./assets/somehow');
 const spacetime = require('spacetime');
 const cities = require('./data/cities');
 const leagues = require('./data/leagues');
+const latitudes = require('./data/latitudes');
+let yearEnd = spacetime('Dec 31 2018');
+let yearStart = spacetime('Jan 1 2018').format('iso');
 
-const drawTwoLines = function(w, start, end, index, label, color) {
-  let yearEnd = spacetime('Dec 31 2018');
-  //should we draw two lines?
-  let yearStart = spacetime('Jan 1 2018').format('iso');
-  let l1 = w.line();
-  l1.color(color);
-  let newEnd = spacetime(end).minus(1, 'year').format('iso');
-  l1.set(`${yearStart}, ${index}
-    ${newEnd}, ${index}`);
-  let l2 = w.line();
-  l2.color(color);
-  l2.set(`${start}, ${index}
-${yearEnd.format('iso')}, ${index}`);
-};
-
-
-const drawLine = function(w, start, end, index, label, color) {
-  let l = w.line();
-  l.color(color);
-  l.set(`${start}, ${index}
-${end}, ${index}`);
-};
+const draw = {
+  nhl: function(w, label, y) {
+    let {color, start, end, playoff} = leagues.nhl
+    w.line().color(color).set([
+      [start, y],
+      [yearEnd, y]
+    ]);
+    w.line().color(color).set([
+      [yearStart, y],
+      [end, y]
+    ]);
+    w.line().color(color).opacity(0.4).dotted(5).set([
+      [end, y],
+      [playoff, y]
+    ]);
+  },
+  mlb: (w, label, y) => {
+    let {color, start, end, playoff} = leagues.mlb
+    w.line().color(color).set([
+      [start, y],
+      [end, y]
+    ]);
+    w.line().color(color).opacity(0.4).dotted(5).set([
+      [end, y],
+      [playoff, y]
+    ]);
+  },
+  nba: (w, label, y) => {
+    let {color, start, end, playoff} = leagues.nba
+    w.line().color(color).set([
+      [start, y],
+      [yearEnd, y]
+    ]);
+    w.line().color(color).set([
+      [yearStart, y],
+      [end, y]
+    ]);
+    w.line().color(color).opacity(0.4).dotted(5).set([
+      [end, y],
+      [playoff, y]
+    ]);
+  },
+  nfl: (w, label, y) => {
+    let {color, start, end, playoff} = leagues.nfl
+    w.line().color(color).set([
+      [end, y],
+      [start, y]
+    ]);
+    w.line().color(color).opacity(0.4).dotted(5).set([
+      [yearStart, y],
+      [playoff, y]
+    ]);
+  },
+  mls: (w, label, y) => {
+    let {color, start, end, playoff} = leagues.mls
+    w.line().color(color).set([
+      [start, y],
+      [end, y]
+    ]);
+    w.line().color(color).opacity(0.4).dotted(5).set([
+      [end, y],
+      [playoff, y]
+    ]);
+  },
+}
 
 const drawCity = function(name) {
+  if (!latitudes[name]) {
+    console.log(name)
+  }
   let w = somehow({
     height: 200,
     aspect: 'widescreen',
   });
   let city = cities[name];
-  let txt = w.text(name);
-  txt.set('-25%, 50%');
+  let lat = w.text(latitudes[name] + '° ');
+  lat.font(11)
+  lat.set('-150px, 50%');
+  let cityName = w.text(name);
+  cityName.set('-125px, 50%');
+
   let i = 1;
   Object.keys(leagues).forEach((k) => {
     let league = leagues[k];
     city[k] = city[k] || [];
     city[k].forEach((team) => {
       let y = i * 10 + 'px';
-      if (k === 'nhl' || k === 'nba' || k === 'nfl') {
-        drawTwoLines(w, league.start, league.end, y, team, league.color);
-      } else {
-        drawLine(w, league.start, league.end, y, team, league.color);
-      }
+      draw[k](w, team, y)
+      //draw the main-line
+      // if (k === 'nhl' || k === 'nba' || k === 'nfl') {
+      //   drawTwoLines(w, league.start, league.end, y, team, league.color);
+      // } else {
+      //   drawLine(w, league.start, league.end, y, team, league.color);
+      // }
+      //draw the playoff line
+      // drawPlayoff(w, league.end, league.playoff, y, team, league.color);
 
-      team = team.replace(name, '').trim();
-      team = w.text(team);
-      team.fontSize(10);
+
+      //normalize their team name
+      let firstName = name.split(/,/)[0]
+      let teamName = team.replace(firstName, '')
+      teamName = teamName.replace(/(new york|new england|minnesota|colorado|arizona)/i, '')
+      teamName = teamName.trim();
+      if (teamName === 'FC') {
+        teamName = team
+      }
+      team = w.text(teamName);
+      team.font(10);
       team.color('lightgrey');
-      team.set(`110%, ${y}`);
+      team.set(`110%, ${(i * 10) + 3}px`);
       let leg = w.line();
       leg.width(2);
       leg.color(league.color);
@@ -67,10 +132,11 @@ const drawCity = function(name) {
 
   let now = w.line();
   now.color('lightgrey');
+  now.dotted(true)
   now.width(1);
   let iso = spacetime.now().format('iso');
   let y = (i * 10) + 25 + 'px';
-  now.set(`${iso}, 14px
+  now.set(`${iso}, 0px
     ${iso}, ${y}`);
 
   w.y.fit(0, 9);
@@ -82,12 +148,11 @@ const drawCity = function(name) {
   return w.build();
 };
 
-console.time('draw')
-let chosen = Object.keys(cities).slice(0, 5);
+let chosen = Object.keys(cities)
+chosen = chosen.sort((a, b) => latitudes[a] < latitudes[b] ? 1 : -1)
 el.innerHTML = chosen.map((k) => {
   return drawCity(k);
 }).join(' ')
-console.timeEnd('draw')
 
 // drawCity('Boston');
 // drawCity('Toronto');
