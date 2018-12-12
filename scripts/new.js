@@ -19,6 +19,8 @@ sh.cat(__dirname + '/defaults/index.html').to(dir + '/index.html');
 
 // index.js
 sh.cat(__dirname + '/defaults/index.js').to(dir + '/index.js');
+//thumb.png
+sh.cp(__dirname + '/defaults/index.js', dir)
 
 // spencer.min.css
 sh.mkdir(dir + '/assets')
