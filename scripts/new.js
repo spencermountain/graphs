@@ -1,13 +1,14 @@
 const sh = require('shelljs')
-const year = new Date().getFullYear()
+let name = process.argv.slice(2).join(' ')
+// const year = new Date().getFullYear()
 
-let current = sh.ls('-l', `./${year}`).length
+let current = sh.ls('-l', `./drafts`).length
 let num = current + 1
 if (num < 10) {
   num = '0' + num
 }
 num = String(num)
-let dir = `./${year}/${num}`
+let dir = `./drafts/${name || num}`
 console.log(`creating: ${dir}`)
 sh.mkdir(dir)
 
@@ -31,4 +32,4 @@ sh.mkdir(dir + '/scripts')
 // setTimeout(() => {
 //   sh.exec(`rm -rf ${dir}`)
 // }, 7000)
-sh.cd(dir)
+// sh.cd(dir)
