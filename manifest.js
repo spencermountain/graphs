@@ -15,5 +15,10 @@ module.exports = {
       title: 'lunar astronauts by age',
       thumb: 'thumb.png'
     },
+    {
+      num: '04',
+      title: 'toronto and montreal',
+      thumb: 'thumb.png'
+    },
   ]
 };

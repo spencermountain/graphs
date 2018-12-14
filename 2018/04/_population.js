@@ -24,7 +24,9 @@ let montreal = data[1].years.map((a) => {
 });
 let mon = w.line().color('orange');
 mon.set(montreal);
-w.yAxis.ticks([1000000, 2000000]);
+// w.yAxis.ticks([1000000, 2000000]);
+w.yAxis.ticks([]);
+w.text(['population']).color('lightgrey').font(10).from('-55px', '75%');
 
 //referendums
 w.line().from('May 20, 1980', '100px').to('May 20, 1980', '140px').width(1).color('grey');

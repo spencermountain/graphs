@@ -12,6 +12,7 @@ require('./_timelines');
 // 1941, September 1 - Trudeau (Dorval) airpot
 // 1960, October 14 - Montreal metro
 // 1967, April 27  - Expo '67
+// 1968, highway 401 completed
 // 1969, February 13 - stock exchange bombing
 // 1969, April 8 - Expos start
 // 1970 - FLQ crisis
@@ -19,6 +20,7 @@ require('./_timelines');
 // 1976, July 17  - Hosts Olympics
 // 1977 - French Language Charter (Bill 101)
 // 1980, May 20 - First independence referendum
+// 1981, Expos make the playoffs
 // 1980, June 22 - terry fox in Montreal
 // 1994, August 12 - MLB player's strike (Expos 74–40)
 // 1995, October 30 - Second independence referendum
@@ -40,6 +42,7 @@ require('./_timelines');
 // 1933, 16 August - Christie pitts riot
 // 1954, March 30 -> Yonge subway
 // 1966, February 25 -> Bloor subway
+// 1968, highway 401 completed
 // 1976, CN Tower completed
 // 1977, Blue Jays start
 // 1980, July 11 - terry fox welcomed in Toronto
