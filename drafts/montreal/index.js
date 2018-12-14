@@ -1,27 +1,7 @@
 // const somehow = require('somehow');
-const somehow = require('/Users/spencer/mountain/somehow/src');
-const data = require('./data/toronto-montreal');
+require('./_population');
 require('./_canada');
-
-let w = somehow({
-  height: 200,
-  aspect: 'widescreen',
-});
-
-let toronto = data[0].years.map((a) => {
-  a[0] = 'Jan 1 ' + String(a[0]);
-  return a;
-});
-let tor = w.line().color('blue');
-tor.set(toronto);
-
-let montreal = data[1].years.map((a) => {
-  a[0] = 'Jan 1 ' + String(a[0]);
-  return a;
-});
-let mon = w.line().color('orange');
-mon.set(montreal);
-// console.log(montreal)
+require('./_timelines');
 
 // == Montreal ==
 // 1642 - founding of montreal
@@ -64,10 +44,3 @@ mon.set(montreal);
 // 1977, Blue Jays start
 // 1980, July 11 - terry fox welcomed in Toronto
 // 1989 Skydome built
-
-// w.y.fit(0, 2615060);
-// w.x.fit(toronto[0][0], 'Jan 1 2018');
-w.fit();
-
-let el = document.querySelector('#stage');
-el.innerHTML = w.build();

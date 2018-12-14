@@ -3,6 +3,10 @@ module.exports = [
     "title": "Toronto",
     "years": [
       [
+        1825,
+        6000 //i made this number up
+      ],
+      [
         1834,
         9252
       ],
@@ -172,6 +176,10 @@ module.exports = [
   {
     "title": "Demographics of Canada",
     "years": [
+      [
+        1825,
+        30000 //i made this number up
+      ],
       [
         1851,
         2414519
