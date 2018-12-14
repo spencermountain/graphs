@@ -9,5 +9,10 @@ module.exports = [
     title: 'temperature by latitude',
     thumb: 'thumb.png',
   },
+  {
+    path: '2018/03',
+    title: 'lunar astronauyts by age',
+    thumb: 'thumb.png',
+  },
 
-]
+];

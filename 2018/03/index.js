@@ -15,13 +15,15 @@ const drawMission = function(k) {
     let y = i + 1;
     let line = w.line();
     let born = spacetime(o.birth);
+
+    //:(
     if (o.death) {
       line.set([
         [born.iso(), y],
         [o.death || today, y],
       ]);
       line.color('lightgrey');
-    } else {
+    } else { //:)
       let avg = born.add(EXPECT, 'years').iso();
       line.set([
         [born.iso(), y],
@@ -31,6 +33,8 @@ const drawMission = function(k) {
         [today, y],
         [avg, y],
       ]);
+      let age = born.diff(spacetime.now(), 'years');
+      w.text(age + 'yr').font(10).dx(10).dy(-8).color('lightgrey').after(today, y);
     }
     //add label
     w.text(o.name).at(o.birth, y).dy(2);
