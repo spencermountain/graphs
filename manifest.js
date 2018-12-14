@@ -1,18 +1,19 @@
-module.exports = [
-  {
-    path: '2018/01',
-    title: 'north american sports seasons by city',
-    thumb: 'thumb.png',
-  },
-  {
-    path: '2018/02',
-    title: 'temperature by latitude',
-    thumb: 'thumb.png',
-  },
-  {
-    path: '2018/03',
-    title: 'lunar astronauyts by age',
-    thumb: 'thumb.png',
-  },
-
-];
+module.exports = {
+  '2018': [
+    {
+      num: '01',
+      title: 'north american sports seasons by city',
+      thumb: 'thumb.png'
+    },
+    {
+      num: '02',
+      title: 'weather by latitude',
+      thumb: 'thumb.png'
+    },
+    {
+      num: '03',
+      title: 'lunar astronauts by age',
+      thumb: 'thumb.png'
+    },
+  ]
+};
