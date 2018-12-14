@@ -1,8 +1,18 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
 "use strict";
 
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<h3 class=\"left midgrey\">", "</h3>"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<a href=\"", "\" class=\"left flex-start w30 m2\" >\n    <span class=\"m3 olive\" >", "</span>\n    <span class=\"link\">", "</span>\n    <img class=\"block\" style=\"margin-left:95px; max-width:450px; max-height:100px;\" src=\"", "\" />\n  </a>\n  "]);
+  var data = _taggedTemplateLiteral(["<a href=\"", "\" class=\"left flex-start w30 m3\" >\n    <span class=\"olive\" >", "</span>\n    <span class=\"link\"> / ", "</span>\n    <img class=\"block\" style=\"margin-left:95px; max-width:450px; max-height:100px;\" src=\"", "\" />\n    </a>\n    "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -20,27 +30,40 @@ var h = htm.bind(_dereq_('vhtml'));
 var manifest = _dereq_('./manifest');
 
 var el = document.querySelector('#stage');
-var pages = manifest.map(function (o) {
-  return h(_templateObject(), o.path, o.path, o.title, o.path + '/' + o.thumb);
+var years = Object.keys(manifest).sort();
+var result = [];
+years.forEach(function (y) {
+  var posts = manifest[y].map(function (o) {
+    var path = y + '/' + o.num;
+    return h(_templateObject(), path, o.num, o.title, path + '/' + o.thumb);
+  });
+  result.push(h(_templateObject2(), y));
+  result = result.concat(posts);
 });
-el.innerHTML = pages.join(' ');
+el.innerHTML = result.join(' ');
 
 },{"./manifest":2,"htm":3,"vhtml":4}],2:[function(_dereq_,module,exports){
 "use strict";
 
-module.exports = [{
-  path: '2018/01',
-  title: 'north american sports seasons by city',
-  thumb: 'thumb.png'
-}, {
-  path: '2018/02',
-  title: 'temperature by latitude',
-  thumb: 'thumb.png'
-}, {
-  path: '2018/03',
-  title: 'lunar astronauyts by age',
-  thumb: 'thumb.png'
-}];
+module.exports = {
+  '2018': [{
+    num: '01',
+    title: 'north american sports seasons by city',
+    thumb: 'thumb.png'
+  }, {
+    num: '02',
+    title: 'weather by latitude',
+    thumb: 'thumb.png'
+  }, {
+    num: '03',
+    title: 'lunar astronauts by age',
+    thumb: 'thumb.png'
+  }, {
+    num: '04',
+    title: 'toronto and montreal',
+    thumb: 'thumb.png'
+  }]
+};
 
 },{}],3:[function(_dereq_,module,exports){
 !function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.htm=t()}(this,function(){var e={},t=document.createElement("template"),n=/(\$_h\[\d+\])/g;function r(e,t){var r=e.match(n),i=JSON.stringify(e);if(null!=r){if(r[0]===e)return e;i=i.replace(n,'"'+t+"$1"+t+'"').replace(/"[+,]"/g,""),","==t&&(i="["+i+"]")}return i}return function(n){return(e[n]||(e[n]=function(e){for(var n=e[0],i=1;i<e.length;)n+="$_h["+i+"]"+e[i++];return t.innerHTML=n.replace(/<(?:(\/)\/|(\/?)(\$_h\[\d+\]))/g,"<$1$2c c@=$3").replace(/<([\w:-]+)(?:\s[^<>]*?)?(\/?)>/g,function(e,t,n){return e.replace(/(?:'.*?'|".*?"|([A-Z]))/g,function(e,t){return t?":::"+t:e})+(n?"</"+t+">":"")}).trim(),Function("h","$_h","return "+function e(t){if(1!=t.nodeType)return 3==t.nodeType&&t.data?r(t.data,","):"null";for(var n="",i=r(t.localName,n),u="",a=",({",o=0;o<t.attributes.length;o++){var c=t.attributes[o].name,f=t.attributes[o].value;"c@"==c?i=f:"..."==c.substring(0,3)?(u="",a=",Object.assign({",n+="},"+c.substring(3)+",{"):(n+=u+'"'+c.replace(/:::(\w)/g,function(e,t){return t.toUpperCase()})+'":'+(!f||r(f,"+")),u=",")}n="h("+i+a+n+"})";for(var l=t.firstChild;l;)n+=","+e(l),l=l.nextSibling;return n+")"}((t.content||t).firstChild))}(n)))(this,arguments)}});
