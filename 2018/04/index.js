@@ -7,10 +7,12 @@ require('./_timelines');
 // 1642 - founding of montreal
 // 1861 - horse-drawn carts
 // 1867 - confederation
+// 1885, 7 November - great canadian railway
 // 1918 - tunnel under mount royal
 // 1930, May 14 - Jacques Cartier Bridge
 // 1941, September 1 - Trudeau (Dorval) airpot
 // 1960, October 14 - Montreal metro
+// 1962, trans-canada highway
 // 1967, April 27  - Expo '67
 // 1968, highway 401 completed
 // 1969, February 13 - stock exchange bombing
@@ -41,6 +43,7 @@ require('./_timelines');
 // 1927, August 6 - Union Station (#3) completed
 // 1933, 16 August - Christie pitts riot
 // 1954, March 30 -> Yonge subway
+// 1962, trans-canada highway
 // 1966, February 25 -> Bloor subway
 // 1968, highway 401 completed
 // 1976, CN Tower completed

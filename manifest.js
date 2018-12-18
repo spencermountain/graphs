@@ -2,7 +2,7 @@ module.exports = {
   '2018': [
     {
       num: '01',
-      title: 'north american sports seasons by city',
+      title: 'sports seasons by city',
       thumb: 'thumb.png'
     },
     {

@@ -80,5 +80,5 @@ let astronauts = Object.keys(missions).reduce((arr, k) => {
 }, []);
 let alive = astronauts.filter((o) => !o.death);
 legend.text(`${alive.length} of ${astronauts.length} are alive`).set([[0, 1.7]]);
-legend.text(`all are > 81 years old`).set([[4, 0.2]]);
+// legend.text(`all are > 81 years old`).set([[4, 0.2]]);
 document.querySelector('#legend').innerHTML = legend.build();

@@ -17,7 +17,7 @@ years.forEach((y) => {
     </a>
     `;
   });
-  result.push(h`<h3 class="left midgrey">${y}</h3>`);
+  result.push(h`<h3 class="left dimgrey">${y}</h3>`);
   result = result.concat(posts);
 });
 
