@@ -11,13 +11,13 @@
     "build:old": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | uglifyjs -m -c > ./assets/bundle.js"
   },
   "dependencies": {
-    "spacetime": "5.0.3",
+    "spacetime": "5.0.9",
     "somehow": "latest",
     "spencer-color": "0.0.4",
-    "wtf_wikipedia": "7.1.1"
+    "wtf_wikipedia": "7.2.3"
   },
   "devDependencies": {
-    "@babel/core": "7.2.0",
+    "@babel/core": "7.2.2",
     "@babel/preset-env": "7.2.0",
     "babelify": "10.0.0",
     "budo": "11.5.0",

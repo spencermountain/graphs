@@ -1,5 +1,336 @@
-module.exports = [
-  {
+module.exports = {
+  "Boston Red Sox": {
+    "team": "Boston Red Sox",
+    "year": 2018,
+    "games": []
+  },
+  "Baltimore Orioles": {
+    "team": "Baltimore Orioles",
+    "year": 2018,
+    "games": [
+      [
+        "March 29 2018",
+        45469
+      ],
+      [
+        "March 31 2018",
+        17763
+      ],
+      [
+        "April 1 2018",
+        17212
+      ],
+      [
+        "April 9 2018",
+        7915
+      ],
+      [
+        "April 10 2018",
+        8640
+      ],
+      [
+        "April 11 2018",
+        10399
+      ],
+      [
+        "April 20 2018",
+        20004
+      ],
+      [
+        "April 21 2018",
+        29187
+      ],
+      [
+        "April 22 2018",
+        27394
+      ],
+      [
+        "April 23 2018",
+        10614
+      ],
+      [
+        "April 25 2018",
+        8730
+      ],
+      [
+        "April 26 2018",
+        9586
+      ],
+      [
+        "April 27 2018",
+        14223
+      ],
+      [
+        "April 28 2018",
+        20896
+      ],
+      [
+        "April 29 2018",
+        28089
+      ],
+      [
+        "May 8 2018",
+        10863
+      ],
+      [
+        "May 9 2018",
+        14375
+      ],
+      [
+        "May 10 2018",
+        17842
+      ],
+      [
+        "May 11 2018",
+        28170
+      ],
+      [
+        "May 12 2018",
+        24534
+      ],
+      [
+        "May 12 2018",
+        24534
+      ],
+      [
+        "May 13 2018",
+        25257
+      ],
+      [
+        "May 16 2018",
+        29706
+      ],
+      [
+        "May 28 2018",
+        36139
+      ],
+      [
+        "May 29 2018",
+        13935
+      ],
+      [
+        "May 30 2018",
+        20370
+      ],
+      [
+        "June 1 2018",
+        26500
+      ],
+      [
+        "June 2 2018",
+        32823
+      ],
+      [
+        "June 11 2018",
+        15934
+      ],
+      [
+        "June 12 2018",
+        21837
+      ],
+      [
+        "June 13 2018",
+        17217
+      ],
+      [
+        "June 15 2018",
+        23968
+      ],
+      [
+        "June 16 2018",
+        23948
+      ],
+      [
+        "June 17 2018",
+        21421
+      ],
+      [
+        "June 25 2018",
+        21202
+      ],
+      [
+        "June 26 2018",
+        16327
+      ],
+      [
+        "June 27 2018",
+        15502
+      ],
+      [
+        "June 28 2018",
+        14263
+      ],
+      [
+        "June 29 2018",
+        24007
+      ],
+      [
+        "June 30 2018",
+        38838
+      ],
+      [
+        "July 1 2018",
+        18351
+      ],
+      [
+        "July 9 2018",
+        26340
+      ],
+      [
+        "July 9 2018",
+        26340
+      ],
+      [
+        "July 10 2018",
+        18418
+      ],
+      [
+        "July 11 2018",
+        17808
+      ],
+      [
+        "July 12 2018",
+        20100
+      ],
+      [
+        "July 13 2018",
+        17348
+      ],
+      [
+        "July 14 2018",
+        38238
+      ],
+      [
+        "July 15 2018",
+        18754
+      ],
+      [
+        "July 23 2018",
+        16885
+      ],
+      [
+        "July 24 2018",
+        13342
+      ],
+      [
+        "July 26 2018",
+        19025
+      ],
+      [
+        "July 27 2018",
+        15649
+      ],
+      [
+        "July 28 2018",
+        21526
+      ],
+      [
+        "July 29 2018",
+        22454
+      ],
+      [
+        "August 10 2018",
+        23649
+      ],
+      [
+        "August 11 2018",
+        18003
+      ],
+      [
+        "August 11 2018",
+        24051
+      ],
+      [
+        "August 12 2018",
+        25303
+      ],
+      [
+        "August 14 2018",
+        20527
+      ],
+      [
+        "August 15 2018",
+        25045
+      ],
+      [
+        "August 24 2018",
+        27150
+      ],
+      [
+        "August 25 2018",
+        32445
+      ],
+      [
+        "August 25 2018",
+        26236
+      ],
+      [
+        "August 26 2018",
+        17343
+      ],
+      [
+        "August 27 2018",
+        15436
+      ],
+      [
+        "August 28 2018",
+        11762
+      ],
+      [
+        "August 29 2018",
+        11834
+      ],
+      [
+        "September 11 2018",
+        9141
+      ],
+      [
+        "September 12 2018",
+        10480
+      ],
+      [
+        "September 13 2018",
+        11714
+      ],
+      [
+        "September 14 2018",
+        18265
+      ],
+      [
+        "September 15 2018",
+        23266
+      ],
+      [
+        "September 16 2018",
+        19104
+      ],
+      [
+        "September 17 2018",
+        8198
+      ],
+      [
+        "September 18 2018",
+        9096
+      ],
+      [
+        "September 19 2018",
+        11337
+      ],
+      [
+        "September 28 2018",
+        18434
+      ],
+      [
+        "September 29 2018",
+        26020
+      ],
+      [
+        "September 30 2018",
+        24916
+      ]
+    ]
+  },
+  "Arizona Diamondbacks": {
     "team": "Arizona Diamondbacks",
     "year": 2018,
     "games": [
@@ -329,7 +660,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Atlanta Braves": {
     "team": "Atlanta Braves",
     "year": 2018,
     "games": [
@@ -414,11 +745,11 @@ module.exports = [
         28352
       ],
       [
-        "May 28 2018",
+        "May 28  2018",
         32377
       ],
       [
-        "May 28 2018",
+        "May 28  2018",
         31779
       ],
       [
@@ -546,11 +877,11 @@ module.exports = [
         25360
       ],
       [
-        "August 13 2018",
+        "August 13  2018",
         16049
       ],
       [
-        "August 13 2018",
+        "August 13  2018",
         18186
       ],
       [
@@ -655,333 +986,7 @@ module.exports = [
       ]
     ]
   },
-  {
-    "team": "Baltimore Orioles",
-    "year": 2018,
-    "games": [
-      [
-        "March 29 2018",
-        45469
-      ],
-      [
-        "March 31 2018",
-        17763
-      ],
-      [
-        "April 1 2018",
-        17212
-      ],
-      [
-        "April 9 2018",
-        7915
-      ],
-      [
-        "April 10 2018",
-        8640
-      ],
-      [
-        "April 11 2018",
-        10399
-      ],
-      [
-        "April 20 2018",
-        20004
-      ],
-      [
-        "April 21 2018",
-        29187
-      ],
-      [
-        "April 22 2018",
-        27394
-      ],
-      [
-        "April 23 2018",
-        10614
-      ],
-      [
-        "April 25 2018",
-        8730
-      ],
-      [
-        "April 26 2018",
-        9586
-      ],
-      [
-        "April 27 2018",
-        14223
-      ],
-      [
-        "April 28 2018",
-        20896
-      ],
-      [
-        "April 29 2018",
-        28089
-      ],
-      [
-        "May 8 2018",
-        10863
-      ],
-      [
-        "May 9 2018",
-        14375
-      ],
-      [
-        "May 10 2018",
-        17842
-      ],
-      [
-        "May 11 2018",
-        28170
-      ],
-      [
-        "May 12 2018",
-        24534
-      ],
-      [
-        "May 12 2018",
-        24534
-      ],
-      [
-        "May 13 2018",
-        25257
-      ],
-      [
-        "May 16 2018",
-        29706
-      ],
-      [
-        "May 28 2018",
-        36139
-      ],
-      [
-        "May 29 2018",
-        13935
-      ],
-      [
-        "May 30 2018",
-        20370
-      ],
-      [
-        "June 1 2018",
-        26500
-      ],
-      [
-        "June 2 2018",
-        32823
-      ],
-      [
-        "June 11 2018",
-        15934
-      ],
-      [
-        "June 12 2018",
-        21837
-      ],
-      [
-        "June 13 2018",
-        17217
-      ],
-      [
-        "June 15 2018",
-        23968
-      ],
-      [
-        "June 16 2018",
-        23948
-      ],
-      [
-        "June 17 2018",
-        21421
-      ],
-      [
-        "June 25 2018",
-        21202
-      ],
-      [
-        "June 26 2018",
-        16327
-      ],
-      [
-        "June 27 2018",
-        15502
-      ],
-      [
-        "June 28 2018",
-        14263
-      ],
-      [
-        "June 29 2018",
-        24007
-      ],
-      [
-        "June 30 2018",
-        38838
-      ],
-      [
-        "July 1 2018",
-        18351
-      ],
-      [
-        "July 9 2018",
-        26340
-      ],
-      [
-        "July 9 2018",
-        26340
-      ],
-      [
-        "July 10 2018",
-        18418
-      ],
-      [
-        "July 11 2018",
-        17808
-      ],
-      [
-        "July 12 2018",
-        20100
-      ],
-      [
-        "July 13 2018",
-        17348
-      ],
-      [
-        "July 14 2018",
-        38238
-      ],
-      [
-        "July 15 2018",
-        18754
-      ],
-      [
-        "July 23 2018",
-        16885
-      ],
-      [
-        "July 24 2018",
-        13342
-      ],
-      [
-        "July 26 2018",
-        19025
-      ],
-      [
-        "July 27 2018",
-        15649
-      ],
-      [
-        "July 28 2018",
-        21526
-      ],
-      [
-        "July 29 2018",
-        22454
-      ],
-      [
-        "August 10 2018",
-        23649
-      ],
-      [
-        "August 11 2018",
-        18003
-      ],
-      [
-        "August 11 2018",
-        24051
-      ],
-      [
-        "August 12 2018",
-        25303
-      ],
-      [
-        "August 14 2018",
-        20527
-      ],
-      [
-        "August 15 2018",
-        25045
-      ],
-      [
-        "August 24 2018",
-        27150
-      ],
-      [
-        "August 25 2018",
-        32445
-      ],
-      [
-        "August 25 2018",
-        26236
-      ],
-      [
-        "August 26 2018",
-        17343
-      ],
-      [
-        "August 27 2018",
-        15436
-      ],
-      [
-        "August 28 2018",
-        11762
-      ],
-      [
-        "August 29 2018",
-        11834
-      ],
-      [
-        "September 11 2018",
-        9141
-      ],
-      [
-        "September 12 2018",
-        10480
-      ],
-      [
-        "September 13 2018",
-        11714
-      ],
-      [
-        "September 14 2018",
-        18265
-      ],
-      [
-        "September 15 2018",
-        23266
-      ],
-      [
-        "September 16 2018",
-        19104
-      ],
-      [
-        "September 17 2018",
-        8198
-      ],
-      [
-        "September 18 2018",
-        9096
-      ],
-      [
-        "September 19 2018",
-        11337
-      ],
-      [
-        "September 28 2018",
-        18434
-      ],
-      [
-        "September 29 2018",
-        26020
-      ],
-      [
-        "September 30 2018",
-        24916
-      ]
-    ]
-  },
-  {
+  "Chicago Cubs": {
     "team": "Chicago Cubs",
     "year": 2018,
     "games": [
@@ -1315,7 +1320,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Chicago White Sox": {
     "team": "Chicago White Sox",
     "year": 2018,
     "games": [
@@ -1645,7 +1650,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Cincinnati Reds": {
     "team": "Cincinnati Reds",
     "year": 2018,
     "games": [
@@ -1738,11 +1743,11 @@ module.exports = [
         22060
       ],
       [
-        "May 19 2018",
+        "May 19  2018",
         19046
       ],
       [
-        "May 19 2018",
+        "May 19  2018",
         26082
       ],
       [
@@ -1975,7 +1980,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Cleveland Indians": {
     "team": "Cleveland Indians",
     "year": 2018,
     "games": [
@@ -2301,7 +2306,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Colorado Rockies": {
     "team": "Colorado Rockies",
     "year": 2018,
     "games": [
@@ -2631,7 +2636,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Detroit Tigers": {
     "team": "Detroit Tigers",
     "year": 2018,
     "games": [
@@ -2961,7 +2966,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Houston Astros": {
     "team": "Houston Astros",
     "year": 2018,
     "games": [
@@ -3303,7 +3308,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Kansas City Royals": {
     "team": "Kansas City Royals",
     "year": 2018,
     "games": [
@@ -3633,7 +3638,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Los Angeles Angels": {
     "team": "Los Angeles Angels",
     "year": 2018,
     "games": [
@@ -3963,12 +3968,12 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Los Angeles Dodgers": {
     "team": "Los Angeles Dodgers",
     "year": 2018,
     "games": []
   },
-  {
+  "Miami Marlins": {
     "team": "Miami Marlins",
     "year": 2018,
     "games": [
@@ -4298,7 +4303,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Milwaukee Brewers": {
     "team": "Milwaukee Brewers",
     "year": 2018,
     "games": [
@@ -4628,7 +4633,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Minnesota Twins": {
     "team": "Minnesota Twins",
     "year": 2018,
     "games": [
@@ -4958,7 +4963,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "New York Mets": {
     "team": "New York Mets",
     "year": 2018,
     "games": [
@@ -5135,7 +5140,7 @@ module.exports = [
         24653
       ],
       [
-        "July 9 2018",
+        "July 9  2018",
         24139
       ],
       [
@@ -5280,7 +5285,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "New York Yankees": {
     "team": "New York Yankees",
     "year": 2018,
     "games": [
@@ -5562,7 +5567,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Oakland Athletics": {
     "team": "Oakland Athletics",
     "year": 2018,
     "games": [
@@ -5892,7 +5897,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Philadelphia Phillies": {
     "team": "Philadelphia Phillies",
     "year": 2018,
     "games": [
@@ -6085,11 +6090,11 @@ module.exports = [
         30034
       ],
       [
-        "July 22 2018",
+        "July 22  2018",
         29392
       ],
       [
-        "July 22 2018",
+        "July 22  2018",
         25054
       ],
       [
@@ -6129,7 +6134,7 @@ module.exports = [
         35266
       ],
       [
-        "August 16 2018",
+        "August 16  2018",
         33049
       ],
       [
@@ -6169,7 +6174,7 @@ module.exports = [
         36517
       ],
       [
-        "September 11 2018",
+        "September 11  2018",
         19630
       ],
       [
@@ -6214,7 +6219,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Pittsburgh Pirates": {
     "team": "Pittsburgh Pirates",
     "year": 2018,
     "games": [
@@ -6536,7 +6541,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "San Diego Padres": {
     "team": "San Diego Padres",
     "year": 2018,
     "games": [
@@ -6862,12 +6867,12 @@ module.exports = [
       ]
     ]
   },
-  {
+  "San Francisco Giants": {
     "team": "San Francisco Giants",
     "year": 2018,
     "games": []
   },
-  {
+  "Seattle Mariners": {
     "team": "Seattle Mariners",
     "year": 2018,
     "games": [
@@ -7197,7 +7202,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "St. Louis Cardinals": {
     "team": "St. Louis Cardinals",
     "year": 2018,
     "games": [
@@ -7527,7 +7532,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Tampa Bay Rays": {
     "team": "Tampa Bay Rays",
     "year": 2018,
     "games": [
@@ -7853,7 +7858,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Texas Rangers": {
     "team": "Texas Rangers",
     "year": 2018,
     "games": [
@@ -8183,7 +8188,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Toronto Blue Jays": {
     "team": "Toronto Blue Jays",
     "year": 2018,
     "games": [
@@ -8513,7 +8518,7 @@ module.exports = [
       ]
     ]
   },
-  {
+  "Washington Nationals": {
     "team": "Washington Nationals",
     "year": 2018,
     "games": [
@@ -8598,11 +8603,11 @@ module.exports = [
         30611
       ],
       [
-        "May 19 2018",
+        "May 19  2018",
         26740
       ],
       [
-        "May 19 2018",
+        "May 19  2018",
         32378
       ],
       [
@@ -8642,11 +8647,11 @@ module.exports = [
         35705
       ],
       [
-        "June 18 2018",
+        "June 18  2018",
         41567
       ],
       [
-        "June 18 2018",
+        "June 18  2018",
         42723
       ],
       [
@@ -8722,11 +8727,11 @@ module.exports = [
         28845
       ],
       [
-        "August 4 2018",
+        "August 4  2018",
         32687
       ],
       [
-        "August 4 2018",
+        "August 4  2018",
         36149
       ],
       [
@@ -8734,11 +8739,11 @@ module.exports = [
         33486
       ],
       [
-        "August 7 2018",
+        "August 7  2018",
         26965
       ],
       [
-        "August 7 2018",
+        "August 7  2018",
         28970
       ],
       [
@@ -8802,11 +8807,11 @@ module.exports = [
         32070
       ],
       [
-        "September 8 2018",
+        "September 8  2018",
         41346
       ],
       [
-        "September 8 2018",
+        "September 8  2018",
         71
       ],
       [
@@ -8843,4 +8848,4 @@ module.exports = [
       ]
     ]
   }
-]
+}

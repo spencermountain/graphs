@@ -37,6 +37,7 @@ require('./_timelines');
 // 1787 - toronto purchase
 // 1813 - surrender of Toronto to Americans
 // 1845 - Irish potato famine
+// 1858 - storm seperates york peninsula from mainland
 // 1867 - confederation
 // 1875 - Irish/Catholic riot on Spadina
 // 1892 - horse -> electric streetcar
