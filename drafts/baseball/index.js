@@ -1,23 +1,34 @@
 const somehow = require('somehow');
-let years = require('./data/bluejays')
-years = years.sort((a, b) => a.year < b.year ? 1 : -1)
+let teams = require('./data/attendance')
 
 let w = somehow({
   height: 200,
   width: 1200
 // aspect: 'widescreen',
 });
+const colors = [
+  'red',
+  'green',
+  'blue',
+  'pink',
+  'yellow',
+  'olive',
+  'brown',
+  'purple',
 
-years = years.slice(0, 1)
-years.forEach((o) => {
-  let line = w.line().width(2)
-  let arr = o.games.map((a) => {
-    return [a[0] + ' ' + o.year, a[1]]
-  })
-  arr = arr.filter((a) => a[1])
-  console.log(arr[0])
-  // console.log(arr)
-  line.set(arr)
+  'red',
+  'green',
+  'blue',
+  'pink',
+  'yellow',
+  'olive',
+  'brown',
+  'purple',
+]
+
+teams.forEach((o, i) => {
+  let line = w.line().width(2).color(colors[i] || 'blue')
+  line.set(o.games)
 })
 
 w.line().color('lightgrey').width(1).dotted(true).set(`

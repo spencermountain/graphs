@@ -1,7 +1,7 @@
 module.exports = [
+  "Baltimore Orioles",
   "Arizona Diamondbacks",
   "Atlanta Braves",
-  "Baltimore Orioles",
   "Boston Red Sox",
   "Chicago Cubs",
   "Chicago White Sox",

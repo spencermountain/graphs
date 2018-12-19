@@ -2,7 +2,7 @@ const wtfMLB = require('wtf-mlb')
 let teams = require('../data/teams')
 // teams = teams.slice(0, 3)
 const year = 2018
-let results = []
+let results = {}
 
 const doTeam = function(i, cb) {
   wtfMLB.fetch(teams[i], year).catch(console.log).then(data => {
@@ -10,12 +10,12 @@ const doTeam = function(i, cb) {
       console.log(teams[i])
     } else {
       let games = data.games.filter((g) => g.home === true && g.attendance)
-      games = games.map((o) => [o.date + ' ' + year, o.attendance])
-      results.push({
+      games = games.map((o) => [o.date.replace(/\(.*?\)/, '') + ' ' + year, o.attendance])
+      results[teams[i]] = {
         team: teams[i],
         year: year,
         games: games
-      })
+      }
     }
     i += 1
     if (teams[i]) {
