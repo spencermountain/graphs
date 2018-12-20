@@ -1,6 +1,6 @@
 let el = document.querySelector('#stage');
 
-const somehow = require('./assets/somehow');
+const somehow = require('somehow');
 // const somehow = require('/Users/spencer/mountain/somehow/src/index.js');
 const spacetime = require('spacetime');
 const cities = require('./data/cities');
@@ -146,6 +146,5 @@ chosen = chosen.sort((a, b) => latitudes[a] < latitudes[b] ? 1 : -1)
 el.innerHTML = chosen.map((k) => {
   return drawCity(k);
 }).join(' ')
-
 // drawCity('Boston');
 // drawCity('Toronto');
