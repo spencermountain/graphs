@@ -1,7 +1,8 @@
 const somehow = require('somehow');
+// const somehow = require('/Users/spencer/mountain/somehow/src');
 let teams = require('./data/performance')
 let divisions = require('./data/divisions')
-
+console.log(somehow)
 const colors = [
   'red',
   'green',
