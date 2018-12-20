@@ -1,5 +1,4 @@
-// const somehow = require('somehow');
-const somehow = require('/Users/spencer/mountain/somehow/src');
+const somehow = require('somehow');
 let teams = require('./data/performance')
 let divisions = require('./data/divisions')
 
@@ -17,7 +16,7 @@ const colors = [
 const doDivision = function(key, id) {
   let w = somehow({
     height: 200,
-    width: 1000
+    width: 800
   });
   divisions[key].forEach((team, i) => {
     let line = w.line().width(2).color(colors[i] || 'blue')
@@ -39,10 +38,11 @@ const doDivision = function(key, id) {
   let el = document.querySelector(id);
   el.innerHTML = w.build()
 }
-
+console.time('draw')
 doDivision('alEast', '#alEast')
 doDivision('alCentral', '#alCentral')
 doDivision('alWest', '#alWest')
 doDivision('nlEast', '#nlEast')
 doDivision('nlCentral', '#nlCentral')
 doDivision('nlWest', '#nlWest')
+console.timeEnd('draw') //usually 2.8 - 3.2 secs

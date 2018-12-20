@@ -2,7 +2,7 @@
 "use strict";
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["<h3 class=\"left midgrey\">", "</h3>"]);
+  var data = _taggedTemplateLiteral(["<h3 class=\"left dimgrey\">", "</h3>"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -48,7 +48,7 @@ el.innerHTML = result.join(' ');
 module.exports = {
   '2018': [{
     num: '01',
-    title: 'north american sports seasons by city',
+    title: 'sports seasons by city',
     thumb: 'thumb.png'
   }, {
     num: '02',
@@ -61,6 +61,10 @@ module.exports = {
   }, {
     num: '04',
     title: 'toronto and montreal',
+    thumb: 'thumb.png'
+  }, {
+    num: '05',
+    title: '2018 baseball season',
     thumb: 'thumb.png'
   }]
 };

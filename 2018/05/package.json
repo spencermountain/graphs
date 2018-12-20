@@ -11,11 +11,11 @@
     "build:old": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | uglifyjs -m -c > ./assets/bundle.js"
   },
   "dependencies": {
-    "somehow": "latest",
+    "somehow": "0.0.5",
     "spacetime": "5.0.9",
     "spencer-color": "0.0.4",
     "wtf-mlb": "1.0.1",
-    "wtf_wikipedia": "7.2.3"
+    "wtf_wikipedia": "7.2.5"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",

@@ -20,5 +20,10 @@ module.exports = {
       title: 'toronto and montreal',
       thumb: 'thumb.png'
     },
+    {
+      num: '05',
+      title: '2018 baseball season',
+      thumb: 'thumb.png'
+    },
   ]
 };
