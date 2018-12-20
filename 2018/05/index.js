@@ -1,6 +1,6 @@
 const somehow = require('somehow');
 // const somehow = require('/Users/spencer/mountain/somehow/src');
-let teams = require('./data/performance')
+let teams = require('./data/performance2')
 let divisions = require('./data/divisions')
 console.log(somehow)
 const colors = [
@@ -33,7 +33,7 @@ const doDivision = function(key, id) {
   w.line().dotted(true).color('lightgrey').width(1).set([['0px', 0], ['100%', 0]])
 
   // w.line().dotted(true).color('lightgrey').width(1).set([['Sept 30, 2018', 0], ['Sept 30, 2018', 30]])
-  w.y.fit(-35, 35);
+  w.y.fit(35, -35);
   w.x.fit('Mar 20 2018', 'Oct 20 2018');
 
   let el = document.querySelector(id);

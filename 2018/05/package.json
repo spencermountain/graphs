@@ -8,7 +8,7 @@
     "start": "budo index.js:assets/bundle.js --live",
     "watch": "npm run start",
     "build": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | derequire > ./assets/bundle.js",
-    "build:old": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | uglifyjs -m -c > ./assets/bundle.js"
+    "build:old": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | terser -m -c > ./assets/bundle.js"
   },
   "dependencies": {
     "somehow": "0.0.6",
@@ -23,6 +23,6 @@
     "babelify": "10.0.0",
     "budo": "11.5.0",
     "derequire": "2.0.6",
-    "uglify-js": "3.4.9"
+    "terser": "3.13.1"
   }
 }
