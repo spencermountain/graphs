@@ -1,7 +1,9 @@
 {
-  "name": "frowwn-out",
+  "name": "",
   "description": "",
   "version": "0.0.1",
+  "licence":"CC-BY-4.0",
+  "private": true,
   "author": "Spencer Kelly (spencermountain)",
   "homepage": "https://github.com/spencermountain/frown#readme",
   "scripts": {

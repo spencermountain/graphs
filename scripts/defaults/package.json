@@ -1,7 +1,9 @@
 {
-  "name": "frowwn-out",
+  "name": "",
   "description": "",
   "version": "0.0.1",
+  "licence":"CC-BY-4.0",
+  "private": true,
   "author": "Spencer Kelly (spencermountain)",
   "homepage": "https://github.com/spencermountain/frown#readme",
   "scripts": {
@@ -13,8 +15,8 @@
   "dependencies": {
     "somehow": "0.0.6",
     "spacetime": "5.1.0",
-    "spencer-color": "0.0.4",
-    "wtf_wikipedia": "7.2.6"
+    "spencer-color": "0.0.5",
+    "wtf_wikipedia": "7.2.7"
   },
   "devDependencies": {
     "@babel/core": "7.2.2",
@@ -22,6 +24,6 @@
     "babelify": "10.0.0",
     "budo": "11.5.0",
     "derequire": "2.0.6",
-    "terser": "3.13.1"
+    "terser": "3.14.1"
   }
 }
