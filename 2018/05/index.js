@@ -1,8 +1,9 @@
 const somehow = require('somehow');
 // const somehow = require('/Users/spencer/mountain/somehow/src');
-let teams = require('./data/performance2')
+let teams = require('./data/performance')
+console.log(teams)
 let divisions = require('./data/divisions')
-console.log(somehow)
+
 const colors = [
   'red',
   'green',
@@ -21,7 +22,9 @@ const doDivision = function(key, id) {
   });
   divisions[key].forEach((team, i) => {
     let line = w.line().width(2).color(colors[i] || 'blue')
+    console.log(team)
     let games = teams[team].games
+    console.log(games.length)
     games = games.filter((g) => g[1] !== null)
     if (games.length > 0) {
       line.set(games)

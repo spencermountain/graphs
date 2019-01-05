@@ -30,5 +30,5 @@ const doTeam = function(i, cb) {
   })
 }
 doTeam(0, () => {
-  console.log(JSON.stringify(results, null, 2))
+  console.log('module.exports = ' + JSON.stringify(results, null, 2))
 })
