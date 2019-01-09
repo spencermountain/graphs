@@ -2,7 +2,7 @@
   "name": "",
   "description": "",
   "version": "0.0.1",
-  "licence":"CC-BY-4.0",
+  "licence": "CC-BY-4.0",
   "private": true,
   "author": "Spencer Kelly (spencermountain)",
   "homepage": "https://github.com/spencermountain/frown#readme",
@@ -11,12 +11,12 @@
     "watch": "npm run start",
     "build": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | derequire > ./assets/bundle.js",
     "build:old": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | terser -m -c > ./assets/bundle.js",
-    "fetch":"node ./scripts/performance.js > ./data/performance.js"
+    "fetch": "node ./scripts/performance.js > ./data/performance.js"
   },
   "dependencies": {
-    "somehow": "0.0.6",
-    "spacetime": "5.1.0",
-    "spencer-color": "0.0.5",
+    "somehow": "0.0.8",
+    "spacetime": "5.2.1",
+    "spencer-color": "0.1.0",
     "wtf-mlb": "1.1.2",
     "wtf_wikipedia": "7.2.7"
   },
