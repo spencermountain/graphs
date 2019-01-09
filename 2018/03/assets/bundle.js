@@ -1,2262 +1,258 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
-// https://d3js.org/d3-array/ v1.2.4 Copyright 2018 Mike Bostock
-(function (global, factory) {
-typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-typeof define === 'function' && define.amd ? define(['exports'], factory) :
-(factory((global.d3 = global.d3 || {})));
-}(this, (function (exports) { 'use strict';
+"use strict";
 
-function ascending(a, b) {
-  return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
-}
-
-function bisector(compare) {
-  if (compare.length === 1) compare = ascendingComparator(compare);
-  return {
-    left: function(a, x, lo, hi) {
-      if (lo == null) lo = 0;
-      if (hi == null) hi = a.length;
-      while (lo < hi) {
-        var mid = lo + hi >>> 1;
-        if (compare(a[mid], x) < 0) lo = mid + 1;
-        else hi = mid;
-      }
-      return lo;
-    },
-    right: function(a, x, lo, hi) {
-      if (lo == null) lo = 0;
-      if (hi == null) hi = a.length;
-      while (lo < hi) {
-        var mid = lo + hi >>> 1;
-        if (compare(a[mid], x) > 0) hi = mid;
-        else lo = mid + 1;
-      }
-      return lo;
-    }
-  };
-}
-
-function ascendingComparator(f) {
-  return function(d, x) {
-    return ascending(f(d), x);
-  };
-}
-
-var ascendingBisect = bisector(ascending);
-var bisectRight = ascendingBisect.right;
-var bisectLeft = ascendingBisect.left;
-
-function pairs(array, f) {
-  if (f == null) f = pair;
-  var i = 0, n = array.length - 1, p = array[0], pairs = new Array(n < 0 ? 0 : n);
-  while (i < n) pairs[i] = f(p, p = array[++i]);
-  return pairs;
-}
-
-function pair(a, b) {
-  return [a, b];
-}
-
-function cross(values0, values1, reduce) {
-  var n0 = values0.length,
-      n1 = values1.length,
-      values = new Array(n0 * n1),
-      i0,
-      i1,
-      i,
-      value0;
-
-  if (reduce == null) reduce = pair;
-
-  for (i0 = i = 0; i0 < n0; ++i0) {
-    for (value0 = values0[i0], i1 = 0; i1 < n1; ++i1, ++i) {
-      values[i] = reduce(value0, values1[i1]);
-    }
+module.exports = {
+  "Apollo 8": {
+    "date": "Dec 21, 1968",
+    "people": [{
+      "name": "Frank Borman",
+      "birth": "March 14, 1928",
+      "death": ""
+    }, {
+      "name": "Jim Lovell",
+      "birth": "March 25, 1928",
+      "death": ""
+    }, {
+      "name": "Bill Anders",
+      "birth": "October 17, 1933",
+      "death": ""
+    }]
+  },
+  "Apollo 10": {
+    "date": "May 18, 1969",
+    "people": [{
+      "name": "Tom Stafford",
+      "birth": "September 17, 1930",
+      "death": ""
+    }, {
+      "name": "John Young",
+      "birth": "September 24, 1930",
+      "death": "January 5, 2018"
+    }, {
+      "name": "Eugene Cernan",
+      "birth": "March 14, 1934",
+      "death": "January 16, 2017"
+    }]
+  },
+  "Apollo 11": {
+    "date": "Jul 16, 1969",
+    "people": [{
+      "name": "Neil Armstrong",
+      "birth": "August 5, 1930",
+      "death": "August 25, 2012"
+    }, {
+      "name": "Buzz Aldrin",
+      "birth": "January 20, 1930",
+      "death": ""
+    }, {
+      "name": "Michael Collins",
+      "birth": "October 31, 1930",
+      "death": ""
+    }]
+  },
+  "Apollo 12": {
+    "date": "Nov 14, 1969",
+    "people": [{
+      "name": "Pete Conrad",
+      "birth": "June 2, 1930",
+      "death": "July 8, 1999"
+    }, {
+      "name": "Alan Bean",
+      "birth": "March 15, 1932",
+      "death": "May 26, 2018"
+    }, {
+      "name": "Dick Gordon",
+      "birth": "October 5, 1929",
+      "death": "November 6, 2017"
+    }]
+  },
+  "Apollo 13": {
+    "date": "Apr 11, 1970",
+    "people": [{
+      "name": "Jim Lovell",
+      "birth": "March 25, 1928",
+      "death": ""
+    }, {
+      "name": "Jack Swigert",
+      "birth": "August 30, 1931",
+      "death": "December 27, 1982"
+    }, {
+      "name": "Fred Haise",
+      "birth": "November 14, 1933",
+      "death": ""
+    }]
+  },
+  "Apollo 14": {
+    "date": "Jan 31, 1971",
+    "people": [{
+      "name": "Alan Shepard",
+      "birth": "November 18, 1923",
+      "death": "July 21, 1998"
+    }, {
+      "name": "Edgar Mitchell",
+      "birth": "September 17, 1930",
+      "death": "February 4, 2016"
+    }, {
+      "name": "Stu Roosa",
+      "birth": "August 16, 1933",
+      "death": "December 12, 1994"
+    }]
+  },
+  "Apollo 15": {
+    "date": "Jul 26, 1971",
+    "people": [{
+      "name": "David Scott",
+      "birth": "June 6, 1932",
+      "death": ""
+    }, {
+      "name": "James Irwin",
+      "birth": "March 17, 1930",
+      "death": "August 8, 1991"
+    }, {
+      "name": "Al Worden",
+      "birth": "February 7, 1932",
+      "death": ""
+    }]
+  },
+  "Apollo 16": {
+    "date": "Apr 16, 1972",
+    "people": [{
+      "name": "John Young",
+      "birth": "September 24, 1930",
+      "death": "January 5, 2018"
+    }, {
+      "name": "Charles Duke",
+      "birth": "October 3, 1935",
+      "death": ""
+    }, {
+      "name": "Ken Mattingly",
+      "birth": "March 17, 1936",
+      "death": ""
+    }]
+  },
+  "Apollo 17": {
+    "date": "Dec 7, 1972",
+    "people": [{
+      "name": "Eugene Cernan",
+      "birth": "March 14, 1934",
+      "death": "January 16, 2017"
+    }, {
+      "name": "Harrison Schmitt",
+      "birth": "July 3, 1935",
+      "death": ""
+    }, {
+      "name": "Ron Evans",
+      "birth": "November 10, 1933",
+      "death": "April 7, 1990"
+    }]
   }
-
-  return values;
-}
-
-function descending(a, b) {
-  return b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
-}
-
-function number(x) {
-  return x === null ? NaN : +x;
-}
-
-function variance(values, valueof) {
-  var n = values.length,
-      m = 0,
-      i = -1,
-      mean = 0,
-      value,
-      delta,
-      sum = 0;
-
-  if (valueof == null) {
-    while (++i < n) {
-      if (!isNaN(value = number(values[i]))) {
-        delta = value - mean;
-        mean += delta / ++m;
-        sum += delta * (value - mean);
-      }
-    }
-  }
-
-  else {
-    while (++i < n) {
-      if (!isNaN(value = number(valueof(values[i], i, values)))) {
-        delta = value - mean;
-        mean += delta / ++m;
-        sum += delta * (value - mean);
-      }
-    }
-  }
-
-  if (m > 1) return sum / (m - 1);
-}
-
-function deviation(array, f) {
-  var v = variance(array, f);
-  return v ? Math.sqrt(v) : v;
-}
-
-function extent(values, valueof) {
-  var n = values.length,
-      i = -1,
-      value,
-      min,
-      max;
-
-  if (valueof == null) {
-    while (++i < n) { // Find the first comparable value.
-      if ((value = values[i]) != null && value >= value) {
-        min = max = value;
-        while (++i < n) { // Compare the remaining values.
-          if ((value = values[i]) != null) {
-            if (min > value) min = value;
-            if (max < value) max = value;
-          }
-        }
-      }
-    }
-  }
-
-  else {
-    while (++i < n) { // Find the first comparable value.
-      if ((value = valueof(values[i], i, values)) != null && value >= value) {
-        min = max = value;
-        while (++i < n) { // Compare the remaining values.
-          if ((value = valueof(values[i], i, values)) != null) {
-            if (min > value) min = value;
-            if (max < value) max = value;
-          }
-        }
-      }
-    }
-  }
-
-  return [min, max];
-}
-
-var array = Array.prototype;
-
-var slice = array.slice;
-var map = array.map;
-
-function constant(x) {
-  return function() {
-    return x;
-  };
-}
-
-function identity(x) {
-  return x;
-}
-
-function range(start, stop, step) {
-  start = +start, stop = +stop, step = (n = arguments.length) < 2 ? (stop = start, start = 0, 1) : n < 3 ? 1 : +step;
-
-  var i = -1,
-      n = Math.max(0, Math.ceil((stop - start) / step)) | 0,
-      range = new Array(n);
-
-  while (++i < n) {
-    range[i] = start + i * step;
-  }
-
-  return range;
-}
-
-var e10 = Math.sqrt(50),
-    e5 = Math.sqrt(10),
-    e2 = Math.sqrt(2);
-
-function ticks(start, stop, count) {
-  var reverse,
-      i = -1,
-      n,
-      ticks,
-      step;
-
-  stop = +stop, start = +start, count = +count;
-  if (start === stop && count > 0) return [start];
-  if (reverse = stop < start) n = start, start = stop, stop = n;
-  if ((step = tickIncrement(start, stop, count)) === 0 || !isFinite(step)) return [];
-
-  if (step > 0) {
-    start = Math.ceil(start / step);
-    stop = Math.floor(stop / step);
-    ticks = new Array(n = Math.ceil(stop - start + 1));
-    while (++i < n) ticks[i] = (start + i) * step;
-  } else {
-    start = Math.floor(start * step);
-    stop = Math.ceil(stop * step);
-    ticks = new Array(n = Math.ceil(start - stop + 1));
-    while (++i < n) ticks[i] = (start - i) / step;
-  }
-
-  if (reverse) ticks.reverse();
-
-  return ticks;
-}
-
-function tickIncrement(start, stop, count) {
-  var step = (stop - start) / Math.max(0, count),
-      power = Math.floor(Math.log(step) / Math.LN10),
-      error = step / Math.pow(10, power);
-  return power >= 0
-      ? (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1) * Math.pow(10, power)
-      : -Math.pow(10, -power) / (error >= e10 ? 10 : error >= e5 ? 5 : error >= e2 ? 2 : 1);
-}
-
-function tickStep(start, stop, count) {
-  var step0 = Math.abs(stop - start) / Math.max(0, count),
-      step1 = Math.pow(10, Math.floor(Math.log(step0) / Math.LN10)),
-      error = step0 / step1;
-  if (error >= e10) step1 *= 10;
-  else if (error >= e5) step1 *= 5;
-  else if (error >= e2) step1 *= 2;
-  return stop < start ? -step1 : step1;
-}
-
-function sturges(values) {
-  return Math.ceil(Math.log(values.length) / Math.LN2) + 1;
-}
-
-function histogram() {
-  var value = identity,
-      domain = extent,
-      threshold = sturges;
-
-  function histogram(data) {
-    var i,
-        n = data.length,
-        x,
-        values = new Array(n);
-
-    for (i = 0; i < n; ++i) {
-      values[i] = value(data[i], i, data);
-    }
-
-    var xz = domain(values),
-        x0 = xz[0],
-        x1 = xz[1],
-        tz = threshold(values, x0, x1);
-
-    // Convert number of thresholds into uniform thresholds.
-    if (!Array.isArray(tz)) {
-      tz = tickStep(x0, x1, tz);
-      tz = range(Math.ceil(x0 / tz) * tz, x1, tz); // exclusive
-    }
-
-    // Remove any thresholds outside the domain.
-    var m = tz.length;
-    while (tz[0] <= x0) tz.shift(), --m;
-    while (tz[m - 1] > x1) tz.pop(), --m;
-
-    var bins = new Array(m + 1),
-        bin;
-
-    // Initialize bins.
-    for (i = 0; i <= m; ++i) {
-      bin = bins[i] = [];
-      bin.x0 = i > 0 ? tz[i - 1] : x0;
-      bin.x1 = i < m ? tz[i] : x1;
-    }
-
-    // Assign data to bins by value, ignoring any outside the domain.
-    for (i = 0; i < n; ++i) {
-      x = values[i];
-      if (x0 <= x && x <= x1) {
-        bins[bisectRight(tz, x, 0, m)].push(data[i]);
-      }
-    }
-
-    return bins;
-  }
-
-  histogram.value = function(_) {
-    return arguments.length ? (value = typeof _ === "function" ? _ : constant(_), histogram) : value;
-  };
-
-  histogram.domain = function(_) {
-    return arguments.length ? (domain = typeof _ === "function" ? _ : constant([_[0], _[1]]), histogram) : domain;
-  };
-
-  histogram.thresholds = function(_) {
-    return arguments.length ? (threshold = typeof _ === "function" ? _ : Array.isArray(_) ? constant(slice.call(_)) : constant(_), histogram) : threshold;
-  };
-
-  return histogram;
-}
-
-function quantile(values, p, valueof) {
-  if (valueof == null) valueof = number;
-  if (!(n = values.length)) return;
-  if ((p = +p) <= 0 || n < 2) return +valueof(values[0], 0, values);
-  if (p >= 1) return +valueof(values[n - 1], n - 1, values);
-  var n,
-      i = (n - 1) * p,
-      i0 = Math.floor(i),
-      value0 = +valueof(values[i0], i0, values),
-      value1 = +valueof(values[i0 + 1], i0 + 1, values);
-  return value0 + (value1 - value0) * (i - i0);
-}
-
-function freedmanDiaconis(values, min, max) {
-  values = map.call(values, number).sort(ascending);
-  return Math.ceil((max - min) / (2 * (quantile(values, 0.75) - quantile(values, 0.25)) * Math.pow(values.length, -1 / 3)));
-}
-
-function scott(values, min, max) {
-  return Math.ceil((max - min) / (3.5 * deviation(values) * Math.pow(values.length, -1 / 3)));
-}
-
-function max(values, valueof) {
-  var n = values.length,
-      i = -1,
-      value,
-      max;
-
-  if (valueof == null) {
-    while (++i < n) { // Find the first comparable value.
-      if ((value = values[i]) != null && value >= value) {
-        max = value;
-        while (++i < n) { // Compare the remaining values.
-          if ((value = values[i]) != null && value > max) {
-            max = value;
-          }
-        }
-      }
-    }
-  }
-
-  else {
-    while (++i < n) { // Find the first comparable value.
-      if ((value = valueof(values[i], i, values)) != null && value >= value) {
-        max = value;
-        while (++i < n) { // Compare the remaining values.
-          if ((value = valueof(values[i], i, values)) != null && value > max) {
-            max = value;
-          }
-        }
-      }
-    }
-  }
-
-  return max;
-}
-
-function mean(values, valueof) {
-  var n = values.length,
-      m = n,
-      i = -1,
-      value,
-      sum = 0;
-
-  if (valueof == null) {
-    while (++i < n) {
-      if (!isNaN(value = number(values[i]))) sum += value;
-      else --m;
-    }
-  }
-
-  else {
-    while (++i < n) {
-      if (!isNaN(value = number(valueof(values[i], i, values)))) sum += value;
-      else --m;
-    }
-  }
-
-  if (m) return sum / m;
-}
-
-function median(values, valueof) {
-  var n = values.length,
-      i = -1,
-      value,
-      numbers = [];
-
-  if (valueof == null) {
-    while (++i < n) {
-      if (!isNaN(value = number(values[i]))) {
-        numbers.push(value);
-      }
-    }
-  }
-
-  else {
-    while (++i < n) {
-      if (!isNaN(value = number(valueof(values[i], i, values)))) {
-        numbers.push(value);
-      }
-    }
-  }
-
-  return quantile(numbers.sort(ascending), 0.5);
-}
-
-function merge(arrays) {
-  var n = arrays.length,
-      m,
-      i = -1,
-      j = 0,
-      merged,
-      array;
-
-  while (++i < n) j += arrays[i].length;
-  merged = new Array(j);
-
-  while (--n >= 0) {
-    array = arrays[n];
-    m = array.length;
-    while (--m >= 0) {
-      merged[--j] = array[m];
-    }
-  }
-
-  return merged;
-}
-
-function min(values, valueof) {
-  var n = values.length,
-      i = -1,
-      value,
-      min;
-
-  if (valueof == null) {
-    while (++i < n) { // Find the first comparable value.
-      if ((value = values[i]) != null && value >= value) {
-        min = value;
-        while (++i < n) { // Compare the remaining values.
-          if ((value = values[i]) != null && min > value) {
-            min = value;
-          }
-        }
-      }
-    }
-  }
-
-  else {
-    while (++i < n) { // Find the first comparable value.
-      if ((value = valueof(values[i], i, values)) != null && value >= value) {
-        min = value;
-        while (++i < n) { // Compare the remaining values.
-          if ((value = valueof(values[i], i, values)) != null && min > value) {
-            min = value;
-          }
-        }
-      }
-    }
-  }
-
-  return min;
-}
-
-function permute(array, indexes) {
-  var i = indexes.length, permutes = new Array(i);
-  while (i--) permutes[i] = array[indexes[i]];
-  return permutes;
-}
-
-function scan(values, compare) {
-  if (!(n = values.length)) return;
-  var n,
-      i = 0,
-      j = 0,
-      xi,
-      xj = values[j];
-
-  if (compare == null) compare = ascending;
-
-  while (++i < n) {
-    if (compare(xi = values[i], xj) < 0 || compare(xj, xj) !== 0) {
-      xj = xi, j = i;
-    }
-  }
-
-  if (compare(xj, xj) === 0) return j;
-}
-
-function shuffle(array, i0, i1) {
-  var m = (i1 == null ? array.length : i1) - (i0 = i0 == null ? 0 : +i0),
-      t,
-      i;
-
-  while (m) {
-    i = Math.random() * m-- | 0;
-    t = array[m + i0];
-    array[m + i0] = array[i + i0];
-    array[i + i0] = t;
-  }
-
-  return array;
-}
-
-function sum(values, valueof) {
-  var n = values.length,
-      i = -1,
-      value,
-      sum = 0;
-
-  if (valueof == null) {
-    while (++i < n) {
-      if (value = +values[i]) sum += value; // Note: zero and null are equivalent.
-    }
-  }
-
-  else {
-    while (++i < n) {
-      if (value = +valueof(values[i], i, values)) sum += value;
-    }
-  }
-
-  return sum;
-}
-
-function transpose(matrix) {
-  if (!(n = matrix.length)) return [];
-  for (var i = -1, m = min(matrix, length), transpose = new Array(m); ++i < m;) {
-    for (var j = -1, n, row = transpose[i] = new Array(n); ++j < n;) {
-      row[j] = matrix[j][i];
-    }
-  }
-  return transpose;
-}
-
-function length(d) {
-  return d.length;
-}
-
-function zip() {
-  return transpose(arguments);
-}
-
-exports.bisect = bisectRight;
-exports.bisectRight = bisectRight;
-exports.bisectLeft = bisectLeft;
-exports.ascending = ascending;
-exports.bisector = bisector;
-exports.cross = cross;
-exports.descending = descending;
-exports.deviation = deviation;
-exports.extent = extent;
-exports.histogram = histogram;
-exports.thresholdFreedmanDiaconis = freedmanDiaconis;
-exports.thresholdScott = scott;
-exports.thresholdSturges = sturges;
-exports.max = max;
-exports.mean = mean;
-exports.median = median;
-exports.merge = merge;
-exports.min = min;
-exports.pairs = pairs;
-exports.permute = permute;
-exports.quantile = quantile;
-exports.range = range;
-exports.scan = scan;
-exports.shuffle = shuffle;
-exports.sum = sum;
-exports.ticks = ticks;
-exports.tickIncrement = tickIncrement;
-exports.tickStep = tickStep;
-exports.transpose = transpose;
-exports.variance = variance;
-exports.zip = zip;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
+};
 
 },{}],2:[function(_dereq_,module,exports){
-// https://d3js.org/d3-collection/ v1.0.7 Copyright 2018 Mike Bostock
-(function (global, factory) {
-typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-typeof define === 'function' && define.amd ? define(['exports'], factory) :
-(factory((global.d3 = global.d3 || {})));
-}(this, (function (exports) { 'use strict';
+"use strict";
 
-var prefix = "$";
+var somehow = _dereq_('somehow'); // const somehow = require('/Users/spencer/mountain/somehow/src');
 
-function Map() {}
 
-Map.prototype = map.prototype = {
-  constructor: Map,
-  has: function(key) {
-    return (prefix + key) in this;
-  },
-  get: function(key) {
-    return this[prefix + key];
-  },
-  set: function(key, value) {
-    this[prefix + key] = value;
-    return this;
-  },
-  remove: function(key) {
-    var property = prefix + key;
-    return property in this && delete this[property];
-  },
-  clear: function() {
-    for (var property in this) if (property[0] === prefix) delete this[property];
-  },
-  keys: function() {
-    var keys = [];
-    for (var property in this) if (property[0] === prefix) keys.push(property.slice(1));
-    return keys;
-  },
-  values: function() {
-    var values = [];
-    for (var property in this) if (property[0] === prefix) values.push(this[property]);
-    return values;
-  },
-  entries: function() {
-    var entries = [];
-    for (var property in this) if (property[0] === prefix) entries.push({key: property.slice(1), value: this[property]});
-    return entries;
-  },
-  size: function() {
-    var size = 0;
-    for (var property in this) if (property[0] === prefix) ++size;
-    return size;
-  },
-  empty: function() {
-    for (var property in this) if (property[0] === prefix) return false;
-    return true;
-  },
-  each: function(f) {
-    for (var property in this) if (property[0] === prefix) f(this[property], property.slice(1), this);
-  }
-};
+var spacetime = _dereq_('spacetime');
 
-function map(object, f) {
-  var map = new Map;
+var missions = _dereq_('./data/missions');
 
-  // Copy constructor.
-  if (object instanceof Map) object.each(function(value, key) { map.set(key, value); });
+var today = spacetime.now().format('iso');
 
-  // Index array by numeric index or specified key function.
-  else if (Array.isArray(object)) {
-    var i = -1,
-        n = object.length,
-        o;
+_dereq_('./legend');
 
-    if (f == null) while (++i < n) map.set(i, object[i]);
-    else while (++i < n) map.set(f(o = object[i], i, object), o);
-  }
+var EXPECT = 81;
 
-  // Convert object to map.
-  else if (object) for (var key in object) map.set(key, object[key]);
+var drawMission = function drawMission(k) {
+  var w = somehow({
+    height: 200,
+    aspect: 'widescreen'
+  });
+  missions[k].people.forEach(function (o, i) {
+    var y = i + 1;
+    var line = w.line();
+    var born = spacetime(o.birth); //:(
 
-  return map;
-}
-
-function nest() {
-  var keys = [],
-      sortKeys = [],
-      sortValues,
-      rollup,
-      nest;
-
-  function apply(array, depth, createResult, setResult) {
-    if (depth >= keys.length) {
-      if (sortValues != null) array.sort(sortValues);
-      return rollup != null ? rollup(array) : array;
-    }
-
-    var i = -1,
-        n = array.length,
-        key = keys[depth++],
-        keyValue,
-        value,
-        valuesByKey = map(),
-        values,
-        result = createResult();
-
-    while (++i < n) {
-      if (values = valuesByKey.get(keyValue = key(value = array[i]) + "")) {
-        values.push(value);
-      } else {
-        valuesByKey.set(keyValue, [value]);
-      }
-    }
-
-    valuesByKey.each(function(values, key) {
-      setResult(result, key, apply(values, depth, createResult, setResult));
-    });
-
-    return result;
-  }
-
-  function entries(map$$1, depth) {
-    if (++depth > keys.length) return map$$1;
-    var array, sortKey = sortKeys[depth - 1];
-    if (rollup != null && depth >= keys.length) array = map$$1.entries();
-    else array = [], map$$1.each(function(v, k) { array.push({key: k, values: entries(v, depth)}); });
-    return sortKey != null ? array.sort(function(a, b) { return sortKey(a.key, b.key); }) : array;
-  }
-
-  return nest = {
-    object: function(array) { return apply(array, 0, createObject, setObject); },
-    map: function(array) { return apply(array, 0, createMap, setMap); },
-    entries: function(array) { return entries(apply(array, 0, createMap, setMap), 0); },
-    key: function(d) { keys.push(d); return nest; },
-    sortKeys: function(order) { sortKeys[keys.length - 1] = order; return nest; },
-    sortValues: function(order) { sortValues = order; return nest; },
-    rollup: function(f) { rollup = f; return nest; }
-  };
-}
-
-function createObject() {
-  return {};
-}
-
-function setObject(object, key, value) {
-  object[key] = value;
-}
-
-function createMap() {
-  return map();
-}
-
-function setMap(map$$1, key, value) {
-  map$$1.set(key, value);
-}
-
-function Set() {}
-
-var proto = map.prototype;
-
-Set.prototype = set.prototype = {
-  constructor: Set,
-  has: proto.has,
-  add: function(value) {
-    value += "";
-    this[prefix + value] = value;
-    return this;
-  },
-  remove: proto.remove,
-  clear: proto.clear,
-  values: proto.keys,
-  size: proto.size,
-  empty: proto.empty,
-  each: proto.each
-};
-
-function set(object, f) {
-  var set = new Set;
-
-  // Copy constructor.
-  if (object instanceof Set) object.each(function(value) { set.add(value); });
-
-  // Otherwise, assume it’s an array.
-  else if (object) {
-    var i = -1, n = object.length;
-    if (f == null) while (++i < n) set.add(object[i]);
-    else while (++i < n) set.add(f(object[i], i, object));
-  }
-
-  return set;
-}
-
-function keys(map) {
-  var keys = [];
-  for (var key in map) keys.push(key);
-  return keys;
-}
-
-function values(map) {
-  var values = [];
-  for (var key in map) values.push(map[key]);
-  return values;
-}
-
-function entries(map) {
-  var entries = [];
-  for (var key in map) entries.push({key: key, value: map[key]});
-  return entries;
-}
-
-exports.nest = nest;
-exports.set = set;
-exports.map = map;
-exports.keys = keys;
-exports.values = values;
-exports.entries = entries;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
-
-},{}],3:[function(_dereq_,module,exports){
-// https://d3js.org/d3-color/ v1.2.3 Copyright 2018 Mike Bostock
-(function (global, factory) {
-typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-typeof define === 'function' && define.amd ? define(['exports'], factory) :
-(factory((global.d3 = global.d3 || {})));
-}(this, (function (exports) { 'use strict';
-
-function define(constructor, factory, prototype) {
-  constructor.prototype = factory.prototype = prototype;
-  prototype.constructor = constructor;
-}
-
-function extend(parent, definition) {
-  var prototype = Object.create(parent.prototype);
-  for (var key in definition) prototype[key] = definition[key];
-  return prototype;
-}
-
-function Color() {}
-
-var darker = 0.7;
-var brighter = 1 / darker;
-
-var reI = "\\s*([+-]?\\d+)\\s*",
-    reN = "\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*",
-    reP = "\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*",
-    reHex3 = /^#([0-9a-f]{3})$/,
-    reHex6 = /^#([0-9a-f]{6})$/,
-    reRgbInteger = new RegExp("^rgb\\(" + [reI, reI, reI] + "\\)$"),
-    reRgbPercent = new RegExp("^rgb\\(" + [reP, reP, reP] + "\\)$"),
-    reRgbaInteger = new RegExp("^rgba\\(" + [reI, reI, reI, reN] + "\\)$"),
-    reRgbaPercent = new RegExp("^rgba\\(" + [reP, reP, reP, reN] + "\\)$"),
-    reHslPercent = new RegExp("^hsl\\(" + [reN, reP, reP] + "\\)$"),
-    reHslaPercent = new RegExp("^hsla\\(" + [reN, reP, reP, reN] + "\\)$");
-
-var named = {
-  aliceblue: 0xf0f8ff,
-  antiquewhite: 0xfaebd7,
-  aqua: 0x00ffff,
-  aquamarine: 0x7fffd4,
-  azure: 0xf0ffff,
-  beige: 0xf5f5dc,
-  bisque: 0xffe4c4,
-  black: 0x000000,
-  blanchedalmond: 0xffebcd,
-  blue: 0x0000ff,
-  blueviolet: 0x8a2be2,
-  brown: 0xa52a2a,
-  burlywood: 0xdeb887,
-  cadetblue: 0x5f9ea0,
-  chartreuse: 0x7fff00,
-  chocolate: 0xd2691e,
-  coral: 0xff7f50,
-  cornflowerblue: 0x6495ed,
-  cornsilk: 0xfff8dc,
-  crimson: 0xdc143c,
-  cyan: 0x00ffff,
-  darkblue: 0x00008b,
-  darkcyan: 0x008b8b,
-  darkgoldenrod: 0xb8860b,
-  darkgray: 0xa9a9a9,
-  darkgreen: 0x006400,
-  darkgrey: 0xa9a9a9,
-  darkkhaki: 0xbdb76b,
-  darkmagenta: 0x8b008b,
-  darkolivegreen: 0x556b2f,
-  darkorange: 0xff8c00,
-  darkorchid: 0x9932cc,
-  darkred: 0x8b0000,
-  darksalmon: 0xe9967a,
-  darkseagreen: 0x8fbc8f,
-  darkslateblue: 0x483d8b,
-  darkslategray: 0x2f4f4f,
-  darkslategrey: 0x2f4f4f,
-  darkturquoise: 0x00ced1,
-  darkviolet: 0x9400d3,
-  deeppink: 0xff1493,
-  deepskyblue: 0x00bfff,
-  dimgray: 0x696969,
-  dimgrey: 0x696969,
-  dodgerblue: 0x1e90ff,
-  firebrick: 0xb22222,
-  floralwhite: 0xfffaf0,
-  forestgreen: 0x228b22,
-  fuchsia: 0xff00ff,
-  gainsboro: 0xdcdcdc,
-  ghostwhite: 0xf8f8ff,
-  gold: 0xffd700,
-  goldenrod: 0xdaa520,
-  gray: 0x808080,
-  green: 0x008000,
-  greenyellow: 0xadff2f,
-  grey: 0x808080,
-  honeydew: 0xf0fff0,
-  hotpink: 0xff69b4,
-  indianred: 0xcd5c5c,
-  indigo: 0x4b0082,
-  ivory: 0xfffff0,
-  khaki: 0xf0e68c,
-  lavender: 0xe6e6fa,
-  lavenderblush: 0xfff0f5,
-  lawngreen: 0x7cfc00,
-  lemonchiffon: 0xfffacd,
-  lightblue: 0xadd8e6,
-  lightcoral: 0xf08080,
-  lightcyan: 0xe0ffff,
-  lightgoldenrodyellow: 0xfafad2,
-  lightgray: 0xd3d3d3,
-  lightgreen: 0x90ee90,
-  lightgrey: 0xd3d3d3,
-  lightpink: 0xffb6c1,
-  lightsalmon: 0xffa07a,
-  lightseagreen: 0x20b2aa,
-  lightskyblue: 0x87cefa,
-  lightslategray: 0x778899,
-  lightslategrey: 0x778899,
-  lightsteelblue: 0xb0c4de,
-  lightyellow: 0xffffe0,
-  lime: 0x00ff00,
-  limegreen: 0x32cd32,
-  linen: 0xfaf0e6,
-  magenta: 0xff00ff,
-  maroon: 0x800000,
-  mediumaquamarine: 0x66cdaa,
-  mediumblue: 0x0000cd,
-  mediumorchid: 0xba55d3,
-  mediumpurple: 0x9370db,
-  mediumseagreen: 0x3cb371,
-  mediumslateblue: 0x7b68ee,
-  mediumspringgreen: 0x00fa9a,
-  mediumturquoise: 0x48d1cc,
-  mediumvioletred: 0xc71585,
-  midnightblue: 0x191970,
-  mintcream: 0xf5fffa,
-  mistyrose: 0xffe4e1,
-  moccasin: 0xffe4b5,
-  navajowhite: 0xffdead,
-  navy: 0x000080,
-  oldlace: 0xfdf5e6,
-  olive: 0x808000,
-  olivedrab: 0x6b8e23,
-  orange: 0xffa500,
-  orangered: 0xff4500,
-  orchid: 0xda70d6,
-  palegoldenrod: 0xeee8aa,
-  palegreen: 0x98fb98,
-  paleturquoise: 0xafeeee,
-  palevioletred: 0xdb7093,
-  papayawhip: 0xffefd5,
-  peachpuff: 0xffdab9,
-  peru: 0xcd853f,
-  pink: 0xffc0cb,
-  plum: 0xdda0dd,
-  powderblue: 0xb0e0e6,
-  purple: 0x800080,
-  rebeccapurple: 0x663399,
-  red: 0xff0000,
-  rosybrown: 0xbc8f8f,
-  royalblue: 0x4169e1,
-  saddlebrown: 0x8b4513,
-  salmon: 0xfa8072,
-  sandybrown: 0xf4a460,
-  seagreen: 0x2e8b57,
-  seashell: 0xfff5ee,
-  sienna: 0xa0522d,
-  silver: 0xc0c0c0,
-  skyblue: 0x87ceeb,
-  slateblue: 0x6a5acd,
-  slategray: 0x708090,
-  slategrey: 0x708090,
-  snow: 0xfffafa,
-  springgreen: 0x00ff7f,
-  steelblue: 0x4682b4,
-  tan: 0xd2b48c,
-  teal: 0x008080,
-  thistle: 0xd8bfd8,
-  tomato: 0xff6347,
-  turquoise: 0x40e0d0,
-  violet: 0xee82ee,
-  wheat: 0xf5deb3,
-  white: 0xffffff,
-  whitesmoke: 0xf5f5f5,
-  yellow: 0xffff00,
-  yellowgreen: 0x9acd32
-};
-
-define(Color, color, {
-  displayable: function() {
-    return this.rgb().displayable();
-  },
-  hex: function() {
-    return this.rgb().hex();
-  },
-  toString: function() {
-    return this.rgb() + "";
-  }
-});
-
-function color(format) {
-  var m;
-  format = (format + "").trim().toLowerCase();
-  return (m = reHex3.exec(format)) ? (m = parseInt(m[1], 16), new Rgb((m >> 8 & 0xf) | (m >> 4 & 0x0f0), (m >> 4 & 0xf) | (m & 0xf0), ((m & 0xf) << 4) | (m & 0xf), 1)) // #f00
-      : (m = reHex6.exec(format)) ? rgbn(parseInt(m[1], 16)) // #ff0000
-      : (m = reRgbInteger.exec(format)) ? new Rgb(m[1], m[2], m[3], 1) // rgb(255, 0, 0)
-      : (m = reRgbPercent.exec(format)) ? new Rgb(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, 1) // rgb(100%, 0%, 0%)
-      : (m = reRgbaInteger.exec(format)) ? rgba(m[1], m[2], m[3], m[4]) // rgba(255, 0, 0, 1)
-      : (m = reRgbaPercent.exec(format)) ? rgba(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, m[4]) // rgb(100%, 0%, 0%, 1)
-      : (m = reHslPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, 1) // hsl(120, 50%, 50%)
-      : (m = reHslaPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, m[4]) // hsla(120, 50%, 50%, 1)
-      : named.hasOwnProperty(format) ? rgbn(named[format])
-      : format === "transparent" ? new Rgb(NaN, NaN, NaN, 0)
-      : null;
-}
-
-function rgbn(n) {
-  return new Rgb(n >> 16 & 0xff, n >> 8 & 0xff, n & 0xff, 1);
-}
-
-function rgba(r, g, b, a) {
-  if (a <= 0) r = g = b = NaN;
-  return new Rgb(r, g, b, a);
-}
-
-function rgbConvert(o) {
-  if (!(o instanceof Color)) o = color(o);
-  if (!o) return new Rgb;
-  o = o.rgb();
-  return new Rgb(o.r, o.g, o.b, o.opacity);
-}
-
-function rgb(r, g, b, opacity) {
-  return arguments.length === 1 ? rgbConvert(r) : new Rgb(r, g, b, opacity == null ? 1 : opacity);
-}
-
-function Rgb(r, g, b, opacity) {
-  this.r = +r;
-  this.g = +g;
-  this.b = +b;
-  this.opacity = +opacity;
-}
-
-define(Rgb, rgb, extend(Color, {
-  brighter: function(k) {
-    k = k == null ? brighter : Math.pow(brighter, k);
-    return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
-  },
-  darker: function(k) {
-    k = k == null ? darker : Math.pow(darker, k);
-    return new Rgb(this.r * k, this.g * k, this.b * k, this.opacity);
-  },
-  rgb: function() {
-    return this;
-  },
-  displayable: function() {
-    return (0 <= this.r && this.r <= 255)
-        && (0 <= this.g && this.g <= 255)
-        && (0 <= this.b && this.b <= 255)
-        && (0 <= this.opacity && this.opacity <= 1);
-  },
-  hex: function() {
-    return "#" + hex(this.r) + hex(this.g) + hex(this.b);
-  },
-  toString: function() {
-    var a = this.opacity; a = isNaN(a) ? 1 : Math.max(0, Math.min(1, a));
-    return (a === 1 ? "rgb(" : "rgba(")
-        + Math.max(0, Math.min(255, Math.round(this.r) || 0)) + ", "
-        + Math.max(0, Math.min(255, Math.round(this.g) || 0)) + ", "
-        + Math.max(0, Math.min(255, Math.round(this.b) || 0))
-        + (a === 1 ? ")" : ", " + a + ")");
-  }
-}));
-
-function hex(value) {
-  value = Math.max(0, Math.min(255, Math.round(value) || 0));
-  return (value < 16 ? "0" : "") + value.toString(16);
-}
-
-function hsla(h, s, l, a) {
-  if (a <= 0) h = s = l = NaN;
-  else if (l <= 0 || l >= 1) h = s = NaN;
-  else if (s <= 0) h = NaN;
-  return new Hsl(h, s, l, a);
-}
-
-function hslConvert(o) {
-  if (o instanceof Hsl) return new Hsl(o.h, o.s, o.l, o.opacity);
-  if (!(o instanceof Color)) o = color(o);
-  if (!o) return new Hsl;
-  if (o instanceof Hsl) return o;
-  o = o.rgb();
-  var r = o.r / 255,
-      g = o.g / 255,
-      b = o.b / 255,
-      min = Math.min(r, g, b),
-      max = Math.max(r, g, b),
-      h = NaN,
-      s = max - min,
-      l = (max + min) / 2;
-  if (s) {
-    if (r === max) h = (g - b) / s + (g < b) * 6;
-    else if (g === max) h = (b - r) / s + 2;
-    else h = (r - g) / s + 4;
-    s /= l < 0.5 ? max + min : 2 - max - min;
-    h *= 60;
-  } else {
-    s = l > 0 && l < 1 ? 0 : h;
-  }
-  return new Hsl(h, s, l, o.opacity);
-}
-
-function hsl(h, s, l, opacity) {
-  return arguments.length === 1 ? hslConvert(h) : new Hsl(h, s, l, opacity == null ? 1 : opacity);
-}
-
-function Hsl(h, s, l, opacity) {
-  this.h = +h;
-  this.s = +s;
-  this.l = +l;
-  this.opacity = +opacity;
-}
-
-define(Hsl, hsl, extend(Color, {
-  brighter: function(k) {
-    k = k == null ? brighter : Math.pow(brighter, k);
-    return new Hsl(this.h, this.s, this.l * k, this.opacity);
-  },
-  darker: function(k) {
-    k = k == null ? darker : Math.pow(darker, k);
-    return new Hsl(this.h, this.s, this.l * k, this.opacity);
-  },
-  rgb: function() {
-    var h = this.h % 360 + (this.h < 0) * 360,
-        s = isNaN(h) || isNaN(this.s) ? 0 : this.s,
-        l = this.l,
-        m2 = l + (l < 0.5 ? l : 1 - l) * s,
-        m1 = 2 * l - m2;
-    return new Rgb(
-      hsl2rgb(h >= 240 ? h - 240 : h + 120, m1, m2),
-      hsl2rgb(h, m1, m2),
-      hsl2rgb(h < 120 ? h + 240 : h - 120, m1, m2),
-      this.opacity
-    );
-  },
-  displayable: function() {
-    return (0 <= this.s && this.s <= 1 || isNaN(this.s))
-        && (0 <= this.l && this.l <= 1)
-        && (0 <= this.opacity && this.opacity <= 1);
-  }
-}));
-
-/* From FvD 13.37, CSS Color Module Level 3 */
-function hsl2rgb(h, m1, m2) {
-  return (h < 60 ? m1 + (m2 - m1) * h / 60
-      : h < 180 ? m2
-      : h < 240 ? m1 + (m2 - m1) * (240 - h) / 60
-      : m1) * 255;
-}
-
-var deg2rad = Math.PI / 180;
-var rad2deg = 180 / Math.PI;
-
-// https://beta.observablehq.com/@mbostock/lab-and-rgb
-var K = 18,
-    Xn = 0.96422,
-    Yn = 1,
-    Zn = 0.82521,
-    t0 = 4 / 29,
-    t1 = 6 / 29,
-    t2 = 3 * t1 * t1,
-    t3 = t1 * t1 * t1;
-
-function labConvert(o) {
-  if (o instanceof Lab) return new Lab(o.l, o.a, o.b, o.opacity);
-  if (o instanceof Hcl) {
-    if (isNaN(o.h)) return new Lab(o.l, 0, 0, o.opacity);
-    var h = o.h * deg2rad;
-    return new Lab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
-  }
-  if (!(o instanceof Rgb)) o = rgbConvert(o);
-  var r = rgb2lrgb(o.r),
-      g = rgb2lrgb(o.g),
-      b = rgb2lrgb(o.b),
-      y = xyz2lab((0.2225045 * r + 0.7168786 * g + 0.0606169 * b) / Yn), x, z;
-  if (r === g && g === b) x = z = y; else {
-    x = xyz2lab((0.4360747 * r + 0.3850649 * g + 0.1430804 * b) / Xn);
-    z = xyz2lab((0.0139322 * r + 0.0971045 * g + 0.7141733 * b) / Zn);
-  }
-  return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), o.opacity);
-}
-
-function gray(l, opacity) {
-  return new Lab(l, 0, 0, opacity == null ? 1 : opacity);
-}
-
-function lab(l, a, b, opacity) {
-  return arguments.length === 1 ? labConvert(l) : new Lab(l, a, b, opacity == null ? 1 : opacity);
-}
-
-function Lab(l, a, b, opacity) {
-  this.l = +l;
-  this.a = +a;
-  this.b = +b;
-  this.opacity = +opacity;
-}
-
-define(Lab, lab, extend(Color, {
-  brighter: function(k) {
-    return new Lab(this.l + K * (k == null ? 1 : k), this.a, this.b, this.opacity);
-  },
-  darker: function(k) {
-    return new Lab(this.l - K * (k == null ? 1 : k), this.a, this.b, this.opacity);
-  },
-  rgb: function() {
-    var y = (this.l + 16) / 116,
-        x = isNaN(this.a) ? y : y + this.a / 500,
-        z = isNaN(this.b) ? y : y - this.b / 200;
-    x = Xn * lab2xyz(x);
-    y = Yn * lab2xyz(y);
-    z = Zn * lab2xyz(z);
-    return new Rgb(
-      lrgb2rgb( 3.1338561 * x - 1.6168667 * y - 0.4906146 * z),
-      lrgb2rgb(-0.9787684 * x + 1.9161415 * y + 0.0334540 * z),
-      lrgb2rgb( 0.0719453 * x - 0.2289914 * y + 1.4052427 * z),
-      this.opacity
-    );
-  }
-}));
-
-function xyz2lab(t) {
-  return t > t3 ? Math.pow(t, 1 / 3) : t / t2 + t0;
-}
-
-function lab2xyz(t) {
-  return t > t1 ? t * t * t : t2 * (t - t0);
-}
-
-function lrgb2rgb(x) {
-  return 255 * (x <= 0.0031308 ? 12.92 * x : 1.055 * Math.pow(x, 1 / 2.4) - 0.055);
-}
-
-function rgb2lrgb(x) {
-  return (x /= 255) <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
-}
-
-function hclConvert(o) {
-  if (o instanceof Hcl) return new Hcl(o.h, o.c, o.l, o.opacity);
-  if (!(o instanceof Lab)) o = labConvert(o);
-  if (o.a === 0 && o.b === 0) return new Hcl(NaN, 0, o.l, o.opacity);
-  var h = Math.atan2(o.b, o.a) * rad2deg;
-  return new Hcl(h < 0 ? h + 360 : h, Math.sqrt(o.a * o.a + o.b * o.b), o.l, o.opacity);
-}
-
-function lch(l, c, h, opacity) {
-  return arguments.length === 1 ? hclConvert(l) : new Hcl(h, c, l, opacity == null ? 1 : opacity);
-}
-
-function hcl(h, c, l, opacity) {
-  return arguments.length === 1 ? hclConvert(h) : new Hcl(h, c, l, opacity == null ? 1 : opacity);
-}
-
-function Hcl(h, c, l, opacity) {
-  this.h = +h;
-  this.c = +c;
-  this.l = +l;
-  this.opacity = +opacity;
-}
-
-define(Hcl, hcl, extend(Color, {
-  brighter: function(k) {
-    return new Hcl(this.h, this.c, this.l + K * (k == null ? 1 : k), this.opacity);
-  },
-  darker: function(k) {
-    return new Hcl(this.h, this.c, this.l - K * (k == null ? 1 : k), this.opacity);
-  },
-  rgb: function() {
-    return labConvert(this).rgb();
-  }
-}));
-
-var A = -0.14861,
-    B = +1.78277,
-    C = -0.29227,
-    D = -0.90649,
-    E = +1.97294,
-    ED = E * D,
-    EB = E * B,
-    BC_DA = B * C - D * A;
-
-function cubehelixConvert(o) {
-  if (o instanceof Cubehelix) return new Cubehelix(o.h, o.s, o.l, o.opacity);
-  if (!(o instanceof Rgb)) o = rgbConvert(o);
-  var r = o.r / 255,
-      g = o.g / 255,
-      b = o.b / 255,
-      l = (BC_DA * b + ED * r - EB * g) / (BC_DA + ED - EB),
-      bl = b - l,
-      k = (E * (g - l) - C * bl) / D,
-      s = Math.sqrt(k * k + bl * bl) / (E * l * (1 - l)), // NaN if l=0 or l=1
-      h = s ? Math.atan2(k, bl) * rad2deg - 120 : NaN;
-  return new Cubehelix(h < 0 ? h + 360 : h, s, l, o.opacity);
-}
-
-function cubehelix(h, s, l, opacity) {
-  return arguments.length === 1 ? cubehelixConvert(h) : new Cubehelix(h, s, l, opacity == null ? 1 : opacity);
-}
-
-function Cubehelix(h, s, l, opacity) {
-  this.h = +h;
-  this.s = +s;
-  this.l = +l;
-  this.opacity = +opacity;
-}
-
-define(Cubehelix, cubehelix, extend(Color, {
-  brighter: function(k) {
-    k = k == null ? brighter : Math.pow(brighter, k);
-    return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
-  },
-  darker: function(k) {
-    k = k == null ? darker : Math.pow(darker, k);
-    return new Cubehelix(this.h, this.s, this.l * k, this.opacity);
-  },
-  rgb: function() {
-    var h = isNaN(this.h) ? 0 : (this.h + 120) * deg2rad,
-        l = +this.l,
-        a = isNaN(this.s) ? 0 : this.s * l * (1 - l),
-        cosh = Math.cos(h),
-        sinh = Math.sin(h);
-    return new Rgb(
-      255 * (l + a * (A * cosh + B * sinh)),
-      255 * (l + a * (C * cosh + D * sinh)),
-      255 * (l + a * (E * cosh)),
-      this.opacity
-    );
-  }
-}));
-
-exports.color = color;
-exports.rgb = rgb;
-exports.hsl = hsl;
-exports.lab = lab;
-exports.hcl = hcl;
-exports.lch = lch;
-exports.gray = gray;
-exports.cubehelix = cubehelix;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
-
-},{}],4:[function(_dereq_,module,exports){
-// https://d3js.org/d3-format/ v1.3.2 Copyright 2018 Mike Bostock
-(function (global, factory) {
-typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-typeof define === 'function' && define.amd ? define(['exports'], factory) :
-(factory((global.d3 = global.d3 || {})));
-}(this, (function (exports) { 'use strict';
-
-// Computes the decimal coefficient and exponent of the specified number x with
-// significant digits p, where x is positive and p is in [1, 21] or undefined.
-// For example, formatDecimal(1.23) returns ["123", 0].
-function formatDecimal(x, p) {
-  if ((i = (x = p ? x.toExponential(p - 1) : x.toExponential()).indexOf("e")) < 0) return null; // NaN, ±Infinity
-  var i, coefficient = x.slice(0, i);
-
-  // The string returned by toExponential either has the form \d\.\d+e[-+]\d+
-  // (e.g., 1.2e+3) or the form \de[-+]\d+ (e.g., 1e+3).
-  return [
-    coefficient.length > 1 ? coefficient[0] + coefficient.slice(2) : coefficient,
-    +x.slice(i + 1)
-  ];
-}
-
-function exponent(x) {
-  return x = formatDecimal(Math.abs(x)), x ? x[1] : NaN;
-}
-
-function formatGroup(grouping, thousands) {
-  return function(value, width) {
-    var i = value.length,
-        t = [],
-        j = 0,
-        g = grouping[0],
-        length = 0;
-
-    while (i > 0 && g > 0) {
-      if (length + g + 1 > width) g = Math.max(1, width - length);
-      t.push(value.substring(i -= g, i + g));
-      if ((length += g + 1) > width) break;
-      g = grouping[j = (j + 1) % grouping.length];
-    }
-
-    return t.reverse().join(thousands);
-  };
-}
-
-function formatNumerals(numerals) {
-  return function(value) {
-    return value.replace(/[0-9]/g, function(i) {
-      return numerals[+i];
-    });
-  };
-}
-
-// [[fill]align][sign][symbol][0][width][,][.precision][~][type]
-var re = /^(?:(.)?([<>=^]))?([+\-( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?(~)?([a-z%])?$/i;
-
-function formatSpecifier(specifier) {
-  return new FormatSpecifier(specifier);
-}
-
-formatSpecifier.prototype = FormatSpecifier.prototype; // instanceof
-
-function FormatSpecifier(specifier) {
-  if (!(match = re.exec(specifier))) throw new Error("invalid format: " + specifier);
-  var match;
-  this.fill = match[1] || " ";
-  this.align = match[2] || ">";
-  this.sign = match[3] || "-";
-  this.symbol = match[4] || "";
-  this.zero = !!match[5];
-  this.width = match[6] && +match[6];
-  this.comma = !!match[7];
-  this.precision = match[8] && +match[8].slice(1);
-  this.trim = !!match[9];
-  this.type = match[10] || "";
-}
-
-FormatSpecifier.prototype.toString = function() {
-  return this.fill
-      + this.align
-      + this.sign
-      + this.symbol
-      + (this.zero ? "0" : "")
-      + (this.width == null ? "" : Math.max(1, this.width | 0))
-      + (this.comma ? "," : "")
-      + (this.precision == null ? "" : "." + Math.max(0, this.precision | 0))
-      + (this.trim ? "~" : "")
-      + this.type;
-};
-
-// Trims insignificant zeros, e.g., replaces 1.2000k with 1.2k.
-function formatTrim(s) {
-  out: for (var n = s.length, i = 1, i0 = -1, i1; i < n; ++i) {
-    switch (s[i]) {
-      case ".": i0 = i1 = i; break;
-      case "0": if (i0 === 0) i0 = i; i1 = i; break;
-      default: if (i0 > 0) { if (!+s[i]) break out; i0 = 0; } break;
-    }
-  }
-  return i0 > 0 ? s.slice(0, i0) + s.slice(i1 + 1) : s;
-}
-
-var prefixExponent;
-
-function formatPrefixAuto(x, p) {
-  var d = formatDecimal(x, p);
-  if (!d) return x + "";
-  var coefficient = d[0],
-      exponent = d[1],
-      i = exponent - (prefixExponent = Math.max(-8, Math.min(8, Math.floor(exponent / 3))) * 3) + 1,
-      n = coefficient.length;
-  return i === n ? coefficient
-      : i > n ? coefficient + new Array(i - n + 1).join("0")
-      : i > 0 ? coefficient.slice(0, i) + "." + coefficient.slice(i)
-      : "0." + new Array(1 - i).join("0") + formatDecimal(x, Math.max(0, p + i - 1))[0]; // less than 1y!
-}
-
-function formatRounded(x, p) {
-  var d = formatDecimal(x, p);
-  if (!d) return x + "";
-  var coefficient = d[0],
-      exponent = d[1];
-  return exponent < 0 ? "0." + new Array(-exponent).join("0") + coefficient
-      : coefficient.length > exponent + 1 ? coefficient.slice(0, exponent + 1) + "." + coefficient.slice(exponent + 1)
-      : coefficient + new Array(exponent - coefficient.length + 2).join("0");
-}
-
-var formatTypes = {
-  "%": function(x, p) { return (x * 100).toFixed(p); },
-  "b": function(x) { return Math.round(x).toString(2); },
-  "c": function(x) { return x + ""; },
-  "d": function(x) { return Math.round(x).toString(10); },
-  "e": function(x, p) { return x.toExponential(p); },
-  "f": function(x, p) { return x.toFixed(p); },
-  "g": function(x, p) { return x.toPrecision(p); },
-  "o": function(x) { return Math.round(x).toString(8); },
-  "p": function(x, p) { return formatRounded(x * 100, p); },
-  "r": formatRounded,
-  "s": formatPrefixAuto,
-  "X": function(x) { return Math.round(x).toString(16).toUpperCase(); },
-  "x": function(x) { return Math.round(x).toString(16); }
-};
-
-function identity(x) {
-  return x;
-}
-
-var prefixes = ["y","z","a","f","p","n","µ","m","","k","M","G","T","P","E","Z","Y"];
-
-function formatLocale(locale) {
-  var group = locale.grouping && locale.thousands ? formatGroup(locale.grouping, locale.thousands) : identity,
-      currency = locale.currency,
-      decimal = locale.decimal,
-      numerals = locale.numerals ? formatNumerals(locale.numerals) : identity,
-      percent = locale.percent || "%";
-
-  function newFormat(specifier) {
-    specifier = formatSpecifier(specifier);
-
-    var fill = specifier.fill,
-        align = specifier.align,
-        sign = specifier.sign,
-        symbol = specifier.symbol,
-        zero = specifier.zero,
-        width = specifier.width,
-        comma = specifier.comma,
-        precision = specifier.precision,
-        trim = specifier.trim,
-        type = specifier.type;
-
-    // The "n" type is an alias for ",g".
-    if (type === "n") comma = true, type = "g";
-
-    // The "" type, and any invalid type, is an alias for ".12~g".
-    else if (!formatTypes[type]) precision == null && (precision = 12), trim = true, type = "g";
-
-    // If zero fill is specified, padding goes after sign and before digits.
-    if (zero || (fill === "0" && align === "=")) zero = true, fill = "0", align = "=";
-
-    // Compute the prefix and suffix.
-    // For SI-prefix, the suffix is lazily computed.
-    var prefix = symbol === "$" ? currency[0] : symbol === "#" && /[boxX]/.test(type) ? "0" + type.toLowerCase() : "",
-        suffix = symbol === "$" ? currency[1] : /[%p]/.test(type) ? percent : "";
-
-    // What format function should we use?
-    // Is this an integer type?
-    // Can this type generate exponential notation?
-    var formatType = formatTypes[type],
-        maybeSuffix = /[defgprs%]/.test(type);
-
-    // Set the default precision if not specified,
-    // or clamp the specified precision to the supported range.
-    // For significant precision, it must be in [1, 21].
-    // For fixed precision, it must be in [0, 20].
-    precision = precision == null ? 6
-        : /[gprs]/.test(type) ? Math.max(1, Math.min(21, precision))
-        : Math.max(0, Math.min(20, precision));
-
-    function format(value) {
-      var valuePrefix = prefix,
-          valueSuffix = suffix,
-          i, n, c;
-
-      if (type === "c") {
-        valueSuffix = formatType(value) + valueSuffix;
-        value = "";
-      } else {
-        value = +value;
-
-        // Perform the initial formatting.
-        var valueNegative = value < 0;
-        value = formatType(Math.abs(value), precision);
-
-        // Trim insignificant zeros.
-        if (trim) value = formatTrim(value);
-
-        // If a negative value rounds to zero during formatting, treat as positive.
-        if (valueNegative && +value === 0) valueNegative = false;
-
-        // Compute the prefix and suffix.
-        valuePrefix = (valueNegative ? (sign === "(" ? sign : "-") : sign === "-" || sign === "(" ? "" : sign) + valuePrefix;
-        valueSuffix = (type === "s" ? prefixes[8 + prefixExponent / 3] : "") + valueSuffix + (valueNegative && sign === "(" ? ")" : "");
-
-        // Break the formatted value into the integer “value” part that can be
-        // grouped, and fractional or exponential “suffix” part that is not.
-        if (maybeSuffix) {
-          i = -1, n = value.length;
-          while (++i < n) {
-            if (c = value.charCodeAt(i), 48 > c || c > 57) {
-              valueSuffix = (c === 46 ? decimal + value.slice(i + 1) : value.slice(i)) + valueSuffix;
-              value = value.slice(0, i);
-              break;
-            }
-          }
-        }
-      }
-
-      // If the fill character is not "0", grouping is applied before padding.
-      if (comma && !zero) value = group(value, Infinity);
-
-      // Compute the padding.
-      var length = valuePrefix.length + value.length + valueSuffix.length,
-          padding = length < width ? new Array(width - length + 1).join(fill) : "";
-
-      // If the fill character is "0", grouping is applied after padding.
-      if (comma && zero) value = group(padding + value, padding.length ? width - valueSuffix.length : Infinity), padding = "";
-
-      // Reconstruct the final output based on the desired alignment.
-      switch (align) {
-        case "<": value = valuePrefix + value + valueSuffix + padding; break;
-        case "=": value = valuePrefix + padding + value + valueSuffix; break;
-        case "^": value = padding.slice(0, length = padding.length >> 1) + valuePrefix + value + valueSuffix + padding.slice(length); break;
-        default: value = padding + valuePrefix + value + valueSuffix; break;
-      }
-
-      return numerals(value);
-    }
-
-    format.toString = function() {
-      return specifier + "";
-    };
-
-    return format;
-  }
-
-  function formatPrefix(specifier, value) {
-    var f = newFormat((specifier = formatSpecifier(specifier), specifier.type = "f", specifier)),
-        e = Math.max(-8, Math.min(8, Math.floor(exponent(value) / 3))) * 3,
-        k = Math.pow(10, -e),
-        prefix = prefixes[8 + e / 3];
-    return function(value) {
-      return f(k * value) + prefix;
-    };
-  }
-
-  return {
-    format: newFormat,
-    formatPrefix: formatPrefix
-  };
-}
-
-var locale;
-
-defaultLocale({
-  decimal: ".",
-  thousands: ",",
-  grouping: [3],
-  currency: ["$", ""]
-});
-
-function defaultLocale(definition) {
-  locale = formatLocale(definition);
-  exports.format = locale.format;
-  exports.formatPrefix = locale.formatPrefix;
-  return locale;
-}
-
-function precisionFixed(step) {
-  return Math.max(0, -exponent(Math.abs(step)));
-}
-
-function precisionPrefix(step, value) {
-  return Math.max(0, Math.max(-8, Math.min(8, Math.floor(exponent(value) / 3))) * 3 - exponent(Math.abs(step)));
-}
-
-function precisionRound(step, max) {
-  step = Math.abs(step), max = Math.abs(max) - step;
-  return Math.max(0, exponent(max) - exponent(step)) + 1;
-}
-
-exports.formatDefaultLocale = defaultLocale;
-exports.formatLocale = formatLocale;
-exports.formatSpecifier = formatSpecifier;
-exports.precisionFixed = precisionFixed;
-exports.precisionPrefix = precisionPrefix;
-exports.precisionRound = precisionRound;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
-
-},{}],5:[function(_dereq_,module,exports){
-// https://d3js.org/d3-interpolate/ v1.3.2 Copyright 2018 Mike Bostock
-(function (global, factory) {
-typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, _dereq_('d3-color')) :
-typeof define === 'function' && define.amd ? define(['exports', 'd3-color'], factory) :
-(factory((global.d3 = global.d3 || {}),global.d3));
-}(this, (function (exports,d3Color) { 'use strict';
-
-function basis(t1, v0, v1, v2, v3) {
-  var t2 = t1 * t1, t3 = t2 * t1;
-  return ((1 - 3 * t1 + 3 * t2 - t3) * v0
-      + (4 - 6 * t2 + 3 * t3) * v1
-      + (1 + 3 * t1 + 3 * t2 - 3 * t3) * v2
-      + t3 * v3) / 6;
-}
-
-function basis$1(values) {
-  var n = values.length - 1;
-  return function(t) {
-    var i = t <= 0 ? (t = 0) : t >= 1 ? (t = 1, n - 1) : Math.floor(t * n),
-        v1 = values[i],
-        v2 = values[i + 1],
-        v0 = i > 0 ? values[i - 1] : 2 * v1 - v2,
-        v3 = i < n - 1 ? values[i + 2] : 2 * v2 - v1;
-    return basis((t - i / n) * n, v0, v1, v2, v3);
-  };
-}
-
-function basisClosed(values) {
-  var n = values.length;
-  return function(t) {
-    var i = Math.floor(((t %= 1) < 0 ? ++t : t) * n),
-        v0 = values[(i + n - 1) % n],
-        v1 = values[i % n],
-        v2 = values[(i + 1) % n],
-        v3 = values[(i + 2) % n];
-    return basis((t - i / n) * n, v0, v1, v2, v3);
-  };
-}
-
-function constant(x) {
-  return function() {
-    return x;
-  };
-}
-
-function linear(a, d) {
-  return function(t) {
-    return a + t * d;
-  };
-}
-
-function exponential(a, b, y) {
-  return a = Math.pow(a, y), b = Math.pow(b, y) - a, y = 1 / y, function(t) {
-    return Math.pow(a + t * b, y);
-  };
-}
-
-function hue(a, b) {
-  var d = b - a;
-  return d ? linear(a, d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d) : constant(isNaN(a) ? b : a);
-}
-
-function gamma(y) {
-  return (y = +y) === 1 ? nogamma : function(a, b) {
-    return b - a ? exponential(a, b, y) : constant(isNaN(a) ? b : a);
-  };
-}
-
-function nogamma(a, b) {
-  var d = b - a;
-  return d ? linear(a, d) : constant(isNaN(a) ? b : a);
-}
-
-var rgb = (function rgbGamma(y) {
-  var color = gamma(y);
-
-  function rgb(start, end) {
-    var r = color((start = d3Color.rgb(start)).r, (end = d3Color.rgb(end)).r),
-        g = color(start.g, end.g),
-        b = color(start.b, end.b),
-        opacity = nogamma(start.opacity, end.opacity);
-    return function(t) {
-      start.r = r(t);
-      start.g = g(t);
-      start.b = b(t);
-      start.opacity = opacity(t);
-      return start + "";
-    };
-  }
-
-  rgb.gamma = rgbGamma;
-
-  return rgb;
-})(1);
-
-function rgbSpline(spline) {
-  return function(colors) {
-    var n = colors.length,
-        r = new Array(n),
-        g = new Array(n),
-        b = new Array(n),
-        i, color;
-    for (i = 0; i < n; ++i) {
-      color = d3Color.rgb(colors[i]);
-      r[i] = color.r || 0;
-      g[i] = color.g || 0;
-      b[i] = color.b || 0;
-    }
-    r = spline(r);
-    g = spline(g);
-    b = spline(b);
-    color.opacity = 1;
-    return function(t) {
-      color.r = r(t);
-      color.g = g(t);
-      color.b = b(t);
-      return color + "";
-    };
-  };
-}
-
-var rgbBasis = rgbSpline(basis$1);
-var rgbBasisClosed = rgbSpline(basisClosed);
-
-function array(a, b) {
-  var nb = b ? b.length : 0,
-      na = a ? Math.min(nb, a.length) : 0,
-      x = new Array(na),
-      c = new Array(nb),
-      i;
-
-  for (i = 0; i < na; ++i) x[i] = value(a[i], b[i]);
-  for (; i < nb; ++i) c[i] = b[i];
-
-  return function(t) {
-    for (i = 0; i < na; ++i) c[i] = x[i](t);
-    return c;
-  };
-}
-
-function date(a, b) {
-  var d = new Date;
-  return a = +a, b -= a, function(t) {
-    return d.setTime(a + b * t), d;
-  };
-}
-
-function number(a, b) {
-  return a = +a, b -= a, function(t) {
-    return a + b * t;
-  };
-}
-
-function object(a, b) {
-  var i = {},
-      c = {},
-      k;
-
-  if (a === null || typeof a !== "object") a = {};
-  if (b === null || typeof b !== "object") b = {};
-
-  for (k in b) {
-    if (k in a) {
-      i[k] = value(a[k], b[k]);
+    if (o.death) {
+      line.set([[born.iso(), y], [o.death || today, y]]);
+      line.color('lightgrey');
     } else {
-      c[k] = b[k];
-    }
-  }
+      //:)
+      var avg = born.add(EXPECT, 'years').iso();
+      line.set([[born.iso(), y], [avg, y]]);
+      w.line().dotted(true).color('red').set([[today, y], [avg, y]]);
+      var age = born.diff(spacetime.now(), 'years');
+      w.text(age + 'yr').font(10).dx(10).dy(-8).color('lightgrey').after(today, y);
+    } //add label
 
-  return function(t) {
-    for (k in i) c[k] = i[k](t);
-    return c;
-  };
-}
 
-var reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g,
-    reB = new RegExp(reA.source, "g");
+    w.text(o.name).at(o.birth, y).dy(2);
+  }); //add date
 
-function zero(b) {
-  return function() {
-    return b;
-  };
-}
+  w.line().set([[missions[k].date, '20%'], [missions[k].date, '80%']]).width(1).color('orange').dotted(); //add label
 
-function one(b) {
-  return function(t) {
-    return b(t) + "";
-  };
-}
+  w.text(k).at('-100px', '60%').color('lightgrey'); //add today
 
-function string(a, b) {
-  var bi = reA.lastIndex = reB.lastIndex = 0, // scan index for next number in b
-      am, // current match in a
-      bm, // current match in b
-      bs, // string preceding current number in b, if any
-      i = -1, // index in s
-      s = [], // string constants and placeholders
-      q = []; // number interpolators
-
-  // Coerce inputs to strings.
-  a = a + "", b = b + "";
-
-  // Interpolate pairs of numbers in a & b.
-  while ((am = reA.exec(a))
-      && (bm = reB.exec(b))) {
-    if ((bs = bm.index) > bi) { // a string precedes the next number in b
-      bs = b.slice(bi, bs);
-      if (s[i]) s[i] += bs; // coalesce with previous string
-      else s[++i] = bs;
-    }
-    if ((am = am[0]) === (bm = bm[0])) { // numbers in a & b match
-      if (s[i]) s[i] += bm; // coalesce with previous string
-      else s[++i] = bm;
-    } else { // interpolate non-matching numbers
-      s[++i] = null;
-      q.push({i: i, x: number(am, bm)});
-    }
-    bi = reB.lastIndex;
-  }
-
-  // Add remains of b.
-  if (bi < b.length) {
-    bs = b.slice(bi);
-    if (s[i]) s[i] += bs; // coalesce with previous string
-    else s[++i] = bs;
-  }
-
-  // Special optimization for only a single match.
-  // Otherwise, interpolate each of the numbers and rejoin the string.
-  return s.length < 2 ? (q[0]
-      ? one(q[0].x)
-      : zero(b))
-      : (b = q.length, function(t) {
-          for (var i = 0, o; i < b; ++i) s[(o = q[i]).i] = o.x(t);
-          return s.join("");
-        });
-}
-
-function value(a, b) {
-  var t = typeof b, c;
-  return b == null || t === "boolean" ? constant(b)
-      : (t === "number" ? number
-      : t === "string" ? ((c = d3Color.color(b)) ? (b = c, rgb) : string)
-      : b instanceof d3Color.color ? rgb
-      : b instanceof Date ? date
-      : Array.isArray(b) ? array
-      : typeof b.valueOf !== "function" && typeof b.toString !== "function" || isNaN(b) ? object
-      : number)(a, b);
-}
-
-function discrete(range) {
-  var n = range.length;
-  return function(t) {
-    return range[Math.max(0, Math.min(n - 1, Math.floor(t * n)))];
-  };
-}
-
-function hue$1(a, b) {
-  var i = hue(+a, +b);
-  return function(t) {
-    var x = i(t);
-    return x - 360 * Math.floor(x / 360);
-  };
-}
-
-function round(a, b) {
-  return a = +a, b -= a, function(t) {
-    return Math.round(a + b * t);
-  };
-}
-
-var degrees = 180 / Math.PI;
-
-var identity = {
-  translateX: 0,
-  translateY: 0,
-  rotate: 0,
-  skewX: 0,
-  scaleX: 1,
-  scaleY: 1
+  w.line().set([[today, '10%'], [today, '90%']]).width(1).color('lightgrey').dotted();
+  w.y.fit(0, 4);
+  w.x.fit('Jan 1 1925', 'Dec 31 2025');
+  w.yAxis.remove();
+  w.xAxis.ticks([{
+    label: '1925',
+    value: 'jan 1 1925'
+  }, {
+    label: '1969',
+    value: 'jan 1 1969'
+  }, {
+    value: spacetime.now().iso(),
+    label: 'today'
+  }]);
+  return "<div class=\"m2\">".concat(w.build(), "</div>");
 };
 
-function decompose(a, b, c, d, e, f) {
-  var scaleX, scaleY, skewX;
-  if (scaleX = Math.sqrt(a * a + b * b)) a /= scaleX, b /= scaleX;
-  if (skewX = a * c + b * d) c -= a * skewX, d -= b * skewX;
-  if (scaleY = Math.sqrt(c * c + d * d)) c /= scaleY, d /= scaleY, skewX /= scaleY;
-  if (a * d < b * c) a = -a, b = -b, skewX = -skewX, scaleX = -scaleX;
-  return {
-    translateX: e,
-    translateY: f,
-    rotate: Math.atan2(b, a) * degrees,
-    skewX: Math.atan(skewX) * degrees,
-    scaleX: scaleX,
-    scaleY: scaleY
-  };
-}
+var el = document.querySelector('#stage');
+el.innerHTML = Object.keys(missions).map(function (k) {
+  return drawMission(k);
+}).join(' ');
 
-var cssNode,
-    cssRoot,
-    cssView,
-    svgNode;
+},{"./data/missions":1,"./legend":3,"somehow":4,"spacetime":5}],3:[function(_dereq_,module,exports){
+"use strict";
 
-function parseCss(value) {
-  if (value === "none") return identity;
-  if (!cssNode) cssNode = document.createElement("DIV"), cssRoot = document.documentElement, cssView = document.defaultView;
-  cssNode.style.transform = value;
-  value = cssView.getComputedStyle(cssRoot.appendChild(cssNode), null).getPropertyValue("transform");
-  cssRoot.removeChild(cssNode);
-  value = value.slice(7, -1).split(",");
-  return decompose(+value[0], +value[1], +value[2], +value[3], +value[4], +value[5]);
-}
+var somehow = _dereq_('somehow');
 
-function parseSvg(value) {
-  if (value == null) return identity;
-  if (!svgNode) svgNode = document.createElementNS("http://www.w3.org/2000/svg", "g");
-  svgNode.setAttribute("transform", value);
-  if (!(value = svgNode.transform.baseVal.consolidate())) return identity;
-  value = value.matrix;
-  return decompose(value.a, value.b, value.c, value.d, value.e, value.f);
-}
+var missions = _dereq_('./data/missions');
 
-function interpolateTransform(parse, pxComma, pxParen, degParen) {
+var legend = somehow({
+  height: 100,
+  width: 500
+});
+legend.yAxis.remove();
+legend.xAxis.remove();
+legend.y.fit(0, 2);
+legend.x.fit(-2, 10);
+legend.text('birth').font(11).dy(10).at(1, 1);
+legend.text('life expectency').font(11).dy(10).center(6, 1);
+legend.text('(81 years)').font(12).dy(-20).center(6, 1);
+legend.line().set([[1, 1], [6, 1]]).opacity(0.6);
+legend.line().set([[6, 1], [7, 1]]).dotted(true).opacity(0.6).color('red'); // let astronauts = Object.keys(missions).reduce((arr, k) => {
+//   arr = arr.concat(missions[k].people);
+//   return arr;
+// }, []);
+// let alive = astronauts.filter((o) => !o.death);
+// legend.text(`${alive.length} of ${astronauts.length} are alive`).set([[0, 1.7]]);
+// legend.text(`all are > 81 years old`).set([[4, 0.2]]);
 
-  function pop(s) {
-    return s.length ? s.pop() + " " : "";
-  }
+document.querySelector('#legend').innerHTML = legend.build();
 
-  function translate(xa, ya, xb, yb, s, q) {
-    if (xa !== xb || ya !== yb) {
-      var i = s.push("translate(", null, pxComma, null, pxParen);
-      q.push({i: i - 4, x: number(xa, xb)}, {i: i - 2, x: number(ya, yb)});
-    } else if (xb || yb) {
-      s.push("translate(" + xb + pxComma + yb + pxParen);
-    }
-  }
+},{"./data/missions":1,"somehow":4}],4:[function(_dereq_,module,exports){
+(function (global){
+/* somehow v0.0.8
+   github.com/spencermountain/somehow
+   MIT
+*/
 
-  function rotate(a, b, s, q) {
-    if (a !== b) {
-      if (a - b > 180) b += 360; else if (b - a > 180) a += 360; // shortest path
-      q.push({i: s.push(pop(s) + "rotate(", null, degParen) - 2, x: number(a, b)});
-    } else if (b) {
-      s.push(pop(s) + "rotate(" + b + degParen);
-    }
-  }
-
-  function skewX(a, b, s, q) {
-    if (a !== b) {
-      q.push({i: s.push(pop(s) + "skewX(", null, degParen) - 2, x: number(a, b)});
-    } else if (b) {
-      s.push(pop(s) + "skewX(" + b + degParen);
-    }
-  }
-
-  function scale(xa, ya, xb, yb, s, q) {
-    if (xa !== xb || ya !== yb) {
-      var i = s.push(pop(s) + "scale(", null, ",", null, ")");
-      q.push({i: i - 4, x: number(xa, xb)}, {i: i - 2, x: number(ya, yb)});
-    } else if (xb !== 1 || yb !== 1) {
-      s.push(pop(s) + "scale(" + xb + "," + yb + ")");
-    }
-  }
-
-  return function(a, b) {
-    var s = [], // string constants and placeholders
-        q = []; // number interpolators
-    a = parse(a), b = parse(b);
-    translate(a.translateX, a.translateY, b.translateX, b.translateY, s, q);
-    rotate(a.rotate, b.rotate, s, q);
-    skewX(a.skewX, b.skewX, s, q);
-    scale(a.scaleX, a.scaleY, b.scaleX, b.scaleY, s, q);
-    a = b = null; // gc
-    return function(t) {
-      var i = -1, n = q.length, o;
-      while (++i < n) s[(o = q[i]).i] = o.x(t);
-      return s.join("");
-    };
-  };
-}
-
-var interpolateTransformCss = interpolateTransform(parseCss, "px, ", "px)", "deg)");
-var interpolateTransformSvg = interpolateTransform(parseSvg, ", ", ")", ")");
-
-var rho = Math.SQRT2,
-    rho2 = 2,
-    rho4 = 4,
-    epsilon2 = 1e-12;
-
-function cosh(x) {
-  return ((x = Math.exp(x)) + 1 / x) / 2;
-}
-
-function sinh(x) {
-  return ((x = Math.exp(x)) - 1 / x) / 2;
-}
-
-function tanh(x) {
-  return ((x = Math.exp(2 * x)) - 1) / (x + 1);
-}
-
-// p0 = [ux0, uy0, w0]
-// p1 = [ux1, uy1, w1]
-function zoom(p0, p1) {
-  var ux0 = p0[0], uy0 = p0[1], w0 = p0[2],
-      ux1 = p1[0], uy1 = p1[1], w1 = p1[2],
-      dx = ux1 - ux0,
-      dy = uy1 - uy0,
-      d2 = dx * dx + dy * dy,
-      i,
-      S;
-
-  // Special case for u0 ≅ u1.
-  if (d2 < epsilon2) {
-    S = Math.log(w1 / w0) / rho;
-    i = function(t) {
-      return [
-        ux0 + t * dx,
-        uy0 + t * dy,
-        w0 * Math.exp(rho * t * S)
-      ];
-    };
-  }
-
-  // General case.
-  else {
-    var d1 = Math.sqrt(d2),
-        b0 = (w1 * w1 - w0 * w0 + rho4 * d2) / (2 * w0 * rho2 * d1),
-        b1 = (w1 * w1 - w0 * w0 - rho4 * d2) / (2 * w1 * rho2 * d1),
-        r0 = Math.log(Math.sqrt(b0 * b0 + 1) - b0),
-        r1 = Math.log(Math.sqrt(b1 * b1 + 1) - b1);
-    S = (r1 - r0) / rho;
-    i = function(t) {
-      var s = t * S,
-          coshr0 = cosh(r0),
-          u = w0 / (rho2 * d1) * (coshr0 * tanh(rho * s + r0) - sinh(r0));
-      return [
-        ux0 + u * dx,
-        uy0 + u * dy,
-        w0 * coshr0 / cosh(rho * s + r0)
-      ];
-    };
-  }
-
-  i.duration = S * 1000;
-
-  return i;
-}
-
-function hsl(hue$$1) {
-  return function(start, end) {
-    var h = hue$$1((start = d3Color.hsl(start)).h, (end = d3Color.hsl(end)).h),
-        s = nogamma(start.s, end.s),
-        l = nogamma(start.l, end.l),
-        opacity = nogamma(start.opacity, end.opacity);
-    return function(t) {
-      start.h = h(t);
-      start.s = s(t);
-      start.l = l(t);
-      start.opacity = opacity(t);
-      return start + "";
-    };
-  }
-}
-
-var hsl$1 = hsl(hue);
-var hslLong = hsl(nogamma);
-
-function lab(start, end) {
-  var l = nogamma((start = d3Color.lab(start)).l, (end = d3Color.lab(end)).l),
-      a = nogamma(start.a, end.a),
-      b = nogamma(start.b, end.b),
-      opacity = nogamma(start.opacity, end.opacity);
-  return function(t) {
-    start.l = l(t);
-    start.a = a(t);
-    start.b = b(t);
-    start.opacity = opacity(t);
-    return start + "";
-  };
-}
-
-function hcl(hue$$1) {
-  return function(start, end) {
-    var h = hue$$1((start = d3Color.hcl(start)).h, (end = d3Color.hcl(end)).h),
-        c = nogamma(start.c, end.c),
-        l = nogamma(start.l, end.l),
-        opacity = nogamma(start.opacity, end.opacity);
-    return function(t) {
-      start.h = h(t);
-      start.c = c(t);
-      start.l = l(t);
-      start.opacity = opacity(t);
-      return start + "";
-    };
-  }
-}
-
-var hcl$1 = hcl(hue);
-var hclLong = hcl(nogamma);
-
-function cubehelix(hue$$1) {
-  return (function cubehelixGamma(y) {
-    y = +y;
-
-    function cubehelix(start, end) {
-      var h = hue$$1((start = d3Color.cubehelix(start)).h, (end = d3Color.cubehelix(end)).h),
-          s = nogamma(start.s, end.s),
-          l = nogamma(start.l, end.l),
-          opacity = nogamma(start.opacity, end.opacity);
-      return function(t) {
-        start.h = h(t);
-        start.s = s(t);
-        start.l = l(Math.pow(t, y));
-        start.opacity = opacity(t);
-        return start + "";
-      };
-    }
-
-    cubehelix.gamma = cubehelixGamma;
-
-    return cubehelix;
-  })(1);
-}
-
-var cubehelix$1 = cubehelix(hue);
-var cubehelixLong = cubehelix(nogamma);
-
-function piecewise(interpolate, values) {
-  var i = 0, n = values.length - 1, v = values[0], I = new Array(n < 0 ? 0 : n);
-  while (i < n) I[i] = interpolate(v, v = values[++i]);
-  return function(t) {
-    var i = Math.max(0, Math.min(n - 1, Math.floor(t *= n)));
-    return I[i](t - i);
-  };
-}
-
-function quantize(interpolator, n) {
-  var samples = new Array(n);
-  for (var i = 0; i < n; ++i) samples[i] = interpolator(i / (n - 1));
-  return samples;
-}
-
-exports.interpolate = value;
-exports.interpolateArray = array;
-exports.interpolateBasis = basis$1;
-exports.interpolateBasisClosed = basisClosed;
-exports.interpolateDate = date;
-exports.interpolateDiscrete = discrete;
-exports.interpolateHue = hue$1;
-exports.interpolateNumber = number;
-exports.interpolateObject = object;
-exports.interpolateRound = round;
-exports.interpolateString = string;
-exports.interpolateTransformCss = interpolateTransformCss;
-exports.interpolateTransformSvg = interpolateTransformSvg;
-exports.interpolateZoom = zoom;
-exports.interpolateRgb = rgb;
-exports.interpolateRgbBasis = rgbBasis;
-exports.interpolateRgbBasisClosed = rgbBasisClosed;
-exports.interpolateHsl = hsl$1;
-exports.interpolateHslLong = hslLong;
-exports.interpolateLab = lab;
-exports.interpolateHcl = hcl$1;
-exports.interpolateHclLong = hclLong;
-exports.interpolateCubehelix = cubehelix$1;
-exports.interpolateCubehelixLong = cubehelixLong;
-exports.piecewise = piecewise;
-exports.quantize = quantize;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
-
-},{"d3-color":3}],6:[function(_dereq_,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.somehow = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof _dereq_&&_dereq_;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof _dereq_&&_dereq_,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
 // https://d3js.org/d3-path/ v1.0.7 Copyright 2018 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -2399,910 +395,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{}],7:[function(_dereq_,module,exports){
-// https://d3js.org/d3-scale/ v2.1.2 Copyright 2018 Mike Bostock
-(function (global, factory) {
-typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, _dereq_('d3-collection'), _dereq_('d3-array'), _dereq_('d3-interpolate'), _dereq_('d3-format'), _dereq_('d3-time'), _dereq_('d3-time-format')) :
-typeof define === 'function' && define.amd ? define(['exports', 'd3-collection', 'd3-array', 'd3-interpolate', 'd3-format', 'd3-time', 'd3-time-format'], factory) :
-(factory((global.d3 = global.d3 || {}),global.d3,global.d3,global.d3,global.d3,global.d3,global.d3));
-}(this, (function (exports,d3Collection,d3Array,d3Interpolate,d3Format,d3Time,d3TimeFormat) { 'use strict';
-
-var array = Array.prototype;
-
-var map = array.map;
-var slice = array.slice;
-
-var implicit = {name: "implicit"};
-
-function ordinal(range) {
-  var index = d3Collection.map(),
-      domain = [],
-      unknown = implicit;
-
-  range = range == null ? [] : slice.call(range);
-
-  function scale(d) {
-    var key = d + "", i = index.get(key);
-    if (!i) {
-      if (unknown !== implicit) return unknown;
-      index.set(key, i = domain.push(d));
-    }
-    return range[(i - 1) % range.length];
-  }
-
-  scale.domain = function(_) {
-    if (!arguments.length) return domain.slice();
-    domain = [], index = d3Collection.map();
-    var i = -1, n = _.length, d, key;
-    while (++i < n) if (!index.has(key = (d = _[i]) + "")) index.set(key, domain.push(d));
-    return scale;
-  };
-
-  scale.range = function(_) {
-    return arguments.length ? (range = slice.call(_), scale) : range.slice();
-  };
-
-  scale.unknown = function(_) {
-    return arguments.length ? (unknown = _, scale) : unknown;
-  };
-
-  scale.copy = function() {
-    return ordinal()
-        .domain(domain)
-        .range(range)
-        .unknown(unknown);
-  };
-
-  return scale;
-}
-
-function band() {
-  var scale = ordinal().unknown(undefined),
-      domain = scale.domain,
-      ordinalRange = scale.range,
-      range = [0, 1],
-      step,
-      bandwidth,
-      round = false,
-      paddingInner = 0,
-      paddingOuter = 0,
-      align = 0.5;
-
-  delete scale.unknown;
-
-  function rescale() {
-    var n = domain().length,
-        reverse = range[1] < range[0],
-        start = range[reverse - 0],
-        stop = range[1 - reverse];
-    step = (stop - start) / Math.max(1, n - paddingInner + paddingOuter * 2);
-    if (round) step = Math.floor(step);
-    start += (stop - start - step * (n - paddingInner)) * align;
-    bandwidth = step * (1 - paddingInner);
-    if (round) start = Math.round(start), bandwidth = Math.round(bandwidth);
-    var values = d3Array.range(n).map(function(i) { return start + step * i; });
-    return ordinalRange(reverse ? values.reverse() : values);
-  }
-
-  scale.domain = function(_) {
-    return arguments.length ? (domain(_), rescale()) : domain();
-  };
-
-  scale.range = function(_) {
-    return arguments.length ? (range = [+_[0], +_[1]], rescale()) : range.slice();
-  };
-
-  scale.rangeRound = function(_) {
-    return range = [+_[0], +_[1]], round = true, rescale();
-  };
-
-  scale.bandwidth = function() {
-    return bandwidth;
-  };
-
-  scale.step = function() {
-    return step;
-  };
-
-  scale.round = function(_) {
-    return arguments.length ? (round = !!_, rescale()) : round;
-  };
-
-  scale.padding = function(_) {
-    return arguments.length ? (paddingInner = paddingOuter = Math.max(0, Math.min(1, _)), rescale()) : paddingInner;
-  };
-
-  scale.paddingInner = function(_) {
-    return arguments.length ? (paddingInner = Math.max(0, Math.min(1, _)), rescale()) : paddingInner;
-  };
-
-  scale.paddingOuter = function(_) {
-    return arguments.length ? (paddingOuter = Math.max(0, Math.min(1, _)), rescale()) : paddingOuter;
-  };
-
-  scale.align = function(_) {
-    return arguments.length ? (align = Math.max(0, Math.min(1, _)), rescale()) : align;
-  };
-
-  scale.copy = function() {
-    return band()
-        .domain(domain())
-        .range(range)
-        .round(round)
-        .paddingInner(paddingInner)
-        .paddingOuter(paddingOuter)
-        .align(align);
-  };
-
-  return rescale();
-}
-
-function pointish(scale) {
-  var copy = scale.copy;
-
-  scale.padding = scale.paddingOuter;
-  delete scale.paddingInner;
-  delete scale.paddingOuter;
-
-  scale.copy = function() {
-    return pointish(copy());
-  };
-
-  return scale;
-}
-
-function point() {
-  return pointish(band().paddingInner(1));
-}
-
-function constant(x) {
-  return function() {
-    return x;
-  };
-}
-
-function number(x) {
-  return +x;
-}
-
-var unit = [0, 1];
-
-function deinterpolateLinear(a, b) {
-  return (b -= (a = +a))
-      ? function(x) { return (x - a) / b; }
-      : constant(b);
-}
-
-function deinterpolateClamp(deinterpolate) {
-  return function(a, b) {
-    var d = deinterpolate(a = +a, b = +b);
-    return function(x) { return x <= a ? 0 : x >= b ? 1 : d(x); };
-  };
-}
-
-function reinterpolateClamp(reinterpolate) {
-  return function(a, b) {
-    var r = reinterpolate(a = +a, b = +b);
-    return function(t) { return t <= 0 ? a : t >= 1 ? b : r(t); };
-  };
-}
-
-function bimap(domain, range, deinterpolate, reinterpolate) {
-  var d0 = domain[0], d1 = domain[1], r0 = range[0], r1 = range[1];
-  if (d1 < d0) d0 = deinterpolate(d1, d0), r0 = reinterpolate(r1, r0);
-  else d0 = deinterpolate(d0, d1), r0 = reinterpolate(r0, r1);
-  return function(x) { return r0(d0(x)); };
-}
-
-function polymap(domain, range, deinterpolate, reinterpolate) {
-  var j = Math.min(domain.length, range.length) - 1,
-      d = new Array(j),
-      r = new Array(j),
-      i = -1;
-
-  // Reverse descending domains.
-  if (domain[j] < domain[0]) {
-    domain = domain.slice().reverse();
-    range = range.slice().reverse();
-  }
-
-  while (++i < j) {
-    d[i] = deinterpolate(domain[i], domain[i + 1]);
-    r[i] = reinterpolate(range[i], range[i + 1]);
-  }
-
-  return function(x) {
-    var i = d3Array.bisect(domain, x, 1, j) - 1;
-    return r[i](d[i](x));
-  };
-}
-
-function copy(source, target) {
-  return target
-      .domain(source.domain())
-      .range(source.range())
-      .interpolate(source.interpolate())
-      .clamp(source.clamp());
-}
-
-// deinterpolate(a, b)(x) takes a domain value x in [a,b] and returns the corresponding parameter t in [0,1].
-// reinterpolate(a, b)(t) takes a parameter t in [0,1] and returns the corresponding domain value x in [a,b].
-function continuous(deinterpolate, reinterpolate) {
-  var domain = unit,
-      range = unit,
-      interpolate = d3Interpolate.interpolate,
-      clamp = false,
-      piecewise,
-      output,
-      input;
-
-  function rescale() {
-    piecewise = Math.min(domain.length, range.length) > 2 ? polymap : bimap;
-    output = input = null;
-    return scale;
-  }
-
-  function scale(x) {
-    return (output || (output = piecewise(domain, range, clamp ? deinterpolateClamp(deinterpolate) : deinterpolate, interpolate)))(+x);
-  }
-
-  scale.invert = function(y) {
-    return (input || (input = piecewise(range, domain, deinterpolateLinear, clamp ? reinterpolateClamp(reinterpolate) : reinterpolate)))(+y);
-  };
-
-  scale.domain = function(_) {
-    return arguments.length ? (domain = map.call(_, number), rescale()) : domain.slice();
-  };
-
-  scale.range = function(_) {
-    return arguments.length ? (range = slice.call(_), rescale()) : range.slice();
-  };
-
-  scale.rangeRound = function(_) {
-    return range = slice.call(_), interpolate = d3Interpolate.interpolateRound, rescale();
-  };
-
-  scale.clamp = function(_) {
-    return arguments.length ? (clamp = !!_, rescale()) : clamp;
-  };
-
-  scale.interpolate = function(_) {
-    return arguments.length ? (interpolate = _, rescale()) : interpolate;
-  };
-
-  return rescale();
-}
-
-function tickFormat(domain, count, specifier) {
-  var start = domain[0],
-      stop = domain[domain.length - 1],
-      step = d3Array.tickStep(start, stop, count == null ? 10 : count),
-      precision;
-  specifier = d3Format.formatSpecifier(specifier == null ? ",f" : specifier);
-  switch (specifier.type) {
-    case "s": {
-      var value = Math.max(Math.abs(start), Math.abs(stop));
-      if (specifier.precision == null && !isNaN(precision = d3Format.precisionPrefix(step, value))) specifier.precision = precision;
-      return d3Format.formatPrefix(specifier, value);
-    }
-    case "":
-    case "e":
-    case "g":
-    case "p":
-    case "r": {
-      if (specifier.precision == null && !isNaN(precision = d3Format.precisionRound(step, Math.max(Math.abs(start), Math.abs(stop))))) specifier.precision = precision - (specifier.type === "e");
-      break;
-    }
-    case "f":
-    case "%": {
-      if (specifier.precision == null && !isNaN(precision = d3Format.precisionFixed(step))) specifier.precision = precision - (specifier.type === "%") * 2;
-      break;
-    }
-  }
-  return d3Format.format(specifier);
-}
-
-function linearish(scale) {
-  var domain = scale.domain;
-
-  scale.ticks = function(count) {
-    var d = domain();
-    return d3Array.ticks(d[0], d[d.length - 1], count == null ? 10 : count);
-  };
-
-  scale.tickFormat = function(count, specifier) {
-    return tickFormat(domain(), count, specifier);
-  };
-
-  scale.nice = function(count) {
-    if (count == null) count = 10;
-
-    var d = domain(),
-        i0 = 0,
-        i1 = d.length - 1,
-        start = d[i0],
-        stop = d[i1],
-        step;
-
-    if (stop < start) {
-      step = start, start = stop, stop = step;
-      step = i0, i0 = i1, i1 = step;
-    }
-
-    step = d3Array.tickIncrement(start, stop, count);
-
-    if (step > 0) {
-      start = Math.floor(start / step) * step;
-      stop = Math.ceil(stop / step) * step;
-      step = d3Array.tickIncrement(start, stop, count);
-    } else if (step < 0) {
-      start = Math.ceil(start * step) / step;
-      stop = Math.floor(stop * step) / step;
-      step = d3Array.tickIncrement(start, stop, count);
-    }
-
-    if (step > 0) {
-      d[i0] = Math.floor(start / step) * step;
-      d[i1] = Math.ceil(stop / step) * step;
-      domain(d);
-    } else if (step < 0) {
-      d[i0] = Math.ceil(start * step) / step;
-      d[i1] = Math.floor(stop * step) / step;
-      domain(d);
-    }
-
-    return scale;
-  };
-
-  return scale;
-}
-
-function linear() {
-  var scale = continuous(deinterpolateLinear, d3Interpolate.interpolateNumber);
-
-  scale.copy = function() {
-    return copy(scale, linear());
-  };
-
-  return linearish(scale);
-}
-
-function identity() {
-  var domain = [0, 1];
-
-  function scale(x) {
-    return +x;
-  }
-
-  scale.invert = scale;
-
-  scale.domain = scale.range = function(_) {
-    return arguments.length ? (domain = map.call(_, number), scale) : domain.slice();
-  };
-
-  scale.copy = function() {
-    return identity().domain(domain);
-  };
-
-  return linearish(scale);
-}
-
-function nice(domain, interval) {
-  domain = domain.slice();
-
-  var i0 = 0,
-      i1 = domain.length - 1,
-      x0 = domain[i0],
-      x1 = domain[i1],
-      t;
-
-  if (x1 < x0) {
-    t = i0, i0 = i1, i1 = t;
-    t = x0, x0 = x1, x1 = t;
-  }
-
-  domain[i0] = interval.floor(x0);
-  domain[i1] = interval.ceil(x1);
-  return domain;
-}
-
-function deinterpolate(a, b) {
-  return (b = Math.log(b / a))
-      ? function(x) { return Math.log(x / a) / b; }
-      : constant(b);
-}
-
-function reinterpolate(a, b) {
-  return a < 0
-      ? function(t) { return -Math.pow(-b, t) * Math.pow(-a, 1 - t); }
-      : function(t) { return Math.pow(b, t) * Math.pow(a, 1 - t); };
-}
-
-function pow10(x) {
-  return isFinite(x) ? +("1e" + x) : x < 0 ? 0 : x;
-}
-
-function powp(base) {
-  return base === 10 ? pow10
-      : base === Math.E ? Math.exp
-      : function(x) { return Math.pow(base, x); };
-}
-
-function logp(base) {
-  return base === Math.E ? Math.log
-      : base === 10 && Math.log10
-      || base === 2 && Math.log2
-      || (base = Math.log(base), function(x) { return Math.log(x) / base; });
-}
-
-function reflect(f) {
-  return function(x) {
-    return -f(-x);
-  };
-}
-
-function log() {
-  var scale = continuous(deinterpolate, reinterpolate).domain([1, 10]),
-      domain = scale.domain,
-      base = 10,
-      logs = logp(10),
-      pows = powp(10);
-
-  function rescale() {
-    logs = logp(base), pows = powp(base);
-    if (domain()[0] < 0) logs = reflect(logs), pows = reflect(pows);
-    return scale;
-  }
-
-  scale.base = function(_) {
-    return arguments.length ? (base = +_, rescale()) : base;
-  };
-
-  scale.domain = function(_) {
-    return arguments.length ? (domain(_), rescale()) : domain();
-  };
-
-  scale.ticks = function(count) {
-    var d = domain(),
-        u = d[0],
-        v = d[d.length - 1],
-        r;
-
-    if (r = v < u) i = u, u = v, v = i;
-
-    var i = logs(u),
-        j = logs(v),
-        p,
-        k,
-        t,
-        n = count == null ? 10 : +count,
-        z = [];
-
-    if (!(base % 1) && j - i < n) {
-      i = Math.round(i) - 1, j = Math.round(j) + 1;
-      if (u > 0) for (; i < j; ++i) {
-        for (k = 1, p = pows(i); k < base; ++k) {
-          t = p * k;
-          if (t < u) continue;
-          if (t > v) break;
-          z.push(t);
-        }
-      } else for (; i < j; ++i) {
-        for (k = base - 1, p = pows(i); k >= 1; --k) {
-          t = p * k;
-          if (t < u) continue;
-          if (t > v) break;
-          z.push(t);
-        }
-      }
-    } else {
-      z = d3Array.ticks(i, j, Math.min(j - i, n)).map(pows);
-    }
-
-    return r ? z.reverse() : z;
-  };
-
-  scale.tickFormat = function(count, specifier) {
-    if (specifier == null) specifier = base === 10 ? ".0e" : ",";
-    if (typeof specifier !== "function") specifier = d3Format.format(specifier);
-    if (count === Infinity) return specifier;
-    if (count == null) count = 10;
-    var k = Math.max(1, base * count / scale.ticks().length); // TODO fast estimate?
-    return function(d) {
-      var i = d / pows(Math.round(logs(d)));
-      if (i * base < base - 0.5) i *= base;
-      return i <= k ? specifier(d) : "";
-    };
-  };
-
-  scale.nice = function() {
-    return domain(nice(domain(), {
-      floor: function(x) { return pows(Math.floor(logs(x))); },
-      ceil: function(x) { return pows(Math.ceil(logs(x))); }
-    }));
-  };
-
-  scale.copy = function() {
-    return copy(scale, log().base(base));
-  };
-
-  return scale;
-}
-
-function raise(x, exponent) {
-  return x < 0 ? -Math.pow(-x, exponent) : Math.pow(x, exponent);
-}
-
-function pow() {
-  var exponent = 1,
-      scale = continuous(deinterpolate, reinterpolate),
-      domain = scale.domain;
-
-  function deinterpolate(a, b) {
-    return (b = raise(b, exponent) - (a = raise(a, exponent)))
-        ? function(x) { return (raise(x, exponent) - a) / b; }
-        : constant(b);
-  }
-
-  function reinterpolate(a, b) {
-    b = raise(b, exponent) - (a = raise(a, exponent));
-    return function(t) { return raise(a + b * t, 1 / exponent); };
-  }
-
-  scale.exponent = function(_) {
-    return arguments.length ? (exponent = +_, domain(domain())) : exponent;
-  };
-
-  scale.copy = function() {
-    return copy(scale, pow().exponent(exponent));
-  };
-
-  return linearish(scale);
-}
-
-function sqrt() {
-  return pow().exponent(0.5);
-}
-
-function quantile() {
-  var domain = [],
-      range = [],
-      thresholds = [];
-
-  function rescale() {
-    var i = 0, n = Math.max(1, range.length);
-    thresholds = new Array(n - 1);
-    while (++i < n) thresholds[i - 1] = d3Array.quantile(domain, i / n);
-    return scale;
-  }
-
-  function scale(x) {
-    if (!isNaN(x = +x)) return range[d3Array.bisect(thresholds, x)];
-  }
-
-  scale.invertExtent = function(y) {
-    var i = range.indexOf(y);
-    return i < 0 ? [NaN, NaN] : [
-      i > 0 ? thresholds[i - 1] : domain[0],
-      i < thresholds.length ? thresholds[i] : domain[domain.length - 1]
-    ];
-  };
-
-  scale.domain = function(_) {
-    if (!arguments.length) return domain.slice();
-    domain = [];
-    for (var i = 0, n = _.length, d; i < n; ++i) if (d = _[i], d != null && !isNaN(d = +d)) domain.push(d);
-    domain.sort(d3Array.ascending);
-    return rescale();
-  };
-
-  scale.range = function(_) {
-    return arguments.length ? (range = slice.call(_), rescale()) : range.slice();
-  };
-
-  scale.quantiles = function() {
-    return thresholds.slice();
-  };
-
-  scale.copy = function() {
-    return quantile()
-        .domain(domain)
-        .range(range);
-  };
-
-  return scale;
-}
-
-function quantize() {
-  var x0 = 0,
-      x1 = 1,
-      n = 1,
-      domain = [0.5],
-      range = [0, 1];
-
-  function scale(x) {
-    if (x <= x) return range[d3Array.bisect(domain, x, 0, n)];
-  }
-
-  function rescale() {
-    var i = -1;
-    domain = new Array(n);
-    while (++i < n) domain[i] = ((i + 1) * x1 - (i - n) * x0) / (n + 1);
-    return scale;
-  }
-
-  scale.domain = function(_) {
-    return arguments.length ? (x0 = +_[0], x1 = +_[1], rescale()) : [x0, x1];
-  };
-
-  scale.range = function(_) {
-    return arguments.length ? (n = (range = slice.call(_)).length - 1, rescale()) : range.slice();
-  };
-
-  scale.invertExtent = function(y) {
-    var i = range.indexOf(y);
-    return i < 0 ? [NaN, NaN]
-        : i < 1 ? [x0, domain[0]]
-        : i >= n ? [domain[n - 1], x1]
-        : [domain[i - 1], domain[i]];
-  };
-
-  scale.copy = function() {
-    return quantize()
-        .domain([x0, x1])
-        .range(range);
-  };
-
-  return linearish(scale);
-}
-
-function threshold() {
-  var domain = [0.5],
-      range = [0, 1],
-      n = 1;
-
-  function scale(x) {
-    if (x <= x) return range[d3Array.bisect(domain, x, 0, n)];
-  }
-
-  scale.domain = function(_) {
-    return arguments.length ? (domain = slice.call(_), n = Math.min(domain.length, range.length - 1), scale) : domain.slice();
-  };
-
-  scale.range = function(_) {
-    return arguments.length ? (range = slice.call(_), n = Math.min(domain.length, range.length - 1), scale) : range.slice();
-  };
-
-  scale.invertExtent = function(y) {
-    var i = range.indexOf(y);
-    return [domain[i - 1], domain[i]];
-  };
-
-  scale.copy = function() {
-    return threshold()
-        .domain(domain)
-        .range(range);
-  };
-
-  return scale;
-}
-
-var durationSecond = 1000,
-    durationMinute = durationSecond * 60,
-    durationHour = durationMinute * 60,
-    durationDay = durationHour * 24,
-    durationWeek = durationDay * 7,
-    durationMonth = durationDay * 30,
-    durationYear = durationDay * 365;
-
-function date(t) {
-  return new Date(t);
-}
-
-function number$1(t) {
-  return t instanceof Date ? +t : +new Date(+t);
-}
-
-function calendar(year, month, week, day, hour, minute, second, millisecond, format) {
-  var scale = continuous(deinterpolateLinear, d3Interpolate.interpolateNumber),
-      invert = scale.invert,
-      domain = scale.domain;
-
-  var formatMillisecond = format(".%L"),
-      formatSecond = format(":%S"),
-      formatMinute = format("%I:%M"),
-      formatHour = format("%I %p"),
-      formatDay = format("%a %d"),
-      formatWeek = format("%b %d"),
-      formatMonth = format("%B"),
-      formatYear = format("%Y");
-
-  var tickIntervals = [
-    [second,  1,      durationSecond],
-    [second,  5,  5 * durationSecond],
-    [second, 15, 15 * durationSecond],
-    [second, 30, 30 * durationSecond],
-    [minute,  1,      durationMinute],
-    [minute,  5,  5 * durationMinute],
-    [minute, 15, 15 * durationMinute],
-    [minute, 30, 30 * durationMinute],
-    [  hour,  1,      durationHour  ],
-    [  hour,  3,  3 * durationHour  ],
-    [  hour,  6,  6 * durationHour  ],
-    [  hour, 12, 12 * durationHour  ],
-    [   day,  1,      durationDay   ],
-    [   day,  2,  2 * durationDay   ],
-    [  week,  1,      durationWeek  ],
-    [ month,  1,      durationMonth ],
-    [ month,  3,  3 * durationMonth ],
-    [  year,  1,      durationYear  ]
-  ];
-
-  function tickFormat(date) {
-    return (second(date) < date ? formatMillisecond
-        : minute(date) < date ? formatSecond
-        : hour(date) < date ? formatMinute
-        : day(date) < date ? formatHour
-        : month(date) < date ? (week(date) < date ? formatDay : formatWeek)
-        : year(date) < date ? formatMonth
-        : formatYear)(date);
-  }
-
-  function tickInterval(interval, start, stop, step) {
-    if (interval == null) interval = 10;
-
-    // If a desired tick count is specified, pick a reasonable tick interval
-    // based on the extent of the domain and a rough estimate of tick size.
-    // Otherwise, assume interval is already a time interval and use it.
-    if (typeof interval === "number") {
-      var target = Math.abs(stop - start) / interval,
-          i = d3Array.bisector(function(i) { return i[2]; }).right(tickIntervals, target);
-      if (i === tickIntervals.length) {
-        step = d3Array.tickStep(start / durationYear, stop / durationYear, interval);
-        interval = year;
-      } else if (i) {
-        i = tickIntervals[target / tickIntervals[i - 1][2] < tickIntervals[i][2] / target ? i - 1 : i];
-        step = i[1];
-        interval = i[0];
-      } else {
-        step = Math.max(d3Array.tickStep(start, stop, interval), 1);
-        interval = millisecond;
-      }
-    }
-
-    return step == null ? interval : interval.every(step);
-  }
-
-  scale.invert = function(y) {
-    return new Date(invert(y));
-  };
-
-  scale.domain = function(_) {
-    return arguments.length ? domain(map.call(_, number$1)) : domain().map(date);
-  };
-
-  scale.ticks = function(interval, step) {
-    var d = domain(),
-        t0 = d[0],
-        t1 = d[d.length - 1],
-        r = t1 < t0,
-        t;
-    if (r) t = t0, t0 = t1, t1 = t;
-    t = tickInterval(interval, t0, t1, step);
-    t = t ? t.range(t0, t1 + 1) : []; // inclusive stop
-    return r ? t.reverse() : t;
-  };
-
-  scale.tickFormat = function(count, specifier) {
-    return specifier == null ? tickFormat : format(specifier);
-  };
-
-  scale.nice = function(interval, step) {
-    var d = domain();
-    return (interval = tickInterval(interval, d[0], d[d.length - 1], step))
-        ? domain(nice(d, interval))
-        : scale;
-  };
-
-  scale.copy = function() {
-    return copy(scale, calendar(year, month, week, day, hour, minute, second, millisecond, format));
-  };
-
-  return scale;
-}
-
-function time() {
-  return calendar(d3Time.timeYear, d3Time.timeMonth, d3Time.timeWeek, d3Time.timeDay, d3Time.timeHour, d3Time.timeMinute, d3Time.timeSecond, d3Time.timeMillisecond, d3TimeFormat.timeFormat).domain([new Date(2000, 0, 1), new Date(2000, 0, 2)]);
-}
-
-function utcTime() {
-  return calendar(d3Time.utcYear, d3Time.utcMonth, d3Time.utcWeek, d3Time.utcDay, d3Time.utcHour, d3Time.utcMinute, d3Time.utcSecond, d3Time.utcMillisecond, d3TimeFormat.utcFormat).domain([Date.UTC(2000, 0, 1), Date.UTC(2000, 0, 2)]);
-}
-
-function sequential(interpolator) {
-  var x0 = 0,
-      x1 = 1,
-      k10 = 1,
-      clamp = false;
-
-  function scale(x) {
-    var t = (x - x0) * k10;
-    return interpolator(clamp ? Math.max(0, Math.min(1, t)) : t);
-  }
-
-  scale.domain = function(_) {
-    return arguments.length ? (x0 = +_[0], x1 = +_[1], k10 = x0 === x1 ? 0 : 1 / (x1 - x0), scale) : [x0, x1];
-  };
-
-  scale.clamp = function(_) {
-    return arguments.length ? (clamp = !!_, scale) : clamp;
-  };
-
-  scale.interpolator = function(_) {
-    return arguments.length ? (interpolator = _, scale) : interpolator;
-  };
-
-  scale.copy = function() {
-    return sequential(interpolator).domain([x0, x1]).clamp(clamp);
-  };
-
-  return linearish(scale);
-}
-
-function diverging(interpolator) {
-  var x0 = 0,
-      x1 = 0.5,
-      x2 = 1,
-      k10 = 1,
-      k21 = 1,
-      clamp = false;
-
-  function scale(x) {
-    var t = 0.5 + ((x = +x) - x1) * (x < x1 ? k10 : k21);
-    return interpolator(clamp ? Math.max(0, Math.min(1, t)) : t);
-  }
-
-  scale.domain = function(_) {
-    return arguments.length ? (x0 = +_[0], x1 = +_[1], x2 = +_[2], k10 = x0 === x1 ? 0 : 0.5 / (x1 - x0), k21 = x1 === x2 ? 0 : 0.5 / (x2 - x1), scale) : [x0, x1, x2];
-  };
-
-  scale.clamp = function(_) {
-    return arguments.length ? (clamp = !!_, scale) : clamp;
-  };
-
-  scale.interpolator = function(_) {
-    return arguments.length ? (interpolator = _, scale) : interpolator;
-  };
-
-  scale.copy = function() {
-    return diverging(interpolator).domain([x0, x1, x2]).clamp(clamp);
-  };
-
-  return linearish(scale);
-}
-
-exports.scaleBand = band;
-exports.scalePoint = point;
-exports.scaleIdentity = identity;
-exports.scaleLinear = linear;
-exports.scaleLog = log;
-exports.scaleOrdinal = ordinal;
-exports.scaleImplicit = implicit;
-exports.scalePow = pow;
-exports.scaleSqrt = sqrt;
-exports.scaleQuantile = quantile;
-exports.scaleQuantize = quantize;
-exports.scaleThreshold = threshold;
-exports.scaleTime = time;
-exports.scaleUtc = utcTime;
-exports.scaleSequential = sequential;
-exports.scaleDiverging = diverging;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
-
-},{"d3-array":1,"d3-collection":2,"d3-format":4,"d3-interpolate":5,"d3-time":10,"d3-time-format":9}],8:[function(_dereq_,module,exports){
+},{}],2:[function(_dereq_,module,exports){
 // https://d3js.org/d3-shape/ v1.2.2 Copyright 2018 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, _dereq_('d3-path')) :
@@ -5239,3562 +2332,25 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{"d3-path":6}],9:[function(_dereq_,module,exports){
-// https://d3js.org/d3-time-format/ v2.1.3 Copyright 2018 Mike Bostock
-(function (global, factory) {
-typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, _dereq_('d3-time')) :
-typeof define === 'function' && define.amd ? define(['exports', 'd3-time'], factory) :
-(factory((global.d3 = global.d3 || {}),global.d3));
-}(this, (function (exports,d3Time) { 'use strict';
-
-function localDate(d) {
-  if (0 <= d.y && d.y < 100) {
-    var date = new Date(-1, d.m, d.d, d.H, d.M, d.S, d.L);
-    date.setFullYear(d.y);
-    return date;
-  }
-  return new Date(d.y, d.m, d.d, d.H, d.M, d.S, d.L);
-}
-
-function utcDate(d) {
-  if (0 <= d.y && d.y < 100) {
-    var date = new Date(Date.UTC(-1, d.m, d.d, d.H, d.M, d.S, d.L));
-    date.setUTCFullYear(d.y);
-    return date;
-  }
-  return new Date(Date.UTC(d.y, d.m, d.d, d.H, d.M, d.S, d.L));
-}
-
-function newYear(y) {
-  return {y: y, m: 0, d: 1, H: 0, M: 0, S: 0, L: 0};
-}
-
-function formatLocale(locale) {
-  var locale_dateTime = locale.dateTime,
-      locale_date = locale.date,
-      locale_time = locale.time,
-      locale_periods = locale.periods,
-      locale_weekdays = locale.days,
-      locale_shortWeekdays = locale.shortDays,
-      locale_months = locale.months,
-      locale_shortMonths = locale.shortMonths;
-
-  var periodRe = formatRe(locale_periods),
-      periodLookup = formatLookup(locale_periods),
-      weekdayRe = formatRe(locale_weekdays),
-      weekdayLookup = formatLookup(locale_weekdays),
-      shortWeekdayRe = formatRe(locale_shortWeekdays),
-      shortWeekdayLookup = formatLookup(locale_shortWeekdays),
-      monthRe = formatRe(locale_months),
-      monthLookup = formatLookup(locale_months),
-      shortMonthRe = formatRe(locale_shortMonths),
-      shortMonthLookup = formatLookup(locale_shortMonths);
-
-  var formats = {
-    "a": formatShortWeekday,
-    "A": formatWeekday,
-    "b": formatShortMonth,
-    "B": formatMonth,
-    "c": null,
-    "d": formatDayOfMonth,
-    "e": formatDayOfMonth,
-    "f": formatMicroseconds,
-    "H": formatHour24,
-    "I": formatHour12,
-    "j": formatDayOfYear,
-    "L": formatMilliseconds,
-    "m": formatMonthNumber,
-    "M": formatMinutes,
-    "p": formatPeriod,
-    "Q": formatUnixTimestamp,
-    "s": formatUnixTimestampSeconds,
-    "S": formatSeconds,
-    "u": formatWeekdayNumberMonday,
-    "U": formatWeekNumberSunday,
-    "V": formatWeekNumberISO,
-    "w": formatWeekdayNumberSunday,
-    "W": formatWeekNumberMonday,
-    "x": null,
-    "X": null,
-    "y": formatYear,
-    "Y": formatFullYear,
-    "Z": formatZone,
-    "%": formatLiteralPercent
-  };
-
-  var utcFormats = {
-    "a": formatUTCShortWeekday,
-    "A": formatUTCWeekday,
-    "b": formatUTCShortMonth,
-    "B": formatUTCMonth,
-    "c": null,
-    "d": formatUTCDayOfMonth,
-    "e": formatUTCDayOfMonth,
-    "f": formatUTCMicroseconds,
-    "H": formatUTCHour24,
-    "I": formatUTCHour12,
-    "j": formatUTCDayOfYear,
-    "L": formatUTCMilliseconds,
-    "m": formatUTCMonthNumber,
-    "M": formatUTCMinutes,
-    "p": formatUTCPeriod,
-    "Q": formatUnixTimestamp,
-    "s": formatUnixTimestampSeconds,
-    "S": formatUTCSeconds,
-    "u": formatUTCWeekdayNumberMonday,
-    "U": formatUTCWeekNumberSunday,
-    "V": formatUTCWeekNumberISO,
-    "w": formatUTCWeekdayNumberSunday,
-    "W": formatUTCWeekNumberMonday,
-    "x": null,
-    "X": null,
-    "y": formatUTCYear,
-    "Y": formatUTCFullYear,
-    "Z": formatUTCZone,
-    "%": formatLiteralPercent
-  };
-
-  var parses = {
-    "a": parseShortWeekday,
-    "A": parseWeekday,
-    "b": parseShortMonth,
-    "B": parseMonth,
-    "c": parseLocaleDateTime,
-    "d": parseDayOfMonth,
-    "e": parseDayOfMonth,
-    "f": parseMicroseconds,
-    "H": parseHour24,
-    "I": parseHour24,
-    "j": parseDayOfYear,
-    "L": parseMilliseconds,
-    "m": parseMonthNumber,
-    "M": parseMinutes,
-    "p": parsePeriod,
-    "Q": parseUnixTimestamp,
-    "s": parseUnixTimestampSeconds,
-    "S": parseSeconds,
-    "u": parseWeekdayNumberMonday,
-    "U": parseWeekNumberSunday,
-    "V": parseWeekNumberISO,
-    "w": parseWeekdayNumberSunday,
-    "W": parseWeekNumberMonday,
-    "x": parseLocaleDate,
-    "X": parseLocaleTime,
-    "y": parseYear,
-    "Y": parseFullYear,
-    "Z": parseZone,
-    "%": parseLiteralPercent
-  };
-
-  // These recursive directive definitions must be deferred.
-  formats.x = newFormat(locale_date, formats);
-  formats.X = newFormat(locale_time, formats);
-  formats.c = newFormat(locale_dateTime, formats);
-  utcFormats.x = newFormat(locale_date, utcFormats);
-  utcFormats.X = newFormat(locale_time, utcFormats);
-  utcFormats.c = newFormat(locale_dateTime, utcFormats);
-
-  function newFormat(specifier, formats) {
-    return function(date) {
-      var string = [],
-          i = -1,
-          j = 0,
-          n = specifier.length,
-          c,
-          pad,
-          format;
-
-      if (!(date instanceof Date)) date = new Date(+date);
-
-      while (++i < n) {
-        if (specifier.charCodeAt(i) === 37) {
-          string.push(specifier.slice(j, i));
-          if ((pad = pads[c = specifier.charAt(++i)]) != null) c = specifier.charAt(++i);
-          else pad = c === "e" ? " " : "0";
-          if (format = formats[c]) c = format(date, pad);
-          string.push(c);
-          j = i + 1;
-        }
-      }
-
-      string.push(specifier.slice(j, i));
-      return string.join("");
-    };
-  }
-
-  function newParse(specifier, newDate) {
-    return function(string) {
-      var d = newYear(1900),
-          i = parseSpecifier(d, specifier, string += "", 0),
-          week, day;
-      if (i != string.length) return null;
-
-      // If a UNIX timestamp is specified, return it.
-      if ("Q" in d) return new Date(d.Q);
-
-      // The am-pm flag is 0 for AM, and 1 for PM.
-      if ("p" in d) d.H = d.H % 12 + d.p * 12;
-
-      // Convert day-of-week and week-of-year to day-of-year.
-      if ("V" in d) {
-        if (d.V < 1 || d.V > 53) return null;
-        if (!("w" in d)) d.w = 1;
-        if ("Z" in d) {
-          week = utcDate(newYear(d.y)), day = week.getUTCDay();
-          week = day > 4 || day === 0 ? d3Time.utcMonday.ceil(week) : d3Time.utcMonday(week);
-          week = d3Time.utcDay.offset(week, (d.V - 1) * 7);
-          d.y = week.getUTCFullYear();
-          d.m = week.getUTCMonth();
-          d.d = week.getUTCDate() + (d.w + 6) % 7;
-        } else {
-          week = newDate(newYear(d.y)), day = week.getDay();
-          week = day > 4 || day === 0 ? d3Time.timeMonday.ceil(week) : d3Time.timeMonday(week);
-          week = d3Time.timeDay.offset(week, (d.V - 1) * 7);
-          d.y = week.getFullYear();
-          d.m = week.getMonth();
-          d.d = week.getDate() + (d.w + 6) % 7;
-        }
-      } else if ("W" in d || "U" in d) {
-        if (!("w" in d)) d.w = "u" in d ? d.u % 7 : "W" in d ? 1 : 0;
-        day = "Z" in d ? utcDate(newYear(d.y)).getUTCDay() : newDate(newYear(d.y)).getDay();
-        d.m = 0;
-        d.d = "W" in d ? (d.w + 6) % 7 + d.W * 7 - (day + 5) % 7 : d.w + d.U * 7 - (day + 6) % 7;
-      }
-
-      // If a time zone is specified, all fields are interpreted as UTC and then
-      // offset according to the specified time zone.
-      if ("Z" in d) {
-        d.H += d.Z / 100 | 0;
-        d.M += d.Z % 100;
-        return utcDate(d);
-      }
-
-      // Otherwise, all fields are in local time.
-      return newDate(d);
-    };
-  }
-
-  function parseSpecifier(d, specifier, string, j) {
-    var i = 0,
-        n = specifier.length,
-        m = string.length,
-        c,
-        parse;
-
-    while (i < n) {
-      if (j >= m) return -1;
-      c = specifier.charCodeAt(i++);
-      if (c === 37) {
-        c = specifier.charAt(i++);
-        parse = parses[c in pads ? specifier.charAt(i++) : c];
-        if (!parse || ((j = parse(d, string, j)) < 0)) return -1;
-      } else if (c != string.charCodeAt(j++)) {
-        return -1;
-      }
-    }
-
-    return j;
-  }
-
-  function parsePeriod(d, string, i) {
-    var n = periodRe.exec(string.slice(i));
-    return n ? (d.p = periodLookup[n[0].toLowerCase()], i + n[0].length) : -1;
-  }
-
-  function parseShortWeekday(d, string, i) {
-    var n = shortWeekdayRe.exec(string.slice(i));
-    return n ? (d.w = shortWeekdayLookup[n[0].toLowerCase()], i + n[0].length) : -1;
-  }
-
-  function parseWeekday(d, string, i) {
-    var n = weekdayRe.exec(string.slice(i));
-    return n ? (d.w = weekdayLookup[n[0].toLowerCase()], i + n[0].length) : -1;
-  }
-
-  function parseShortMonth(d, string, i) {
-    var n = shortMonthRe.exec(string.slice(i));
-    return n ? (d.m = shortMonthLookup[n[0].toLowerCase()], i + n[0].length) : -1;
-  }
-
-  function parseMonth(d, string, i) {
-    var n = monthRe.exec(string.slice(i));
-    return n ? (d.m = monthLookup[n[0].toLowerCase()], i + n[0].length) : -1;
-  }
-
-  function parseLocaleDateTime(d, string, i) {
-    return parseSpecifier(d, locale_dateTime, string, i);
-  }
-
-  function parseLocaleDate(d, string, i) {
-    return parseSpecifier(d, locale_date, string, i);
-  }
-
-  function parseLocaleTime(d, string, i) {
-    return parseSpecifier(d, locale_time, string, i);
-  }
-
-  function formatShortWeekday(d) {
-    return locale_shortWeekdays[d.getDay()];
-  }
-
-  function formatWeekday(d) {
-    return locale_weekdays[d.getDay()];
-  }
-
-  function formatShortMonth(d) {
-    return locale_shortMonths[d.getMonth()];
-  }
-
-  function formatMonth(d) {
-    return locale_months[d.getMonth()];
-  }
-
-  function formatPeriod(d) {
-    return locale_periods[+(d.getHours() >= 12)];
-  }
-
-  function formatUTCShortWeekday(d) {
-    return locale_shortWeekdays[d.getUTCDay()];
-  }
-
-  function formatUTCWeekday(d) {
-    return locale_weekdays[d.getUTCDay()];
-  }
-
-  function formatUTCShortMonth(d) {
-    return locale_shortMonths[d.getUTCMonth()];
-  }
-
-  function formatUTCMonth(d) {
-    return locale_months[d.getUTCMonth()];
-  }
-
-  function formatUTCPeriod(d) {
-    return locale_periods[+(d.getUTCHours() >= 12)];
-  }
-
-  return {
-    format: function(specifier) {
-      var f = newFormat(specifier += "", formats);
-      f.toString = function() { return specifier; };
-      return f;
-    },
-    parse: function(specifier) {
-      var p = newParse(specifier += "", localDate);
-      p.toString = function() { return specifier; };
-      return p;
-    },
-    utcFormat: function(specifier) {
-      var f = newFormat(specifier += "", utcFormats);
-      f.toString = function() { return specifier; };
-      return f;
-    },
-    utcParse: function(specifier) {
-      var p = newParse(specifier, utcDate);
-      p.toString = function() { return specifier; };
-      return p;
-    }
-  };
-}
-
-var pads = {"-": "", "_": " ", "0": "0"},
-    numberRe = /^\s*\d+/, // note: ignores next directive
-    percentRe = /^%/,
-    requoteRe = /[\\^$*+?|[\]().{}]/g;
-
-function pad(value, fill, width) {
-  var sign = value < 0 ? "-" : "",
-      string = (sign ? -value : value) + "",
-      length = string.length;
-  return sign + (length < width ? new Array(width - length + 1).join(fill) + string : string);
-}
-
-function requote(s) {
-  return s.replace(requoteRe, "\\$&");
-}
-
-function formatRe(names) {
-  return new RegExp("^(?:" + names.map(requote).join("|") + ")", "i");
-}
-
-function formatLookup(names) {
-  var map = {}, i = -1, n = names.length;
-  while (++i < n) map[names[i].toLowerCase()] = i;
-  return map;
-}
-
-function parseWeekdayNumberSunday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 1));
-  return n ? (d.w = +n[0], i + n[0].length) : -1;
-}
-
-function parseWeekdayNumberMonday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 1));
-  return n ? (d.u = +n[0], i + n[0].length) : -1;
-}
-
-function parseWeekNumberSunday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.U = +n[0], i + n[0].length) : -1;
-}
-
-function parseWeekNumberISO(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.V = +n[0], i + n[0].length) : -1;
-}
-
-function parseWeekNumberMonday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.W = +n[0], i + n[0].length) : -1;
-}
-
-function parseFullYear(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 4));
-  return n ? (d.y = +n[0], i + n[0].length) : -1;
-}
-
-function parseYear(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.y = +n[0] + (+n[0] > 68 ? 1900 : 2000), i + n[0].length) : -1;
-}
-
-function parseZone(d, string, i) {
-  var n = /^(Z)|([+-]\d\d)(?::?(\d\d))?/.exec(string.slice(i, i + 6));
-  return n ? (d.Z = n[1] ? 0 : -(n[2] + (n[3] || "00")), i + n[0].length) : -1;
-}
-
-function parseMonthNumber(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.m = n[0] - 1, i + n[0].length) : -1;
-}
-
-function parseDayOfMonth(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.d = +n[0], i + n[0].length) : -1;
-}
-
-function parseDayOfYear(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 3));
-  return n ? (d.m = 0, d.d = +n[0], i + n[0].length) : -1;
-}
-
-function parseHour24(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.H = +n[0], i + n[0].length) : -1;
-}
-
-function parseMinutes(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.M = +n[0], i + n[0].length) : -1;
-}
-
-function parseSeconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.S = +n[0], i + n[0].length) : -1;
-}
-
-function parseMilliseconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 3));
-  return n ? (d.L = +n[0], i + n[0].length) : -1;
-}
-
-function parseMicroseconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 6));
-  return n ? (d.L = Math.floor(n[0] / 1000), i + n[0].length) : -1;
-}
-
-function parseLiteralPercent(d, string, i) {
-  var n = percentRe.exec(string.slice(i, i + 1));
-  return n ? i + n[0].length : -1;
-}
-
-function parseUnixTimestamp(d, string, i) {
-  var n = numberRe.exec(string.slice(i));
-  return n ? (d.Q = +n[0], i + n[0].length) : -1;
-}
-
-function parseUnixTimestampSeconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i));
-  return n ? (d.Q = (+n[0]) * 1000, i + n[0].length) : -1;
-}
-
-function formatDayOfMonth(d, p) {
-  return pad(d.getDate(), p, 2);
-}
-
-function formatHour24(d, p) {
-  return pad(d.getHours(), p, 2);
-}
-
-function formatHour12(d, p) {
-  return pad(d.getHours() % 12 || 12, p, 2);
-}
-
-function formatDayOfYear(d, p) {
-  return pad(1 + d3Time.timeDay.count(d3Time.timeYear(d), d), p, 3);
-}
-
-function formatMilliseconds(d, p) {
-  return pad(d.getMilliseconds(), p, 3);
-}
-
-function formatMicroseconds(d, p) {
-  return formatMilliseconds(d, p) + "000";
-}
-
-function formatMonthNumber(d, p) {
-  return pad(d.getMonth() + 1, p, 2);
-}
-
-function formatMinutes(d, p) {
-  return pad(d.getMinutes(), p, 2);
-}
-
-function formatSeconds(d, p) {
-  return pad(d.getSeconds(), p, 2);
-}
-
-function formatWeekdayNumberMonday(d) {
-  var day = d.getDay();
-  return day === 0 ? 7 : day;
-}
-
-function formatWeekNumberSunday(d, p) {
-  return pad(d3Time.timeSunday.count(d3Time.timeYear(d), d), p, 2);
-}
-
-function formatWeekNumberISO(d, p) {
-  var day = d.getDay();
-  d = (day >= 4 || day === 0) ? d3Time.timeThursday(d) : d3Time.timeThursday.ceil(d);
-  return pad(d3Time.timeThursday.count(d3Time.timeYear(d), d) + (d3Time.timeYear(d).getDay() === 4), p, 2);
-}
-
-function formatWeekdayNumberSunday(d) {
-  return d.getDay();
-}
-
-function formatWeekNumberMonday(d, p) {
-  return pad(d3Time.timeMonday.count(d3Time.timeYear(d), d), p, 2);
-}
-
-function formatYear(d, p) {
-  return pad(d.getFullYear() % 100, p, 2);
-}
-
-function formatFullYear(d, p) {
-  return pad(d.getFullYear() % 10000, p, 4);
-}
-
-function formatZone(d) {
-  var z = d.getTimezoneOffset();
-  return (z > 0 ? "-" : (z *= -1, "+"))
-      + pad(z / 60 | 0, "0", 2)
-      + pad(z % 60, "0", 2);
-}
-
-function formatUTCDayOfMonth(d, p) {
-  return pad(d.getUTCDate(), p, 2);
-}
-
-function formatUTCHour24(d, p) {
-  return pad(d.getUTCHours(), p, 2);
-}
-
-function formatUTCHour12(d, p) {
-  return pad(d.getUTCHours() % 12 || 12, p, 2);
-}
-
-function formatUTCDayOfYear(d, p) {
-  return pad(1 + d3Time.utcDay.count(d3Time.utcYear(d), d), p, 3);
-}
-
-function formatUTCMilliseconds(d, p) {
-  return pad(d.getUTCMilliseconds(), p, 3);
-}
-
-function formatUTCMicroseconds(d, p) {
-  return formatUTCMilliseconds(d, p) + "000";
-}
-
-function formatUTCMonthNumber(d, p) {
-  return pad(d.getUTCMonth() + 1, p, 2);
-}
-
-function formatUTCMinutes(d, p) {
-  return pad(d.getUTCMinutes(), p, 2);
-}
-
-function formatUTCSeconds(d, p) {
-  return pad(d.getUTCSeconds(), p, 2);
-}
-
-function formatUTCWeekdayNumberMonday(d) {
-  var dow = d.getUTCDay();
-  return dow === 0 ? 7 : dow;
-}
-
-function formatUTCWeekNumberSunday(d, p) {
-  return pad(d3Time.utcSunday.count(d3Time.utcYear(d), d), p, 2);
-}
-
-function formatUTCWeekNumberISO(d, p) {
-  var day = d.getUTCDay();
-  d = (day >= 4 || day === 0) ? d3Time.utcThursday(d) : d3Time.utcThursday.ceil(d);
-  return pad(d3Time.utcThursday.count(d3Time.utcYear(d), d) + (d3Time.utcYear(d).getUTCDay() === 4), p, 2);
-}
-
-function formatUTCWeekdayNumberSunday(d) {
-  return d.getUTCDay();
-}
-
-function formatUTCWeekNumberMonday(d, p) {
-  return pad(d3Time.utcMonday.count(d3Time.utcYear(d), d), p, 2);
-}
-
-function formatUTCYear(d, p) {
-  return pad(d.getUTCFullYear() % 100, p, 2);
-}
-
-function formatUTCFullYear(d, p) {
-  return pad(d.getUTCFullYear() % 10000, p, 4);
-}
-
-function formatUTCZone() {
-  return "+0000";
-}
-
-function formatLiteralPercent() {
-  return "%";
-}
-
-function formatUnixTimestamp(d) {
-  return +d;
-}
-
-function formatUnixTimestampSeconds(d) {
-  return Math.floor(+d / 1000);
-}
-
-var locale;
-
-defaultLocale({
-  dateTime: "%x, %X",
-  date: "%-m/%-d/%Y",
-  time: "%-I:%M:%S %p",
-  periods: ["AM", "PM"],
-  days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-  shortDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-  months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-  shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-});
-
-function defaultLocale(definition) {
-  locale = formatLocale(definition);
-  exports.timeFormat = locale.format;
-  exports.timeParse = locale.parse;
-  exports.utcFormat = locale.utcFormat;
-  exports.utcParse = locale.utcParse;
-  return locale;
-}
-
-var isoSpecifier = "%Y-%m-%dT%H:%M:%S.%LZ";
-
-function formatIsoNative(date) {
-  return date.toISOString();
-}
-
-var formatIso = Date.prototype.toISOString
-    ? formatIsoNative
-    : exports.utcFormat(isoSpecifier);
-
-function parseIsoNative(string) {
-  var date = new Date(string);
-  return isNaN(date) ? null : date;
-}
-
-var parseIso = +new Date("2000-01-01T00:00:00.000Z")
-    ? parseIsoNative
-    : exports.utcParse(isoSpecifier);
-
-exports.timeFormatDefaultLocale = defaultLocale;
-exports.timeFormatLocale = formatLocale;
-exports.isoFormat = formatIso;
-exports.isoParse = parseIso;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
-
-},{"d3-time":10}],10:[function(_dereq_,module,exports){
-// https://d3js.org/d3-time/ v1.0.10 Copyright 2018 Mike Bostock
-(function (global, factory) {
-typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-typeof define === 'function' && define.amd ? define(['exports'], factory) :
-(factory((global.d3 = global.d3 || {})));
-}(this, (function (exports) { 'use strict';
-
-var t0 = new Date,
-    t1 = new Date;
-
-function newInterval(floori, offseti, count, field) {
-
-  function interval(date) {
-    return floori(date = new Date(+date)), date;
-  }
-
-  interval.floor = interval;
-
-  interval.ceil = function(date) {
-    return floori(date = new Date(date - 1)), offseti(date, 1), floori(date), date;
-  };
-
-  interval.round = function(date) {
-    var d0 = interval(date),
-        d1 = interval.ceil(date);
-    return date - d0 < d1 - date ? d0 : d1;
-  };
-
-  interval.offset = function(date, step) {
-    return offseti(date = new Date(+date), step == null ? 1 : Math.floor(step)), date;
-  };
-
-  interval.range = function(start, stop, step) {
-    var range = [], previous;
-    start = interval.ceil(start);
-    step = step == null ? 1 : Math.floor(step);
-    if (!(start < stop) || !(step > 0)) return range; // also handles Invalid Date
-    do range.push(previous = new Date(+start)), offseti(start, step), floori(start);
-    while (previous < start && start < stop);
-    return range;
-  };
-
-  interval.filter = function(test) {
-    return newInterval(function(date) {
-      if (date >= date) while (floori(date), !test(date)) date.setTime(date - 1);
-    }, function(date, step) {
-      if (date >= date) {
-        if (step < 0) while (++step <= 0) {
-          while (offseti(date, -1), !test(date)) {} // eslint-disable-line no-empty
-        } else while (--step >= 0) {
-          while (offseti(date, +1), !test(date)) {} // eslint-disable-line no-empty
-        }
-      }
-    });
-  };
-
-  if (count) {
-    interval.count = function(start, end) {
-      t0.setTime(+start), t1.setTime(+end);
-      floori(t0), floori(t1);
-      return Math.floor(count(t0, t1));
-    };
-
-    interval.every = function(step) {
-      step = Math.floor(step);
-      return !isFinite(step) || !(step > 0) ? null
-          : !(step > 1) ? interval
-          : interval.filter(field
-              ? function(d) { return field(d) % step === 0; }
-              : function(d) { return interval.count(0, d) % step === 0; });
-    };
-  }
-
-  return interval;
-}
-
-var millisecond = newInterval(function() {
-  // noop
-}, function(date, step) {
-  date.setTime(+date + step);
-}, function(start, end) {
-  return end - start;
-});
-
-// An optimized implementation for this simple case.
-millisecond.every = function(k) {
-  k = Math.floor(k);
-  if (!isFinite(k) || !(k > 0)) return null;
-  if (!(k > 1)) return millisecond;
-  return newInterval(function(date) {
-    date.setTime(Math.floor(date / k) * k);
-  }, function(date, step) {
-    date.setTime(+date + step * k);
-  }, function(start, end) {
-    return (end - start) / k;
-  });
-};
-var milliseconds = millisecond.range;
-
-var durationSecond = 1e3;
-var durationMinute = 6e4;
-var durationHour = 36e5;
-var durationDay = 864e5;
-var durationWeek = 6048e5;
-
-var second = newInterval(function(date) {
-  date.setTime(Math.floor(date / durationSecond) * durationSecond);
-}, function(date, step) {
-  date.setTime(+date + step * durationSecond);
-}, function(start, end) {
-  return (end - start) / durationSecond;
-}, function(date) {
-  return date.getUTCSeconds();
-});
-var seconds = second.range;
-
-var minute = newInterval(function(date) {
-  date.setTime(Math.floor(date / durationMinute) * durationMinute);
-}, function(date, step) {
-  date.setTime(+date + step * durationMinute);
-}, function(start, end) {
-  return (end - start) / durationMinute;
-}, function(date) {
-  return date.getMinutes();
-});
-var minutes = minute.range;
-
-var hour = newInterval(function(date) {
-  var offset = date.getTimezoneOffset() * durationMinute % durationHour;
-  if (offset < 0) offset += durationHour;
-  date.setTime(Math.floor((+date - offset) / durationHour) * durationHour + offset);
-}, function(date, step) {
-  date.setTime(+date + step * durationHour);
-}, function(start, end) {
-  return (end - start) / durationHour;
-}, function(date) {
-  return date.getHours();
-});
-var hours = hour.range;
-
-var day = newInterval(function(date) {
-  date.setHours(0, 0, 0, 0);
-}, function(date, step) {
-  date.setDate(date.getDate() + step);
-}, function(start, end) {
-  return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * durationMinute) / durationDay;
-}, function(date) {
-  return date.getDate() - 1;
-});
-var days = day.range;
-
-function weekday(i) {
-  return newInterval(function(date) {
-    date.setDate(date.getDate() - (date.getDay() + 7 - i) % 7);
-    date.setHours(0, 0, 0, 0);
-  }, function(date, step) {
-    date.setDate(date.getDate() + step * 7);
-  }, function(start, end) {
-    return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * durationMinute) / durationWeek;
-  });
-}
-
-var sunday = weekday(0);
-var monday = weekday(1);
-var tuesday = weekday(2);
-var wednesday = weekday(3);
-var thursday = weekday(4);
-var friday = weekday(5);
-var saturday = weekday(6);
-
-var sundays = sunday.range;
-var mondays = monday.range;
-var tuesdays = tuesday.range;
-var wednesdays = wednesday.range;
-var thursdays = thursday.range;
-var fridays = friday.range;
-var saturdays = saturday.range;
-
-var month = newInterval(function(date) {
-  date.setDate(1);
-  date.setHours(0, 0, 0, 0);
-}, function(date, step) {
-  date.setMonth(date.getMonth() + step);
-}, function(start, end) {
-  return end.getMonth() - start.getMonth() + (end.getFullYear() - start.getFullYear()) * 12;
-}, function(date) {
-  return date.getMonth();
-});
-var months = month.range;
-
-var year = newInterval(function(date) {
-  date.setMonth(0, 1);
-  date.setHours(0, 0, 0, 0);
-}, function(date, step) {
-  date.setFullYear(date.getFullYear() + step);
-}, function(start, end) {
-  return end.getFullYear() - start.getFullYear();
-}, function(date) {
-  return date.getFullYear();
-});
-
-// An optimized implementation for this simple case.
-year.every = function(k) {
-  return !isFinite(k = Math.floor(k)) || !(k > 0) ? null : newInterval(function(date) {
-    date.setFullYear(Math.floor(date.getFullYear() / k) * k);
-    date.setMonth(0, 1);
-    date.setHours(0, 0, 0, 0);
-  }, function(date, step) {
-    date.setFullYear(date.getFullYear() + step * k);
-  });
-};
-var years = year.range;
-
-var utcMinute = newInterval(function(date) {
-  date.setUTCSeconds(0, 0);
-}, function(date, step) {
-  date.setTime(+date + step * durationMinute);
-}, function(start, end) {
-  return (end - start) / durationMinute;
-}, function(date) {
-  return date.getUTCMinutes();
-});
-var utcMinutes = utcMinute.range;
-
-var utcHour = newInterval(function(date) {
-  date.setUTCMinutes(0, 0, 0);
-}, function(date, step) {
-  date.setTime(+date + step * durationHour);
-}, function(start, end) {
-  return (end - start) / durationHour;
-}, function(date) {
-  return date.getUTCHours();
-});
-var utcHours = utcHour.range;
-
-var utcDay = newInterval(function(date) {
-  date.setUTCHours(0, 0, 0, 0);
-}, function(date, step) {
-  date.setUTCDate(date.getUTCDate() + step);
-}, function(start, end) {
-  return (end - start) / durationDay;
-}, function(date) {
-  return date.getUTCDate() - 1;
-});
-var utcDays = utcDay.range;
-
-function utcWeekday(i) {
-  return newInterval(function(date) {
-    date.setUTCDate(date.getUTCDate() - (date.getUTCDay() + 7 - i) % 7);
-    date.setUTCHours(0, 0, 0, 0);
-  }, function(date, step) {
-    date.setUTCDate(date.getUTCDate() + step * 7);
-  }, function(start, end) {
-    return (end - start) / durationWeek;
-  });
-}
-
-var utcSunday = utcWeekday(0);
-var utcMonday = utcWeekday(1);
-var utcTuesday = utcWeekday(2);
-var utcWednesday = utcWeekday(3);
-var utcThursday = utcWeekday(4);
-var utcFriday = utcWeekday(5);
-var utcSaturday = utcWeekday(6);
-
-var utcSundays = utcSunday.range;
-var utcMondays = utcMonday.range;
-var utcTuesdays = utcTuesday.range;
-var utcWednesdays = utcWednesday.range;
-var utcThursdays = utcThursday.range;
-var utcFridays = utcFriday.range;
-var utcSaturdays = utcSaturday.range;
-
-var utcMonth = newInterval(function(date) {
-  date.setUTCDate(1);
-  date.setUTCHours(0, 0, 0, 0);
-}, function(date, step) {
-  date.setUTCMonth(date.getUTCMonth() + step);
-}, function(start, end) {
-  return end.getUTCMonth() - start.getUTCMonth() + (end.getUTCFullYear() - start.getUTCFullYear()) * 12;
-}, function(date) {
-  return date.getUTCMonth();
-});
-var utcMonths = utcMonth.range;
-
-var utcYear = newInterval(function(date) {
-  date.setUTCMonth(0, 1);
-  date.setUTCHours(0, 0, 0, 0);
-}, function(date, step) {
-  date.setUTCFullYear(date.getUTCFullYear() + step);
-}, function(start, end) {
-  return end.getUTCFullYear() - start.getUTCFullYear();
-}, function(date) {
-  return date.getUTCFullYear();
-});
-
-// An optimized implementation for this simple case.
-utcYear.every = function(k) {
-  return !isFinite(k = Math.floor(k)) || !(k > 0) ? null : newInterval(function(date) {
-    date.setUTCFullYear(Math.floor(date.getUTCFullYear() / k) * k);
-    date.setUTCMonth(0, 1);
-    date.setUTCHours(0, 0, 0, 0);
-  }, function(date, step) {
-    date.setUTCFullYear(date.getUTCFullYear() + step * k);
-  });
-};
-var utcYears = utcYear.range;
-
-exports.timeInterval = newInterval;
-exports.timeMillisecond = millisecond;
-exports.timeMilliseconds = milliseconds;
-exports.utcMillisecond = millisecond;
-exports.utcMilliseconds = milliseconds;
-exports.timeSecond = second;
-exports.timeSeconds = seconds;
-exports.utcSecond = second;
-exports.utcSeconds = seconds;
-exports.timeMinute = minute;
-exports.timeMinutes = minutes;
-exports.timeHour = hour;
-exports.timeHours = hours;
-exports.timeDay = day;
-exports.timeDays = days;
-exports.timeWeek = sunday;
-exports.timeWeeks = sundays;
-exports.timeSunday = sunday;
-exports.timeSundays = sundays;
-exports.timeMonday = monday;
-exports.timeMondays = mondays;
-exports.timeTuesday = tuesday;
-exports.timeTuesdays = tuesdays;
-exports.timeWednesday = wednesday;
-exports.timeWednesdays = wednesdays;
-exports.timeThursday = thursday;
-exports.timeThursdays = thursdays;
-exports.timeFriday = friday;
-exports.timeFridays = fridays;
-exports.timeSaturday = saturday;
-exports.timeSaturdays = saturdays;
-exports.timeMonth = month;
-exports.timeMonths = months;
-exports.timeYear = year;
-exports.timeYears = years;
-exports.utcMinute = utcMinute;
-exports.utcMinutes = utcMinutes;
-exports.utcHour = utcHour;
-exports.utcHours = utcHours;
-exports.utcDay = utcDay;
-exports.utcDays = utcDays;
-exports.utcWeek = utcSunday;
-exports.utcWeeks = utcSundays;
-exports.utcSunday = utcSunday;
-exports.utcSundays = utcSundays;
-exports.utcMonday = utcMonday;
-exports.utcMondays = utcMondays;
-exports.utcTuesday = utcTuesday;
-exports.utcTuesdays = utcTuesdays;
-exports.utcWednesday = utcWednesday;
-exports.utcWednesdays = utcWednesdays;
-exports.utcThursday = utcThursday;
-exports.utcThursdays = utcThursdays;
-exports.utcFriday = utcFriday;
-exports.utcFridays = utcFridays;
-exports.utcSaturday = utcSaturday;
-exports.utcSaturdays = utcSaturdays;
-exports.utcMonth = utcMonth;
-exports.utcMonths = utcMonths;
-exports.utcYear = utcYear;
-exports.utcYears = utcYears;
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
-
-},{}],11:[function(_dereq_,module,exports){
+},{"d3-path":1}],3:[function(_dereq_,module,exports){
 (function (global){
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).fitAspect=e()}}(function(){return function a(o,s,d){function c(t,e){if(!s[t]){if(!o[t]){var i="function"==typeof _dereq_&&_dereq_;if(!e&&i)return i(t,!0);if(p)return p(t,!0);var n=new Error("Cannot find module '"+t+"'");throw n.code="MODULE_NOT_FOUND",n}var r=s[t]={exports:{}};o[t][0].call(r.exports,function(e){return c(o[t][1][e]||e)},r,r.exports,a,o,s,d)}return s[t].exports}for(var p="function"==typeof _dereq_&&_dereq_,e=0;e<d.length;e++)c(d[e]);return c}({1:[function(e,t,i){"use strict";var n=[{names:["square","1:1","instagram"],description:"Square",decimal:1,orientation:"landscape"},{names:["4:3","fullscreen","four three","1.33:1","ipad","pythagorean"],description:"Traditional TVs",decimal:1.333333,orientation:"landscape"},{names:["a4","√2:1","paper","lichtenberg","1:1.41"],description:"A4 paper",decimal:1.41},{names:["imax","1.43:1"],description:"IMAX film",decimal:1.43,orientation:"landscape"},{names:["3:2","35mm","photo","1.5:1","1.5"],description:"35mm photos",decimal:1.5,orientation:"landscape"},{names:["business card","bank card","1.58:1"],description:"Bank Cards",decimal:1.58577,orientation:"landscape"},{names:["golden","kepler","1.618","1.6:1"],description:"Golden ratio",decimal:1.61803,orientation:"landscape"},{names:["16:9","hd","hdtv","fhd","tv","computer","iphone","4k","8k","1.78:1"],description:"HD video",decimal:1.77777,orientation:"landscape"},{names:["widescreen","1.85:1"],description:"Movie-theatres",decimal:1.85,orientation:"landscape"},{names:["2:1","univisium","mobile","18:9"],description:"2:1",decimal:2,orientation:"landscape"},{names:["cinemascope","widescreen","wide","2.35:1","2.39:1"],description:"Widescreen",decimal:2.35,orientation:"landscape"},{names:["silver","1 + √2","2.41:1"],description:"Silver ratio",decimal:2.41,orientation:"landscape"}],r=n.map(function(e){return(e=Object.assign({},e)).decimal=1/e.decimal,e.orientation="portrait",e}),a={};n.forEach(function(t){t.names.forEach(function(e){a[e]=t})}),t.exports={lookup:a,portraits:r,list:n}},{}],2:[function(e,t,i){"use strict";var n=e("./aspects");t.exports=function(e,t){var i=e/t;return(i=parseInt(100*i,10)/100)<1?function(e,t){for(var i=0;i<t.length;i+=1)if(e>t[i].decimal){if(t[i-1]){var n=Math.abs(e-t[i].decimal);if(Math.abs(e-t[i-1].decimal)<n)return t[i-1]}return t[i]}return t[t.length-1]}(i,n.portraits):function(e,t){for(var i=0;i<t.length;i+=1)if(e<=t[i].decimal){if(t[i-1]){var n=Math.abs(e-t[i].decimal);if(Math.abs(e-t[i-1].decimal)<n)return t[i-1]}return t[i]}return t[t.length-1]}(i,n.list)}},{"./aspects":1}],3:[function(i,n,e){(function(e){"use strict";var f=i("./find-best-ratio"),u=i("./parse-ratio"),t=function(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{};if("number"==typeof e.width&&"number"==typeof e.height){var t=f(e.width,e.height),i=1/t.decimal,n=e.width*i,r=(n-e.height)/e.height;return r=parseInt(1e3*r,10)/10,n=Math.round(n),{aspect:t,percent_change:r,width:e.width,height:n}}var a=u(e.aspect||e.ratio||"");if(null===a)return console.error("find-aspect-ratio error: Could not find a given aspect ratio."),e;if("number"==typeof e.width){var o=1/a.decimal,s=e.orientation||"landscape";"portrait"===s&&(o=1/o);var d=e.width*o;return d=Math.round(d),{aspect:a,width:e.width,height:d,orientation:s}}if("number"!=typeof e.height)return console.error("find-aspect-ratio error: Please supply a height, width, or ratio value."),e;var c=a.decimal,p=e.orientation||"landscape";"portrait"===p&&(c=1/c);var l=e.height*c;return{aspect:a,width:l=Math.round(l),height:e.height,orientation:p}};"undefined"!=typeof self?self.nlp=t:"undefined"!=typeof window?window.nlp=t:void 0!==e&&(e.nlp=t),void 0!==n&&(n.exports=t)}).call(this,"undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{"./find-best-ratio":2,"./parse-ratio":4}],4:[function(e,t,i){"use strict";var n=e("./aspects"),r=/^[0-9\.]+:[0-9\.]+$/;t.exports=function(e){if(e=(e=(e=(e=e.toLowerCase()).trim()).replace(" ratio","")).replace("-"," "),!0===n.lookup.hasOwnProperty(e))return n.lookup[e];if(!0!==r.test(e))return null;var t=e.split(":");return{description:"custom",decimal:parseFloat(t[0])/parseFloat(t[1])}}},{"./aspects":1}]},{},[3])(3)});
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],12:[function(_dereq_,module,exports){
-!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.htm=t()}(this,function(){var e={},t=document.createElement("template"),n=/(\$_h\[\d+\])/g;function r(e,t){var r=e.match(n),i=JSON.stringify(e);if(null!=r){if(r[0]===e)return e;i=i.replace(n,'"'+t+"$1"+t+'"').replace(/"[+,]"/g,""),","==t&&(i="["+i+"]")}return i}return function(n){return(e[n]||(e[n]=function(e){for(var n=e[0],i=1;i<e.length;)n+="$_h["+i+"]"+e[i++];return t.innerHTML=n.replace(/<(?:(\/)\/|(\/?)(\$_h\[\d+\]))/g,"<$1$2c c@=$3").replace(/<([\w:-]+)(?:\s[^<>]*?)?(\/?)>/g,function(e,t,n){return e.replace(/(?:'.*?'|".*?"|([A-Z]))/g,function(e,t){return t?":::"+t:e})+(n?"</"+t+">":"")}).trim(),Function("h","$_h","return "+function e(t){if(1!=t.nodeType)return 3==t.nodeType&&t.data?r(t.data,","):"null";for(var n="",i=r(t.localName,n),u="",a=",({",o=0;o<t.attributes.length;o++){var c=t.attributes[o].name,f=t.attributes[o].value;"c@"==c?i=f:"..."==c.substring(0,3)?(u="",a=",Object.assign({",n+="},"+c.substring(3)+",{"):(n+=u+'"'+c.replace(/:::(\w)/g,function(e,t){return t.toUpperCase()})+'":'+(!f||r(f,"+")),u=",")}n="h("+i+a+n+"})";for(var l=t.firstChild;l;)n+=","+e(l),l=l.nextSibling;return n+")"}((t.content||t).firstChild))}(n)))(this,arguments)}});
+},{}],4:[function(_dereq_,module,exports){
+!function(){var n={},e=JSON.stringify;function t(e){for(var t=".",c=0;c<e.length;c++)t+=e[c].length+","+e[c];return(n[t]||(n[t]=i(e)))(this,arguments)}var i=function(n){for(var t,i,c,r,s,o=0,u="return ",a="",f="",h=0,l="",g="",d="",v=0,m=function(){c?9===o?(h++&&(u+=","),u+="h("+(f||e(a)),o=0):13===o||0===o&&"..."===a?(0===o?(d||(d=")",l=l?"Object.assign("+l:"Object.assign({}"),l+=g+","+f,g=""):r&&(l+=l?","+(g?"":"{"):"{",g="}",l+=e(r)+":",l+=f||(s||a)&&e(a)||"true",r=""),s=!1):0===o&&(o=13,r=a,a=f="",m(),o=0):(f||(a=a.replace(/^\s*\n\s*|\s*\n\s*$/g,"")))&&(h++&&(u+=","),u+=f||e(a)),a=f=""},p=0;p<n.length;p++){p>0&&(c||m(),f="$["+p+"]",m());for(var O=0;O<n[p].length;O++){if(i=n[p].charCodeAt(O),c){if(39===i||34===i){if(v===i){v=0;continue}if(0===v){v=i;continue}}if(0===v)switch(i){case 62:m(),47!==o&&(u+=l?","+l+g+d:",null"),t&&(u+=")"),c=0,l="",o=1;continue;case 61:o=13,s=!0,r=a,a="";continue;case 47:t||(t=!0,9!==o||a.trim()||(a=f="",o=47));continue;case 9:case 10:case 13:case 32:m(),o=0;continue}}else if(60===i){m(),c=1,d=g=l="",t=s=!1,o=9;continue}a+=n[p].charAt(O)}}return m(),Function("h","$",u)};"undefined"!=typeof module?module.exports=t:self.htm=t}();
 
-},{}],13:[function(_dereq_,module,exports){
-!function() {
-    'use strict';
-    function h(nodeName, attributes) {
-        var lastSimple, child, simple, i, children = EMPTY_CHILDREN;
-        for (i = arguments.length; i-- > 2; ) stack.push(arguments[i]);
-        if (attributes && null != attributes.children) {
-            if (!stack.length) stack.push(attributes.children);
-            delete attributes.children;
-        }
-        while (stack.length) if ((child = stack.pop()) && void 0 !== child.pop) for (i = child.length; i--; ) stack.push(child[i]); else {
-            if ('boolean' == typeof child) child = null;
-            if (simple = 'function' != typeof nodeName) if (null == child) child = ''; else if ('number' == typeof child) child = String(child); else if ('string' != typeof child) simple = !1;
-            if (simple && lastSimple) children[children.length - 1] += child; else if (children === EMPTY_CHILDREN) children = [ child ]; else children.push(child);
-            lastSimple = simple;
-        }
-        var p = new VNode();
-        p.nodeName = nodeName;
-        p.children = children;
-        p.attributes = null == attributes ? void 0 : attributes;
-        p.key = null == attributes ? void 0 : attributes.key;
-        if (void 0 !== options.vnode) options.vnode(p);
-        return p;
-    }
-    function extend(obj, props) {
-        for (var i in props) obj[i] = props[i];
-        return obj;
-    }
-    function applyRef(ref, value) {
-        if (null != ref) if ('function' == typeof ref) ref(value); else ref.current = value;
-    }
-    function cloneElement(vnode, props) {
-        return h(vnode.nodeName, extend(extend({}, vnode.attributes), props), arguments.length > 2 ? [].slice.call(arguments, 2) : vnode.children);
-    }
-    function enqueueRender(component) {
-        if (!component.__d && (component.__d = !0) && 1 == items.push(component)) (options.debounceRendering || defer)(rerender);
-    }
-    function rerender() {
-        var p;
-        while (p = items.pop()) if (p.__d) renderComponent(p);
-    }
-    function isSameNodeType(node, vnode, hydrating) {
-        if ('string' == typeof vnode || 'number' == typeof vnode) return void 0 !== node.splitText;
-        if ('string' == typeof vnode.nodeName) return !node._componentConstructor && isNamedNode(node, vnode.nodeName); else return hydrating || node._componentConstructor === vnode.nodeName;
-    }
-    function isNamedNode(node, nodeName) {
-        return node.__n === nodeName || node.nodeName.toLowerCase() === nodeName.toLowerCase();
-    }
-    function getNodeProps(vnode) {
-        var props = extend({}, vnode.attributes);
-        props.children = vnode.children;
-        var defaultProps = vnode.nodeName.defaultProps;
-        if (void 0 !== defaultProps) for (var i in defaultProps) if (void 0 === props[i]) props[i] = defaultProps[i];
-        return props;
-    }
-    function createNode(nodeName, isSvg) {
-        var node = isSvg ? document.createElementNS('http://www.w3.org/2000/svg', nodeName) : document.createElement(nodeName);
-        node.__n = nodeName;
-        return node;
-    }
-    function removeNode(node) {
-        var parentNode = node.parentNode;
-        if (parentNode) parentNode.removeChild(node);
-    }
-    function setAccessor(node, name, old, value, isSvg) {
-        if ('className' === name) name = 'class';
-        if ('key' === name) ; else if ('ref' === name) {
-            applyRef(old, null);
-            applyRef(value, node);
-        } else if ('class' === name && !isSvg) node.className = value || ''; else if ('style' === name) {
-            if (!value || 'string' == typeof value || 'string' == typeof old) node.style.cssText = value || '';
-            if (value && 'object' == typeof value) {
-                if ('string' != typeof old) for (var i in old) if (!(i in value)) node.style[i] = '';
-                for (var i in value) node.style[i] = 'number' == typeof value[i] && !1 === IS_NON_DIMENSIONAL.test(i) ? value[i] + 'px' : value[i];
-            }
-        } else if ('dangerouslySetInnerHTML' === name) {
-            if (value) node.innerHTML = value.__html || '';
-        } else if ('o' == name[0] && 'n' == name[1]) {
-            var useCapture = name !== (name = name.replace(/Capture$/, ''));
-            name = name.toLowerCase().substring(2);
-            if (value) {
-                if (!old) node.addEventListener(name, eventProxy, useCapture);
-            } else node.removeEventListener(name, eventProxy, useCapture);
-            (node.__l || (node.__l = {}))[name] = value;
-        } else if ('list' !== name && 'type' !== name && !isSvg && name in node) {
-            try {
-                node[name] = null == value ? '' : value;
-            } catch (e) {}
-            if ((null == value || !1 === value) && 'spellcheck' != name) node.removeAttribute(name);
-        } else {
-            var ns = isSvg && name !== (name = name.replace(/^xlink:?/, ''));
-            if (null == value || !1 === value) if (ns) node.removeAttributeNS('http://www.w3.org/1999/xlink', name.toLowerCase()); else node.removeAttribute(name); else if ('function' != typeof value) if (ns) node.setAttributeNS('http://www.w3.org/1999/xlink', name.toLowerCase(), value); else node.setAttribute(name, value);
-        }
-    }
-    function eventProxy(e) {
-        return this.__l[e.type](options.event && options.event(e) || e);
-    }
-    function flushMounts() {
-        var c;
-        while (c = mounts.shift()) {
-            if (options.afterMount) options.afterMount(c);
-            if (c.componentDidMount) c.componentDidMount();
-        }
-    }
-    function diff(dom, vnode, context, mountAll, parent, componentRoot) {
-        if (!diffLevel++) {
-            isSvgMode = null != parent && void 0 !== parent.ownerSVGElement;
-            hydrating = null != dom && !('__preactattr_' in dom);
-        }
-        var ret = idiff(dom, vnode, context, mountAll, componentRoot);
-        if (parent && ret.parentNode !== parent) parent.appendChild(ret);
-        if (!--diffLevel) {
-            hydrating = !1;
-            if (!componentRoot) flushMounts();
-        }
-        return ret;
-    }
-    function idiff(dom, vnode, context, mountAll, componentRoot) {
-        var out = dom, prevSvgMode = isSvgMode;
-        if (null == vnode || 'boolean' == typeof vnode) vnode = '';
-        if ('string' == typeof vnode || 'number' == typeof vnode) {
-            if (dom && void 0 !== dom.splitText && dom.parentNode && (!dom._component || componentRoot)) {
-                if (dom.nodeValue != vnode) dom.nodeValue = vnode;
-            } else {
-                out = document.createTextNode(vnode);
-                if (dom) {
-                    if (dom.parentNode) dom.parentNode.replaceChild(out, dom);
-                    recollectNodeTree(dom, !0);
-                }
-            }
-            out.__preactattr_ = !0;
-            return out;
-        }
-        var vnodeName = vnode.nodeName;
-        if ('function' == typeof vnodeName) return buildComponentFromVNode(dom, vnode, context, mountAll);
-        isSvgMode = 'svg' === vnodeName ? !0 : 'foreignObject' === vnodeName ? !1 : isSvgMode;
-        vnodeName = String(vnodeName);
-        if (!dom || !isNamedNode(dom, vnodeName)) {
-            out = createNode(vnodeName, isSvgMode);
-            if (dom) {
-                while (dom.firstChild) out.appendChild(dom.firstChild);
-                if (dom.parentNode) dom.parentNode.replaceChild(out, dom);
-                recollectNodeTree(dom, !0);
-            }
-        }
-        var fc = out.firstChild, props = out.__preactattr_, vchildren = vnode.children;
-        if (null == props) {
-            props = out.__preactattr_ = {};
-            for (var a = out.attributes, i = a.length; i--; ) props[a[i].name] = a[i].value;
-        }
-        if (!hydrating && vchildren && 1 === vchildren.length && 'string' == typeof vchildren[0] && null != fc && void 0 !== fc.splitText && null == fc.nextSibling) {
-            if (fc.nodeValue != vchildren[0]) fc.nodeValue = vchildren[0];
-        } else if (vchildren && vchildren.length || null != fc) innerDiffNode(out, vchildren, context, mountAll, hydrating || null != props.dangerouslySetInnerHTML);
-        diffAttributes(out, vnode.attributes, props);
-        isSvgMode = prevSvgMode;
-        return out;
-    }
-    function innerDiffNode(dom, vchildren, context, mountAll, isHydrating) {
-        var j, c, f, vchild, child, originalChildren = dom.childNodes, children = [], keyed = {}, keyedLen = 0, min = 0, len = originalChildren.length, childrenLen = 0, vlen = vchildren ? vchildren.length : 0;
-        if (0 !== len) for (var i = 0; i < len; i++) {
-            var _child = originalChildren[i], props = _child.__preactattr_, key = vlen && props ? _child._component ? _child._component.__k : props.key : null;
-            if (null != key) {
-                keyedLen++;
-                keyed[key] = _child;
-            } else if (props || (void 0 !== _child.splitText ? isHydrating ? _child.nodeValue.trim() : !0 : isHydrating)) children[childrenLen++] = _child;
-        }
-        if (0 !== vlen) for (var i = 0; i < vlen; i++) {
-            vchild = vchildren[i];
-            child = null;
-            var key = vchild.key;
-            if (null != key) {
-                if (keyedLen && void 0 !== keyed[key]) {
-                    child = keyed[key];
-                    keyed[key] = void 0;
-                    keyedLen--;
-                }
-            } else if (min < childrenLen) for (j = min; j < childrenLen; j++) if (void 0 !== children[j] && isSameNodeType(c = children[j], vchild, isHydrating)) {
-                child = c;
-                children[j] = void 0;
-                if (j === childrenLen - 1) childrenLen--;
-                if (j === min) min++;
-                break;
-            }
-            child = idiff(child, vchild, context, mountAll);
-            f = originalChildren[i];
-            if (child && child !== dom && child !== f) if (null == f) dom.appendChild(child); else if (child === f.nextSibling) removeNode(f); else dom.insertBefore(child, f);
-        }
-        if (keyedLen) for (var i in keyed) if (void 0 !== keyed[i]) recollectNodeTree(keyed[i], !1);
-        while (min <= childrenLen) if (void 0 !== (child = children[childrenLen--])) recollectNodeTree(child, !1);
-    }
-    function recollectNodeTree(node, unmountOnly) {
-        var component = node._component;
-        if (component) unmountComponent(component); else {
-            if (null != node.__preactattr_) applyRef(node.__preactattr_.ref, null);
-            if (!1 === unmountOnly || null == node.__preactattr_) removeNode(node);
-            removeChildren(node);
-        }
-    }
-    function removeChildren(node) {
-        node = node.lastChild;
-        while (node) {
-            var next = node.previousSibling;
-            recollectNodeTree(node, !0);
-            node = next;
-        }
-    }
-    function diffAttributes(dom, attrs, old) {
-        var name;
-        for (name in old) if ((!attrs || null == attrs[name]) && null != old[name]) setAccessor(dom, name, old[name], old[name] = void 0, isSvgMode);
-        for (name in attrs) if (!('children' === name || 'innerHTML' === name || name in old && attrs[name] === ('value' === name || 'checked' === name ? dom[name] : old[name]))) setAccessor(dom, name, old[name], old[name] = attrs[name], isSvgMode);
-    }
-    function createComponent(Ctor, props, context) {
-        var inst, i = recyclerComponents.length;
-        if (Ctor.prototype && Ctor.prototype.render) {
-            inst = new Ctor(props, context);
-            Component.call(inst, props, context);
-        } else {
-            inst = new Component(props, context);
-            inst.constructor = Ctor;
-            inst.render = doRender;
-        }
-        while (i--) if (recyclerComponents[i].constructor === Ctor) {
-            inst.__b = recyclerComponents[i].__b;
-            recyclerComponents.splice(i, 1);
-            return inst;
-        }
-        return inst;
-    }
-    function doRender(props, state, context) {
-        return this.constructor(props, context);
-    }
-    function setComponentProps(component, props, renderMode, context, mountAll) {
-        if (!component.__x) {
-            component.__x = !0;
-            component.__r = props.ref;
-            component.__k = props.key;
-            delete props.ref;
-            delete props.key;
-            if (void 0 === component.constructor.getDerivedStateFromProps) if (!component.base || mountAll) {
-                if (component.componentWillMount) component.componentWillMount();
-            } else if (component.componentWillReceiveProps) component.componentWillReceiveProps(props, context);
-            if (context && context !== component.context) {
-                if (!component.__c) component.__c = component.context;
-                component.context = context;
-            }
-            if (!component.__p) component.__p = component.props;
-            component.props = props;
-            component.__x = !1;
-            if (0 !== renderMode) if (1 === renderMode || !1 !== options.syncComponentUpdates || !component.base) renderComponent(component, 1, mountAll); else enqueueRender(component);
-            applyRef(component.__r, component);
-        }
-    }
-    function renderComponent(component, renderMode, mountAll, isChild) {
-        if (!component.__x) {
-            var rendered, inst, cbase, props = component.props, state = component.state, context = component.context, previousProps = component.__p || props, previousState = component.__s || state, previousContext = component.__c || context, isUpdate = component.base, nextBase = component.__b, initialBase = isUpdate || nextBase, initialChildComponent = component._component, skip = !1, snapshot = previousContext;
-            if (component.constructor.getDerivedStateFromProps) {
-                state = extend(extend({}, state), component.constructor.getDerivedStateFromProps(props, state));
-                component.state = state;
-            }
-            if (isUpdate) {
-                component.props = previousProps;
-                component.state = previousState;
-                component.context = previousContext;
-                if (2 !== renderMode && component.shouldComponentUpdate && !1 === component.shouldComponentUpdate(props, state, context)) skip = !0; else if (component.componentWillUpdate) component.componentWillUpdate(props, state, context);
-                component.props = props;
-                component.state = state;
-                component.context = context;
-            }
-            component.__p = component.__s = component.__c = component.__b = null;
-            component.__d = !1;
-            if (!skip) {
-                rendered = component.render(props, state, context);
-                if (component.getChildContext) context = extend(extend({}, context), component.getChildContext());
-                if (isUpdate && component.getSnapshotBeforeUpdate) snapshot = component.getSnapshotBeforeUpdate(previousProps, previousState);
-                var toUnmount, base, childComponent = rendered && rendered.nodeName;
-                if ('function' == typeof childComponent) {
-                    var childProps = getNodeProps(rendered);
-                    inst = initialChildComponent;
-                    if (inst && inst.constructor === childComponent && childProps.key == inst.__k) setComponentProps(inst, childProps, 1, context, !1); else {
-                        toUnmount = inst;
-                        component._component = inst = createComponent(childComponent, childProps, context);
-                        inst.__b = inst.__b || nextBase;
-                        inst.__u = component;
-                        setComponentProps(inst, childProps, 0, context, !1);
-                        renderComponent(inst, 1, mountAll, !0);
-                    }
-                    base = inst.base;
-                } else {
-                    cbase = initialBase;
-                    toUnmount = initialChildComponent;
-                    if (toUnmount) cbase = component._component = null;
-                    if (initialBase || 1 === renderMode) {
-                        if (cbase) cbase._component = null;
-                        base = diff(cbase, rendered, context, mountAll || !isUpdate, initialBase && initialBase.parentNode, !0);
-                    }
-                }
-                if (initialBase && base !== initialBase && inst !== initialChildComponent) {
-                    var baseParent = initialBase.parentNode;
-                    if (baseParent && base !== baseParent) {
-                        baseParent.replaceChild(base, initialBase);
-                        if (!toUnmount) {
-                            initialBase._component = null;
-                            recollectNodeTree(initialBase, !1);
-                        }
-                    }
-                }
-                if (toUnmount) unmountComponent(toUnmount);
-                component.base = base;
-                if (base && !isChild) {
-                    var componentRef = component, t = component;
-                    while (t = t.__u) (componentRef = t).base = base;
-                    base._component = componentRef;
-                    base._componentConstructor = componentRef.constructor;
-                }
-            }
-            if (!isUpdate || mountAll) mounts.push(component); else if (!skip) {
-                if (component.componentDidUpdate) component.componentDidUpdate(previousProps, previousState, snapshot);
-                if (options.afterUpdate) options.afterUpdate(component);
-            }
-            while (component.__h.length) component.__h.pop().call(component);
-            if (!diffLevel && !isChild) flushMounts();
-        }
-    }
-    function buildComponentFromVNode(dom, vnode, context, mountAll) {
-        var c = dom && dom._component, originalComponent = c, oldDom = dom, isDirectOwner = c && dom._componentConstructor === vnode.nodeName, isOwner = isDirectOwner, props = getNodeProps(vnode);
-        while (c && !isOwner && (c = c.__u)) isOwner = c.constructor === vnode.nodeName;
-        if (c && isOwner && (!mountAll || c._component)) {
-            setComponentProps(c, props, 3, context, mountAll);
-            dom = c.base;
-        } else {
-            if (originalComponent && !isDirectOwner) {
-                unmountComponent(originalComponent);
-                dom = oldDom = null;
-            }
-            c = createComponent(vnode.nodeName, props, context);
-            if (dom && !c.__b) {
-                c.__b = dom;
-                oldDom = null;
-            }
-            setComponentProps(c, props, 1, context, mountAll);
-            dom = c.base;
-            if (oldDom && dom !== oldDom) {
-                oldDom._component = null;
-                recollectNodeTree(oldDom, !1);
-            }
-        }
-        return dom;
-    }
-    function unmountComponent(component) {
-        if (options.beforeUnmount) options.beforeUnmount(component);
-        var base = component.base;
-        component.__x = !0;
-        if (component.componentWillUnmount) component.componentWillUnmount();
-        component.base = null;
-        var inner = component._component;
-        if (inner) unmountComponent(inner); else if (base) {
-            if (null != base.__preactattr_) applyRef(base.__preactattr_.ref, null);
-            component.__b = base;
-            removeNode(base);
-            recyclerComponents.push(component);
-            removeChildren(base);
-        }
-        applyRef(component.__r, null);
-    }
-    function Component(props, context) {
-        this.__d = !0;
-        this.context = context;
-        this.props = props;
-        this.state = this.state || {};
-        this.__h = [];
-    }
-    function render(vnode, parent, merge) {
-        return diff(merge, vnode, {}, !1, parent, !1);
-    }
-    function createRef() {
-        return {};
-    }
-    var VNode = function() {};
-    var options = {};
-    var stack = [];
-    var EMPTY_CHILDREN = [];
-    var defer = 'function' == typeof Promise ? Promise.resolve().then.bind(Promise.resolve()) : setTimeout;
-    var IS_NON_DIMENSIONAL = /acit|ex(?:s|g|n|p|$)|rph|ows|mnc|ntw|ine[ch]|zoo|^ord/i;
-    var items = [];
-    var mounts = [];
-    var diffLevel = 0;
-    var isSvgMode = !1;
-    var hydrating = !1;
-    var recyclerComponents = [];
-    extend(Component.prototype, {
-        setState: function(state, callback) {
-            if (!this.__s) this.__s = this.state;
-            this.state = extend(extend({}, this.state), 'function' == typeof state ? state(this.state, this.props) : state);
-            if (callback) this.__h.push(callback);
-            enqueueRender(this);
-        },
-        forceUpdate: function(callback) {
-            if (callback) this.__h.push(callback);
-            renderComponent(this, 2);
-        },
-        render: function() {}
-    });
-    var preact = {
-        h: h,
-        createElement: h,
-        cloneElement: cloneElement,
-        createRef: createRef,
-        Component: Component,
-        render: render,
-        rerender: rerender,
-        options: options
-    };
-    if ('undefined' != typeof module) module.exports = preact; else self.preact = preact;
-}();
-
-},{}],14:[function(_dereq_,module,exports){
+},{}],5:[function(_dereq_,module,exports){
 (function (global){
-/* spacetime v4.5.1
-  
-*/
-
-!function(n){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=n();else if("function"==typeof define&&define.amd)define([],n);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).spacetime=n()}}(function(){return function a(i,s,u){function c(t,n){if(!s[t]){if(!i[t]){var e="function"==typeof _dereq_&&_dereq_;if(!n&&e)return e(t,!0);if(h)return h(t,!0);var r=new Error("Cannot find module '"+t+"'");throw r.code="MODULE_NOT_FOUND",r}var o=s[t]={exports:{}};i[t][0].call(o.exports,function(n){return c(i[t][1][n]||n)},o,o.exports,a,i,s,u)}return s[t].exports}for(var h="function"==typeof _dereq_&&_dereq_,n=0;n<u.length;n++)c(u[n]);return c}({1:[function(n,t,e){"use strict";var o,a,r=n("./zonefile.2018.json"),i={Australia:!0,Chile:!0,Brazil:!0,Antarctica:!0},s=(o=r,a={},Object.keys(o).forEach(function(r){Object.keys(o[r]).forEach(function(n){var t=r+"/"+n,e=o[r][n];a[t]={o:e[0],h:e[1]},e[2]&&(a[t].dst=e[2]),!0===i[r]&&(a[t].h="s")})}),a["Etc/UTC"]={o:0,h:"n"},a.UTC=a["Etc/UTC"],a);t.exports=s},{"./zonefile.2018.json":2}],2:[function(n,t,e){t.exports={Africa:{Abidjan:[0,"n"],Accra:[0,"n"],Addis_Ababa:[3,"n"],Algiers:[1,"n"],Asmara:[3,"n"],Asmera:[3,"n"],Bamako:[0,"n"],Bangui:[1,"n"],Banjul:[0,"n"],Bissau:[0,"n"],Blantyre:[2,"n"],Brazzaville:[1,"n"],Bujumbura:[2,"n"],Cairo:[2,"n"],Casablanca:[1,"n","07/02:03->10/29:02"],Ceuta:[2,"n","03/25:02->10/28:03"],Conakry:[0,"n"],Dakar:[0,"n"],Dar_es_Salaam:[3,"n"],Djibouti:[3,"n"],Douala:[1,"n"],El_Aaiun:[1,"n","07/02:03->10/29:02"],Freetown:[0,"n"],Gaborone:[2,"s"],Harare:[2,"s"],Johannesburg:[2,"s"],Juba:[3,"n"],Kampala:[3,"n"],Khartoum:[2,"n"],Kigali:[2,"n"],Kinshasa:[1,"s"],Lagos:[1,"n"],Libreville:[1,"n"],Lome:[0,"n"],Luanda:[1,"s"],Lubumbashi:[2,"s"],Lusaka:[2,"s"],Malabo:[1,"n"],Maputo:[2,"s"],Maseru:[2,"s"],Mbabane:[2,"s"],Mogadishu:[3,"n"],Monrovia:[0,"n"],Nairobi:[3,"n"],Ndjamena:[1,"n"],Niamey:[1,"n"],Nouakchott:[0,"n"],Ouagadougou:[0,"n"],"Porto-Novo":[1,"n"],Sao_Tome:[0,"n"],Timbuktu:[0,"n"],Tripoli:[2,"n"],Tunis:[1,"n"],Windhoek:[1,"s","04/02:01->09/03:03"]},America:{Adak:[-9,"n","03/11:02->11/04:02"],Anchorage:[-8,"n","03/11:02->11/04:02"],Anguilla:[-4,"n"],Antigua:[-4,"n"],Araguaina:[-3,"n"],Argentina:[-3,"s"],Aruba:[-4,"n"],Asuncion:[-4,"s","03/24:24->10/07:00"],Atikokan:[-5,"n"],Atka:[-9,"n","03/11:02->11/04:02"],Bahia:[-3,"n"],Bahia_Banderas:[-5,"n","04/01:02->10/28:02"],Barbados:[-4,"n"],Belem:[-3,"n"],Belize:[-6,"n"],"Blanc-Sablon":[-4,"n"],Boa_Vista:[-4,"n"],Bogota:[-5,"n"],Boise:[-6,"n","03/11:02->11/04:02"],Buenos_Aires:[-3,"s"],Cambridge_Bay:[-6,"n","03/11:02->11/04:02"],Campo_Grande:[-4,"s","02/17:24->11/04:00"],Cancun:[-5,"n"],Caracas:[-4,"n"],Catamarca:[-3,"n"],Cayenne:[-3,"n"],Cayman:[-5,"n"],Chicago:[-5,"n","03/11:02->11/04:02"],Chihuahua:[-6,"n","04/01:02->10/28:02"],Coral_Harbour:[-5,"n"],Cordoba:[-3,"s"],Costa_Rica:[-6,"n"],Creston:[-7,"n"],Cuiaba:[-4,"s","02/17:24->11/04:00"],Curacao:[-4,"n"],Danmarkshavn:[0,"n"],Dawson:[-7,"n","03/11:02->11/04:02"],Dawson_Creek:[-7,"n"],Denver:[-6,"n","03/11:02->11/04:02"],Detroit:[-4,"n","03/11:02->11/04:02"],Dominica:[-4,"n"],Edmonton:[-6,"n","03/11:02->11/04:02"],Eirunepe:[-5,"n"],El_Salvador:[-6,"n"],Ensenada:[-7,"n","03/11:02->11/04:02"],Fort_Wayne:[-4,"n","03/11:02->11/04:02"],Fortaleza:[-3,"n"],Glace_Bay:[-3,"n","03/11:02->11/04:02"],Godthab:[-2,"n","03/24:22->10/27:23"],Goose_Bay:[-3,"n","03/11:02->11/04:02"],Grand_Turk:[-4,"n","03/11:02->11/04:02"],Grenada:[-4,"n"],Guadeloupe:[-4,"n"],Guatemala:[-6,"n"],Guayaquil:[-5,"n"],Guyana:[-4,"n"],Halifax:[-3,"n","03/11:02->11/04:02"],Havana:[-4,"n","03/11:00->11/04:01"],Hermosillo:[-7,"n"],Indiana:[-4,"n","03/12:03->11/05:01"],Indianapolis:[-4,"n","03/11:02->11/04:02"],Inuvik:[-6,"n","03/11:02->11/04:02"],Iqaluit:[-4,"n","03/11:02->11/04:02"],Jamaica:[-5,"n"],Jujuy:[-3,"n"],Juneau:[-8,"n","03/11:02->11/04:02"],Kentucky:[-4,"n","03/12:03->11/05:01"],Knox_IN:[-5,"n","03/11:02->11/04:02"],Kralendijk:[-4,"n"],La_Paz:[-4,"s"],Lima:[-5,"s"],Los_Angeles:[-7,"n","03/11:02->11/04:02"],Louisville:[-4,"n","03/11:02->11/04:02"],Lower_Princes:[-4,"n"],Maceio:[-3,"n"],Managua:[-6,"n"],Manaus:[-4,"s"],Marigot:[-4,"n"],Martinique:[-4,"n"],Matamoros:[-5,"n","03/11:02->11/04:02"],Mazatlan:[-6,"n","04/01:02->10/28:02"],Mendoza:[-3,"n"],Menominee:[-5,"n","03/11:02->11/04:02"],Merida:[-5,"n","04/01:02->10/28:02"],Metlakatla:[-8,"n","03/11:02->11/04:02"],Mexico_City:[-5,"n","04/01:02->10/28:02"],Miquelon:[-2,"n","03/11:02->11/04:02"],Moncton:[-3,"n","03/11:02->11/04:02"],Monterrey:[-5,"n","04/01:02->10/28:02"],Montevideo:[-3,"s"],Montreal:[-4,"n","03/11:02->11/04:02"],Montserrat:[-4,"n"],Nassau:[-4,"n","03/11:02->11/04:02"],New_York:[-4,"n","03/11:02->11/04:02"],Nipigon:[-4,"n","03/11:02->11/04:02"],Nome:[-8,"n","03/11:02->11/04:02"],Noronha:[-2,"n"],North_Dakota:[-5,"n","03/12:03->11/05:01"],Ojinaga:[-6,"n","03/11:02->11/04:02"],Panama:[-5,"n"],Pangnirtung:[-4,"n","03/11:02->11/04:02"],Paramaribo:[-3,"n"],Phoenix:[-7,"n"],"Port-au-Prince":[-4,"n","03/11:02->11/04:02"],Port_of_Spain:[-4,"n"],Porto_Acre:[-5,"n"],Porto_Velho:[-4,"n"],Puerto_Rico:[-4,"n"],Punta_Arenas:[-3,"s"],Rainy_River:[-5,"n","03/11:02->11/04:02"],Rankin_Inlet:[-5,"n","03/11:02->11/04:02"],Recife:[-3,"n"],Regina:[-6,"n"],Resolute:[-5,"n","03/11:02->11/04:02"],Rio_Branco:[-5,"n"],Rosario:[-3,"n"],Santa_Isabel:[-7,"n","03/11:02->11/04:02"],Santarem:[-3,"n"],Santiago:[-4,"s","05/12:24->08/12:00"],Santo_Domingo:[-4,"n"],Sao_Paulo:[-3,"s","02/17:24->11/04:00"],Scoresbysund:[0,"n","03/25:00->10/28:01"],Shiprock:[-6,"n","03/11:02->11/04:02"],Sitka:[-8,"n","03/11:02->11/04:02"],St_Barthelemy:[-4,"n"],St_Johns:[-2.5,"n","03/11:02->11/04:02"],St_Kitts:[-4,"n"],St_Lucia:[-4,"n"],St_Thomas:[-4,"n"],St_Vincent:[-4,"n"],Swift_Current:[-6,"n"],Tegucigalpa:[-6,"n"],Thule:[-3,"n","03/11:02->11/04:02"],Thunder_Bay:[-4,"n","03/11:02->11/04:02"],Tijuana:[-7,"n","03/11:02->11/04:02"],Toronto:[-4,"n","03/11:02->11/04:02"],Tortola:[-4,"n"],Vancouver:[-7,"n","03/11:02->11/04:02"],Virgin:[-4,"n"],Whitehorse:[-7,"n","03/11:02->11/04:02"],Winnipeg:[-5,"n","03/11:02->11/04:02"],Yakutat:[-8,"n","03/11:02->11/04:02"],Yellowknife:[-6,"n","03/11:02->11/04:02"]},Antarctica:{Casey:[8,"s"],Davis:[7,"s"],DumontDUrville:[10,"s"],Macquarie:[11,"s"],Mawson:[5,"s"],McMurdo:[12,"s","04/01:03->09/30:02"],Palmer:[-4,"s","05/13:23->08/13:01"],Rothera:[-3,"s"],South_Pole:[12,"s","04/01:03->09/30:02"],Syowa:[3,"s"],Troll:[2,"s","03/25:02->10/28:02"],Vostok:[6,"s"]},Arctic:{Longyearbyen:[2,"n","03/25:02->10/28:03"]},Asia:{Aden:[3,"n"],Almaty:[6,"n"],Amman:[3,"n","03/30:00->10/26:01"],Anadyr:[12,"n"],Aqtau:[5,"n"],Aqtobe:[5,"n"],Ashgabat:[5,"n"],Ashkhabad:[5,"n"],Atyrau:[5,"n"],Baghdad:[3,"n"],Bahrain:[3,"n"],Baku:[5,"n"],Bangkok:[7,"n"],Barnaul:[7,"n"],Beirut:[3,"n","03/25:00->10/27:24"],Bishkek:[6,"n"],Brunei:[8,"n"],Calcutta:[5.5,"n"],Chita:[9,"n"],Choibalsan:[8,"n"],Chongqing:[8,"n"],Chungking:[8,"n"],Colombo:[5.5,"n"],Dacca:[6,"n"],Damascus:[3,"n","03/30:00->10/25:24"],Dhaka:[6,"n"],Dili:[9,"s"],Dubai:[4,"n"],Dushanbe:[5,"n"],Gaza:[3,"n","03/24:01->10/27:01"],Harbin:[8,"n"],Hebron:[3,"n","03/24:01->10/27:01"],Ho_Chi_Minh:[7,"n"],Hong_Kong:[8,"n"],Hovd:[7,"n"],Irkutsk:[8,"n"],Istanbul:[3,"n"],Jakarta:[7,"s"],Jayapura:[9,"n"],Jerusalem:[3,"n","03/23:02->10/28:02"],Kabul:[4.5,"n"],Kamchatka:[12,"n"],Karachi:[5,"n"],Kashgar:[6,"n"],Kathmandu:[5.75,"n"],Katmandu:[5.75,"n"],Khandyga:[9,"n"],Kolkata:[5.5,"n"],Krasnoyarsk:[7,"n"],Kuala_Lumpur:[8,"s"],Kuching:[8,"n"],Kuwait:[3,"n"],Macao:[8,"n"],Macau:[8,"n"],Magadan:[11,"n"],Makassar:[8,"s"],Manila:[8,"n"],Muscat:[4,"n"],Nicosia:[3,"n","03/25:03->10/28:04"],Novokuznetsk:[7,"n"],Novosibirsk:[7,"n"],Omsk:[6,"n"],Oral:[5,"n"],Phnom_Penh:[7,"n"],Pontianak:[7,"n"],Pyongyang:[9,"n"],Qatar:[3,"n"],Qyzylorda:[6,"n"],Rangoon:[6.5,"n"],Riyadh:[3,"n"],Saigon:[7,"n"],Sakhalin:[11,"n"],Samarkand:[5,"n"],Seoul:[9,"n"],Shanghai:[8,"n"],Singapore:[8,"s"],Srednekolymsk:[12,"n"],Taipei:[8,"n"],Tashkent:[5,"n"],Tbilisi:[4,"n"],Tehran:[4.5,"n","03/22:00->09/21:24"],Tel_Aviv:[3,"n","03/23:02->10/28:02"],Thimbu:[6,"n"],Thimphu:[6,"n"],Tokyo:[9,"n"],Ujung_Pandang:[8,"n"],Ulaanbaatar:[8,"n"],Ulan_Bator:[8,"n","03/25:03->09/29:23"],Urumqi:[6,"n"],"Ust-Nera":[10,"n"],Vientiane:[7,"n"],Vladivostok:[10,"n"],Yakutsk:[10,"n"],Yekaterinburg:[5,"n"],Yerevan:[4,"n"]},Atlantic:{Azores:[0,"n","03/25:00->10/28:01"],Bermuda:[-3,"n","03/11:02->11/04:02"],Canary:[1,"n","03/25:01->10/28:02"],Cape_Verde:[-1,"n"],Faeroe:[1,"n","03/25:01->10/28:02"],Faroe:[1,"n","03/25:01->10/28:02"],Jan_Mayen:[2,"n","03/25:02->10/28:03"],Madeira:[1,"n","03/25:01->10/28:02"],Reykjavik:[0,"n"],South_Georgia:[-2,"n"],St_Helena:[0,"n"],Stanley:[-3,"n"]},Australia:{ACT:[10,"s","04/01:03->10/07:02"],Adelaide:[9.5,"s","04/01:03->10/07:02"],Brisbane:[10,"s"],Broken_Hill:[9.5,"s","04/01:03->10/07:02"],Canberra:[10,"s","04/01:03->10/07:02"],Currie:[10,"s","04/01:03->10/07:02"],Darwin:[9.5,"s"],Eucla:[8.75,"s"],Hobart:[10,"s","04/01:03->10/07:02"],LHI:[10.5,"s","04/01:01->10/07:02"],Lindeman:[10,"s"],Lord_Howe:[10.5,"s","04/01:01->10/07:02"],Melbourne:[10,"s","04/01:03->10/07:02"],NSW:[10,"s","04/01:03->10/07:02"],North:[9.5,"s"],Perth:[8,"s"],Queensland:[10,"s"],South:[9.5,"s","04/01:03->10/07:02"],Sydney:[10,"s","04/01:03->10/07:02"],Tasmania:[10,"s","04/01:03->10/07:02"],Victoria:[10,"s","04/01:03->10/07:02"],West:[8,"s"],Yancowinna:[9.5,"s","04/01:03->10/07:02"]},Brazil:{Acre:[-5,"s"],DeNoronha:[-2,"s"],East:[-3,"s","02/17:24->11/04:00"],West:[-4,"s"]},Canada:{Atlantic:[-3,"n","03/11:02->11/04:02"],Central:[-5,"n","03/11:02->11/04:02"],"East-Saskatchewan":[-6,"n"],Eastern:[-4,"n","03/11:02->11/04:02"],Mountain:[-6,"n","03/11:02->11/04:02"],Newfoundland:[-2.5,"n","03/11:02->11/04:02"],Pacific:[-7,"n","03/11:02->11/04:02"],Saskatchewan:[-6,"n"],Yukon:[-7,"n","03/11:02->11/04:02"]},Chile:{Continental:[-4,"s","05/12:24->08/12:00"],EasterIsland:[-6,"s","05/12:22->08/11:22"]},Etc:{GMT:[0,"n"],"GMT+0":[0,"n"],"GMT+1":[-1,"n"],"GMT+10":[-10,"n"],"GMT+11":[-11,"n"],"GMT+12":[-12,"n"],"GMT+2":[-2,"n"],"GMT+3":[-3,"n"],"GMT+4":[-4,"n"],"GMT+5":[-5,"n"],"GMT+6":[-6,"n"],"GMT+7":[-7,"n"],"GMT+8":[-8,"n"],"GMT+9":[-9,"n"],"GMT-0":[0,"n"],"GMT-1":[1,"n"],"GMT-10":[10,"n"],"GMT-11":[11,"n"],"GMT-12":[12,"n"],"GMT-13":[13,"n"],"GMT-14":[14,"n"],"GMT-2":[2,"n"],"GMT-3":[3,"n"],"GMT-4":[4,"n"],"GMT-5":[5,"n"],"GMT-6":[6,"n"],"GMT-7":[7,"n"],"GMT-8":[8,"n"],"GMT-9":[9,"n"],GMT0:[0,"n"],Greenwich:[0,"n"],UCT:[0,"n"],UTC:[0,"n"],Universal:[0,"n"],Zulu:[0,"n"]},Europe:{Amsterdam:[2,"n","03/25:02->10/28:03"],Andorra:[2,"n","03/25:02->10/28:03"],Astrakhan:[4,"n"],Athens:[3,"n","03/25:03->10/28:04"],Belfast:[1,"n","03/25:01->10/28:02"],Belgrade:[2,"n","03/25:02->10/28:03"],Berlin:[2,"n","03/25:02->10/28:03"],Bratislava:[2,"n","03/25:02->10/28:03"],Brussels:[2,"n","03/25:02->10/28:03"],Bucharest:[3,"n","03/25:03->10/28:04"],Budapest:[2,"n","03/25:02->10/28:03"],Busingen:[2,"n","03/25:02->10/28:03"],Chisinau:[3,"n","03/25:02->10/28:03"],Copenhagen:[2,"n","03/25:02->10/28:03"],Dublin:[1,"n","03/25:01->10/28:02"],Gibraltar:[2,"n","03/25:02->10/28:03"],Guernsey:[1,"n","03/25:01->10/28:02"],Helsinki:[3,"n","03/25:03->10/28:04"],Isle_of_Man:[1,"n","03/25:01->10/28:02"],Istanbul:[3,"n"],Jersey:[1,"n","03/25:01->10/28:02"],Kaliningrad:[2,"n"],Kirov:[3,"n"],Kiev:[3,"n","03/25:03->10/28:04"],Lisbon:[1,"n","03/25:01->10/28:02"],Ljubljana:[2,"n","03/25:02->10/28:03"],London:[1,"n","03/25:01->10/28:02"],Luxembourg:[2,"n","03/25:02->10/28:03"],Madrid:[2,"n","03/25:02->10/28:03"],Malta:[2,"n","03/25:02->10/28:03"],Mariehamn:[3,"n","03/25:03->10/28:04"],Minsk:[3,"n"],Monaco:[2,"n","03/25:02->10/28:03"],Moscow:[3,"n"],Nicosia:[3,"n","03/25:03->10/28:04"],Oslo:[2,"n","03/25:02->10/28:03"],Paris:[2,"n","03/25:02->10/28:03"],Podgorica:[2,"n","03/25:02->10/28:03"],Prague:[2,"n","03/25:02->10/28:03"],Riga:[3,"n","03/25:03->10/28:04"],Rome:[2,"n","03/25:02->10/28:03"],Samara:[4,"n"],Saratov:[4,"n"],San_Marino:[2,"n","03/25:02->10/28:03"],Sarajevo:[2,"n","03/25:02->10/28:03"],Simferopol:[3,"n"],Skopje:[2,"n","03/25:02->10/28:03"],Sofia:[3,"n","03/25:03->10/28:04"],Stockholm:[2,"n","03/25:02->10/28:03"],Tallinn:[3,"n","03/25:03->10/28:04"],Tirane:[2,"n","03/25:02->10/28:03"],Tiraspol:[3,"n","03/25:02->10/28:03"],Ulyanovsk:[4,"n"],Uzhgorod:[3,"n","03/25:03->10/28:04"],Vaduz:[2,"n","03/25:02->10/28:03"],Vatican:[2,"n","03/25:02->10/28:03"],Vienna:[2,"n","03/25:02->10/28:03"],Vilnius:[3,"n","03/25:03->10/28:04"],Volgograd:[3,"n"],Warsaw:[2,"n","03/25:02->10/28:03"],Zagreb:[2,"n","03/25:02->10/28:03"],Zaporozhye:[3,"n","03/25:03->10/28:04"],Zurich:[2,"n","03/25:02->10/28:03"]},Indian:{Antananarivo:[3,"s"],Chagos:[6,"n"],Christmas:[7,"n"],Cocos:[6.5,"n"],Comoro:[3,"n"],Kerguelen:[5,"s"],Mahe:[4,"n"],Maldives:[5,"n"],Mauritius:[4,"n"],Mayotte:[3,"n"],Reunion:[4,"s"]},Mexico:{BajaNorte:[-7,"n","03/11:02->11/04:02"],BajaSur:[-6,"n","04/01:02->10/28:02"],General:[-5,"n","04/01:02->10/28:02"]},Pacific:{Apia:[13,"s","04/01:04->09/30:03"],Auckland:[12,"s","04/01:03->09/30:02"],Chatham:[12.75,"s","04/07:03->09/29:02"],Chuuk:[10,"n"],Easter:[-6,"s","05/12:22->08/11:22"],Efate:[11,"n"],Enderbury:[13,"n"],Fakaofo:[13,"n"],Fiji:[12,"s","01/14:03->11/04:02"],Funafuti:[12,"n"],Galapagos:[-6,"n"],Gambier:[-9,"n"],Guadalcanal:[11,"n"],Guam:[10,"n"],Honolulu:[-10,"n"],Johnston:[-10,"n"],Kiritimati:[14,"n"],Kosrae:[11,"n"],Kwajalein:[12,"n"],Majuro:[12,"n"],Marquesas:[-9.5,"n"],Midway:[-11,"n"],Nauru:[12,"n"],Niue:[-11,"n"],Norfolk:[11.5,"n"],Noumea:[11,"n"],Pago_Pago:[-11,"n"],Palau:[9,"n"],Pitcairn:[-8,"n"],Pohnpei:[11,"n"],Ponape:[11,"n"],Port_Moresby:[10,"n"],Rarotonga:[-10,"n"],Saipan:[10,"n"],Samoa:[-11,"n"],Tahiti:[-10,"n"],Tarawa:[12,"n"],Tongatapu:[13,"s","01/15:02->11/05:03"],Truk:[10,"n"],Wake:[12,"n"],Wallis:[12,"n"],Yap:[10,"n"]}}},{}],3:[function(n,t,e){var r,o,a=t.exports={};function i(){throw new Error("setTimeout has not been defined")}function s(){throw new Error("clearTimeout has not been defined")}function u(t){if(r===setTimeout)return setTimeout(t,0);if((r===i||!r)&&setTimeout)return r=setTimeout,setTimeout(t,0);try{return r(t,0)}catch(n){try{return r.call(null,t,0)}catch(n){return r.call(this,t,0)}}}!function(){try{r="function"==typeof setTimeout?setTimeout:i}catch(n){r=i}try{o="function"==typeof clearTimeout?clearTimeout:s}catch(n){o=s}}();var c,h=[],d=!1,f=-1;function l(){d&&c&&(d=!1,c.length?h=c.concat(h):f=-1,h.length&&m())}function m(){if(!d){var n=u(l);d=!0;for(var t=h.length;t;){for(c=h,h=[];++f<t;)c&&c[f].run();f=-1,t=h.length}c=null,d=!1,function(t){if(o===clearTimeout)return clearTimeout(t);if((o===s||!o)&&clearTimeout)return o=clearTimeout,clearTimeout(t);try{o(t)}catch(n){try{return o.call(null,t)}catch(n){return o.call(this,t)}}}(n)}}function p(n,t){this.fun=n,this.array=t}function y(){}a.nextTick=function(n){var t=new Array(arguments.length-1);if(1<arguments.length)for(var e=1;e<arguments.length;e++)t[e-1]=arguments[e];h.push(new p(n,t)),1!==h.length||d||u(m)},p.prototype.run=function(){this.fun.apply(null,this.array)},a.title="browser",a.browser=!0,a.env={},a.argv=[],a.version="",a.versions={},a.on=y,a.addListener=y,a.once=y,a.off=y,a.removeListener=y,a.removeAllListeners=y,a.emit=y,a.prependListener=y,a.prependOnceListener=y,a.listeners=function(n){return[]},a.binding=function(n){throw new Error("process.binding is not supported")},a.cwd=function(){return"/"},a.chdir=function(n){throw new Error("process.chdir is not supported")},a.umask=function(){return 0}},{}],4:[function(n,t,e){t.exports={name:"spacetime",version:"4.5.1",description:"represent dates in remote timezones",main:"./spacetime.js",license:"Apache-2.0",scripts:{precommit:"lint-staged",build:"node ./scripts/build.js","build:tz":"node ./scripts/updateZonefile.js",demo:"node ./scripts/demo.js",watch:"amble ./scratch.js",test:"TESTENV=dev tape ./test/**/*.test.js | tap-dancer","test-spec":"TESTENV=dev tape ./test/**/*.test.js | tap-spec",t:"TESTENV=dev tape ./test/**/immutable.test.js",testb:"TESTENV=prod tape ./test/**/*.test.js | tap-dancer",lint:"eslint .",size:"./node_modules/.bin/size-limit",coverage:"node ./scripts/coverage.js"},repository:{type:"git",url:"https://github.com/smallwins/spacetime.git"},files:["spacetime.js","immutable.js"],dependencies:{},devDependencies:{amble:"0.0.6","babel-cli":"6.26.0","babel-preset-env":"1.7.0",babelify:"8.0.0",browserify:"16.2.3",derequire:"2.0.6",eslint:"5.6.1",nyc:"13.0.1",shelljs:"0.8.2","tap-dancer":"0.0.3","tap-spec":"^5.0.0",tape:"4.9.1",timekeeper:"2.1.2","uglify-js":"3.4.9"},"size-limit":[{path:"./spacetime.js",limit:"16 KB"}]}},{}],5:[function(n,t,e){"use strict";var r=["sun","mon","tue","wed","thu","fri","sat"],o=["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];t.exports={short:function(){return r},long:function(){return o},set:function(n){r=n.short,o=n.long}}},{}],6:[function(n,t,e){"use strict";var r={millisecond:1,second:1e3,minute:6e4,hour:36e5,day:864e5,date:864e5,month:25488e5,week:6048e5,year:3154e7};Object.keys(r).forEach(function(n){r[n+"s"]=r[n]}),t.exports=r},{}],7:[function(n,t,e){"use strict";t.exports=[31,28,31,30,31,30,31,31,30,31,30,31]},{}],8:[function(n,t,e){"use strict";var r=["jan","feb","mar","apr","may","jun","jul","aug","sept","oct","nov","dec"],o=["january","february","march","april","may","june","july","august","september","october","november","december"];t.exports={short:function(){return r},long:function(){return o},mapping:function(){return function(){for(var n={},t=0;t<r.length;t++)n[r[t]]=t;for(var e=0;e<o.length;e++)n[o[e]]=e;return n}()},set:function(n){r=n.short,o=n.long}}},{}],9:[function(n,t,e){"use strict";t.exports=[null,[0,1],[3,1],[6,1],[9,1]]},{}],10:[function(n,t,e){"use strict";t.exports={north:[["spring",2,1],["summer",5,1],["fall",8,1],["autumn",8,1],["winter",11,1]],south:[["fall",2,1],["autumn",2,1],["winter",5,1],["spring",8,1],["summer",11,1]]}},{}],11:[function(n,t,e){"use strict";var s=n("./spacetime");e.whereIts=function(n,t){var r=new s(null),o=new s(null);r.time(n),t?o.time(t):o=r.clone().add(59,"minutes");var a=r.hour(),i=o.hour();return Object.keys(r.timezones).filter(function(n){var t=new s(null,n),e=t.hour();return a<=e&&e<=i&&(!(e===a&&t.minute()<r.minute())&&!(e===i&&t.minute()>o.minute()))})}},{"./spacetime":37}],12:[function(n,t,e){"use strict";e.isLeapYear=function(n){return n%4==0&&n%100!=0||n%400==0},e.isDate=function(n){return"[object Date]"===Object.prototype.toString.call(n)&&!isNaN(n.valueOf())},e.isArray=function(n){return"[object Array]"===Object.prototype.toString.call(n)},e.isObject=function(n){return"[object Object]"===Object.prototype.toString.call(n)},e.zeroPad=function(n,t){return(n+="").length>=(t=t||2)?n:new Array(t-n.length+1).join("0")+n},e.titleCase=function(n){return n?n[0].toUpperCase()+n.substr(1).toLowerCase():""},e.ordinal=function(n){var t=n%10,e=n%100;return 1===t&&11!==e?n+"st":2===t&&12!==e?n+"nd":3===t&&13!==e?n+"rd":n+"th"},e.toCardinal=function(n){return n=(n=String(n)).replace(/([0-9])(st|nd|rd|th)$/i,"$1"),parseInt(n,10)},e.normalize=function(n){return"day"===(n=(n=n.toLowerCase()).replace(/s$/,""))?"date":n},e.getEpoch=function(n){return"number"==typeof n?n:e.isDate(n)?n.getTime():n.epoch?n.epoch:null},e.beADate=function(n,t){return!1===e.isObject(n)?t.clone().set(n):n}},{}],13:[function(n,t,e){"use strict";var r=n("./spacetime"),o=n("./findTz").whereIts,a=n("../package.json"),i=function(n,t,e){return new r(n,t,e)};i.now=function(n,t){return new r((new Date).getTime(),n,t)},i.today=function(n,t){return new r((new Date).getTime(),n,t).startOf("day")},i.tomorrow=function(n,t){return new r((new Date).getTime(),n,t).add(1,"day").startOf("day")},i.yesterday=function(n,t){return new r((new Date).getTime(),n,t).subtract(1,"day").startOf("day")},i.extend=function(t){return Object.keys(t).forEach(function(n){r.prototype[n]=t[n]}),this},i.whereIts=o,i.version=a.version,i.plugin=i.extend,t.exports=i},{"../package.json":4,"./findTz":11,"./spacetime":37}],14:[function(n,t,e){"use strict";var r=n("../data/monthLengths"),o=n("../fns").isLeapYear;t.exports=function(n){if(!0!==r.hasOwnProperty(n.month))return!1;if(1===n.month)return!!(o(n.year)&&n.date<=29)||n.date<=28;var t=r[n.month]||0;return n.date<=t}},{"../data/monthLengths":7,"../fns":12}],15:[function(n,t,e){"use strict";var a=n("./strParse"),i=n("../fns"),s=n("./named-dates");t.exports=function(n,t,e){if("number"!=typeof t){if(n.epoch=Date.now(),null!=t)if(!0!==i.isDate(t))if(!0!==i.isArray(t)){if(!0===i.isObject(t))return t.epoch?void(n.epoch=t.epoch):void function(n,t){for(var e=Object.keys(t),r=0;r<e.length;r++){var o=e[r];if(void 0!==n[o]){var a=t[o]||0;n[o](a)}}}(n,t);if("string"==typeof t)if(t=t.trim().replace(/ +/g," "),!0!==s.hasOwnProperty(t)){for(var r=0;r<a.length;r++){var o=t.match(a[r].reg);if(o)return void a[r].parse(n,o,e)}!1===n.silent&&console.warn("Warning: couldn't parse date-string: '"+t+"'"),n.epoch=null}else n=s[t](n)}else!function(n,t){for(var e=["year","month","date","hour","minute","second","millisecond"],r=0;r<t.length;r++){var o=t[r]||0;n[e[r]](o)}}(n,t);else n.epoch=t.getTime()}else 0<(n.epoch=t)&&t<25e8&&!1===n.silent&&(console.warn("  - Warning: You are setting the date to January 1970."),console.warn("       -   did input seconds instead of milliseconds?"))}},{"../fns":12,"./named-dates":16,"./strParse":18}],16:[function(n,t,e){"use strict";var r={now:function(n){return n.epoch=Date.now(),n},tonight:function(n){return n.epoch=Date.now(),n.hour(18),n},today:function(n){return n.epoch=Date.now(),n},tomorrow:function(n){return n.epoch=Date.now(),n.add(1,"day"),n.startOf("day"),n},yesterday:function(n){return n.epoch=Date.now(),n.subtract(1,"day"),n.startOf("day"),n},christmas:function(n){var t=(new Date).getFullYear();return n.set([t,11,25,18,0,0]),n},"new years":function(n){var t=(new Date).getFullYear();return n.set([t,11,31,18,0,0]),n}};r["new years eve"]=r["new years"],t.exports=r},{}],17:[function(n,t,e){(function(i){"use strict";t.exports=function(n,t,e){if(!t)return n;"Z"===t&&(t="+0000"),!0===/:00/.test(t)&&(t=t.replace(/:00/,"")),!0===/:00/.test(t)&&(t=t.replace(/:00/,".5"));var r=parseInt(t,10);if(100<Math.abs(r)&&(r/=100),n.timezone().current.offset===r)return n;0<=(r*=-1)&&(r="+"+r);var o="Etc/GMT"+r,a=n.timezones;return a[o]&&(e&&a[e]&&a[e].o!==a[o].o&&!1===n.silent&&void 0!==i&&i.env&&!i.env.TESTENV&&(console.warn("  - Setting timezone to: '"+o+"'"),console.warn("     from ISO string '"+t+"'"),console.warn("     overwriting given timezone: '"+e+"'\n")),n.tz=o),n}}).call(this,n("_process"))},{_process:3}],18:[function(n,t,e){"use strict";var i=n("../methods/set/walk"),o=n("../data/months"),s=n("./parseOffset"),u=n("./hasDate"),a=n("../fns"),c=function(n,t){var e=(t=t.replace(/^\s+/,"")).match(/([0-9]{1,2}):([0-9]{1,2}):?([0-9]{1,2})?[:\.]?([0-9]{1,4})?/);e&&(n.hour(e[1]),n.minute(e[2]),e[3]&&n.seconds(e[3]),e[4]&&n.millisecond(e[4]))},h=function(n){n=n||"";var t=parseInt(n.trim(),10);return t=t||(new Date).getFullYear()},r=[{reg:/^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})[T| ]([0-9.:]+)(Z|[0-9\-\+:]+)?$/,parse:function(n,t,e,r){var o=parseInt(t[2],10)-1,a={year:t[1],month:o,date:t[3]};!1!==u(a)?(s(n,t[5],e,r),i(n,a),c(n,t[4])):n.epoch=null}},{reg:/^([0-9]{4})[\-\/]([0-9]{1,2})[\-\/]([0-9]{1,2})$/,parse:function(n,t){var e={year:t[1],month:parseInt(t[2],10)-1,date:parseInt(t[3],10)};12<=e.month&&(e.date=parseInt(t[2],10),e.month=parseInt(t[3],10)-1),!1!==u(e)?i(n,e):n.epoch=null}},{reg:/^([0-9]{1,2})[\-\/]([0-9]{1,2})[\-\/]?([0-9]{4})?$/,parse:function(n,t){var e=parseInt(t[1],10)-1,r=parseInt(t[2],10);12<=e&&(e=parseInt(t[2],10)-1,r=parseInt(t[1],10));var o={year:t[3]||(new Date).getFullYear(),month:e,date:r};!1!==u(o)?i(n,o):n.epoch=null}},{reg:/^([a-z]+) ([0-9]{1,2}(?:st|nd|rd|th)?),?( [0-9]{4})?( ([0-9:]+))?$/i,parse:function(n,t){var e=o.mapping()[t[1].toLowerCase()],r={year:h(t[3]),month:e,date:a.toCardinal(t[2]||"")};!1!==u(r)?(i(n,r),t[4]&&c(n,t[4])):n.epoch=null}},{reg:/^([0-9]{1,2}(?:st|nd|rd|th)?) ([a-z]+),?( [0-9]{4})?$/i,parse:function(n,t){var e=o.mapping()[t[2].toLowerCase()],r={year:h(t[3]),month:e,date:a.toCardinal(t[1])};!1!==u(r)?i(n,r):n.epoch=null}},{reg:/^[0-9]{4}$/i,parse:function(n,t){var e=h(t[0]),r=new Date,o={year:e,month:r.getMonth(),date:r.getDate()};!1!==u(o)?i(n,o):n.epoch=null}},{reg:/^[0-9,]+ ?b\.?c\.?$/i,parse:function(n,t){var e=t[0]||"";e=(e=e.replace(/^([0-9,]+) ?b\.?c\.?$/i,"-$1")).replace(/,/g,"");var r=parseInt(e.trim(),10),o=new Date,a={year:r,month:o.getMonth(),date:o.getDate()};!1!==u(a)?i(n,a):n.epoch=null}}];t.exports=r},{"../data/months":8,"../fns":12,"../methods/set/walk":34,"./hasDate":14,"./parseOffset":17}],19:[function(n,t,e){"use strict";var r=n("./methods/format"),o=n("./methods/progress"),a=n("./methods/nearest"),i=n("./methods/diff"),s=n("./methods/since"),u=n("./methods/startOf"),c=n("./timezone/index"),h=n("./input"),d=n("./fns"),f={set:function(n){return h(this,n),this},timezone:function(){return c(this)},isDST:function(){return c(this).current.isDST},hasDST:function(){return c(this).hasDst},offset:function(){return c(this).current.offset/60},hemisphere:function(){return c(this).hemisphere},format:function(n){return r(this,n)},startOf:function(n){return u.startOf(this,n)},endOf:function(n){return u.endOf(this,n)},leapYear:function(){var n=this.year();return d.isLeapYear(n)},progress:function(){return o(this)},nearest:function(n){return a(this,n)},diff:function(n,t){return i(this,n,t)},since:function(n){return n||(n=this.clone().set()),s(this,n)},isValid:function(){return!(!this.epoch&&0!==this.epoch)&&!isNaN(this.d.getTime())},goto:function(n){return this.tz=n,this},isAwake:function(){var n=this.hour();return!(n<8||22<n)},isAsleep:function(){return!this.isAwake()},log:function(){return console.log(""),console.log(r(this,"nice-short")),this},logYear:function(){return console.log(""),console.log(r(this,"full-short")),this},debug:function(){var n=this.timezone(),t=this.format("MM")+" "+this.format("date-ordinal")+" "+this.year();return t+="\n     - "+this.format("time"),console.log("\n\n",t+"\n     - "+n.name+" ("+n.current.offset+")"),this}};f.inDST=f.isDST,f.round=f.nearest,t.exports=f},{"./fns":12,"./input":15,"./methods/diff":22,"./methods/format":23,"./methods/nearest":26,"./methods/progress":27,"./methods/since":35,"./methods/startOf":36,"./timezone/index":39}],20:[function(n,t,e){"use strict";var a=n("./set/walk"),i=n("../data/milliseconds"),s=n("../data/monthLengths"),u=n("../fns"),r=["millisecond","second","minute","hour","date","month"],c={second:r.slice(0,1),minute:r.slice(0,2),quarterhour:r.slice(0,2),hour:r.slice(0,3),date:r.slice(0,4),month:r.slice(0,4),quarter:r.slice(0,4),season:r.slice(0,4),year:r};c.week=c.date,c.season=c.date,c.quarter=c.date;var h={month:!0,quarter:!0,season:!0,year:!0};t.exports=function(n){n.prototype.add=function(n,t){var e=this.clone();t=u.normalize(t),i[t]?this.epoch+=i[t]*n:"week"===t?this.epoch+=i.day*(7*n):"quarter"===t||"season"===t?this.epoch+=i.month*(4*n):"season"===t?this.epoch+=i.month*(4*n):"quarterhour"===t&&(this.epoch+=15*i.minute);var r={};if(c[t]&&c[t].forEach(function(n){r[n]=e[n]()}),"month"===t?(r.month=e.month()+n,r=function(n,t){if(0<n.month){var e=parseInt(n.month/12,10);n.year=t.year()+e,n.month=n.month%12}else if(n.month<0){var r=Math.floor(Math.abs(n.month)/13,10);r=Math.abs(r)+1,n.year=t.year()-r,n.month=n.month%12,n.month=n.month+12,12===n.month&&(n.month=0)}return n}(r,e)):"date"===t&&0!==n&&e.isSame(this,"day")?r.date=e.date()+n:"year"===t&&this.year()===e.year()&&(this.epoch+=i.week),h[t]){var o=s[r.month];r.date=e.date(),r.date>o&&(r.date=o)}return a(this,r),this},n.prototype.subtract=function(n,t){return this.add(-1*n,t),this},n.prototype.minus=n.prototype.subtract,n.prototype.plus=n.prototype.add}},{"../data/milliseconds":6,"../data/monthLengths":7,"../fns":12,"./set/walk":34}],21:[function(n,t,e){"use strict";var o=n("../fns");t.exports=function(t){var e={isAfter:function(n){n=o.beADate(n,this);var t=o.getEpoch(n);return null===t?null:this.epoch>t},isBefore:function(n){n=o.beADate(n,this);var t=o.getEpoch(n);return null===t?null:this.epoch<t},isEqual:function(n){n=o.beADate(n,this);var t=o.getEpoch(n);return null===t?null:this.epoch===t},isBetween:function(n,t){n=o.beADate(n,this),t=o.beADate(t,this);var e=o.getEpoch(n);if(null===e)return null;var r=o.getEpoch(t);return null===r?null:e<this.epoch&&this.epoch<r}};Object.keys(e).forEach(function(n){t.prototype[n]=e[n]})}},{"../fns":12}],22:[function(n,t,e){"use strict";var r=n("../fns"),o=function(){},a=function(n,t,e){var r=0;for(n=n.clone();n.isBefore(t);)n.add(1,e),r+=1;return n.isSame(t,e)||(r-=1),r},i=function(n,t){var e=t.epoch-n.epoch,r={milliseconds:e,seconds:parseInt(e/1e3,10)};return r.minutes=parseInt(r.seconds/60,10),r.hours=parseInt(r.minutes/60,10),r},s=function(n,t,e){return t=r.beADate(t,n),e?(e=r.normalize(e),!0!==/s$/.test(e)&&(e+="s"),"milliseconds"===e||"seconds"===e||"minutes"===e?i(n,t)[e]:n.isBefore(t)?a(n,t,e):-1*a(t,n,e)):o(n,t)};o=function(n,t){var e=i(n,t);return e.years=s(n,t,"year"),e.months=s(n,t,"month"),e.weeks=s(n,t,"week"),e.days=s(n,t,"day"),0===e.years&&(e.hours=s(n,t,"hour")),e},t.exports=s},{"../fns":12}],23:[function(n,t,e){"use strict";var h=n("../../fns"),r=n("../../data/months"),o=n("../../data/days"),a=n("./unixFmt"),i={day:function(n){return h.titleCase(o.long()[n.day()])},"day-short":function(n){return h.titleCase(o.short()[n.day()])},date:function(n){return""+n.date()},"date-ordinal":function(n){return h.ordinal(n.date())},month:function(n){return h.titleCase(r.long()[n.month()])},"month-short":function(n){return h.titleCase(r.short()[n.month()])},time:function(n){return n.h12()+":"+h.zeroPad(n.minute())+n.ampm()},"time-24h":function(n){return n.hour()+":"+h.zeroPad(n.minute())},year:function(n){var t=n.year();return t<0?(t=Math.abs(t),t+" BC"):""+t},"year-short":function(n){return"'"+(""+n.year()).substr(2,4)},"numeric-us":function(n){return h.zeroPad(n.month()+1)+"/"+h.zeroPad(n.date())+"/"+n.year()},"numeric-uk":function(n){return h.zeroPad(n.date())+"/"+h.zeroPad(n.month()+1)+"/"+n.year()},"numeric-cn":function(n){return n.year()+"/"+h.zeroPad(n.month()+1)+"/"+h.zeroPad(n.date())},iso:function(n){var t,e,r=h.zeroPad(n.month()+1),o=h.zeroPad(n.date()),a=h.zeroPad(n.h24()),i=h.zeroPad(n.minute()),s=h.zeroPad(n.second()),u=h.zeroPad(n.millisecond(),3),c=(t=n.timezone().current.offset,e="00",t%1==.5&&(e="30",t=Math.floor(t)),"+00:00"==(t=(t=t<0?(t*=-1,"-"+(t=h.zeroPad(t,2))):"+"+(t=h.zeroPad(t,2)))+":"+e)&&(t="Z"),t);return n.year()+"-"+r+"-"+o+"T"+a+":"+i+":"+s+"."+u+c},"iso-short":function(n){var t=h.zeroPad(n.month()+1),e=h.zeroPad(n.date());return n.year()+"-"+t+"-"+e},"iso-utc":function(n){return new Date(n.epoch).toISOString()},nice:function(n){return i.month(n)+" "+i["date-ordinal"](n)+", "+i.time(n)},"nice-day":function(n){return i.day(n)+" "+i.month(n)+" "+i["date-ordinal"](n)+", "+i.time(n)},"nice-short":function(n){return i["month-short"](n)+" "+i["date-ordinal"](n)+", "+i.time(n)},full:function(n){return i.day(n)+" "+i.month(n)+" "+i["date-ordinal"](n)+", "+n.year()},"full-short":function(n){return i["day-short"](n)+" "+i["month-short"](n)+" "+i["date-ordinal"](n)+", "+n.year()}};i.ordinal=i["date-ordinal"],i["date-short"]=i.date,i["time-12h"]=i.time,i["time-12"]=i.time,i["time-h12"]=i["time-12h"],i["time-h24"]=i["time-24h"],i["time-24"]=i["time-24h"],i.numeric=i["numeric-us"],i.mdy=i["numeric-us"],i.dmy=i["numeric-uk"],i.ymd=i["numeric-cn"],i["little-endian"]=i["numeric-uk"],i["big-endian"]=i["numeric-cn"];t.exports=function(e,n){return!0!==e.isValid()?"":i&&i[n]?i[n](e):"string"==typeof n?a(n,e):Object.keys(i).reduce(function(n,t){return n[t]=i[t](e),n},{})}},{"../../data/days":5,"../../data/months":8,"../../fns":12,"./unixFmt":24}],24:[function(n,t,e){"use strict";var r=n("../../fns").zeroPad,i={G:function(n){return n.era()},GG:function(n){return n.era()},GGG:function(n){return n.era()},GGGG:function(n){return"AD"===n.era()?"Anno Domini":"Before Christ"},y:function(n){return n.year()},yy:function(n){return parseInt(String(n.year()).substr(2,4),10)},yyy:function(n){return n.year()},yyyy:function(n){return n.year()},yyyyy:function(n){return"0"+n.year()},Q:function(n){return n.quarter()},QQ:function(n){return n.quarter()},QQQ:function(n){return n.quarter()},QQQQ:function(n){return n.quarter()},M:function(n){return n.month()+1},MM:function(n){return r(n.month()+1)},MMM:function(n){return n.format("month-short")},MMMM:function(n){return n.format("month")},w:function(n){return n.week()},ww:function(n){return r(n.week())},d:function(n){return n.date()},dd:function(n){return r(n.date())},D:function(n){return n.dayOfYear()},DD:function(n){return r(n.dayOfYear())},DDD:function(n){return r(n.dayOfYear(),3)},E:function(n){return n.format("day-short")},EE:function(n){return n.format("day-short")},EEE:function(n){return n.format("day-short")},EEEE:function(n){return n.format("day")},EEEEE:function(n){return n.format("day")[0]},e:function(n){return n.day()},ee:function(n){return n.day()},eee:function(n){return n.format("day-short")},eeee:function(n){return n.format("day")},eeeee:function(n){return n.format("day")[0]},a:function(n){return n.ampm().toUpperCase()},aa:function(n){return n.ampm().toUpperCase()},aaa:function(n){return n.ampm().toUpperCase()},aaaa:function(n){return n.ampm().toUpperCase()},h:function(n){return n.h12()},hh:function(n){return r(n.h12())},H:function(n){return n.hour()},HH:function(n){return r(n.hour())},m:function(n){return n.minute()},mm:function(n){return r(n.minute())},s:function(n){return n.second()},ss:function(n){return r(n.second())},A:function(n){return n.epoch-n.startOf("day").epoch},z:function(n){return n.tz},zz:function(n){return n.tz},zzz:function(n){return n.tz},zzzz:function(n){return n.tz},Z:function(n){return n.timezone().current.offset+"00"},ZZ:function(n){return n.timezone().current.offset+"00"},ZZZ:function(n){return n.timezone().current.offset+"00"},ZZZZ:function(n){return n.timezone().current.offset+":00"}},o=function(n,t,e){for(var r=n,o=t,a=0;a<e;a+=1)i[r]=i[o],r+=n,o+=t};o("q","Q",4),o("L","M",4),o("Y","y",4),o("c","e",4),o("k","H",2),o("K","h",2),o("S","s",2),o("v","z",4),o("V","Z",4);t.exports=function(n,e){for(var t=n.split(""),r=[t[0]],o=!1,a=1;a<t.length;a+=1){if("'"===t[a]){if(!0!=(o=!o)||!t[a+1]||"'"!==t[a+1])continue;o=!0}!0===o||t[a]===r[r.length-1][0]?r[r.length-1]+=t[a]:r.push(t[a])}return r.reduce(function(n,t){return void 0!==i[t]?n+=i[t](e)||"":n+=t,n},"")}},{"../../fns":12}],25:[function(n,t,e){"use strict";var r=n("../fns"),o=n("../data/days"),a=n("../data/months");t.exports=function(t){var e={i18n:function(n){if(!(r.isObject(n)&&r.isObject(n.days)&&r.isObject(n.months)&&r.isArray(n.days.short)&&r.isArray(n.days.long)&&r.isArray(n.months.short)&&r.isArray(n.months.long)))throw new Error("Invalid i18n payload passed.");o.set(n.days),a.set(n.months)}};Object.keys(e).forEach(function(n){t.prototype[n]=e[n]})}},{"../data/days":5,"../data/months":8,"../fns":12}],26:[function(n,t,e){"use strict";t.exports=function(n,t){t=(t=t.toLowerCase()).replace(/s$/,"");var e=n.progress();return void 0!==e[t]?(.5<e[t]&&n.add(1,t),n.startOf(t)):console.warn("no known unit '"+t+"'"),n}},{}],27:[function(n,t,e){"use strict";t.exports=function(o){var a={};return["year","season","quarter","month","week","day","quarterHour","hour","minute"].forEach(function(n){var t=o.clone().startOf(n),e=o.clone().endOf(n).epoch-t.epoch,r=(o.epoch-t.epoch)/e;a[n]=parseFloat(r.toFixed(2))}),a}},{}],28:[function(n,t,e){"use strict";var o=n("../../data/quarters"),a=n("../../data/seasons"),i=n("../set/set"),s=function(n){n.minute(0),n.second(0),n.millisecond(1)};t.exports={time:function(n){return void 0!==n?(this.epoch=i.time(this,n),this):this.format("time-h12")},week:function(n){if(void 0!==n)return this.month(0),this.date(1),this.day("monday"),s(this),"december"===this.monthName()&&this.add(1,"week"),n-=1,this.add(n,"weeks"),this;var t=this.clone();t.month(0),t.date(1),s(t),t.day("monday"),"december"===t.monthName()&&t.add(1,"week");var e=this.epoch;if(t.epoch>e)return 1;for(var r=0;r<52;r++){if(t.epoch>e)return r;t.add(1,"week")}return 52},quarter:function(n){if(void 0!==n&&("string"==typeof n&&(n=n.replace(/^q/i,""),n=parseInt(n,10)),o[n])){var t=o[n][0];return this.month(t),this.date(1),this.hour(0),s(this),this}for(var e=this.d.getMonth(),r=1;r<o.length;r++)if(e<o[r][0])return r-1;return 4},hourFloat:function(n){if(void 0!==n){var t=n%1;t*=60;var e=parseInt(n,10);return this.epoch=i.hours(this,e),this.epoch=i.minutes(this,t),this}var r=this.d,o=r.getHours(),a=r.getMinutes();return o+(a/=60)},season:function(n){var t="north";if("South"===this.timezone().hemisphere&&(t="south"),void 0!==n){for(var e=0;e<a[t].length;e++)n===a[t][e][0]&&(this.month(a[t][e][1]),this.date(1),this.hour(0),s(this));return this}for(var r=this.d.getMonth(),o=0;o<a[t].length-1;o++)if(r>=a[t][o][1]&&r<a[t][o+1][1])return a[t][o][0];return"winter"}}},{"../../data/quarters":9,"../../data/seasons":10,"../set/set":33}],29:[function(n,t,e){"use strict";var r=n("./normal"),o=n("./destructive"),a=n("./tricky");t.exports=function(t){Object.keys(r).forEach(function(n){t.prototype[n]=r[n]}),Object.keys(o).forEach(function(n){t.prototype[n]=o[n]}),Object.keys(a).forEach(function(n){t.prototype[n]=a[n]})}},{"./destructive":28,"./normal":30,"./tricky":31}],30:[function(n,t,e){"use strict";var a=n("../set/set"),r=n("../set/walk"),o={millisecond:function(n){return void 0!==n?(this.epoch=a.milliseconds(this,n),this):this.d.getMilliseconds()},second:function(n){return void 0!==n?(this.epoch=a.seconds(this,n),this):this.d.getSeconds()},minute:function(n){return void 0!==n?(this.epoch=a.minutes(this,n),this):this.d.getMinutes()},hour:function(n){var t=this.d;return void 0!==n?(this.epoch=a.hours(this,n),r(this,{hour:n}),this):t.getHours()},hour12:function(n){var t=this.d;if(void 0!==n){var e=(n=""+n).match(/^([0-9]+)(am|pm)$/);if(e){var r=parseInt(e[1],10);"pm"===e[2]&&(r+=12),this.epoch=a.hours(this,r)}return this}var o=t.getHours();return 12<o&&(o-=12),0===o&&(o=12),o},date:function(n){return void 0!==n?(this.epoch=a.date(this,n),this):this.d.getDate()},month:function(n){return void 0!==n?(this.epoch=a.month(this,n),this):this.d.getMonth()},year:function(n){return void 0!==n?(this.epoch=a.year(this,n),this):this.d.getFullYear()},dayTime:function(n){if(void 0!==n){var t={morning:"7:00am",breakfast:"7:00am",noon:"12:00am",lunch:"12:00pm",afternoon:"2:00pm",evening:"6:00pm",dinner:"6:00pm",night:"11:00pm",midnight:"23:59pm"};return t[n=(n=n||"").toLowerCase()]&&this.time(t[n]),this}var e=this.hour();return e<6?"night":e<12?"morning":e<17?"afternoon":e<22?"evening":"night"},dayOfYear:function(n){if(void 0!==n)return this.epoch=a.dayOfYear(this,n),this;for(var t=0,e=this.d.getMonth(),r=void 0,o=1;o<=e;o++)(r=new Date).setDate(1),r.setYear(this.d.getFullYear()),r.setHours(1),r.setMinutes(1),r.setMonth(o),r.setHours(-2),t+=r.getDate();return t+this.d.getDate()},era:function(n){if(void 0===n)return this.d.getFullYear()<0?"BC":"AD";n=n.toLowerCase();var t=this.d.getFullYear();return"bc"===n&&0<t&&(this.epoch=a.year(this,-1*t)),"ad"===n&&t<0&&(this.epoch=a.year(this,-1*t)),this},from:function(n){return(n=this.clone().set(n)).since(this)},fromNow:function(){return this.clone().set(Date.now()).since(this)}};o.milliseconds=o.millisecond,o.seconds=o.second,o.minutes=o.minute,o.hours=o.hour,o.hour24=o.hour,o.h12=o.hour12,o.h24=o.hour24,o.days=o.day,t.exports=o},{"../set/set":33,"../set/walk":34}],31:[function(n,t,e){"use strict";var i=n("../../data/days"),r=n("../../data/months"),s=n("../set/walk");t.exports={day:function(n){if(void 0===n)return this.d.getDay();var t=this.clone(),e=n;"string"==typeof n&&(n=n.toLowerCase(),-1===(e=i.short().indexOf(n))&&(e=i.long().indexOf(n)));var r=this.d.getDay(),o=r-e,a=this.subtract(24*o,"hours");return s(a,{hour:t.hour(),minute:t.minute(),second:t.second()}),this.epoch=a.epoch,a},ampm:function(n){var t="am";return 12<=this.hour()&&(t="pm"),void 0===n?t:(n===t||("am"===n?this.subtract(12,"hours"):this.add(12,"hours")),this)},dayName:function(n){return void 0===n?i.long()[this.day()]:(this.day(n),this)},monthName:function(n){return void 0===n?r.long()[this.month()]:(this.month(n),this)}}},{"../../data/days":5,"../../data/months":8,"../set/walk":34}],32:[function(n,t,e){"use strict";var r={millisecond:function(n){return n.epoch},second:function(n){return[n.year(),n.month(),n.date(),n.hour(),n.minute(),n.second()].join("-")},minute:function(n){return[n.year(),n.month(),n.date(),n.hour(),n.minute()].join("-")},hour:function(n){return[n.year(),n.month(),n.date(),n.hour()].join("-")},day:function(n){return[n.year(),n.month(),n.date()].join("-")},week:function(n){return[n.year(),n.week()].join("-")},month:function(n){return[n.year(),n.month()].join("-")},quarter:function(n){return[n.year(),n.quarter()].join("-")},year:function(n){return n.year()}};r.date=r.day;t.exports=function(e){e.prototype.isSame=function(n,t){return"string"!=typeof n&&"number"!=typeof n||(n=new e(n,this.timezone.name)),t=t.replace(/s$/,""),r[t]?r[t](this)===r[t](n):null}}},{}],33:[function(n,t,e){"use strict";var o=n("../../data/milliseconds"),r=n("../../data/months"),a=n("../../data/monthLengths"),i=n("./walk"),s=function(n){return"string"==typeof n&&(n=parseInt(n,10)),n},u=["year","month","date","hour","minute","second","millisecond"],c=function(n,t,e){for(var r=u.indexOf(e),o=u.slice(r,u.length),a=0;a<o.length;a++){var i=t[o[a]]();n[o[a]](i)}return n};t.exports={milliseconds:function(n,t){t=s(t);var e=n.millisecond()-t;return n.epoch-e},seconds:function(n,t){t=s(t);var e=(n.second()-t)*o.second;return n.epoch-e},minutes:function(n,t){t=s(t);var e=n.clone(),r=(n.minute()-t)*o.minute;return n.epoch-=r,c(n,e,"second"),n.epoch},hours:function(n,t){t=s(t);var e=n.clone(),r=(n.hour()-t)*o.hour;return n.epoch-=r,c(n,e,"minute"),n.epoch},time:function(n,t){var e=t.match(/([0-9]{1,2}):([0-9]{1,2})(am|pm)?/);if(!e){if(!(e=t.match(/([0-9]{1,2})(am|pm)/)))return n.epoch;e.splice(2,0,"0")}var r=!1,o=parseInt(e[1],10),a=parseInt(e[2],10);return 12<o&&(r=!0),!1===r&&("am"===e[3]&&12===o&&(o=0),"pm"===e[3]&&o<12&&(o+=12)),n.hour(o),n.minute(a),n.second(0),n.millisecond(0),n.epoch},date:function(n,t){return t=s(t),i(n,{date:t}),n.epoch},month:function(n,t){"string"==typeof t&&(t=r.mapping()[t.toLowerCase()]),t=s(t);var e=n.date();return e>a[t]&&(e=a[t]),i(n,{month:t,date:e}),n.epoch},year:function(n,t){return t=s(t),i(n,{year:t}),n.epoch},dayOfYear:function(n,t){t=s(t);var e=n.clone(),r=(t-n.dayOfYear())*o.day;return n.epoch+=r,c(n,e,"hour"),n.epoch}}},{"../../data/milliseconds":6,"../../data/monthLengths":7,"../../data/months":8,"./walk":34}],34:[function(n,t,e){"use strict";var h=n("../../data/milliseconds"),r=function(n,t,e,r,o){var a=n.d[e]();if(a!==t){var i=null===o?null:n.d[o](),s=n.epoch,u=t-a;n.epoch+=h[r]*u;for(var c=h[r]/2;n.d[e]()<t;)n.epoch+=c;for(;n.d[e]()>t;)n.epoch-=c;null!==o&&i!==n.d[o]()&&(n.epoch=s)}},s={year:{valid:function(n){return-4e3<n&&n<4e3},walkTo:function(n,t){return r(n,t,"getFullYear","year",null)}},month:{valid:function(n){return 0<=n&&n<=11},walkTo:function(n,t){var e=n.d.getMonth(),r=n.epoch,o=n.d.getYear();if(e!==t){var a=t-e;for(n.epoch+=h.day*(28*a),o!==n.d.getYear()&&(n.epoch=r);n.d.getMonth()<t;)n.epoch+=h.day;for(;n.d.getMonth()>t;)n.epoch-=h.day}}},date:{valid:function(n){return 0<n&&n<=31},walkTo:function(n,t){return r(n,t,"getDate","day","getMonth")}},hour:{valid:function(n){return 0<=n&&n<24},walkTo:function(n,t){return r(n,t,"getHours","hour","getDate")}},minute:{valid:function(n){return 0<=n&&n<60},walkTo:function(n,t){return r(n,t,"getMinutes","minute","getHours")}},second:{valid:function(n){return 0<=n&&n<60},walkTo:function(n,t){return r(n,t,"getSeconds","second","getMinutes")}},millisecond:{valid:function(n){return 0<=n&&n<1e3},walkTo:function(n,t){n.milliseconds(t)}}};t.exports=function(n,t){for(var e=Object.keys(s),r=n.clone(),o=0;o<e.length;o++){var a=e[o],i=t[a];if(void 0===i&&(i=r[a]()),"string"==typeof i&&(i=parseInt(i,10)),!s[a].valid(i))return n.epoch=null,void console.warn("invalid "+a+": "+i);s[a].walkTo(n,i)}}},{"../../data/milliseconds":6}],35:[function(n,t,e){"use strict";var r=n("../fns"),d={months:{almost:10,over:4},days:{almost:25,over:10},hours:{almost:20,over:8},minutes:{almost:50,over:20},seconds:{almost:50,over:20}};function f(n,t){return 1===n&&(t=t.slice(0,-1)),n+" "+t}t.exports=function(n,t){var s=function(n,t){var e=n.isBefore(t),r=e?t:n,o=e?n:t;o=o.clone();var a={years:0,months:0,days:0,hours:0,minutes:0,seconds:0};return Object.keys(a).forEach(function(n){if(!o.isSame(r,n)){var t=o.diff(r,n);o.add(t,n),o.epoch>r.epoch+10&&(o.subtract(1,n),t-=1),a[n]=t}}),e&&Object.keys(a).forEach(function(n){0!==a[n]&&(a[n]*=-1)}),a}(n,t=r.beADate(t,n));if(!0===Object.keys(s).every(function(n){return!s[n]}))return{diff:s,rounded:"now",qualified:"now",precise:"now"};var u=void 0,c=void 0,e=void 0,h=[];return Object.keys(s).forEach(function(n,t,e){var r=Math.abs(s[n]);if(0!==r){var o=f(r,n);if(h.push(o),!u){if(u=c=o,4<t)return;var a=e[t+1],i=Math.abs(s[a]);i>d[a].almost?(u=f(r+1,n),c="almost "+u):i>d[a].over&&(c="over "+o)}}}),e=h.splice(0,2).join(", "),!0===n.isAfter(t)?(u+=" ago",c+=" ago",e+=" ago"):(u="in "+u,c="in "+c,e="in "+e),{diff:s,rounded:u,qualified:c,precise:e}}},{"../fns":12}],36:[function(n,t,e){"use strict";var a=n("../data/seasons"),r=n("../data/quarters"),i=n("./set/walk"),o={minute:function(n){return i(n,{second:0,millisecond:0}),n},quarterHour:function(n){var t=n.minutes();return 45<=t?n.minutes(45):30<=t?n.minutes(30):15<=t?n.minutes(15):n.minutes(0),i(n,{second:0,millisecond:0}),n},hour:function(n){return i(n,{minute:0,second:0,millisecond:0}),n},day:function(n){return i(n,{hour:0,minute:0,second:0,millisecond:0}),n},week:function(n){var t=n.clone();return n.day(1),n.isAfter(t)&&n.subtract(1,"week"),i(n,{hour:0,minute:0,second:0,millisecond:0}),n},month:function(n){return i(n,{date:1,hour:0,minute:0,second:0,millisecond:0}),n},quarter:function(n){var t=n.quarter();return r[t]&&i(n,{month:r[t][0],date:r[t][1],hour:0,minute:0,second:0,millisecond:0}),n},season:function(n){var t=n.season(),e="north";"South"===n.timezone().hemisphere&&(e="south");for(var r=0;r<a[e].length;r++)if(a[e][r][0]===t){var o=n.year();return"winter"===t&&n.month()<3&&(o-=1),i(n,{year:o,month:a[e][r][1],date:a[e][r][2],hour:0,minute:0,second:0,millisecond:0}),n}return n},year:function(n){return i(n,{month:0,date:1,hour:0,minute:0,second:0,millisecond:0}),n}};o.date=o.day;t.exports={startOf:function(n,t){return o[t]?o[t](n):"summer"===t||"winter"===t?(n.season(t),o.season(n)):n},endOf:function(n,t){return o[t]&&((n=o[t](n)).add(1,t),n.subtract(1,"milliseconds")),n}}},{"../data/quarters":9,"../data/seasons":10,"./set/walk":34}],37:[function(n,t,e){"use strict";var r=n("./timezone/guessTz"),o=n("./timezone/index"),a=n("./input"),i=n("./methods"),s=n("../data"),u=function(n,t,e){e=e||{},this.tz=t||r(),this.silent=e.silent||!1,Object.defineProperty(this,"d",{get:function(){var n=o(this)||{},t=(new Date(this.epoch).getTimezoneOffset()||0)+60*n.current.offset;t=60*t*1e3;var e=this.epoch+t;return new Date(e)}}),Object.defineProperty(this,"timezones",{get:function(){return s},set:function(n){return s=n}}),a(this,n,t,e)};Object.keys(i).forEach(function(n){u.prototype[n]=i[n]}),u.prototype.clone=function(){return new u(this.epoch,this.tz,{silent:this.silent})},n("./methods/query")(u),n("./methods/add")(u),n("./methods/same")(u),n("./methods/compare")(u),n("./methods/i18n")(u),t.exports=u},{"../data":1,"./input":15,"./methods":19,"./methods/add":20,"./methods/compare":21,"./methods/i18n":25,"./methods/query":29,"./methods/same":32,"./timezone/guessTz":38,"./timezone/index":39}],38:[function(n,t,e){"use strict";t.exports=function(){var n=function(){if("undefined"==typeof Intl||void 0===Intl.DateTimeFormat)return null;var n=Intl.DateTimeFormat();if(void 0===n||void 0===n.resolvedOptions)return null;var t=n.resolvedOptions().timeZone;return!t||-1===t.indexOf("/")&&"UTC"===t?null:t}();return null===n?"Asia/Shanghai":n}},{}],39:[function(n,t,e){"use strict";var c=n("./summerTime");t.exports=function(n){var t=n.tz||"",e=n.timezones,r=t.split("/");if(!1===e.hasOwnProperty(t)&&2<r.length&&(t=r[0]+"/"+r[1]),!1===e.hasOwnProperty(t))return console.warn("Warn: could not find given or local timezone - '"+t+"'"),{current:{epochShift:0}};var o,a={name:t,hasDst:Boolean(e[t].dst),hemisphere:"s"===e[t].h?"South":"North",change:{},current:{}};if(!0===a.hasDst){var i=(o=e[t].dst)?o.split("->"):[];a.change={start:i[0],back:i[1]}}var s=e[t].o,u=s;return!0===a.hasDst&&(u="North"===a.hemisphere?s-1:e[t].o+1),!1===a.hasDst?(a.current.offset=s,a.current.isDST=!1):!0===c(n,a,s)?(a.current.offset=s,a.current.isDST="North"===a.hemisphere):(a.current.offset=u,a.current.isDST="South"===a.hemisphere),a}},{"./summerTime":40}],40:[function(n,t,e){"use strict";var s=n("../fns").zeroPad;t.exports=function(n,t,e){if(!0!==t.hasDst||!t.change.start||!t.change.back)return!1;var r=new Date(n.epoch),o=(r.getTimezoneOffset()||0)+60*e;o=60*o*1e3,r=new Date(n.epoch+o);var a,i=s((a=r).getMonth()+1)+"/"+s(a.getDate())+":"+s(a.getHours());return i>=t.change.start&&i<t.change.back}},{"../fns":12}]},{},[13])(13)});
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],15:[function(_dereq_,module,exports){
-(function (global){
-!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).spencerColor=e()}}(function(){return function i(f,c,u){function d(r,e){if(!c[r]){if(!f[r]){var n="function"==typeof _dereq_&&_dereq_;if(!e&&n)return n(r,!0);if(s)return s(r,!0);var o=new Error("Cannot find module '"+r+"'");throw o.code="MODULE_NOT_FOUND",o}var t=c[r]={exports:{}};f[r][0].call(t.exports,function(e){return d(f[r][1][e]||e)},t,t.exports,i,f,c,u)}return c[r].exports}for(var s="function"==typeof _dereq_&&_dereq_,e=0;e<u.length;e++)d(u[e]);return d}({1:[function(e,r,n){"use strict";r.exports={blue:"#6699cc",green:"#6accb2",yellow:"#e1e6b3",red:"#cc7066",pink:"#e6b8b3",brown:"#9c896c",orange:"#cc8a66",purple:"#d8b3e6",navy:"#335799",olive:"#7f9c6c",burnt:"#603a39",beige:"#e6d7b3",fuscia:"#603960"}},{}],2:[function(e,r,n){"use strict";r.exports={white:"#fbfbfb",grey:"#4d4d4d",dim:"#d7d5d2",lightgrey:"#949a9e",dark:"#443d3d",bluegrey:"#606c74",black:"#333333"}},{}],3:[function(e,r,n){"use strict";var o=e("./greys"),t=e("./colors");r.exports=Object.assign({},t,o)},{"./colors":1,"./greys":2}]},{},[3])(3)});
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],16:[function(_dereq_,module,exports){
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.vhtml = factory());
-}(this, (function () { 'use strict';
-
-var emptyTags = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
-
-var esc = function esc(str) {
-	return String(str).replace(/[&<>"']/g, function (s) {
-		return '&' + map[s] + ';';
-	});
-};
-var map = { '&': 'amp', '<': 'lt', '>': 'gt', '"': 'quot', "'": 'apos' };
-
-var sanitized = {};
-
-function h(name, attrs) {
-	var stack = [];
-	for (var i = arguments.length; i-- > 2;) {
-		stack.push(arguments[i]);
-	}
-
-	if (typeof name === 'function') {
-		(attrs || (attrs = {})).children = stack.reverse();
-		return name(attrs);
-	}
-
-	var s = '<' + name;
-	if (attrs) for (var _i in attrs) {
-		if (attrs[_i] !== false && attrs[_i] != null) {
-			s += ' ' + esc(_i) + '="' + esc(attrs[_i]) + '"';
-		}
-	}
-
-	if (emptyTags.indexOf(name) === -1) {
-		s += '>';
-
-		while (stack.length) {
-			var child = stack.pop();
-			if (child) {
-				if (child.pop) {
-					for (var _i2 = child.length; _i2--;) {
-						stack.push(child[_i2]);
-					}
-				} else {
-					s += sanitized[child] === true ? child : esc(child);
-				}
-			}
-		}
-
-		s += '</' + name + '>';
-	} else {
-		s += '>';
-	}
-
-	sanitized[s] = true;
-	return s;
-}
-
-return h;
-
-})));
-
-
-},{}],17:[function(_dereq_,module,exports){
-"use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["<svg ...", ">\n      ", "\n    </svg>"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-var fitAspect = _dereq_('fit-aspect-ratio');
-
-var Component = _dereq_('preact').Component;
-
-var htm = _dereq_('htm');
-
-var vhtml = _dereq_('vhtml');
-
-var methods = _dereq_('./methods');
-
-var YScale = _dereq_('./scales/YScale');
-
-var XScale = _dereq_('./scales/Scale');
-
-var XAxis = _dereq_('./axis/XAxis');
-
-var YAxis = _dereq_('./axis/YAxis');
-
-var Shape = _dereq_('./shapes/Shape');
-
-var Line = _dereq_('./shapes/Line');
-
-var Text = _dereq_('./shapes/Text');
-
-var Dot = _dereq_('./shapes/Dot');
-
-var Slider = _dereq_('./inputs/Slider');
-
-var World =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(World, _Component);
-
-  function World() {
-    var _this;
-
-    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    _classCallCheck(this, World);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(World).call(this, obj));
-    _this.aspect = obj.aspect || '3:4';
-    var res = fitAspect(obj);
-    _this.width = res.width || 600;
-    _this.height = res.height || 400;
-    _this.shapes = []; //give the points a little bit of space.
-
-    _this.wiggle_room = 1.05;
-    _this.x = new XScale(obj, _assertThisInitialized(_assertThisInitialized(_this)));
-    _this.y = new YScale(obj, _assertThisInitialized(_assertThisInitialized(_this)));
-    _this.xAxis = new XAxis({}, _assertThisInitialized(_assertThisInitialized(_this)));
-    _this.yAxis = new YAxis({}, _assertThisInitialized(_assertThisInitialized(_this)));
-    _this.html = htm.bind(vhtml);
-    _this.inputs = [];
-    _this.state = {};
-    _this.state.time = Date.now();
-    _this.el = obj.el || null;
-    return _this;
-  }
-
-  _createClass(World, [{
-    key: "bind",
-    value: function bind(fn) {
-      this.html = htm.bind(fn);
-    }
-  }, {
-    key: "line",
-    value: function line(obj) {
-      var line = new Line(obj, this);
-      this.shapes.push(line);
-      return line;
-    }
-  }, {
-    key: "dot",
-    value: function dot(obj) {
-      var dot = new Dot(obj, this);
-      this.shapes.push(dot);
-      return dot;
-    }
-  }, {
-    key: "text",
-    value: function text(obj) {
-      var text = new Text(obj, this);
-      this.shapes.push(text);
-      return text;
-    }
-  }, {
-    key: "shape",
-    value: function shape(obj) {
-      var shape = new Shape(obj, this);
-      this.shapes.push(shape);
-      return shape;
-    }
-  }, {
-    key: "slider",
-    value: function slider(obj) {
-      var slider = new Slider(obj, this);
-      this.inputs.push(slider);
-      return slider;
-    }
-  }, {
-    key: "getShape",
-    value: function getShape(id) {
-      return this.shapes.find(function (shape) {
-        return shape.id === id;
-      });
-    }
-  }, {
-    key: "redraw",
-    value: function redraw() {
-      if (this.el) {
-        this.el.innerHTML = this.build();
-      } else {
-        console.log('must define world html element');
-      }
-    }
-  }, {
-    key: "build",
-    value: function build() {
-      var h = this.html;
-      var shapes = this.shapes.sort(function (a, b) {
-        return a._order > b._order ? 1 : -1;
-      });
-      var elements = [];
-
-      if (this.xAxis) {
-        elements.push(this.xAxis.build());
-      }
-
-      if (this.yAxis) {
-        elements.push(this.yAxis.build());
-      }
-
-      elements = elements.concat(shapes.map(function (shape) {
-        return shape.build();
-      }));
-      var attrs = {
-        width: this.width,
-        height: this.height,
-        viewBox: "0,0,".concat(this.width, ",").concat(this.height),
-        preserveAspectRatio: 'xMidYMid meet',
-        style: 'overflow:visible; margin: 10px 20px 25px 25px;' // border:1px solid lightgrey;
-
-      };
-      return h(_templateObject(), attrs, elements);
-    }
-  }]);
-
-  return World;
-}(Component);
-
-Object.keys(methods).forEach(function (k) {
-  World.prototype[k] = methods[k];
-});
-module.exports = World;
-
-},{"./axis/XAxis":20,"./axis/YAxis":21,"./inputs/Slider":24,"./methods":25,"./scales/Scale":27,"./scales/YScale":28,"./shapes/Dot":29,"./shapes/Line":30,"./shapes/Shape":31,"./shapes/Text":32,"fit-aspect-ratio":11,"htm":12,"preact":13,"vhtml":16}],18:[function(_dereq_,module,exports){
-"use strict";
-
-var extent = function extent(arr) {
-  var min = null;
-  var max = null;
-  arr.forEach(function (a) {
-    if (min === null || a < min) {
-      min = a;
-    }
-
-    if (max === null || a > max) {
-      max = a;
-    }
-  });
-  return {
-    min: min,
-    max: max
-  };
-};
-/* eslint no-bitwise: 0 */
-
-
-var uuid = function uuid() {
-  return (Math.random() + 1).toString(36).substring(7); // return 'xxxxx'.replace(/[xy]/g, function(c) {
-  //   var r = Math.random() * 16 | 0,
-  //     v = c === 'x' ? r : (r & 0x3 | 0x8);
-  //   return v.toString(16);
-  // });
-};
-
-module.exports = {
-  extent: extent,
-  uuid: uuid
-};
-
-},{}],19:[function(_dereq_,module,exports){
-"use strict";
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var _ticks = _dereq_('./_ticks');
-
-var defaults = {
-  stroke: '#d7d5d2',
-  'stroke-width': 1
-};
-
-var Axis =
-/*#__PURE__*/
-function () {
-  function Axis() {
-    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    var world = arguments.length > 1 ? arguments[1] : undefined;
-
-    _classCallCheck(this, Axis);
-
-    this.world = world;
-    this.attrs = Object.assign({}, defaults, obj);
-    this.scale = null;
-    this._ticks = 6;
-    this._show = true;
-  }
-
-  _createClass(Axis, [{
-    key: "remove",
-    value: function remove() {
-      this._show = false;
-    }
-  }, {
-    key: "show",
-    value: function show() {
-      this._show = true;
-    }
-  }, {
-    key: "ticks",
-    value: function ticks(n) {
-      if (n !== undefined) {
-        this._ticks = n;
-      }
-
-      if (this.scale.format() === 'date') {
-        return _ticks.date(this, this._ticks);
-      }
-
-      return _ticks.generic(this, this._ticks);
-    }
-  }]);
-
-  return Axis;
-}();
-
-module.exports = Axis;
-
-},{"./_ticks":22}],20:[function(_dereq_,module,exports){
-"use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["<g>\n      ", "\n      <line x1=\"", "\" y1=\"", "\" x2=\"", "\" y2=\"", "\" ...", "/>\n    </g>"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["<text x=\"", "\" y=\"", "\" fill=\"", "\" text-anchor=\"middle\" style=\"font-size:12px;\">\n        ", "\n      </text>"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var Axis = _dereq_('./Axis');
-
-var XAxis =
-/*#__PURE__*/
-function (_Axis) {
-  _inherits(XAxis, _Axis);
-
-  function XAxis() {
-    var _this;
-
-    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    var world = arguments.length > 1 ? arguments[1] : undefined;
-
-    _classCallCheck(this, XAxis);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(XAxis).call(this, obj, world));
-    _this.scale = world.x;
-    return _this;
-  }
-
-  _createClass(XAxis, [{
-    key: "drawTicks",
-    value: function drawTicks(y) {
-      var _this2 = this;
-
-      var h = this.world.html;
-      return this.ticks().map(function (o) {
-        return h(_templateObject(), o.pos, y + 15, _this2.attrs.stroke, o.label);
-      });
-    }
-  }, {
-    key: "build",
-    value: function build() {
-      var h = this.world.html;
-
-      if (this._show === false) {
-        return '';
-      }
-
-      var attrs = this.attrs;
-      var width = this.world.width;
-      var y = this.world.height;
-      var ticks = this.drawTicks(y);
-      return h(_templateObject2(), ticks, 0, y, width, y, attrs);
-    }
-  }]);
-
-  return XAxis;
-}(Axis);
-
-module.exports = XAxis;
-
-},{"./Axis":19}],21:[function(_dereq_,module,exports){
-"use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["<g>\n      ", "\n      <line x1=\"", "\" y1=\"", "\" x2=\"", "\" y2=\"", "\" ...", "/>\n    </g>"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["<text x=\"", "\" y=\"", "\" dy=\"0\" dx=\"-6\" fill=\"", "\" text-anchor=\"end\" style=\"font-size:12px;\">\n        ", "\n      </text>"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var Axis = _dereq_('./Axis');
-
-var YAxis =
-/*#__PURE__*/
-function (_Axis) {
-  _inherits(YAxis, _Axis);
-
-  function YAxis() {
-    var _this;
-
-    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    var world = arguments.length > 1 ? arguments[1] : undefined;
-
-    _classCallCheck(this, YAxis);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(YAxis).call(this, obj, world));
-    _this.scale = world.y;
-    return _this;
-  }
-
-  _createClass(YAxis, [{
-    key: "drawTicks",
-    value: function drawTicks(x) {
-      var _this2 = this;
-
-      var h = this.world.html;
-      return this.ticks().map(function (o) {
-        return h(_templateObject(), x, o.pos, _this2.attrs.stroke, o.label);
-      });
-    }
-  }, {
-    key: "build",
-    value: function build() {
-      var h = this.world.html;
-
-      if (this._show === false) {
-        return '';
-      }
-
-      var attrs = this.attrs;
-      var height = this.world.height;
-      var x = 0;
-      var ticks = this.drawTicks(x);
-      return h(_templateObject2(), ticks, x, 0, x, height, attrs);
-    }
-  }]);
-
-  return YAxis;
-}(Axis);
-
-module.exports = YAxis;
-
-},{"./Axis":19}],22:[function(_dereq_,module,exports){
-"use strict";
-
-var spacetime = _dereq_('spacetime');
-
-var memo = {};
-var day = 60 * 60 * 24 * 1000;
-var month = day * 30;
-var year = day * 368;
-
-var prettyNum = function prettyNum(num) {
-  num = parseFloat(num);
-
-  if (num > 2000000) {
-    num = parseInt(num / 1000, 10) * 1000;
-  }
-
-  if (num > 2000) {
-    num = parseInt(num / 1000, 10) * 1000;
-  }
-
-  return num.toLocaleString();
-};
-
-var generic = function generic(axis) {
-  var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 5;
-  n = n === 0 ? 0 : n - 1;
-  var scale = axis.scale;
-  var total = scale.max - scale.min;
-  var ticks = [];
-
-  for (var i = 0; i <= n; i += 1) {
-    var dec = i / n;
-    var num = dec * total + scale.min;
-    ticks.push({
-      num: num,
-      pos: scale.scale(num),
-      label: prettyNum(num)
-    });
-  }
-
-  return ticks;
-};
-
-var chooseFmt = function chooseFmt(scale) {
-  var diff = scale.max - scale.min;
-
-  if (diff > year * 3) {
-    return 'yyyy';
-  }
-
-  if (diff > year) {
-    return 'MMM yyyy';
-  }
-
-  if (diff > month) {
-    return 'MMM'; // Sept
-  }
-
-  if (diff < day) {
-    return 'h:mm a';
-  }
-
-  return 'MMM d';
-};
-
-var date = function date(axis) {
-  var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 5;
-  var ticks = generic(axis, n);
-  var fmt = chooseFmt(axis.scale);
-  ticks = ticks.map(function (o) {
-    if (memo[o.num]) {
-      o.label = memo[o.num];
-    } else {
-      o.label = spacetime(o.num).format(fmt);
-    }
-
-    return o;
-  });
-  return ticks;
-};
-
-module.exports = {
-  generic: generic,
-  date: date
-};
-
-},{"spacetime":14}],23:[function(_dereq_,module,exports){
-"use strict";
-
-var World = _dereq_('./World'); //
-
-
-var somehow = function somehow(obj) {
-  return new World(obj);
-};
-
-module.exports = somehow;
-
-},{"./World":17}],24:[function(_dereq_,module,exports){
-"use strict";
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["<div style=\"", "\">\n        <div style=\"", "\">", "</div>\n        ", "\n        <input type=\"range\" id=\"", "\" style=\"", "\" value=", " ...", ">\n      </div>"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["<div style=\"", "\"> ", "</div>"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-// const fns = require('../_fns')
-var colors = _dereq_('spencer-color');
-
-var defaults = {
-  min: -100,
-  max: 100,
-  step: 1,
-  size: 200
-};
-
-var Slider =
-/*#__PURE__*/
-function () {
-  function Slider() {
-    var _this = this;
-
-    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    var world = arguments.length > 1 ? arguments[1] : undefined;
-
-    _classCallCheck(this, Slider);
-
-    if (typeof obj === 'string') {
-      this.id = obj;
-      obj = {};
-    }
-
-    this.world = world;
-    this.data = obj.data || [];
-    this.attrs = Object.assign({}, defaults, obj);
-    this.style = {};
-    this._title = '';
-
-    this.onChange = function () {};
-
-    this._labels = [];
-    this._value = obj.value;
-
-    if (this._value === undefined) {
-      this._value = 50;
-    }
-
-    this.id = obj.id || 'slider';
-    this.world.state[this.id] = this._value;
-
-    this.callback = function (e) {
-      _this.world.state[_this.id] = e.target.value;
-
-      _this.world.redraw();
-    };
-  }
-
-  _createClass(Slider, [{
-    key: "labels",
-    value: function labels(data) {
-      this._labels = data.map(function (a) {
-        return {
-          value: a[1],
-          label: a[0]
-        };
-      });
-      return this;
-    }
-  }, {
-    key: "place",
-    value: function place() {
-      var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      var _this$attrs = this.attrs,
-          max = _this$attrs.max,
-          min = _this$attrs.min,
-          size = _this$attrs.size;
-      var range = max - min;
-      var spot = x - min;
-      var percent = spot / range;
-      return percent * size;
-    }
-  }, {
-    key: "makeLabels",
-    value: function makeLabels() {
-      var _this2 = this;
-
-      var h = this.world.html;
-      return this._labels.map(function (o) {
-        var y = _this2.place(o.value);
-
-        var style = "position:absolute; top:".concat(y, "px; font-size:10px; color:").concat(colors.lightgrey, "; left:10px;");
-        return h(_templateObject(), style, o.label);
-      });
-    }
-  }, {
-    key: "title",
-    value: function title(str) {
-      this._title = str;
-    }
-  }, {
-    key: "build",
-    value: function build() {
-      var _this3 = this;
-
-      var h = this.world.html;
-      var size = this.attrs.size;
-      var styles = {
-        box: "position:relative; height:".concat(size, "px; width:100px;"),
-        input: "transform: rotate(90deg); width:".concat(size, "px;  transform-origin: 0% 0%;"),
-        title: "position:absolute; top:-20px; left:-20px; color:".concat(colors.lightgrey, "; font-size:14px;")
-      };
-      setTimeout(function () {
-        var el = document.getElementById(_this3.id);
-        el.addEventListener('input', function (e) {
-          _this3.world.state[_this3.id] = e.target.value;
-
-          _this3.callback(e);
-        });
-      }, 50);
-      return h(_templateObject2(), styles.box, styles.title, this._title, this.makeLabels(), this.id, styles.input, this._value, this.attrs);
-    }
-  }]);
-
-  return Slider;
-}();
-
-module.exports = Slider;
-
-},{"spencer-color":15}],25:[function(_dereq_,module,exports){
-"use strict";
-
-var _require = _dereq_('./parse'),
-    parseX = _require.parseX,
-    parseY = _require.parseY;
-
-var fns = _dereq_('./_fns');
-
-var has = function has(x) {
-  return x !== undefined && x !== null;
-};
-
-var methods = {
-  //add new minimums
-  from: function from(x, y) {
-    if (has(x) === true) {
-      x = parseX(x, this);
-      this.x.min = x;
-      this.x.rescale();
-    }
-
-    if (has(y) === true) {
-      y = parseY(y, this).value;
-      this.y.min = y;
-      this.y.rescale();
-    }
-
-    return this;
-  },
-  //add new maximums
-  to: function to(x, y) {
-    if (has(x) === true) {
-      x = parseX(x, this).value;
-      this.c.max = x;
-      this.c.rescale();
-    }
-
-    if (has(y) === true) {
-      y = parseX(y, this).value;
-      this.y.max = y;
-      this.y.rescale();
-    }
-
-    return this;
-  },
-  fit: function fit(x, y) {
-    // if (!has(x) && !has(y)) {
-    var arr = this.shapes.map(function (s) {
-      return s.extent();
-    });
-    var minX = fns.extent(arr.map(function (o) {
-      return o.x.min;
-    }).filter(function (n) {
-      return n !== null;
-    })).min || 0;
-    var minY = fns.extent(arr.map(function (o) {
-      return o.y.min;
-    }).filter(function (n) {
-      return n !== null;
-    })).min || 0;
-    var maxY = fns.extent(arr.map(function (o) {
-      return o.y.max;
-    }).filter(function (n) {
-      return n !== null;
-    })).max || 0;
-    var maxX = fns.extent(arr.map(function (o) {
-      return o.x.max;
-    }).filter(function (n) {
-      return n !== null;
-    })).max || 0; //keep graphs from 0, if you can...
-
-    this.x.min = minX > 0 ? 0 : minX;
-    this.x.max = maxX;
-
-    if (this.x.format() === 'date') {
-      this.x.min = minX;
-      this.x.max = maxX;
-    }
-
-    this.x.rescale();
-    this.y.min = minY > 0 ? 0 : minY;
-    this.y.max = maxY;
-
-    if (this.y.format() === 'date') {
-      this.y.min = minY;
-      this.y.max = maxY;
-    }
-
-    this.y.rescale(); // }
-
-    if (has(x) === true) {
-      x = parseX(x, this).value;
-
-      if (x > this.x.max) {
-        this.x.max = x;
-      } else if (x < this.x.min) {
-        this.x.min = x;
-      }
-
-      this.x.rescale();
-    }
-
-    if (has(y) === true) {
-      y = parseY(y, this).value;
-
-      if (y > this.y.max) {
-        this.y.max = y;
-      } else if (y < this.y.min) {
-        this.y.min = y;
-      }
-
-      this.y.rescale();
-    }
-
-    return this;
-  }
-};
-module.exports = methods;
-
-},{"./_fns":18,"./parse":26}],26:[function(_dereq_,module,exports){
-"use strict";
-
-var spacetime = _dereq_('spacetime'); //
-
-
-var parse = function parse(str) {
-  if (typeof str === 'number') {
-    return {
-      type: 'number',
-      value: str
-    };
-  } //support pixels
-
-
-  if (/[0-9]px$/.test(str)) {
-    return {
-      type: 'pixel',
-      value: Number(str.replace(/px/, ''))
-    };
-  } //support percentages
-
-
-  if (/[0-9]%$/.test(str)) {
-    var _num = Number(str.replace(/%/, ''));
-
-    return {
-      type: 'percent',
-      value: _num
-    };
-  } //try a straight-up number
-
-
-  var num = Number(str);
-
-  if (!isNaN(num)) {
-    return {
-      type: 'number',
-      value: num
-    };
-  } //try a date
-
-
-  var s = spacetime(str);
-
-  if (s.isValid()) {
-    return {
-      type: 'date',
-      value: s.epoch
-    };
-  }
-
-  console.warn('Counldn\'t parse: ' + str);
-  return {
-    type: 'unknown',
-    value: null
-  };
-};
-
-var parseX = function parseX(str, world) {
-  var res = parse(str);
-
-  if (res.type === 'date') {
-    world.x.format(res.type);
-  }
-
-  return res;
-};
-
-var parseY = function parseY(str, world) {
-  var res = parse(str);
-
-  if (res.type === 'date') {
-    world.y.format(res.type);
-  }
-
-  return res;
-};
-
-module.exports = {
-  parseX: parseX,
-  parseY: parseY
-};
-
-},{"spacetime":14}],27:[function(_dereq_,module,exports){
-"use strict";
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var scaleLinear = _dereq_('d3-scale').scaleLinear;
-
-var _require = _dereq_('../parse'),
-    parseX = _require.parseX; // const spacetime = require('spacetime')
-
-
-var has = function has(x) {
-  return x !== undefined && x !== null;
-};
-
-var Scale =
-/*#__PURE__*/
-function () {
-  function Scale(data, world) {
-    _classCallCheck(this, Scale);
-
-    this.world = world;
-    this.min = 0;
-    this.max = 1;
-    this.from = 0;
-    this.to = world.width;
-    this._format = 'number';
-    this.parse = parseX;
-    this.rescale();
-  }
-
-  _createClass(Scale, [{
-    key: "rescale",
-    value: function rescale() {
-      //give it a little bit of room..
-      var max = this.max; //* this.world.wiggle_room
-
-      this.scale = scaleLinear().range([this.from, this.to]).domain([this.min, max]);
-    }
-  }, {
-    key: "fit",
-    value: function fit(a, b) {
-      if (has(a) === true) {
-        var num = this.parse(a, this.world).value;
-        this.min = num;
-      }
-
-      if (has(b) === true) {
-        var _num = this.parse(b, this.world).value;
-        this.max = _num;
-      }
-
-      this.rescale();
-    }
-  }, {
-    key: "place",
-    value: function place(obj) {
-      //from=top
-      //to=bottom
-      if (obj.type === 'pixel') {
-        if (this.is_y) {
-          return this.to - obj.value; //flip grid
-        }
-
-        return obj.value;
-      }
-
-      if (obj.type === 'percent') {
-        var num = this.byPercent(obj.value);
-        return this.scale(num);
-      }
-
-      return this.scale(obj.value);
-    }
-  }, {
-    key: "byPercent",
-    value: function byPercent() {
-      var num = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      num = num / 100;
-      var diff = this.max - this.min;
-      return diff * num + this.min;
-    }
-  }, {
-    key: "format",
-    value: function format(_format) {
-      if (_format === undefined) {
-        return this._format;
-      }
-
-      this._format = _format;
-      return this;
-    }
-  }]);
-
-  return Scale;
-}();
-
-module.exports = Scale;
-
-},{"../parse":26,"d3-scale":7}],28:[function(_dereq_,module,exports){
-"use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var Scale = _dereq_('./Scale');
-
-var scaleLinear = _dereq_('d3-scale').scaleLinear;
-
-var _require = _dereq_('../parse'),
-    parseY = _require.parseY;
-
-var YScale =
-/*#__PURE__*/
-function (_Scale) {
-  _inherits(YScale, _Scale);
-
-  function YScale(data, world) {
-    var _this;
-
-    _classCallCheck(this, YScale);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(YScale).call(this, data, world)); //use height instead of width
-
-    _this.to = world.height;
-    _this.is_y = true;
-    _this.parse = parseY;
-
-    _this.rescale();
-
-    return _this;
-  }
-
-  _createClass(YScale, [{
-    key: "rescale",
-    value: function rescale() {
-      var max = this.max; //* this.world.wiggle_room
-
-      this.scale = scaleLinear().range([this.from, this.to]).domain([max, this.min]);
-    }
-  }]);
-
-  return YScale;
-}(Scale);
-
-module.exports = YScale;
-
-},{"../parse":26,"./Scale":27,"d3-scale":7}],29:[function(_dereq_,module,exports){
-"use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["<circle ...", " />"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var colors = _dereq_('spencer-color'); // const d3Shape = require('d3-shape')
-
-
-var Shape = _dereq_('./Shape');
-
-var defaults = {
-  fill: colors.blue,
-  stroke: 'none'
-};
-
-var Dot =
-/*#__PURE__*/
-function (_Shape) {
-  _inherits(Dot, _Shape);
-
-  function Dot() {
-    var _this;
-
-    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    var world = arguments.length > 1 ? arguments[1] : undefined;
-
-    _classCallCheck(this, Dot);
-
-    obj = Object.assign({}, defaults, obj);
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Dot).call(this, obj, world));
-    _this._radius = obj.radius || 5;
-    return _this;
-  }
-
-  _createClass(Dot, [{
-    key: "radius",
-    value: function radius(r) {
-      this._radius = r;
-    }
-  }, {
-    key: "build",
-    value: function build() {
-      var h = this.world.html;
-      var point = this.points()[0];
-      var attrs = Object.assign({}, this.attrs, {
-        cx: point[0],
-        cy: point[1],
-        r: this._radius
-      });
-      return h(_templateObject(), attrs);
-    }
-  }]);
-
-  return Dot;
-}(Shape);
-
-module.exports = Dot;
-
-},{"./Shape":31,"spencer-color":15}],30:[function(_dereq_,module,exports){
-"use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var colors = _dereq_('spencer-color');
-
-var d3Shape = _dereq_('d3-shape');
-
-var Shape = _dereq_('./Shape'); // const {parseX, parseY} = require('../parse')
-
-
-var defaults = {
-  fill: 'none',
-  stroke: colors.blue,
-  'stroke-width': 4,
-  'stroke-linecap': 'round'
-};
-
-var Line =
-/*#__PURE__*/
-function (_Shape) {
-  _inherits(Line, _Shape);
-
-  function Line() {
-    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    var world = arguments.length > 1 ? arguments[1] : undefined;
-
-    _classCallCheck(this, Line);
-
-    obj = Object.assign({}, defaults, obj);
-    return _possibleConstructorReturn(this, _getPrototypeOf(Line).call(this, obj, world));
-  }
-
-  _createClass(Line, [{
-    key: "color",
-    value: function color(_color) {
-      this.attrs.stroke = colors[_color] || _color;
-      return this;
-    }
-  }, {
-    key: "dotted",
-    value: function dotted(n) {
-      if (n === true) {
-        n = 4;
-      }
-
-      this.attrs['stroke-dasharray'] = n || 4;
-      return this;
-    }
-  }, {
-    key: "width",
-    value: function width(num) {
-      this.attrs['stroke-width'] = num; //parseX(num, this.world)
-
-      return this;
-    }
-  }, {
-    key: "path",
-    value: function path() {
-      var points = this.points();
-      return d3Shape.line().x(function (d) {
-        return d[0];
-      }).y(function (d) {
-        return d[1];
-      }).curve(d3Shape.curveMonotoneX)(points);
-    }
-  }]);
-
-  return Line;
-}(Shape);
-
-module.exports = Line;
-
-},{"./Shape":31,"d3-shape":8,"spencer-color":15}],31:[function(_dereq_,module,exports){
-"use strict";
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["<path ...", " style=\"", "\"/>"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-// const flubber = require('flubber')
-var d3Shape = _dereq_('d3-shape');
-
-var colors = _dereq_('spencer-color');
-
-var _require = _dereq_('../parse'),
-    parseY = _require.parseY;
-
-var fns = _dereq_('../_fns');
-
-var parseInput = _dereq_('./lib/parseInput');
-
-var defaults = {
-  fill: colors.blue,
-  stroke: 'none',
-  'shape-rendering': 'optimizeQuality'
-};
-
-var Shape =
-/*#__PURE__*/
-function () {
-  function Shape() {
-    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    var world = arguments.length > 1 ? arguments[1] : undefined;
-
-    _classCallCheck(this, Shape);
-
-    this.world = world;
-    this.data = obj.data || [];
-    this.id = obj.id;
-    this.attrs = Object.assign({}, defaults, obj);
-    this.style = {};
-    this._shape = 1;
-  }
-
-  _createClass(Shape, [{
-    key: "at",
-    value: function at(x, y) {
-      if ((x || x === 0) && (y || y === 0)) {
-        //hmm
-        this.set([[x, y]]);
-        return this;
-      } //vertical line
-
-
-      if (x || x === 0) {
-        this.set([[x, '0%'], [x, '100%']]);
-      } //horizontal line
-
-
-      if (y || y === 0) {
-        this.set([['0%', y], ['100%', y]]);
-      }
-
-      return this;
-    }
-  }, {
-    key: "extent",
-    value: function extent() {
-      // let points = this.points()
-      // let xArr = points.map((a) => a[0])
-      // let yArr = points.map((a) => a[1])
-      var xArr = [];
-      var yArr = [];
-      this.data.forEach(function (o) {
-        if (o.x.type !== 'pixel') {
-          xArr.push(o.x.value);
-        }
-
-        if (o.y.type !== 'pixel') {
-          yArr.push(o.y.value);
-        }
-      }); // this.data.map((o) => o.x.value)
-      // let yArr = this.data.map((o) => o.y.value)
-
-      return {
-        x: fns.extent(xArr),
-        y: fns.extent(yArr)
-      };
-    }
-  }, {
-    key: "color",
-    value: function color(_color) {
-      this.attrs.fill = colors[_color] || _color;
-      return this;
-    }
-  }, {
-    key: "opacity",
-    value: function opacity(n) {
-      this.attrs.opacity = n;
-      return this;
-    }
-  }, {
-    key: "set",
-    value: function set(str) {
-      this.data = parseInput(str, this.world);
-      return this;
-    } //x,y coordinates
-
-  }, {
-    key: "points",
-    value: function points() {
-      var _this$world = this.world,
-          x = _this$world.x,
-          y = _this$world.y;
-      var points = this.data.map(function (o) {
-        return [x.place(o.x), y.place(o.y)];
-      });
-      return points;
-    }
-  }, {
-    key: "path",
-    value: function path() {
-      // return flubber.toPathString(this.points())
-      var zero = this.world.y.place(parseY(0));
-      console.log(zero);
-      var points = this.points();
-      return d3Shape.area().x0(function (d) {
-        return d[0];
-      }).y0(function (d) {
-        return d[1];
-      }).y1(zero).curve(d3Shape.curveMonotoneX)(points);
-    }
-  }, {
-    key: "drawSyle",
-    value: function drawSyle() {
-      var _this = this;
-
-      return Object.keys(this.style).map(function (k) {
-        return "".concat(k, ":").concat(_this.style[k], ";");
-      }).join(' ');
-    }
-  }, {
-    key: "build",
-    value: function build() {
-      var h = this.world.html;
-      var attrs = Object.assign({}, this.attrs, {
-        d: this.path()
-      });
-      return h(_templateObject(), attrs, this.drawSyle());
-    }
-  }]);
-
-  return Shape;
-}();
-
-module.exports = Shape;
-
-},{"../_fns":18,"../parse":26,"./lib/parseInput":33,"d3-shape":8,"spencer-color":15}],32:[function(_dereq_,module,exports){
-"use strict";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _templateObject2() {
-  var data = _taggedTemplateLiteral(["<g transform=\"translate(", " ", ")\" style=\"", "\">\n      <text id=\"fun\" ...", ">\n        ", "\n      </text>\n    </g>"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["<tspan x=\"0\" dy=\"1.2em\">", "</tspan>"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var Shape = _dereq_('./Shape');
-
-var colors = _dereq_('spencer-color');
-
-var defaults = {
-  fill: 'grey',
-  stroke: 'none',
-  'stroke-width': 1,
-  'stroke-linecap': 'round'
-};
-
-var Text =
-/*#__PURE__*/
-function (_Shape) {
-  _inherits(Text, _Shape);
-
-  function Text() {
-    var _this;
-
-    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    var world = arguments.length > 1 ? arguments[1] : undefined;
-
-    _classCallCheck(this, Text);
-
-    var text = null;
-
-    if (typeof obj === 'string') {
-      text = [obj];
-      obj = {};
-    } else if (Array.isArray(obj)) {
-      text = obj;
-      obj = [];
-    }
-
-    obj = Object.assign({}, defaults, obj);
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Text).call(this, obj, world));
-    _this.textLines = text || obj.text || [];
-
-    if (typeof _this.textLines === 'string') {
-      _this.textLines = [_this.textLines];
-    }
-
-    _this._order = 0;
-    _this.data = [{
-      x: {
-        value: 50,
-        type: 'percent'
-      },
-      y: {
-        value: 50,
-        type: 'percent'
-      }
-    }];
-    _this._dodge = {
-      x: 0,
-      y: 4
-    };
-    _this._underline = '';
-    return _this;
-  }
-
-  _createClass(Text, [{
-    key: "before",
-    value: function before(x, y) {
-      this.attrs['text-anchor'] = "end";
-      this.set([[x, y]]);
-    }
-  }, {
-    key: "after",
-    value: function after(x, y) {
-      this.attrs['text-anchor'] = "start";
-      this.set([[x, y]]);
-    }
-  }, {
-    key: "center",
-    value: function center(x, y) {
-      this.attrs['text-anchor'] = "middle";
-      this.set([[x, y]]);
-    }
-  }, {
-    key: "color",
-    value: function color(_color) {
-      this.attrs.stroke = colors[_color] || _color;
-      return this;
-    }
-  }, {
-    key: "dy",
-    value: function dy() {
-      var n = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      this._dodge.y = n * -1;
-      return this;
-    }
-  }, {
-    key: "dx",
-    value: function dx() {
-      var n = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      this._dodge.x = n;
-      return this;
-    }
-  }, {
-    key: "dodge",
-    value: function dodge(x, y) {
-      x = x || this._dodge.x;
-      y = y || this._dodge.y;
-      this._dodge.x = x * -1;
-      this._dodge.y = y * -1;
-      return this;
-    }
-  }, {
-    key: "font",
-    value: function font(num) {
-      if (typeof num === 'number') {
-        num += 'px';
-      }
-
-      this.style['font-size'] = num;
-      return this;
-    }
-  }, {
-    key: "extent",
-    value: function extent() {
-      // let longest = this.textLines.sort((a, b) => a.length < b.length ? 1 : -1)[0] || ''
-      // let width = longest.length * 8
-      // let height = this.textLines.length * 20
-      var d = this.data[0] || {};
-      return {
-        x: {
-          min: d.x,
-          max: d.x
-        },
-        y: {
-          min: d.y,
-          // - height,
-          max: d.y
-        }
-      };
-    }
-  }, {
-    key: "text",
-    value: function text(_text) {
-      if (typeof _text === 'string') {
-        this.textLines = [_text];
-      } else {
-        this.textLines = _text;
-      }
-    }
-  }, {
-    key: "path",
-    value: function path() {
-      return '';
-    }
-  }, {
-    key: "estimate",
-    value: function estimate() {
-      //calculate height
-      var height = 24;
-
-      if (this.style['font-size']) {
-        var num = this.style['font-size'].replace('px', '');
-        num = Number(num);
-        height = num * 1.5;
-      } //calculate width
-
-
-      var width = 0;
-      this.textLines.forEach(function (str) {
-        var w = str.length * 6;
-
-        if (w > width) {
-          width = w;
-        }
-      });
-      return {
-        height: height,
-        width: width
-      };
-    }
-  }, {
-    key: "position",
-    value: function position() {
-      var point = this.points()[0];
-      var res = {
-        x: 0,
-        y: 0
-      };
-
-      if (!point) {
-        return res;
-      }
-
-      var _this$estimate = this.estimate(),
-          height = _this$estimate.height,
-          width = _this$estimate.width;
-
-      res.height = height;
-      res.width = width;
-      res.y = point[1] + this._dodge.y - height;
-      res.x = point[0] + 2 + this._dodge.x;
-      return res;
-    }
-  }, {
-    key: "build",
-    value: function build() {
-      var h = this.world.html;
-      var inside = this.textLines.map(function (str) {
-        return h(_templateObject(), str);
-      });
-
-      var _this$position = this.position(),
-          x = _this$position.x,
-          y = _this$position.y;
-
-      return h(_templateObject2(), x, y, this.drawSyle(), this.attrs, inside);
-    }
-  }]);
-
-  return Text;
-}(Shape);
-
-module.exports = Text;
-
-},{"./Shape":31,"spencer-color":15}],33:[function(_dereq_,module,exports){
-"use strict";
-
-var _require = _dereq_('../../parse'),
-    parseX = _require.parseX,
-    parseY = _require.parseY; //a very-flexible input language
-
-
-var parseStr = function parseStr() {
-  var str = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  var world = arguments.length > 1 ? arguments[1] : undefined;
-  var lines = str.split(/\n/g);
-  lines = lines.filter(function (l) {
-    return l;
-  });
-  lines = lines.map(function (line) {
-    var split = line.split(/(,|\t) ?/);
-    var x = parseX(split[0], world);
-    var y = parseX(split[2], world);
-    return {
-      x: x,
-      y: y
-    };
-  });
-  return lines;
-};
-
-var parseInput = function parseInput(set, world) {
-  if (typeof set === 'string') {
-    return parseStr(set, world);
-  }
-
-  return set.map(function (a) {
-    var x = parseX(a[0], world);
-    var y = parseY(a[1], world);
-    return {
-      x: x,
-      y: y
-    };
-  });
-};
-
-module.exports = parseInput;
-
-},{"../../parse":26}],34:[function(_dereq_,module,exports){
-"use strict";
-
-module.exports = {
-  "Apollo 8": {
-    "date": "Dec 21, 1968",
-    "people": [{
-      "name": "Frank Borman",
-      "birth": "March 14, 1928",
-      "death": ""
-    }, {
-      "name": "Jim Lovell",
-      "birth": "March 25, 1928",
-      "death": ""
-    }, {
-      "name": "Bill Anders",
-      "birth": "October 17, 1933",
-      "death": ""
-    }]
-  },
-  "Apollo 10": {
-    "date": "May 18, 1969",
-    "people": [{
-      "name": "Tom Stafford",
-      "birth": "September 17, 1930",
-      "death": ""
-    }, {
-      "name": "John Young",
-      "birth": "September 24, 1930",
-      "death": "January 5, 2018"
-    }, {
-      "name": "Eugene Cernan",
-      "birth": "March 14, 1934",
-      "death": "January 16, 2017"
-    }]
-  },
-  "Apollo 11": {
-    "date": "Jul 16, 1969",
-    "people": [{
-      "name": "Neil Armstrong",
-      "birth": "August 5, 1930",
-      "death": "August 25, 2012"
-    }, {
-      "name": "Buzz Aldrin",
-      "birth": "January 20, 1930",
-      "death": ""
-    }, {
-      "name": "Michael Collins",
-      "birth": "October 31, 1930",
-      "death": ""
-    }]
-  },
-  "Apollo 12": {
-    "date": "Nov 14, 1969",
-    "people": [{
-      "name": "Pete Conrad",
-      "birth": "June 2, 1930",
-      "death": "July 8, 1999"
-    }, {
-      "name": "Alan Bean",
-      "birth": "March 15, 1932",
-      "death": "May 26, 2018"
-    }, {
-      "name": "Dick Gordon",
-      "birth": "October 5, 1929",
-      "death": "November 6, 2017"
-    }]
-  },
-  "Apollo 13": {
-    "date": "Apr 11, 1970",
-    "people": [{
-      "name": "Jim Lovell",
-      "birth": "March 25, 1928",
-      "death": ""
-    }, {
-      "name": "Jack Swigert",
-      "birth": "August 30, 1931",
-      "death": "December 27, 1982"
-    }, {
-      "name": "Fred Haise",
-      "birth": "November 14, 1933",
-      "death": ""
-    }]
-  },
-  "Apollo 14": {
-    "date": "Jan 31, 1971",
-    "people": [{
-      "name": "Alan Shepard",
-      "birth": "November 18, 1923",
-      "death": "July 21, 1998"
-    }, {
-      "name": "Edgar Mitchell",
-      "birth": "September 17, 1930",
-      "death": "February 4, 2016"
-    }, {
-      "name": "Stu Roosa",
-      "birth": "August 16, 1933",
-      "death": "December 12, 1994"
-    }]
-  },
-  "Apollo 15": {
-    "date": "Jul 26, 1971",
-    "people": [{
-      "name": "David Scott",
-      "birth": "June 6, 1932",
-      "death": ""
-    }, {
-      "name": "James Irwin",
-      "birth": "March 17, 1930",
-      "death": "August 8, 1991"
-    }, {
-      "name": "Al Worden",
-      "birth": "February 7, 1932",
-      "death": ""
-    }]
-  },
-  "Apollo 16": {
-    "date": "Apr 16, 1972",
-    "people": [{
-      "name": "John Young",
-      "birth": "September 24, 1930",
-      "death": "January 5, 2018"
-    }, {
-      "name": "Charles Duke",
-      "birth": "October 3, 1935",
-      "death": ""
-    }, {
-      "name": "Ken Mattingly",
-      "birth": "March 17, 1936",
-      "death": ""
-    }]
-  },
-  "Apollo 17": {
-    "date": "Dec 7, 1972",
-    "people": [{
-      "name": "Eugene Cernan",
-      "birth": "March 14, 1934",
-      "death": "January 16, 2017"
-    }, {
-      "name": "Harrison Schmitt",
-      "birth": "July 3, 1935",
-      "death": ""
-    }, {
-      "name": "Ron Evans",
-      "birth": "November 10, 1933",
-      "death": "April 7, 1990"
-    }]
-  }
-};
-
-},{}],35:[function(_dereq_,module,exports){
-"use strict";
-
-// const somehow = require('somehow);
-var spacetime = _dereq_('spacetime');
-
-var somehow = _dereq_('/Users/spencer/mountain/somehow/src');
-
-var missions = _dereq_('./data/missions');
-
-var today = spacetime.now().format('iso');
-var EXPECT = 81;
-
-var drawMission = function drawMission(k) {
-  var w = somehow({
-    height: 200,
-    aspect: 'widescreen'
-  });
-  missions[k].people.forEach(function (o, i) {
-    var y = i + 1;
-    var line = w.line();
-    var born = spacetime(o.birth); //:(
-
-    if (o.death) {
-      line.set([[born.iso(), y], [o.death || today, y]]);
-      line.color('lightgrey');
-    } else {
-      //:)
-      var avg = born.add(EXPECT, 'years').iso();
-      line.set([[born.iso(), y], [avg, y]]);
-      w.line().dotted(true).color('red').set([[today, y], [avg, y]]);
-      var age = born.diff(spacetime.now(), 'years');
-      w.text(age + 'yr').font(10).dx(10).dy(-8).color('lightgrey').after(today, y);
-    } //add label
-
-
-    w.text(o.name).at(o.birth, y).dy(2);
-  }); //add date
-
-  w.line().set([[missions[k].date, '10%'], [missions[k].date, '90%']]).width(1).color('orange').dotted(); //add label
-
-  w.text(k).at('-100px', '60%').color('lightgrey'); //add today
-
-  w.line().set([[today, '0%'], [today, '100%']]).width(1).color('lightgrey').dotted();
-  w.y.fit(0, 4); // w.x.fit('Jan 1 1920', 'Dec 31 2018');
-
-  w.x.fit('Jan 1 1925', 'Dec 31 2025');
-  w.yAxis.remove();
-  return w.build();
-};
-
-var el = document.querySelector('#stage');
-el.innerHTML = Object.keys(missions).map(function (k) {
-  return drawMission(k);
-}).join(' ');
-var legend = somehow({
-  height: 200,
-  aspect: 'widescreen'
-});
-legend.yAxis.remove();
-legend.xAxis.remove();
-legend.y.fit(0, 2);
-legend.x.fit(-2, 10);
-legend.text('birth').font(11).dy(10).at(1, 1);
-legend.text('life expectency').font(11).dy(10).center(6, 1);
-legend.text('(81 years)').font(12).dy(-20).center(6, 1);
-legend.line().set([[1, 1], [6, 1]]).opacity(0.6);
-legend.line().set([[6, 1], [7, 1]]).dotted(true).opacity(0.6).color('red');
-var astronauts = Object.keys(missions).reduce(function (arr, k) {
-  arr = arr.concat(missions[k].people);
-  return arr;
-}, []);
-var alive = astronauts.filter(function (o) {
-  return !o.death;
-});
-legend.text("".concat(alive.length, " of ").concat(astronauts.length, " are alive")).set([[0, 1.7]]);
-legend.text("everyone is > 81 years old").set([[4, 0.2]]);
-document.querySelector('#legend').innerHTML = legend.build();
-
-},{"./data/missions":34,"/Users/spencer/mountain/somehow/src":23,"spacetime":36}],36:[function(_dereq_,module,exports){
-(function (global){
-/* spacetime v5.0.4
+/* spacetime v5.2.1
    github.com/spencermountain/spacetime
    MIT
 */
 
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.wtf = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof _dereq_&&_dereq_;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof _dereq_&&_dereq_,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.spacetime = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof _dereq_&&_dereq_;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof _dereq_&&_dereq_,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
 "use strict";
 
-module.exports = '5.0.4';
+module.exports = '5.2.1';
 
 },{}],2:[function(_dereq_,module,exports){
 'use strict';
@@ -8824,8 +2380,9 @@ o.second = 1000;
 o.minute = 60000;
 o.hour = 3.6e6; // dst is supported post-hoc
 
-o.day = 8.64e7;
-o.date = 8.64e7;
+o.day = 8.64e7; // 
+
+o.date = o.day;
 o.month = 8.64e7 * 29.5; //(average)
 
 o.week = 6.048e8;
@@ -8862,7 +2419,10 @@ var shortMonths = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sept
 var longMonths = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
 
 function buildMapping() {
-  var obj = {};
+  var obj = {
+    sep: 8 //support this format
+
+  };
 
   for (var i = 0; i < shortMonths.length; i++) {
     obj[shortMonths[i]] = i;
@@ -8985,6 +2545,8 @@ exports.toCardinal = function (str) {
 
 exports.normalize = function (str) {
   str = str.toLowerCase();
+  str = str.replace(/ies$/, 'y'); //'centuries'
+
   str = str.replace(/s$/, '');
 
   if (str === 'day') {
@@ -9068,7 +2630,7 @@ main.version = version; //aliases:
 main.plugin = main.extend;
 module.exports = main;
 
-},{"../_version":1,"./spacetime":34,"./whereIts":40}],10:[function(_dereq_,module,exports){
+},{"../_version":1,"./spacetime":34,"./whereIts":41}],10:[function(_dereq_,module,exports){
 'use strict';
 
 var monthLengths = _dereq_('../data/monthLengths');
@@ -9143,12 +2705,19 @@ var handleObject = function handleObject(s, obj) {
   var keys = Object.keys(obj);
 
   for (var i = 0; i < keys.length; i++) {
-    var unit = keys[i];
+    var unit = keys[i]; //make sure we have this method
 
-    if (s[unit] !== undefined) {
-      var num = obj[unit] || 0;
-      s = s[unit](num);
+    if (s[unit] === undefined || typeof s[unit] !== 'function') {
+      continue;
+    } //make sure the value is a number
+
+
+    if (obj[unit] === null || obj[unit] === undefined || obj[unit] === '') {
+      continue;
     }
+
+    var num = obj[unit] || 0;
+    s = s[unit](num);
   }
 
   return s;
@@ -9204,6 +2773,7 @@ var parseInput = function parseInput(s, input, givenTz) {
   } //little cleanup..
 
 
+  input = input.replace(/\b(mon|tues|wed|wednes|thu|thurs|fri|sat|satur|sun)(day)?\b/, '');
   input = input.trim().replace(/ +/g, ' '); //try some known-words, like 'now'
 
   if (namedDates.hasOwnProperty(input) === true) {
@@ -9349,7 +2919,7 @@ module.exports = parseOffset;
 
 var walkTo = _dereq_('../methods/set/walk');
 
-var months = _dereq_('../data/months');
+var months = _dereq_('../data/months').mapping();
 
 var parseOffset = _dereq_('./parseOffset');
 
@@ -9467,7 +3037,7 @@ var strFmt = [//iso-this 1998-05-30T22:00:00:000Z, iso-that 2017-04-03T08:00:00-
 {
   reg: /^([a-z]+) ([0-9]{1,2}(?:st|nd|rd|th)?),?( [0-9]{4})?( ([0-9:]+))?$/i,
   parse: function parse(s, arr) {
-    var month = months.mapping()[arr[1].toLowerCase()];
+    var month = months[arr[1].toLowerCase()];
     var year = parseYear(arr[3]);
     var obj = {
       year: year,
@@ -9488,11 +3058,36 @@ var strFmt = [//iso-this 1998-05-30T22:00:00:000Z, iso-that 2017-04-03T08:00:00-
 
     return s;
   }
+}, //February 2017 (implied date)
+{
+  reg: /^([a-z]+) ([0-9]{4})$/i,
+  parse: function parse(s, arr) {
+    var month = months[arr[1].toLowerCase()];
+    var year = parseYear(arr[2]);
+    var obj = {
+      year: year,
+      month: month,
+      date: 1
+    };
+
+    if (hasDate(obj) === false) {
+      s.epoch = null;
+      return s;
+    }
+
+    walkTo(s, obj);
+
+    if (arr[4]) {
+      s = parseHour(s, arr[4]);
+    }
+
+    return s;
+  }
 }, //Long "25 Mar 2015"
 {
   reg: /^([0-9]{1,2}(?:st|nd|rd|th)?) ([a-z]+),?( [0-9]{4})?$/i,
   parse: function parse(s, arr) {
-    var month = months.mapping()[arr[2].toLowerCase()];
+    var month = months[arr[2].toLowerCase()];
     var year = parseYear(arr[3]);
     var obj = {
       year: year,
@@ -9575,6 +3170,8 @@ var ends = _dereq_('./methods/startOf');
 
 var _timezone = _dereq_('./timezone/index');
 
+var findTz = _dereq_('./timezone/find');
+
 var handleInput = _dereq_('./input');
 
 var fns = _dereq_('./fns'); //the spacetime instance methods (also, the API)
@@ -9633,6 +3230,15 @@ var methods = {
 
     return _since(this, d);
   },
+  next: function next(unit) {
+    var s = this.add(1, unit);
+    return s.startOf(unit);
+  },
+  //the start of the previous year/week/century
+  last: function last(unit) {
+    var s = this.subtract(1, unit);
+    return s.startOf(unit);
+  },
   isValid: function isValid() {
     //null/undefined epochs
     if (!this.epoch && this.epoch !== 0) {
@@ -9644,7 +3250,7 @@ var methods = {
   //travel to this timezone
   goto: function goto(tz) {
     var s = this.clone();
-    s.tz = tz; //science!
+    s.tz = findTz(tz, s.timezones); //science!
 
     return s;
   },
@@ -9684,7 +3290,7 @@ methods.inDST = methods.isDST;
 methods.round = methods.nearest;
 module.exports = methods;
 
-},{"./fns":8,"./input":11,"./methods/diff":18,"./methods/format":20,"./methods/format/unixFmt":21,"./methods/nearest":23,"./methods/progress":24,"./methods/since":32,"./methods/startOf":33,"./timezone/index":38}],16:[function(_dereq_,module,exports){
+},{"./fns":8,"./input":11,"./methods/diff":18,"./methods/format":20,"./methods/format/unixFmt":21,"./methods/nearest":23,"./methods/progress":24,"./methods/since":32,"./methods/startOf":33,"./timezone/find":36,"./timezone/index":38}],16:[function(_dereq_,module,exports){
 'use strict';
 
 var walkTo = _dereq_('./set/walk');
@@ -9705,7 +3311,9 @@ var keep = {
   month: order.slice(0, 4),
   quarter: order.slice(0, 4),
   season: order.slice(0, 4),
-  year: order
+  year: order,
+  decade: order,
+  century: order
 };
 keep.week = keep.date;
 keep.season = keep.date;
@@ -9745,6 +3353,11 @@ var rollMonth = function rollMonth(want, old) {
 var addMethods = function addMethods(SpaceTime) {
   SpaceTime.prototype.add = function (num, unit) {
     var s = this.clone();
+
+    if (!unit) {
+      return s; //don't bother
+    }
+
     var old = this.clone();
     unit = fns.normalize(unit); //move forward by the estimated milliseconds (rough)
 
@@ -9774,13 +3387,35 @@ var addMethods = function addMethods(SpaceTime) {
       want.month = old.month() + num; //month is the one unit we 'model' directly
 
       want = rollMonth(want, old);
+    } //support coercing a week, too
+
+
+    if (unit === 'week') {
+      var sum = old.date() + num * 7;
+
+      if (sum <= 28 && sum > 1) {
+        want.date = sum;
+      }
     } //support 25-hour day-changes on dst-changes
-    else if (unit === 'date' && num !== 0 && old.isSame(s, 'day')) {
-        want.date = old.date() + num;
+    else if (unit === 'date') {
+        //specify a naive date number, if it's easy to do...
+        var _sum = old.date() + num;
+
+        if (_sum <= 28 && _sum > 1) {
+          want.date = _sum;
+        } //or if we haven't moved at all..
+        else if (num !== 0 && old.isSame(s, 'day')) {
+            want.date = old.date() + num;
+          }
       } //ensure year has changed (leap-years)
       else if (unit === 'year' && s.year() === old.year()) {
           s.epoch += ms.week;
-        } //keep current date, unless the month doesn't have it.
+        } //these are easier
+        else if (unit === 'decade') {
+            want.year = s.year() + 10;
+          } else if (unit === 'century') {
+            want.year = s.year() + 100;
+          } //keep current date, unless the month doesn't have it.
 
 
     if (keepDate[unit]) {
@@ -10009,7 +3644,7 @@ var format = {
     return fns.titleCase(s.dayName());
   },
   'day-short': function dayShort(s) {
-    return days.short()[s.day()];
+    return fns.titleCase(days.short()[s.day()]);
   },
   'day-number': function dayNumber(s) {
     return s.day();
@@ -10033,7 +3668,7 @@ var format = {
     return fns.titleCase(s.monthName());
   },
   'month-short': function monthShort(s) {
-    return months.short()[s.month()];
+    return fns.titleCase(months.short()[s.month()]);
   },
   'month-number': function monthNumber(s) {
     return s.month();
@@ -10118,6 +3753,10 @@ var format = {
     return "".concat(fns.zeroPad(s.date()), "/").concat(fns.zeroPad(s.month() + 1), "/").concat(s.year());
   },
   //dd/mm/yyyy
+  'mm/dd': function mmDd(s) {
+    return "".concat(fns.zeroPad(s.month() + 1), "/").concat(fns.zeroPad(s.date()));
+  },
+  //mm/dd
   // ... https://en.wikipedia.org/wiki/ISO_8601 ;(((
   iso: function iso(s) {
     var month = fns.zeroPad(s.month() + 1); //1-based months
@@ -10168,8 +3807,12 @@ var aliases = {
   'mdy': 'numeric-us',
   'dmy': 'numeric-uk',
   'ymd': 'numeric',
+  'yyyy/mm/dd': 'numeric',
+  'mm/dd/yyyy': 'numeric-us',
+  'dd/mm/yyyy': 'numeric-us',
   'little-endian': 'numeric-uk',
-  'big-endian': 'numeric'
+  'big-endian': 'numeric',
+  'day-nice': 'nice-day'
 };
 Object.keys(aliases).forEach(function (k) {
   return format[k] = format[aliases[k]];
@@ -10383,16 +4026,16 @@ var mapping = {
   },
   //timezone
   z: function z(s) {
-    return s.tz;
+    return s.timezone().name;
   },
   zz: function zz(s) {
-    return s.tz;
+    return s.timezone().name;
   },
   zzz: function zzz(s) {
-    return s.tz;
+    return s.timezone().name;
   },
   zzzz: function zzzz(s) {
-    return s.tz;
+    return s.timezone().name;
   },
   Z: function Z(s) {
     return s.timezone().current.offset + '00';
@@ -11088,6 +4731,10 @@ var addMethods = function addMethods(SpaceTime) {
   SpaceTime.prototype.isSame = function (b, unit) {
     var a = this;
 
+    if (!unit) {
+      return null;
+    }
+
     if (typeof b === 'string' || typeof b === 'number') {
       b = new SpaceTime(b, this.timezone.name);
     } //support 'seconds' aswell as 'second'
@@ -11276,8 +4923,16 @@ var walk = function walk(s, n, fn, unit, previous) {
   var original = s.epoch; //try to get it as close as we can
 
   var diff = n - current;
-  s.epoch += ms[unit] * diff; //repair it if we've gone too far or something
+  s.epoch += ms[unit] * diff; //DST edge-case: if we are going many days, be a little conservative
+
+  if (unit === 'day' && Math.abs(diff) > 28) {
+    //but don't push it over a month
+    if (n < 28) {
+      s.epoch += ms.hour;
+    }
+  } //repair it if we've gone too far or something
   //(go by half-steps, just in case)
+
 
   var halfStep = ms[unit] / 2;
 
@@ -11291,6 +4946,7 @@ var walk = function walk(s, n, fn, unit, previous) {
 
 
   if (previous !== null && startUnit !== s.d[previous]()) {
+    console.warn('spacetime warning: missed setting ' + unit);
     s.epoch = original;
   }
 }; //find the desired date by a increment/check while loop
@@ -11310,9 +4966,10 @@ var units = {
       return n >= 0 && n <= 11;
     },
     walkTo: function walkTo(s, n) {
-      var current = s.d.getMonth();
+      var d = s.d;
+      var current = d.getMonth();
       var original = s.epoch;
-      var startUnit = s.d.getYear();
+      var startUnit = d.getYear();
 
       if (current === n) {
         return;
@@ -11366,7 +5023,8 @@ var units = {
       return n >= 0 && n < 60;
     },
     walkTo: function walkTo(s, n) {
-      return walk(s, n, 'getSeconds', 'second', 'getMinutes');
+      //do this one directly
+      s.epoch = s.seconds(n).epoch;
     }
   },
   millisecond: {
@@ -11375,8 +5033,7 @@ var units = {
     },
     walkTo: function walkTo(s, n) {
       //do this one directly
-      var tmp = s.milliseconds(n);
-      s.epoch = tmp.epoch;
+      s.epoch = s.milliseconds(n).epoch;
     }
   }
 };
@@ -11409,29 +5066,13 @@ var walkTo = function walkTo(s, wants) {
     } // console.log(k, n)
 
 
-    units[k].walkTo(s, n); // console.log(s.milliseconds())
-    //if we've gone over a dst-change or something..
-    // if (wants.hour === undefined && s.hour() !== old.hour()) {
-    //   s.hour(old.hour());
-    // }
+    units[k].walkTo(s, n);
   }
 
   return;
 };
 
-module.exports = walkTo; // const spacetime = require('../../spacetime')
-// let s = new spacetime(1509778800000, 'Canada/Pacific')
-// let want = {
-//   millisecond: 0,
-//   second: 0,
-//   minute: 0,
-//   hour: 0,
-//   date: 4
-// }
-// s.log()
-// units['date'].walkTo(s, 4);
-// walkTo(s, want)
-// s.log()
+module.exports = walkTo;
 
 },{"../../data/milliseconds":3}],32:[function(_dereq_,module,exports){
 'use strict';
@@ -11723,6 +5364,20 @@ var units = {
       millisecond: 0
     });
     return s;
+  },
+  decade: function decade(s) {
+    s = s.startOf('year');
+    var year = s.year();
+    var decade = parseInt(year / 10, 10) * 10;
+    s = s.year(decade);
+    return s;
+  },
+  century: function century(s) {
+    s = s.startOf('year');
+    var year = s.year();
+    var decade = parseInt(year / 100, 10) * 100;
+    s = s.year(decade);
+    return s;
   }
 };
 units.date = units.day;
@@ -11764,9 +5419,9 @@ module.exports = {
 },{"../data/quarters":6,"../data/seasons":7,"./set/walk":31}],34:[function(_dereq_,module,exports){
 'use strict';
 
-var guessTz = _dereq_('./timezone/guessTz');
+var quickOffset = _dereq_('./timezone/quick');
 
-var timezone = _dereq_('./timezone/index');
+var findTz = _dereq_('./timezone/find');
 
 var handleInput = _dereq_('./input');
 
@@ -11780,18 +5435,18 @@ var SpaceTime = function SpaceTime(input, tz, options) {
 
   this.epoch = null; //the shift for the given timezone
 
-  this.tz = tz || guessTz(); //whether to output warnings to console
+  this.tz = findTz(tz, timezones); //whether to output warnings to console
 
   this.silent = options.silent || true; //add getter/setters
 
   Object.defineProperty(this, 'd', {
     //return a js date object
     get: function get() {
-      var meta = timezone(this) || {}; //every computer is somewhere- get this computer's built-in offset
+      var offset = quickOffset(this); //every computer is somewhere- get this computer's built-in offset
 
       var bias = new Date(this.epoch).getTimezoneOffset() || 0; //movement
 
-      var shift = bias + meta.current.offset * 60; //in minutes
+      var shift = bias + offset * 60; //in minutes
 
       shift = shift * 60 * 1000; //in ms
       //remove this computer's offset
@@ -11842,7 +5497,7 @@ _dereq_('./methods/i18n')(SpaceTime);
 
 module.exports = SpaceTime;
 
-},{"../zonefile/unpack":44,"./input":11,"./methods":15,"./methods/add":16,"./methods/compare":17,"./methods/i18n":22,"./methods/query":26,"./methods/same":29,"./timezone/guessTz":37,"./timezone/index":38}],35:[function(_dereq_,module,exports){
+},{"../zonefile/unpack":45,"./input":11,"./methods":15,"./methods/add":16,"./methods/compare":17,"./methods/i18n":22,"./methods/query":26,"./methods/same":29,"./timezone/find":36,"./timezone/quick":39}],35:[function(_dereq_,module,exports){
 "use strict";
 
 var informal = _dereq_('../../zonefile/informal').informal; //these timezone abbreviations are used aggressively in other places
@@ -11939,15 +5594,16 @@ var display = function display(tz, obj) {
 
 module.exports = display;
 
-},{"../../zonefile/informal":43}],36:[function(_dereq_,module,exports){
-"use strict";
+},{"../../zonefile/informal":44}],36:[function(_dereq_,module,exports){
+'use strict';
 
 var tzs = _dereq_('../../zonefile/unpack');
 
-var informal = _dereq_('../../zonefile/informal').lookup; // console.log(informal)
-// const isNum = /^(etc\/gmt|etc|gmt|utc|h)([+\-0-9 ]+)$/i
+var informal = _dereq_('../../zonefile/informal').lookup;
 
+var guessTz = _dereq_('./guessTz');
 
+var local = guessTz();
 var isOffset = /(\-?[0-9]+)h(rs)?/; //add all the city names by themselves
 
 var cities = Object.keys(tzs).reduce(function (h, k) {
@@ -11969,6 +5625,10 @@ var normalize = function normalize(tz) {
 
 
 var lookupTz = function lookupTz(str, zones) {
+  if (!str) {
+    return local;
+  }
+
   var tz = str.trim();
   var split = str.split('/'); //support long timezones like 'America/Argentina/Rio_Gallegos'
 
@@ -12000,7 +5660,7 @@ var lookupTz = function lookupTz(str, zones) {
   } // //try to parse '-5h'
 
 
-  m = tz.match(isOffset);
+  var m = tz.match(isOffset);
 
   if (m !== null) {
     var num = Number(m[1]);
@@ -12014,12 +5674,13 @@ var lookupTz = function lookupTz(str, zones) {
     }
   }
 
-  return null;
+  console.warn('Cannot find timezone named: \'' + str + '\'');
+  return local;
 };
 
 module.exports = lookupTz;
 
-},{"../../zonefile/informal":43,"../../zonefile/unpack":44}],37:[function(_dereq_,module,exports){
+},{"../../zonefile/informal":44,"../../zonefile/unpack":45,"./guessTz":37}],37:[function(_dereq_,module,exports){
 'use strict'; //find the implicit iana code for this machine.
 //safely query the Intl object
 //based on - https://bitbucket.org/pellepim/jstimezonedetect/src
@@ -12055,7 +5716,8 @@ var guessTz = function guessTz() {
   }
 
   return timezone.toLowerCase();
-};
+}; //do it once per computer
+
 
 module.exports = guessTz;
 
@@ -12088,7 +5750,11 @@ var titleCase = function titleCase(str) {
 
 var timezone = function timezone(s) {
   var zones = s.timezones;
-  var tz = findTz(s.tz, zones);
+  var tz = s.tz;
+
+  if (zones.hasOwnProperty(tz) === false) {
+    tz = findTz(s.tz, zones);
+  }
 
   if (tz === null) {
     if (s.silent === false) {
@@ -12140,7 +5806,7 @@ var timezone = function timezone(s) {
   if (result.hasDst === false) {
     result.current.offset = summer;
     result.current.isDST = false;
-  } else if (inSummerTime(s, result, summer) === true) {
+  } else if (inSummerTime(s.epoch, result.change.start, result.change.back, summer) === true) {
     result.current.offset = summer;
     result.current.isDST = result.hemisphere === 'North'; //dst 'on' in winter in north
   } else {
@@ -12156,7 +5822,41 @@ var timezone = function timezone(s) {
 
 module.exports = timezone;
 
-},{"./display":35,"./find":36,"./summerTime":39}],39:[function(_dereq_,module,exports){
+},{"./display":35,"./find":36,"./summerTime":40}],39:[function(_dereq_,module,exports){
+"use strict";
+
+var isSummer = _dereq_('./summerTime'); //
+
+
+var quickOffset = function quickOffset(s) {
+  var zones = s.timezones;
+  var obj = zones[s.tz];
+
+  if (obj.dst === undefined) {
+    return obj.offset;
+  } //get our two possible offsets
+
+
+  var jul = obj.offset;
+  var dec = obj.offset + 1; // assume it's the same for now
+
+  if (obj.hem === 'n') {
+    dec = jul - 1;
+  }
+
+  var split = obj.dst.split('->');
+  var inSummer = isSummer(s.epoch, split[0], split[1], jul);
+
+  if (inSummer === true) {
+    return jul;
+  }
+
+  return dec;
+};
+
+module.exports = quickOffset;
+
+},{"./summerTime":40}],40:[function(_dereq_,module,exports){
 'use strict';
 
 var zeroPad = _dereq_('../fns').zeroPad;
@@ -12167,27 +5867,23 @@ var toString = function toString(d) {
 // then some will switch to something else between november-march
 
 
-var shouldChange = function shouldChange(s, m, defaultOffset) {
-  if (m.hasDst !== true || !m.change.start || !m.change.back) {
-    return false;
-  } //note: this has a cray order-of-operations issue
+var shouldChange = function shouldChange(epoch, start, end, defaultOffset) {
+  //note: this has a cray order-of-operations issue
   //we can't get the date, without knowing the timezone, and vice-versa
   //it's possible that we can miss a dst-change by a few hours.
-
-
-  var d = new Date(s.epoch); //(try to mediate this a little?)
+  var d = new Date(epoch); //(try to mediate this a little?)
 
   var bias = d.getTimezoneOffset() || 0;
   var shift = bias + defaultOffset * 60; //in minutes
 
   shift = shift * 60 * 1000; //in ms
 
-  d = new Date(s.epoch + shift);
+  d = new Date(epoch + shift);
   var current = toString(d); //eg. is it after ~november?
 
-  if (current >= m.change.start) {
+  if (current >= start) {
     //eg. is it before ~march~ too?
-    if (current < m.change.back) {
+    if (current < end) {
       return true;
     }
   }
@@ -12197,7 +5893,7 @@ var shouldChange = function shouldChange(s, m, defaultOffset) {
 
 module.exports = shouldChange;
 
-},{"../fns":8}],40:[function(_dereq_,module,exports){
+},{"../fns":8}],41:[function(_dereq_,module,exports){
 'use strict';
 
 var Spacetime = _dereq_('./spacetime'); // const timezones = require('../data');
@@ -12244,7 +5940,7 @@ var whereIts = function whereIts(a, b) {
 
 module.exports = whereIts;
 
-},{"./spacetime":34}],41:[function(_dereq_,module,exports){
+},{"./spacetime":34}],42:[function(_dereq_,module,exports){
 module.exports={
   "9|s": "2/dili,2/jayapura",
   "9|n": "2/chita,2/khandyga,2/pyongyang,2/seoul,2/tokyo,11/palau",
@@ -12340,13 +6036,13 @@ module.exports={
   "-11|n": "11/midway,11/niue,11/pago_pago,11/samoa",
   "-10|n": "11/honolulu,11/johnston,11/rarotonga,11/tahiti"
 }
-},{}],42:[function(_dereq_,module,exports){
+},{}],43:[function(_dereq_,module,exports){
 "use strict";
 
 //prefixes for iana names..
 module.exports = ['africa', 'america', 'asia', 'atlantic', 'australia', 'brazil', 'canada', 'chile', 'europe', 'indian', 'mexico', 'pacific', 'antarctica', 'etc'];
 
-},{}],43:[function(_dereq_,module,exports){
+},{}],44:[function(_dereq_,module,exports){
 "use strict";
 
 // this is a very rough list of informal and abbreviated timezones
@@ -12618,7 +6314,7 @@ module.exports = {
   lookup: lookup
 };
 
-},{}],44:[function(_dereq_,module,exports){
+},{}],45:[function(_dereq_,module,exports){
 "use strict";
 
 var data = _dereq_('./_build.json');
@@ -12673,8 +6369,6594 @@ for (var i = -12; i < 13; i += 1) {
 
 module.exports = all;
 
-},{"./_build.json":41,"./_prefixes.js":42}]},{},[9])(9)
+},{"./_build.json":42,"./_prefixes.js":43}]},{},[9])(9)
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[35]);
+},{}],6:[function(_dereq_,module,exports){
+(function (global){
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).spencerColor=e()}}(function(){return function u(i,a,c){function f(r,e){if(!a[r]){if(!i[r]){var o="function"==typeof _dereq_&&_dereq_;if(!e&&o)return o(r,!0);if(d)return d(r,!0);var n=new Error("Cannot find module '"+r+"'");throw n.code="MODULE_NOT_FOUND",n}var t=a[r]={exports:{}};i[r][0].call(t.exports,function(e){return f(i[r][1][e]||e)},t,t.exports,u,i,a,c)}return a[r].exports}for(var d="function"==typeof _dereq_&&_dereq_,e=0;e<c.length;e++)f(c[e]);return f}({1:[function(e,r,o){"use strict";r.exports={blue:"#6699cc",green:"#6accb2",yellow:"#e1e6b3",red:"#cc7066",pink:"#F2C0BB",brown:"#705E5C",orange:"#cc8a66",purple:"#d8b3e6",navy:"#335799",olive:"#7f9c6c",fuscia:"#735873",beige:"#e6d7b3",slate:"#8C8C88",suede:"#9c896c",burnt:"#603a39",sea:"#50617A",sky:"#2D85A8",night:"#303b50",rouge:"#914045",grey:"#838B91",mud:"#C4ABAB",royal:"#275291",cherry:"#cc6966",tulip:"#e6b3bc",rose:"#D68881",fire:"#AB5850",greyblue:"#72697D",greygreen:"#8BA3A2",greypurple:"#978BA3",burn:"#6D5685",slategrey:"#bfb0b3",light:"#a3a5a5",lighter:"#d7d5d2",fudge:"#4d4d4d",lightgrey:"#949a9e",white:"#fbfbfb",dimgrey:"#606c74",softblack:"#463D4F",dark:"#443d3d",black:"#333333"}},{}],2:[function(e,r,o){"use strict";var n=e("./colors"),t={juno:["blue","mud","navy","slate","pink","burn"],barrow:["rouge","red","orange","burnt","brown","greygreen"],roma:["#8a849a","#b5b0bf","rose","lighter","greygreen","mud"],palmer:["red","navy","olive","pink","suede","sky"],mark:["#848f9a","#9aa4ac","slate","#b0b8bf","mud","grey"],salmon:["sky","sea","fuscia","slate","mud","fudge"],dupont:["green","brown","orange","red","olive","blue"],bloor:["night","navy","beige","rouge","mud","grey"],yukon:["mud","slate","brown","sky","beige","red"],david:["blue","green","yellow","red","pink","light"],neste:["mud","cherry","royal","rouge","greygreen","greypurple"],ken:["red","sky","#c67a53","greygreen","#dfb59f","mud"]};Object.keys(t).forEach(function(e){t[e]=t[e].map(function(e){return n[e]||e})}),r.exports=t},{"./colors":1}],3:[function(e,r,o){"use strict";var n=e("./colors"),t=e("./combos"),u={colors:n,list:Object.keys(n).map(function(e){return n[e]}),combos:t};r.exports=u},{"./colors":1,"./combos":2}]},{},[3])(3)});
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],7:[function(_dereq_,module,exports){
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.vhtml = factory());
+}(this, (function () { 'use strict';
+
+var emptyTags = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
+
+var esc = function esc(str) {
+	return String(str).replace(/[&<>"']/g, function (s) {
+		return '&' + map[s] + ';';
+	});
+};
+var map = { '&': 'amp', '<': 'lt', '>': 'gt', '"': 'quot', "'": 'apos' };
+
+var sanitized = {};
+
+function h(name, attrs) {
+	var stack = [];
+	for (var i = arguments.length; i-- > 2;) {
+		stack.push(arguments[i]);
+	}
+
+	if (typeof name === 'function') {
+		(attrs || (attrs = {})).children = stack.reverse();
+		return name(attrs);
+	}
+
+	var s = '<' + name;
+	if (attrs) for (var _i in attrs) {
+		if (attrs[_i] !== false && attrs[_i] != null) {
+			s += ' ' + esc(_i) + '="' + esc(attrs[_i]) + '"';
+		}
+	}
+
+	if (emptyTags.indexOf(name) === -1) {
+		s += '>';
+
+		while (stack.length) {
+			var child = stack.pop();
+			if (child) {
+				if (child.pop) {
+					for (var _i2 = child.length; _i2--;) {
+						stack.push(child[_i2]);
+					}
+				} else {
+					s += sanitized[child] === true ? child : esc(child);
+				}
+			}
+		}
+
+		s += '</' + name + '>';
+	} else {
+		s += '>';
+	}
+
+	sanitized[s] = true;
+	return s;
+}
+
+return h;
+
+})));
+
+
+},{}],8:[function(_dereq_,module,exports){
+module.exports={
+  "name": "somehow",
+  "description": "make infographics without thinking",
+  "version": "0.0.8",
+  "main": "builds/somehow.js",
+  "unpkg": "builds/somehow.min.js",
+  "author": "Spencer Kelly (spencermountain)",
+  "homepage": "https://github.com/spencermountain/frown#readme",
+  "scripts": {
+    "start": "budo scratch.js:assets/bundle.js --live",
+    "watch": "npm run start",
+    "build": "node ./scripts/build.js"
+  },
+  "files": [
+    "builds"
+  ],
+  "dependencies": {
+    "d3-shape": "1.2.2",
+    "fit-aspect-ratio": "1.0.2",
+    "htm": "2.0.0",
+    "spacetime": "5.2.1",
+    "spencer-color": "0.1.0",
+    "vhtml": "2.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.2.2",
+    "@babel/preset-env": "7.2.3",
+    "babelify": "10.0.0",
+    "budo": "11.5.0",
+    "derequire": "2.0.6",
+    "shelljs": "0.8.3",
+    "terser": "3.14.1"
+  }
+}
+
+},{}],9:[function(_dereq_,module,exports){
+"use strict";
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<svg ...", ">\n      ", "\n    </svg>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var fitAspect = _dereq_('fit-aspect-ratio');
+
+var htm = _dereq_('htm');
+
+var vhtml = _dereq_('vhtml');
+
+var methods = _dereq_('./methods');
+
+var YScale = _dereq_('./scales/YScale');
+
+var XScale = _dereq_('./scales/Scale');
+
+var XAxis = _dereq_('./axis/XAxis');
+
+var YAxis = _dereq_('./axis/YAxis');
+
+var Shape = _dereq_('./shapes/Shape');
+
+var Area = _dereq_('./shapes/Area');
+
+var Rect = _dereq_('./shapes/Rect');
+
+var Line = _dereq_('./shapes/Line');
+
+var Text = _dereq_('./shapes/Text');
+
+var Dot = _dereq_('./shapes/Dot');
+
+var Annotation = _dereq_('./shapes/Annotation');
+
+var Slider = _dereq_('./inputs/Slider');
+
+var Legend = _dereq_('./inputs/Legend');
+
+var World =
+/*#__PURE__*/
+function () {
+  function World() {
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    _classCallCheck(this, World);
+
+    this.width = obj.width || 600;
+    this.height = obj.height || 400;
+
+    if (obj.aspect) {
+      this.aspect = obj.aspect;
+      var res = fitAspect(obj);
+      this.width = res.width || 600;
+      this.height = res.height || 400;
+    }
+
+    this.shapes = []; //give the points a little bit of space.
+
+    this.wiggle_room = 1.05;
+    this.x = new XScale(obj, this);
+    this.y = new YScale(obj, this);
+    this.xAxis = new XAxis({}, this);
+    this.yAxis = new YAxis({}, this);
+    this.html = htm.bind(vhtml);
+    this.inputs = [];
+    this.state = {};
+    this.state.time = Date.now();
+    this.el = obj.el || null;
+  }
+
+  _createClass(World, [{
+    key: "bind",
+    value: function bind(fn) {
+      this.html = htm.bind(fn);
+    }
+  }, {
+    key: "line",
+    value: function line(obj) {
+      var line = new Line(obj, this);
+      this.shapes.push(line);
+      return line;
+    }
+  }, {
+    key: "dot",
+    value: function dot(obj) {
+      var dot = new Dot(obj, this);
+      this.shapes.push(dot);
+      return dot;
+    }
+  }, {
+    key: "text",
+    value: function text(obj) {
+      var text = new Text(obj, this);
+      this.shapes.push(text);
+      return text;
+    }
+  }, {
+    key: "area",
+    value: function area(obj) {
+      var shape = new Area(obj, this);
+      this.shapes.push(shape);
+      return shape;
+    }
+  }, {
+    key: "rect",
+    value: function rect(obj) {
+      var shape = new Rect(obj, this);
+      this.shapes.push(shape);
+      return shape;
+    }
+  }, {
+    key: "annotation",
+    value: function annotation(obj) {
+      var shape = new Annotation(obj, this);
+      this.shapes.push(shape);
+      return shape;
+    }
+  }, {
+    key: "shape",
+    value: function shape(obj) {
+      var shape = new Shape(obj, this);
+      this.shapes.push(shape);
+      return shape;
+    }
+  }, {
+    key: "slider",
+    value: function slider(obj) {
+      var slider = new Slider(obj, this);
+      this.inputs.push(slider);
+      return slider;
+    }
+  }, {
+    key: "legend",
+    value: function legend(obj) {
+      var legend = new Legend(obj, this);
+      this.inputs.push(legend);
+      return legend;
+    }
+  }, {
+    key: "getShape",
+    value: function getShape(id) {
+      return this.shapes.find(function (shape) {
+        return shape.id === id;
+      });
+    }
+  }, {
+    key: "redraw",
+    value: function redraw() {
+      if (this.el) {
+        this.el.innerHTML = this.build();
+      } else {
+        console.log('must define world html element');
+      }
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.html;
+      var shapes = this.shapes.sort(function (a, b) {
+        return a._order > b._order ? 1 : -1;
+      });
+      var elements = [];
+
+      if (this.xAxis) {
+        elements.push(this.xAxis.build());
+      }
+
+      if (this.yAxis) {
+        elements.push(this.yAxis.build());
+      }
+
+      elements = elements.concat(shapes.map(function (shape) {
+        return shape.build();
+      }));
+      var attrs = {
+        width: this.width,
+        height: this.height,
+        viewBox: "0,0,".concat(this.width, ",").concat(this.height),
+        preserveAspectRatio: 'xMidYMid meet',
+        style: 'overflow:visible; margin: 10px 20px 25px 25px;' // border:1px solid lightgrey;
+
+      };
+      return h(_templateObject(), attrs, elements);
+    }
+  }]);
+
+  return World;
+}();
+
+Object.keys(methods).forEach(function (k) {
+  World.prototype[k] = methods[k];
+});
+module.exports = World;
+
+},{"./axis/XAxis":12,"./axis/YAxis":13,"./inputs/Legend":18,"./inputs/Slider":19,"./methods":20,"./scales/Scale":22,"./scales/YScale":23,"./shapes/Annotation":25,"./shapes/Area":26,"./shapes/Dot":27,"./shapes/Line":28,"./shapes/Rect":29,"./shapes/Shape":30,"./shapes/Text":31,"fit-aspect-ratio":3,"htm":4,"vhtml":7}],10:[function(_dereq_,module,exports){
+"use strict";
+
+var extent = function extent(arr) {
+  var min = null;
+  var max = null;
+  arr.forEach(function (a) {
+    if (min === null || a < min) {
+      min = a;
+    }
+
+    if (max === null || a > max) {
+      max = a;
+    }
+  });
+  return {
+    min: min,
+    max: max
+  };
+};
+/* eslint no-bitwise: 0 */
+
+
+var uuid = function uuid() {
+  return (Math.random() + 1).toString(36).substring(7); // return 'xxxxx'.replace(/[xy]/g, function(c) {
+  //   var r = Math.random() * 16 | 0,
+  //     v = c === 'x' ? r : (r & 0x3 | 0x8);
+  //   return v.toString(16);
+  // });
+};
+
+module.exports = {
+  extent: extent,
+  uuid: uuid
+};
+
+},{}],11:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var colors = _dereq_('spencer-color');
+
+var _ticks = _dereq_('./_ticks');
+
+var drawTick = _dereq_('./_custom');
+
+var defaults = {
+  stroke: '#d7d5d2',
+  'stroke-width': 1
+};
+
+var Axis =
+/*#__PURE__*/
+function () {
+  function Axis() {
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Axis);
+
+    this.world = world;
+    this.attrs = Object.assign({}, defaults, obj);
+    this.scale = null;
+    this._tickCount = 6;
+    this._fmt = undefined;
+    this._given = undefined;
+    this._show = true;
+  }
+
+  _createClass(Axis, [{
+    key: "color",
+    value: function color(_color) {
+      this.attrs.stroke = colors[_color] || _color;
+      return this;
+    }
+  }, {
+    key: "remove",
+    value: function remove() {
+      this._show = false;
+      return this;
+    }
+  }, {
+    key: "format",
+    value: function format(str) {
+      this._fmt = str;
+      return this;
+    }
+  }, {
+    key: "show",
+    value: function show() {
+      this._show = true;
+      return this;
+    }
+  }, {
+    key: "ticks",
+    value: function ticks(n) {
+      var _this = this;
+
+      if (typeof n === 'number') {
+        this._tickCount = n;
+      } else if (_typeof(n) === 'object') {
+        this._given = n;
+      }
+
+      if (this._given) {
+        return this._given.map(function (o) {
+          return drawTick(o, _this);
+        });
+      }
+
+      if (this.scale.format() === 'date') {
+        return _ticks.date(this, this._tickCount);
+      }
+
+      return _ticks.generic(this, this._tickCount);
+    }
+  }]);
+
+  return Axis;
+}();
+
+module.exports = Axis;
+
+},{"./_custom":14,"./_ticks":16,"spencer-color":6}],12:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<g>\n      ", "\n      <line x1=\"", "\" y1=\"", "\" x2=\"", "\" y2=\"", "\" ...", " stroke=\"#d7d5d2\"/>\n    </g>"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<text x=\"", "\" y=\"", "\" fill=\"", "\" text-anchor=\"middle\" style=\"font-size:12px;\">\n        ", "\n      </text>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Axis = _dereq_('./Axis');
+
+var XAxis =
+/*#__PURE__*/
+function (_Axis) {
+  _inherits(XAxis, _Axis);
+
+  function XAxis() {
+    var _this;
+
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, XAxis);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(XAxis).call(this, obj, world));
+    _this.scale = world.x;
+    return _this;
+  }
+
+  _createClass(XAxis, [{
+    key: "drawTicks",
+    value: function drawTicks(y) {
+      var _this2 = this;
+
+      var h = this.world.html;
+      return this.ticks().map(function (o) {
+        return h(_templateObject(), o.pos, y + 15, _this2.attrs.stroke, o.label);
+      });
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+
+      if (this._show === false) {
+        return '';
+      }
+
+      var attrs = this.attrs;
+      var width = this.world.width;
+      var y = this.world.height;
+      var ticks = this.drawTicks(y);
+      return h(_templateObject2(), ticks, 0, y, width, y, attrs);
+    }
+  }]);
+
+  return XAxis;
+}(Axis);
+
+module.exports = XAxis;
+
+},{"./Axis":11}],13:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<g>\n      ", "\n      <line x1=\"", "\" y1=\"", "\" x2=\"", "\" y2=\"", "\" ...", "/>\n    </g>"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<text x=\"", "\" y=\"", "\" dy=\"0\" dx=\"-6\" fill=\"", "\" text-anchor=\"end\" style=\"font-size:12px;\">\n        ", "\n      </text>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Axis = _dereq_('./Axis');
+
+var YAxis =
+/*#__PURE__*/
+function (_Axis) {
+  _inherits(YAxis, _Axis);
+
+  function YAxis() {
+    var _this;
+
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, YAxis);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(YAxis).call(this, obj, world));
+    _this.scale = world.y;
+    return _this;
+  }
+
+  _createClass(YAxis, [{
+    key: "drawTicks",
+    value: function drawTicks(x) {
+      var _this2 = this;
+
+      var h = this.world.html;
+      return this.ticks().map(function (o) {
+        return h(_templateObject(), x, o.pos, _this2.attrs.stroke, o.label);
+      });
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+
+      if (this._show === false) {
+        return '';
+      }
+
+      var attrs = this.attrs;
+      var height = this.world.height;
+      var x = 0;
+      var ticks = this.drawTicks(x);
+      return h(_templateObject2(), ticks, x, 0, x, height, attrs);
+    }
+  }]);
+
+  return YAxis;
+}(Axis);
+
+module.exports = YAxis;
+
+},{"./Axis":11}],14:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var spacetime = _dereq_('spacetime');
+
+var prettyNum = _dereq_('./_prettyNum');
+
+var drawTick = function drawTick(s, axis) {
+  var scale = axis.scale.scale;
+  var label = null; //support {label, value} format
+
+  if (_typeof(s) === 'object' && s !== null) {
+    label = s.label;
+    s = s.value;
+  } //support 'june 5th'
+
+
+  if (typeof s === 'string') {
+    s = spacetime(s);
+    return {
+      num: s.epoch,
+      //val
+      pos: parseInt(scale(s.epoch), 10),
+      //x/y
+      label: label || s.format(axis._fmt || '{month} {year}') //text
+
+    };
+  } //support '52'
+
+
+  var num = Number(s);
+  return {
+    num: num,
+    pos: parseInt(scale(num), 10),
+    label: label || prettyNum(num)
+  };
+};
+
+module.exports = drawTick;
+
+},{"./_prettyNum":15,"spacetime":5}],15:[function(_dereq_,module,exports){
+"use strict";
+
+var mil = 1000000;
+var tenThou = 10000;
+var thou = 1000;
+
+var prettyNum = function prettyNum(num) {
+  num = parseFloat(num);
+
+  if (num >= mil) {
+    num = parseInt(num / 100000, 10) * 100000;
+    return num / mil + 'm';
+  }
+
+  if (num >= tenThou) {
+    num = parseInt(num / thou, 10) * thou;
+    return num / thou + 'k';
+  }
+
+  if (num >= thou) {
+    num = parseInt(num / 100, 10) * 100;
+    return num / thou + 'k';
+  }
+
+  return num.toLocaleString();
+};
+
+module.exports = prettyNum;
+
+},{}],16:[function(_dereq_,module,exports){
+"use strict";
+
+var spacetime = _dereq_('spacetime');
+
+var prettyNum = _dereq_('./_prettyNum');
+
+var memo = {};
+var day = 60 * 60 * 24 * 1000;
+var month = day * 30;
+var sixMonth = month * 6;
+var year = day * 368;
+
+var generic = function generic(axis) {
+  var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 5;
+  n = n === 0 ? 0 : n - 1;
+  var scale = axis.scale;
+  var total = (scale.max || 0) - (scale.min || 0);
+  var ticks = [];
+
+  for (var i = 0; i <= n; i += 1) {
+    var dec = i / n;
+    var num = dec * total + (scale.min || 0);
+    ticks.push({
+      num: num,
+      pos: scale.scale(num),
+      label: prettyNum(num)
+    });
+  }
+
+  return ticks;
+};
+
+var chooseFmt = function chooseFmt(scale) {
+  var diff = scale.max - scale.min;
+
+  if (diff > year * 3) {
+    return 'yyyy';
+  }
+
+  if (diff > year) {
+    return 'MMM yyyy';
+  } //sept
+
+
+  if (diff > sixMonth) {
+    return 'MMM';
+  } //sept 1
+
+
+  if (diff > month) {
+    return 'MMM d';
+  } //time
+
+
+  if (diff < day) {
+    return 'h:mm a';
+  }
+
+  return 'MMM d';
+};
+
+var date = function date(axis) {
+  var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 5;
+  var ticks = generic(axis, n);
+  var fmt = chooseFmt(axis.scale);
+  ticks = ticks.map(function (o) {
+    if (memo[o.num]) {
+      o.label = memo[o.num];
+    } else {
+      o.label = spacetime(o.num).unixFmt(fmt);
+    }
+
+    return o;
+  });
+  return ticks;
+};
+
+module.exports = {
+  generic: generic,
+  date: date
+};
+
+},{"./_prettyNum":15,"spacetime":5}],17:[function(_dereq_,module,exports){
+"use strict";
+
+var World = _dereq_('./World');
+
+var pkg = _dereq_('../package.json'); //
+
+
+var somehow = function somehow(obj) {
+  return new World(obj);
+};
+
+somehow.version = pkg.version;
+module.exports = somehow;
+
+},{"../package.json":8,"./World":9}],18:[function(_dereq_,module,exports){
+"use strict";
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<div class=", " style=", ">\n      ", "\n      </div>\n      "]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<div style=\"color:", "; margin:8px;\">\n      <span style=\"background-color:", "; display:inline-block; width:10px; height:10px; border-radius:50%;\"/>\n      ", "\n      </div>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+//a component for colors/names
+var Legend =
+/*#__PURE__*/
+function () {
+  function Legend() {
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Legend);
+
+    this.obj = obj;
+    this.world = world;
+    this._orientation = 'col';
+    this._width = null;
+    this._height = null;
+  }
+
+  _createClass(Legend, [{
+    key: "orientation",
+    value: function orientation(mode) {
+      if (mode === 'row' || mode === 'landscape') {
+        this._orientation = 'row';
+      } else {
+        this._orientation = 'col';
+      }
+
+      return this;
+    }
+  }, {
+    key: "width",
+    value: function width(w) {
+      this._width = w;
+      return this;
+    }
+  }, {
+    key: "height",
+    value: function height(h) {
+      this._height = h;
+      return this;
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var obj = this.obj;
+      var h = this.world.html;
+      var inside = Object.keys(obj).map(function (k) {
+        return h(_templateObject(), obj[k], obj[k], k);
+      });
+      var style = 'justify-content:space-evenly; ';
+
+      if (this._width) {
+        style += "width:".concat(this._width, "px;");
+      }
+
+      if (this._height) {
+        style += "height:".concat(this._height, "px;");
+      }
+
+      return h(_templateObject2(), this._orientation, style, inside);
+    }
+  }]);
+
+  return Legend;
+}();
+
+module.exports = Legend;
+
+},{}],19:[function(_dereq_,module,exports){
+"use strict";
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<div style=\"", "\">\n        <div style=\"", "\">", "</div>\n        ", "\n        <input type=\"range\" id=\"", "\" style=\"", "\" value=", " ...", "/>\n      </div>"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<div style=\"", "\"> ", "</div>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// const fns = require('../_fns')
+var colors = _dereq_('spencer-color');
+
+var defaults = {
+  min: -100,
+  max: 100,
+  step: 1,
+  size: 200
+};
+
+var Slider =
+/*#__PURE__*/
+function () {
+  function Slider() {
+    var _this = this;
+
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Slider);
+
+    if (typeof obj === 'string') {
+      this.id = obj;
+      obj = {};
+    }
+
+    this.world = world;
+    this.data = obj.data || [];
+    this.attrs = Object.assign({}, defaults, obj);
+    this.style = {};
+    this._title = '';
+
+    this.onChange = function () {};
+
+    this._labels = [];
+    this._value = obj.value;
+
+    if (this._value === undefined) {
+      this._value = 50;
+    }
+
+    this.id = obj.id || 'slider';
+    this.world.state[this.id] = this._value;
+
+    this.callback = function (e) {
+      _this.world.state[_this.id] = e.target.value;
+
+      _this.world.redraw();
+    };
+  }
+
+  _createClass(Slider, [{
+    key: "labels",
+    value: function labels(data) {
+      this._labels = data.map(function (a) {
+        return {
+          value: a[1],
+          label: a[0]
+        };
+      });
+      return this;
+    }
+  }, {
+    key: "place",
+    value: function place() {
+      var x = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var _this$attrs = this.attrs,
+          max = _this$attrs.max,
+          min = _this$attrs.min,
+          size = _this$attrs.size;
+      var range = max - min;
+      var spot = x - min;
+      var percent = spot / range;
+      return percent * size;
+    }
+  }, {
+    key: "makeLabels",
+    value: function makeLabels() {
+      var _this2 = this;
+
+      var h = this.world.html;
+      return this._labels.map(function (o) {
+        var y = _this2.place(o.value);
+
+        var style = "position:absolute; top:".concat(y, "px; font-size:10px; color:").concat(colors.lightgrey, "; left:10px;");
+        return h(_templateObject(), style, o.label);
+      });
+    }
+  }, {
+    key: "title",
+    value: function title(str) {
+      this._title = str;
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var _this3 = this;
+
+      var h = this.world.html;
+      var size = this.attrs.size;
+      var styles = {
+        box: "position:relative; height:".concat(size, "px; width:100px;"),
+        input: "transform: rotate(90deg); width:".concat(size, "px;  transform-origin: 0% 0%;"),
+        title: "position:absolute; top:-20px; left:-20px; color:".concat(colors.lightgrey, "; font-size:14px;")
+      };
+      setTimeout(function () {
+        var el = document.getElementById(_this3.id);
+
+        if (el) {
+          el.addEventListener('input', function (e) {
+            _this3.world.state[_this3.id] = e.target.value;
+
+            _this3.callback(e);
+          });
+        }
+      }, 50);
+      return h(_templateObject2(), styles.box, styles.title, this._title, this.makeLabels(), this.id, styles.input, this._value, this.attrs);
+    }
+  }]);
+
+  return Slider;
+}();
+
+module.exports = Slider;
+
+},{"spencer-color":6}],20:[function(_dereq_,module,exports){
+"use strict";
+
+var _require = _dereq_('./parse'),
+    parseX = _require.parseX,
+    parseY = _require.parseY;
+
+var fns = _dereq_('./_fns');
+
+var has = function has(x) {
+  return x !== undefined && x !== null;
+};
+
+var methods = {
+  //add new minimums
+  from: function from(x, y) {
+    if (has(x) === true) {
+      x = parseX(x, this);
+      this.x.min = x;
+      this.x.rescale();
+    }
+
+    if (has(y) === true) {
+      y = parseY(y, this).value;
+      this.y.min = y;
+      this.y.rescale();
+    }
+
+    return this;
+  },
+  //add new maximums
+  to: function to(x, y) {
+    if (has(x) === true) {
+      x = parseX(x, this).value;
+      this.c.max = x;
+      this.c.rescale();
+    }
+
+    if (has(y) === true) {
+      y = parseX(y, this).value;
+      this.y.max = y;
+      this.y.rescale();
+    }
+
+    return this;
+  },
+  fitX: function fitX(x) {
+    var arr = this.shapes.map(function (s) {
+      return s.extent();
+    });
+    var minX = fns.extent(arr.map(function (o) {
+      return o.x.min;
+    }).filter(function (n) {
+      return n !== null;
+    })).min || 0;
+    var maxX = fns.extent(arr.map(function (o) {
+      return o.x.max;
+    }).filter(function (n) {
+      return n !== null;
+    })).max || 0; //keep graphs from 0, if you can...
+
+    this.x.min = minX > 0 ? 0 : minX;
+    this.x.max = maxX;
+
+    if (this.x.format() === 'date') {
+      this.x.min = minX;
+      this.x.max = maxX;
+    }
+
+    this.x.rescale();
+
+    if (has(x) === true) {
+      x = parseX(x, this).value;
+
+      if (x > this.x.max) {
+        this.x.max = x;
+      } else if (x < this.x.min) {
+        this.x.min = x;
+      }
+
+      this.x.rescale();
+    }
+
+    return this;
+  },
+  fitY: function fitY(y) {
+    var arr = this.shapes.map(function (s) {
+      return s.extent();
+    });
+    var minY = fns.extent(arr.map(function (o) {
+      return o.y.min;
+    }).filter(function (n) {
+      return n !== null;
+    })).min || 0;
+    var maxY = fns.extent(arr.map(function (o) {
+      return o.y.max;
+    }).filter(function (n) {
+      return n !== null;
+    })).max || 0;
+    this.y.min = minY > 0 ? 0 : minY;
+    this.y.max = maxY;
+
+    if (this.y.format() === 'date') {
+      this.y.min = minY;
+      this.y.max = maxY;
+    }
+
+    this.y.rescale();
+
+    if (has(y) === true) {
+      y = parseY(y, this).value;
+
+      if (y > this.y.max) {
+        this.y.max = y;
+      } else if (y < this.y.min) {
+        this.y.min = y;
+      }
+
+      this.y.rescale();
+    }
+
+    return this;
+  },
+  fit: function fit(x, y) {
+    this.fitX(x);
+    this.fitY(y);
+    return this;
+  }
+};
+module.exports = methods;
+
+},{"./_fns":10,"./parse":21}],21:[function(_dereq_,module,exports){
+"use strict";
+
+var spacetime = _dereq_('spacetime'); //
+
+
+var parse = function parse(str) {
+  if (typeof str === 'number') {
+    return {
+      type: 'number',
+      value: str
+    };
+  } //support pixels
+
+
+  if (/[0-9]px$/.test(str)) {
+    return {
+      type: 'pixel',
+      value: Number(str.replace(/px/, ''))
+    };
+  } //support percentages
+
+
+  if (/[0-9]%$/.test(str)) {
+    var _num = Number(str.replace(/%/, ''));
+
+    return {
+      type: 'percent',
+      value: _num
+    };
+  } //try a straight-up number
+
+
+  var num = Number(str);
+
+  if (!isNaN(num)) {
+    return {
+      type: 'number',
+      value: num
+    };
+  } //try a date
+
+
+  var s = spacetime(str);
+
+  if (s.isValid()) {
+    return {
+      type: 'date',
+      value: s.epoch
+    };
+  }
+
+  console.warn('Counldn\'t parse: ' + str);
+  return {
+    type: 'unknown',
+    value: null
+  };
+};
+
+var parseX = function parseX(str, world) {
+  var res = parse(str);
+
+  if (res.type === 'date') {
+    world.x.format(res.type);
+  }
+
+  return res;
+};
+
+var parseY = function parseY(str, world) {
+  var res = parse(str);
+
+  if (res.type === 'date') {
+    world.y.format(res.type);
+  }
+
+  return res;
+};
+
+module.exports = {
+  parseX: parseX,
+  parseY: parseY
+};
+
+},{"spacetime":5}],22:[function(_dereq_,module,exports){
+"use strict";
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+// const scaleLinear = require('d3-scale').scaleLinear
+var scaleLinear = _dereq_('./_linear');
+
+var _require = _dereq_('../parse'),
+    parseX = _require.parseX;
+
+var has = function has(x) {
+  return x !== undefined && x !== null;
+};
+
+var Scale =
+/*#__PURE__*/
+function () {
+  function Scale(data, world) {
+    _classCallCheck(this, Scale);
+
+    this.world = world;
+    this.min = 0;
+    this.max = 1;
+    this.from = 0;
+    this.to = world.width;
+    this._format = 'number';
+    this.parse = parseX;
+    this.is_y = false;
+    this.rescale();
+  }
+
+  _createClass(Scale, [{
+    key: "rescale",
+    value: function rescale() {
+      this.scale = scaleLinear({
+        world: [this.from, this.to],
+        minmax: [this.min, this.max]
+      });
+      return this;
+    }
+  }, {
+    key: "fit",
+    value: function fit(a, b) {
+      if (has(a) === false && has(b) === false) {
+        if (this.is_y) {
+          this.world.fitY();
+        } else {
+          this.world.fitX();
+        }
+
+        this.rescale();
+        return this;
+      }
+
+      if (has(a) === true) {
+        var num = this.parse(a, this.world).value;
+        this.min = num;
+      }
+
+      if (has(b) === true) {
+        var _num = this.parse(b, this.world).value;
+        this.max = _num;
+      }
+
+      this.rescale();
+      return this;
+    }
+  }, {
+    key: "place",
+    value: function place(obj) {
+      //from=top
+      //to=bottom
+      if (obj.type === 'pixel') {
+        if (this.is_y) {
+          return this.to - obj.value; //flip grid
+        }
+
+        return obj.value;
+      }
+
+      if (obj.type === 'percent') {
+        var num = this.byPercent(obj.value);
+        return this.scale(num);
+      }
+
+      return this.scale(obj.value);
+    }
+  }, {
+    key: "byPercent",
+    value: function byPercent() {
+      var num = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      num = num / 100;
+      var diff = this.max - this.min;
+      return diff * num + this.min;
+    }
+  }, {
+    key: "format",
+    value: function format(_format) {
+      if (_format === undefined) {
+        return this._format;
+      }
+
+      this._format = _format;
+      return this;
+    }
+  }]);
+
+  return Scale;
+}();
+
+module.exports = Scale;
+
+},{"../parse":21,"./_linear":24}],23:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Scale = _dereq_('./Scale');
+
+var scaleLinear = _dereq_('./_linear'); // const scaleLinear = require('d3-scale').scaleLinear
+
+
+var _require = _dereq_('../parse'),
+    parseY = _require.parseY;
+
+var YScale =
+/*#__PURE__*/
+function (_Scale) {
+  _inherits(YScale, _Scale);
+
+  function YScale(data, world) {
+    var _this;
+
+    _classCallCheck(this, YScale);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(YScale).call(this, data, world)); //use height instead of width
+
+    _this.to = world.height;
+    _this.is_y = true;
+    _this.parse = parseY;
+
+    _this.rescale();
+
+    return _this;
+  }
+
+  _createClass(YScale, [{
+    key: "rescale",
+    value: function rescale() {
+      this.scale = scaleLinear({
+        world: [this.from, this.to],
+        minmax: [this.max, this.min]
+      });
+    }
+  }]);
+
+  return YScale;
+}(Scale);
+
+module.exports = YScale;
+
+},{"../parse":21,"./Scale":22,"./_linear":24}],24:[function(_dereq_,module,exports){
+"use strict";
+
+//a very-tiny version of d3-scale's scaleLinear
+var scaleLinear = function scaleLinear(obj) {
+  var world = obj.world || [];
+  var minmax = obj.minmax || [];
+
+  var calc = function calc(num) {
+    var range = minmax[1] - minmax[0];
+    var percent = (num - minmax[0]) / range;
+    var size = world[1] - world[0];
+    return parseInt(size * percent, 10);
+  };
+
+  return calc;
+};
+
+module.exports = scaleLinear; // let scale = scaleLinear({
+//   world: [0, 300],
+//   minmax: [0, 100]
+// })
+// console.log(scale(107))
+
+},{}],25:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["<g>\n      ", "\n      ", "\n    </g>"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["<g >\n      <line x1=\"0\" y1=\"0\" x2=\"", "\" y2=\"", "\" stroke=", "/>\n    </g>"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<g transform=\"translate(", " ", ")\" style=\"", "\">\n      <text id=\"fun\" ...", ">\n        ", "\n      </text>\n    </g>"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<tspan x=\"0\" dy=\"1.2em\">", "</tspan>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var colors = _dereq_('spencer-color').colors;
+
+var Shape = _dereq_('./Shape');
+
+var defaults = {
+  fill: 'grey',
+  stroke: 'none',
+  'stroke-width': 1,
+  'stroke-linecap': 'round'
+};
+
+var Annotation =
+/*#__PURE__*/
+function (_Shape) {
+  _inherits(Annotation, _Shape);
+
+  function Annotation() {
+    var _this;
+
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Annotation);
+
+    var text = null;
+
+    if (typeof obj === 'string') {
+      text = [obj];
+      obj = {};
+    } else if (Array.isArray(obj)) {
+      text = obj;
+      obj = {};
+    }
+
+    obj = Object.assign({}, defaults, obj);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Annotation).call(this, obj, world));
+    _this._text = text;
+    _this._origin = {};
+    return _this;
+  }
+
+  _createClass(Annotation, [{
+    key: "path",
+    value: function path() {
+      return '';
+    }
+  }, {
+    key: "drawText",
+    value: function drawText() {
+      var h = this.world.html;
+      var inside = this.textLines.map(function (str) {
+        return h(_templateObject(), str);
+      });
+
+      var _this$position = this.position(),
+          x = _this$position.x,
+          y = _this$position.y;
+
+      return h(_templateObject2(), x, y, this.drawSyle(), this.attrs, inside);
+    }
+  }, {
+    key: "drawLine",
+    value: function drawLine() {
+      var h = this.world.html;
+
+      var _this$position2 = this.position(),
+          x = _this$position2.x,
+          y = _this$position2.y;
+
+      return h(_templateObject3(), x, y, colors.grey);
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+      return h(_templateObject4(), this.drawText(), this.drawLine());
+    }
+  }]);
+
+  return Annotation;
+}(Shape);
+
+module.exports = Annotation;
+
+},{"./Shape":30,"spencer-color":6}],26:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<path ...", " style=\"", "\"/>"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<path ...", " style=\"", "\"/>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var colors = _dereq_('spencer-color').colors;
+
+var Shape = _dereq_('./Shape');
+
+var d3Shape = _dereq_('d3-shape');
+
+var defaults = {
+  fill: colors.green,
+  stroke: colors.green,
+  'fill-opacity': .25,
+  'stroke-width': 2
+};
+
+var Area =
+/*#__PURE__*/
+function (_Shape) {
+  _inherits(Area, _Shape);
+
+  function Area() {
+    var _this;
+
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Area);
+
+    obj = Object.assign({}, defaults, obj);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Area).call(this, obj, world));
+    _this._line = 2;
+    return _this;
+  }
+
+  _createClass(Area, [{
+    key: "color",
+    value: function color(_color) {
+      this.attrs.stroke = colors[_color] || _color;
+      this.attrs.fill = colors[_color] || _color;
+      return this;
+    }
+  }, {
+    key: "line",
+    value: function line(num) {
+      this._line = num;
+    }
+  }, {
+    key: "linePath",
+    value: function linePath() {
+      var points = this.points();
+      return d3Shape.line().x(function (d) {
+        return d[0];
+      }).y(function (d) {
+        return d[1];
+      }).curve(d3Shape.curveMonotoneX)(points);
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+      var areaAttr = Object.assign({}, this.attrs, {
+        d: this.path(),
+        stroke: 'none'
+      }); //draw an area, and a line on top
+
+      var area = h(_templateObject(), areaAttr, this.drawSyle());
+
+      if (!this._line) {
+        return area;
+      } //draw a line on top
+
+
+      var lineAttr = Object.assign({}, this.attrs, {
+        d: this.linePath(),
+        fill: 'none'
+      });
+      var line = h(_templateObject2(), lineAttr, this.drawSyle());
+      return [line, area];
+    }
+  }]);
+
+  return Area;
+}(Shape);
+
+module.exports = Area;
+
+},{"./Shape":30,"d3-shape":2,"spencer-color":6}],27:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<circle ...", " />"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var colors = _dereq_('spencer-color').colors;
+
+var Shape = _dereq_('./Shape');
+
+var defaults = {
+  fill: colors.blue,
+  stroke: 'none'
+};
+
+var Dot =
+/*#__PURE__*/
+function (_Shape) {
+  _inherits(Dot, _Shape);
+
+  function Dot() {
+    var _this;
+
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Dot);
+
+    obj = Object.assign({}, defaults, obj);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Dot).call(this, obj, world));
+    _this._radius = obj.radius || 5;
+    return _this;
+  }
+
+  _createClass(Dot, [{
+    key: "radius",
+    value: function radius(r) {
+      this._radius = r;
+      return this;
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+      var point = this.points()[0];
+      var attrs = Object.assign({}, this.attrs, {
+        cx: point[0],
+        cy: point[1],
+        r: this._radius
+      });
+      return h(_templateObject(), attrs);
+    }
+  }]);
+
+  return Dot;
+}(Shape);
+
+module.exports = Dot;
+
+},{"./Shape":30,"spencer-color":6}],28:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var colors = _dereq_('spencer-color').colors;
+
+var d3Shape = _dereq_('d3-shape');
+
+var Shape = _dereq_('./Shape');
+
+var defaults = {
+  fill: 'none',
+  stroke: colors.blue,
+  'stroke-width': 4,
+  'stroke-linecap': 'round'
+};
+
+var Line =
+/*#__PURE__*/
+function (_Shape) {
+  _inherits(Line, _Shape);
+
+  function Line() {
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Line);
+
+    obj = Object.assign({}, defaults, obj);
+    return _possibleConstructorReturn(this, _getPrototypeOf(Line).call(this, obj, world));
+  }
+
+  _createClass(Line, [{
+    key: "color",
+    value: function color(_color) {
+      this.attrs.stroke = colors[_color] || _color;
+      return this;
+    }
+  }, {
+    key: "dotted",
+    value: function dotted(n) {
+      if (n === true) {
+        n = 4;
+      }
+
+      this.attrs['stroke-dasharray'] = n || 4;
+      return this;
+    }
+  }, {
+    key: "width",
+    value: function width(num) {
+      this.attrs['stroke-width'] = num;
+      return this;
+    }
+  }, {
+    key: "path",
+    value: function path() {
+      var points = this.points();
+      return d3Shape.line().x(function (d) {
+        return d[0];
+      }).y(function (d) {
+        return d[1];
+      }).curve(d3Shape.curveMonotoneX)(points);
+    }
+  }]);
+
+  return Line;
+}(Shape);
+
+module.exports = Line;
+
+},{"./Shape":30,"d3-shape":2,"spencer-color":6}],29:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<rect ...", " />"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var colors = _dereq_('spencer-color').colors;
+
+var Shape = _dereq_('./Shape');
+
+var defaults = {
+  fill: colors.green,
+  stroke: colors.green,
+  'fill-opacity': .25,
+  'stroke-width': 1
+};
+
+var Rect =
+/*#__PURE__*/
+function (_Shape) {
+  _inherits(Rect, _Shape);
+
+  function Rect() {
+    var _this;
+
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Rect);
+
+    obj = Object.assign({}, defaults, obj);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Rect).call(this, obj, world));
+    _this._rounded = 3;
+    _this._width = undefined;
+    _this._height = undefined;
+    return _this;
+  }
+
+  _createClass(Rect, [{
+    key: "color",
+    value: function color(_color) {
+      this.attrs.stroke = colors[_color] || _color;
+      this.attrs.fill = colors[_color] || _color;
+      return this;
+    }
+  }, {
+    key: "width",
+    value: function width(n) {
+      this._width = n;
+      return this;
+    }
+  }, {
+    key: "height",
+    value: function height(n) {
+      this._height = n;
+      return this;
+    }
+  }, {
+    key: "rounded",
+    value: function rounded(r) {
+      console.log('hi');
+      this._rounded = r;
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+      var points = this.points();
+      var a = points[0];
+      var b = points[1];
+      var width = Math.abs(b[0] - a[0]);
+      var height = Math.abs(b[1] - a[1]);
+
+      if (this._width !== undefined) {
+        width = this._width;
+      }
+
+      if (this._height !== undefined) {
+        height = this._height;
+      }
+
+      var attrs = Object.assign({}, this.attrs, {
+        x: a[0],
+        y: a[1] - height,
+        width: width,
+        height: height,
+        rx: this._rounded
+      });
+      return h(_templateObject(), attrs); //<rect x="120" y="0" width="100" height="100" rx="15" ry="15" />
+    }
+  }]);
+
+  return Rect;
+}(Shape);
+
+module.exports = Rect;
+
+},{"./Shape":30,"spencer-color":6}],30:[function(_dereq_,module,exports){
+"use strict";
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<path ...", " style=\"", "\"/>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var d3Shape = _dereq_('d3-shape');
+
+var colors = _dereq_('spencer-color').colors;
+
+var fns = _dereq_('../_fns');
+
+var parseInput = _dereq_('./lib/parseInput');
+
+var _require = _dereq_('../parse'),
+    parseX = _require.parseX,
+    parseY = _require.parseY;
+
+var defaults = {
+  fill: colors.blue,
+  stroke: 'none',
+  'shape-rendering': 'optimizeQuality'
+};
+
+var Shape =
+/*#__PURE__*/
+function () {
+  function Shape() {
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Shape);
+
+    this.world = world;
+    this.data = obj.data || [];
+    this.id = obj.id;
+    this.attrs = Object.assign({}, defaults, obj);
+    this.style = {};
+    this._shape = 1;
+  }
+
+  _createClass(Shape, [{
+    key: "at",
+    value: function at(x, y) {
+      if ((x || x === 0) && (y || y === 0)) {
+        this.set([[x, y]]);
+        return this;
+      } //vertical line
+
+
+      if (x || x === 0) {
+        this.set([[x, '0%'], [x, '100%']]);
+        return this;
+      } //horizontal line
+
+
+      if (y || y === 0) {
+        this.set([['0%', y], ['100%', y]]);
+      }
+
+      return this;
+    }
+  }, {
+    key: "extent",
+    value: function extent() {
+      var xArr = [];
+      var yArr = [];
+      this.data.forEach(function (o) {
+        if (o.x.type !== 'pixel') {
+          xArr.push(o.x.value);
+        }
+
+        if (o.y.type !== 'pixel') {
+          yArr.push(o.y.value);
+        }
+      });
+      return {
+        x: fns.extent(xArr),
+        y: fns.extent(yArr)
+      };
+    }
+  }, {
+    key: "color",
+    value: function color(_color) {
+      this.attrs.fill = colors[_color] || _color;
+      return this;
+    }
+  }, {
+    key: "opacity",
+    value: function opacity(n) {
+      this.attrs.opacity = n;
+      return this;
+    }
+  }, {
+    key: "set",
+    value: function set(str) {
+      this.data = parseInput(str, this.world);
+      return this;
+    }
+  }, {
+    key: "from",
+    value: function from(x, y) {
+      this.data[0] = {
+        x: parseX(x, this.world),
+        y: parseY(y, this.world)
+      };
+      return this;
+    }
+  }, {
+    key: "to",
+    value: function to(x, y) {
+      this.data[1] = {
+        x: parseX(x, this.world),
+        y: parseY(y, this.world)
+      };
+      return this;
+    } //x,y coordinates
+
+  }, {
+    key: "points",
+    value: function points() {
+      var _this$world = this.world,
+          x = _this$world.x,
+          y = _this$world.y;
+      var points = this.data.map(function (o) {
+        return [x.place(o.x), y.place(o.y)];
+      });
+      return points;
+    }
+  }, {
+    key: "path",
+    value: function path() {
+      var zero = this.world.y.place(parseY(0));
+      var points = this.points();
+      return d3Shape.area().x0(function (d) {
+        return d[0];
+      }).y0(function (d) {
+        return d[1];
+      }).y1(zero).curve(d3Shape.curveMonotoneX)(points);
+    }
+  }, {
+    key: "drawSyle",
+    value: function drawSyle() {
+      var _this = this;
+
+      return Object.keys(this.style).map(function (k) {
+        return "".concat(k, ":").concat(_this.style[k], ";");
+      }).join(' ');
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+      var attrs = Object.assign({}, this.attrs, {
+        d: this.path()
+      });
+      return h(_templateObject(), attrs, this.drawSyle());
+    }
+  }]);
+
+  return Shape;
+}();
+
+module.exports = Shape;
+
+},{"../_fns":10,"../parse":21,"./lib/parseInput":32,"d3-shape":2,"spencer-color":6}],31:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<g transform=\"", "\" style=\"", "\">\n      <text id=\"fun\" ...", ">\n        ", "\n      </text>\n    </g>"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<tspan x=\"0\" dy=\"1.2em\">", "</tspan>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Shape = _dereq_('./Shape');
+
+var colors = _dereq_('spencer-color').colors;
+
+var defaults = {
+  fill: 'grey',
+  stroke: 'none',
+  'stroke-width': 1,
+  'stroke-linecap': 'round'
+};
+
+var Text =
+/*#__PURE__*/
+function (_Shape) {
+  _inherits(Text, _Shape);
+
+  function Text() {
+    var _this;
+
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Text);
+
+    var text = null;
+
+    if (typeof obj === 'string') {
+      text = [obj];
+      obj = {};
+    } else if (Array.isArray(obj)) {
+      text = obj;
+      obj = [];
+    }
+
+    obj = Object.assign({}, defaults, obj);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Text).call(this, obj, world));
+    _this.textLines = text || obj.text || [];
+
+    if (typeof _this.textLines === 'string') {
+      _this.textLines = [_this.textLines];
+    }
+
+    _this._order = 0;
+    _this.data = [{
+      x: {
+        value: 50,
+        type: 'percent'
+      },
+      y: {
+        value: 50,
+        type: 'percent'
+      }
+    }];
+    _this._dodge = {
+      x: 0,
+      y: 4
+    };
+    _this._underline = '';
+    return _this;
+  }
+
+  _createClass(Text, [{
+    key: "before",
+    value: function before(x, y) {
+      this.attrs['text-anchor'] = "end";
+      this.set([[x, y]]);
+      return this;
+    }
+  }, {
+    key: "after",
+    value: function after(x, y) {
+      this.attrs['text-anchor'] = "start";
+      this.set([[x, y]]);
+      return this;
+    }
+  }, {
+    key: "center",
+    value: function center(x, y) {
+      this.attrs['text-anchor'] = "middle";
+      this.set([[x, y]]);
+      return this;
+    }
+  }, {
+    key: "color",
+    value: function color(_color) {
+      this.attrs.fill = colors[_color] || _color;
+      return this;
+    }
+  }, {
+    key: "dy",
+    value: function dy() {
+      var n = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      this._dodge.y = n * -1;
+      return this;
+    }
+  }, {
+    key: "dx",
+    value: function dx() {
+      var n = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      this._dodge.x = n;
+      return this;
+    }
+  }, {
+    key: "dodge",
+    value: function dodge(x, y) {
+      x = x || this._dodge.x;
+      y = y || this._dodge.y;
+      this._dodge.x = x * -1;
+      this._dodge.y = y * -1;
+      return this;
+    }
+  }, {
+    key: "font",
+    value: function font(num) {
+      if (typeof num === 'number') {
+        num += 'px';
+      }
+
+      this.style['font-size'] = num;
+      return this;
+    }
+  }, {
+    key: "extent",
+    value: function extent() {
+      // let longest = this.textLines.sort((a, b) => a.length < b.length ? 1 : -1)[0] || ''
+      // let width = longest.length * 8
+      // let height = this.textLines.length * 20
+      var d = this.data[0] || {};
+      return {
+        x: {
+          min: d.x,
+          max: d.x
+        },
+        y: {
+          min: d.y,
+          // - height,
+          max: d.y
+        }
+      };
+    }
+  }, {
+    key: "text",
+    value: function text(_text) {
+      if (typeof _text === 'string') {
+        this.textLines = [_text];
+      } else {
+        this.textLines = _text;
+      }
+
+      return this;
+    }
+  }, {
+    key: "path",
+    value: function path() {
+      return '';
+    }
+  }, {
+    key: "estimate",
+    value: function estimate() {
+      //calculate height
+      var height = 24;
+
+      if (this.style['font-size']) {
+        var num = this.style['font-size'].replace('px', '');
+        num = Number(num);
+        height = num * 1.5;
+      } //calculate width
+
+
+      var width = 0;
+      this.textLines.forEach(function (str) {
+        var w = str.length * 6;
+
+        if (w > width) {
+          width = w;
+        }
+      });
+      return {
+        height: height,
+        width: width
+      };
+    }
+  }, {
+    key: "position",
+    value: function position() {
+      var point = this.points()[0];
+      var res = {
+        x: 0,
+        y: 0
+      };
+
+      if (!point) {
+        return res;
+      }
+
+      var _this$estimate = this.estimate(),
+          height = _this$estimate.height,
+          width = _this$estimate.width;
+
+      res.height = height;
+      res.width = width;
+      res.y = point[1] + this._dodge.y - height;
+      res.x = point[0] + 2 + this._dodge.x;
+      return res;
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+      var inside = this.textLines.map(function (str) {
+        return h(_templateObject(), str);
+      });
+
+      var _this$position = this.position(),
+          x = _this$position.x,
+          y = _this$position.y;
+
+      var transform = "translate(".concat(x, " ").concat(y, ")");
+      return h(_templateObject2(), transform, this.drawSyle(), this.attrs, inside);
+    }
+  }]);
+
+  return Text;
+}(Shape);
+
+module.exports = Text;
+
+},{"./Shape":30,"spencer-color":6}],32:[function(_dereq_,module,exports){
+"use strict";
+
+var _require = _dereq_('../../parse'),
+    parseX = _require.parseX,
+    parseY = _require.parseY; //a very-flexible input language
+
+
+var parseStr = function parseStr() {
+  var str = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+  var world = arguments.length > 1 ? arguments[1] : undefined;
+  var lines = str.split(/\n/g);
+  lines = lines.filter(function (l) {
+    return l;
+  });
+  lines = lines.map(function (line) {
+    var split = line.split(/(,|\t) ?/);
+    var x = parseX(split[0], world);
+    var y = parseX(split[2], world);
+    return {
+      x: x,
+      y: y
+    };
+  });
+  return lines;
+};
+
+var parseInput = function parseInput(set, world) {
+  if (typeof set === 'string') {
+    return parseStr(set, world);
+  }
+
+  return set.map(function (a) {
+    var x = parseX(a[0], world);
+    var y = parseY(a[1], world);
+    return {
+      x: x,
+      y: y
+    };
+  });
+};
+
+module.exports = parseInput;
+
+},{"../../parse":21}]},{},[17])(17)
+});
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],5:[function(_dereq_,module,exports){
+(function (global){
+/* spacetime v5.2.1
+   github.com/spencermountain/spacetime
+   MIT
+*/
+
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.spacetime = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof _dereq_&&_dereq_;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof _dereq_&&_dereq_,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = '5.2.1';
+
+},{}],2:[function(_dereq_,module,exports){
+'use strict';
+
+var shortDays = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+var longDays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+module.exports = {
+  short: function short() {
+    return shortDays;
+  },
+  long: function long() {
+    return longDays;
+  },
+  set: function set(i18n) {
+    shortDays = i18n.short;
+    longDays = i18n.long;
+  }
+};
+
+},{}],3:[function(_dereq_,module,exports){
+'use strict';
+
+var o = {
+  millisecond: 1
+};
+o.second = 1000;
+o.minute = 60000;
+o.hour = 3.6e6; // dst is supported post-hoc
+
+o.day = 8.64e7; // 
+
+o.date = o.day;
+o.month = 8.64e7 * 29.5; //(average)
+
+o.week = 6.048e8;
+o.year = 3.154e10; // leap-years are supported post-hoc
+//add plurals
+
+Object.keys(o).forEach(function (k) {
+  o[k + 's'] = o[k];
+});
+module.exports = o;
+
+},{}],4:[function(_dereq_,module,exports){
+"use strict";
+
+var monthLengths = [31, // January - 31 days
+28, // February - 28 days in a common year and 29 days in leap years
+31, // March - 31 days
+30, // April - 30 days
+31, // May - 31 days
+30, // June - 30 days
+31, // July - 31 days
+31, // August - 31 days
+30, // September - 30 days
+31, // October - 31 days
+30, // November - 30 days
+31 // December - 31 days
+];
+module.exports = monthLengths;
+
+},{}],5:[function(_dereq_,module,exports){
+'use strict';
+
+var shortMonths = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sept', 'oct', 'nov', 'dec'];
+var longMonths = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+
+function buildMapping() {
+  var obj = {
+    sep: 8 //support this format
+
+  };
+
+  for (var i = 0; i < shortMonths.length; i++) {
+    obj[shortMonths[i]] = i;
+  }
+
+  for (var _i = 0; _i < longMonths.length; _i++) {
+    obj[longMonths[_i]] = _i;
+  }
+
+  return obj;
+}
+
+module.exports = {
+  short: function short() {
+    return shortMonths;
+  },
+  long: function long() {
+    return longMonths;
+  },
+  mapping: function mapping() {
+    return buildMapping();
+  },
+  set: function set(i18n) {
+    shortMonths = i18n.short;
+    longMonths = i18n.long;
+  }
+};
+
+},{}],6:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = [null, [0, 1], //jan 1
+[3, 1], //apr 1
+[6, 1], //july 1
+[9, 1]];
+
+},{}],7:[function(_dereq_,module,exports){
+"use strict";
+
+//https://www.timeanddate.com/calendar/aboutseasons.html
+// Spring - from March 1 to May 31;
+// Summer - from June 1 to August 31;
+// Fall (autumn) - from September 1 to November 30; and,
+// Winter - from December 1 to February 28 (February 29 in a leap year).
+module.exports = {
+  north: [['spring', 2, 1], //spring march 1
+  ['summer', 5, 1], //june 1
+  ['fall', 8, 1], //sept 1
+  ['autumn', 8, 1], //sept 1
+  ['winter', 11, 1] //dec 1
+  ],
+  south: [['fall', 2, 1], //march 1
+  ['autumn', 2, 1], //march 1
+  ['winter', 5, 1], //june 1
+  ['spring', 8, 1], //sept 1
+  ['summer', 11, 1] //dec 1
+  ]
+};
+
+},{}],8:[function(_dereq_,module,exports){
+'use strict'; //git:blame @JuliasCaesar https://www.timeanddate.com/date/leapyear.html
+
+exports.isLeapYear = function (year) {
+  return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+}; // unsurprisingly-nasty `typeof date` call
+
+
+exports.isDate = function (d) {
+  return Object.prototype.toString.call(d) === '[object Date]' && !isNaN(d.valueOf());
+};
+
+exports.isArray = function (input) {
+  return Object.prototype.toString.call(input) === '[object Array]';
+};
+
+exports.isObject = function (input) {
+  return Object.prototype.toString.call(input) === '[object Object]';
+};
+
+exports.zeroPad = function (str, len) {
+  len = len || 2;
+  var pad = '0';
+  str = str + '';
+  return str.length >= len ? str : new Array(len - str.length + 1).join(pad) + str;
+};
+
+exports.titleCase = function (str) {
+  if (!str) {
+    return '';
+  }
+
+  return str[0].toUpperCase() + str.substr(1);
+};
+
+exports.ordinal = function (i) {
+  var j = i % 10;
+  var k = i % 100;
+
+  if (j === 1 && k !== 11) {
+    return i + 'st';
+  }
+
+  if (j === 2 && k !== 12) {
+    return i + 'nd';
+  }
+
+  if (j === 3 && k !== 13) {
+    return i + 'rd';
+  }
+
+  return i + 'th';
+}; //strip 'st' off '1st'..
+
+
+exports.toCardinal = function (str) {
+  str = String(str);
+  str = str.replace(/([0-9])(st|nd|rd|th)$/i, '$1');
+  return parseInt(str, 10);
+};
+
+exports.normalize = function (str) {
+  str = str.toLowerCase();
+  str = str.replace(/ies$/, 'y'); //'centuries'
+
+  str = str.replace(/s$/, '');
+
+  if (str === 'day') {
+    return 'date';
+  }
+
+  return str;
+};
+
+exports.getEpoch = function (tmp) {
+  //support epoch
+  if (typeof tmp === 'number') {
+    return tmp;
+  } //suport date objects
+
+
+  if (exports.isDate(tmp)) {
+    return tmp.getTime();
+  }
+
+  if (tmp.epoch) {
+    return tmp.epoch;
+  }
+
+  return null;
+}; //make sure this input is a spacetime obj
+
+
+exports.beADate = function (d, s) {
+  if (exports.isObject(d) === false) {
+    return s.clone().set(d);
+  }
+
+  return d;
+};
+
+},{}],9:[function(_dereq_,module,exports){
+'use strict';
+
+var Spacetime = _dereq_('./spacetime');
+
+var whereIts = _dereq_('./whereIts');
+
+var version = _dereq_('../_version');
+
+var main = function main(input, tz, options) {
+  return new Spacetime(input, tz, options);
+}; //some helper functions on the main method
+
+
+main.now = function (tz, options) {
+  return new Spacetime(new Date().getTime(), tz, options);
+};
+
+main.today = function (tz, options) {
+  var s = new Spacetime(new Date().getTime(), tz, options);
+  return s.startOf('day');
+};
+
+main.tomorrow = function (tz, options) {
+  var s = new Spacetime(new Date().getTime(), tz, options);
+  return s.add(1, 'day').startOf('day');
+};
+
+main.yesterday = function (tz, options) {
+  var s = new Spacetime(new Date().getTime(), tz, options);
+  return s.subtract(1, 'day').startOf('day');
+};
+
+main.extend = function (obj) {
+  Object.keys(obj).forEach(function (k) {
+    Spacetime.prototype[k] = obj[k];
+  });
+  return this;
+}; //find tz by time
+
+
+main.whereIts = whereIts;
+main.version = version; //aliases:
+
+main.plugin = main.extend;
+module.exports = main;
+
+},{"../_version":1,"./spacetime":34,"./whereIts":41}],10:[function(_dereq_,module,exports){
+'use strict';
+
+var monthLengths = _dereq_('../data/monthLengths');
+
+var isLeapYear = _dereq_('../fns').isLeapYear; //given a month, return whether day number exists in it
+
+
+var hasDate = function hasDate(obj) {
+  //invalid values
+  if (monthLengths.hasOwnProperty(obj.month) !== true) {
+    return false;
+  } //support leap-year in february
+
+
+  if (obj.month === 1) {
+    if (isLeapYear(obj.year) && obj.date <= 29) {
+      return true;
+    } else {
+      return obj.date <= 28;
+    }
+  } //is this date too-big for this month?
+
+
+  var max = monthLengths[obj.month] || 0;
+
+  if (obj.date <= max) {
+    return true;
+  }
+
+  return false;
+};
+
+module.exports = hasDate;
+
+},{"../data/monthLengths":4,"../fns":8}],11:[function(_dereq_,module,exports){
+'use strict';
+
+var strFmt = _dereq_('./strParse');
+
+var fns = _dereq_('../fns');
+
+var namedDates = _dereq_('./named-dates'); //we have to actually parse these inputs ourselves
+//  -  can't use built-in js parser ;(
+//=========================================
+// ISO Date	  "2015-03-25"
+// Short Date	"03/25/2015" or "2015/03/25"
+// Long Date	"Mar 25 2015" or "25 Mar 2015"
+// Full Date	"Wednesday March 25 2015"
+//=========================================
+//-- also -
+// if the given epoch is really small, they've probably given seconds and not milliseconds
+// anything below this number is likely (but not necessarily) a mistaken input.
+// this may seem like an arbitrary number, but it's 'within jan 1970'
+// this is only really ambiguous until 2054 or so
+
+
+var minimumEpoch = 2500000000; //support [2016, 03, 01] format
+
+var handleArray = function handleArray(s, arr) {
+  var order = ['year', 'month', 'date', 'hour', 'minute', 'second', 'millisecond'];
+
+  for (var i = 0; i < arr.length; i++) {
+    var num = arr[i] || 0;
+    s = s[order[i]](num);
+  }
+
+  return s;
+}; //support {year:2016, month:3} format
+
+
+var handleObject = function handleObject(s, obj) {
+  var keys = Object.keys(obj);
+
+  for (var i = 0; i < keys.length; i++) {
+    var unit = keys[i]; //make sure we have this method
+
+    if (s[unit] === undefined || typeof s[unit] !== 'function') {
+      continue;
+    } //make sure the value is a number
+
+
+    if (obj[unit] === null || obj[unit] === undefined || obj[unit] === '') {
+      continue;
+    }
+
+    var num = obj[unit] || 0;
+    s = s[unit](num);
+  }
+
+  return s;
+}; //find the epoch from different input styles
+
+
+var parseInput = function parseInput(s, input, givenTz) {
+  //if we've been given a epoch number, it's easy
+  if (typeof input === 'number') {
+    if (input > 0 && input < minimumEpoch && s.silent === false) {
+      console.warn('  - Warning: You are setting the date to January 1970.');
+      console.warn('       -   did input seconds instead of milliseconds?');
+    }
+
+    s.epoch = input;
+    return s;
+  } //set tmp time
+
+
+  s.epoch = Date.now();
+
+  if (input === null || input === undefined) {
+    return s; //k, we're good.
+  } //support input of Date() object
+
+
+  if (fns.isDate(input) === true) {
+    s.epoch = input.getTime();
+    return s;
+  } //support [2016, 03, 01] format
+
+
+  if (fns.isArray(input) === true) {
+    s = handleArray(s, input);
+    return s;
+  } //support {year:2016, month:3} format
+
+
+  if (fns.isObject(input) === true) {
+    //support spacetime object as input
+    if (input.epoch) {
+      s.epoch = input.epoch;
+      return s;
+    }
+
+    s = handleObject(s, input);
+    return s;
+  } //input as a string..
+
+
+  if (typeof input !== 'string') {
+    return s;
+  } //little cleanup..
+
+
+  input = input.replace(/\b(mon|tues|wed|wednes|thu|thurs|fri|sat|satur|sun)(day)?\b/, '');
+  input = input.trim().replace(/ +/g, ' '); //try some known-words, like 'now'
+
+  if (namedDates.hasOwnProperty(input) === true) {
+    s = namedDates[input](s);
+    return s;
+  } //try each text-parse template, use the first good result
+
+
+  for (var i = 0; i < strFmt.length; i++) {
+    var m = input.match(strFmt[i].reg);
+
+    if (m) {
+      s = strFmt[i].parse(s, m, givenTz);
+      return s;
+    }
+  }
+
+  if (s.silent === false) {
+    console.warn('Warning: couldn\'t parse date-string: \'' + input + '\'');
+  }
+
+  s.epoch = null;
+  return s;
+};
+
+module.exports = parseInput;
+
+},{"../fns":8,"./named-dates":12,"./strParse":14}],12:[function(_dereq_,module,exports){
+'use strict';
+
+var dates = {
+  now: function now(s) {
+    s.epoch = Date.now();
+    return s;
+  },
+  tonight: function tonight(s) {
+    s.epoch = Date.now();
+    s = s.hour(18);
+    return s;
+  },
+  today: function today(s) {
+    s.epoch = Date.now();
+    return s;
+  },
+  tomorrow: function tomorrow(s) {
+    s.epoch = Date.now();
+    s = s.add(1, 'day');
+    s = s.startOf('day');
+    return s;
+  },
+  yesterday: function yesterday(s) {
+    s.epoch = Date.now();
+    s = s.subtract(1, 'day');
+    s = s.startOf('day');
+    return s;
+  },
+  christmas: function christmas(s) {
+    var year = new Date().getFullYear();
+    s = s.set([year, 11, 25, 18, 0, 0]); // Dec 25
+
+    return s;
+  },
+  'new years': function newYears(s) {
+    var year = new Date().getFullYear();
+    s = s.set([year, 11, 31, 18, 0, 0]); // Dec 31
+
+    return s;
+  }
+};
+dates['new years eve'] = dates['new years'];
+module.exports = dates;
+
+},{}],13:[function(_dereq_,module,exports){
+'use strict'; //pull-apart ISO offsets, like "+0100"
+
+var parseOffset = function parseOffset(s, offset) {
+  if (!offset) {
+    return s;
+  } //this is a fancy-move
+
+
+  if (offset === 'Z') {
+    offset = '+0000';
+  } //support "+01:00"
+
+
+  if (/:00/.test(offset) === true) {
+    offset = offset.replace(/:00/, '');
+  } //support "+01:30"
+
+
+  if (/:00/.test(offset) === true) {
+    offset = offset.replace(/:00/, '.5');
+  }
+
+  var num = parseInt(offset, 10); //divide by 100 or 10 - , "+0100", "+01"
+
+  if (Math.abs(num) > 100) {
+    num = num / 100;
+  } // console.log(offset, num)
+
+
+  var current = s.timezone().current.offset;
+
+  if (current === num) {
+    //we cool..
+    return s;
+  } //okay, try to match it to a utc timezone
+  //this is opposite! a -5 offset maps to Etc/GMT+5  ¯\_()_/¯
+  //https://askubuntu.com/questions/519550/why-is-the-8-timezone-called-gmt-8-in-the-filesystem
+
+
+  num *= -1;
+
+  if (num >= 0) {
+    num = '+' + num;
+  }
+
+  var tz = 'etc/gmt' + num;
+  var zones = s.timezones; // console.log(tz)
+
+  if (zones[tz]) {
+    // console.log('changing timezone to: ' + tz)
+    //log a warning if we're over-writing a given timezone
+    // if (givenTz && zones[givenTz] && zones[givenTz].offset !== zones[tz].offset && s.silent === false) {
+    //don't log during our tests, either..
+    // if (typeof process !== 'undefined' && process.env && !process.env.TESTENV) {
+    //   console.warn('  - Setting timezone to: \'' + tz + '\'')
+    //   console.warn('     from ISO string \'' + offset + '\'')
+    //   console.warn('     overwriting given timezone: \'' + givenTz + '\'\n')
+    // }
+    // }
+    s.tz = tz;
+  }
+
+  return s;
+};
+
+module.exports = parseOffset;
+
+},{}],14:[function(_dereq_,module,exports){
+'use strict';
+
+var walkTo = _dereq_('../methods/set/walk');
+
+var months = _dereq_('../data/months').mapping();
+
+var parseOffset = _dereq_('./parseOffset');
+
+var hasDate = _dereq_('./hasDate');
+
+var fns = _dereq_('../fns'); // const zones = require('../../data');
+
+
+var parseHour = function parseHour(s, str) {
+  str = str.replace(/^\s+/, ''); //trim
+
+  var arr = str.match(/([0-9]{1,2}):([0-9]{1,2}):?([0-9]{1,2})?[:\.]?([0-9]{1,4})?/);
+
+  if (arr) {
+    s = s.hour(arr[1]);
+    s = s.minute(arr[2]);
+
+    if (arr[3]) {
+      s = s.seconds(arr[3]);
+    }
+
+    if (arr[4]) {
+      s = s.millisecond(arr[4]);
+    }
+  }
+
+  return s;
+};
+
+var parseYear = function parseYear(str) {
+  str = str || ''; //support '18 -> 2018
+  // str = str.replace(/^'([0-9]{2})/, '20$1')
+  // str = str.replace('([0-9]+) ?b\.?c\.?$', '-$1')
+
+  var year = parseInt(str.trim(), 10);
+  year = year || new Date().getFullYear();
+  return year;
+};
+
+var strFmt = [//iso-this 1998-05-30T22:00:00:000Z, iso-that 2017-04-03T08:00:00-0700
+{
+  reg: /^([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})[T| ]([0-9.:]+)(Z|[0-9\-\+:]+)?$/,
+  parse: function parse(s, arr, givenTz, options) {
+    var month = parseInt(arr[2], 10) - 1;
+    var obj = {
+      year: arr[1],
+      month: month,
+      date: arr[3]
+    };
+
+    if (hasDate(obj) === false) {
+      s.epoch = null;
+      return s;
+    }
+
+    parseOffset(s, arr[5], givenTz, options);
+    walkTo(s, obj);
+    s = parseHour(s, arr[4]);
+    return s;
+  }
+}, //iso "2015-03-25" or "2015/03/25" //0-based-months!
+{
+  reg: /^([0-9]{4})[\-\/]([0-9]{1,2})[\-\/]([0-9]{1,2})$/,
+  parse: function parse(s, arr) {
+    var obj = {
+      year: arr[1],
+      month: parseInt(arr[2], 10) - 1,
+      date: parseInt(arr[3], 10)
+    };
+
+    if (obj.month >= 12) {
+      //support yyyy/dd/mm (weird, but ok)
+      obj.date = parseInt(arr[2], 10);
+      obj.month = parseInt(arr[3], 10) - 1;
+    }
+
+    if (hasDate(obj) === false) {
+      s.epoch = null;
+      return s;
+    }
+
+    walkTo(s, obj);
+    return s;
+  }
+}, //short - uk "03/25/2015"  //0-based-months!
+{
+  reg: /^([0-9]{1,2})[\-\/]([0-9]{1,2})[\-\/]?([0-9]{4})?$/,
+  parse: function parse(s, arr) {
+    var month = parseInt(arr[1], 10) - 1;
+    var date = parseInt(arr[2], 10);
+
+    if (month >= 12) {
+      //support yyyy/dd/mm (weird, but ok)
+      month = parseInt(arr[2], 10) - 1;
+      date = parseInt(arr[1], 10);
+    }
+
+    var year = arr[3] || new Date().getFullYear();
+    var obj = {
+      year: year,
+      month: month,
+      date: date
+    };
+
+    if (hasDate(obj) === false) {
+      s.epoch = null;
+      return s;
+    }
+
+    walkTo(s, obj);
+    return s;
+  }
+}, //Long "Mar 25 2015"
+//February 22, 2017 15:30:00
+{
+  reg: /^([a-z]+) ([0-9]{1,2}(?:st|nd|rd|th)?),?( [0-9]{4})?( ([0-9:]+))?$/i,
+  parse: function parse(s, arr) {
+    var month = months[arr[1].toLowerCase()];
+    var year = parseYear(arr[3]);
+    var obj = {
+      year: year,
+      month: month,
+      date: fns.toCardinal(arr[2] || '')
+    };
+
+    if (hasDate(obj) === false) {
+      s.epoch = null;
+      return s;
+    }
+
+    walkTo(s, obj);
+
+    if (arr[4]) {
+      s = parseHour(s, arr[4]);
+    }
+
+    return s;
+  }
+}, //February 2017 (implied date)
+{
+  reg: /^([a-z]+) ([0-9]{4})$/i,
+  parse: function parse(s, arr) {
+    var month = months[arr[1].toLowerCase()];
+    var year = parseYear(arr[2]);
+    var obj = {
+      year: year,
+      month: month,
+      date: 1
+    };
+
+    if (hasDate(obj) === false) {
+      s.epoch = null;
+      return s;
+    }
+
+    walkTo(s, obj);
+
+    if (arr[4]) {
+      s = parseHour(s, arr[4]);
+    }
+
+    return s;
+  }
+}, //Long "25 Mar 2015"
+{
+  reg: /^([0-9]{1,2}(?:st|nd|rd|th)?) ([a-z]+),?( [0-9]{4})?$/i,
+  parse: function parse(s, arr) {
+    var month = months[arr[2].toLowerCase()];
+    var year = parseYear(arr[3]);
+    var obj = {
+      year: year,
+      month: month,
+      date: fns.toCardinal(arr[1])
+    };
+
+    if (hasDate(obj) === false) {
+      s.epoch = null;
+      return s;
+    }
+
+    walkTo(s, obj);
+    return s;
+  }
+}, {
+  // '1992'
+  reg: /^[0-9]{4}$/i,
+  parse: function parse(s, arr) {
+    var year = parseYear(arr[0]);
+    var d = new Date();
+    var obj = {
+      year: year,
+      month: d.getMonth(),
+      date: d.getDate()
+    };
+
+    if (hasDate(obj) === false) {
+      s.epoch = null;
+      return s;
+    }
+
+    walkTo(s, obj);
+    return s;
+  }
+}, {
+  // '200bc'
+  reg: /^[0-9,]+ ?b\.?c\.?$/i,
+  parse: function parse(s, arr) {
+    var str = arr[0] || ''; //make negative-year
+
+    str = str.replace(/^([0-9,]+) ?b\.?c\.?$/i, '-$1'); //remove commas
+
+    str = str.replace(/,/g, '');
+    var year = parseInt(str.trim(), 10);
+    var d = new Date();
+    var obj = {
+      year: year,
+      month: d.getMonth(),
+      date: d.getDate()
+    };
+
+    if (hasDate(obj) === false) {
+      s.epoch = null;
+      return s;
+    }
+
+    walkTo(s, obj);
+    return s;
+  }
+}];
+module.exports = strFmt;
+
+},{"../data/months":5,"../fns":8,"../methods/set/walk":31,"./hasDate":10,"./parseOffset":13}],15:[function(_dereq_,module,exports){
+'use strict';
+
+var _format = _dereq_('./methods/format');
+
+var _unixFmt = _dereq_('./methods/format/unixFmt');
+
+var _progress = _dereq_('./methods/progress');
+
+var _nearest = _dereq_('./methods/nearest');
+
+var _diff = _dereq_('./methods/diff');
+
+var _since = _dereq_('./methods/since');
+
+var ends = _dereq_('./methods/startOf');
+
+var _timezone = _dereq_('./timezone/index');
+
+var findTz = _dereq_('./timezone/find');
+
+var handleInput = _dereq_('./input');
+
+var fns = _dereq_('./fns'); //the spacetime instance methods (also, the API)
+
+
+var methods = {
+  set: function set(input) {
+    var s = this.clone();
+    s = handleInput(s, input);
+    return s;
+  },
+  timezone: function timezone() {
+    return _timezone(this);
+  },
+  isDST: function isDST() {
+    return _timezone(this).current.isDST;
+  },
+  hasDST: function hasDST() {
+    return _timezone(this).hasDst;
+  },
+  offset: function offset() {
+    return _timezone(this).current.offset * 60;
+  },
+  hemisphere: function hemisphere() {
+    return _timezone(this).hemisphere;
+  },
+  format: function format(fmt) {
+    return _format(this, fmt);
+  },
+  unixFmt: function unixFmt(fmt) {
+    return _unixFmt(this, fmt);
+  },
+  startOf: function startOf(unit) {
+    return ends.startOf(this, unit);
+  },
+  endOf: function endOf(unit) {
+    return ends.endOf(this, unit);
+  },
+  leapYear: function leapYear() {
+    var year = this.year();
+    return fns.isLeapYear(year);
+  },
+  progress: function progress() {
+    return _progress(this);
+  },
+  nearest: function nearest(unit) {
+    return _nearest(this, unit);
+  },
+  diff: function diff(d, unit) {
+    return _diff(this, d, unit);
+  },
+  since: function since(d) {
+    if (!d) {
+      d = this.clone().set();
+    }
+
+    return _since(this, d);
+  },
+  next: function next(unit) {
+    var s = this.add(1, unit);
+    return s.startOf(unit);
+  },
+  //the start of the previous year/week/century
+  last: function last(unit) {
+    var s = this.subtract(1, unit);
+    return s.startOf(unit);
+  },
+  isValid: function isValid() {
+    //null/undefined epochs
+    if (!this.epoch && this.epoch !== 0) {
+      return false;
+    }
+
+    return !isNaN(this.d.getTime());
+  },
+  //travel to this timezone
+  goto: function goto(tz) {
+    var s = this.clone();
+    s.tz = findTz(tz, s.timezones); //science!
+
+    return s;
+  },
+  isAwake: function isAwake() {
+    var hour = this.hour(); //10pm -> 8am
+
+    if (hour < 8 || hour > 22) {
+      return false;
+    }
+
+    return true;
+  },
+  isAsleep: function isAsleep() {
+    return !this.isAwake();
+  },
+  //pretty-printing
+  log: function log() {
+    console.log('');
+    console.log(_format(this, 'nice-short'));
+    return this;
+  },
+  logYear: function logYear() {
+    console.log('');
+    console.log(_format(this, 'full-short'));
+    return this;
+  },
+  debug: function debug() {
+    var tz = this.timezone();
+    var date = this.format('MM') + ' ' + this.format('date-ordinal') + ' ' + this.year();
+    date += '\n     - ' + this.format('time');
+    console.log('\n\n', date + '\n     - ' + tz.name + ' (' + tz.current.offset + ')');
+    return this;
+  } // aliases
+
+};
+methods.inDST = methods.isDST;
+methods.round = methods.nearest;
+module.exports = methods;
+
+},{"./fns":8,"./input":11,"./methods/diff":18,"./methods/format":20,"./methods/format/unixFmt":21,"./methods/nearest":23,"./methods/progress":24,"./methods/since":32,"./methods/startOf":33,"./timezone/find":36,"./timezone/index":38}],16:[function(_dereq_,module,exports){
+'use strict';
+
+var walkTo = _dereq_('./set/walk');
+
+var ms = _dereq_('../data/milliseconds');
+
+var monthLength = _dereq_('../data/monthLengths');
+
+var fns = _dereq_('../fns');
+
+var order = ['millisecond', 'second', 'minute', 'hour', 'date', 'month'];
+var keep = {
+  second: order.slice(0, 1),
+  minute: order.slice(0, 2),
+  quarterhour: order.slice(0, 2),
+  hour: order.slice(0, 3),
+  date: order.slice(0, 4),
+  month: order.slice(0, 4),
+  quarter: order.slice(0, 4),
+  season: order.slice(0, 4),
+  year: order,
+  decade: order,
+  century: order
+};
+keep.week = keep.date;
+keep.season = keep.date;
+keep.quarter = keep.date;
+var keepDate = {
+  month: true,
+  quarter: true,
+  season: true,
+  year: true
+}; //month is the only thing we 'model/compute'
+//- because ms-shifting can be off by enough
+
+var rollMonth = function rollMonth(want, old) {
+  //increment year
+  if (want.month > 0) {
+    var years = parseInt(want.month / 12, 10);
+    want.year = old.year() + years;
+    want.month = want.month % 12;
+  } else if (want.month < 0) {
+    //decrement year
+    var _years = Math.floor(Math.abs(want.month) / 13, 10);
+
+    _years = Math.abs(_years) + 1;
+    want.year = old.year() - _years; //ignore extras
+
+    want.month = want.month % 12;
+    want.month = want.month + 12;
+
+    if (want.month === 12) {
+      want.month = 0;
+    }
+  }
+
+  return want;
+};
+
+var addMethods = function addMethods(SpaceTime) {
+  SpaceTime.prototype.add = function (num, unit) {
+    var s = this.clone();
+
+    if (!unit) {
+      return s; //don't bother
+    }
+
+    var old = this.clone();
+    unit = fns.normalize(unit); //move forward by the estimated milliseconds (rough)
+
+    if (ms[unit]) {
+      s.epoch += ms[unit] * num;
+    } else if (unit === 'week') {
+      s.epoch += ms.day * (num * 7);
+    } else if (unit === 'quarter' || unit === 'season') {
+      s.epoch += ms.month * (num * 4);
+    } else if (unit === 'season') {
+      s.epoch += ms.month * (num * 4);
+    } else if (unit === 'quarterhour') {
+      s.epoch += ms.minute * 15;
+    } //now ensure our milliseconds/etc are in-line
+
+
+    var want = {};
+
+    if (keep[unit]) {
+      keep[unit].forEach(function (u) {
+        want[u] = old[u]();
+      });
+    } //ensure month/year has ticked-over
+
+
+    if (unit === 'month') {
+      want.month = old.month() + num; //month is the one unit we 'model' directly
+
+      want = rollMonth(want, old);
+    } //support coercing a week, too
+
+
+    if (unit === 'week') {
+      var sum = old.date() + num * 7;
+
+      if (sum <= 28 && sum > 1) {
+        want.date = sum;
+      }
+    } //support 25-hour day-changes on dst-changes
+    else if (unit === 'date') {
+        //specify a naive date number, if it's easy to do...
+        var _sum = old.date() + num;
+
+        if (_sum <= 28 && _sum > 1) {
+          want.date = _sum;
+        } //or if we haven't moved at all..
+        else if (num !== 0 && old.isSame(s, 'day')) {
+            want.date = old.date() + num;
+          }
+      } //ensure year has changed (leap-years)
+      else if (unit === 'year' && s.year() === old.year()) {
+          s.epoch += ms.week;
+        } //these are easier
+        else if (unit === 'decade') {
+            want.year = s.year() + 10;
+          } else if (unit === 'century') {
+            want.year = s.year() + 100;
+          } //keep current date, unless the month doesn't have it.
+
+
+    if (keepDate[unit]) {
+      var max = monthLength[want.month];
+      want.date = old.date();
+
+      if (want.date > max) {
+        want.date = max;
+      }
+    }
+
+    walkTo(s, want);
+    return s;
+  }; //subtract is only add *-1
+
+
+  SpaceTime.prototype.subtract = function (num, unit) {
+    var s = this.clone();
+    return s.add(num * -1, unit);
+  }; //add aliases
+
+
+  SpaceTime.prototype.minus = SpaceTime.prototype.subtract;
+  SpaceTime.prototype.plus = SpaceTime.prototype.add;
+};
+
+module.exports = addMethods;
+
+},{"../data/milliseconds":3,"../data/monthLengths":4,"../fns":8,"./set/walk":31}],17:[function(_dereq_,module,exports){
+'use strict';
+
+var fns = _dereq_('../fns');
+
+var addMethods = function addMethods(SpaceTime) {
+  var methods = {
+    isAfter: function isAfter(d) {
+      d = fns.beADate(d, this);
+      var epoch = fns.getEpoch(d);
+
+      if (epoch === null) {
+        return null;
+      }
+
+      return this.epoch > epoch;
+    },
+    isBefore: function isBefore(d) {
+      d = fns.beADate(d, this);
+      var epoch = fns.getEpoch(d);
+
+      if (epoch === null) {
+        return null;
+      }
+
+      return this.epoch < epoch;
+    },
+    isEqual: function isEqual(d) {
+      d = fns.beADate(d, this);
+      var epoch = fns.getEpoch(d);
+
+      if (epoch === null) {
+        return null;
+      }
+
+      return this.epoch === epoch;
+    },
+    isBetween: function isBetween(start, end) {
+      start = fns.beADate(start, this);
+      end = fns.beADate(end, this);
+      var startEpoch = fns.getEpoch(start);
+
+      if (startEpoch === null) {
+        return null;
+      }
+
+      var endEpoch = fns.getEpoch(end);
+
+      if (endEpoch === null) {
+        return null;
+      }
+
+      return startEpoch < this.epoch && this.epoch < endEpoch;
+    }
+  }; //hook them into proto
+
+  Object.keys(methods).forEach(function (k) {
+    SpaceTime.prototype[k] = methods[k];
+  });
+};
+
+module.exports = addMethods;
+
+},{"../fns":8}],18:[function(_dereq_,module,exports){
+'use strict';
+
+var fns = _dereq_('../fns'); //init this function up here
+
+
+var doAll = function doAll() {}; //increment until dates are the same
+
+
+var climb = function climb(a, b, unit) {
+  var i = 0;
+  a = a.clone();
+
+  while (a.isBefore(b)) {
+    //do proper, expensive increment to catch all-the-tricks
+    a = a.add(1, unit);
+    i += 1;
+  } //oops, we went too-far..
+
+
+  if (!a.isSame(b, unit)) {
+    i -= 1;
+  }
+
+  return i;
+};
+
+var diffQuick = function diffQuick(a, b) {
+  var ms = b.epoch - a.epoch;
+  var obj = {
+    milliseconds: ms,
+    seconds: parseInt(ms / 1000, 10)
+  };
+  obj.minutes = parseInt(obj.seconds / 60, 10);
+  obj.hours = parseInt(obj.minutes / 60, 10);
+  return obj;
+};
+
+var diff = function diff(a, b, unit) {
+  //remove trailing s
+  b = fns.beADate(b, a);
+
+  if (!unit) {
+    return doAll(a, b);
+  } //make sure it's plural-form
+
+
+  unit = fns.normalize(unit);
+
+  if (/s$/.test(unit) !== true) {
+    unit += 's';
+  } //do quick-form for these small-ones
+
+
+  if (unit === 'milliseconds' || unit === 'seconds' || unit === 'minutes') {
+    return diffQuick(a, b)[unit];
+  } //otherwise, do full-version
+
+
+  if (a.isBefore(b)) {
+    return climb(a, b, unit);
+  } else {
+    //reverse it
+    return climb(b, a, unit) * -1;
+  }
+};
+
+doAll = function doAll(a, b) {
+  //do ms, seconds, minutes in a faster way
+  var all = diffQuick(a, b);
+  all.years = diff(a, b, 'year');
+  all.months = diff(a, b, 'month');
+  all.weeks = diff(a, b, 'week');
+  all.days = diff(a, b, 'day'); //only slow-compute hours if it's a small diff
+
+  if (all.years === 0) {
+    all.hours = diff(a, b, 'hour');
+  }
+
+  return all;
+};
+
+module.exports = diff;
+
+},{"../fns":8}],19:[function(_dereq_,module,exports){
+"use strict";
+
+var fns = _dereq_('../../fns'); // "+01:00", "+0100", or simply "+01"
+
+
+var isoOffset = function isoOffset(s) {
+  var offset = s.timezone().current.offset;
+  var minute = '00';
+
+  if (offset % 1 === 0.5) {
+    //fraction of the hour
+    minute = '30';
+    offset = Math.floor(offset);
+  }
+
+  if (offset < 0) {
+    //handle negative sign
+    offset *= -1;
+    offset = fns.zeroPad(offset, 2);
+    offset = '-' + offset;
+  } else {
+    offset = fns.zeroPad(offset, 2);
+    offset = '+' + offset;
+  }
+
+  offset = offset + ':' + minute; //this is a little cleaner?
+
+  if (offset === "+00:00") {
+    offset = 'Z';
+  }
+
+  return offset;
+};
+
+module.exports = isoOffset;
+
+},{"../../fns":8}],20:[function(_dereq_,module,exports){
+'use strict';
+
+var fns = _dereq_('../../fns');
+
+var months = _dereq_('../../data/months');
+
+var days = _dereq_('../../data/days');
+
+var isoOffset = _dereq_('./_offset');
+
+var format = {
+  day: function day(s) {
+    return fns.titleCase(s.dayName());
+  },
+  'day-short': function dayShort(s) {
+    return fns.titleCase(days.short()[s.day()]);
+  },
+  'day-number': function dayNumber(s) {
+    return s.day();
+  },
+  'day-ordinal': function dayOrdinal(s) {
+    return fns.ordinal(s.day());
+  },
+  'day-pad': function dayPad(s) {
+    return fns.zeroPad(s.day());
+  },
+  date: function date(s) {
+    return s.date();
+  },
+  'date-ordinal': function dateOrdinal(s) {
+    return fns.ordinal(s.date());
+  },
+  'date-pad': function datePad(s) {
+    return fns.zeroPad(s.date());
+  },
+  month: function month(s) {
+    return fns.titleCase(s.monthName());
+  },
+  'month-short': function monthShort(s) {
+    return fns.titleCase(months.short()[s.month()]);
+  },
+  'month-number': function monthNumber(s) {
+    return s.month();
+  },
+  'month-ordinal': function monthOrdinal(s) {
+    return fns.ordinal(s.month());
+  },
+  'month-pad': function monthPad(s) {
+    return fns.zeroPad(s.month());
+  },
+  year: function year(s) {
+    var year = s.year();
+
+    if (year > 0) {
+      return year;
+    }
+
+    year = Math.abs(year);
+    return year + ' BC';
+  },
+  'year-short': function yearShort(s) {
+    var year = s.year();
+
+    if (year > 0) {
+      return "'".concat(String(s.year()).substr(2, 4));
+    }
+
+    year = Math.abs(year);
+    return year + ' BC';
+  },
+  time: function time(s) {
+    return s.time();
+  },
+  'time-24': function time24(s) {
+    return "".concat(s.hour24(), ":").concat(fns.zeroPad(s.minute()));
+  },
+  hour: function hour(s) {
+    return s.hour12();
+  },
+  'hour-24': function hour24(s) {
+    return s.hour24();
+  },
+  minute: function minute(s) {
+    return s.minute();
+  },
+  'minute-pad': function minutePad(s) {
+    return fns.zeroPad(s.minute());
+  },
+  second: function second(s) {
+    return s.second();
+  },
+  'second-pad': function secondPad(s) {
+    return fns.zeroPad(s.second());
+  },
+  ampm: function ampm(s) {
+    return s.ampm();
+  },
+  quarter: function quarter(s) {
+    return 'Q' + s.quarter();
+  },
+  season: function season(s) {
+    return s.season();
+  },
+  era: function era(s) {
+    return s.era();
+  },
+  timezone: function timezone(s) {
+    return s.timezone().name;
+  },
+  offset: function offset(s) {
+    return isoOffset(s);
+  },
+  numeric: function numeric(s) {
+    return "".concat(s.year(), "/").concat(fns.zeroPad(s.month() + 1), "/").concat(fns.zeroPad(s.date()));
+  },
+  // yyyy/mm/dd
+  'numeric-us': function numericUs(s) {
+    return "".concat(fns.zeroPad(s.month() + 1), "/").concat(fns.zeroPad(s.date()), "/").concat(s.year());
+  },
+  // mm/dd/yyyy
+  'numeric-uk': function numericUk(s) {
+    return "".concat(fns.zeroPad(s.date()), "/").concat(fns.zeroPad(s.month() + 1), "/").concat(s.year());
+  },
+  //dd/mm/yyyy
+  'mm/dd': function mmDd(s) {
+    return "".concat(fns.zeroPad(s.month() + 1), "/").concat(fns.zeroPad(s.date()));
+  },
+  //mm/dd
+  // ... https://en.wikipedia.org/wiki/ISO_8601 ;(((
+  iso: function iso(s) {
+    var month = fns.zeroPad(s.month() + 1); //1-based months
+
+    var date = fns.zeroPad(s.date());
+    var hour = fns.zeroPad(s.h24());
+    var minute = fns.zeroPad(s.minute());
+    var second = fns.zeroPad(s.second());
+    var ms = fns.zeroPad(s.millisecond(), 3);
+    var offset = isoOffset(s);
+    return "".concat(s.year(), "-").concat(month, "-").concat(date, "T").concat(hour, ":").concat(minute, ":").concat(second, ".").concat(ms).concat(offset); //2018-03-09T08:50:00.000-05:00
+  },
+  'iso-short': function isoShort(s) {
+    var month = fns.zeroPad(s.month() + 1); //1-based months
+
+    var date = fns.zeroPad(s.date());
+    return "".concat(s.year(), "-").concat(month, "-").concat(date); //2017-02-15
+  },
+  'iso-utc': function isoUtc(s) {
+    return new Date(s.epoch).toISOString(); //2017-03-08T19:45:28.367Z
+  },
+  //i made these up
+  'nice': function nice(s) {
+    return "".concat(months.short()[s.month()], " ").concat(fns.ordinal(s.date()), ", ").concat(s.time());
+  },
+  'nice-year': function niceYear(s) {
+    return "".concat(months.short()[s.month()], " ").concat(fns.ordinal(s.date()), ", ").concat(s.year());
+  },
+  'nice-day': function niceDay(s) {
+    return "".concat(days.short()[s.day()], " ").concat(fns.titleCase(months.short()[s.month()]), " ").concat(fns.ordinal(s.date()));
+  },
+  'nice-full': function niceFull(s) {
+    return "".concat(s.dayName(), " ").concat(fns.titleCase(s.monthName()), " ").concat(fns.ordinal(s.date()), ", ").concat(s.time());
+  } //aliases
+
+};
+var aliases = {
+  'day-name': 'day',
+  'month-name': 'month',
+  'iso 8601': 'iso',
+  'time-h24': 'time-24',
+  'time-12': 'time',
+  'time-h12': 'time',
+  'tz': 'timezone',
+  'day-num': 'day-number',
+  'month-num': 'month-number',
+  'nice-short': 'nice',
+  'mdy': 'numeric-us',
+  'dmy': 'numeric-uk',
+  'ymd': 'numeric',
+  'yyyy/mm/dd': 'numeric',
+  'mm/dd/yyyy': 'numeric-us',
+  'dd/mm/yyyy': 'numeric-us',
+  'little-endian': 'numeric-uk',
+  'big-endian': 'numeric',
+  'day-nice': 'nice-day'
+};
+Object.keys(aliases).forEach(function (k) {
+  return format[k] = format[aliases[k]];
+});
+
+var printFormat = function printFormat(s) {
+  var str = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+  //don't print anything if it's an invalid date
+  if (s.isValid() !== true) {
+    return '';
+  } //support .format('month')
+
+
+  if (format.hasOwnProperty(str)) {
+    var out = String(format[str](s) || '');
+
+    if (str !== 'ampm') {
+      out = fns.titleCase(out);
+    }
+
+    return out;
+  } //support '{hour}:{minute}' notation
+
+
+  if (str.indexOf('{') !== -1) {
+    var sections = /\{(.+?)\}/g;
+    str = str.replace(sections, function (_, fmt) {
+      fmt = fmt.toLowerCase().trim();
+
+      if (format.hasOwnProperty(fmt)) {
+        return String(format[fmt](s) || '');
+      }
+
+      return '';
+    });
+    return str;
+  }
+
+  return s.format('iso-short');
+};
+
+module.exports = printFormat;
+
+},{"../../data/days":2,"../../data/months":5,"../../fns":8,"./_offset":19}],21:[function(_dereq_,module,exports){
+'use strict';
+
+var pad = _dereq_('../../fns').zeroPad; //parse this insane unix-time-templating thing, from the 19th century
+//http://unicode.org/reports/tr35/tr35-25.html#Date_Format_Patterns
+//time-symbols we support
+
+
+var mapping = {
+  G: function G(s) {
+    return s.era();
+  },
+  GG: function GG(s) {
+    return s.era();
+  },
+  GGG: function GGG(s) {
+    return s.era();
+  },
+  GGGG: function GGGG(s) {
+    return s.era() === 'AD' ? 'Anno Domini' : 'Before Christ';
+  },
+  //year
+  y: function y(s) {
+    return s.year();
+  },
+  yy: function yy(s) {
+    //last two chars
+    return parseInt(String(s.year()).substr(2, 4), 10);
+  },
+  yyy: function yyy(s) {
+    return s.year();
+  },
+  yyyy: function yyyy(s) {
+    return s.year();
+  },
+  yyyyy: function yyyyy(s) {
+    return '0' + s.year();
+  },
+  // u: (s) => {},//extended non-gregorian years
+  //quarter
+  Q: function Q(s) {
+    return s.quarter();
+  },
+  QQ: function QQ(s) {
+    return s.quarter();
+  },
+  QQQ: function QQQ(s) {
+    return s.quarter();
+  },
+  QQQQ: function QQQQ(s) {
+    return s.quarter();
+  },
+  //month
+  M: function M(s) {
+    return s.month() + 1;
+  },
+  MM: function MM(s) {
+    return pad(s.month() + 1);
+  },
+  MMM: function MMM(s) {
+    return s.format('month-short');
+  },
+  MMMM: function MMMM(s) {
+    return s.format('month');
+  },
+  //week
+  w: function w(s) {
+    return s.week();
+  },
+  ww: function ww(s) {
+    return pad(s.week());
+  },
+  //week of month
+  // W: (s) => s.week(),
+  //date of month
+  d: function d(s) {
+    return s.date();
+  },
+  dd: function dd(s) {
+    return pad(s.date());
+  },
+  //date of year
+  D: function D(s) {
+    return s.dayOfYear();
+  },
+  DD: function DD(s) {
+    return pad(s.dayOfYear());
+  },
+  DDD: function DDD(s) {
+    return pad(s.dayOfYear(), 3);
+  },
+  // F: (s) => {},//date of week in month
+  // g: (s) => {},//modified julian day
+  //day
+  E: function E(s) {
+    return s.format('day-short');
+  },
+  EE: function EE(s) {
+    return s.format('day-short');
+  },
+  EEE: function EEE(s) {
+    return s.format('day-short');
+  },
+  EEEE: function EEEE(s) {
+    return s.format('day');
+  },
+  EEEEE: function EEEEE(s) {
+    return s.format('day')[0];
+  },
+  e: function e(s) {
+    return s.day();
+  },
+  ee: function ee(s) {
+    return s.day();
+  },
+  eee: function eee(s) {
+    return s.format('day-short');
+  },
+  eeee: function eeee(s) {
+    return s.format('day');
+  },
+  eeeee: function eeeee(s) {
+    return s.format('day')[0];
+  },
+  //am/pm
+  a: function a(s) {
+    return s.ampm().toUpperCase();
+  },
+  aa: function aa(s) {
+    return s.ampm().toUpperCase();
+  },
+  aaa: function aaa(s) {
+    return s.ampm().toUpperCase();
+  },
+  aaaa: function aaaa(s) {
+    return s.ampm().toUpperCase();
+  },
+  //hour
+  h: function h(s) {
+    return s.h12();
+  },
+  hh: function hh(s) {
+    return pad(s.h12());
+  },
+  H: function H(s) {
+    return s.hour();
+  },
+  HH: function HH(s) {
+    return pad(s.hour());
+  },
+  // j: (s) => {},//weird hour format
+  m: function m(s) {
+    return s.minute();
+  },
+  mm: function mm(s) {
+    return pad(s.minute());
+  },
+  s: function s(_s) {
+    return _s.second();
+  },
+  ss: function ss(s) {
+    return pad(s.second());
+  },
+  //milliseconds in the day
+  A: function A(s) {
+    return s.epoch - s.startOf('day').epoch;
+  },
+  //timezone
+  z: function z(s) {
+    return s.timezone().name;
+  },
+  zz: function zz(s) {
+    return s.timezone().name;
+  },
+  zzz: function zzz(s) {
+    return s.timezone().name;
+  },
+  zzzz: function zzzz(s) {
+    return s.timezone().name;
+  },
+  Z: function Z(s) {
+    return s.timezone().current.offset + '00';
+  },
+  ZZ: function ZZ(s) {
+    return s.timezone().current.offset + '00';
+  },
+  ZZZ: function ZZZ(s) {
+    return s.timezone().current.offset + '00';
+  },
+  ZZZZ: function ZZZZ(s) {
+    return s.timezone().current.offset + ':00';
+  }
+};
+
+var addAlias = function addAlias(char, to, n) {
+  var name = char;
+  var toName = to;
+
+  for (var i = 0; i < n; i += 1) {
+    mapping[name] = mapping[toName];
+    name += char;
+    toName += to;
+  }
+};
+
+addAlias('q', 'Q', 4);
+addAlias('L', 'M', 4);
+addAlias('Y', 'y', 4);
+addAlias('c', 'e', 4);
+addAlias('k', 'H', 2);
+addAlias('K', 'h', 2);
+addAlias('S', 's', 2);
+addAlias('v', 'z', 4);
+addAlias('V', 'Z', 4);
+
+var unixFmt = function unixFmt(s, str) {
+  var chars = str.split(''); //combine consecutive chars, like 'yyyy' as one.
+
+  var arr = [chars[0]];
+  var quoteOn = false;
+
+  for (var i = 1; i < chars.length; i += 1) {
+    //support quoted substrings
+    if (chars[i] === "'") {
+      quoteOn = !quoteOn; //support '', meaning one tick
+
+      if (quoteOn === true && chars[i + 1] && chars[i + 1] === "'") {
+        quoteOn = true;
+      } else {
+        continue;
+      }
+    } //merge it with the last one
+
+
+    if (quoteOn === true || chars[i] === arr[arr.length - 1][0]) {
+      arr[arr.length - 1] += chars[i];
+    } else {
+      arr.push(chars[i]);
+    }
+  }
+
+  return arr.reduce(function (txt, c) {
+    if (mapping[c] !== undefined) {
+      txt += mapping[c](s) || '';
+    } else {
+      txt += c;
+    }
+
+    return txt;
+  }, '');
+};
+
+module.exports = unixFmt;
+
+},{"../../fns":8}],22:[function(_dereq_,module,exports){
+'use strict';
+
+var fns = _dereq_('../fns');
+
+var days = _dereq_('../data/days');
+
+var months = _dereq_('../data/months');
+
+var addMethods = function addMethods(SpaceTime) {
+  var methods = {
+    i18n: function i18n(data) {
+      if (!fns.isObject(data) || !fns.isObject(data.days) || !fns.isObject(data.months) || !fns.isArray(data.days.short) || !fns.isArray(data.days.long) || !fns.isArray(data.months.short) || !fns.isArray(data.months.long)) {
+        throw new Error('Invalid i18n payload passed.');
+      }
+
+      days.set(data.days);
+      months.set(data.months);
+    }
+  }; //hook them into proto
+
+  Object.keys(methods).forEach(function (k) {
+    SpaceTime.prototype[k] = methods[k];
+  });
+};
+
+module.exports = addMethods;
+
+},{"../data/days":2,"../data/months":5,"../fns":8}],23:[function(_dereq_,module,exports){
+'use strict'; //round to either current, or +1 of this unit
+
+var nearest = function nearest(s, unit) {
+  unit = unit.toLowerCase();
+  unit = unit.replace(/s$/, ''); //singular form...
+
+  var prog = s.progress();
+
+  if (prog[unit] !== undefined) {
+    if (prog[unit] > 0.5) {
+      s = s.add(1, unit);
+    }
+
+    s = s.startOf(unit);
+  } else if (s.silent === false) {
+    console.warn("no known unit '" + unit + "'");
+  }
+
+  return s;
+};
+
+module.exports = nearest;
+
+},{}],24:[function(_dereq_,module,exports){
+'use strict'; //how far it is along, from 0-1
+
+var progress = function progress(s) {
+  var units = ['year', 'season', 'quarter', 'month', 'week', 'day', 'quarterHour', 'hour', 'minute'];
+  var obj = {};
+  units.forEach(function (k) {
+    var start = s.clone().startOf(k);
+    var end = s.clone().endOf(k);
+    var duration = end.epoch - start.epoch;
+    var percent = (s.epoch - start.epoch) / duration;
+    obj[k] = parseFloat(percent.toFixed(2));
+  });
+  return obj;
+};
+
+module.exports = progress;
+
+},{}],25:[function(_dereq_,module,exports){
+'use strict';
+
+var quarters = _dereq_('../../data/quarters');
+
+var seasons = _dereq_('../../data/seasons');
+
+var set = _dereq_('../set/set');
+
+var fns = _dereq_('../../fns'); //destructive setters change the seconds, milliseconds, etc
+//- and not just the unit they're setting
+
+
+var clearMinutes = function clearMinutes(s) {
+  s = s.minute(0);
+  s = s.second(0);
+  s = s.millisecond(1);
+  return s;
+};
+
+module.exports = {
+  //some ambiguity here with 12/24h
+  time: function time(str) {
+    if (str !== undefined) {
+      var s = this.clone();
+      s.epoch = set.time(s, str);
+      return s;
+    }
+
+    return "".concat(this.h12(), ":").concat(fns.zeroPad(this.minute())).concat(this.ampm());
+  },
+  //since the start of the year
+  week: function week(num) {
+    if (num !== undefined) {
+      var s = this.clone();
+      s = s.month(0);
+      s = s.date(1);
+      s = s.day('monday');
+      s = clearMinutes(s); //don't go into last-year
+
+      if (s.monthName() === 'december') {
+        s = s.add(1, 'week');
+      }
+
+      num -= 1; //1-based
+
+      s = s.add(num, 'weeks');
+      return s;
+    } //find-out which week it is
+
+
+    var tmp = this.clone();
+    tmp = tmp.month(0);
+    tmp = tmp.date(1);
+    tmp = clearMinutes(tmp);
+    tmp = tmp.day('monday'); //don't go into last-year
+
+    if (tmp.monthName() === 'december') {
+      tmp = tmp.add(1, 'week');
+    }
+
+    var thisOne = this.epoch; //if the week technically hasn't started yet
+
+    if (tmp.epoch > thisOne) {
+      return 1;
+    }
+
+    for (var i = 0; i < 52; i++) {
+      if (tmp.epoch > thisOne) {
+        return i;
+      }
+
+      tmp = tmp.add(1, 'week');
+    }
+
+    return 52;
+  },
+  quarter: function quarter(num) {
+    if (num !== undefined) {
+      if (typeof num === 'string') {
+        num = num.replace(/^q/i, '');
+        num = parseInt(num, 10);
+      }
+
+      if (quarters[num]) {
+        var s = this.clone();
+        var _month = quarters[num][0];
+        s = s.month(_month);
+        s = s.date(1);
+        s = s.startOf('day');
+        return s;
+      }
+    }
+
+    var month = this.d.getMonth();
+
+    for (var i = 1; i < quarters.length; i++) {
+      if (month < quarters[i][0]) {
+        return i - 1;
+      }
+    }
+
+    return 4;
+  },
+  //'3:30' is 3.5
+  hourFloat: function hourFloat(num) {
+    if (num !== undefined) {
+      var s = this.clone();
+
+      var _minute = num % 1;
+
+      _minute = _minute * 60;
+
+      var _hour = parseInt(num, 10);
+
+      s.epoch = set.hours(s, _hour);
+      s.epoch = set.minutes(s, _minute);
+      return s;
+    }
+
+    var d = this.d;
+    var hour = d.getHours();
+    var minute = d.getMinutes();
+    minute = minute / 60;
+    return hour + minute;
+  },
+  season: function season(input) {
+    var hem = 'north';
+
+    if (this.hemisphere() === 'South') {
+      hem = 'south';
+    }
+
+    if (input !== undefined) {
+      var s = this.clone();
+
+      for (var i = 0; i < seasons[hem].length; i++) {
+        if (input === seasons[hem][i][0]) {
+          s = s.month(seasons[hem][i][1]);
+          s = s.date(1);
+          s = s.startOf('day');
+        }
+      }
+
+      return s;
+    }
+
+    var month = this.d.getMonth();
+
+    for (var _i = 0; _i < seasons[hem].length - 1; _i++) {
+      if (month >= seasons[hem][_i][1] && month < seasons[hem][_i + 1][1]) {
+        return seasons[hem][_i][0];
+      }
+    }
+
+    return 'winter';
+  }
+};
+
+},{"../../data/quarters":6,"../../data/seasons":7,"../../fns":8,"../set/set":30}],26:[function(_dereq_,module,exports){
+'use strict';
+
+var normal = _dereq_('./normal');
+
+var destructive = _dereq_('./destructive');
+
+var tricky = _dereq_('./tricky');
+
+var addMethods = function addMethods(Space) {
+  //hook the methods into prototype
+  Object.keys(normal).forEach(function (k) {
+    Space.prototype[k] = normal[k];
+  });
+  Object.keys(destructive).forEach(function (k) {
+    Space.prototype[k] = destructive[k];
+  });
+  Object.keys(tricky).forEach(function (k) {
+    Space.prototype[k] = tricky[k];
+  });
+};
+
+module.exports = addMethods;
+
+},{"./destructive":25,"./normal":27,"./tricky":28}],27:[function(_dereq_,module,exports){
+'use strict';
+
+var set = _dereq_('../set/set');
+
+var walkTo = _dereq_('../set/walk'); //the most basic get/set methods
+
+
+var methods = {
+  millisecond: function millisecond(num) {
+    if (num !== undefined) {
+      var s = this.clone();
+      s.epoch = set.milliseconds(s, num);
+      return s;
+    }
+
+    return this.d.getMilliseconds();
+  },
+  second: function second(num) {
+    if (num !== undefined) {
+      var s = this.clone();
+      s.epoch = set.seconds(s, num);
+      return s;
+    }
+
+    return this.d.getSeconds();
+  },
+  minute: function minute(num) {
+    if (num !== undefined) {
+      var s = this.clone();
+      s.epoch = set.minutes(s, num);
+      return s;
+    }
+
+    return this.d.getMinutes();
+  },
+  hour: function hour(num) {
+    var d = this.d;
+
+    if (num !== undefined) {
+      var s = this.clone();
+      s.epoch = set.hours(s, num);
+      walkTo(s, {
+        month: this.month(),
+        date: this.date(),
+        hour: num
+      });
+      return s;
+    }
+
+    return d.getHours();
+  },
+  hour12: function hour12(str) {
+    var d = this.d;
+
+    if (str !== undefined) {
+      var s = this.clone();
+      str = '' + str;
+      var m = str.match(/^([0-9]+)(am|pm)$/);
+
+      if (m) {
+        var hour = parseInt(m[1], 10);
+
+        if (m[2] === 'pm') {
+          hour += 12;
+        }
+
+        s.epoch = set.hours(s, hour);
+      }
+
+      return s;
+    } //get the hour
+
+
+    var hour12 = d.getHours();
+
+    if (hour12 > 12) {
+      hour12 = hour12 - 12;
+    }
+
+    if (hour12 === 0) {
+      hour12 = 12;
+    }
+
+    return hour12;
+  },
+  date: function date(num) {
+    if (num !== undefined) {
+      var s = this.clone();
+      s.epoch = set.date(s, num);
+      return s;
+    }
+
+    return this.d.getDate();
+  },
+  month: function month(input) {
+    if (input !== undefined) {
+      var s = this.clone();
+      s.epoch = set.month(s, input);
+      return s;
+    }
+
+    return this.d.getMonth();
+  },
+  year: function year(num) {
+    if (num !== undefined) {
+      var s = this.clone();
+      s.epoch = set.year(s, num);
+      return s;
+    }
+
+    return this.d.getFullYear();
+  },
+  iso: function iso(num) {
+    if (num !== undefined) {
+      return this.set(num);
+    }
+
+    return this.format('iso');
+  },
+  dayTime: function dayTime(str) {
+    if (str !== undefined) {
+      var times = {
+        morning: '7:00am',
+        breakfast: '7:00am',
+        noon: '12:00am',
+        lunch: '12:00pm',
+        afternoon: '2:00pm',
+        evening: '6:00pm',
+        dinner: '6:00pm',
+        night: '11:00pm',
+        midnight: '23:59pm'
+      };
+      var s = this.clone();
+      str = str || '';
+      str = str.toLowerCase();
+
+      if (times.hasOwnProperty(str) === true) {
+        s = s.time(times[str]);
+      }
+
+      return s;
+    }
+
+    var h = this.hour();
+
+    if (h < 6) {
+      return 'night';
+    }
+
+    if (h < 12) {
+      //until noon
+      return 'morning';
+    }
+
+    if (h < 17) {
+      //until 5pm
+      return 'afternoon';
+    }
+
+    if (h < 22) {
+      //until 10pm
+      return 'evening';
+    }
+
+    return 'night';
+  },
+  dayOfYear: function dayOfYear(num) {
+    if (num !== undefined) {
+      var s = this.clone();
+      s.epoch = set.dayOfYear(s, num);
+      return s;
+    } //days since newyears - jan 1st is 1, jan 2nd is 2...
+
+
+    var sum = 0;
+    var month = this.d.getMonth();
+    var tmp; //count the num days in each month
+
+    for (var i = 1; i <= month; i++) {
+      tmp = new Date();
+      tmp.setDate(1);
+      tmp.setYear(this.d.getFullYear()); //the year matters, because leap-years
+
+      tmp.setHours(1);
+      tmp.setMinutes(1);
+      tmp.setMonth(i);
+      tmp.setHours(-2); //the last day of the month
+
+      sum += tmp.getDate();
+    }
+
+    return sum + this.d.getDate();
+  },
+  //bc/ad years
+  era: function era(str) {
+    if (str !== undefined) {
+      var s = this.clone();
+      str = str.toLowerCase(); //TODO: there is no year-0AD i think. may have off-by-1 error here
+
+      var year = s.d.getFullYear(); //make '1992' into 1992bc..
+
+      if (str === 'bc' && year > 0) {
+        s.epoch = set.year(s, year * -1);
+      } //make '1992bc' into '1992'
+
+
+      if (str === 'ad' && year < 0) {
+        s.epoch = set.year(s, year * -1);
+      }
+
+      return s;
+    }
+
+    if (this.d.getFullYear() < 0) {
+      return 'BC';
+    }
+
+    return 'AD';
+  },
+  //alias of 'since' but opposite - like moment.js
+  from: function from(d) {
+    d = this.clone().set(d);
+    return d.since(this);
+  },
+  fromNow: function fromNow() {
+    var d = this.clone().set(Date.now());
+    return d.since(this);
+  }
+}; //aliases
+
+methods.milliseconds = methods.millisecond;
+methods.seconds = methods.second;
+methods.minutes = methods.minute;
+methods.hours = methods.hour;
+methods.hour24 = methods.hour;
+methods.h12 = methods.hour12;
+methods.h24 = methods.hour24;
+methods.days = methods.day;
+module.exports = methods;
+
+},{"../set/set":30,"../set/walk":31}],28:[function(_dereq_,module,exports){
+'use strict';
+
+var days = _dereq_('../../data/days');
+
+var months = _dereq_('../../data/months');
+
+var walkTo = _dereq_('../set/walk'); //non-destructive getters/setters with fancy moves to do
+
+
+module.exports = {
+  //like 'wednesday' (hard!)
+  day: function day(input) {
+    if (input === undefined) {
+      return this.d.getDay();
+    }
+
+    var original = this.clone();
+    var want = input; // accept 'wednesday'
+
+    if (typeof input === 'string') {
+      input = input.toLowerCase();
+      want = days.short().indexOf(input);
+
+      if (want === -1) {
+        want = days.long().indexOf(input);
+      }
+    } //move approx
+
+
+    var day = this.d.getDay();
+    var diff = day - want;
+    var s = this.subtract(diff * 24, 'hours'); //tighten it back up
+
+    walkTo(s, {
+      hour: original.hour(),
+      minute: original.minute(),
+      second: original.second()
+    });
+    return s;
+  },
+  ampm: function ampm(input) {
+    var which = 'am';
+    var hour = this.hour();
+
+    if (hour >= 12) {
+      which = 'pm';
+    }
+
+    if (input === undefined) {
+      return which;
+    }
+
+    var s = this.clone();
+
+    if (input === which) {
+      return s;
+    }
+
+    if (s === 'am') {
+      s = s.subtract(12, 'hours');
+    } else {
+      s = s.add(12, 'hours');
+    }
+
+    return s;
+  },
+  //these are helpful name-wrappers
+  dayName: function dayName(input) {
+    if (input === undefined) {
+      return days.long()[this.day()];
+    }
+
+    var s = this.clone();
+    s = s.day(input);
+    return s;
+  },
+  monthName: function monthName(input) {
+    if (input === undefined) {
+      return months.long()[this.month()];
+    }
+
+    var s = this.clone();
+    s = s.month(input);
+    return s;
+  }
+};
+
+},{"../../data/days":2,"../../data/months":5,"../set/walk":31}],29:[function(_dereq_,module,exports){
+'use strict'; //make a string, for easy comparison between dates
+
+var print = {
+  millisecond: function millisecond(s) {
+    return s.epoch;
+  },
+  second: function second(s) {
+    return [s.year(), s.month(), s.date(), s.hour(), s.minute(), s.second()].join('-');
+  },
+  minute: function minute(s) {
+    return [s.year(), s.month(), s.date(), s.hour(), s.minute()].join('-');
+  },
+  hour: function hour(s) {
+    return [s.year(), s.month(), s.date(), s.hour()].join('-');
+  },
+  day: function day(s) {
+    return [s.year(), s.month(), s.date()].join('-');
+  },
+  week: function week(s) {
+    return [s.year(), s.week()].join('-');
+  },
+  month: function month(s) {
+    return [s.year(), s.month()].join('-');
+  },
+  quarter: function quarter(s) {
+    return [s.year(), s.quarter()].join('-');
+  },
+  year: function year(s) {
+    return s.year();
+  }
+};
+print.date = print.day;
+
+var addMethods = function addMethods(SpaceTime) {
+  SpaceTime.prototype.isSame = function (b, unit) {
+    var a = this;
+
+    if (!unit) {
+      return null;
+    }
+
+    if (typeof b === 'string' || typeof b === 'number') {
+      b = new SpaceTime(b, this.timezone.name);
+    } //support 'seconds' aswell as 'second'
+
+
+    unit = unit.replace(/s$/, '');
+
+    if (print[unit]) {
+      return print[unit](a) === print[unit](b);
+    }
+
+    return null;
+  };
+};
+
+module.exports = addMethods;
+
+},{}],30:[function(_dereq_,module,exports){
+'use strict'; // javascript setX methods like setDate() can't be used because of the local bias
+//these methods wrap around them.
+
+var ms = _dereq_('../../data/milliseconds');
+
+var months = _dereq_('../../data/months');
+
+var monthLength = _dereq_('../../data/monthLengths');
+
+var walkTo = _dereq_('./walk');
+
+var validate = function validate(n) {
+  //handle number as a string
+  if (typeof n === 'string') {
+    n = parseInt(n, 10);
+  }
+
+  return n;
+};
+
+var order = ['year', 'month', 'date', 'hour', 'minute', 'second', 'millisecond']; //reduce hostile micro-changes when moving dates by millisecond
+
+var confirm = function confirm(s, tmp, unit) {
+  var n = order.indexOf(unit);
+  var arr = order.slice(n, order.length);
+
+  for (var i = 0; i < arr.length; i++) {
+    var want = tmp[arr[i]]();
+    s[arr[i]](want);
+  }
+
+  return s;
+};
+
+module.exports = {
+  milliseconds: function milliseconds(s, n) {
+    n = validate(n);
+    var current = s.millisecond();
+    var diff = current - n; //milliseconds to shift by
+
+    return s.epoch - diff;
+  },
+  seconds: function seconds(s, n) {
+    n = validate(n);
+    var diff = s.second() - n;
+    var shift = diff * ms.second;
+    return s.epoch - shift;
+  },
+  minutes: function minutes(s, n) {
+    n = validate(n);
+    var old = s.clone();
+    var diff = s.minute() - n;
+    var shift = diff * ms.minute;
+    s.epoch -= shift;
+    confirm(s, old, 'second');
+    return s.epoch;
+  },
+  hours: function hours(s, n) {
+    n = validate(n);
+    var old = s.clone();
+    var diff = s.hour() - n;
+    var shift = diff * ms.hour;
+    s.epoch -= shift;
+    confirm(s, old, 'minute');
+    return s.epoch;
+  },
+  //support setting time by '4:25pm' - this isn't very-well developed..
+  time: function time(s, str) {
+    var m = str.match(/([0-9]{1,2}):([0-9]{1,2})(am|pm)?/);
+
+    if (!m) {
+      //fallback to support just '2am'
+      m = str.match(/([0-9]{1,2})(am|pm)/);
+
+      if (!m) {
+        return s.epoch;
+      }
+
+      m.splice(2, 0, '0'); //add implicit 0 minutes
+    }
+
+    var h24 = false;
+    var hour = parseInt(m[1], 10);
+    var minute = parseInt(m[2], 10);
+
+    if (hour > 12) {
+      h24 = true;
+    } //make the hour into proper 24h time
+
+
+    if (h24 === false) {
+      if (m[3] === 'am' && hour === 12) {
+        //12am is midnight
+        hour = 0;
+      }
+
+      if (m[3] === 'pm' && hour < 12) {
+        //12pm is noon
+        hour += 12;
+      }
+    }
+
+    s = s.hour(hour);
+    s = s.minute(minute);
+    s = s.second(0);
+    s = s.millisecond(0);
+    return s.epoch;
+  },
+  date: function date(s, n) {
+    n = validate(n);
+    walkTo(s, {
+      date: n
+    });
+    return s.epoch;
+  },
+  //this one's tricky
+  month: function month(s, n) {
+    if (typeof n === 'string') {
+      n = months.mapping()[n.toLowerCase()];
+    }
+
+    n = validate(n);
+    var date = s.date(); //there's no 30th of february, etc.
+
+    if (date > monthLength[n]) {
+      //make it as close as we can..
+      date = monthLength[n];
+    }
+
+    walkTo(s, {
+      month: n,
+      date: date
+    });
+    return s.epoch;
+  },
+  year: function year(s, n) {
+    n = validate(n);
+    walkTo(s, {
+      year: n
+    });
+    return s.epoch;
+  },
+  dayOfYear: function dayOfYear(s, n) {
+    n = validate(n);
+    var old = s.clone();
+    var diff = n - s.dayOfYear();
+    var shift = diff * ms.day;
+    s.epoch += shift;
+    confirm(s, old, 'hour');
+    return s.epoch;
+  }
+};
+
+},{"../../data/milliseconds":3,"../../data/monthLengths":4,"../../data/months":5,"./walk":31}],31:[function(_dereq_,module,exports){
+'use strict';
+
+var ms = _dereq_('../../data/milliseconds'); //basically, step-forward/backward until js Date object says we're there.
+
+
+var walk = function walk(s, n, fn, unit, previous) {
+  var current = s.d[fn]();
+
+  if (current === n) {
+    return; //already there
+  }
+
+  var startUnit = previous === null ? null : s.d[previous]();
+  var original = s.epoch; //try to get it as close as we can
+
+  var diff = n - current;
+  s.epoch += ms[unit] * diff; //DST edge-case: if we are going many days, be a little conservative
+
+  if (unit === 'day' && Math.abs(diff) > 28) {
+    //but don't push it over a month
+    if (n < 28) {
+      s.epoch += ms.hour;
+    }
+  } //repair it if we've gone too far or something
+  //(go by half-steps, just in case)
+
+
+  var halfStep = ms[unit] / 2;
+
+  while (s.d[fn]() < n) {
+    s.epoch += halfStep;
+  }
+
+  while (s.d[fn]() > n) {
+    s.epoch -= halfStep;
+  } //oops, did we change previous unit? revert it.
+
+
+  if (previous !== null && startUnit !== s.d[previous]()) {
+    console.warn('spacetime warning: missed setting ' + unit);
+    s.epoch = original;
+  }
+}; //find the desired date by a increment/check while loop
+
+
+var units = {
+  year: {
+    valid: function valid(n) {
+      return n > -4000 && n < 4000;
+    },
+    walkTo: function walkTo(s, n) {
+      return walk(s, n, 'getFullYear', 'year', null);
+    }
+  },
+  month: {
+    valid: function valid(n) {
+      return n >= 0 && n <= 11;
+    },
+    walkTo: function walkTo(s, n) {
+      var d = s.d;
+      var current = d.getMonth();
+      var original = s.epoch;
+      var startUnit = d.getYear();
+
+      if (current === n) {
+        return;
+      } //try to get it as close as we can..
+
+
+      var diff = n - current;
+      s.epoch += ms.day * (diff * 28); //special case
+      //oops, did we change the year? revert it.
+
+      if (startUnit !== s.d.getYear()) {
+        s.epoch = original;
+      } //incriment by day
+
+
+      while (s.d.getMonth() < n) {
+        s.epoch += ms.day;
+      }
+
+      while (s.d.getMonth() > n) {
+        s.epoch -= ms.day;
+      }
+    }
+  },
+  date: {
+    valid: function valid(n) {
+      return n > 0 && n <= 31;
+    },
+    walkTo: function walkTo(s, n) {
+      return walk(s, n, 'getDate', 'day', 'getMonth');
+    }
+  },
+  hour: {
+    valid: function valid(n) {
+      return n >= 0 && n < 24;
+    },
+    walkTo: function walkTo(s, n) {
+      return walk(s, n, 'getHours', 'hour', 'getDate');
+    }
+  },
+  minute: {
+    valid: function valid(n) {
+      return n >= 0 && n < 60;
+    },
+    walkTo: function walkTo(s, n) {
+      return walk(s, n, 'getMinutes', 'minute', 'getHours');
+    }
+  },
+  second: {
+    valid: function valid(n) {
+      return n >= 0 && n < 60;
+    },
+    walkTo: function walkTo(s, n) {
+      //do this one directly
+      s.epoch = s.seconds(n).epoch;
+    }
+  },
+  millisecond: {
+    valid: function valid(n) {
+      return n >= 0 && n < 1000;
+    },
+    walkTo: function walkTo(s, n) {
+      //do this one directly
+      s.epoch = s.milliseconds(n).epoch;
+    }
+  }
+};
+
+var walkTo = function walkTo(s, wants) {
+  var keys = Object.keys(units);
+  var old = s.clone();
+
+  for (var i = 0; i < keys.length; i++) {
+    var k = keys[i];
+    var n = wants[k];
+
+    if (n === undefined) {
+      n = old[k]();
+    }
+
+    if (typeof n === 'string') {
+      n = parseInt(n, 10);
+    } //make-sure it's valid
+
+
+    if (!units[k].valid(n)) {
+      s.epoch = null;
+
+      if (s.silent === false) {
+        console.warn('invalid ' + k + ': ' + n);
+      }
+
+      return;
+    } // console.log(k, n)
+
+
+    units[k].walkTo(s, n);
+  }
+
+  return;
+};
+
+module.exports = walkTo;
+
+},{"../../data/milliseconds":3}],32:[function(_dereq_,module,exports){
+'use strict';
+
+var fns = _dereq_('../fns'); //by spencermountain + Shaun Grady
+//our conceptual 'break-points' for each unit
+
+
+var qualifiers = {
+  months: {
+    almost: 10,
+    over: 4
+  },
+  days: {
+    almost: 25,
+    over: 10
+  },
+  hours: {
+    almost: 20,
+    over: 8
+  },
+  minutes: {
+    almost: 50,
+    over: 20
+  },
+  seconds: {
+    almost: 50,
+    over: 20
+  } //get number of hours/minutes... between the two dates
+
+};
+
+function getDiff(a, b) {
+  var isBefore = a.isBefore(b);
+  var later = isBefore ? b : a;
+  var earlier = isBefore ? a : b;
+  earlier = earlier.clone();
+  var diff = {
+    years: 0,
+    months: 0,
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  };
+  Object.keys(diff).forEach(function (unit) {
+    if (earlier.isSame(later, unit)) {
+      return;
+    }
+
+    var max = earlier.diff(later, unit);
+    earlier = earlier.add(max, unit); //did we go one too far?
+
+    if (earlier.epoch > later.epoch + 10) {
+      //(fudge this calc by 10 milliseconds)
+      earlier = earlier.subtract(1, unit);
+      max -= 1;
+    }
+
+    diff[unit] = max;
+  }); //reverse it
+
+  if (isBefore) {
+    Object.keys(diff).forEach(function (u) {
+      if (diff[u] !== 0) {
+        diff[u] *= -1;
+      }
+    });
+  }
+
+  return diff;
+} // Expects a plural unit arg
+
+
+function pluralize(value, unit) {
+  if (value === 1) {
+    unit = unit.slice(0, -1);
+  }
+
+  return value + ' ' + unit;
+} //create the human-readable diff between the two dates
+
+
+var since = function since(start, end) {
+  end = fns.beADate(end, start);
+  var diff = getDiff(start, end);
+  var isNow = Object.keys(diff).every(function (u) {
+    return !diff[u];
+  });
+
+  if (isNow === true) {
+    return {
+      diff: diff,
+      rounded: 'now',
+      qualified: 'now',
+      precise: 'now'
+    };
+  }
+
+  var rounded;
+  var qualified;
+  var precise;
+  var englishValues = []; //go through each value and create its text-representation
+
+  Object.keys(diff).forEach(function (unit, i, units) {
+    var value = Math.abs(diff[unit]);
+
+    if (value === 0) {
+      return;
+    }
+
+    var englishValue = pluralize(value, unit);
+    englishValues.push(englishValue);
+
+    if (!rounded) {
+      rounded = qualified = englishValue;
+
+      if (i > 4) {
+        return;
+      } //is it a 'almost' something, etc?
+
+
+      var nextUnit = units[i + 1];
+      var nextValue = Math.abs(diff[nextUnit]);
+
+      if (nextValue > qualifiers[nextUnit].almost) {
+        rounded = pluralize(value + 1, unit);
+        qualified = 'almost ' + rounded;
+      } else if (nextValue > qualifiers[nextUnit].over) qualified = 'over ' + englishValue;
+    }
+  }); //make them into a string
+
+  precise = englishValues.splice(0, 2).join(', '); //handle before/after logic
+
+  if (start.isAfter(end) === true) {
+    rounded += ' ago';
+    qualified += ' ago';
+    precise += ' ago';
+  } else {
+    rounded = 'in ' + rounded;
+    qualified = 'in ' + qualified;
+    precise = 'in ' + precise;
+  }
+
+  return {
+    diff: diff,
+    rounded: rounded,
+    qualified: qualified,
+    precise: precise
+  };
+};
+
+module.exports = since;
+
+},{"../fns":8}],33:[function(_dereq_,module,exports){
+'use strict';
+
+var seasons = _dereq_('../data/seasons');
+
+var quarters = _dereq_('../data/quarters');
+
+var walkTo = _dereq_('./set/walk');
+
+var units = {
+  minute: function minute(s) {
+    walkTo(s, {
+      second: 0,
+      millisecond: 0
+    });
+    return s;
+  },
+  quarterHour: function quarterHour(s) {
+    var minute = s.minutes();
+
+    if (minute >= 45) {
+      s = s.minutes(45);
+    } else if (minute >= 30) {
+      s = s.minutes(30);
+    } else if (minute >= 15) {
+      s = s.minutes(15);
+    } else {
+      s = s.minutes(0);
+    }
+
+    walkTo(s, {
+      second: 0,
+      millisecond: 0
+    });
+    return s;
+  },
+  hour: function hour(s) {
+    walkTo(s, {
+      minute: 0,
+      second: 0,
+      millisecond: 0
+    });
+    return s;
+  },
+  day: function day(s) {
+    walkTo(s, {
+      hour: 0,
+      minute: 0,
+      second: 0,
+      millisecond: 0
+    });
+    return s;
+  },
+  week: function week(s) {
+    var original = s.clone();
+    s = s.day(1); //monday
+
+    if (s.isAfter(original)) {
+      s = s.subtract(1, 'week');
+    }
+
+    walkTo(s, {
+      hour: 0,
+      minute: 0,
+      second: 0,
+      millisecond: 0
+    });
+    return s;
+  },
+  month: function month(s) {
+    walkTo(s, {
+      date: 1,
+      hour: 0,
+      minute: 0,
+      second: 0,
+      millisecond: 0
+    });
+    return s;
+  },
+  quarter: function quarter(s) {
+    var q = s.quarter();
+
+    if (quarters[q]) {
+      walkTo(s, {
+        month: quarters[q][0],
+        date: quarters[q][1],
+        hour: 0,
+        minute: 0,
+        second: 0,
+        millisecond: 0
+      });
+    }
+
+    return s;
+  },
+  season: function season(s) {
+    var current = s.season();
+    var hem = 'north';
+
+    if (s.hemisphere() === 'South') {
+      hem = 'south';
+    }
+
+    for (var i = 0; i < seasons[hem].length; i++) {
+      if (seasons[hem][i][0] === current) {
+        //winter goes between years
+        var year = s.year();
+
+        if (current === 'winter' && s.month() < 3) {
+          year -= 1;
+        }
+
+        walkTo(s, {
+          year: year,
+          month: seasons[hem][i][1],
+          date: seasons[hem][i][2],
+          hour: 0,
+          minute: 0,
+          second: 0,
+          millisecond: 0
+        });
+        return s;
+      }
+    }
+
+    return s;
+  },
+  year: function year(s) {
+    walkTo(s, {
+      month: 0,
+      date: 1,
+      hour: 0,
+      minute: 0,
+      second: 0,
+      millisecond: 0
+    });
+    return s;
+  },
+  decade: function decade(s) {
+    s = s.startOf('year');
+    var year = s.year();
+    var decade = parseInt(year / 10, 10) * 10;
+    s = s.year(decade);
+    return s;
+  },
+  century: function century(s) {
+    s = s.startOf('year');
+    var year = s.year();
+    var decade = parseInt(year / 100, 10) * 100;
+    s = s.year(decade);
+    return s;
+  }
+};
+units.date = units.day;
+
+var startOf = function startOf(a, unit) {
+  var s = a.clone();
+
+  if (units[unit]) {
+    return units[unit](s);
+  }
+
+  if (unit === 'summer' || unit === 'winter') {
+    s = s.season(unit);
+    return units.season(s);
+  }
+
+  return s;
+}; //piggy-backs off startOf
+
+
+var endOf = function endOf(a, unit) {
+  var s = a.clone();
+
+  if (units[unit]) {
+    s = units[unit](s);
+    s = s.add(1, unit);
+    s = s.subtract(1, 'milliseconds');
+    return s;
+  }
+
+  return s;
+};
+
+module.exports = {
+  startOf: startOf,
+  endOf: endOf
+};
+
+},{"../data/quarters":6,"../data/seasons":7,"./set/walk":31}],34:[function(_dereq_,module,exports){
+'use strict';
+
+var quickOffset = _dereq_('./timezone/quick');
+
+var findTz = _dereq_('./timezone/find');
+
+var handleInput = _dereq_('./input');
+
+var methods = _dereq_('./methods');
+
+var timezones = _dereq_('../zonefile/unpack'); //fake timezone-support, for fakers (es5 class)
+
+
+var SpaceTime = function SpaceTime(input, tz, options) {
+  options = options || {}; //the holy moment
+
+  this.epoch = null; //the shift for the given timezone
+
+  this.tz = findTz(tz, timezones); //whether to output warnings to console
+
+  this.silent = options.silent || true; //add getter/setters
+
+  Object.defineProperty(this, 'd', {
+    //return a js date object
+    get: function get() {
+      var offset = quickOffset(this); //every computer is somewhere- get this computer's built-in offset
+
+      var bias = new Date(this.epoch).getTimezoneOffset() || 0; //movement
+
+      var shift = bias + offset * 60; //in minutes
+
+      shift = shift * 60 * 1000; //in ms
+      //remove this computer's offset
+
+      var epoch = this.epoch + shift;
+      var d = new Date(epoch);
+      return d;
+    }
+  }); //add this data on the object, to allow adding new timezones
+
+  Object.defineProperty(this, 'timezones', {
+    get: function get() {
+      return timezones;
+    },
+    set: function set(obj) {
+      timezones = obj;
+      return obj;
+    }
+  }); //parse the various formats
+
+  if (input !== undefined || input === null) {
+    var tmp = handleInput(this, input, tz, options);
+    this.epoch = tmp.epoch;
+  }
+}; //(add instance methods to prototype)
+
+
+Object.keys(methods).forEach(function (k) {
+  SpaceTime.prototype[k] = methods[k];
+}); // ¯\_(ツ)_/¯
+
+SpaceTime.prototype.clone = function () {
+  return new SpaceTime(this.epoch, this.tz, {
+    silent: this.silent
+  });
+}; //append more methods
+
+
+_dereq_('./methods/query')(SpaceTime);
+
+_dereq_('./methods/add')(SpaceTime);
+
+_dereq_('./methods/same')(SpaceTime);
+
+_dereq_('./methods/compare')(SpaceTime);
+
+_dereq_('./methods/i18n')(SpaceTime);
+
+module.exports = SpaceTime;
+
+},{"../zonefile/unpack":45,"./input":11,"./methods":15,"./methods/add":16,"./methods/compare":17,"./methods/i18n":22,"./methods/query":26,"./methods/same":29,"./timezone/find":36,"./timezone/quick":39}],35:[function(_dereq_,module,exports){
+"use strict";
+
+var informal = _dereq_('../../zonefile/informal').informal; //these timezone abbreviations are used aggressively in other places
+//if tz doesn't have an abbreviation, and is in the same offset...
+//these are pretty subjective. i just made them up.
+
+
+var greedy_north = {
+  '-8': 'america/anchorage',
+  '-7': 'america/los_angeles',
+  '-6': 'america/denver',
+  '-5': 'america/chicago',
+  '-4': 'america/new_york',
+  '-3': 'america/halifax',
+  '0': 'etc/gmt',
+  '1': 'europe/lisbon',
+  '2': 'europe/berlin',
+  // '3': 'europe/riga',
+  // '3': 'europe/moscow',
+  '8': 'asia/shanghai'
+};
+var greedy_south = {
+  '-3': 'america/sao_paulo',
+  '0': 'etc/gmt',
+  '1': 'africa/lagos',
+  // '2': 'africa/khartoum',//central africa
+  '2': 'africa/johannesburg',
+  //south africa
+  '3': 'africa/nairobi',
+  '10': 'australia/brisbane',
+  '12': 'pacific/auckland'
+};
+var british = {
+  'europe/belfast': true,
+  'europe/dublin': true,
+  'europe/guernsey': true,
+  'europe/jersey': true
+};
+
+var handleSpecial = function handleSpecial(tz, offset) {
+  if (british.hasOwnProperty(tz)) {
+    if (offset === '1') {
+      return 'BST';
+    }
+
+    return 'GMT';
+  }
+
+  return null;
+};
+
+var chooseAbbrev = function chooseAbbrev(arr, obj) {
+  if (arr[1] && obj.current.isDST === true) {
+    return arr[1].toUpperCase();
+  }
+
+  if (arr[0]) {
+    return arr[0].toUpperCase();
+  }
+
+  return null;
+}; //
+
+
+var display = function display(tz, obj) {
+  //try a straight-up match
+  if (informal.hasOwnProperty(tz)) {
+    var abbr = chooseAbbrev(informal[tz], obj);
+
+    if (abbr !== null) {
+      return abbr;
+    }
+  }
+
+  var offset = String(obj.default_offset);
+  var special = handleSpecial(tz, offset);
+
+  if (special) {
+    return special;
+  }
+
+  if (obj.hemisphere === 'North' && greedy_north.hasOwnProperty(offset)) {
+    var useTz = greedy_north[offset];
+    return chooseAbbrev(informal[useTz], obj) || '';
+  }
+
+  if (obj.hemisphere === 'South' && greedy_south.hasOwnProperty(offset)) {
+    var _useTz = greedy_south[offset];
+    return chooseAbbrev(informal[_useTz], obj) || '';
+  }
+
+  return '';
+};
+
+module.exports = display;
+
+},{"../../zonefile/informal":44}],36:[function(_dereq_,module,exports){
+'use strict';
+
+var tzs = _dereq_('../../zonefile/unpack');
+
+var informal = _dereq_('../../zonefile/informal').lookup;
+
+var guessTz = _dereq_('./guessTz');
+
+var local = guessTz();
+var isOffset = /(\-?[0-9]+)h(rs)?/; //add all the city names by themselves
+
+var cities = Object.keys(tzs).reduce(function (h, k) {
+  var city = k.split('/')[1];
+  city = city.replace(/_/g, ' ');
+  h[city] = k;
+  return h;
+}, {}); //try to match these against iana form
+
+var normalize = function normalize(tz) {
+  tz = tz.replace(/ time/g, '');
+  tz = tz.replace(/ (standard|daylight|summer)/g, '');
+  tz = tz.replace(/\b(east|west|north|south)ern/g, '$1');
+  tz = tz.replace(/\b(africa|america|australia)n/g, '$1');
+  tz = tz.replace(/\beuropean/g, 'europe');
+  tz = tz.replace(/\islands/g, 'island');
+  return tz;
+}; // try our best to reconcile the timzone to this given string
+
+
+var lookupTz = function lookupTz(str, zones) {
+  if (!str) {
+    return local;
+  }
+
+  var tz = str.trim();
+  var split = str.split('/'); //support long timezones like 'America/Argentina/Rio_Gallegos'
+
+  if (split.length > 2 && zones.hasOwnProperty(tz) === false) {
+    tz = split[0] + '/' + split[1];
+  }
+
+  tz = tz.toLowerCase();
+
+  if (zones.hasOwnProperty(tz) === true) {
+    return tz;
+  } //lookup more loosely..
+
+
+  tz = normalize(tz);
+
+  if (zones.hasOwnProperty(tz) === true) {
+    return tz;
+  } //try abbrevations and things
+
+
+  if (informal.hasOwnProperty(tz) === true) {
+    return informal[tz];
+  } //try city-names
+
+
+  if (cities.hasOwnProperty(tz) === true) {
+    return cities[tz];
+  } // //try to parse '-5h'
+
+
+  var m = tz.match(isOffset);
+
+  if (m !== null) {
+    var num = Number(m[1]);
+    num = num * -1; //it's opposite!
+
+    num = (num > 0 ? '+' : '') + num;
+    var gmt = 'etc/gmt' + num;
+
+    if (zones.hasOwnProperty(gmt)) {
+      return gmt;
+    }
+  }
+
+  console.warn('Cannot find timezone named: \'' + str + '\'');
+  return local;
+};
+
+module.exports = lookupTz;
+
+},{"../../zonefile/informal":44,"../../zonefile/unpack":45,"./guessTz":37}],37:[function(_dereq_,module,exports){
+'use strict'; //find the implicit iana code for this machine.
+//safely query the Intl object
+//based on - https://bitbucket.org/pellepim/jstimezonedetect/src
+
+var fallbackTZ = 'asia/shanghai'; //
+//this Intl object is not supported often, yet
+
+var safeIntl = function safeIntl() {
+  if (typeof Intl === 'undefined' || typeof Intl.DateTimeFormat === 'undefined') {
+    return null;
+  }
+
+  var format = Intl.DateTimeFormat();
+
+  if (typeof format === 'undefined' || typeof format.resolvedOptions === 'undefined') {
+    return null;
+  }
+
+  var timezone = format.resolvedOptions().timeZone;
+
+  if (!timezone || timezone.indexOf('/') === -1 && timezone === 'UTC') {
+    return null;
+  }
+
+  return timezone;
+};
+
+var guessTz = function guessTz() {
+  var timezone = safeIntl();
+
+  if (timezone === null) {
+    return fallbackTZ;
+  }
+
+  return timezone.toLowerCase();
+}; //do it once per computer
+
+
+module.exports = guessTz;
+
+},{}],38:[function(_dereq_,module,exports){
+'use strict'; // const zones = require('../../data');
+
+var findTz = _dereq_('./find');
+
+var inSummerTime = _dereq_('./summerTime');
+
+var display = _dereq_('./display');
+
+var parseDst = function parseDst(dst) {
+  if (!dst) {
+    return [];
+  }
+
+  return dst.split('->');
+};
+
+var titleCase = function titleCase(str) {
+  str = str[0].toUpperCase() + str.substr(1);
+  str = str.replace(/\/gmt/, '/GMT');
+  str = str.replace(/[\/_]([a-z])/ig, function (s) {
+    return s.toUpperCase();
+  });
+  return str;
+}; //get metadata about this timezone
+
+
+var timezone = function timezone(s) {
+  var zones = s.timezones;
+  var tz = s.tz;
+
+  if (zones.hasOwnProperty(tz) === false) {
+    tz = findTz(s.tz, zones);
+  }
+
+  if (tz === null) {
+    if (s.silent === false) {
+      console.warn("Warn: could not find given or local timezone - '" + s.tz + "'");
+    }
+
+    return {
+      current: {
+        epochShift: 0
+      }
+    };
+  }
+
+  var found = zones[tz];
+  var result = {
+    name: titleCase(tz),
+    hasDst: Boolean(found.dst),
+    default_offset: found.offset,
+    //do north-hemisphere version as default (sorry!)
+    hemisphere: found.hem === 's' ? 'South' : 'North',
+    current: {}
+  };
+
+  if (result.hasDst) {
+    var arr = parseDst(found.dst);
+    result.change = {
+      start: arr[0],
+      back: arr[1]
+    };
+  } //find the offsets for summer/winter times
+  //(these variable names are north-centric)
+
+
+  var summer = found.offset; // (july)
+
+  var winter = summer; // (january) assume it's the same for now
+
+  if (result.hasDst === true) {
+    if (result.hemisphere === 'North') {
+      winter = summer - 1;
+    } else {
+      //southern hemisphere
+      winter = found.offset + 1;
+    }
+  } //find out which offset to use right now
+  //use 'summer' time july-time
+
+
+  if (result.hasDst === false) {
+    result.current.offset = summer;
+    result.current.isDST = false;
+  } else if (inSummerTime(s.epoch, result.change.start, result.change.back, summer) === true) {
+    result.current.offset = summer;
+    result.current.isDST = result.hemisphere === 'North'; //dst 'on' in winter in north
+  } else {
+    //use 'winter' january-time
+    result.current.offset = winter;
+    result.current.isDST = result.hemisphere === 'South'; //dst 'on' in summer in south
+  } //try to find the best name for it..
+
+
+  result.display = display(tz, result, zones);
+  return result;
+};
+
+module.exports = timezone;
+
+},{"./display":35,"./find":36,"./summerTime":40}],39:[function(_dereq_,module,exports){
+"use strict";
+
+var isSummer = _dereq_('./summerTime'); //
+
+
+var quickOffset = function quickOffset(s) {
+  var zones = s.timezones;
+  var obj = zones[s.tz];
+
+  if (obj.dst === undefined) {
+    return obj.offset;
+  } //get our two possible offsets
+
+
+  var jul = obj.offset;
+  var dec = obj.offset + 1; // assume it's the same for now
+
+  if (obj.hem === 'n') {
+    dec = jul - 1;
+  }
+
+  var split = obj.dst.split('->');
+  var inSummer = isSummer(s.epoch, split[0], split[1], jul);
+
+  if (inSummer === true) {
+    return jul;
+  }
+
+  return dec;
+};
+
+module.exports = quickOffset;
+
+},{"./summerTime":40}],40:[function(_dereq_,module,exports){
+'use strict';
+
+var zeroPad = _dereq_('../fns').zeroPad;
+
+var toString = function toString(d) {
+  return zeroPad(d.getMonth() + 1) + '/' + zeroPad(d.getDate()) + ':' + zeroPad(d.getHours());
+}; // a timezone will begin with a specific offset in january
+// then some will switch to something else between november-march
+
+
+var shouldChange = function shouldChange(epoch, start, end, defaultOffset) {
+  //note: this has a cray order-of-operations issue
+  //we can't get the date, without knowing the timezone, and vice-versa
+  //it's possible that we can miss a dst-change by a few hours.
+  var d = new Date(epoch); //(try to mediate this a little?)
+
+  var bias = d.getTimezoneOffset() || 0;
+  var shift = bias + defaultOffset * 60; //in minutes
+
+  shift = shift * 60 * 1000; //in ms
+
+  d = new Date(epoch + shift);
+  var current = toString(d); //eg. is it after ~november?
+
+  if (current >= start) {
+    //eg. is it before ~march~ too?
+    if (current < end) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+module.exports = shouldChange;
+
+},{"../fns":8}],41:[function(_dereq_,module,exports){
+'use strict';
+
+var Spacetime = _dereq_('./spacetime'); // const timezones = require('../data');
+
+
+var whereIts = function whereIts(a, b) {
+  var start = new Spacetime(null);
+  var end = new Spacetime(null);
+  start = start.time(a); //if b is undefined, use as 'within one hour'
+
+  if (b) {
+    end = end.time(b);
+  } else {
+    end = start.add(59, 'minutes');
+  }
+
+  var startHour = start.hour();
+  var endHour = end.hour();
+  var tzs = Object.keys(start.timezones).filter(function (tz) {
+    if (tz.indexOf('/') === -1) {
+      return false;
+    }
+
+    var m = new Spacetime(null, tz);
+    var hour = m.hour(); //do 'calendar-compare' not real-time-compare
+
+    if (hour >= startHour && hour <= endHour) {
+      //test minutes too, if applicable
+      if (hour === startHour && m.minute() < start.minute()) {
+        return false;
+      }
+
+      if (hour === endHour && m.minute() > end.minute()) {
+        return false;
+      }
+
+      return true;
+    }
+
+    return false;
+  });
+  return tzs;
+};
+
+module.exports = whereIts;
+
+},{"./spacetime":34}],42:[function(_dereq_,module,exports){
+module.exports={
+  "9|s": "2/dili,2/jayapura",
+  "9|n": "2/chita,2/khandyga,2/pyongyang,2/seoul,2/tokyo,11/palau",
+  "9.5|s|04/01:03->10/07:02": "4/adelaide,4/broken_hill,4/south,4/yancowinna",
+  "9.5|s": "4/darwin,4/north",
+  "8|s": "12/casey,2/kuala_lumpur,2/makassar,2/singapore,4/perth,4/west",
+  "8|n|03/25:03->09/29:23": "2/ulan_bator",
+  "8|n": "2/brunei,2/choibalsan,2/chongqing,2/chungking,2/harbin,2/hong_kong,2/irkutsk,2/kuching,2/macao,2/macau,2/manila,2/shanghai,2/taipei,2/ujung_pandang,2/ulaanbaatar",
+  "8.75|s": "4/eucla",
+  "7|s": "12/davis,2/jakarta,9/christmas",
+  "7|n": "2/bangkok,2/barnaul,2/ho_chi_minh,2/hovd,2/krasnoyarsk,2/novokuznetsk,2/novosibirsk,2/phnom_penh,2/pontianak,2/saigon,2/vientiane",
+  "6|s": "12/vostok",
+  "6|n": "2/almaty,2/bishkek,2/dacca,2/dhaka,2/kashgar,2/omsk,2/qyzylorda,2/thimbu,2/thimphu,2/urumqi,9/chagos",
+  "6.5|n": "2/rangoon,9/cocos",
+  "5|s": "12/mawson,9/kerguelen",
+  "5|n": "2/aqtau,2/aqtobe,2/ashgabat,2/ashkhabad,2/atyrau,2/baku,2/dushanbe,2/karachi,2/oral,2/samarkand,2/tashkent,2/yekaterinburg,9/maldives",
+  "5.75|n": "2/kathmandu,2/katmandu",
+  "5.5|n": "2/calcutta,2/colombo,2/kolkata",
+  "4|s": "9/reunion",
+  "4|n": "2/dubai,2/muscat,2/tbilisi,2/yerevan,8/astrakhan,8/samara,8/saratov,8/ulyanovsk,9/mahe,9/mauritius",
+  "4.5|n|03/22:00->09/21:24": "2/tehran",
+  "4.5|n": "2/kabul",
+  "3|s": "12/syowa,9/antananarivo",
+  "3|n|03/30:00->10/26:01": "2/amman",
+  "3|n|03/30:00->10/25:24": "2/damascus",
+  "3|n|03/25:03->10/28:04": "2/nicosia,8/athens,8/bucharest,8/helsinki,8/kiev,8/mariehamn,8/nicosia,8/riga,8/sofia,8/tallinn,8/uzhgorod,8/vilnius,8/zaporozhye",
+  "3|n|03/25:02->10/28:03": "8/chisinau,8/tiraspol",
+  "3|n|03/25:00->10/27:24": "2/beirut",
+  "3|n|03/24:01->10/27:01": "2/gaza,2/hebron",
+  "3|n|03/23:02->10/28:02": "2/jerusalem,2/tel_aviv",
+  "3|n": "0/addis_ababa,0/asmara,0/asmera,0/dar_es_salaam,0/djibouti,0/juba,0/kampala,0/mogadishu,0/nairobi,2/aden,2/baghdad,2/bahrain,2/istanbul,2/kuwait,2/qatar,2/riyadh,8/istanbul,8/kirov,8/minsk,8/moscow,8/simferopol,8/volgograd,9/comoro,9/mayotte",
+  "2|s|03/25:02->10/28:02": "12/troll",
+  "2|s": "0/gaborone,0/harare,0/johannesburg,0/lubumbashi,0/lusaka,0/maputo,0/maseru,0/mbabane",
+  "2|n|03/25:02->10/28:03": "0/ceuta,arctic/longyearbyen,3/jan_mayen,8/amsterdam,8/andorra,8/belgrade,8/berlin,8/bratislava,8/brussels,8/budapest,8/busingen,8/copenhagen,8/gibraltar,8/ljubljana,8/luxembourg,8/madrid,8/malta,8/monaco,8/oslo,8/paris,8/podgorica,8/prague,8/rome,8/san_marino,8/sarajevo,8/skopje,8/stockholm,8/tirane,8/vaduz,8/vatican,8/vienna,8/warsaw,8/zagreb,8/zurich",
+  "2|n": "0/blantyre,0/bujumbura,0/cairo,0/khartoum,0/kigali,0/tripoli,8/kaliningrad",
+  "1|s|04/02:01->09/03:03": "0/windhoek",
+  "1|s": "0/kinshasa,0/luanda",
+  "1|n|07/02:03->10/29:02": "0/casablanca,0/el_aaiun",
+  "1|n|03/25:01->10/28:02": "3/canary,3/faeroe,3/faroe,3/madeira,8/belfast,8/dublin,8/guernsey,8/isle_of_man,8/jersey,8/lisbon,8/london",
+  "1|n": "0/algiers,0/bangui,0/brazzaville,0/douala,0/lagos,0/libreville,0/malabo,0/ndjamena,0/niamey,0/porto-novo,0/tunis",
+  "14|n": "11/kiritimati",
+  "13|s|04/01:04->09/30:03": "11/apia",
+  "13|s|01/15:02->11/05:03": "11/tongatapu",
+  "13|n": "11/enderbury,11/fakaofo",
+  "12|s|04/01:03->09/30:02": "12/mcmurdo,12/south_pole,11/auckland",
+  "12|s|01/14:03->11/04:02": "11/fiji",
+  "12|n": "2/anadyr,2/kamchatka,2/srednekolymsk,11/funafuti,11/kwajalein,11/majuro,11/nauru,11/tarawa,11/wake,11/wallis",
+  "12.75|s|04/07:03->09/29:02": "11/chatham",
+  "11|s": "12/macquarie,11/bougainville",
+  "11|n": "2/magadan,2/sakhalin,11/efate,11/guadalcanal,11/kosrae,11/noumea,11/pohnpei,11/ponape",
+  "11.5|n": "11/norfolk",
+  "10|s|04/01:03->10/07:02": "4/act,4/canberra,4/currie,4/hobart,4/melbourne,4/nsw,4/sydney,4/tasmania,4/victoria",
+  "10|s": "12/dumontdurville,4/brisbane,4/lindeman,4/queensland",
+  "10|n": "2/ust-nera,2/vladivostok,2/yakutsk,11/chuuk,11/guam,11/port_moresby,11/saipan,11/truk,11/yap",
+  "10.5|s|04/01:01->10/07:02": "4/lhi,4/lord_howe",
+  "0|n|03/25:00->10/28:01": "1/scoresbysund,3/azores",
+  "0|n": "0/abidjan,0/accra,0/bamako,0/banjul,0/bissau,0/conakry,0/dakar,0/freetown,0/lome,0/monrovia,0/nouakchott,0/ouagadougou,0/sao_tome,0/timbuktu,1/danmarkshavn,3/reykjavik,3/st_helena,13/gmt,13/gmt+0,13/gmt-0,13/gmt0,13/greenwich,13/utc,13/universal,13/zulu",
+  "-9|n|03/11:02->11/04:02": "1/adak,1/atka",
+  "-9|n": "11/gambier",
+  "-9.5|n": "11/marquesas",
+  "-8|n|03/11:02->11/04:02": "1/anchorage,1/juneau,1/metlakatla,1/nome,1/sitka,1/yakutat",
+  "-8|n": "11/pitcairn",
+  "-7|n|03/11:02->11/04:02": "1/dawson,1/ensenada,1/los_angeles,1/santa_isabel,1/tijuana,1/vancouver,1/whitehorse,6/pacific,6/yukon,10/bajanorte",
+  "-7|n": "1/creston,1/dawson_creek,1/hermosillo,1/phoenix",
+  "-6|s|05/12:22->08/11:22": "7/easterisland,11/easter",
+  "-6|n|04/01:02->10/28:02": "1/chihuahua,1/mazatlan,10/bajasur",
+  "-6|n|03/11:02->11/04:02": "1/boise,1/cambridge_bay,1/denver,1/edmonton,1/inuvik,1/ojinaga,1/shiprock,1/yellowknife,6/mountain",
+  "-6|n": "1/belize,1/costa_rica,1/el_salvador,1/guatemala,1/managua,1/regina,1/swift_current,1/tegucigalpa,6/east-saskatchewan,6/saskatchewan,11/galapagos",
+  "-5|s": "1/lima,1/rio_branco,5/acre",
+  "-5|n|04/01:02->10/28:02": "1/bahia_banderas,1/merida,1/mexico_city,1/monterrey,10/general",
+  "-5|n|03/12:03->11/05:01": "1/north_dakota",
+  "-5|n|03/11:02->11/04:02": "1/chicago,1/knox_in,1/matamoros,1/menominee,1/rainy_river,1/rankin_inlet,1/resolute,1/winnipeg,6/central",
+  "-5|n": "1/atikokan,1/bogota,1/cancun,1/cayman,1/coral_harbour,1/eirunepe,1/guayaquil,1/jamaica,1/panama,1/porto_acre",
+  "-4|s|05/13:23->08/13:01": "12/palmer",
+  "-4|s|05/12:24->08/12:00": "1/santiago,7/continental",
+  "-4|s|03/24:24->10/07:00": "1/asuncion",
+  "-4|s|02/17:24->11/04:00": "1/campo_grande,1/cuiaba",
+  "-4|s": "1/la_paz,1/manaus,5/west",
+  "-4|n|03/12:03->11/05:01": "1/indiana,1/kentucky",
+  "-4|n|03/11:02->11/04:02": "1/detroit,1/fort_wayne,1/grand_turk,1/indianapolis,1/iqaluit,1/louisville,1/montreal,1/nassau,1/new_york,1/nipigon,1/pangnirtung,1/port-au-prince,1/thunder_bay,1/toronto,6/eastern",
+  "-4|n|03/11:00->11/04:01": "1/havana",
+  "-4|n": "1/anguilla,1/antigua,1/aruba,1/barbados,1/blanc-sablon,1/boa_vista,1/caracas,1/curacao,1/dominica,1/grenada,1/guadeloupe,1/guyana,1/kralendijk,1/lower_princes,1/marigot,1/martinique,1/montserrat,1/port_of_spain,1/porto_velho,1/puerto_rico,1/santo_domingo,1/st_barthelemy,1/st_kitts,1/st_lucia,1/st_thomas,1/st_vincent,1/tortola,1/virgin",
+  "-3|s|02/17:24->11/04:00": "1/sao_paulo,5/east",
+  "-3|s": "1/argentina,1/buenos_aires,1/cordoba,1/fortaleza,1/montevideo,1/punta_arenas,12/rothera,3/stanley",
+  "-3|n|03/11:02->11/04:02": "1/glace_bay,1/goose_bay,1/halifax,1/moncton,1/thule,3/bermuda,6/atlantic",
+  "-3|n": "1/araguaina,1/bahia,1/belem,1/catamarca,1/cayenne,1/jujuy,1/maceio,1/mendoza,1/paramaribo,1/recife,1/rosario,1/santarem",
+  "-2|s": "5/denoronha",
+  "-2|n|03/24:22->10/27:23": "1/godthab",
+  "-2|n|03/11:02->11/04:02": "1/miquelon",
+  "-2|n": "1/noronha,3/south_georgia",
+  "-2.5|n|03/11:02->11/04:02": "1/st_johns,6/newfoundland",
+  "-1|n": "3/cape_verde",
+  "-11|n": "11/midway,11/niue,11/pago_pago,11/samoa",
+  "-10|n": "11/honolulu,11/johnston,11/rarotonga,11/tahiti"
+}
+},{}],43:[function(_dereq_,module,exports){
+"use strict";
+
+//prefixes for iana names..
+module.exports = ['africa', 'america', 'asia', 'atlantic', 'australia', 'brazil', 'canada', 'chile', 'europe', 'indian', 'mexico', 'pacific', 'antarctica', 'etc'];
+
+},{}],44:[function(_dereq_,module,exports){
+"use strict";
+
+// this is a very rough list of informal and abbreviated timezones
+// i am not an expert, or even half-knowledgeable in this subject.
+// please help.
+// partially from: https://en.wikipedia.org/wiki/list_of_time_zone_abbreviations
+//format:  'best/iana': [standard, daylight, alias...]
+var informal = {
+  //north america
+  'america/halifax': ['ast', 'adt', 'atlantic'],
+  //or 'arabia standard time'
+  'america/new_york': ['est', 'edt', 'eastern'],
+  //or 'Ecuador Time'
+  'america/chicago': ['cst', 'cdt', 'central'],
+  'america/denver': ['mst', 'mdt', 'mountain'],
+  'america/los_angeles': ['pst', 'pdt', 'pacific'],
+  'america/anchorage': ['ahst', 'ahdt', 'akst', 'akdt', 'alaska'],
+  //Alaska Standard Time
+  'america/st_johns': ['nst', 'ndt', 'nt', 'newfoundland', 'nddt'],
+  //south america
+  'america/caracas': ['vet', null, 'venezuela'],
+  'america/bogota': ['cot', null, 'colombia'],
+  'america/cayenne': ['gft', null, 'french guiana'],
+  'america/paramaribo': ['srt', null, 'suriname'],
+  'america/guyana': ['gyt'],
+  'america/buenos_aires': ['art', null, 'argentina'],
+  'america/la_paz': ['bot', null, 'bolivia'],
+  'america/asuncion': ['pyt', 'pyst', 'paraguay'],
+  'america/santiago': ['clt', 'clst', 'chile'],
+  'america/lima': ['pet', null, 'peru'],
+  'america/montevideo': ['uyt', null, 'uruguay'],
+  'atlantic/stanley': ['fkst', null, 'falkland island'],
+  //brazil
+  'america/manaus': ['amt'],
+  'america/sao_paulo': ['brt', 'brst'],
+  'brazil/acre': ['act'],
+  // amst: -3, //amazon summer time (brazil)
+  // fnt: -2, //fernando de noronha time
+  // pmdt: -2, //saint pierre and miquelon daylight time
+  // pmst: -3, //saint pierre and miquelon standard time
+  // rott: -3, //rothera research station time
+  // awt: 'america/blanc-sablon',
+  // addt: 'america/pangnirtung',
+  // apt: 'america/blanc-sablon',
+  // cddt: 'america/rankin_inlet',
+  // cwt: 'america/mexico_city',
+  // cpt: 'america/atikokan',
+  // eddt: 'america/iqaluit',
+  // ept: 'america/detroit',
+  // ewt: 'america/detroit',
+  // ect: 'america/anguilla', //eastern caribbean time (does not recognise dst)
+  // 'eastern caribbean': 'america/anguilla',
+  // ffmt: 'america/martinique',
+  // kmt: 'america/grand_turk',
+  // mddt: 'america/cambridge_bay',
+  // mpt: 'america/boise',
+  // mwt: 'america/phoenix',
+  // nwt: 'america/adak',
+  // // npt: 'america/goose_bay',
+  // pddt: 'america/inuvik',
+  // ppmt: 'america/port-au-prince',
+  // ppt: 'america/dawson_creek',
+  // pwt: 'america/dawson_creek',
+  // qmt: 'america/guayaquil',
+  // sdmt: 'america/santo_domingo',
+  // sjmt: 'america/costa_rica',
+  // ydt: 'america/dawson', //yukon
+  // ypt: 'america/dawson',
+  // yddt: 'america/dawson',
+  // ywt: 'america/dawson',
+  // yst: 'america/whitehorse',
+  //europe
+  'europe/london': ['gmt', 'bst', 'british'],
+  //britain is different
+  'etc/gmt': ['gmt', null, 'greenwich'],
+  'europe/lisbon': ['wet', 'west', 'west europe'],
+  //western europe
+  'europe/berlin': ['cet', 'cest', 'central europe', 'middle european', 'met', 'mest'],
+  //central europe
+  'europe/riga': ['eet', 'eest', 'east europe', 'kalt'],
+  //eastern europe
+  // -- these are old european ones, before the EU, i think:
+  // 'europe/minsk': ['feet', 'feest', 'eastern europe'], //further eastern europe (discontinued)
+  // ace: 'europe/dublin',
+  // amt: 'europe/amsterdam',
+  // bdst: 'europe/gibraltar',
+  // bmt: 'europe/brussels',
+  // bst: 'europe/gibraltar', //british summer time
+  // 'british summer': 1,
+  // dmt: 'europe/dublin',
+  // dft: 1, //aix-specific equivalent of central european time
+  // cmt: 'europe/copenhagen',
+  // // ist: 'europe/dublin',
+  // imt: 'europe/sofia',
+  // lst: 'europe/riga',
+  // pmt: 'europe/prague',
+  // rmt: 'europe/rome',
+  // set: 'europe/stockholm',
+  // wemt: 'europe/madrid',
+  // tse: 'europe/dublin',
+  // utc: 'etc/utc', //coordinated universal time
+  // 'coordinated universal': 'etc/utc',
+  //russia
+  'europe/moscow': ['msk', null, 'fet', 'mdst', 'msd'],
+  //'further eastern europe'
+  'europe/samara': ['samt'],
+  'asia/yekaterinburg': ['yekt'],
+  'asia/omsk': ['omst'],
+  'asia/krasnoyarsk': ['krat'],
+  'asia/novosibirsk': ['novt'],
+  'asia/irkutsk': ['irkt'],
+  'asia/yakutsk': ['yakt'],
+  'asia/vladivostok': ['vlat'],
+  'asia/magadan': ['magt'],
+  'asia/sakhalin': ['sakt'],
+  'asia/srednekolymsk': ['sret'],
+  'asia/anadyr': ['anat'],
+  'asia/kamchatka': ['pett'],
+  //near-russia
+  'asia/tashkent': ['uzt', 'uzbekistan'],
+  //uzbekistan time
+  'asia/bishkek': ['kgt', 'kyrgyzstan'],
+  //kyrgyzstan time
+  'antarctica/vostok': ['vost'],
+  'asia/hovd': ['hovt'],
+  'asia/ashgabat': ['tmt', null, 'turkmenistan'],
+  // wmt: 'europe/warsaw',
+  // 'europe/volgograd':['volt']
+  //africa
+  'africa/lagos': ['wat', 'wast', 'west africa'],
+  //west african
+  'africa/khartoum': ['cat', null, 'central africa'],
+  'africa/nairobi': ['eat', null, 'east africa'],
+  'atlantic/cape_verde': ['cvt'],
+  'indian/mauritius': ['mut'],
+  'indian/reunion': ['ret'],
+  'africa/johannesburg': ['sast', null, 'south africa'],
+  //atlantic
+  'atlantic/azores': ['azot', 'azost', 'hmt'],
+  'america/godthab': ['wgt', 'wgst', 'west greenland'],
+  'america/scoresbysund': ['egt', 'egst', 'east greenland'],
+  //middle-east
+  'europe/istanbul': ['trt', null, 'turkey'],
+  'asia/tbilisi': ['get', null, 'georgia'],
+  // 'asia/yerevan': ['amt', null, 'armenia'], //(sorry!)
+  'asia/baku': ['azt', null, 'azerbaijan'],
+  'asia/jerusalem': [null, 'idt', 'israel', 'jmt', 'iddt'],
+  //using ist for india
+  'asia/tehran': ['irst', 'irdt', 'iran'],
+  'asia/karachi': ['pkt', null, 'pakistan'],
+  'asia/kabul': ['aft', null, 'afghanistan'],
+  'asia/dushanbe': ['tjt', null, 'tajikistan'],
+  'asia/almaty': ['almt', null, 'alma ata'],
+  'asia/dubai': ['gst', null, 'gulf'],
+  //india
+  'asia/kolkata': ['ist', null, 'india', 'slst'],
+  // 'asia/dhaka': ['bst', null, 'bangladesh'], //(sorry)
+  'asia/thimbu': ['btt', null, 'bhutan'],
+  'indian/maldives': ['mvt'],
+  'asia/kathmandu': ['npt', null, 'nepal'],
+  'indian/cocos': ['cct', null, 'cocos island'],
+  'indian/chagos': ['iot', null, 'indian chagos'],
+  'indian/kerguelen': ['tft', null, 'french southern and antarctic'],
+  // biot: 6, //british indian ocean time
+  // iot: 3, //indian ocean time
+  //asia
+  'asia/shanghai': ['ct', null, 'china', 'hkt'],
+  'asia/ulaanbaatar': ['ulat'],
+  'asia/seoul': ['kst', null, 'korea'],
+  'asia/tokyo': ['jst', null, 'japan'],
+  'asia/phnom_penh': ['ict', null, 'indochina'],
+  'asia/manila': ['pht', null, 'philippines'],
+  'asia/singapore': ['sgt'],
+  // mmt: 'asia/colombo',
+  //australia
+  'australia/brisbane': ['aest', 'aedt', 'australian east'],
+  //australian eastern standard time
+  'australia/adelaide': ['acst', 'acdt', 'australian central'],
+  //australian central daylight savings time
+  'australia/eucla': ['acwst', null, 'cwst', 'australian central western'],
+  //australian central western standard time (unofficial)
+  'australia/perth': ['awst', 'awdt', 'australian west'],
+  //australian western standard time
+  'pacific/auckland': ['nzst', 'nzdt', 'nzmt'],
+  'australia/lord_howe': ['lhst', 'lhdt'],
+  //pacific
+  'pacific/guam': ['chst'],
+  'pacific/chatham': ['chast', 'chadt'],
+  'pacific/honolulu': ['hst'],
+  'asia/brunei': ['bnt', null, 'bdt'],
+  'pacific/midway': ['sst', null, 'samoa', 'sdt'],
+  'pacific/niue': ['nut'],
+  'pacific/fakaofo': ['tkt'],
+  'pacific/rarotonga': ['ckt', null, 'cook islands'],
+  'chile/easterisland': ['east', 'easst', 'easter island', 'emt'],
+  'asia/jayapura': ['wit', null, 'east indonesia'],
+  'asia/jakarta': ['wib', null, 'west indonesia'],
+  'asia/makassar': ['wita', null, 'central indonesia'],
+  'pacific/galapagos': ['galt'],
+  'pacific/fiji': ['fjt', 'fjst'],
+  'asia/dili': ['tlt', null, 'east timor'],
+  'indian/christmas': ['cxt'] // sbt: 11, //solomon islands time
+  // mht: 12, //marshall islands time
+  // bit: -12, //baker island time
+  // cist: -8, //clipperton island standard time
+  // chut: 10, //chuuk time
+  // ddut: 10, //dumont durville time
+  // gst: 'pacific/guam',
+  // gamt: -9, //gambier islands time
+  // git: -9, //gambier island time
+  // gilt: 12, //gilbert island time
+  // idlw: -12, //international day line west time zone
+  // 'international day line west': -12,
+  // kost: 11, //kosrae time
+  // lint: 14, //line islands time
+  // magt: 12, //magadan time
+  // mist: 11, //macquarie island station time
+  // nct: 11, //new caledonia time
+  // nft: 11, //norfolk island time
+  // phot: 13, //phoenix island time
+  // pont: 11, //pohnpei standard time
+  // pett: 12, //kamchatka time
+  // mart: -9.5, //marquesas islands time
+  // mit: -9.5, //marquesas islands time
+  // myt: 8, //malaysia time
+  // nut: -11, //niue time
+  // pht: 8, //philippine time
+  // pgt: 10, //papua new guinea time
+  // pmmt: 'pacific/bougainville',
+  // // smt: 'asia/singapore',
+  // sakt: 11, //sakhalin island time
+  // sret: 11, //srednekolymsk time
+  // sst: 'pacific/pago_pago',
+  // taht: -10, //tahiti time
+  // tvt: 12, //tuvalu time
+  // tkt: 13, //tokelau time
+  // tot: 13, //tonga time
+  // vut: 11, //vanuatu time
+  // wakt: 12, //wake island time
+  //i forget (sorry!)
+  // haec: 2, //heure avancée deurope centrale french-language name for cest
+  // syot: 3, //showa station time
+  // yekt: 5, //yekaterinburg time
+  // sct: 4, //seychelles time
+  // orat: 5, //oral time
+  // mawt: 5, //mawson station time
+  // hovt: 7, //khovd standard time
+  // hovst: 8, //khovd summer time
+  // davt: 7, //davis time
+  // chost: 9, //choibalsan summer time
+  // chot: 8, //choibalsan standard time
+  // wst: 8, //western standard time
+  //use each abbreviation as a key
+
+};
+var lookup = Object.keys(informal).reduce(function (h, k) {
+  var arr = informal[k];
+
+  for (var i = 0; i < 5; i += 1) {
+    if (arr[i]) {
+      h[arr[i]] = k;
+    }
+  }
+
+  return h;
+}, {});
+module.exports = {
+  informal: informal,
+  lookup: lookup
+};
+
+},{}],45:[function(_dereq_,module,exports){
+"use strict";
+
+var data = _dereq_('./_build.json');
+
+var prefixes = _dereq_('./_prefixes.js');
+
+var all = {};
+Object.keys(data).forEach(function (k) {
+  var split = k.split('|');
+  var obj = {
+    offset: Number(split[0]),
+    hem: split[1]
+  };
+
+  if (split[2]) {
+    obj.dst = split[2];
+  }
+
+  var names = data[k].split(',');
+  names.forEach(function (str) {
+    str = str.replace(/(^[0-9]+)\//, function (before, num) {
+      num = Number(num);
+      return prefixes[num] + '/';
+    });
+    all[str] = obj;
+  });
+}); //add etc/gmt+n
+
+for (var i = -12; i < 13; i += 1) {
+  var num = i;
+
+  if (num > 0) {
+    num = '+' + num;
+  }
+
+  var name = 'etc/gmt' + num;
+  all[name] = {
+    offset: i * -1,
+    //they're negative!
+    hem: 'n' //(sorry)
+
+  };
+  name = 'utc/gmt' + num; //this one too, why not.
+
+  all[name] = {
+    offset: i * -1,
+    hem: 'n'
+  };
+} // console.log(all)
+// console.log(Object.keys(all).length)
+
+
+module.exports = all;
+
+},{"./_build.json":42,"./_prefixes.js":43}]},{},[9])(9)
+});
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}]},{},[2]);

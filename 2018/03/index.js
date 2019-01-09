@@ -1,8 +1,9 @@
-// const somehow = require('somehow);
+const somehow = require('somehow');
+// const somehow = require('/Users/spencer/mountain/somehow/src');
 const spacetime = require('spacetime');
-const somehow = require('/Users/spencer/mountain/somehow/src');
 const missions = require('./data/missions');
 const today = spacetime.now().format('iso');
+require('./legend')
 const EXPECT = 81;
 
 const drawMission = function(k) {
@@ -41,44 +42,34 @@ const drawMission = function(k) {
   });
 
   //add date
-  w.line().set([[missions[k].date, '10%'], [missions[k].date, '90%']]).width(1).color('orange').dotted();
+  w.line().set([[missions[k].date, '20%'], [missions[k].date, '80%']]).width(1).color('orange').dotted();
 
   //add label
   w.text(k).at('-100px', '60%').color('lightgrey');
   //add today
-  w.line().set([[today, '0%'], [today, '100%']]).width(1).color('lightgrey').dotted();
+  w.line().set([[today, '10%'], [today, '90%']]).width(1).color('lightgrey').dotted();
 
   w.y.fit(0, 4);
-  // w.x.fit('Jan 1 1920', 'Dec 31 2018');
   w.x.fit('Jan 1 1925', 'Dec 31 2025');
   w.yAxis.remove();
-  return w.build();
+  w.xAxis.ticks([
+    {
+      label: '1925',
+      value: 'jan 1 1925'
+    },
+    {
+      label: '1969',
+      value: 'jan 1 1969'
+    },
+    {
+      value: spacetime.now().iso(),
+      label: 'today'
+    }
+  ])
+  return `<div class="m2">${w.build()}</div>`
 };
 
 
 
 let el = document.querySelector('#stage');
 el.innerHTML = Object.keys(missions).map(k => drawMission(k)).join(' ');
-
-let legend = somehow({
-  height: 200,
-  aspect: 'widescreen',
-});
-legend.yAxis.remove();
-legend.xAxis.remove();
-legend.y.fit(0, 2);
-legend.x.fit(-2, 10);
-legend.text('birth').font(11).dy(10).at(1, 1);
-legend.text('life expectency').font(11).dy(10).center(6, 1);
-legend.text('(81 years)').font(12).dy(-20).center(6, 1);
-legend.line().set([[1, 1], [6, 1]]).opacity(0.6);
-legend.line().set([[6, 1], [7, 1]]).dotted(true).opacity(0.6).color('red');
-
-let astronauts = Object.keys(missions).reduce((arr, k) => {
-  arr = arr.concat(missions[k].people);
-  return arr;
-}, []);
-let alive = astronauts.filter((o) => !o.death);
-legend.text(`${alive.length} of ${astronauts.length} are alive`).set([[0, 1.7]]);
-// legend.text(`all are > 81 years old`).set([[4, 0.2]]);
-document.querySelector('#legend').innerHTML = legend.build();
