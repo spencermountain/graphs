@@ -14,10 +14,10 @@
     "fetch": "node ./scripts/performance.js > ./data/performance.js"
   },
   "dependencies": {
-    "somehow": "0.0.6",
-    "spacetime": "5.1.1",
-    "spencer-color": "0.0.5",
-    "wtf-nhl": "0.0.2",
+    "somehow": "0.0.8",
+    "spacetime": "5.2.1",
+    "spencer-color": "0.1.0",
+    "wtf-nhl": "0.0.3",
     "wtf_wikipedia": "7.2.7"
   },
   "devDependencies": {

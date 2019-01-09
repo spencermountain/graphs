@@ -31,7 +31,7 @@ const doDivision = function(key, id) {
   w.text(key + ':').font(16).color('olive').set('-10%, 50%')
   w.line().dotted(true).color('lightgrey').width(1).set([['0px', 0], ['100%', 0]])
 
-  w.y.fit(20, -20);
+  w.y.fit(-20, 20);
   w.x.fit('Oct 1 2018', 'March 20 2019');
 
   let el = document.querySelector(id);
