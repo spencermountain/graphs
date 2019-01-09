@@ -3,14 +3,14 @@ let teams = require('./data/performance')
 let divisions = require('./data/divisions')
 
 const colors = [
-  'red',
-  'green',
-  'blue',
-  'pink',
-  'yellow',
-  'olive',
   'brown',
   'purple',
+  'red',
+  'pink',
+  'olive',
+  'yellow',
+  'green',
+  'blue',
 ]
 
 const doDivision = function(key, id) {
