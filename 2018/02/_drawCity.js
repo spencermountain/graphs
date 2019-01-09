@@ -1,3 +1,4 @@
+const year = new Date().getFullYear()
 const months = [
   'Jan',
   'Feb',
@@ -15,11 +16,11 @@ const months = [
 
 const drawCity = function(w, city) {
   let arr = city.weather.split(',').map((temp, i) => {
-    let date = months[i] + ' 1 2018'
+    let date = months[i] + ' 1 ' + year
     return [date, Number(temp)]
   })
   //add start to very end
-  arr.push(['Dec 31 2018', arr[0][1]])
+  arr.push([`Dec 31 ${year}`, arr[0][1]])
   let line = w.getShape('line')
   line.set(arr)
   let label = w.getShape('label')
