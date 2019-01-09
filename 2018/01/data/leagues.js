@@ -1,35 +1,34 @@
-const colors = require('spencer-color');
-
+const colors = require('spencer-color').colors
 const leagues = {
   mls: {
     color: colors.brown,
-    start: 'March 3 2018',
-    end: 'October 28 2018',
-    playoff: 'Dec 8 2018'
+    start: 'March 3',
+    end: 'October 28',
+    playoff: 'Dec 8'
   },
   nfl: {
     color: colors.orange,
-    start: 'September 6 2018',
-    end: 'Dec 30 2018',
-    playoff: 'February 3 2018'
+    start: 'September 6',
+    end: 'Dec 30',
+    playoff: 'February 3'
   },
   mlb: {
     color: colors.blue,
-    start: 'March 29 2018',
-    end: 'October 1 2018',
-    playoff: 'Oct 28 2018'
+    start: 'March 29',
+    end: 'October 1',
+    playoff: 'Oct 28'
   },
   nhl: {
     color: colors.red,
-    start: 'October 3 2018',
-    end: 'April 6 2018',
-    playoff: 'June 13 2018'
+    start: 'October 3',
+    end: 'April 6',
+    playoff: 'June 13'
   },
   nba: {
     color: colors.green,
-    start: 'October 16 2018',
-    end: 'April 10 2018',
-    playoff: 'June 8 2018'
+    start: 'October 16',
+    end: 'April 10',
+    playoff: 'June 8'
   },
 };
 module.exports = leagues
