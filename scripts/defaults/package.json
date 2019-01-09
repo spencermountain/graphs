@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "somehow": "0.0.6",
-    "spacetime": "5.1.0",
+    "spacetime": "5.1.1",
     "spencer-color": "0.0.5",
     "wtf_wikipedia": "7.2.7"
   },
