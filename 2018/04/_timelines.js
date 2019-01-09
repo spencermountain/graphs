@@ -1,18 +1,41 @@
 // const somehow = require('somehow');
 const somehow = require('/Users/spencer/mountain/somehow/src');
+const today = new Date().toISOString()
 
-let w = somehow({
-  height: 10,
-  width: 700
-});
+const makeTimeline = function(year) {
+  let w = somehow({
+    height: 10,
+    width: 700
+  });
 
-w.x.fit('Jan 1 1825', Date.now());
-w.y.fit(0, 3);
-w.yAxis.remove();
-w.xAxis.ticks([]);
+  let date = `Jan 1 ${year}`
+  w.x.fit('Jan 1 1825', Date.now());
+  w.y.fit(0, 3);
+  w.yAxis.remove();
+  let ticks = [
+    {
+      value: `jan 1 1825`,
+      label: '1825'
+    },
+    {
+      label: new Date().getFullYear(),
+      value: today
+    },
+  ]
+  if (year === 2019) {
+    ticks = [ticks[0]]
+    year = ''
+  }
+  w.xAxis.ticks(ticks);
+  w.line().from(date, '-10px').to(date, '25px').color('brown');
+  w.text(String(year)).center(date, '30px').dy(5).font(19).color('brown');
+  return w
+}
 
-w.line().from('Jan 1 1900', '-10px').to('Jan 1 1900', '25px').color('brown');
-w.text('1900').center('Jan 1 1900', '30px').dy(5).font(19).color('brown');
-
-let el = document.querySelector('#photo-timeline');
-el.innerHTML = w.build();
+document.querySelector('#timeline1876').innerHTML = makeTimeline(1870).build();
+document.querySelector('#timeline1990').innerHTML = makeTimeline(1900).build();
+document.querySelector('#timeline1969').innerHTML = makeTimeline(1969).build();
+document.querySelector('#timeline1976').innerHTML = makeTimeline(1976).build();
+document.querySelector('#timeline1999').innerHTML = makeTimeline(1999).build();
+document.querySelector('#timeline2013').innerHTML = makeTimeline(2013).build();
+document.querySelector('#timeline2019').innerHTML = makeTimeline(2019).build();
