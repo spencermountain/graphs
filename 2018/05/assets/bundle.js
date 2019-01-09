@@ -169,12 +169,9 @@ module.exports = {
 },{}],3:[function(_dereq_,module,exports){
 "use strict";
 
-var somehow = _dereq_('somehow'); // const somehow = require('/Users/spencer/mountain/somehow/src');
-
+var somehow = _dereq_('somehow');
 
 var teams = _dereq_('./data/performance');
-
-console.log(teams);
 
 var divisions = _dereq_('./data/divisions');
 
@@ -187,7 +184,6 @@ var doDivision = function doDivision(key, id) {
   });
   divisions[key].forEach(function (team, i) {
     var line = w.line().width(2).color(colors[i] || 'blue');
-    console.log(team);
     var games = teams[team].games;
     console.log(games.length);
     games = games.filter(function (g) {
@@ -202,7 +198,7 @@ var doDivision = function doDivision(key, id) {
   w.text(key + ':').font(16).color('olive').set('-10%, 50%');
   w.line().dotted(true).color('lightgrey').width(1).set([['0px', 0], ['100%', 0]]); // w.line().dotted(true).color('lightgrey').width(1).set([['Sept 30, 2018', 0], ['Sept 30, 2018', 30]])
 
-  w.y.fit(35, -35);
+  w.y.fit(-35, 35);
   w.x.fit('Mar 20 2018', 'Oct 20 2018');
   var el = document.querySelector(id);
   el.innerHTML = w.build();
@@ -219,7 +215,7 @@ console.timeEnd('draw'); //usually 2.8 - 3.2 secs
 
 },{"./data/divisions":1,"./data/performance":2,"somehow":4}],4:[function(_dereq_,module,exports){
 (function (global){
-/* somehow v0.0.6
+/* somehow v0.0.8
    github.com/spencermountain/somehow
    MIT
 */
@@ -2310,11 +2306,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],4:[function(_dereq_,module,exports){
-!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.htm=t()}(this,function(){var e={},t=document.createElement("template"),n=/(\$_h\[\d+\])/g;function r(e,t){var r=e.match(n),i=JSON.stringify(e);if(null!=r){if(r[0]===e)return e;i=i.replace(n,'"'+t+"$1"+t+'"').replace(/"[+,]"/g,""),","==t&&(i="["+i+"]")}return i}return function(n){return(e[n]||(e[n]=function(e){for(var n=e[0],i=1;i<e.length;)n+="$_h["+i+"]"+e[i++];return t.innerHTML=n.replace(/<(?:(\/)\/|(\/?)(\$_h\[\d+\]))/g,"<$1$2c c@=$3").replace(/<([\w:-]+)(?:\s[^<>]*?)?(\/?)>/g,function(e,t,n){return e.replace(/(?:'.*?'|".*?"|([A-Z]))/g,function(e,t){return t?":::"+t:e})+(n?"</"+t+">":"")}).trim(),Function("h","$_h","return "+function e(t){if(1!=t.nodeType)return 3==t.nodeType&&t.data?r(t.data,","):"null";for(var n="",i=r(t.localName,n),u="",a=",({",o=0;o<t.attributes.length;o++){var c=t.attributes[o].name,f=t.attributes[o].value;"c@"==c?i=f:"..."==c.substring(0,3)?(u="",a=",Object.assign({",n+="},"+c.substring(3)+",{"):(n+=u+'"'+c.replace(/:::(\w)/g,function(e,t){return t.toUpperCase()})+'":'+(!f||r(f,"+")),u=",")}n="h("+i+a+n+"})";for(var l=t.firstChild;l;)n+=","+e(l),l=l.nextSibling;return n+")"}((t.content||t).firstChild))}(n)))(this,arguments)}});
+!function(){var n={},e=JSON.stringify;function t(e){for(var t=".",c=0;c<e.length;c++)t+=e[c].length+","+e[c];return(n[t]||(n[t]=i(e)))(this,arguments)}var i=function(n){for(var t,i,c,r,s,o=0,u="return ",a="",f="",h=0,l="",g="",d="",v=0,m=function(){c?9===o?(h++&&(u+=","),u+="h("+(f||e(a)),o=0):13===o||0===o&&"..."===a?(0===o?(d||(d=")",l=l?"Object.assign("+l:"Object.assign({}"),l+=g+","+f,g=""):r&&(l+=l?","+(g?"":"{"):"{",g="}",l+=e(r)+":",l+=f||(s||a)&&e(a)||"true",r=""),s=!1):0===o&&(o=13,r=a,a=f="",m(),o=0):(f||(a=a.replace(/^\s*\n\s*|\s*\n\s*$/g,"")))&&(h++&&(u+=","),u+=f||e(a)),a=f=""},p=0;p<n.length;p++){p>0&&(c||m(),f="$["+p+"]",m());for(var O=0;O<n[p].length;O++){if(i=n[p].charCodeAt(O),c){if(39===i||34===i){if(v===i){v=0;continue}if(0===v){v=i;continue}}if(0===v)switch(i){case 62:m(),47!==o&&(u+=l?","+l+g+d:",null"),t&&(u+=")"),c=0,l="",o=1;continue;case 61:o=13,s=!0,r=a,a="";continue;case 47:t||(t=!0,9!==o||a.trim()||(a=f="",o=47));continue;case 9:case 10:case 13:case 32:m(),o=0;continue}}else if(60===i){m(),c=1,d=g=l="",t=s=!1,o=9;continue}a+=n[p].charAt(O)}}return m(),Function("h","$",u)};"undefined"!=typeof module?module.exports=t:self.htm=t}();
 
 },{}],5:[function(_dereq_,module,exports){
 (function (global){
-/* spacetime v5.1.0
+/* spacetime v5.2.1
    github.com/spencermountain/spacetime
    MIT
 */
@@ -2322,7 +2318,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.spacetime = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof _dereq_&&_dereq_;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof _dereq_&&_dereq_,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
 "use strict";
 
-module.exports = '5.1.0';
+module.exports = '5.2.1';
 
 },{}],2:[function(_dereq_,module,exports){
 'use strict';
@@ -2517,6 +2513,8 @@ exports.toCardinal = function (str) {
 
 exports.normalize = function (str) {
   str = str.toLowerCase();
+  str = str.replace(/ies$/, 'y'); //'centuries'
+
   str = str.replace(/s$/, '');
 
   if (str === 'day') {
@@ -2675,12 +2673,19 @@ var handleObject = function handleObject(s, obj) {
   var keys = Object.keys(obj);
 
   for (var i = 0; i < keys.length; i++) {
-    var unit = keys[i];
+    var unit = keys[i]; //make sure we have this method
 
-    if (s[unit] !== undefined) {
-      var num = obj[unit] || 0;
-      s = s[unit](num);
+    if (s[unit] === undefined || typeof s[unit] !== 'function') {
+      continue;
+    } //make sure the value is a number
+
+
+    if (obj[unit] === null || obj[unit] === undefined || obj[unit] === '') {
+      continue;
     }
+
+    var num = obj[unit] || 0;
+    s = s[unit](num);
   }
 
   return s;
@@ -3193,6 +3198,15 @@ var methods = {
 
     return _since(this, d);
   },
+  next: function next(unit) {
+    var s = this.add(1, unit);
+    return s.startOf(unit);
+  },
+  //the start of the previous year/week/century
+  last: function last(unit) {
+    var s = this.subtract(1, unit);
+    return s.startOf(unit);
+  },
   isValid: function isValid() {
     //null/undefined epochs
     if (!this.epoch && this.epoch !== 0) {
@@ -3265,7 +3279,9 @@ var keep = {
   month: order.slice(0, 4),
   quarter: order.slice(0, 4),
   season: order.slice(0, 4),
-  year: order
+  year: order,
+  decade: order,
+  century: order
 };
 keep.week = keep.date;
 keep.season = keep.date;
@@ -3305,6 +3321,11 @@ var rollMonth = function rollMonth(want, old) {
 var addMethods = function addMethods(SpaceTime) {
   SpaceTime.prototype.add = function (num, unit) {
     var s = this.clone();
+
+    if (!unit) {
+      return s; //don't bother
+    }
+
     var old = this.clone();
     unit = fns.normalize(unit); //move forward by the estimated milliseconds (rough)
 
@@ -3334,13 +3355,35 @@ var addMethods = function addMethods(SpaceTime) {
       want.month = old.month() + num; //month is the one unit we 'model' directly
 
       want = rollMonth(want, old);
+    } //support coercing a week, too
+
+
+    if (unit === 'week') {
+      var sum = old.date() + num * 7;
+
+      if (sum <= 28 && sum > 1) {
+        want.date = sum;
+      }
     } //support 25-hour day-changes on dst-changes
-    else if (unit === 'date' && num !== 0 && old.isSame(s, 'day')) {
-        want.date = old.date() + num;
+    else if (unit === 'date') {
+        //specify a naive date number, if it's easy to do...
+        var _sum = old.date() + num;
+
+        if (_sum <= 28 && _sum > 1) {
+          want.date = _sum;
+        } //or if we haven't moved at all..
+        else if (num !== 0 && old.isSame(s, 'day')) {
+            want.date = old.date() + num;
+          }
       } //ensure year has changed (leap-years)
       else if (unit === 'year' && s.year() === old.year()) {
           s.epoch += ms.week;
-        } //keep current date, unless the month doesn't have it.
+        } //these are easier
+        else if (unit === 'decade') {
+            want.year = s.year() + 10;
+          } else if (unit === 'century') {
+            want.year = s.year() + 100;
+          } //keep current date, unless the month doesn't have it.
 
 
     if (keepDate[unit]) {
@@ -3736,7 +3779,8 @@ var aliases = {
   'mm/dd/yyyy': 'numeric-us',
   'dd/mm/yyyy': 'numeric-us',
   'little-endian': 'numeric-uk',
-  'big-endian': 'numeric'
+  'big-endian': 'numeric',
+  'day-nice': 'nice-day'
 };
 Object.keys(aliases).forEach(function (k) {
   return format[k] = format[aliases[k]];
@@ -4655,6 +4699,10 @@ var addMethods = function addMethods(SpaceTime) {
   SpaceTime.prototype.isSame = function (b, unit) {
     var a = this;
 
+    if (!unit) {
+      return null;
+    }
+
     if (typeof b === 'string' || typeof b === 'number') {
       b = new SpaceTime(b, this.timezone.name);
     } //support 'seconds' aswell as 'second'
@@ -4833,7 +4881,6 @@ var ms = _dereq_('../../data/milliseconds'); //basically, step-forward/backward 
 
 
 var walk = function walk(s, n, fn, unit, previous) {
-  // console.log(unit, s.d.getDate())
   var current = s.d[fn]();
 
   if (current === n) {
@@ -4844,10 +4891,13 @@ var walk = function walk(s, n, fn, unit, previous) {
   var original = s.epoch; //try to get it as close as we can
 
   var diff = n - current;
-  s.epoch += ms[unit] * diff; //edge case, if we are going many days, be a little conservative
+  s.epoch += ms[unit] * diff; //DST edge-case: if we are going many days, be a little conservative
 
   if (unit === 'day' && Math.abs(diff) > 28) {
-    s.epoch += ms.hour;
+    //but don't push it over a month
+    if (n < 28) {
+      s.epoch += ms.hour;
+    }
   } //repair it if we've gone too far or something
   //(go by half-steps, just in case)
 
@@ -4984,8 +5034,7 @@ var walkTo = function walkTo(s, wants) {
     } // console.log(k, n)
 
 
-    units[k].walkTo(s, n); // console.log(s.monthName())
-    // console.log(s.format())
+    units[k].walkTo(s, n);
   }
 
   return;
@@ -5283,6 +5332,20 @@ var units = {
       millisecond: 0
     });
     return s;
+  },
+  decade: function decade(s) {
+    s = s.startOf('year');
+    var year = s.year();
+    var decade = parseInt(year / 10, 10) * 10;
+    s = s.year(decade);
+    return s;
+  },
+  century: function century(s) {
+    s = s.startOf('year');
+    var year = s.year();
+    var decade = parseInt(year / 100, 10) * 100;
+    s = s.year(decade);
+    return s;
   }
 };
 units.date = units.day;
@@ -5508,9 +5571,7 @@ var informal = _dereq_('../../zonefile/informal').lookup;
 
 var guessTz = _dereq_('./guessTz');
 
-var local = guessTz(); // console.log(informal)
-// const isNum = /^(etc\/gmt|etc|gmt|utc|h)([+\-0-9 ]+)$/i
-
+var local = guessTz();
 var isOffset = /(\-?[0-9]+)h(rs)?/; //add all the city names by themselves
 
 var cities = Object.keys(tzs).reduce(function (h, k) {
@@ -5752,13 +5813,11 @@ var quickOffset = function quickOffset(s) {
   }
 
   var split = obj.dst.split('->');
-  var inSummer = isSummer(s.epoch, split[0], split[1], jul); // console.log(s.epoch, inSummer)
-  // console.log(new Date(s.epoch), inSummer)
+  var inSummer = isSummer(s.epoch, split[0], split[1], jul);
 
   if (inSummer === true) {
     return jul;
-  } // console.log(jul)
-
+  }
 
   return dec;
 };
@@ -6284,7 +6343,7 @@ module.exports = all;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],6:[function(_dereq_,module,exports){
 (function (global){
-!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).spencerColor=e()}}(function(){return function i(f,c,u){function d(r,e){if(!c[r]){if(!f[r]){var n="function"==typeof _dereq_&&_dereq_;if(!e&&n)return n(r,!0);if(s)return s(r,!0);var o=new Error("Cannot find module '"+r+"'");throw o.code="MODULE_NOT_FOUND",o}var t=c[r]={exports:{}};f[r][0].call(t.exports,function(e){return d(f[r][1][e]||e)},t,t.exports,i,f,c,u)}return c[r].exports}for(var s="function"==typeof _dereq_&&_dereq_,e=0;e<u.length;e++)d(u[e]);return d}({1:[function(e,r,n){"use strict";r.exports={blue:"#6699cc",green:"#6accb2",yellow:"#e1e6b3",red:"#cc7066",pink:"#e6b8b3",brown:"#9c896c",orange:"#cc8a66",purple:"#d8b3e6",navy:"#335799",olive:"#7f9c6c",burnt:"#603a39",beige:"#e6d7b3",fuscia:"#603960"}},{}],2:[function(e,r,n){"use strict";r.exports={white:"#fbfbfb",grey:"#4d4d4d",dim:"#d7d5d2",lightgrey:"#949a9e",dark:"#443d3d",bluegrey:"#606c74",black:"#333333"}},{}],3:[function(e,r,n){"use strict";var o=e("./greys"),t=e("./colors");r.exports=Object.assign({},t,o)},{"./colors":1,"./greys":2}]},{},[3])(3)});
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).spencerColor=e()}}(function(){return function u(i,a,c){function f(r,e){if(!a[r]){if(!i[r]){var o="function"==typeof _dereq_&&_dereq_;if(!e&&o)return o(r,!0);if(d)return d(r,!0);var n=new Error("Cannot find module '"+r+"'");throw n.code="MODULE_NOT_FOUND",n}var t=a[r]={exports:{}};i[r][0].call(t.exports,function(e){return f(i[r][1][e]||e)},t,t.exports,u,i,a,c)}return a[r].exports}for(var d="function"==typeof _dereq_&&_dereq_,e=0;e<c.length;e++)f(c[e]);return f}({1:[function(e,r,o){"use strict";r.exports={blue:"#6699cc",green:"#6accb2",yellow:"#e1e6b3",red:"#cc7066",pink:"#F2C0BB",brown:"#705E5C",orange:"#cc8a66",purple:"#d8b3e6",navy:"#335799",olive:"#7f9c6c",fuscia:"#735873",beige:"#e6d7b3",slate:"#8C8C88",suede:"#9c896c",burnt:"#603a39",sea:"#50617A",sky:"#2D85A8",night:"#303b50",rouge:"#914045",grey:"#838B91",mud:"#C4ABAB",royal:"#275291",cherry:"#cc6966",tulip:"#e6b3bc",rose:"#D68881",fire:"#AB5850",greyblue:"#72697D",greygreen:"#8BA3A2",greypurple:"#978BA3",burn:"#6D5685",slategrey:"#bfb0b3",light:"#a3a5a5",lighter:"#d7d5d2",fudge:"#4d4d4d",lightgrey:"#949a9e",white:"#fbfbfb",dimgrey:"#606c74",softblack:"#463D4F",dark:"#443d3d",black:"#333333"}},{}],2:[function(e,r,o){"use strict";var n=e("./colors"),t={juno:["blue","mud","navy","slate","pink","burn"],barrow:["rouge","red","orange","burnt","brown","greygreen"],roma:["#8a849a","#b5b0bf","rose","lighter","greygreen","mud"],palmer:["red","navy","olive","pink","suede","sky"],mark:["#848f9a","#9aa4ac","slate","#b0b8bf","mud","grey"],salmon:["sky","sea","fuscia","slate","mud","fudge"],dupont:["green","brown","orange","red","olive","blue"],bloor:["night","navy","beige","rouge","mud","grey"],yukon:["mud","slate","brown","sky","beige","red"],david:["blue","green","yellow","red","pink","light"],neste:["mud","cherry","royal","rouge","greygreen","greypurple"],ken:["red","sky","#c67a53","greygreen","#dfb59f","mud"]};Object.keys(t).forEach(function(e){t[e]=t[e].map(function(e){return n[e]||e})}),r.exports=t},{"./colors":1}],3:[function(e,r,o){"use strict";var n=e("./colors"),t=e("./combos"),u={colors:n,list:Object.keys(n).map(function(e){return n[e]}),combos:t};r.exports=u},{"./colors":1,"./combos":2}]},{},[3])(3)});
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],7:[function(_dereq_,module,exports){
@@ -6354,6 +6413,42 @@ return h;
 
 
 },{}],8:[function(_dereq_,module,exports){
+module.exports={
+  "name": "somehow",
+  "description": "make infographics without thinking",
+  "version": "0.0.8",
+  "main": "builds/somehow.js",
+  "unpkg": "builds/somehow.min.js",
+  "author": "Spencer Kelly (spencermountain)",
+  "homepage": "https://github.com/spencermountain/frown#readme",
+  "scripts": {
+    "start": "budo scratch.js:assets/bundle.js --live",
+    "watch": "npm run start",
+    "build": "node ./scripts/build.js"
+  },
+  "files": [
+    "builds"
+  ],
+  "dependencies": {
+    "d3-shape": "1.2.2",
+    "fit-aspect-ratio": "1.0.2",
+    "htm": "2.0.0",
+    "spacetime": "5.2.1",
+    "spencer-color": "0.1.0",
+    "vhtml": "2.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.2.2",
+    "@babel/preset-env": "7.2.3",
+    "babelify": "10.0.0",
+    "budo": "11.5.0",
+    "derequire": "2.0.6",
+    "shelljs": "0.8.3",
+    "terser": "3.14.1"
+  }
+}
+
+},{}],9:[function(_dereq_,module,exports){
 "use strict";
 
 function _templateObject() {
@@ -6374,8 +6469,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var fitAspect = _dereq_('fit-aspect-ratio'); // const Component = require('preact').Component
-
+var fitAspect = _dereq_('fit-aspect-ratio');
 
 var htm = _dereq_('htm');
 
@@ -6403,7 +6497,11 @@ var Text = _dereq_('./shapes/Text');
 
 var Dot = _dereq_('./shapes/Dot');
 
+var Annotation = _dereq_('./shapes/Annotation');
+
 var Slider = _dereq_('./inputs/Slider');
+
+var Legend = _dereq_('./inputs/Legend');
 
 var World =
 /*#__PURE__*/
@@ -6478,6 +6576,13 @@ function () {
       return shape;
     }
   }, {
+    key: "annotation",
+    value: function annotation(obj) {
+      var shape = new Annotation(obj, this);
+      this.shapes.push(shape);
+      return shape;
+    }
+  }, {
     key: "shape",
     value: function shape(obj) {
       var shape = new Shape(obj, this);
@@ -6490,6 +6595,13 @@ function () {
       var slider = new Slider(obj, this);
       this.inputs.push(slider);
       return slider;
+    }
+  }, {
+    key: "legend",
+    value: function legend(obj) {
+      var legend = new Legend(obj, this);
+      this.inputs.push(legend);
+      return legend;
     }
   }, {
     key: "getShape",
@@ -6547,7 +6659,7 @@ Object.keys(methods).forEach(function (k) {
 });
 module.exports = World;
 
-},{"./axis/XAxis":11,"./axis/YAxis":12,"./inputs/Slider":17,"./methods":18,"./scales/Scale":20,"./scales/YScale":21,"./shapes/Area":23,"./shapes/Dot":24,"./shapes/Line":25,"./shapes/Rect":26,"./shapes/Shape":27,"./shapes/Text":28,"fit-aspect-ratio":3,"htm":4,"vhtml":7}],9:[function(_dereq_,module,exports){
+},{"./axis/XAxis":12,"./axis/YAxis":13,"./inputs/Legend":18,"./inputs/Slider":19,"./methods":20,"./scales/Scale":22,"./scales/YScale":23,"./shapes/Annotation":25,"./shapes/Area":26,"./shapes/Dot":27,"./shapes/Line":28,"./shapes/Rect":29,"./shapes/Shape":30,"./shapes/Text":31,"fit-aspect-ratio":3,"htm":4,"vhtml":7}],10:[function(_dereq_,module,exports){
 "use strict";
 
 var extent = function extent(arr) {
@@ -6583,7 +6695,7 @@ module.exports = {
   uuid: uuid
 };
 
-},{}],10:[function(_dereq_,module,exports){
+},{}],11:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -6677,7 +6789,7 @@ function () {
 
 module.exports = Axis;
 
-},{"./_custom":13,"./_ticks":15,"spencer-color":6}],11:[function(_dereq_,module,exports){
+},{"./_custom":14,"./_ticks":16,"spencer-color":6}],12:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -6772,7 +6884,7 @@ function (_Axis) {
 
 module.exports = XAxis;
 
-},{"./Axis":10}],12:[function(_dereq_,module,exports){
+},{"./Axis":11}],13:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -6867,8 +6979,10 @@ function (_Axis) {
 
 module.exports = YAxis;
 
-},{"./Axis":10}],13:[function(_dereq_,module,exports){
+},{"./Axis":11}],14:[function(_dereq_,module,exports){
 "use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var spacetime = _dereq_('spacetime');
 
@@ -6876,6 +6990,13 @@ var prettyNum = _dereq_('./_prettyNum');
 
 var drawTick = function drawTick(s, axis) {
   var scale = axis.scale.scale;
+  var label = null; //support {label, value} format
+
+  if (_typeof(s) === 'object' && s !== null) {
+    label = s.label;
+    s = s.value;
+  } //support 'june 5th'
+
 
   if (typeof s === 'string') {
     s = spacetime(s);
@@ -6884,22 +7005,23 @@ var drawTick = function drawTick(s, axis) {
       //val
       pos: parseInt(scale(s.epoch), 10),
       //x/y
-      label: s.format(axis._fmt || '{month} {year}') //text
+      label: label || s.format(axis._fmt || '{month} {year}') //text
 
     };
-  }
+  } //support '52'
+
 
   var num = Number(s);
   return {
     num: num,
     pos: parseInt(scale(num), 10),
-    label: prettyNum(num)
+    label: label || prettyNum(num)
   };
 };
 
 module.exports = drawTick;
 
-},{"./_prettyNum":14,"spacetime":5}],14:[function(_dereq_,module,exports){
+},{"./_prettyNum":15,"spacetime":5}],15:[function(_dereq_,module,exports){
 "use strict";
 
 var mil = 1000000;
@@ -6929,7 +7051,7 @@ var prettyNum = function prettyNum(num) {
 
 module.exports = prettyNum;
 
-},{}],15:[function(_dereq_,module,exports){
+},{}],16:[function(_dereq_,module,exports){
 "use strict";
 
 var spacetime = _dereq_('spacetime');
@@ -6939,6 +7061,7 @@ var prettyNum = _dereq_('./_prettyNum');
 var memo = {};
 var day = 60 * 60 * 24 * 1000;
 var month = day * 30;
+var sixMonth = month * 6;
 var year = day * 368;
 
 var generic = function generic(axis) {
@@ -6970,11 +7093,18 @@ var chooseFmt = function chooseFmt(scale) {
 
   if (diff > year) {
     return 'MMM yyyy';
-  }
+  } //sept
+
+
+  if (diff > sixMonth) {
+    return 'MMM';
+  } //sept 1
+
 
   if (diff > month) {
-    return 'MMM'; // Sept
-  }
+    return 'MMM d';
+  } //time
+
 
   if (diff < day) {
     return 'h:mm a';
@@ -7004,23 +7134,124 @@ module.exports = {
   date: date
 };
 
-},{"./_prettyNum":14,"spacetime":5}],16:[function(_dereq_,module,exports){
+},{"./_prettyNum":15,"spacetime":5}],17:[function(_dereq_,module,exports){
 "use strict";
 
-var World = _dereq_('./World'); //
+var World = _dereq_('./World');
+
+var pkg = _dereq_('../package.json'); //
 
 
 var somehow = function somehow(obj) {
   return new World(obj);
 };
 
+somehow.version = pkg.version;
 module.exports = somehow;
 
-},{"./World":8}],17:[function(_dereq_,module,exports){
+},{"../package.json":8,"./World":9}],18:[function(_dereq_,module,exports){
 "use strict";
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["<div style=\"", "\">\n        <div style=\"", "\">", "</div>\n        ", "\n        <input type=\"range\" id=\"", "\" style=\"", "\" value=", " ...", ">\n      </div>"]);
+  var data = _taggedTemplateLiteral(["<div class=", " style=", ">\n      ", "\n      </div>\n      "]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<div style=\"color:", "; margin:8px;\">\n      <span style=\"background-color:", "; display:inline-block; width:10px; height:10px; border-radius:50%;\"/>\n      ", "\n      </div>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+//a component for colors/names
+var Legend =
+/*#__PURE__*/
+function () {
+  function Legend() {
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Legend);
+
+    this.obj = obj;
+    this.world = world;
+    this._orientation = 'col';
+    this._width = null;
+    this._height = null;
+  }
+
+  _createClass(Legend, [{
+    key: "orientation",
+    value: function orientation(mode) {
+      if (mode === 'row' || mode === 'landscape') {
+        this._orientation = 'row';
+      } else {
+        this._orientation = 'col';
+      }
+
+      return this;
+    }
+  }, {
+    key: "width",
+    value: function width(w) {
+      this._width = w;
+      return this;
+    }
+  }, {
+    key: "height",
+    value: function height(h) {
+      this._height = h;
+      return this;
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var obj = this.obj;
+      var h = this.world.html;
+      var inside = Object.keys(obj).map(function (k) {
+        return h(_templateObject(), obj[k], obj[k], k);
+      });
+      var style = 'justify-content:space-evenly; ';
+
+      if (this._width) {
+        style += "width:".concat(this._width, "px;");
+      }
+
+      if (this._height) {
+        style += "height:".concat(this._height, "px;");
+      }
+
+      return h(_templateObject2(), this._orientation, style, inside);
+    }
+  }]);
+
+  return Legend;
+}();
+
+module.exports = Legend;
+
+},{}],19:[function(_dereq_,module,exports){
+"use strict";
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<div style=\"", "\">\n        <div style=\"", "\">", "</div>\n        ", "\n        <input type=\"range\" id=\"", "\" style=\"", "\" value=", " ...", "/>\n      </div>"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -7154,11 +7385,14 @@ function () {
       };
       setTimeout(function () {
         var el = document.getElementById(_this3.id);
-        el.addEventListener('input', function (e) {
-          _this3.world.state[_this3.id] = e.target.value;
 
-          _this3.callback(e);
-        });
+        if (el) {
+          el.addEventListener('input', function (e) {
+            _this3.world.state[_this3.id] = e.target.value;
+
+            _this3.callback(e);
+          });
+        }
       }, 50);
       return h(_templateObject2(), styles.box, styles.title, this._title, this.makeLabels(), this.id, styles.input, this._value, this.attrs);
     }
@@ -7169,7 +7403,7 @@ function () {
 
 module.exports = Slider;
 
-},{"spencer-color":6}],18:[function(_dereq_,module,exports){
+},{"spencer-color":6}],20:[function(_dereq_,module,exports){
 "use strict";
 
 var _require = _dereq_('./parse'),
@@ -7215,8 +7449,7 @@ var methods = {
 
     return this;
   },
-  fit: function fit(x, y) {
-    // if (!has(x) && !has(y)) {
+  fitX: function fitX(x) {
     var arr = this.shapes.map(function (s) {
       return s.extent();
     });
@@ -7225,16 +7458,6 @@ var methods = {
     }).filter(function (n) {
       return n !== null;
     })).min || 0;
-    var minY = fns.extent(arr.map(function (o) {
-      return o.y.min;
-    }).filter(function (n) {
-      return n !== null;
-    })).min || 0;
-    var maxY = fns.extent(arr.map(function (o) {
-      return o.y.max;
-    }).filter(function (n) {
-      return n !== null;
-    })).max || 0;
     var maxX = fns.extent(arr.map(function (o) {
       return o.x.max;
     }).filter(function (n) {
@@ -7250,15 +7473,6 @@ var methods = {
     }
 
     this.x.rescale();
-    this.y.min = minY > 0 ? 0 : minY;
-    this.y.max = maxY;
-
-    if (this.y.format() === 'date') {
-      this.y.min = minY;
-      this.y.max = maxY;
-    }
-
-    this.y.rescale(); // }
 
     if (has(x) === true) {
       x = parseX(x, this).value;
@@ -7271,6 +7485,32 @@ var methods = {
 
       this.x.rescale();
     }
+
+    return this;
+  },
+  fitY: function fitY(y) {
+    var arr = this.shapes.map(function (s) {
+      return s.extent();
+    });
+    var minY = fns.extent(arr.map(function (o) {
+      return o.y.min;
+    }).filter(function (n) {
+      return n !== null;
+    })).min || 0;
+    var maxY = fns.extent(arr.map(function (o) {
+      return o.y.max;
+    }).filter(function (n) {
+      return n !== null;
+    })).max || 0;
+    this.y.min = minY > 0 ? 0 : minY;
+    this.y.max = maxY;
+
+    if (this.y.format() === 'date') {
+      this.y.min = minY;
+      this.y.max = maxY;
+    }
+
+    this.y.rescale();
 
     if (has(y) === true) {
       y = parseY(y, this).value;
@@ -7285,11 +7525,16 @@ var methods = {
     }
 
     return this;
+  },
+  fit: function fit(x, y) {
+    this.fitX(x);
+    this.fitY(y);
+    return this;
   }
 };
 module.exports = methods;
 
-},{"./_fns":9,"./parse":19}],19:[function(_dereq_,module,exports){
+},{"./_fns":10,"./parse":21}],21:[function(_dereq_,module,exports){
 "use strict";
 
 var spacetime = _dereq_('spacetime'); //
@@ -7373,7 +7618,7 @@ module.exports = {
   parseY: parseY
 };
 
-},{"spacetime":5}],20:[function(_dereq_,module,exports){
+},{"spacetime":5}],22:[function(_dereq_,module,exports){
 "use strict";
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7405,23 +7650,33 @@ function () {
     this.to = world.width;
     this._format = 'number';
     this.parse = parseX;
+    this.is_y = false;
     this.rescale();
   }
 
   _createClass(Scale, [{
     key: "rescale",
     value: function rescale() {
-      //give it a little bit of room..
-      var max = this.max;
-      var min = this.min;
       this.scale = scaleLinear({
         world: [this.from, this.to],
-        minmax: [min, max]
+        minmax: [this.min, this.max]
       });
+      return this;
     }
   }, {
     key: "fit",
     value: function fit(a, b) {
+      if (has(a) === false && has(b) === false) {
+        if (this.is_y) {
+          this.world.fitY();
+        } else {
+          this.world.fitX();
+        }
+
+        this.rescale();
+        return this;
+      }
+
       if (has(a) === true) {
         var num = this.parse(a, this.world).value;
         this.min = num;
@@ -7433,6 +7688,7 @@ function () {
       }
 
       this.rescale();
+      return this;
     }
   }, {
     key: "place",
@@ -7479,7 +7735,7 @@ function () {
 
 module.exports = Scale;
 
-},{"../parse":19,"./_linear":22}],21:[function(_dereq_,module,exports){
+},{"../parse":21,"./_linear":24}],23:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -7532,11 +7788,9 @@ function (_Scale) {
   _createClass(YScale, [{
     key: "rescale",
     value: function rescale() {
-      var max = this.max; //* this.world.wiggle_room
-
       this.scale = scaleLinear({
         world: [this.from, this.to],
-        minmax: [this.min, max]
+        minmax: [this.max, this.min]
       });
     }
   }]);
@@ -7546,7 +7800,7 @@ function (_Scale) {
 
 module.exports = YScale;
 
-},{"../parse":19,"./Scale":20,"./_linear":22}],22:[function(_dereq_,module,exports){
+},{"../parse":21,"./Scale":22,"./_linear":24}],24:[function(_dereq_,module,exports){
 "use strict";
 
 //a very-tiny version of d3-scale's scaleLinear
@@ -7570,7 +7824,154 @@ module.exports = scaleLinear; // let scale = scaleLinear({
 // })
 // console.log(scale(107))
 
-},{}],23:[function(_dereq_,module,exports){
+},{}],25:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["<g>\n      ", "\n      ", "\n    </g>"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["<g >\n      <line x1=\"0\" y1=\"0\" x2=\"", "\" y2=\"", "\" stroke=", "/>\n    </g>"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<g transform=\"translate(", " ", ")\" style=\"", "\">\n      <text id=\"fun\" ...", ">\n        ", "\n      </text>\n    </g>"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<tspan x=\"0\" dy=\"1.2em\">", "</tspan>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var colors = _dereq_('spencer-color').colors;
+
+var Shape = _dereq_('./Shape');
+
+var defaults = {
+  fill: 'grey',
+  stroke: 'none',
+  'stroke-width': 1,
+  'stroke-linecap': 'round'
+};
+
+var Annotation =
+/*#__PURE__*/
+function (_Shape) {
+  _inherits(Annotation, _Shape);
+
+  function Annotation() {
+    var _this;
+
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Annotation);
+
+    var text = null;
+
+    if (typeof obj === 'string') {
+      text = [obj];
+      obj = {};
+    } else if (Array.isArray(obj)) {
+      text = obj;
+      obj = {};
+    }
+
+    obj = Object.assign({}, defaults, obj);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Annotation).call(this, obj, world));
+    _this._text = text;
+    _this._origin = {};
+    return _this;
+  }
+
+  _createClass(Annotation, [{
+    key: "path",
+    value: function path() {
+      return '';
+    }
+  }, {
+    key: "drawText",
+    value: function drawText() {
+      var h = this.world.html;
+      var inside = this.textLines.map(function (str) {
+        return h(_templateObject(), str);
+      });
+
+      var _this$position = this.position(),
+          x = _this$position.x,
+          y = _this$position.y;
+
+      return h(_templateObject2(), x, y, this.drawSyle(), this.attrs, inside);
+    }
+  }, {
+    key: "drawLine",
+    value: function drawLine() {
+      var h = this.world.html;
+
+      var _this$position2 = this.position(),
+          x = _this$position2.x,
+          y = _this$position2.y;
+
+      return h(_templateObject3(), x, y, colors.grey);
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+      return h(_templateObject4(), this.drawText(), this.drawLine());
+    }
+  }]);
+
+  return Annotation;
+}(Shape);
+
+module.exports = Annotation;
+
+},{"./Shape":30,"spencer-color":6}],26:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -7613,7 +8014,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var colors = _dereq_('spencer-color');
+var colors = _dereq_('spencer-color').colors;
 
 var Shape = _dereq_('./Shape');
 
@@ -7697,7 +8098,7 @@ function (_Shape) {
 
 module.exports = Area;
 
-},{"./Shape":27,"d3-shape":2,"spencer-color":6}],24:[function(_dereq_,module,exports){
+},{"./Shape":30,"d3-shape":2,"spencer-color":6}],27:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -7730,8 +8131,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var colors = _dereq_('spencer-color'); // const d3Shape = require('d3-shape')
-
+var colors = _dereq_('spencer-color').colors;
 
 var Shape = _dereq_('./Shape');
 
@@ -7763,6 +8163,7 @@ function (_Shape) {
     key: "radius",
     value: function radius(r) {
       this._radius = r;
+      return this;
     }
   }, {
     key: "build",
@@ -7783,7 +8184,7 @@ function (_Shape) {
 
 module.exports = Dot;
 
-},{"./Shape":27,"spencer-color":6}],25:[function(_dereq_,module,exports){
+},{"./Shape":30,"spencer-color":6}],28:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -7804,12 +8205,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var colors = _dereq_('spencer-color');
+var colors = _dereq_('spencer-color').colors;
 
 var d3Shape = _dereq_('d3-shape');
 
-var Shape = _dereq_('./Shape'); // const {parseX, parseY} = require('../parse')
-
+var Shape = _dereq_('./Shape');
 
 var defaults = {
   fill: 'none',
@@ -7852,8 +8252,7 @@ function (_Shape) {
   }, {
     key: "width",
     value: function width(num) {
-      this.attrs['stroke-width'] = num; //parseX(num, this.world)
-
+      this.attrs['stroke-width'] = num;
       return this;
     }
   }, {
@@ -7873,7 +8272,7 @@ function (_Shape) {
 
 module.exports = Line;
 
-},{"./Shape":27,"d3-shape":2,"spencer-color":6}],26:[function(_dereq_,module,exports){
+},{"./Shape":30,"d3-shape":2,"spencer-color":6}],29:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -7906,7 +8305,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var colors = _dereq_('spencer-color');
+var colors = _dereq_('spencer-color').colors;
 
 var Shape = _dereq_('./Shape');
 
@@ -7997,7 +8396,7 @@ function (_Shape) {
 
 module.exports = Rect;
 
-},{"./Shape":27,"spencer-color":6}],27:[function(_dereq_,module,exports){
+},{"./Shape":30,"spencer-color":6}],30:[function(_dereq_,module,exports){
 "use strict";
 
 function _templateObject() {
@@ -8018,18 +8417,17 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-// const flubber = require('flubber')
 var d3Shape = _dereq_('d3-shape');
 
-var colors = _dereq_('spencer-color');
-
-var _require = _dereq_('../parse'),
-    parseX = _require.parseX,
-    parseY = _require.parseY;
+var colors = _dereq_('spencer-color').colors;
 
 var fns = _dereq_('../_fns');
 
 var parseInput = _dereq_('./lib/parseInput');
+
+var _require = _dereq_('../parse'),
+    parseX = _require.parseX,
+    parseY = _require.parseY;
 
 var defaults = {
   fill: colors.blue,
@@ -8078,9 +8476,6 @@ function () {
   }, {
     key: "extent",
     value: function extent() {
-      // let points = this.points()
-      // let xArr = points.map((a) => a[0])
-      // let yArr = points.map((a) => a[1])
       var xArr = [];
       var yArr = [];
       this.data.forEach(function (o) {
@@ -8091,9 +8486,7 @@ function () {
         if (o.y.type !== 'pixel') {
           yArr.push(o.y.value);
         }
-      }); // this.data.map((o) => o.x.value)
-      // let yArr = this.data.map((o) => o.y.value)
-
+      });
       return {
         x: fns.extent(xArr),
         y: fns.extent(yArr)
@@ -8183,13 +8576,13 @@ function () {
 
 module.exports = Shape;
 
-},{"../_fns":9,"../parse":19,"./lib/parseInput":29,"d3-shape":2,"spencer-color":6}],28:[function(_dereq_,module,exports){
+},{"../_fns":10,"../parse":21,"./lib/parseInput":32,"d3-shape":2,"spencer-color":6}],31:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["<g transform=\"translate(", " ", ")\" style=\"", "\">\n      <text id=\"fun\" ...", ">\n        ", "\n      </text>\n    </g>"]);
+  var data = _taggedTemplateLiteral(["<g transform=\"", "\" style=\"", "\">\n      <text id=\"fun\" ...", ">\n        ", "\n      </text>\n    </g>"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -8228,7 +8621,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 var Shape = _dereq_('./Shape');
 
-var colors = _dereq_('spencer-color');
+var colors = _dereq_('spencer-color').colors;
 
 var defaults = {
   fill: 'grey',
@@ -8443,7 +8836,8 @@ function (_Shape) {
           x = _this$position.x,
           y = _this$position.y;
 
-      return h(_templateObject2(), x, y, this.drawSyle(), this.attrs, inside);
+      var transform = "translate(".concat(x, " ").concat(y, ")");
+      return h(_templateObject2(), transform, this.drawSyle(), this.attrs, inside);
     }
   }]);
 
@@ -8452,7 +8846,7 @@ function (_Shape) {
 
 module.exports = Text;
 
-},{"./Shape":27,"spencer-color":6}],29:[function(_dereq_,module,exports){
+},{"./Shape":30,"spencer-color":6}],32:[function(_dereq_,module,exports){
 "use strict";
 
 var _require = _dereq_('../../parse'),
@@ -8496,7 +8890,7 @@ var parseInput = function parseInput(set, world) {
 
 module.exports = parseInput;
 
-},{"../../parse":19}]},{},[16])(16)
+},{"../../parse":21}]},{},[17])(17)
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
