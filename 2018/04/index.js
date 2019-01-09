@@ -6,21 +6,28 @@ require('./_timelines');
 // == Montreal ==
 // 1642 - founding of montreal
 // 1861 - horse-drawn carts
+// 1884 - Funicular Railway built
 // 1867 - confederation
 // 1885, 7 November - great canadian railway
+// 1909 - montreal canadians
 // 1918 - tunnel under mount royal
+// 1920 - Funicular declared unsafe
 // 1930, May 14 - Jacques Cartier Bridge
 // 1941, September 1 - Trudeau (Dorval) airpot
+// 1952 - bus service replaces streetcar
 // 1960, October 14 - Montreal metro
 // 1962, trans-canada highway
 // 1967, April 27  - Expo '67
 // 1968, highway 401 completed
 // 1969, February 13 - stock exchange bombing
 // 1969, April 8 - Expos start
+// 1969, October 7 - police strike
 // 1970 - FLQ crisis
+// 1970 - oct 8 manifesto read on-air
 // 1975, November 29 - Mirabel airport opens
 // 1976, July 17  - Hosts Olympics
 // 1977 - French Language Charter (Bill 101)
+// 1976 - May 20th fuller dome fire
 // 1980, May 20 - First independence referendum
 // 1981, Expos make the playoffs
 // 1980, June 22 - terry fox in Montreal
@@ -48,6 +55,6 @@ require('./_timelines');
 // 1966, February 25 -> Bloor subway
 // 1968, highway 401 completed
 // 1976, CN Tower completed
-// 1977, Blue Jays start
+// 1977, April 7 - Blue Jays start
 // 1980, July 11 - terry fox welcomed in Toronto
 // 1989 Skydome built
