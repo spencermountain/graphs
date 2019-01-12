@@ -36,6 +36,6 @@ document.querySelector('#timeline1876').innerHTML = makeTimeline(1870).build();
 document.querySelector('#timeline1990').innerHTML = makeTimeline(1900).build();
 document.querySelector('#timeline1969').innerHTML = makeTimeline(1969).build();
 document.querySelector('#timeline1976').innerHTML = makeTimeline(1976).build();
-document.querySelector('#timeline1999').innerHTML = makeTimeline(1999).build();
+document.querySelector('#timeline2000').innerHTML = makeTimeline(2000).build();
 document.querySelector('#timeline2013').innerHTML = makeTimeline(2013).build();
 document.querySelector('#timeline2019').innerHTML = makeTimeline(2019).build();
