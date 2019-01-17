@@ -25,5 +25,17 @@ module.exports = {
       title: '2018 baseball season',
       thumb: 'thumb.png'
     },
+  ],
+  '2019': [
+    {
+      num: '01',
+      title: '2018-19 hockey season',
+      thumb: 'thumb.png'
+    },
+    {
+      num: '02',
+      title: 'History of the NHL',
+      thumb: 'thumb.png'
+    }
   ]
 };

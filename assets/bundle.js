@@ -2,7 +2,7 @@
 "use strict";
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["<h3 class=\"left dimgrey\">", "</h3>"]);
+  var data = _taggedTemplateLiteral(["<h3 class=\"\">", "</h3>"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -12,7 +12,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<a href=\"", "\" class=\"left flex-start w30 m3\" >\n    <span class=\"olive\" >", "</span>\n    <span class=\"link\"> / ", "</span>\n    <img class=\"block\" style=\"margin-left:95px; max-width:450px; max-height:100px;\" src=\"", "\" />\n    </a>\n    "]);
+  var data = _taggedTemplateLiteral(["<a href=\"", "\" class=\"left mw20 m3\" >\n    <div class=\"\">\n      <span class=\"olive\" >", "</span>\n      <span class=\"link\"> / ", "</span>\n    </div>\n    <img class=\"block\" style=\"margin-left:95px; max-width:450px; max-height:100px;\" src=\"", "\" />\n    </a>\n    "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -65,6 +65,15 @@ module.exports = {
   }, {
     num: '05',
     title: '2018 baseball season',
+    thumb: 'thumb.png'
+  }],
+  '2019': [{
+    num: '01',
+    title: '2018-19 hockey season',
+    thumb: 'thumb.png'
+  }, {
+    num: '02',
+    title: 'History of the NHL',
     thumb: 'thumb.png'
   }]
 };
