@@ -2,7 +2,7 @@
 module.exports = [
   {
     "team": "Detroit Red Wings",
-    "start": 1926,
+    "start": 1942,
     "history": [
       "Detroit Cougars",
       "1926–1930",
@@ -25,9 +25,24 @@ module.exports = [
       2007
     ]
   },
+
   {
-    "team": "Montreal Canadiens\n Canadiens de Montréal",
-    "start": 1909,
+    "team": "New York Rangers",
+    "start": 1942,
+    "history": [
+      "New York Rangers",
+      "1926–present"
+    ],
+    "wins": [
+      1927,
+      1932,
+      1939,
+      1993
+    ]
+  },
+  {
+    "team": "Montreal Canadiens",
+    "start": 1942,
     "history": [
       "Montreal Canadiens",
       "1910–1917 (NHA)",
@@ -62,7 +77,7 @@ module.exports = [
   },
   {
     "team": "Boston Bruins",
-    "start": 1924,
+    "start": 1942,
     "history": [
       "Boston Bruins",
       "1924–present"
@@ -76,35 +91,10 @@ module.exports = [
       2010
     ]
   },
-  {
-    "team": "Buffalo Sabres",
-    "start": 1970,
-    "history": [
-      "Buffalo Sabres",
-      "1970–present"
-    ],
-    "wins": []
-  },
-  {
-    "team": "Florida Panthers",
-    "start": 1993,
-    "history": [
-      "Florida Panthers",
-      "1993–present"
-    ],
-    "wins": []
-  },
-  {
-    "team": "Ottawa Senators Sénateurs d'Ottawa",
-    "start": 1992,
-    "history": [
-      "Ottawa Senators 1992–present"
-    ],
-    "wins": []
-  },
+
   {
     "team": "Toronto Maple Leafs",
-    "start": 1917,
+    "start": 1942,
     "history": [
       "Toronto Arenas",
       "1917–1919",
@@ -129,80 +119,28 @@ module.exports = [
       1966
     ]
   },
+
   {
-    "team": "Carolina Hurricanes",
-    "start": 1972,
+    "team": "Chicago Blackhawks",
+    "start": 1942,
     "history": [
-      "New England Whalers 1972–1979 (WHA) Hartford Whalers 1979–1997 (NHL)  Carolina Hurricanes 1997–present"
+      "Chicago Black Hawks",
+      "1926–1986",
+      "Chicago Blackhawks",
+      "1986–present"
     ],
     "wins": [
-      2005
+      1933,
+      1937,
+      1960,
+      2009,
+      2012,
+      2014
     ]
   },
-  {
-    "team": "Tampa Bay Lightning",
-    "start": 1992,
-    "history": [
-      "Tampa Bay Lightning",
-      "1992–present"
-    ],
-    "wins": [
-      2003
-    ]
-  },
-  {
-    "team": "Columbus Blue Jackets",
-    "start": 2000,
-    "history": [
-      "Columbus Blue Jackets",
-      "2000–present"
-    ],
-    "wins": []
-  },
-  {
-    "team": "New Jersey Devils",
-    "start": 1974,
-    "history": [
-      "Kansas City Scouts",
-      "1974–1976",
-      "Colorado Rockies",
-      "1976–1982",
-      "New Jersey Devils",
-      "1982–present"
-    ],
-    "wins": [
-      1994,
-      1999,
-      2002
-    ]
-  },
-  {
-    "team": "New York Islanders",
-    "start": 1972,
-    "history": [
-      "New York Islanders 1972–present"
-    ],
-    "wins": [
-      1979,
-      1980,
-      1981,
-      1982
-    ]
-  },
-  {
-    "team": "New York Rangers",
-    "start": 1926,
-    "history": [
-      "New York Rangers",
-      "1926–present"
-    ],
-    "wins": [
-      1927,
-      1932,
-      1939,
-      1993
-    ]
-  },
+
+  //67
+
   {
     "team": "Philadelphia Flyers",
     "start": 1967,
@@ -214,6 +152,29 @@ module.exports = [
       1973,
       1974
     ]
+  },
+
+  {
+    "team": "Los Angeles Kings",
+    "start": 1967,
+    "history": [
+      "Los Angeles Kings",
+      "1967–present"
+    ],
+    "wins": [
+      2011,
+      2013
+    ]
+  },
+
+  {
+    "team": "St. Louis Blues",
+    "start": 1967,
+    "history": [
+      "St. Louis Blues",
+      "1967–present"
+    ],
+    "wins": []
   },
   {
     "team": "Pittsburgh Penguins",
@@ -231,190 +192,8 @@ module.exports = [
     ]
   },
   {
-    "team": "Colorado Avalanche",
-    "start": 1972,
-    "history": [
-      "Quebec Nordiques",
-      "1972–1979 (WHA)",
-      "1979–1995 (NHL)",
-      "Colorado Avalanche",
-      "1995–present"
-    ],
-    "wins": [
-      1995,
-      2000
-    ]
-  },
-  {
-    "team": "Washington Capitals",
-    "start": 1974,
-    "history": [
-      "Washington Capitals",
-      "1974–present"
-    ],
-    "wins": [
-      2017
-    ]
-  },
-  {
-    "team": "Chicago Blackhawks",
-    "start": 1926,
-    "history": [
-      "Chicago Black Hawks",
-      "1926–1986",
-      "Chicago Blackhawks",
-      "1986–present"
-    ],
-    "wins": [
-      1933,
-      1937,
-      1960,
-      2009,
-      2012,
-      2014
-    ]
-  },
-  {
-    "team": "Minnesota Wild",
-    "start": 2000,
-    "history": [
-      "Minnesota Wild",
-      "2000–present"
-    ],
-    "wins": []
-  },
-  {
-    "team": "Dallas Stars",
-    "start": 1967,
-    "history": [
-      "Minnesota North Stars",
-      "1967–1993",
-      "Dallas Stars",
-      "1993–present"
-    ],
-    "wins": [
-      1998
-    ]
-  },
-  {
-    "team": "Anaheim Ducks",
-    "start": 1993,
-    "history": [
-      "Mighty Ducks of Anaheim",
-      "1993–2006",
-      "Anaheim Ducks",
-      "2006–present"
-    ],
-    "wins": [
-      2006
-    ]
-  },
-  {
-    "team": "Arizona Coyotes",
-    "start": 1972,
-    "history": [
-      "Winnipeg Jets",
-      "1972–1979 (WHA)",
-      "1979–1996 (NHL)",
-      "Phoenix Coyotes",
-      "1996–2014",
-      "Arizona Coyotes",
-      "2014–present"
-    ],
-    "wins": []
-  },
-  {
-    "team": "Nashville Predators",
-    "start": 1998,
-    "history": [
-      "Nashville Predators",
-      "1998–present"
-    ],
-    "wins": []
-  },
-  {
-    "team": "St. Louis Blues",
-    "start": 1967,
-    "history": [
-      "St. Louis Blues",
-      "1967–present"
-    ],
-    "wins": []
-  },
-  {
-    "team": "Winnipeg Jets",
-    "start": 1999,
-    "history": [
-      "Atlanta Thrashers",
-      "1999–2011",
-      "Winnipeg Jets",
-      "2011–present"
-    ],
-    "wins": []
-  },
-  {
-    "team": "Edmonton Oilers",
-    "start": 1972,
-    "history": [
-      "Alberta Oilers 1972–1973 (WHA) Edmonton Oilers 1973–1979 (WHA) 1979–present (NHL)"
-    ],
-    "wins": [
-      1983,
-      1984,
-      1986,
-      1987,
-      1989
-    ]
-  },
-  {
-    "team": "Vancouver Canucks",
-    "start": 1945,
-    "history": [
-      "Vancouver Canucks",
-      "1945–1952 (PCHL)",
-      "Vancouver Canucks",
-      "1952–1970 (WHL)",
-      "Vancouver Canucks",
-      "1970–present (NHL)"
-    ],
-    "wins": []
-  },
-  {
-    "team": "Los Angeles Kings",
-    "start": 1967,
-    "history": [
-      "Los Angeles Kings",
-      "1967–present"
-    ],
-    "wins": [
-      2011,
-      2013
-    ]
-  },
-  {
-    "team": "San Jose Sharks",
-    "start": 1991,
-    "history": [
-      "San Jose Sharks 1991–present"
-    ],
-    "wins": []
-  },
-  {
-    "team": "Calgary Flames",
-    "start": 1972,
-    "history": [
-      "Atlanta Flames",
-      "1972–1980",
-      "Calgary Flames",
-      "1980–present"
-    ],
-    "wins": [
-      1988
-    ]
-  },
-  {
     "team": "California Golden Seals",
-    "start": 1961,
+    "start": 1967,
     "end": 1976,
     "history": [
       "San Francisco Seals",
@@ -434,30 +213,109 @@ module.exports = [
     "wins": []
   },
   {
-    "team": "Vegas Golden Knights",
-    "start": 2017,
-    "history": [
-      "Vegas Golden Knights",
-      "2017–present"
-    ],
-    "wins": []
-  },
-  {
-    "team": "Colorado Rockies",
+    "team": "Cleveland Barons",
+    "start": 1976,
+    "end": 1978,
     "history": [],
-    "start": 1974,
-    "end": 1982,
+    "wins": []
+  },
+
+  {
+    "team": "Minnesota North Stars",
+    "start": 1967,
+    "end": 1993,
+    "history": [],
     "wins": []
   },
   {
-    "team": "Winnipeg Jets",
-    "start": 1972,
-    "end": 1996,
+    "team": "Dallas Stars",
+    "start": 1993,
     "history": [
-      "Winnipeg Jets 1972–1979 (WHA) 1979–1996 (NHL) Phoenix Coyotes 1996–2014 Arizona Coyotes 2014–present"
+      "Minnesota North Stars",
+      "1967–1993",
+      "Dallas Stars",
+      "1993–present"
+    ],
+    "wins": [
+      1998
+    ]
+  },
+
+
+  {
+    "team": "Buffalo Sabres",
+    "start": 1970,
+    "history": [
+      "Buffalo Sabres",
+      "1970–present"
     ],
     "wins": []
   },
+
+  {
+    "team": "Vancouver Canucks",
+    "start": 1970,
+    "history": [
+      "Vancouver Canucks",
+      "1945–1952 (PCHL)",
+      "Vancouver Canucks",
+      "1952–1970 (WHL)",
+      "Vancouver Canucks",
+      "1970–present (NHL)"
+    ],
+    "wins": []
+  },
+  {
+    "team": "Edmonton Oilers",
+    "start": 1972,
+    "history": [
+      "Alberta Oilers 1972–1973 (WHA) Edmonton Oilers 1973–1979 (WHA) 1979–present (NHL)"
+    ],
+    "wins": [
+      1983,
+      1984,
+      1986,
+      1987,
+      1989
+    ]
+  },
+
+  {
+    "team": "New York Islanders",
+    "start": 1972,
+    "history": [
+      "New York Islanders 1972–present"
+    ],
+    "wins": [
+      1979,
+      1980,
+      1981,
+      1982
+    ]
+  },
+
+  {
+    "team": "Atlanta Flames",
+    "start": 1972,
+    "end": 1980,
+    "history": [],
+    "wins": []
+  },
+
+  {
+    "team": "Calgary Flames",
+    "start": 1980,
+    "history": [
+      "Atlanta Flames",
+      "1972–1980",
+      "Calgary Flames",
+      "1980–present"
+    ],
+    "wins": [
+      1988
+    ]
+  },
+
   {
     "team": "Hartford Whalers",
     "start": 1972,
@@ -471,8 +329,89 @@ module.exports = [
     "wins": []
   },
   {
+    "team": "Carolina Hurricanes",
+    "start": 1997,
+    "history": [
+      "New England Whalers 1972–1979 (WHA)",
+      "Hartford Whalers 1979–1997 (NHL)",
+      "Carolina Hurricanes 1997–present"
+    ],
+    "wins": [
+      2005
+    ]
+  },
+  {
+    "team": "Kansas City Scouts",
+    "start": 1974,
+    "end": 1976,
+    "history": [],
+    "wins": []
+  },
+
+  {
+    "team": "Colorado Rockies",
+    "history": [],
+    "start": 1976,
+    "end": 1982,
+    "wins": []
+  },
+  {
+    "team": "New Jersey Devils",
+    "start": 1982,
+    "history": [
+      "Kansas City Scouts",
+      "1974–1976",
+      "Colorado Rockies",
+      "1976–1982",
+      "New Jersey Devils",
+      "1982–present"
+    ],
+    "wins": [
+      1994,
+      1999,
+      2002
+    ]
+  },
+
+  {
+    "team": "Washington Capitals",
+    "start": 1974,
+    "history": [
+      "Washington Capitals",
+      "1974–present"
+    ],
+    "wins": [
+      2017
+    ]
+  },
+
+  {
+    "team": "Winnipeg Jets",
+    "start": 1979,
+    "end": 1996,
+    "history": [
+      "Winnipeg Jets 1972–1979 (WHA) 1979–1996 (NHL) Phoenix Coyotes 1996–2014 Arizona Coyotes 2014–present"
+    ],
+    "wins": []
+  },
+  {
+    "team": "Arizona Coyotes",
+    "start": 1996,
+    "history": [
+      "Winnipeg Jets",
+      "1972–1979 (WHA)",
+      "1979–1996 (NHL)",
+      "Phoenix Coyotes",
+      "1996–2014",
+      "Arizona Coyotes",
+      "2014–present"
+    ],
+    "wins": []
+  },
+
+  {
     "team": "Quebec Nordiques",
-    "start": 1972,
+    "start": 1979,
     "end": 1995,
     "history": [
       "Quebec Nordiques 1972–1979 (WHA)",
@@ -480,6 +419,85 @@ module.exports = [
     ],
     "wins": []
   },
+  {
+    "team": "Colorado Avalanche",
+    "start": 1995,
+    "history": [
+      "Quebec Nordiques",
+      "1972–1979 (WHA)",
+      "1979–1995 (NHL)",
+      "Colorado Avalanche",
+      "1995–present"
+    ],
+    "wins": [
+      1995,
+      2000
+    ]
+  },
+
+  {
+    "team": "San Jose Sharks",
+    "start": 1991,
+    "history": [
+      "San Jose Sharks 1991–present"
+    ],
+    "wins": []
+  },
+  {
+    "team": "Ottawa Senators",
+    "start": 1992,
+    "history": [
+      "Ottawa Senators 1992–present"
+    ],
+    "wins": []
+  },
+  {
+    "team": "Tampa Bay Lightning",
+    "start": 1992,
+    "history": [
+      "Tampa Bay Lightning",
+      "1992–present"
+    ],
+    "wins": [
+      2003
+    ]
+  },
+
+  {
+    "team": "Florida Panthers",
+    "start": 1993,
+    "history": [
+      "Florida Panthers",
+      "1993–present"
+    ],
+    "wins": []
+  },
+
+  {
+    "team": "Anaheim Ducks",
+    "start": 1993,
+    "history": [
+      "Mighty Ducks of Anaheim",
+      "1993–2006",
+      "Anaheim Ducks",
+      "2006–present"
+    ],
+    "wins": [
+      2006
+    ]
+  },
+
+  {
+    "team": "Nashville Predators",
+    "start": 1998,
+    "history": [
+      "Nashville Predators",
+      "1998–present"
+    ],
+    "wins": []
+  },
+
+
   {
     "team": "Atlanta Thrashers",
     "start": 1999,
@@ -493,31 +511,49 @@ module.exports = [
     "wins": []
   },
   {
-    "team": "Atlanta Flames",
-    "start": 1972,
-    "end": 1980,
-    "history": [],
+    "team": "Winnipeg Jets",
+    "start": 2011,
+    "history": [
+      "Atlanta Thrashers",
+      "1999–2011",
+      "Winnipeg Jets",
+      "2011–present"
+    ],
+    "wins": []
+  },
+
+  {
+    "team": "Columbus Blue Jackets",
+    "start": 2000,
+    "history": [
+      "Columbus Blue Jackets",
+      "2000–present"
+    ],
     "wins": []
   },
   {
-    "team": "Kansas City Scouts",
-    "start": 1974,
-    "end": 1976,
-    "history": [],
+    "team": "Minnesota Wild",
+    "start": 2000,
+    "history": [
+      "Minnesota Wild",
+      "2000–present"
+    ],
     "wins": []
   },
   {
-    "team": "Cleveland Barons",
-    "start": 1967,
-    "end": 1978,
-    "history": [],
+    "team": "Vegas Golden Knights",
+    "start": 2017,
+    "history": [
+      "Vegas Golden Knights",
+      "2017–present"
+    ],
     "wins": []
   },
-  {
-    "team": "Minnesota North Stars",
-    "start": 1967,
-    "end": 1993,
-    "history": [],
-    "wins": []
-  },
+  // {
+  //   "team": "Seattle",
+  //   "start": 2020,
+  //   "history": [],
+  //   "wins": []
+  // },
+
 ]
