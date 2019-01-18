@@ -1,5 +1,5 @@
-// const somehow = require('somehow');
-const somehow = require('/Users/spencer/mountain/somehow/src');
+const somehow = require('somehow');
+// const somehow = require('/Users/spencer/mountain/somehow/src');
 const today = new Date().toISOString()
 
 const makeTimeline = function(year) {
@@ -33,9 +33,11 @@ const makeTimeline = function(year) {
 }
 
 document.querySelector('#timeline1876').innerHTML = makeTimeline(1870).build();
-document.querySelector('#timeline1990').innerHTML = makeTimeline(1900).build();
+document.querySelector('#timeline1900').innerHTML = makeTimeline(1900).build();
+document.querySelector('#timeline1960').innerHTML = makeTimeline(1960).build();
 document.querySelector('#timeline1969').innerHTML = makeTimeline(1969).build();
 document.querySelector('#timeline1976').innerHTML = makeTimeline(1976).build();
+document.querySelector('#timeline1990').innerHTML = makeTimeline(1990).build();
 document.querySelector('#timeline2000').innerHTML = makeTimeline(2000).build();
-document.querySelector('#timeline2013').innerHTML = makeTimeline(2013).build();
+document.querySelector('#timeline2010').innerHTML = makeTimeline(2010).build();
 document.querySelector('#timeline2019').innerHTML = makeTimeline(2019).build();
