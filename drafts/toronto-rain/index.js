@@ -9,6 +9,7 @@ const years = {
   2013: require('./data/2013-toronto'),
   2012: require('./data/2012-toronto'),
   2011: require('./data/2011-toronto'),
+  2010: require('./data/2010-toronto'),
 }
 
 const doYear = function(year) {
@@ -21,6 +22,9 @@ const doYear = function(year) {
     if (d.rain) {
       let bar = w.bar().color('blue').at(d.date, d.rain)
       bar.attrs.title = d.date
+    }
+    if (d.thunder) {
+      w.text('•').color('rose').at(d.date, '-35px')
     }
   })
   w.text(String(year)).at('0%', '90%')
@@ -38,6 +42,7 @@ doYear(2014)
 doYear(2013)
 doYear(2012)
 doYear(2011)
+doYear(2010)
 
 
 //2018 aug 8
@@ -49,10 +54,11 @@ doYear(2011)
 //2014 june 25 - https://globalnews.ca/video/1417301/heavy-downpour-floods-parts-of-toronto-wednesday
 //2014 may 27 - https://globalnews.ca/video/1357804/raw-video-heavy-rains-bring-floods-to-parts-of-toronto
 
-//2013 july 8 - extreme https://globalnews.ca/news/708703/health-officials-warn-about-contaminated-flood-waters/ https://globalnews.ca/news/1439081/city-urges-storm-preparedness-on-anniversary-of-toronto-floods/
+//2013 july 8 - extreme https://globalnews.ca/news/708703/health-officials-warn-about-contaminated-flood-waters/
+// https://globalnews.ca/news/1439081/city-urges-storm-preparedness-on-anniversary-of-toronto-floods/
 //2013 april 13
 
 //2012 dec 28 - snow - https://nationalpost.com/news/toronto/snowfall-in-toronto-by-the-numbers
 
-//2011 March 23 - big snowstorm?
+//2011 March 23 - big snowstorm - https://toronto.citynews.ca/2011/03/23/evening-webcast-march-23-2011/
 // 1999 mel lastman army
