@@ -2,6 +2,14648 @@
 "use strict";
 
 module.exports = [{
+  "date": "2000-01-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-01-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-03",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2000-01-04",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2000-01-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-01-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-10",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2000-01-11",
+  "thunder": false,
+  "rain": 0.33
+}, {
+  "date": "2000-01-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-01-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-01-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-01-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-01-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-01-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-02-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-24",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2000-02-25",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2000-02-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-02-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-02",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-03-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-10",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-03-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-03-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-16",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2000-03-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-03-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-03-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-03-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-03-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-04-04",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2000-04-05",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2000-04-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-04-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-08",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2000-04-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-10",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-04-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-04-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-18",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2000-04-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-21",
+  "thunder": false,
+  "rain": 0.87
+}, {
+  "date": "2000-04-22",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2000-04-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-04-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-05-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-02",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2000-05-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-05-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-05-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-05-09",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2000-05-10",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2000-05-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-12",
+  "thunder": false,
+  "rain": 0.81
+}, {
+  "date": "2000-05-13",
+  "thunder": false,
+  "rain": 1.69
+}, {
+  "date": "2000-05-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-05-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-24",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2000-05-25",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2000-05-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-05-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-01",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2000-06-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-06",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2000-06-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-12",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2000-06-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-14",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2000-06-15",
+  "thunder": false,
+  "rain": 0.47
+}, {
+  "date": "2000-06-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-06-17",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-06-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-06-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-06-21",
+  "thunder": false,
+  "rain": 0.36
+}, {
+  "date": "2000-06-22",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2000-06-23",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2000-06-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-25",
+  "thunder": false,
+  "rain": 1.04
+}, {
+  "date": "2000-06-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-06-27",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2000-06-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-06-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-06-30",
+  "thunder": false,
+  "rain": 0.43
+}, {
+  "date": "2000-07-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-07-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-07-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-10",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2000-07-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-15",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2000-07-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-07-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-07-31",
+  "thunder": false,
+  "rain": 0.79
+}, {
+  "date": "2000-08-01",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2000-08-02",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2000-08-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-09",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2000-08-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-11",
+  "thunder": false,
+  "rain": 0.65
+}, {
+  "date": "2000-08-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-08-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-19",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2000-08-20",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2000-08-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-08-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-08-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-03",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2000-09-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-11",
+  "thunder": false,
+  "rain": 0.62
+}, {
+  "date": "2000-09-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-09-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-15",
+  "thunder": false,
+  "rain": 0.67
+}, {
+  "date": "2000-09-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-09-21",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2000-09-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-23",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2000-09-24",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2000-09-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-09-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-06",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2000-10-07",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2000-10-08",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2000-10-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-10-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-10-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-10-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-11-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-10",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2000-11-11",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2000-11-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-14",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2000-11-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-17",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-11-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-20",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2000-11-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-11-26",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2000-11-27",
+  "thunder": false,
+  "rain": 0.41
+}, {
+  "date": "2000-11-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-11-29",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2000-12-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-12",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2000-12-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-14",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2000-12-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-12-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-17",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2000-12-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-19",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2000-12-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-12-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2000-12-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2000-12-31",
+  "thunder": false,
+  "rain": 0
+}];
+
+},{}],2:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = [{
+  "date": "2001-01-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-01-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-01-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-01-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-01-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-01-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-01-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-21",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-01-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-27",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-01-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-01-31",
+  "thunder": false,
+  "rain": 0.45
+}, {
+  "date": "2001-02-01",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-02-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-05",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2001-02-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-09",
+  "thunder": false,
+  "rain": 0.87
+}, {
+  "date": "2001-02-10",
+  "thunder": false,
+  "rain": 0.39
+}, {
+  "date": "2001-02-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-15",
+  "thunder": false,
+  "rain": 0.31
+}, {
+  "date": "2001-02-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-02-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-02-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-25",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2001-02-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-02-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-02-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-03-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-05",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2001-03-06",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2001-03-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-03-12",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-03-13",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2001-03-14",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2001-03-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-03-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-03-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-03-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-04-07",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2001-04-08",
+  "thunder": false,
+  "rain": 0.49
+}, {
+  "date": "2001-04-09",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-04-10",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2001-04-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-13",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-04-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-22",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2001-04-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-04-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-04-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-05",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2001-05-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-09",
+  "thunder": false,
+  "rain": 0.59
+}, {
+  "date": "2001-05-10",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-05-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-05-12",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-05-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-14",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-05-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-05-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-22",
+  "thunder": false,
+  "rain": 0.63
+}, {
+  "date": "2001-05-23",
+  "thunder": false,
+  "rain": 2.3
+}, {
+  "date": "2001-05-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-26",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2001-05-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-05-28",
+  "thunder": false,
+  "rain": 0.49
+}, {
+  "date": "2001-05-29",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-05-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-05-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-02",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2001-06-03",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2001-06-04",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2001-06-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-11",
+  "thunder": false,
+  "rain": 0.67
+}, {
+  "date": "2001-06-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-13",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2001-06-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-17",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2001-06-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-20",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-06-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-22",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-06-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-06-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-06-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-06-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-07-01",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2001-07-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-05",
+  "thunder": false,
+  "rain": 1.24
+}, {
+  "date": "2001-07-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-08",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2001-07-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-11",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2001-07-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-07-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-17",
+  "thunder": false,
+  "rain": 0.41
+}, {
+  "date": "2001-07-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-07-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-23",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2001-07-24",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2001-07-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-07-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-08-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-10",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-08-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-17",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2001-08-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-08-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-20",
+  "thunder": false,
+  "rain": 0.47
+}, {
+  "date": "2001-08-21",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-08-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-24",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2001-08-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-08-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-08-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-04",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2001-09-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-20",
+  "thunder": false,
+  "rain": 1.06
+}, {
+  "date": "2001-09-21",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2001-09-22",
+  "thunder": false,
+  "rain": 0.51
+}, {
+  "date": "2001-09-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-25",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2001-09-26",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2001-09-27",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2001-09-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-09-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-09-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-05",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2001-10-06",
+  "thunder": false,
+  "rain": 1.18
+}, {
+  "date": "2001-10-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-10-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-12",
+  "thunder": false,
+  "rain": 0.45
+}, {
+  "date": "2001-10-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-15",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2001-10-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-17",
+  "thunder": false,
+  "rain": 0.39
+}, {
+  "date": "2001-10-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-24",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2001-10-25",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2001-10-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-10-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-11-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-11-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-09",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-11-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-20",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2001-11-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-28",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-11-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-11-30",
+  "thunder": false,
+  "rain": 0.51
+}, {
+  "date": "2001-12-01",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2001-12-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-06",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2001-12-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-13",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2001-12-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-12-15",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2001-12-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-17",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-12-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-19",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-12-20",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2001-12-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2001-12-24",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2001-12-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2001-12-31",
+  "thunder": false,
+  "rain": 0
+}];
+
+},{}],3:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = [{
+  "date": "2002-01-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-01-07",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2002-01-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-09",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2002-01-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-01-16",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2002-01-17",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-01-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-01-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-01-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-01-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-01-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-01-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-01",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2002-02-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-02-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-02-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-02-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-17",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2002-02-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-20",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2002-02-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-02-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-02-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-02-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-02-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-03",
+  "thunder": false,
+  "rain": 0.47
+}, {
+  "date": "2002-03-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-03-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-03-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-10",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2002-03-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-03-16",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-03-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-03-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-21",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2002-03-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-03-30",
+  "thunder": false,
+  "rain": 0.37
+}, {
+  "date": "2002-03-31",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-04-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-02",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-04-03",
+  "thunder": false,
+  "rain": 0.35
+}, {
+  "date": "2002-04-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-04-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-09",
+  "thunder": false,
+  "rain": 0.75
+}, {
+  "date": "2002-04-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-04-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-14",
+  "thunder": false,
+  "rain": 0.37
+}, {
+  "date": "2002-04-15",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2002-04-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-17",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-04-18",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2002-04-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-04-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-04-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-04-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-04-28",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2002-04-29",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2002-04-30",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2002-05-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-02",
+  "thunder": false,
+  "rain": 0.41
+}, {
+  "date": "2002-05-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-05-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-05-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-10",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-05-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-05-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-13",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2002-05-14",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2002-05-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-05-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-17",
+  "thunder": false,
+  "rain": 0.61
+}, {
+  "date": "2002-05-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-26",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2002-05-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-05-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-05-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-06-02",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-06-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-05",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2002-06-06",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-06-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-06-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-06-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-12",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2002-06-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-15",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2002-06-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-17",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-06-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-06-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-22",
+  "thunder": false,
+  "rain": 0.45
+}, {
+  "date": "2002-06-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-06-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-27",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2002-06-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-06-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-06-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-09",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2002-07-10",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-07-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-07-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-07-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-22",
+  "thunder": false,
+  "rain": 0.59
+}, {
+  "date": "2002-07-23",
+  "thunder": false,
+  "rain": 0.67
+}, {
+  "date": "2002-07-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-07-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-07-27",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2002-07-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-07-30",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-07-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-08-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-08-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-08-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-15",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-08-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-08-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-08-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-23",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-08-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-08-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-09-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-15",
+  "thunder": false,
+  "rain": 0.57
+}, {
+  "date": "2002-09-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-09-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-09-20",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2002-09-21",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-09-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-23",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2002-09-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-27",
+  "thunder": false,
+  "rain": 1
+}, {
+  "date": "2002-09-28",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2002-09-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-09-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-02",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-10-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-10-05",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2002-10-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-10-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-10-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-10-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-17",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2002-10-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-19",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2002-10-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-10-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-22",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2002-10-23",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2002-10-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-10-26",
+  "thunder": false,
+  "rain": 0.37
+}, {
+  "date": "2002-10-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-10-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-10-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-10-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-11-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-11-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-06",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2002-11-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-11-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-10",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2002-11-11",
+  "thunder": false,
+  "rain": 1.32
+}, {
+  "date": "2002-11-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-15",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2002-11-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-18",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2002-11-19",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-11-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-11-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-11-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-11-25",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-11-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-11-29",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-11-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-12-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-12",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2002-12-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-12-14",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2002-12-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-16",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2002-12-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-12-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-20",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2002-12-21",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-12-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-25",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2002-12-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-12-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2002-12-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2002-12-31",
+  "thunder": false,
+  "rain": 0.04
+}];
+
+},{}],4:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = [{
+  "date": "2003-01-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-01-02",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-01-03",
+  "thunder": false,
+  "rain": 0.33
+}, {
+  "date": "2003-01-04",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-01-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-06",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2003-01-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-01-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-01-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-01-10",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-01-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-01-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-01-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-01-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-29",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-01-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-01-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-02-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-04",
+  "thunder": false,
+  "rain": 0.67
+}, {
+  "date": "2003-02-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-02-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-02-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-02-19",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-02-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-22",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-02-23",
+  "thunder": false,
+  "rain": 0.43
+}, {
+  "date": "2003-02-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-25",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-02-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-02-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-02",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2003-03-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-03-05",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2003-03-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-09",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2003-03-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-03-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-03-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-20",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2003-03-21",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2003-03-22",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2003-03-23",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-03-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-03-26",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-03-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-28",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2003-03-29",
+  "thunder": false,
+  "rain": 0.41
+}, {
+  "date": "2003-03-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-03-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-04-01",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-04-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-04-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-04-04",
+  "thunder": false,
+  "rain": 1.08
+}, {
+  "date": "2003-04-05",
+  "thunder": false,
+  "rain": 0.35
+}, {
+  "date": "2003-04-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-04-07",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2003-04-08",
+  "thunder": false,
+  "rain": 0.37
+}, {
+  "date": "2003-04-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-04-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-04-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-04-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-04-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-04-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-04-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-04-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-04-17",
+  "thunder": false,
+  "rain": 0.41
+}, {
+  "date": "2003-04-18",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2003-04-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-04-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-04-21",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2003-04-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-04-23",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2003-04-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-04-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-04-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-04-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-04-28",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-04-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-04-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-05-01",
+  "thunder": false,
+  "rain": 0.37
+}, {
+  "date": "2003-05-02",
+  "thunder": false,
+  "rain": 0.49
+}, {
+  "date": "2003-05-03",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2003-05-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-05-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-05-06",
+  "thunder": false,
+  "rain": 0.67
+}, {
+  "date": "2003-05-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-05-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-05-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-05-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-05-11",
+  "thunder": false,
+  "rain": 0.31
+}, {
+  "date": "2003-05-12",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-05-13",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2003-05-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-05-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-05-16",
+  "thunder": false,
+  "rain": 0.57
+}, {
+  "date": "2003-05-17",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2003-05-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-05-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-05-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-05-21",
+  "thunder": false,
+  "rain": 0.53
+}, {
+  "date": "2003-05-22",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-05-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-05-24",
+  "thunder": false,
+  "rain": 1.24
+}, {
+  "date": "2003-05-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-05-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-05-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-05-28",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2003-05-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-05-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-05-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-01",
+  "thunder": false,
+  "rain": 0.61
+}, {
+  "date": "2003-06-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-06-04",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-06-05",
+  "thunder": false,
+  "rain": 0.67
+}, {
+  "date": "2003-06-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-06-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-09",
+  "thunder": false,
+  "rain": 1.02
+}, {
+  "date": "2003-06-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-11",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2003-06-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-13",
+  "thunder": false,
+  "rain": 0.93
+}, {
+  "date": "2003-06-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-06-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-19",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2003-06-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-06-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-06-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-06-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-06-27",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2003-06-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-06-30",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2003-07-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-02",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-07-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-07",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2003-07-08",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-07-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-11",
+  "thunder": false,
+  "rain": 0.31
+}, {
+  "date": "2003-07-12",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2003-07-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-07-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-16",
+  "thunder": false,
+  "rain": 0.51
+}, {
+  "date": "2003-07-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-07-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-07-21",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2003-07-22",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2003-07-23",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2003-07-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-25",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2003-07-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-27",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2003-07-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-07-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-07-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-02",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2003-08-03",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2003-08-04",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-08-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-08-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-09",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-08-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-12",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-08-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-22",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2003-08-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-08-26",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2003-08-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-08-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-08-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-08-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-02",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-09-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-09-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-09-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-15",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2003-09-16",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2003-09-17",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-09-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-19",
+  "thunder": false,
+  "rain": 0.53
+}, {
+  "date": "2003-09-20",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2003-09-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-22",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-09-23",
+  "thunder": false,
+  "rain": 0.63
+}, {
+  "date": "2003-09-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-09-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-27",
+  "thunder": false,
+  "rain": 0.79
+}, {
+  "date": "2003-09-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-09-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-09-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-04",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2003-10-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-10-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-10-15",
+  "thunder": false,
+  "rain": 0.53
+}, {
+  "date": "2003-10-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-10-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-19",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2003-10-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-10-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-10-26",
+  "thunder": false,
+  "rain": 0.45
+}, {
+  "date": "2003-10-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-28",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2003-10-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-10-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-10-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-11-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-11-02",
+  "thunder": false,
+  "rain": 0.47
+}, {
+  "date": "2003-11-03",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2003-11-04",
+  "thunder": false,
+  "rain": 0.63
+}, {
+  "date": "2003-11-05",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2003-11-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-11-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-11-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-11-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-11-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-11-11",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2003-11-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-11-13",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2003-11-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-11-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-11-16",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2003-11-17",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2003-11-18",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-11-19",
+  "thunder": false,
+  "rain": 0.61
+}, {
+  "date": "2003-11-20",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2003-11-21",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-11-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-11-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-11-24",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-11-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-11-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-11-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-11-28",
+  "thunder": false,
+  "rain": 1.14
+}, {
+  "date": "2003-11-29",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2003-11-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-12-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-12-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-12-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-11",
+  "thunder": false,
+  "rain": 0.55
+}, {
+  "date": "2003-12-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-14",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2003-12-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-17",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2003-12-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-12-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-23",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2003-12-24",
+  "thunder": false,
+  "rain": 0.49
+}, {
+  "date": "2003-12-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-12-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2003-12-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2003-12-30",
+  "thunder": false,
+  "rain": 0.67
+}, {
+  "date": "2003-12-31",
+  "thunder": false,
+  "rain": 0
+}];
+
+},{}],5:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = [{
+  "date": "2004-01-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-01-02",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2004-01-03",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2004-01-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-01-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-01-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-01-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-01-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-01-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-01-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-01-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-01-12",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2004-01-13",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-01-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-01-15",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-01-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-01-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-01-18",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-01-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-01-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-01-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-01-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-01-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-01-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-01-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-01-26",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2004-01-27",
+  "thunder": false,
+  "rain": 0.39
+}, {
+  "date": "2004-01-28",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2004-01-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-01-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-01-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-02",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-02-03",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2004-02-04",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2004-02-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-06",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2004-02-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-02-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-02-20",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-02-21",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2004-02-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-02-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-24",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-02-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-02-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-02-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-03-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-03-02",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-03-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-03-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-03-05",
+  "thunder": false,
+  "rain": 0.53
+}, {
+  "date": "2004-03-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-03-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-03-08",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2004-03-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-03-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-03-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-03-12",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-03-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-03-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-03-15",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-03-16",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-03-17",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-03-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-03-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-03-20",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-03-21",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2004-03-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-03-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-03-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-03-25",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2004-03-26",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2004-03-27",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-03-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-03-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-03-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-03-31",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2004-04-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-04-02",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2004-04-03",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-04-04",
+  "thunder": false,
+  "rain": 0.41
+}, {
+  "date": "2004-04-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-04-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-04-07",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2004-04-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-04-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-04-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-04-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-04-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-04-13",
+  "thunder": false,
+  "rain": 0.35
+}, {
+  "date": "2004-04-14",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2004-04-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-04-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-04-17",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-04-18",
+  "thunder": false,
+  "rain": 0.45
+}, {
+  "date": "2004-04-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-04-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-04-21",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2004-04-22",
+  "thunder": false,
+  "rain": 0.33
+}, {
+  "date": "2004-04-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-04-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-04-25",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2004-04-26",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2004-04-27",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-04-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-04-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-04-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-05-01",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2004-05-02",
+  "thunder": false,
+  "rain": 0.38
+}, {
+  "date": "2004-05-03",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2004-05-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-05-05",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2004-05-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-05-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-05-08",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2004-05-09",
+  "thunder": false,
+  "rain": 0.33
+}, {
+  "date": "2004-05-10",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2004-05-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-05-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-05-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-05-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-05-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-05-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-05-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-05-18",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-05-19",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-05-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-05-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-05-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-05-23",
+  "thunder": false,
+  "rain": 0.63
+}, {
+  "date": "2004-05-24",
+  "thunder": false,
+  "rain": 0.91
+}, {
+  "date": "2004-05-25",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-05-26",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-05-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-05-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-05-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-05-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-05-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-06-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-06-02",
+  "thunder": false,
+  "rain": 0.31
+}, {
+  "date": "2004-06-03",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-06-04",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-06-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-06-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-06-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-06-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-06-09",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-06-10",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-06-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-06-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-06-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-06-14",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2004-06-15",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-06-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-06-17",
+  "thunder": false,
+  "rain": 0.37
+}, {
+  "date": "2004-06-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-06-19",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-06-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-06-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-06-22",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2004-06-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-06-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-06-25",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2004-06-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-06-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-06-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-06-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-06-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-07-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-02",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-07-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-04",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-07-05",
+  "thunder": false,
+  "rain": 0.41
+}, {
+  "date": "2004-07-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-07",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2004-07-08",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-07-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-10",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-07-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-14",
+  "thunder": false,
+  "rain": 0.67
+}, {
+  "date": "2004-07-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-16",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-07-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-07-21",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2004-07-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-27",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2004-07-28",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2004-07-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-07-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-07-31",
+  "thunder": false,
+  "rain": 0.75
+}, {
+  "date": "2004-08-01",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-08-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-03",
+  "thunder": false,
+  "rain": 0.47
+}, {
+  "date": "2004-08-04",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2004-08-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-08-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-09",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2004-08-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-13",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2004-08-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-08-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-18",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2004-08-19",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2004-08-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-08-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-08-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-24",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-08-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-08-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-08-28",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2004-08-29",
+  "thunder": false,
+  "rain": 0.53
+}, {
+  "date": "2004-08-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-08-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-09-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-07",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2004-09-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-09",
+  "thunder": false,
+  "rain": 1.26
+}, {
+  "date": "2004-09-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-09-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-09-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-02",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-10-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-09",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-10-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-15",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2004-10-16",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2004-10-17",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-10-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-10-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-10-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-10-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-10-30",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2004-10-31",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2004-11-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-02",
+  "thunder": false,
+  "rain": 0.31
+}, {
+  "date": "2004-11-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-11-04",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2004-11-05",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2004-11-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-11-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-20",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-11-21",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-11-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-24",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2004-11-25",
+  "thunder": false,
+  "rain": 0.51
+}, {
+  "date": "2004-11-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-27",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-11-28",
+  "thunder": false,
+  "rain": 0.43
+}, {
+  "date": "2004-11-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-11-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-01",
+  "thunder": false,
+  "rain": 0.55
+}, {
+  "date": "2004-12-02",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-12-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-12-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-12-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-12-07",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2004-12-08",
+  "thunder": false,
+  "rain": 0.47
+}, {
+  "date": "2004-12-09",
+  "thunder": false,
+  "rain": 0.69
+}, {
+  "date": "2004-12-10",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2004-12-11",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2004-12-12",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2004-12-13",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2004-12-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-17",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-12-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-21",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2004-12-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-23",
+  "thunder": false,
+  "rain": 0.47
+}, {
+  "date": "2004-12-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-12-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2004-12-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2004-12-31",
+  "thunder": false,
+  "rain": 0.53
+}];
+
+},{}],6:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = [{
+  "date": "2005-01-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-02",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2005-01-03",
+  "thunder": false,
+  "rain": 0.37
+}, {
+  "date": "2005-01-04",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-01-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-06",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2005-01-07",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-01-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-01-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-10",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-01-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-01-12",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2005-01-13",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2005-01-14",
+  "thunder": false,
+  "rain": 0.45
+}, {
+  "date": "2005-01-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-01-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-22",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-01-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-01-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-26",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2005-01-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-01-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-01-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-02-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-08",
+  "thunder": false,
+  "rain": 0.41
+}, {
+  "date": "2005-02-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-02-10",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2005-02-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-02-14",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2005-02-15",
+  "thunder": false,
+  "rain": 0.43
+}, {
+  "date": "2005-02-16",
+  "thunder": false,
+  "rain": 0.69
+}, {
+  "date": "2005-02-17",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-02-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-21",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2005-02-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-26",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-02-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-02-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-03-01",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2005-03-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-07",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-03-08",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2005-03-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-10",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-03-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-03-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-03-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-03-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-03-19",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-03-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-21",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-03-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-03-23",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-03-24",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-03-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-03-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-03-31",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2005-04-01",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2005-04-02",
+  "thunder": false,
+  "rain": 0.71
+}, {
+  "date": "2005-04-03",
+  "thunder": false,
+  "rain": 0.81
+}, {
+  "date": "2005-04-04",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2005-04-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-04-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-04-07",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2005-04-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-04-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-04-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-04-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-04-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-04-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-04-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-04-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-04-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-04-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-04-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-04-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-04-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-04-21",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2005-04-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-04-23",
+  "thunder": false,
+  "rain": 0.35
+}, {
+  "date": "2005-04-24",
+  "thunder": false,
+  "rain": 0.43
+}, {
+  "date": "2005-04-25",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2005-04-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-04-27",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2005-04-28",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2005-04-29",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2005-04-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-01",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-05-02",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-05-03",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-05-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-05-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-05-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-14",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2005-05-15",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2005-05-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-05-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-05-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-05-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-05-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-05-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-05-29",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-05-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-05-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-06-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-12",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-06-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-14",
+  "thunder": false,
+  "rain": 0.59
+}, {
+  "date": "2005-06-15",
+  "thunder": false,
+  "rain": 0.59
+}, {
+  "date": "2005-06-16",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2005-06-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-06-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-06-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-06-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-10",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-07-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-07-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-17",
+  "thunder": false,
+  "rain": 1.18
+}, {
+  "date": "2005-07-18",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2005-07-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-07-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-07-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-07-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-07-25",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-07-26",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-07-27",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2005-07-28",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-07-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-07-30",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-07-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-01",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2005-08-02",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2005-08-03",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-08-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-08-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-11",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2005-08-12",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2005-08-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-08-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-08-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-08-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-19",
+  "thunder": false,
+  "rain": 0.45
+}, {
+  "date": "2005-08-20",
+  "thunder": false,
+  "rain": 0.33
+}, {
+  "date": "2005-08-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-08-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-08-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-28",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2005-08-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-08-31",
+  "thunder": false,
+  "rain": 1.2
+}, {
+  "date": "2005-09-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-09-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-08",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2005-09-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-09-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-15",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-09-16",
+  "thunder": false,
+  "rain": 0.43
+}, {
+  "date": "2005-09-17",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2005-09-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-09-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-20",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-09-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-23",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2005-09-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-09-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-09-26",
+  "thunder": false,
+  "rain": 1.28
+}, {
+  "date": "2005-09-27",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2005-09-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-09-29",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2005-09-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-08",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2005-10-09",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-10-10",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-10-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-10-13",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-10-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-10-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-18",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2005-10-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-10-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-22",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2005-10-23",
+  "thunder": false,
+  "rain": 0.73
+}, {
+  "date": "2005-10-24",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-10-25",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-10-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-10-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-10-31",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-11-01",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-11-02",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-11-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-06",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2005-11-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-11-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-09",
+  "thunder": false,
+  "rain": 0.39
+}, {
+  "date": "2005-11-10",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2005-11-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-11-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-15",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2005-11-16",
+  "thunder": false,
+  "rain": 0.79
+}, {
+  "date": "2005-11-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-11-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-24",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2005-11-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-11-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-11-28",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-11-29",
+  "thunder": false,
+  "rain": 0.94
+}, {
+  "date": "2005-11-30",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2005-12-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-02",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-12-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-12-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-12-09",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2005-12-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2005-12-15",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2005-12-16",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2005-12-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-23",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2005-12-24",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-12-25",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-12-26",
+  "thunder": false,
+  "rain": 0.53
+}, {
+  "date": "2005-12-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2005-12-29",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2005-12-30",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2005-12-31",
+  "thunder": false,
+  "rain": 0.06
+}];
+
+},{}],7:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = [{
+  "date": "2006-01-01",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-01-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-03",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2006-01-04",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2006-01-05",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2006-01-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-01-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-01-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-01-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-01-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-14",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2006-01-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-17",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2006-01-18",
+  "thunder": false,
+  "rain": 1.1
+}, {
+  "date": "2006-01-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-21",
+  "thunder": false,
+  "rain": 0.33
+}, {
+  "date": "2006-01-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-25",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2006-01-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-01-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-01-29",
+  "thunder": false,
+  "rain": 0.41
+}, {
+  "date": "2006-01-30",
+  "thunder": false,
+  "rain": 0.31
+}, {
+  "date": "2006-01-31",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2006-02-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-02",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-02-03",
+  "thunder": false,
+  "rain": 0.39
+}, {
+  "date": "2006-02-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-02-05",
+  "thunder": false,
+  "rain": 1.02
+}, {
+  "date": "2006-02-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-02-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-02-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-16",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-02-17",
+  "thunder": false,
+  "rain": 0.75
+}, {
+  "date": "2006-02-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-21",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-02-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-25",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-02-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-02-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-09",
+  "thunder": false,
+  "rain": 0.61
+}, {
+  "date": "2006-03-10",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2006-03-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-12",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-03-13",
+  "thunder": false,
+  "rain": 0.63
+}, {
+  "date": "2006-03-14",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2006-03-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-26",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2006-03-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-03-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-01",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2006-04-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-03",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2006-04-04",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2006-04-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-04-07",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2006-04-08",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2006-04-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-04-13",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2006-04-14",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2006-04-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-21",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-04-22",
+  "thunder": false,
+  "rain": 0.33
+}, {
+  "date": "2006-04-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-04-24",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2006-04-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-04-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-06",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2006-05-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-05-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-11",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2006-05-12",
+  "thunder": false,
+  "rain": 0.35
+}, {
+  "date": "2006-05-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-05-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-05-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-16",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2006-05-17",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2006-05-18",
+  "thunder": false,
+  "rain": 0.61
+}, {
+  "date": "2006-05-19",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-05-20",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2006-05-21",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-05-22",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-05-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-05-26",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-05-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-05-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-05-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-01",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2006-06-02",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-06-03",
+  "thunder": false,
+  "rain": 0.61
+}, {
+  "date": "2006-06-04",
+  "thunder": false,
+  "rain": 0.75
+}, {
+  "date": "2006-06-05",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-06-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-06-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-06-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-11",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-06-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-06-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-06-17",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-06-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-06-19",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-06-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-06-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-27",
+  "thunder": false,
+  "rain": 0.49
+}, {
+  "date": "2006-06-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-06-29",
+  "thunder": false,
+  "rain": 0.39
+}, {
+  "date": "2006-06-30",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2006-07-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-07-02",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2006-07-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-07-04",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2006-07-05",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-07-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-07-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-07-08",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-07-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-07-10",
+  "thunder": false,
+  "rain": 0.96
+}, {
+  "date": "2006-07-11",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2006-07-12",
+  "thunder": false,
+  "rain": 1.14
+}, {
+  "date": "2006-07-13",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2006-07-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-07-15",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2006-07-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-07-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-07-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-07-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-07-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-07-21",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2006-07-22",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2006-07-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-07-24",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2006-07-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-07-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-07-27",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2006-07-28",
+  "thunder": false,
+  "rain": 1.04
+}, {
+  "date": "2006-07-29",
+  "thunder": false,
+  "rain": 0.41
+}, {
+  "date": "2006-07-30",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2006-07-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-08-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-03",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2006-08-04",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2006-08-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-08-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-08-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-15",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2006-08-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-08-20",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2006-08-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-08-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-25",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2006-08-26",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2006-08-27",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2006-08-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-08-29",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2006-08-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-08-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-09-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-09-02",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-09-03",
+  "thunder": false,
+  "rain": 0.83
+}, {
+  "date": "2006-09-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-09-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-09-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-09-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-09-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-09-09",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2006-09-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-09-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-09-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-09-13",
+  "thunder": false,
+  "rain": 0.41
+}, {
+  "date": "2006-09-14",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2006-09-15",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-09-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-09-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-09-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-09-19",
+  "thunder": false,
+  "rain": 0.63
+}, {
+  "date": "2006-09-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-09-21",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-09-22",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-09-23",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2006-09-24",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2006-09-25",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2006-09-26",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-09-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-09-28",
+  "thunder": false,
+  "rain": 0.33
+}, {
+  "date": "2006-09-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-09-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-10-01",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2006-10-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-10-03",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2006-10-04",
+  "thunder": false,
+  "rain": 0.57
+}, {
+  "date": "2006-10-05",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-10-06",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-10-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-10-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-10-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-10-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-10-11",
+  "thunder": false,
+  "rain": 0.98
+}, {
+  "date": "2006-10-12",
+  "thunder": false,
+  "rain": 0.37
+}, {
+  "date": "2006-10-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-10-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-10-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-10-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-10-17",
+  "thunder": false,
+  "rain": 0.98
+}, {
+  "date": "2006-10-18",
+  "thunder": false,
+  "rain": 0.71
+}, {
+  "date": "2006-10-19",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2006-10-20",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2006-10-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-10-22",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2006-10-23",
+  "thunder": false,
+  "rain": 1.05
+}, {
+  "date": "2006-10-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-10-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-10-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-10-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-10-28",
+  "thunder": false,
+  "rain": 0.73
+}, {
+  "date": "2006-10-29",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-10-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-10-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-08",
+  "thunder": false,
+  "rain": 0.37
+}, {
+  "date": "2006-11-09",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2006-11-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-11",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2006-11-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-16",
+  "thunder": false,
+  "rain": 1.24
+}, {
+  "date": "2006-11-17",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2006-11-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-11-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-11-30",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2006-12-01",
+  "thunder": false,
+  "rain": 1.5
+}, {
+  "date": "2006-12-02",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2006-12-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-11",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2006-12-12",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2006-12-13",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2006-12-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-12-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-22",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2006-12-23",
+  "thunder": false,
+  "rain": 0.59
+}, {
+  "date": "2006-12-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-12-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-26",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2006-12-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2006-12-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2006-12-31",
+  "thunder": false,
+  "rain": 0.02
+}];
+
+},{}],8:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = [{
+  "date": "2007-01-01",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2007-01-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-05",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2007-01-06",
+  "thunder": false,
+  "rain": 0.41
+}, {
+  "date": "2007-01-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-08",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2007-01-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-12",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-01-13",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2007-01-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-01-15",
+  "thunder": false,
+  "rain": 0.35
+}, {
+  "date": "2007-01-16",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-01-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-01-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-01-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-27",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-01-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-01-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-14",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2007-02-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-17",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-02-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-02-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-22",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2007-02-23",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-02-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-02-25",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-02-26",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-02-27",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-02-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-03-01",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-03-02",
+  "thunder": false,
+  "rain": 0.67
+}, {
+  "date": "2007-03-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-03-10",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-03-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-03-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-03-16",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-03-17",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-03-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-03-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-22",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2007-03-23",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-03-24",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-03-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-26",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2007-03-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-03-28",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-03-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-03-30",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-03-31",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-04-01",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2007-04-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-04",
+  "thunder": false,
+  "rain": 0.65
+}, {
+  "date": "2007-04-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-11",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-04-12",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2007-04-13",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2007-04-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-15",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-04-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-17",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-04-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-04-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-24",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2007-04-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-27",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2007-04-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-04-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-04-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-05-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-05-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-10",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2007-05-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-05-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-15",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2007-05-16",
+  "thunder": false,
+  "rain": 1.28
+}, {
+  "date": "2007-05-17",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2007-05-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-22",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-05-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-05-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-05-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-27",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2007-05-28",
+  "thunder": false,
+  "rain": 0.31
+}, {
+  "date": "2007-05-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-05-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-05-31",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2007-06-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-06-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-04",
+  "thunder": false,
+  "rain": 0.31
+}, {
+  "date": "2007-06-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-06-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-06-09",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2007-06-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-06-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-20",
+  "thunder": false,
+  "rain": 0.39
+}, {
+  "date": "2007-06-21",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-06-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-06-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-06-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-06-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-06-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-06-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-07-02",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-07-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-07-04",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2007-07-05",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-07-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-08",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2007-07-09",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-07-10",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-07-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-07-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-13",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2007-07-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-15",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2007-07-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-07-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-19",
+  "thunder": false,
+  "rain": 0.93
+}, {
+  "date": "2007-07-20",
+  "thunder": false,
+  "rain": 0.37
+}, {
+  "date": "2007-07-21",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-07-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-23",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-07-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-07-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-07-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-08",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2007-08-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-13",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2007-08-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-08-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-08-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-08-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-08-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-24",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-08-25",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2007-08-26",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2007-08-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-08-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-05",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2007-09-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-09-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-09",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2007-09-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-11",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2007-09-12",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2007-09-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-15",
+  "thunder": false,
+  "rain": 0.33
+}, {
+  "date": "2007-09-16",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-09-17",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-09-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-09-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-09-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-09-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-09-26",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-09-27",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2007-09-28",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-09-29",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-09-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-02",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2007-10-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-10-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-07",
+  "thunder": false,
+  "rain": 1.34
+}, {
+  "date": "2007-10-08",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-10-09",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-10-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-10-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-10-17",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-10-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-10-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-10-27",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2007-10-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-10-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-10-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-11-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-11-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-11-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-11-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-11-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-11-06",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-11-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-11-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-11-09",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2007-11-10",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2007-11-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-11-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-11-13",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2007-11-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-11-15",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-11-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-11-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-11-18",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-11-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-11-20",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2007-11-21",
+  "thunder": false,
+  "rain": 0.43
+}, {
+  "date": "2007-11-22",
+  "thunder": false,
+  "rain": 0.79
+}, {
+  "date": "2007-11-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-11-24",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2007-11-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-11-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-11-27",
+  "thunder": false,
+  "rain": 0.57
+}, {
+  "date": "2007-11-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-11-29",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-11-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-02",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2007-12-03",
+  "thunder": false,
+  "rain": 0.57
+}, {
+  "date": "2007-12-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-10",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-12-11",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-12-12",
+  "thunder": false,
+  "rain": 0.39
+}, {
+  "date": "2007-12-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-12-15",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-12-16",
+  "thunder": false,
+  "rain": 0.45
+}, {
+  "date": "2007-12-17",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-12-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-23",
+  "thunder": false,
+  "rain": 0.63
+}, {
+  "date": "2007-12-24",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2007-12-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-27",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2007-12-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2007-12-29",
+  "thunder": false,
+  "rain": 0.31
+}, {
+  "date": "2007-12-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2007-12-31",
+  "thunder": false,
+  "rain": 0.04
+}];
+
+},{}],9:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = [{
+  "date": "2008-01-01",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2008-01-02",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-01-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-05",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-01-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-07",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-01-08",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-01-09",
+  "thunder": false,
+  "rain": 0.49
+}, {
+  "date": "2008-01-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-11",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2008-01-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-01-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-14",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2008-01-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-01-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-18",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-01-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-01-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-27",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-01-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-01-29",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-01-30",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2008-01-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-02-01",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2008-02-02",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2008-02-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-02-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-02-05",
+  "thunder": false,
+  "rain": 0.43
+}, {
+  "date": "2008-02-06",
+  "thunder": false,
+  "rain": 0.67
+}, {
+  "date": "2008-02-07",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2008-02-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-02-09",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2008-02-10",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2008-02-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-02-12",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-02-13",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2008-02-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-02-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-02-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-02-17",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2008-02-18",
+  "thunder": false,
+  "rain": 0.53
+}, {
+  "date": "2008-02-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-02-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-02-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-02-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-02-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-02-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-02-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-02-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-02-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-02-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-02-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-03-01",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2008-03-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-03",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-03-04",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2008-03-05",
+  "thunder": false,
+  "rain": 0.47
+}, {
+  "date": "2008-03-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-08",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-03-09",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2008-03-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-03-13",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-03-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-19",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2008-03-20",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-03-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-03-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-26",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2008-03-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-03-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-03-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-03-31",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2008-04-01",
+  "thunder": false,
+  "rain": 0.33
+}, {
+  "date": "2008-04-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-04",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2008-04-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-04-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-09",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2008-04-10",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-04-11",
+  "thunder": false,
+  "rain": 0.57
+}, {
+  "date": "2008-04-12",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2008-04-13",
+  "thunder": false,
+  "rain": 0.33
+}, {
+  "date": "2008-04-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-04-16",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-04-17",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-04-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-04-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-04-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-24",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2008-04-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-28",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2008-04-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-04-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-02",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2008-05-03",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2008-05-04",
+  "thunder": false,
+  "rain": 0.43
+}, {
+  "date": "2008-05-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-08",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2008-05-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-05-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-12",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2008-05-13",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-05-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-15",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2008-05-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-17",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-05-18",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2008-05-19",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2008-05-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-05-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-22",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-05-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-05-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-05-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-05-31",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2008-06-01",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2008-06-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-06-03",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2008-06-04",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2008-06-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-06-06",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-06-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-06-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-06-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-06-10",
+  "thunder": false,
+  "rain": 0.75
+}, {
+  "date": "2008-06-11",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2008-06-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-06-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-06-14",
+  "thunder": false,
+  "rain": 0.77
+}, {
+  "date": "2008-06-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-06-16",
+  "thunder": false,
+  "rain": 0.57
+}, {
+  "date": "2008-06-17",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-06-18",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2008-06-19",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-06-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-06-21",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-06-22",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-06-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-06-24",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2008-06-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-06-26",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-06-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-06-28",
+  "thunder": false,
+  "rain": 0.91
+}, {
+  "date": "2008-06-29",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-06-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-07-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-07-02",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-07-03",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2008-07-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-07-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-07-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-07-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-07-08",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-07-09",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2008-07-10",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-07-11",
+  "thunder": false,
+  "rain": 0.53
+}, {
+  "date": "2008-07-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-07-13",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-07-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-07-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-07-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-07-17",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2008-07-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-07-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-07-20",
+  "thunder": false,
+  "rain": 2.24
+}, {
+  "date": "2008-07-21",
+  "thunder": false,
+  "rain": 0.61
+}, {
+  "date": "2008-07-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-07-23",
+  "thunder": false,
+  "rain": 0.57
+}, {
+  "date": "2008-07-24",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2008-07-25",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2008-07-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-07-27",
+  "thunder": false,
+  "rain": 0.57
+}, {
+  "date": "2008-07-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-07-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-07-30",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2008-07-31",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2008-08-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-08-02",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2008-08-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-08-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-08-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-08-06",
+  "thunder": false,
+  "rain": 0.85
+}, {
+  "date": "2008-08-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-08-08",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2008-08-09",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-08-10",
+  "thunder": false,
+  "rain": 0.98
+}, {
+  "date": "2008-08-11",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2008-08-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-08-13",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-08-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-08-15",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-08-16",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2008-08-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-08-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-08-19",
+  "thunder": false,
+  "rain": 0.35
+}, {
+  "date": "2008-08-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-08-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-08-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-08-23",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-08-24",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2008-08-25",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2008-08-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-08-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-08-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-08-29",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2008-08-30",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2008-08-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-09-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-09-06",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2008-09-07",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2008-09-08",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-09-09",
+  "thunder": false,
+  "rain": 0.77
+}, {
+  "date": "2008-09-10",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-09-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-09-12",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-09-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-14",
+  "thunder": false,
+  "rain": 0.67
+}, {
+  "date": "2008-09-15",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2008-09-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-09-28",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2008-09-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-09-30",
+  "thunder": false,
+  "rain": 0.39
+}, {
+  "date": "2008-10-01",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-10-02",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-10-03",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2008-10-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-10-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-09",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2008-10-10",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-10-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-10-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-16",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2008-10-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-21",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2008-10-22",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-10-23",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-10-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-25",
+  "thunder": false,
+  "rain": 0.39
+}, {
+  "date": "2008-10-26",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-10-27",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2008-10-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-10-29",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-10-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-10-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-03",
+  "thunder": false,
+  "rain": 0.24
+}, {
+  "date": "2008-11-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-07",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-11-08",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2008-11-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-13",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2008-11-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-15",
+  "thunder": false,
+  "rain": 0.55
+}, {
+  "date": "2008-11-16",
+  "thunder": false,
+  "rain": 0.73
+}, {
+  "date": "2008-11-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-20",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2008-11-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-11-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-25",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2008-11-26",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2008-11-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-28",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-11-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-11-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-12-01",
+  "thunder": false,
+  "rain": 0.49
+}, {
+  "date": "2008-12-02",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2008-12-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-12-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-12-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-12-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-12-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-12-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-12-09",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2008-12-10",
+  "thunder": false,
+  "rain": 0.61
+}, {
+  "date": "2008-12-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-12-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-12-13",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-12-14",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2008-12-15",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2008-12-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-12-17",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2008-12-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-12-19",
+  "thunder": false,
+  "rain": 0.37
+}, {
+  "date": "2008-12-20",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2008-12-21",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2008-12-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-12-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2008-12-24",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2008-12-25",
+  "thunder": false,
+  "rain": 0.49
+}, {
+  "date": "2008-12-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-12-27",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2008-12-28",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2008-12-29",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2008-12-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2008-12-31",
+  "thunder": false,
+  "rain": 0.02
+}];
+
+},{}],10:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = [{
+  "date": "2009-01-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-01-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-07",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2009-01-08",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2009-01-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-01-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-11",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2009-01-12",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-01-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-01-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-01-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-18",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-01-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-21",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-01-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-01-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-28",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2009-01-29",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2009-01-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-01-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-02",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-02-03",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-02-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-02-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-11",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2009-02-12",
+  "thunder": false,
+  "rain": 1.14
+}, {
+  "date": "2009-02-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-02-19",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2009-02-20",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-02-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-22",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2009-02-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-02-26",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2009-02-27",
+  "thunder": false,
+  "rain": 0.47
+}, {
+  "date": "2009-02-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-03-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-03-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-03-08",
+  "thunder": false,
+  "rain": 0.63
+}, {
+  "date": "2009-03-09",
+  "thunder": false,
+  "rain": 0.33
+}, {
+  "date": "2009-03-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-11",
+  "thunder": false,
+  "rain": 0.45
+}, {
+  "date": "2009-03-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-03-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-18",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-03-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-03-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-03-24",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-03-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-26",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-03-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-03-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-03-29",
+  "thunder": false,
+  "rain": 0.93
+}, {
+  "date": "2009-03-30",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2009-03-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-01",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2009-04-02",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-04-03",
+  "thunder": false,
+  "rain": 0.71
+}, {
+  "date": "2009-04-04",
+  "thunder": false,
+  "rain": 0.51
+}, {
+  "date": "2009-04-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-06",
+  "thunder": false,
+  "rain": 0.37
+}, {
+  "date": "2009-04-07",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-04-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-04-15",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-04-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-04-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-20",
+  "thunder": false,
+  "rain": 0.51
+}, {
+  "date": "2009-04-21",
+  "thunder": false,
+  "rain": 0.45
+}, {
+  "date": "2009-04-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-04-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-26",
+  "thunder": false,
+  "rain": 0.53
+}, {
+  "date": "2009-04-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-28",
+  "thunder": false,
+  "rain": 0.43
+}, {
+  "date": "2009-04-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-04-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-01",
+  "thunder": false,
+  "rain": 0.85
+}, {
+  "date": "2009-05-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-05-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-07",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2009-05-08",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2009-05-09",
+  "thunder": false,
+  "rain": 0.93
+}, {
+  "date": "2009-05-10",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-05-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-05-14",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2009-05-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-16",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2009-05-17",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2009-05-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-05-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-05-27",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2009-05-28",
+  "thunder": false,
+  "rain": 0.69
+}, {
+  "date": "2009-05-29",
+  "thunder": false,
+  "rain": 0.18
+}, {
+  "date": "2009-05-30",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2009-05-31",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2009-06-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-06-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-09",
+  "thunder": false,
+  "rain": 0.41
+}, {
+  "date": "2009-06-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-12",
+  "thunder": false,
+  "rain": 0.35
+}, {
+  "date": "2009-06-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-06-15",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-06-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-06-17",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-06-18",
+  "thunder": false,
+  "rain": 0.43
+}, {
+  "date": "2009-06-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-20",
+  "thunder": false,
+  "rain": 0.47
+}, {
+  "date": "2009-06-21",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2009-06-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-25",
+  "thunder": false,
+  "rain": 1.04
+}, {
+  "date": "2009-06-26",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-06-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-06-28",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2009-06-29",
+  "thunder": false,
+  "rain": 0.35
+}, {
+  "date": "2009-06-30",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2009-07-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-07-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-11",
+  "thunder": false,
+  "rain": 0.45
+}, {
+  "date": "2009-07-12",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2009-07-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-07-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-16",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-07-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-22",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2009-07-23",
+  "thunder": false,
+  "rain": 0.65
+}, {
+  "date": "2009-07-24",
+  "thunder": false,
+  "rain": 0.53
+}, {
+  "date": "2009-07-25",
+  "thunder": false,
+  "rain": 0.33
+}, {
+  "date": "2009-07-26",
+  "thunder": false,
+  "rain": 1.81
+}, {
+  "date": "2009-07-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-07-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-07-31",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-01",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-08-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-03",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-08-04",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-05",
+  "thunder": false,
+  "rain": 1.34
+}, {
+  "date": "2009-08-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-08-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-08-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-09",
+  "thunder": false,
+  "rain": 0.43
+}, {
+  "date": "2009-08-10",
+  "thunder": false,
+  "rain": 0.57
+}, {
+  "date": "2009-08-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-08-12",
+  "thunder": false,
+  "rain": 0.49
+}, {
+  "date": "2009-08-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-18",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-08-19",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-08-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-21",
+  "thunder": false,
+  "rain": 1.14
+}, {
+  "date": "2009-08-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-08-26",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2009-08-27",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-08-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-08-29",
+  "thunder": false,
+  "rain": 1.2
+}, {
+  "date": "2009-08-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-08-31",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-09-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-03",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-09-05",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-09-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-09-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-09-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-09",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-09-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-11",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-09-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-17",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-09-18",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-09-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-22",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-09-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-24",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2009-09-25",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-09-27",
+  "thunder": false,
+  "rain": 0.59
+}, {
+  "date": "2009-09-28",
+  "thunder": false,
+  "rain": 0.3
+}, {
+  "date": "2009-09-29",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2009-09-30",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-10-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-10-02",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2009-10-03",
+  "thunder": false,
+  "rain": 0.35
+}, {
+  "date": "2009-10-04",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2009-10-05",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-10-06",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-10-07",
+  "thunder": false,
+  "rain": 0.35
+}, {
+  "date": "2009-10-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-10-09",
+  "thunder": false,
+  "rain": 0.22
+}, {
+  "date": "2009-10-10",
+  "thunder": false,
+  "rain": 0.55
+}, {
+  "date": "2009-10-11",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2009-10-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-10-13",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-10-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-10-15",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-10-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-10-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-10-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-10-19",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-10-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-10-21",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-10-22",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-10-23",
+  "thunder": false,
+  "rain": 0.16
+}, {
+  "date": "2009-10-24",
+  "thunder": false,
+  "rain": 0.61
+}, {
+  "date": "2009-10-25",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-10-26",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-10-27",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-10-28",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-10-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-10-30",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2009-10-31",
+  "thunder": false,
+  "rain": 0.26
+}, {
+  "date": "2009-11-01",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-03",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-11-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-11-05",
+  "thunder": false,
+  "rain": 0.12
+}, {
+  "date": "2009-11-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-07",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-11-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-09",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-10",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-13",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-14",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-15",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-19",
+  "thunder": false,
+  "rain": 0.2
+}, {
+  "date": "2009-11-20",
+  "thunder": false,
+  "rain": 0.28
+}, {
+  "date": "2009-11-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-23",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-11-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-25",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2009-11-26",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2009-11-27",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-11-28",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-11-30",
+  "thunder": false,
+  "rain": 0.43
+}, {
+  "date": "2009-12-01",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-12-02",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-03",
+  "thunder": false,
+  "rain": 0.79
+}, {
+  "date": "2009-12-04",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-12-05",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-06",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-07",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-08",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-09",
+  "thunder": false,
+  "rain": 0.81
+}, {
+  "date": "2009-12-10",
+  "thunder": false,
+  "rain": 0.14
+}, {
+  "date": "2009-12-11",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-12",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-13",
+  "thunder": false,
+  "rain": 0.06
+}, {
+  "date": "2009-12-14",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-12-15",
+  "thunder": false,
+  "rain": 0.1
+}, {
+  "date": "2009-12-16",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-17",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-18",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-19",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-12-20",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-21",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-22",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-23",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-24",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-25",
+  "thunder": false,
+  "rain": 0.08
+}, {
+  "date": "2009-12-26",
+  "thunder": false,
+  "rain": 0.51
+}, {
+  "date": "2009-12-27",
+  "thunder": false,
+  "rain": 0.04
+}, {
+  "date": "2009-12-28",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-12-29",
+  "thunder": false,
+  "rain": 0
+}, {
+  "date": "2009-12-30",
+  "thunder": false,
+  "rain": 0.02
+}, {
+  "date": "2009-12-31",
+  "thunder": false,
+  "rain": 0.02
+}];
+
+},{}],11:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = [{
   "date": "2010-01-01",
   "temp": 0,
   "thunder": false,
@@ -2558,7 +17200,7 @@ module.exports = [{
   "pressure": 1005.6
 }];
 
-},{}],2:[function(_dereq_,module,exports){
+},{}],12:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = [{
@@ -5118,7 +19760,7 @@ module.exports = [{
   "pressure": 9999.9
 }];
 
-},{}],3:[function(_dereq_,module,exports){
+},{}],13:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = [{
@@ -7685,7 +22327,7 @@ module.exports = [{
   "pressure": 1009.1
 }];
 
-},{}],4:[function(_dereq_,module,exports){
+},{}],14:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = [{
@@ -10245,7 +24887,7 @@ module.exports = [{
   "pressure": 9999.9
 }];
 
-},{}],5:[function(_dereq_,module,exports){
+},{}],15:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = [{
@@ -12805,7 +27447,7 @@ module.exports = [{
   "pressure": 9999.9
 }];
 
-},{}],6:[function(_dereq_,module,exports){
+},{}],16:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = [{
@@ -15359,7 +30001,7 @@ module.exports = [{
   "pressure": 1010.9
 }];
 
-},{}],7:[function(_dereq_,module,exports){
+},{}],17:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = [{
@@ -17926,7 +32568,7 @@ module.exports = [{
   "pressure": 998.6
 }];
 
-},{}],8:[function(_dereq_,module,exports){
+},{}],18:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = [{
@@ -20479,7 +35121,7 @@ module.exports = [{
   "pressure": 1006.9
 }];
 
-},{}],9:[function(_dereq_,module,exports){
+},{}],19:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = [{
@@ -23004,7 +37646,7 @@ module.exports = [{
   "pressure": 1009.3
 }];
 
-},{}],10:[function(_dereq_,module,exports){
+},{}],20:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = [{
@@ -23128,7 +37770,7 @@ module.exports = [{
   "pressure": 1017.8
 }];
 
-},{}],11:[function(_dereq_,module,exports){
+},{}],21:[function(_dereq_,module,exports){
 "use strict";
 
 var somehow = _dereq_('somehow');
@@ -23143,7 +37785,17 @@ var years = {
   2013: _dereq_('./data/2013-toronto'),
   2012: _dereq_('./data/2012-toronto'),
   2011: _dereq_('./data/2011-toronto'),
-  2010: _dereq_('./data/2010-toronto')
+  2010: _dereq_('./data/2010-toronto'),
+  2009: _dereq_('./data/2009-toronto'),
+  2008: _dereq_('./data/2008-toronto'),
+  2007: _dereq_('./data/2007-toronto'),
+  2006: _dereq_('./data/2006-toronto'),
+  2005: _dereq_('./data/2005-toronto'),
+  2004: _dereq_('./data/2004-toronto'),
+  2003: _dereq_('./data/2003-toronto'),
+  2002: _dereq_('./data/2002-toronto'),
+  2001: _dereq_('./data/2001-toronto'),
+  2000: _dereq_('./data/2000-toronto')
 };
 
 var doYear = function doYear(year) {
@@ -23178,7 +37830,17 @@ doYear(2014);
 doYear(2013);
 doYear(2012);
 doYear(2011);
-doYear(2010); //2018 aug 8
+doYear(2010);
+doYear(2009);
+doYear(2008);
+doYear(2007);
+doYear(2006);
+doYear(2005);
+doYear(2004);
+doYear(2003);
+doYear(2002);
+doYear(2001);
+doYear(2000); //2018 aug 8
 //2017 july - https://globalnews.ca/news/3612904/toronto-under-flood-warning-with-some-roads-closed-due-to-flooding/
 //2017 may 1 - toronto island - https://globalnews.ca/video/3418709/toronto-under-flood-watch
 // 2014 oct 17 - https://www.cbc.ca/news/canada/toronto/raw-toronto-flood-aftermath-1.2802601
@@ -23190,8 +37852,10 @@ doYear(2010); //2018 aug 8
 //2012 dec 28 - snow - https://nationalpost.com/news/toronto/snowfall-in-toronto-by-the-numbers
 //2011 March 23 - big snowstorm - https://toronto.citynews.ca/2011/03/23/evening-webcast-march-23-2011/
 // 1999 mel lastman army
+//2008 August 8 - https://www.bttoronto.ca/videos/morning-weather-webcast-august-8-2018/
+//2005 August - very fast 1-hour storm?
 
-},{"./data/2010-toronto":1,"./data/2011-toronto":2,"./data/2012-toronto":3,"./data/2013-toronto":4,"./data/2014-toronto":5,"./data/2015-toronto":6,"./data/2016-toronto":7,"./data/2017-toronto":8,"./data/2018-toronto":9,"./data/2019-toronto":10,"somehow":12}],12:[function(_dereq_,module,exports){
+},{"./data/2000-toronto":1,"./data/2001-toronto":2,"./data/2002-toronto":3,"./data/2003-toronto":4,"./data/2004-toronto":5,"./data/2005-toronto":6,"./data/2006-toronto":7,"./data/2007-toronto":8,"./data/2008-toronto":9,"./data/2009-toronto":10,"./data/2010-toronto":11,"./data/2011-toronto":12,"./data/2012-toronto":13,"./data/2013-toronto":14,"./data/2014-toronto":15,"./data/2015-toronto":16,"./data/2016-toronto":17,"./data/2017-toronto":18,"./data/2018-toronto":19,"./data/2019-toronto":20,"somehow":22}],22:[function(_dereq_,module,exports){
 (function (global){
 /* somehow v0.0.11
    github.com/spencermountain/somehow
@@ -32243,4 +46907,4 @@ module.exports = parseInput;
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[11]);
+},{}]},{},[21]);
