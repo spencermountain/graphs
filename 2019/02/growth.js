@@ -41,13 +41,13 @@ let w = somehow({
   width: 700,
 });
 
-let mid = w.midArea().color('blue')
+let mid = w.midArea().color('sea')
 // mid.straight()
 // mid.soft()
-mid.attrs.stroke = spencerColor.colors.green
+mid.attrs.stroke = spencerColor.colors.blue
 mid.set(points)
 
-w.annotation(['original', 'six']).font(12).on('Oct 1 1942', 3).nudge(-70, 20)
+w.annotation(['original', 'six']).font(12).on('Oct 1 1942', 3).nudge(10, 30)
 w.annotation(['1967', 'league', 'doubles', 'to 12']).font(12).on('Apr 1 1967', 3).nudge(-120, 50)
 w.annotation(['1960s', 'league adds 2 teams', 'every 2 years']).font(12).on('Oct 1 1971', 14 / 2).nudge(70, -60)
 w.annotation(['1979', 'merges with WHL']).font(12).on('Oct 1 1979', -10).nudge(-130, -40)
