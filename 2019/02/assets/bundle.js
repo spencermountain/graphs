@@ -5,11 +5,11 @@ var c = _dereq_('spencer-color').colors;
 
 module.exports = {
   'Boston Bruins': c.brown,
-  'Buffalo Sabres': c.yellow,
+  'Buffalo Sabres': c.sea,
   'Detroit Red Wings': c.red,
   'Florida Panthers': c.cherry,
   'Montreal Canadiens': c.rouge,
-  'Ottawa Senators': c.beige,
+  'Ottawa Senators': c.cherry,
   'Tampa Bay Lightning': c.royal,
   'Toronto Maple Leafs': c.blue,
   'Carolina Hurricanes': c.fire,
@@ -18,13 +18,13 @@ module.exports = {
   'New York Islanders': c.orange,
   'New York Rangers': c.rouge,
   'Philadelphia Flyers': c.orange,
-  'Pittsburgh Penguins': c.yellow,
+  'Pittsburgh Penguins': c.fudge,
   'Washington Capitals': c.cherry,
-  'Chicago Blackhawks': c.beige,
+  'Chicago Blackhawks': c.fudge,
   'Colorado Avalanche': c.burnt,
   'Dallas Stars': c.olive,
   'Minnesota Wild': c.green,
-  'Nashville Predators': c.yellow,
+  'Nashville Predators': '#b2b17b',
   'St. Louis Blues': c.navy,
   'Winnipeg Jets': c.sea,
   'Anaheim Ducks': c.dimgrey,
@@ -34,9 +34,9 @@ module.exports = {
   'Los Angeles Kings': c.black,
   'San Jose Sharks': c.sky,
   'Vancouver Canucks': c.blue,
-  'Vegas Golden Knights': c.beige,
+  'Vegas Golden Knights': '#b2b17b',
   //defunct
-  'California Golden Seals': c.yellow,
+  'California Golden Seals': c.green,
   'Kansas City Scouts': c.navy,
   'Cleveland Barons': c.red,
   'Atlanta Flames': c.orange,
@@ -310,15 +310,15 @@ var w = somehow({
   height: 400,
   width: 700
 });
-var mid = w.midArea().color('blue'); // mid.straight()
+var mid = w.midArea().color('sea'); // mid.straight()
 // mid.soft()
 
-mid.attrs.stroke = spencerColor.colors.green;
+mid.attrs.stroke = spencerColor.colors.blue;
 mid.set(points);
-w.annotation(['original', 'six']).font(12).on('Oct 1 1942', 3).nudge(-70, 20);
+w.annotation(['original', 'six']).font(12).on('Oct 1 1942', 3).nudge(10, 30);
 w.annotation(['1967', 'league', 'doubles', 'to 12']).font(12).on('Apr 1 1967', 3).nudge(-120, 50);
 w.annotation(['1960s', 'league adds 2 teams', 'every 2 years']).font(12).on('Oct 1 1971', 14 / 2).nudge(70, -60);
-w.annotation(['1979', 'edmonton,', 'quebec,', 'winnipeg']).font(12).on('Oct 1 1979', -10).nudge(-90, -70);
+w.annotation(['1979', 'merges with WHL']).font(12).on('Oct 1 1979', -10).nudge(-130, -40);
 w.annotation(['2000', 'columbus', 'minnesota']).font(12).on('Oct 1 2000', 30 / 2).nudge(40, -80);
 w.annotation(['1978', 'league shrinks']).font(12).on('Sept 1 1978', 17 / 2).nudge(-120, 40);
 w.annotation(['1993', 'flordia,', 'anaheim']).font(12).on('Sept 1 1993', 26 / 2).nudge(0, 50);
@@ -341,7 +341,9 @@ _dereq_('./players');
 
 _dereq_('./teams');
 
-},{"./growth":3,"./players":7,"./teams":8}],5:[function(_dereq_,module,exports){
+_dereq_('./rules');
+
+},{"./growth":3,"./players":7,"./rules":8,"./teams":9}],5:[function(_dereq_,module,exports){
 (function (global){
 /* somehow v0.0.10
    github.com/spencermountain/somehow
@@ -9277,26 +9279,64 @@ module.exports = parseInput;
 
 var somehow = _dereq_('somehow');
 
+var colors = _dereq_('./data/colors');
+
 var today = new Date().toISOString();
 var year = new Date().getFullYear();
-var players = [['Maurice Richard', 1942, 1960], ['Gordie Howe', 1946, 1980], ['Jean Beliveau', 1950, 1971], ['Bobby Hull', 1957, 1980], ['Phil Esposito', 1963, 1981], ['Bobby Orr', 1966, 1978], ['Bobby Clarke', 1969, 1984], ['Wayne Gretzky', 1979, 1999], // ['Mark Messier', 1979, 2004],
-['Steve Yzerman', 1983, 2006], ['Mario Lemieux', 1984, 2005], ['Jaromír Jágr', 1990, 2018], ['Sidney Crosby', 2005, year]];
+var players = [['Maurice Richard', 1942, 1960, 'Montreal Canadiens'], ['Gordie Howe', 1946, 1980, 'Detroit Red Wings'], // ['Jean Beliveau', 1950, 1971,'Montreal Canadiens'],
+['Bobby Hull', 1957, 1980, 'Chicago Blackhawks'], // ['Phil Esposito', 1963, 1981, 'Boston Bruins'],
+['Bobby Orr', 1966, 1978, 'Boston Bruins'], ['Bobby Clarke', 1969, 1984, 'Philadelphia Flyers'], ['Wayne Gretzky', 1979, 1999, 'Edmonton Oilers'], // ['Mark Messier', 1979, 2004],
+['Steve Yzerman', 1983, 2006, 'Detroit Red Wings'], ['Mario Lemieux', 1984, 2005, 'Pittsburgh Penguins'], // ['Jaromír Jágr', 1990, 2018],
+['Sidney Crosby', 2005, year, 'Pittsburgh Penguins']];
 var w = somehow({
   height: 200,
   width: 700
 });
 players.forEach(function (a, i) {
-  w.line().color('red').width(1).set([['Oct 1 ' + a[1], i], ['Apr 1 ' + a[2], i]]);
+  w.line().color(colors[a[3]] || 'red').width(1).set([['Oct 1 ' + a[1], i], ['Apr 1 ' + a[2], i]]);
   w.text(a[0]).at('Oct 1 ' + a[1], i);
-});
-w.text('Players:').at('0px', '100%');
+}); // w.text('Players:').at('0px', '100%')
+
 w.fit();
 w.x.fit('Jan 1 1942', today);
+w.y.fit(-1);
 w.yAxis.remove();
 var el = document.querySelector('#players');
 el.innerHTML = w.build();
 
-},{"somehow":5}],8:[function(_dereq_,module,exports){
+},{"./data/colors":1,"somehow":5}],8:[function(_dereq_,module,exports){
+"use strict";
+
+var somehow = _dereq_('somehow'); // const somehow = require('/Users/spencer/mountain/somehow');
+
+
+var today = new Date().toISOString();
+var w = somehow({
+  height: 100,
+  width: 700
+}); // goalie masks - 1960 - 1969
+
+w.text('goalie masks').font(12).at('oct 1 1960', '90%');
+w.rect().color('sky').set([['oct 1 1960', '0%'], ['oct 1 1969', '80%']]); // player helmets - 1972 - 1979
+
+w.text('player helmets').font(12).at('oct 1 1972', '90%');
+w.rect().color('green').set([['oct 1 1972', '0%'], ['oct 1 1979', '80%']]); //nhl lockouts 94, 2004, 2012
+
+w.text(['\'95', 'lockout']).font(12).at('oct 1 1993', '90%');
+w.rect().color('orange').set([['oct 1 1995', '0%'], ['jan 11 1996', '80%']]);
+w.text(['2004', 'lockout']).font(12).at('oct 1 2002', '90%');
+w.rect().color('orange').set([['oct 1 2004', '0%'], ['march 30 2005', '80%']]);
+w.text(['2012', 'lockout']).font(12).at('oct 1 2010', '90%');
+w.rect().color('orange').set([['oct 1 2012', '0%'], ['January 12, 2013', '80%']]); // w.fit()
+// w.text('Changes:').at('0px', '100%')
+
+w.x.fit('Jan 1 1942', today);
+w.y.fit(-28, 28);
+w.yAxis.remove();
+var el = document.querySelector('#rules');
+el.innerHTML = w.build();
+
+},{"somehow":5}],9:[function(_dereq_,module,exports){
 "use strict";
 
 var somehow = _dereq_('somehow');
@@ -9323,17 +9363,17 @@ teams.forEach(function (team, i) {
 
   var start = 'Oct 1 ' + team.start;
   var color = colors[team.team];
-  w.line().width(6).color(color).set([[start, i], [end, i]]);
-  var name = team.team;
-  name += ' - ' + team.wins.length; // if (team.wins.length > 0) {
+  w.line().width(12).color(color).set([[start, i], [end, i]]);
+  var name = team.team; // name += ' - ' + team.wins.length
+  // if (team.wins.length > 0) {
   // }
 
-  w.text(name).color(color).dx(5).font(10).at(end, i);
+  w.text(name).color(color).dx(5).font(12).at(end, i);
 });
 w.text('Teams:').at('0px', '105%');
 w.fit();
-w.x.fit('Jan 1 1942', today); // w.y.fit(-28, 28)
-// w.yAxis.remove()
+w.x.fit('Jan 1 1942', today);
+w.y.fit(-1); // w.yAxis.remove()
 
 var el = document.querySelector('#teams');
 el.innerHTML = w.build();
