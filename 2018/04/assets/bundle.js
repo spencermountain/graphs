@@ -6194,7 +6194,7 @@ return h;
 module.exports={
   "name": "somehow",
   "description": "make infographics without thinking",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "main": "builds/somehow.js",
   "unpkg": "builds/somehow.min.js",
   "author": "Spencer Kelly (spencermountain)",
@@ -6279,9 +6279,19 @@ var Annotation = _dereq_('./shapes/Annotation');
 
 var MidArea = _dereq_('./shapes/MidArea');
 
+var Bar = _dereq_('./shapes/Bar');
+
+var Image = _dereq_('./shapes/Image');
+
+var Input = _dereq_('./inputs/Input');
+
 var Slider = _dereq_('./inputs/Slider');
 
+var Select = _dereq_('./inputs/Select');
+
 var Legend = _dereq_('./inputs/Legend');
+
+var PlusMinus = _dereq_('./inputs/PlusMinus');
 
 var World =
 /*#__PURE__*/
@@ -6313,6 +6323,10 @@ function () {
     this.state = {};
     this.state.time = Date.now();
     this.el = obj.el || null;
+
+    if (typeof this.el === 'string') {
+      this.el = document.querySelector(this.el);
+    }
   }
 
   _createClass(World, [{
@@ -6363,9 +6377,23 @@ function () {
       return shape;
     }
   }, {
+    key: "bar",
+    value: function bar(obj) {
+      var shape = new Bar(obj, this);
+      this.shapes.push(shape);
+      return shape;
+    }
+  }, {
     key: "annotation",
     value: function annotation(obj) {
       var shape = new Annotation(obj, this);
+      this.shapes.push(shape);
+      return shape;
+    }
+  }, {
+    key: "image",
+    value: function image(obj) {
+      var shape = new Image(obj, this);
       this.shapes.push(shape);
       return shape;
     }
@@ -6375,11 +6403,33 @@ function () {
       var shape = new Shape(obj, this);
       this.shapes.push(shape);
       return shape;
+    } //inputs:
+
+  }, {
+    key: "input",
+    value: function input(obj) {
+      var slider = new Input(obj, this);
+      this.inputs.push(slider);
+      return slider;
     }
   }, {
     key: "slider",
     value: function slider(obj) {
       var slider = new Slider(obj, this);
+      this.inputs.push(slider);
+      return slider;
+    }
+  }, {
+    key: "select",
+    value: function select(obj) {
+      var slider = new Select(obj, this);
+      this.inputs.push(slider);
+      return slider;
+    }
+  }, {
+    key: "plusMinus",
+    value: function plusMinus(obj) {
+      var slider = new PlusMinus(obj, this);
       this.inputs.push(slider);
       return slider;
     }
@@ -6444,9 +6494,15 @@ function () {
 Object.keys(methods).forEach(function (k) {
   World.prototype[k] = methods[k];
 });
+var aliases = {
+  plusminus: 'plusMinus'
+};
+Object.keys(aliases).forEach(function (k) {
+  World.prototype[k] = methods[aliases[k]];
+});
 module.exports = World;
 
-},{"./axis/XAxis":12,"./axis/YAxis":13,"./inputs/Legend":18,"./inputs/Slider":19,"./methods":20,"./scales/Scale":22,"./scales/YScale":23,"./shapes/Annotation":25,"./shapes/Area":26,"./shapes/Dot":27,"./shapes/Line":28,"./shapes/MidArea":29,"./shapes/Rect":30,"./shapes/Shape":31,"./shapes/Text":32,"fit-aspect-ratio":3,"htm":4,"vhtml":7}],10:[function(_dereq_,module,exports){
+},{"./axis/XAxis":12,"./axis/YAxis":13,"./inputs/Input":18,"./inputs/Legend":19,"./inputs/PlusMinus":20,"./inputs/Select":21,"./inputs/Slider":22,"./methods":23,"./scales/Scale":25,"./scales/YScale":26,"./shapes/Annotation":28,"./shapes/Area":29,"./shapes/Bar":30,"./shapes/Dot":31,"./shapes/Image":32,"./shapes/Line":33,"./shapes/MidArea":34,"./shapes/Rect":35,"./shapes/Shape":36,"./shapes/Text":37,"fit-aspect-ratio":3,"htm":4,"vhtml":7}],10:[function(_dereq_,module,exports){
 "use strict";
 
 var extent = function extent(arr) {
@@ -6939,6 +6995,100 @@ module.exports = somehow;
 },{"../package.json":8,"./World":9}],18:[function(_dereq_,module,exports){
 "use strict";
 
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<input id=\"", "\" class=\"input\" type=\"text\" value=\"", "\"/>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var defaults = {};
+
+var Input =
+/*#__PURE__*/
+function () {
+  function Input() {
+    var _this = this;
+
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Input);
+
+    if (typeof obj === 'string') {
+      this.id = obj;
+      obj = {};
+    }
+
+    this.world = world;
+    this.attrs = Object.assign({}, defaults, obj);
+    this.id = obj.id || 'input';
+    this._value = obj.value || '';
+    this.world.state[this.id] = this._value;
+
+    this.callback = function (val) {
+      _this.world.state[_this.id] = val;
+      _this._value = val;
+
+      _this.world.redraw();
+    };
+
+    this.mounted = false;
+    this.el = null;
+  }
+
+  _createClass(Input, [{
+    key: "default",
+    value: function _default(val) {
+      this._value = val;
+      this.world.state[this.id] = this._value;
+      return this;
+    }
+  }, {
+    key: "setCallback",
+    value: function setCallback() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        var el = document.getElementById(_this2.id);
+
+        if (el) {
+          el.addEventListener('input', function (e) {
+            _this2.world.state[_this2.id] = e.target.value;
+
+            _this2.callback(e.target.value);
+          });
+        }
+      }, 50);
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+      this.setCallback();
+      return h(_templateObject(), this._id, this._value);
+    }
+  }]);
+
+  return Input;
+}();
+
+module.exports = Input;
+
+},{}],19:[function(_dereq_,module,exports){
+"use strict";
+
 function _templateObject2() {
   var data = _taggedTemplateLiteral(["<div class=", " style=", ">\n      ", "\n      </div>\n      "]);
 
@@ -7034,8 +7184,246 @@ function () {
 
 module.exports = Legend;
 
-},{}],19:[function(_dereq_,module,exports){
+},{}],20:[function(_dereq_,module,exports){
 "use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<div>\n      <input type=\"button\" id=\"", "\" style=\"", "\" value=\"-\"/>\n      <input type=\"text\" id=\"", "\" style=\"", "\" value=\"", "\"/>\n      <input type=\"button\" id=\"", "\" style=\"", "\" value=\"+\"/>\n    </div>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Input = _dereq_('./Input');
+
+var colors = _dereq_('spencer-color').colors;
+
+var PlusMinus =
+/*#__PURE__*/
+function (_Input) {
+  _inherits(PlusMinus, _Input);
+
+  function PlusMinus() {
+    var _this;
+
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, PlusMinus);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PlusMinus).call(this, obj, world));
+    _this.id = obj.id || 'plusMinus';
+
+    if (_this._value === '') {
+      _this._value = 0;
+    }
+
+    _this._min = null;
+    _this._max = null;
+    _this.world.state[_this.id] = _this._value;
+    return _this;
+  }
+
+  _createClass(PlusMinus, [{
+    key: "max",
+    value: function max(n) {
+      this._max = n;
+      return this;
+    }
+  }, {
+    key: "min",
+    value: function min(n) {
+      this._min = n;
+      return this;
+    }
+  }, {
+    key: "moreCallbacks",
+    value: function moreCallbacks() {
+      var _this2 = this;
+
+      setTimeout(function () {
+        var text = document.getElementById(_this2.id); // inc button listener
+
+        var inc = document.getElementById(_this2.id + '-inc');
+        inc.addEventListener('click', function () {
+          _this2._value = Number(_this2._value);
+
+          if (_this2._max === null || _this2._value < _this2._max) {
+            _this2._value += 1;
+          }
+
+          text.value = _this2._value;
+
+          _this2.callback(_this2._value);
+        }); // dec button listener
+
+        var dec = document.getElementById(_this2.id + '-dec');
+        dec.addEventListener('click', function () {
+          _this2._value = Number(_this2._value);
+
+          if (_this2._max === null || _this2._value > _this2._min) {
+            _this2._value -= 1;
+          }
+
+          text.value = _this2._value;
+
+          _this2.callback(_this2._value);
+        });
+      }, 52);
+    }
+  }, {
+    key: "buildStyle",
+    value: function buildStyle() {
+      return {
+        input: "width:3rem; max-height:1.2rem; text-align:center; font-size:1.3rem; color:".concat(colors.grey, ";"),
+        btn: "height:1.5rem; color:".concat(colors.grey, ";")
+      };
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+      this.setCallback();
+      this.moreCallbacks();
+      var styles = this.buildStyle();
+      return h(_templateObject(), this.id + '-dec', styles.btn, this.id, styles.input, this._value, this.id + '-inc', styles.btn);
+    }
+  }]);
+
+  return PlusMinus;
+}(Input);
+
+module.exports = PlusMinus;
+
+},{"./Input":18,"spencer-color":6}],21:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<select id=\"", "\" style=\"font-size:1rem;\">", "</select>"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<option ...", ">", "</option>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Input = _dereq_('./Input');
+
+var Select =
+/*#__PURE__*/
+function (_Input) {
+  _inherits(Select, _Input);
+
+  function Select() {
+    var _this;
+
+    var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var world = arguments.length > 1 ? arguments[1] : undefined;
+
+    _classCallCheck(this, Select);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Select).call(this, obj, world));
+    _this.id = obj.id || 'select';
+    _this._choices = [];
+    return _this;
+  }
+
+  _createClass(Select, [{
+    key: "choices",
+    value: function choices(arr) {
+      this._choices = arr;
+      return this;
+    }
+  }, {
+    key: "buildChoices",
+    value: function buildChoices() {
+      var _this2 = this;
+
+      var h = this.world.html;
+      return this._choices.map(function (c) {
+        var attr = {
+          value: c
+        };
+
+        if (c === _this2._value) {
+          attr.selected = 'true';
+        }
+
+        return h(_templateObject(), attr, c);
+      });
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+      this.setCallback();
+      return h(_templateObject2(), this._id, this.buildChoices());
+    }
+  }]);
+
+  return Select;
+}(Input);
+
+module.exports = Select;
+
+},{"./Input":18}],22:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _templateObject2() {
   var data = _taggedTemplateLiteral(["<div style=\"", "\">\n        <div style=\"", "\">", "</div>\n        ", "\n        <input type=\"range\" id=\"", "\" style=\"", "\" value=", " ...", "/>\n      </div>"]);
@@ -7065,8 +7453,20 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 // const fns = require('../_fns')
-var colors = _dereq_('spencer-color');
+var colors = _dereq_('spencer-color').colors;
+
+var Input = _dereq_('./Input');
 
 var defaults = {
   min: -100,
@@ -7077,46 +7477,39 @@ var defaults = {
 
 var Slider =
 /*#__PURE__*/
-function () {
+function (_Input) {
+  _inherits(Slider, _Input);
+
   function Slider() {
-    var _this = this;
+    var _this;
 
     var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var world = arguments.length > 1 ? arguments[1] : undefined;
 
     _classCallCheck(this, Slider);
 
-    if (typeof obj === 'string') {
-      this.id = obj;
-      obj = {};
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Slider).call(this, obj, world));
+    _this.attrs = Object.assign({}, defaults, _this.attrs);
+    _this._title = '';
+    _this._labels = [];
+    _this._orientation = 'horizontal';
+
+    if (_this._value === '') {
+      _this._value = 50;
     }
 
-    this.world = world;
-    this.data = obj.data || [];
-    this.attrs = Object.assign({}, defaults, obj);
-    this.style = {};
-    this._title = '';
-
-    this.onChange = function () {};
-
-    this._labels = [];
-    this._value = obj.value;
-
-    if (this._value === undefined) {
-      this._value = 50;
-    }
-
-    this.id = obj.id || 'slider';
-    this.world.state[this.id] = this._value;
-
-    this.callback = function (e) {
-      _this.world.state[_this.id] = e.target.value;
-
-      _this.world.redraw();
-    };
+    _this.id = obj.id || 'slider';
+    _this.world.state[_this.id] = _this._value;
+    return _this;
   }
 
   _createClass(Slider, [{
+    key: "orientation",
+    value: function orientation(str) {
+      this._orientation = str;
+      return this;
+    }
+  }, {
     key: "labels",
     value: function labels(data) {
       this._labels = data.map(function (a) {
@@ -7159,38 +7552,38 @@ function () {
       this._title = str;
     }
   }, {
-    key: "build",
-    value: function build() {
-      var _this3 = this;
-
-      var h = this.world.html;
+    key: "makeStyle",
+    value: function makeStyle() {
       var size = this.attrs.size;
       var styles = {
-        box: "position:relative; height:".concat(size, "px; width:100px;"),
-        input: "transform: rotate(90deg); width:".concat(size, "px;  transform-origin: 0% 0%;"),
+        box: "position:relative; width:".concat(size, "px; height:60px;"),
+        input: "width:".concat(size, "px;"),
         title: "position:absolute; top:-20px; left:-20px; color:".concat(colors.lightgrey, "; font-size:14px;")
       };
-      setTimeout(function () {
-        var el = document.getElementById(_this3.id);
 
-        if (el) {
-          el.addEventListener('input', function (e) {
-            _this3.world.state[_this3.id] = e.target.value;
+      if (this._orientation === 'vertical') {
+        styles.input += "transform: rotate(90deg); transform-origin: 0% 0%;";
+        styles.box = "position:relative; height:".concat(size, "px; width:100px;");
+      }
 
-            _this3.callback(e);
-          });
-        }
-      }, 50);
+      return styles;
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+      this.setCallback();
+      var styles = this.makeStyle();
       return h(_templateObject2(), styles.box, styles.title, this._title, this.makeLabels(), this.id, styles.input, this._value, this.attrs);
     }
   }]);
 
   return Slider;
-}();
+}(Input);
 
 module.exports = Slider;
 
-},{"spencer-color":6}],20:[function(_dereq_,module,exports){
+},{"./Input":18,"spencer-color":6}],23:[function(_dereq_,module,exports){
 "use strict";
 
 var _require = _dereq_('./parse'),
@@ -7321,7 +7714,7 @@ var methods = {
 };
 module.exports = methods;
 
-},{"./_fns":10,"./parse":21}],21:[function(_dereq_,module,exports){
+},{"./_fns":10,"./parse":24}],24:[function(_dereq_,module,exports){
 "use strict";
 
 var spacetime = _dereq_('spacetime'); //
@@ -7405,7 +7798,7 @@ module.exports = {
   parseY: parseY
 };
 
-},{"spacetime":5}],22:[function(_dereq_,module,exports){
+},{"spacetime":5}],25:[function(_dereq_,module,exports){
 "use strict";
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7522,7 +7915,7 @@ function () {
 
 module.exports = Scale;
 
-},{"../parse":21,"./_linear":24}],23:[function(_dereq_,module,exports){
+},{"../parse":24,"./_linear":27}],26:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -7587,7 +7980,7 @@ function (_Scale) {
 
 module.exports = YScale;
 
-},{"../parse":21,"./Scale":22,"./_linear":24}],24:[function(_dereq_,module,exports){
+},{"../parse":24,"./Scale":25,"./_linear":27}],27:[function(_dereq_,module,exports){
 "use strict";
 
 //a very-tiny version of d3-scale's scaleLinear
@@ -7611,13 +8004,43 @@ module.exports = scaleLinear; // let scale = scaleLinear({
 // })
 // console.log(scale(107))
 
-},{}],25:[function(_dereq_,module,exports){
+},{}],28:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _templateObject7() {
+  var data = _taggedTemplateLiteral(["<g id=\"build\">\n      ", "\n      ", "\n      ", "\n    </g>"]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["<line id=\"line\" x1=\"", "\" y1=\"", "\" x2=\"", "\" y2=\"", "\" style=\"stroke-width:2px; shapeRendering:optimizeQuality;\" stroke=", "/>"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["<g>\n      <line x1=\"", "\" y1=\"", "\" x2=\"", "\" y2=\"", "\" style=\"", "\" stroke=", "/>\n      ", "\n    </g>"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["<g>\n      ", "\n      ", "\n    </g>"]);
+  var data = _taggedTemplateLiteral(["<g>\n        <line x1=\"", "\" y1=\"", "\" x2=\"", "\" y2=\"", "\" style=\"", "\" stroke=", "/>\n        <line x1=\"", "\" y1=\"", "\" x2=\"", "\" y2=\"", "\" style=\"", "\" stroke=", "/>\n      </g>\n      "]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -7627,7 +8050,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["<line x1=\"", "\" y1=\"", "\" x2=\"", "\" y2=\"", "\" style=\"stroke-width:2px; shapeRendering:optimizeQuality;\" stroke=", "/>"]);
+  var data = _taggedTemplateLiteral(["<g>\n      <line x1=\"", "\" y1=\"", "\" x2=\"", "\" y2=\"", "\" style=\"", "\" stroke=", "/>\n      <line x1=\"", "\" y1=\"", "\" x2=\"", "\" y2=\"", "\" style=\"", "\" stroke=", "/>\n    </g>\n    "]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -7637,7 +8060,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["<g transform=\"", "\" style=\"", "\">\n      <text id=\"fun\" ...", ">\n        ", "\n      </text>\n      <line x1=\"", "\" y1=\"", "\" x2=\"", "\" y2=\"", "\" style=\"stroke-width:1.5px; shapeRendering:optimizeQuality;\"  stroke=", "/>\n    </g>"]);
+  var data = _taggedTemplateLiteral(["<g transform=\"", "\" style=\"", "\">\n      <text ...", ">\n        ", "\n      </text>\n      <line x1=\"", "\" y1=\"", "\" x2=\"", "\" y2=\"", "\" style=\"stroke-width:1.5px; shapeRendering:optimizeQuality;\"  stroke=", "/>\n    </g>"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -7701,6 +8124,7 @@ function (_Text) {
       x: 0,
       y: 0
     };
+    _this._title = '';
     return _this;
   }
 
@@ -7708,6 +8132,12 @@ function (_Text) {
     key: "on",
     value: function on(x, y) {
       this.at(x, y);
+      return this;
+    }
+  }, {
+    key: "title",
+    value: function title(txt) {
+      this._title = txt;
       return this;
     }
   }, {
@@ -7723,8 +8153,15 @@ function (_Text) {
     value: function drawText() {
       var h = this.world.html;
       var nudge = this._nudge;
-      var inside = this.textLines.map(function (str) {
-        return h(_templateObject(), str);
+      var textArr = this.textLines;
+
+      if (this.textFn !== null) {
+        textArr = this.textFn(this.world);
+        textArr = typeof textArr === 'string' ? [textArr] : textArr;
+      }
+
+      var inside = textArr.map(function (str) {
+        return h(_templateObject(), String(str));
       });
       var point = this.position();
       var estimate = this.estimate();
@@ -7737,29 +8174,67 @@ function (_Text) {
       return h(_templateObject2(), transform, this.drawSyle(), this.attrs, inside, -2, estimate.height, estimate.width, estimate.height, colors.grey);
     }
   }, {
+    key: "drawRange",
+    value: function drawRange() {
+      var h = this.world.html;
+      var points = this.points();
+
+      if (points.length <= 1) {
+        return null;
+      }
+
+      var size = 4;
+      var style = 'stroke-width:2px; shapeRendering:optimizeQuality;';
+      var top = points[0];
+      var bottom = points[1]; //for a vertical range...
+
+      var ticks = h(_templateObject3(), top[0] - size, top[1], top[0] + size, top[1], style, colors.grey, bottom[0] - size, bottom[1], bottom[0] + size, bottom[1], style, colors.grey); //for a horizontal range
+
+      if (top[0] !== bottom[0]) {
+        ticks = h(_templateObject4(), top[0], top[1] - size, top[0], top[1] + size, style, colors.grey, bottom[0], bottom[1] - size, bottom[0], bottom[1] + size, style, colors.grey);
+      }
+
+      return h(_templateObject5(), top[0], top[1], bottom[0], bottom[1], style, colors.grey, ticks);
+    }
+  }, {
+    key: "getPoint",
+    value: function getPoint() {
+      var points = this.points();
+
+      if (points.length <= 1) {
+        return points[0];
+      } //the middle point?
+
+
+      var xDiff = points[0][0] - points[1][0];
+      var yDiff = points[0][1] - points[1][1];
+      return [points[0][0] - xDiff / 2, points[0][1] - yDiff / 2];
+    }
+  }, {
     key: "drawLine",
     value: function drawLine() {
       var h = this.world.html;
       var nudge = this._nudge;
-      var point = this.points()[0];
-      var place = {
-        x: point[0] + nudge.x,
-        y: point[1] - nudge.y + 4 //touch the right side, instead
+      var point = this.getPoint();
+      var start = this.points()[0];
+      var textPoint = {
+        x: start[0] + nudge.x,
+        y: start[1] - nudge.y + 4 //touch the right side, instead
 
       };
 
       if (nudge.x < 0) {
         var estimate = this.estimate();
-        place.x += estimate.width;
+        textPoint.x += estimate.width;
       }
 
-      return h(_templateObject3(), place.x, place.y, point[0], point[1], colors.grey);
+      return h(_templateObject6(), textPoint.x, textPoint.y, point[0], point[1], colors.grey);
     }
   }, {
     key: "build",
     value: function build() {
       var h = this.world.html;
-      return h(_templateObject4(), this.drawText(), this.drawLine());
+      return h(_templateObject7(), this.drawText(), this.drawLine(), this.drawRange());
     }
   }]);
 
@@ -7768,13 +8243,13 @@ function (_Text) {
 
 module.exports = Annotation;
 
-},{"./Text":32,"spencer-color":6}],26:[function(_dereq_,module,exports){
+},{"./Text":37,"spencer-color":6}],29:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["<path ...", " style=\"", "\"/>"]);
+  var data = _taggedTemplateLiteral(["<path ...", " style=\"", "\">\n        <title>", "</title>\n      </path>"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -7921,7 +8396,7 @@ function (_Shape) {
         d: this.linePath(),
         fill: 'none'
       });
-      var line = h(_templateObject2(), lineAttr, this.drawSyle());
+      var line = h(_templateObject2(), lineAttr, this.drawSyle(), this._title);
       return [line, area];
     }
   }]);
@@ -7931,7 +8406,127 @@ function (_Shape) {
 
 module.exports = Area;
 
-},{"../parse":21,"./Shape":31,"d3-shape":2,"spencer-color":6}],27:[function(_dereq_,module,exports){
+},{"../parse":24,"./Shape":36,"d3-shape":2,"spencer-color":6}],30:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<rect ...", " >\n        <title>", "</title>\n      </rect>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var colors = _dereq_('spencer-color').colors;
+
+var Rect = _dereq_('./Rect');
+
+var _require = _dereq_('../parse'),
+    parseX = _require.parseX,
+    parseY = _require.parseY;
+
+var defaults = {
+  fill: colors.green,
+  stroke: colors.green,
+  'fill-opacity': 1,
+  'stroke-width': 1
+};
+
+var Bar =
+/*#__PURE__*/
+function (_Rect) {
+  _inherits(Bar, _Rect);
+
+  function Bar(obj, world) {
+    var _this;
+
+    _classCallCheck(this, Bar);
+
+    obj = Object.assign({}, defaults, obj);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Bar).call(this, obj, world));
+    _this._rounded = 1;
+    _this._width = 5;
+    _this._zero = 0;
+    return _this;
+  }
+
+  _createClass(Bar, [{
+    key: "width",
+    value: function width(w) {
+      this._width = w;
+      return this;
+    } //point that it flips on
+
+  }, {
+    key: "zero",
+    value: function zero(w) {
+      this._zero = w;
+      return this;
+    }
+  }, {
+    key: "at",
+    value: function at(x, y) {
+      this.data = [{
+        x: parseX(x, this.world),
+        y: parseY(0, this.world)
+      }, {
+        x: parseX(x, this.world),
+        y: parseY(y, this.world)
+      }];
+      return this;
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+      var points = this.points();
+      var bottom = points[0][1];
+
+      if (points[0][1] > points[1][1]) {
+        bottom = points[1][1];
+      }
+
+      var height = Math.abs(points[1][1] - points[0][1]);
+      var attrs = Object.assign({}, this.attrs, {
+        x: points[0][0],
+        y: bottom,
+        width: this._width,
+        height: height,
+        rx: this._rounded,
+        title: this._title
+      });
+      return h(_templateObject(), attrs, this._title);
+    }
+  }]);
+
+  return Bar;
+}(Rect);
+
+module.exports = Bar;
+
+},{"../parse":24,"./Rect":35,"spencer-color":6}],31:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -8017,7 +8612,129 @@ function (_Shape) {
 
 module.exports = Dot;
 
-},{"./Shape":31,"spencer-color":6}],28:[function(_dereq_,module,exports){
+},{"./Shape":36,"spencer-color":6}],32:[function(_dereq_,module,exports){
+"use strict";
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<g>\n      <image xlink:href=\"", "\" x=\"", "\" y=\"", "\" height=\"", "\" width=\"", "\" />\n      ", "\n    </g>\n    "]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<text x=\"", "\" y=\"", "\" stroke=\"none\" fill=\"", "\">", "</text>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Shape = _dereq_('./Shape');
+
+var colors = _dereq_('spencer-color').colors;
+
+var Image =
+/*#__PURE__*/
+function (_Shape) {
+  _inherits(Image, _Shape);
+
+  function Image(obj, world) {
+    var _this;
+
+    _classCallCheck(this, Image);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Image).call(this, obj, world));
+    _this._src = '';
+    _this._width = 100;
+    _this._height = 200;
+    _this._caption = '';
+    return _this;
+  }
+
+  _createClass(Image, [{
+    key: "src",
+    value: function src(_src) {
+      this._src = _src;
+      return this;
+    }
+  }, {
+    key: "caption",
+    value: function caption(txt) {
+      this._caption = txt;
+      return this;
+    }
+  }, {
+    key: "size",
+    value: function size(w, h) {
+      this._width = w;
+      this._height = h;
+      return this;
+    }
+  }, {
+    key: "width",
+    value: function width(w) {
+      this._width = w;
+      return this;
+    }
+  }, {
+    key: "height",
+    value: function height(h) {
+      this._height = h;
+      return this;
+    }
+  }, {
+    key: "build",
+    value: function build() {
+      var h = this.world.html;
+      var point = this.points()[0];
+
+      if (!point) {
+        point = [0, 0];
+      }
+
+      var caption = '';
+
+      if (this._caption) {
+        var y = point[1] + this._height + 15;
+        caption = h(_templateObject(), point[0], y, colors.grey, this._caption);
+      }
+
+      return h(_templateObject2(), this._src, point[0], point[1], this._width, this._height, caption); //preserveAspectRatio="slice"
+    }
+  }]);
+
+  return Image;
+}(Shape);
+
+module.exports = Image;
+
+},{"./Shape":36,"spencer-color":6}],33:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -8105,7 +8822,7 @@ function (_Shape) {
 
 module.exports = Line;
 
-},{"./Shape":31,"d3-shape":2,"spencer-color":6}],29:[function(_dereq_,module,exports){
+},{"./Shape":36,"d3-shape":2,"spencer-color":6}],34:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -8131,7 +8848,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<path ...", " style=\"", "\"/>"]);
+  var data = _taggedTemplateLiteral(["<path ...", " style=\"", "\">\n      <title>", "</title>\n    </path>"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -8192,7 +8909,6 @@ function (_Area) {
     value: function set(str) {
       this.data = parseInput(str, this.world); //add the bottom part, to data
 
-      console.log(this.data);
       this.data.forEach(function (o) {
         o.y.value /= 2;
         o.y2 = Object.assign({}, o.y);
@@ -8227,7 +8943,7 @@ function (_Area) {
         stroke: 'none'
       }); //draw an area, and a line on top
 
-      var area = h(_templateObject(), areaAttr, this.drawSyle());
+      var area = h(_templateObject(), areaAttr, this.drawSyle(), this._title);
 
       if (!this._line) {
         return area;
@@ -8255,13 +8971,13 @@ function (_Area) {
 
 module.exports = Midarea;
 
-},{"../parse":21,"./Area":26,"./lib/parseInput":33,"d3-shape":2}],30:[function(_dereq_,module,exports){
+},{"../parse":24,"./Area":29,"./lib/parseInput":38,"d3-shape":2}],35:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<rect ...", " />"]);
+  var data = _taggedTemplateLiteral(["<rect ...", " >\n      <title>", "</title>\n    </rect>"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -8342,7 +9058,6 @@ function (_Shape) {
   }, {
     key: "rounded",
     value: function rounded(r) {
-      console.log('hi');
       this._rounded = r;
     }
   }, {
@@ -8351,7 +9066,7 @@ function (_Shape) {
       var h = this.world.html;
       var points = this.points();
       var a = points[0];
-      var b = points[1];
+      var b = points[1] || 0;
       var width = Math.abs(b[0] - a[0]);
       var height = Math.abs(b[1] - a[1]);
 
@@ -8370,7 +9085,7 @@ function (_Shape) {
         height: height,
         rx: this._rounded
       });
-      return h(_templateObject(), attrs); //<rect x="120" y="0" width="100" height="100" rx="15" ry="15" />
+      return h(_templateObject(), attrs, this._title); //<rect x="120" y="0" width="100" height="100" rx="15" ry="15" />
     }
   }]);
 
@@ -8379,7 +9094,7 @@ function (_Shape) {
 
 module.exports = Rect;
 
-},{"./Shape":31,"spencer-color":6}],31:[function(_dereq_,module,exports){
+},{"./Shape":36,"spencer-color":6}],36:[function(_dereq_,module,exports){
 "use strict";
 
 function _templateObject() {
@@ -8434,6 +9149,7 @@ function () {
     this.style = {};
     this.curve = d3Shape.curveMonotoneX;
     this._shape = 1;
+    this._title = '';
   }
 
   _createClass(Shape, [{
@@ -8502,6 +9218,12 @@ function () {
     key: "opacity",
     value: function opacity(n) {
       this.attrs.opacity = n;
+      return this;
+    }
+  }, {
+    key: "title",
+    value: function title(str) {
+      this._title = str;
       return this;
     }
   }, {
@@ -8582,7 +9304,7 @@ function () {
 
 module.exports = Shape;
 
-},{"../_fns":10,"../parse":21,"./lib/parseInput":33,"d3-shape":2,"spencer-color":6}],32:[function(_dereq_,module,exports){
+},{"../_fns":10,"../parse":24,"./lib/parseInput":38,"d3-shape":2,"spencer-color":6}],37:[function(_dereq_,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -8650,9 +9372,13 @@ function (_Shape) {
     _classCallCheck(this, Text);
 
     var text = null;
+    var textFn = null;
 
     if (typeof obj === 'string') {
       text = [obj];
+      obj = {};
+    } else if (typeof obj === 'function') {
+      textFn = obj;
       obj = {};
     } else if (Array.isArray(obj)) {
       text = obj;
@@ -8662,6 +9388,7 @@ function (_Shape) {
     obj = Object.assign({}, defaults, obj);
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Text).call(this, obj, world));
     _this.textLines = text || obj.text || [];
+    _this.textFn = textFn;
 
     if (typeof _this.textLines === 'string') {
       _this.textLines = [_this.textLines];
@@ -8747,6 +9474,11 @@ function (_Shape) {
       return this;
     }
   }, {
+    key: "size",
+    value: function size(num) {
+      return this.font(num);
+    }
+  }, {
     key: "extent",
     value: function extent() {
       // let longest = this.textLines.sort((a, b) => a.length < b.length ? 1 : -1)[0] || ''
@@ -8770,6 +9502,9 @@ function (_Shape) {
     value: function text(_text) {
       if (typeof _text === 'string') {
         this.textLines = [_text];
+      } else if (typeof _text === 'function') {
+        this.textLines = [];
+        this.textFn = _text;
       } else {
         this.textLines = _text;
       }
@@ -8784,7 +9519,14 @@ function (_Shape) {
   }, {
     key: "estimate",
     value: function estimate() {
-      //calculate height
+      var textArr = this.textLines;
+
+      if (this.textFn !== null) {
+        textArr = this.textFn(this.world);
+        textArr = typeof textArr === 'string' ? [textArr] : textArr;
+      } //calculate height
+
+
       var height = 24;
 
       if (this.style['font-size']) {
@@ -8793,10 +9535,10 @@ function (_Shape) {
         height = num * 1.5;
       }
 
-      height *= this.textLines.length; //calculate width
+      height *= textArr.length; //calculate width
 
       var width = 0;
-      this.textLines.forEach(function (str) {
+      textArr.forEach(function (str) {
         var w = str.length * 8;
 
         if (w > width) {
@@ -8835,8 +9577,15 @@ function (_Shape) {
     key: "build",
     value: function build() {
       var h = this.world.html;
-      var inside = this.textLines.map(function (str) {
-        return h(_templateObject(), str);
+      var textArr = this.textLines;
+
+      if (this.textFn !== null) {
+        textArr = this.textFn(this.world);
+        textArr = typeof textArr === 'string' ? [textArr] : textArr;
+      }
+
+      var inside = textArr.map(function (str) {
+        return h(_templateObject(), String(str));
       });
 
       var _this$position = this.position(),
@@ -8853,7 +9602,7 @@ function (_Shape) {
 
 module.exports = Text;
 
-},{"./Shape":31,"spencer-color":6}],33:[function(_dereq_,module,exports){
+},{"./Shape":36,"spencer-color":6}],38:[function(_dereq_,module,exports){
 "use strict";
 
 var _require = _dereq_('../../parse'),
@@ -8913,7 +9662,7 @@ var parseInput = function parseInput(set, world) {
 
 module.exports = parseInput;
 
-},{"../../parse":21}],34:[function(_dereq_,module,exports){
+},{"../../parse":24}],39:[function(_dereq_,module,exports){
 "use strict";
 
 // const somehow = require('somehow');
@@ -8951,7 +9700,34 @@ var el = document.querySelector('#canada');
 console.log(el);
 el.innerHTML = w.build();
 
-},{"./data/toronto-montreal":37,"/Users/spencer/mountain/somehow/src":17}],35:[function(_dereq_,module,exports){
+},{"./data/toronto-montreal":43,"/Users/spencer/mountain/somehow/src":17}],40:[function(_dereq_,module,exports){
+"use strict";
+
+var somehow = _dereq_('somehow');
+
+var data = _dereq_('./data/winning-years');
+
+var w = somehow({
+  height: 110,
+  width: 700
+});
+data.toronto.forEach(function (year) {
+  w.line().color('blue').set([["jan 1 ".concat(year), 3], ["sept 1 ".concat(year), 3]]);
+});
+data.montreal.forEach(function (year) {
+  w.line().color('red').set([["jan 1 ".concat(year), 2], ["sept 1 ".concat(year), 2]]);
+});
+w.line().color('grey').width(1).dotted().set([['oct 1 1967', '0%'], ['oct 1 1967', '70%']]);
+w.text('original six').font(10).color('grey').at('oct 1 1957', '80%');
+w.text('NHL expansion').font(10).color('grey').at('oct 1 1967', '80%');
+w.text('Stanley cup championships:').at('0%', '105%');
+w.x.fit('Jan 1 1945', Date.now());
+w.y.fit(4, 0);
+w.yAxis.remove();
+var el = document.querySelector('#hockey-timeline');
+el.innerHTML = w.build();
+
+},{"./data/winning-years":44,"somehow":46}],41:[function(_dereq_,module,exports){
 "use strict";
 
 var somehow = _dereq_('/Users/spencer/mountain/somehow/src');
@@ -8995,7 +9771,7 @@ w.x.fit('Jan 1 1825', Date.now());
 var el = document.querySelector('#stage');
 el.innerHTML = w.build();
 
-},{"./data/toronto-montreal":37,"/Users/spencer/mountain/somehow/src":17}],36:[function(_dereq_,module,exports){
+},{"./data/toronto-montreal":43,"/Users/spencer/mountain/somehow/src":17}],42:[function(_dereq_,module,exports){
 "use strict";
 
 var somehow = _dereq_('somehow'); // const somehow = require('/Users/spencer/mountain/somehow/src');
@@ -9041,7 +9817,7 @@ document.querySelector('#timeline2000').innerHTML = makeTimeline(2000).build();
 document.querySelector('#timeline2010').innerHTML = makeTimeline(2010).build();
 document.querySelector('#timeline2019').innerHTML = makeTimeline(2019).build();
 
-},{"somehow":39}],37:[function(_dereq_,module,exports){
+},{"somehow":46}],43:[function(_dereq_,module,exports){
 "use strict";
 
 module.exports = [{
@@ -9061,14 +9837,26 @@ module.exports = [{
   ], [1851, 2414519], [1861, 3174442], [1871, 3689000], [1881, 4325000], [1891, 4833000], [1901, 5371000], [1911, 7207000], [1921, 8788000], [1931, 10377000], [1941, 11507000], [1951, 14050000], [1961, 18271000], [1971, 21962032], [1981, 24819915], [1991, 28037420], [2001, 31020596], [2011, 33476688], [2016, 35151728]]
 }];
 
-},{}],38:[function(_dereq_,module,exports){
+},{}],44:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = {
+  "toronto": [// 1944,
+  1946, 1947, 1948, 1950, 1961, 1962, 1963, 1966],
+  "montreal": [// 1943,
+  // 1945,
+  1952, 1955, 1956, 1957, 1958, 1959, 1964, 1965, 1967, 1968, 1970, 1972, 1975, 1976, 1977, 1978, 1985, 1992]
+};
+
+},{}],45:[function(_dereq_,module,exports){
 "use strict";
 
 // const somehow = require('somehow');
 _dereq_('./_population');
 
-_dereq_('./_canada'); // require('./_hockey');
+_dereq_('./_canada');
 
+_dereq_('./_hockey');
 
 _dereq_('./_timelines'); // == Montreal ==
 // 1642 - founding of montreal
@@ -9125,7 +9913,7 @@ _dereq_('./_timelines'); // == Montreal ==
 // 1980, July 11 - terry fox welcomed in Toronto
 // 1989 Skydome built
 
-},{"./_canada":34,"./_population":35,"./_timelines":36}],39:[function(_dereq_,module,exports){
+},{"./_canada":39,"./_hockey":40,"./_population":41,"./_timelines":42}],46:[function(_dereq_,module,exports){
 (function (global){
 /* somehow v0.0.8
    github.com/spencermountain/somehow
@@ -17806,4 +18594,4 @@ module.exports = parseInput;
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[38]);
+},{}]},{},[45]);
