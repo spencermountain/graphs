@@ -27,11 +27,11 @@ function getYear(station, year, cb) {
       let date = [o.year, o.mo, o.da].join('-')
       return {
         date: date,
-        temp: convert(o.temp),
+        // temp: convert(o.temp),
         thunder: o.thunder === '1',
-        snow: o.sndp === 999.9 ? 0 : o.sndp,
+        // snow: o.sndp === 999.9 ? 0 : o.sndp,
         rain: o.prcp === 99.99 ? 0 : o.prcp,
-        pressure: o.stp, //=== 99.99 ? 0 : o.stp,
+      // pressure: o.stp, //=== 99.99 ? 0 : o.stp,
       }
     })
     rows = rows.sort((a, b) => a.date < b.date ? -1 : 1)
@@ -39,6 +39,6 @@ function getYear(station, year, cb) {
   })
 }
 
-getYear(toronto, 2010, (data) => {
+getYear(toronto, 2000, (data) => {
   console.log('module.exports= ' + JSON.stringify(data, null, 2))
 })

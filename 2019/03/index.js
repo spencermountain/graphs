@@ -10,6 +10,16 @@ const years = {
   2012: require('./data/2012-toronto'),
   2011: require('./data/2011-toronto'),
   2010: require('./data/2010-toronto'),
+  2009: require('./data/2009-toronto'),
+  2008: require('./data/2008-toronto'),
+  2007: require('./data/2007-toronto'),
+  2006: require('./data/2006-toronto'),
+  2005: require('./data/2005-toronto'),
+  2004: require('./data/2004-toronto'),
+  2003: require('./data/2003-toronto'),
+  2002: require('./data/2002-toronto'),
+  2001: require('./data/2001-toronto'),
+  2000: require('./data/2000-toronto'),
 }
 
 const doYear = function(year) {
@@ -43,6 +53,16 @@ doYear(2013)
 doYear(2012)
 doYear(2011)
 doYear(2010)
+doYear(2009)
+doYear(2008)
+doYear(2007)
+doYear(2006)
+doYear(2005)
+doYear(2004)
+doYear(2003)
+doYear(2002)
+doYear(2001)
+doYear(2000)
 
 
 //2018 aug 8
@@ -62,3 +82,7 @@ doYear(2010)
 
 //2011 March 23 - big snowstorm - https://toronto.citynews.ca/2011/03/23/evening-webcast-march-23-2011/
 // 1999 mel lastman army
+
+//2008 August 8 - https://www.bttoronto.ca/videos/morning-weather-webcast-august-8-2018/
+
+//2005 August - very fast 1-hour storm?
