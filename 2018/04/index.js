@@ -1,7 +1,7 @@
 // const somehow = require('somehow');
 require('./_population');
 require('./_canada');
-// require('./_hockey');
+require('./_hockey');
 require('./_timelines');
 
 // == Montreal ==
