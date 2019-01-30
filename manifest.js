@@ -47,5 +47,10 @@ module.exports = {
       title: 'Break-up the year',
       thumb: 'thumb.png'
     },
+    {
+      num: '05',
+      title: 'Reading all of wikipedia',
+      thumb: 'thumb.png'
+    },
   ]
 };

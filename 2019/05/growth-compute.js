@@ -1,6 +1,5 @@
 const current = 231700
-// const growth = 0.97
-//
+
 const pagesPerYear = function(growth = 0.97) {
   let guess = []
   let perYear = current

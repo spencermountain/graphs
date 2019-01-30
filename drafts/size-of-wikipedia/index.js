@@ -1,2 +1,0 @@
-require('./growth')
-require('./reading')
