@@ -30,7 +30,7 @@ var h = htm.bind(_dereq_('vhtml'));
 var manifest = _dereq_('./manifest');
 
 var el = document.querySelector('#stage');
-var years = Object.keys(manifest).sort();
+var years = Object.keys(manifest).sort().reverse();
 var result = [];
 years.forEach(function (y) {
   var posts = manifest[y].map(function (o) {
@@ -82,6 +82,10 @@ module.exports = {
   }, {
     num: '04',
     title: 'Break-up the year',
+    thumb: 'thumb.png'
+  }, {
+    num: '05',
+    title: 'Reading all of wikipedia',
     thumb: 'thumb.png'
   }]
 };
