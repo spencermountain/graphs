@@ -41,6 +41,11 @@ module.exports = {
       num: '03',
       title: 'Rain in Toronto',
       thumb: 'thumb.png'
-    }
+    },
+    {
+      num: '04',
+      title: 'Break-up the year',
+      thumb: 'thumb.png'
+    },
   ]
 };
