@@ -1,6 +1,7 @@
 const somehow = require('/Users/spencer/mountain/somehow');
-// const somehow = require('somehow');
-const pagesPerYear = require('./pagesPerYear')
+const pagesPerYear = require('./growth-compute')
+let articleCount = 5793009 //5,793,009
+
 let w = somehow({
   el: '#growth',
   height: 300,
@@ -27,13 +28,26 @@ const newArticles = [
   ['2018-01-01', 220700],
   ['2019-01-01', 231700]
 ]
-w.line().color('blue').set(newArticles)
+w.area().color('blue').set(newArticles)
 
-let years = pagesPerYear(0.97)
-w.line().width(3).dotted(7).color('blue').set(years)
+let projection = pagesPerYear(0.97)
+w.area().color('lightblue').set(projection)
+
+//annotation for current size
+let last = newArticles[newArticles.length - 1]
+w.annotation('5.7m articles').size(18).at(last[0], last[1]).nudge(40, 60)
+
+//add annotation for total article count
+let total = articleCount
+projection.forEach((a) => total += a[1])
+let num = (total / 1000000).toFixed(1)
+let text = [
+  num + 'm articles'
+]
+last = projection[projection.length - 1]
+w.annotation(text).size(18).at(last[0], last[1]).nudge(-160, 60)
 
 w.y.fit()
-// w.x.fit('jan 1 2002', `jan 1 ${new Date().getFullYear() + 100}`)
 w.x.fit()
 
 let el = document.querySelector('#growth');

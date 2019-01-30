@@ -1,9 +1,9 @@
 // const wordCount = 2661037011 //2,661,037,011 (2.6bn)
-const articleCount = 5793009 //5,793,009
+let articleCount = 5793009 //5,793,009
 const thisYear = new Date().getFullYear()
 const endyear = thisYear + 100
 const wordsPerPage = 483
-const growthPerYear = require('./pagesPerYear')
+const growthPerYear = require('./growth-compute')
 let growth = growthPerYear().reduce((h, a) => {
   h[a[0].replace(/-.*/, '')] = a[1]
   return h;
@@ -16,11 +16,10 @@ const compute = function(wordsPerMinute, hoursPerDay, daysPerYear) {
   //compute each year
   let points = []
   let pagesRead = 0
-  let articles = articleCount
   for (let i = thisYear; i < endyear; i += 1) {
-    articles += growth[i]
+    articleCount += growth[i]
     pagesRead += pagesPerYear
-    let percent = (pagesRead / articles) * 100
+    let percent = (pagesRead / articleCount) * 100
     percent = parseInt(percent, 10)
     points.push([`jan 1 ${i}`, percent])
     if (percent >= 100) {
