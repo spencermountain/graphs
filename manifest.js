@@ -24,11 +24,6 @@ module.exports = {
       num: '05',
       title: '2018 baseball season',
       thumb: 'thumb.png'
-    },
-    {
-      num: '06',
-      title: 'nhl arenas',
-      thumb: 'thumb.png'
     }
   ],
   '2019': [
@@ -55,6 +50,11 @@ module.exports = {
     {
       num: '05',
       title: 'Reading all of wikipedia',
+      thumb: 'thumb.png'
+    },
+    {
+      num: '06',
+      title: 'nhl arenas',
       thumb: 'thumb.png'
     }
   ]
