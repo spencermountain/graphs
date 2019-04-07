@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "somehow": "0.0.16",
+    "somehow-input": "0.0.7",
     "spacetime": "5.6.0",
     "spencer-color": "0.1.0",
     "wtf-nhl": "0.0.4",

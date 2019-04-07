@@ -1,40 +1,43 @@
 const somehow = require('somehow')
-let teams = require('./data/performance')
+let inputs = require('somehow-input')
 let divisions = require('./data/divisions')
+const colors = require('./data/colors')
+const byYear = {
+  '2018-19': require('./data/year-2018'),
+  '2017-18': require('./data/year-2017'),
+  '2016-17': require('./data/year-2016'),
+  '2015-16': require('./data/year-2015'),
+  '2014-15': require('./data/year-2014')
+  // '2013-14': require('./data/year-2013'),
+  // '2012-13': require('./data/year-2012')
+}
 
-const colors = [
-  'brown',
-  'purple',
-  'red',
-  'pink',
-  'olive',
-  'yellow',
-  'green',
-  'blue'
-]
-
-const doDivision = function(key, id) {
+const doDivision = function(division, name, year, id) {
   let w = somehow({
     height: 200,
     width: 800
   })
-  divisions[key].forEach((team, i) => {
+  division.forEach(team => {
+    let color = colors[team] || 'blue'
     let line = w
       .line()
       .width(2)
-      .color(colors[i] || 'blue')
-    let games = teams[team].games
+      .color(color)
+    let games = (byYear[year][team] || {}).games || []
     games = games.filter(g => g[1] !== null)
     if (games.length > 0) {
       line.set(games)
       w.text(team)
         .font(10)
-        .color(colors[i])
+        .color(color)
         .set([games[games.length - 1]])
     }
   })
+  year = year.replace(/-.*/, '')
+  year = parseInt(year, 10)
+  console.log(year)
 
-  w.text(key + ':')
+  w.text(name + ':')
     .font(16)
     .color('olive')
     .set('-10%, 50%')
@@ -45,14 +48,27 @@ const doDivision = function(key, id) {
     .set([['0px', 0], ['100%', 0]])
 
   w.y.fit(-20, 20)
-  w.x.fit('Oct 1 2018', 'April 20 2019')
+  w.x.fit(`Oct 1 ${year}`, `April 20 ${year + 1}`)
 
   let el = document.querySelector(id)
   el.innerHTML = w.build()
 }
-console.time('draw')
-doDivision('atlantic', '#atlantic')
-doDivision('metro', '#metro')
-doDivision('central', '#central')
-doDivision('pacific', '#pacific')
-console.timeEnd('draw') //usually 2.8 - 3.2 secs
+
+const doYear = function(year) {
+  doDivision(divisions['atlantic'], 'Atlantic', year, '#atlantic')
+  doDivision(divisions['metro'], 'Metro', year, '#metro')
+  doDivision(divisions['central'], 'Central', year, '#central')
+  doDivision(divisions['pacific'], 'Pacific', year, '#pacific')
+}
+doYear('2018-19')
+
+let yearSelect = inputs.select({
+  options: ['2014-15', '2015-16', '2016-17', '2017-18', '2018-19'],
+  value: '2018-19',
+  label: 'year',
+  cb: val => {
+    console.log(val)
+    doYear(val)
+  }
+})
+document.querySelector('#year').innerHTML = yearSelect.build()

@@ -29,7 +29,7 @@ module.exports = {
   '2019': [
     {
       num: '01',
-      title: '2018-19 hockey season',
+      title: 'nhl seasons by team',
       thumb: 'thumb.png'
     },
     {
