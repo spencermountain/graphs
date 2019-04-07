@@ -1,5059 +1,2633 @@
 module.exports = {
-  "Boston Bruins": {
-    "team": "Boston Bruins",
-    "year": 2018,
-    "games": [
-      [
-        "October 4 2018",
-        0
-      ],
-      [
-        "October 8 2018",
-        0.5
-      ],
-      [
-        "October 11 2018",
-        1
-      ],
-      [
-        "October 13 2018",
-        1.5
-      ],
-      [
-        "October 17 2018",
-        1
-      ],
-      [
-        "October 18 2018",
-        0.5
-      ],
-      [
-        "October 20 2018",
-        0
-      ],
-      [
-        "October 23 2018",
-        0.5
-      ],
-      [
-        "October 25 2018",
-        1
-      ],
-      [
-        "October 27 2018",
-        0.5
-      ],
-      [
-        "October 30 2018",
-        1
-      ],
-      [
-        "November 3 2018",
-        0.5
-      ],
-      [
-        "November 5 2018",
-        1
-      ],
-      [
-        "November 8 2018",
-        0.5
-      ],
-      [
-        "November 10 2018",
-        1
-      ],
-      [
-        "November 11 2018",
-        1.5
-      ],
-      [
-        "November 14 2018",
-        1
-      ],
-      [
-        "November 16 2018",
-        0.5
-      ],
-      [
-        "November 17 2018",
-        1
-      ],
-      [
-        "November 21 2018",
-        0.5
-      ],
-      [
-        "November 23 2018",
-        1
-      ],
-      [
-        "November 24 2018",
-        1.5
-      ],
-      [
-        "November 26 2018",
-        1
-      ],
-      [
-        "November 29 2018",
-        1.5
-      ],
-      [
-        "December 1 2018",
-        1
-      ],
-      [
-        "December 4 2018",
-        0.5
-      ],
-      [
-        "December 6 2018",
-        0
-      ],
-      [
-        "December 8 2018",
-        0.5
-      ],
-      [
-        "December 9 2018",
-        1
-      ],
-      [
-        "December 11 2018",
-        1.5
-      ],
-      [
-        "December 14 2018",
-        1
-      ],
-      [
-        "December 16 2018",
-        0.5
-      ],
-      [
-        "December 17 2018",
-        1
-      ],
-      [
-        "December 20 2018",
-        1.5
-      ],
-      [
-        "December 22 2018",
-        2
-      ],
-      [
-        "December 23 2018",
-        1.5
-      ],
-      [
-        "December 27 2018",
-        1
-      ],
-      [
-        "December 29 2018",
-        1.5
-      ],
-      [
-        "January 1 2019",
-        2
-      ],
-      [
-        "January 3 2019",
-        2.5
-      ]
+  'Boston Bruins': {
+    team: 'Boston Bruins',
+    year: 2018,
+    games: [
+      ['October 4 2018', 0],
+      ['October 8 2018', 0.5],
+      ['October 11 2018', 1],
+      ['October 13 2018', 1.5],
+      ['October 17 2018', 1],
+      ['October 18 2018', 0.5],
+      ['October 20 2018', 0],
+      ['October 23 2018', 0.5],
+      ['October 25 2018', 1],
+      ['October 27 2018', 0.5],
+      ['October 30 2018', 1],
+      ['November 3 2018', 0.5],
+      ['November 5 2018', 1],
+      ['November 8 2018', 0.5],
+      ['November 10 2018', 1],
+      ['November 11 2018', 1.5],
+      ['November 14 2018', 1],
+      ['November 16 2018', 0.5],
+      ['November 17 2018', 1],
+      ['November 21 2018', 0.5],
+      ['November 23 2018', 1],
+      ['November 24 2018', 1.5],
+      ['November 26 2018', 1],
+      ['November 29 2018', 1.5],
+      ['December 1 2018', 1],
+      ['December 4 2018', 0.5],
+      ['December 6 2018', 0],
+      ['December 8 2018', 0.5],
+      ['December 9 2018', 1],
+      ['December 11 2018', 1.5],
+      ['December 14 2018', 1],
+      ['December 16 2018', 0.5],
+      ['December 17 2018', 1],
+      ['December 20 2018', 1.5],
+      ['December 22 2018', 2],
+      ['December 23 2018', 1.5],
+      ['December 27 2018', 1],
+      ['December 29 2018', 1.5],
+      ['January 1 2019', 2],
+      ['January 3 2019', 2.5],
+      ['January 5 2019', 3],
+      ['January 8 2019', 3.5],
+      ['January 10 2019', 3],
+      ['January 12 2019', 3.5],
+      ['January 14 2019', 3],
+      ['January 16 2019', 2.5],
+      ['January 17 2019', 3],
+      ['January 19 2019', 2.5],
+      ['January 29 2019', 2],
+      ['January 31 2019', 1.5],
+      ['February 3 2019', 2],
+      ['February 5 2019', 2.5],
+      ['February 6 2019', 2],
+      ['February 9 2019', 2.5],
+      ['February 10 2019', 3],
+      ['February 12 2019', 3.5],
+      ['February 15 2019', 4],
+      ['February 16 2019', 4.5],
+      ['February 18 2019', 5],
+      ['February 20 2019', 5.5],
+      ['February 23 2019', 5],
+      ['February 26 2019', 5.5],
+      ['February 28 2019', 6],
+      ['March 2 2019', 6.5],
+      ['March 5 2019', 7],
+      ['March 7 2019', 7.5],
+      ['March 9 2019', 8],
+      ['March 10 2019', 7.5],
+      ['March 12 2019', 7],
+      ['March 14 2019', 6.5],
+      ['March 16 2019', 7],
+      ['March 19 2019', 7.5],
+      ['March 21 2019', 8],
+      ['March 23 2019', 8.5],
+      ['March 25 2019', 8],
+      ['March 27 2019', 8.5],
+      ['March 30 2019', 8],
+      ['March 31 2019', 7.5],
+      ['April 2 2019', 8],
+      ['April 4 2019', 8.5],
+      ['April 6 2019', 8]
     ]
   },
-  "Buffalo Sabres": {
-    "team": "Buffalo Sabres",
-    "year": 2018,
-    "games": [
-      [
-        "October 6 2018",
-        0
-      ],
-      [
-        "October 8 2018",
-        0.5
-      ],
-      [
-        "October 11 2018",
-        0
-      ],
-      [
-        "October 13 2018",
-        0.5
-      ],
-      [
-        "October 16 2018",
-        0
-      ],
-      [
-        "October 18 2018",
-        -0.5
-      ],
-      [
-        "October 20 2018",
-        0
-      ],
-      [
-        "October 21 2018",
-        0.5
-      ],
-      [
-        "October 25 2018",
-        1
-      ],
-      [
-        "October 27 2018",
-        0.5
-      ],
-      [
-        "October 30 2018",
-        0
-      ],
-      [
-        "November 1 2018",
-        -0.5
-      ],
-      [
-        "November 3 2018",
-        0
-      ],
-      [
-        "November 4 2018",
-        -0.5
-      ],
-      [
-        "November 8 2018",
-        0
-      ],
-      [
-        "November 10 2018",
-        0.5
-      ],
-      [
-        "November 13 2018",
-        1
-      ],
-      [
-        "November 16 2018",
-        1.5
-      ],
-      [
-        "November 17 2018",
-        2
-      ],
-      [
-        "November 19 2018",
-        2.5
-      ],
-      [
-        "November 21 2018",
-        3
-      ],
-      [
-        "November 23 2018",
-        3.5
-      ],
-      [
-        "November 24 2018",
-        4
-      ],
-      [
-        "November 27 2018",
-        4.5
-      ],
-      [
-        "November 29 2018",
-        4
-      ],
-      [
-        "November 30 2018",
-        3.5
-      ],
-      [
-        "December 3 2018",
-        3
-      ],
-      [
-        "December 4 2018",
-        2.5
-      ],
-      [
-        "December 8 2018",
-        2
-      ],
-      [
-        "December 11 2018",
-        2.5
-      ],
-      [
-        "December 13 2018",
-        3
-      ],
-      [
-        "December 15 2018",
-        2.5
-      ],
-      [
-        "December 16 2018",
-        3
-      ],
-      [
-        "December 18 2018",
-        2.5
-      ],
-      [
-        "December 21 2018",
-        2
-      ],
-      [
-        "December 22 2018",
-        2.5
-      ],
-      [
-        "December 27 2018",
-        2
-      ],
-      [
-        "December 29 2018",
-        1.5
-      ],
-      [
-        "December 31 2018",
-        1
-      ],
-      [
-        "January 3 2019",
-        1.5
-      ]
+  'Buffalo Sabres': {
+    team: 'Buffalo Sabres',
+    year: 2018,
+    games: [
+      ['October 6 2018', 0],
+      ['October 8 2018', 0.5],
+      ['October 11 2018', 0],
+      ['October 13 2018', 0.5],
+      ['October 16 2018', 0],
+      ['October 18 2018', -0.5],
+      ['October 20 2018', 0],
+      ['October 21 2018', 0.5],
+      ['October 25 2018', 1],
+      ['October 27 2018', 0.5],
+      ['October 30 2018', 0],
+      ['November 1 2018', -0.5],
+      ['November 3 2018', 0],
+      ['November 4 2018', -0.5],
+      ['November 8 2018', 0],
+      ['November 10 2018', 0.5],
+      ['November 13 2018', 1],
+      ['November 16 2018', 1.5],
+      ['November 17 2018', 2],
+      ['November 19 2018', 2.5],
+      ['November 21 2018', 3],
+      ['November 23 2018', 3.5],
+      ['November 24 2018', 4],
+      ['November 27 2018', 4.5],
+      ['November 29 2018', 4],
+      ['November 30 2018', 3.5],
+      ['December 3 2018', 3],
+      ['December 4 2018', 2.5],
+      ['December 8 2018', 2],
+      ['December 11 2018', 2.5],
+      ['December 13 2018', 3],
+      ['December 15 2018', 2.5],
+      ['December 16 2018', 3],
+      ['December 18 2018', 2.5],
+      ['December 21 2018', 2],
+      ['December 22 2018', 2.5],
+      ['December 27 2018', 2],
+      ['December 29 2018', 1.5],
+      ['December 31 2018', 1],
+      ['January 3 2019', 1.5],
+      ['January 5 2019', 1],
+      ['January 8 2019', 1.5],
+      ['January 11 2019', 1],
+      ['January 12 2019', 0.5],
+      ['January 14 2019', 0],
+      ['January 16 2019', 0.5],
+      ['January 18 2019', 0],
+      ['January 29 2019', 0.5],
+      ['January 30 2019', 0],
+      ['February 1 2019', -0.5],
+      ['February 5 2019', 0],
+      ['February 7 2019', -0.5],
+      ['February 9 2019', 0],
+      ['February 10 2019', -0.5],
+      ['February 12 2019', 0],
+      ['February 15 2019', -0.5],
+      ['February 17 2019', -1],
+      ['February 19 2019', -1.5],
+      ['February 21 2019', -2],
+      ['February 23 2019', -1.5],
+      ['February 25 2019', -2],
+      ['February 26 2019', -2.5],
+      ['March 1 2019', -2],
+      ['March 2 2019', -2.5],
+      ['March 4 2019', -3],
+      ['March 7 2019', -3.5],
+      ['March 9 2019', -4],
+      ['March 12 2019', -4.5],
+      ['March 14 2019', -5],
+      ['March 16 2019', -5.5],
+      ['March 17 2019', -5],
+      ['March 20 2019', -5.5],
+      ['March 23 2019', -6],
+      ['March 25 2019', -6.5],
+      ['March 26 2019', -7],
+      ['March 28 2019', -7.5],
+      ['March 30 2019', -8],
+      ['March 31 2019', -8.5],
+      ['April 2 2019', -9],
+      ['April 4 2019', -8.5],
+      ['April 6 2019', -8]
     ]
   },
-  "Detroit Red Wings": {
-    "team": "Detroit Red Wings",
-    "year": 2018,
-    "games": [
-      [
-        "October 4 2018",
-        -0.5
-      ],
-      [
-        "October 7 2018",
-        -1
-      ],
-      [
-        "October 8 2018",
-        -1.5
-      ],
-      [
-        "October 11 2018",
-        -2
-      ],
-      [
-        "October 13 2018",
-        -2.5
-      ],
-      [
-        "October 15 2018",
-        -3
-      ],
-      [
-        "October 18 2018",
-        -3.5
-      ],
-      [
-        "October 20 2018",
-        -3
-      ],
-      [
-        "October 22 2018",
-        -3.5
-      ],
-      [
-        "October 26 2018",
-        -4
-      ],
-      [
-        "October 28 2018",
-        -3.5
-      ],
-      [
-        "October 30 2018",
-        -3
-      ],
-      [
-        "November 1 2018",
-        -2.5
-      ],
-      [
-        "November 3 2018",
-        -3
-      ],
-      [
-        "November 6 2018",
-        -2.5
-      ],
-      [
-        "November 9 2018",
-        -2
-      ],
-      [
-        "November 10 2018",
-        -1.5
-      ],
-      [
-        "November 13 2018",
-        -1
-      ],
-      [
-        "November 15 2018",
-        -1.5
-      ],
-      [
-        "November 17 2018",
-        -1
-      ],
-      [
-        "November 21 2018",
-        -0.5
-      ],
-      [
-        "November 23 2018",
-        -1
-      ],
-      [
-        "November 24 2018",
-        -1.5
-      ],
-      [
-        "November 26 2018",
-        -2
-      ],
-      [
-        "November 28 2018",
-        -1.5
-      ],
-      [
-        "December 1 2018",
-        -1
-      ],
-      [
-        "December 2 2018",
-        -1.5
-      ],
-      [
-        "December 4 2018",
-        -2
-      ],
-      [
-        "December 6 2018",
-        -1.5
-      ],
-      [
-        "December 8 2018",
-        -2
-      ],
-      [
-        "December 10 2018",
-        -1.5
-      ],
-      [
-        "December 11 2018",
-        -2
-      ],
-      [
-        "December 14 2018",
-        -2.5
-      ],
-      [
-        "December 15 2018",
-        -3
-      ],
-      [
-        "December 18 2018",
-        -3.5
-      ],
-      [
-        "December 20 2018",
-        -3
-      ],
-      [
-        "December 22 2018",
-        -3.5
-      ],
-      [
-        "December 23 2018",
-        -4
-      ],
-      [
-        "December 27 2018",
-        -4.5
-      ],
-      [
-        "December 29 2018",
-        -5
-      ],
-      [
-        "December 31 2018",
-        -5.5
-      ],
-      [
-        "January 2 2019",
-        -6
-      ],
-      [
-        "January 4 2019",
-        -5.5
-      ]
+  'Detroit Red Wings': {
+    team: 'Detroit Red Wings',
+    year: 2018,
+    games: [
+      ['October 4 2018', -0.5],
+      ['October 7 2018', -1],
+      ['October 8 2018', -1.5],
+      ['October 11 2018', -2],
+      ['October 13 2018', -2.5],
+      ['October 15 2018', -3],
+      ['October 18 2018', -3.5],
+      ['October 20 2018', -3],
+      ['October 22 2018', -3.5],
+      ['October 26 2018', -4],
+      ['October 28 2018', -3.5],
+      ['October 30 2018', -3],
+      ['November 1 2018', -2.5],
+      ['November 3 2018', -3],
+      ['November 6 2018', -2.5],
+      ['November 9 2018', -2],
+      ['November 10 2018', -1.5],
+      ['November 13 2018', -1],
+      ['November 15 2018', -1.5],
+      ['November 17 2018', -1],
+      ['November 21 2018', -0.5],
+      ['November 23 2018', -1],
+      ['November 24 2018', -1.5],
+      ['November 26 2018', -2],
+      ['November 28 2018', -1.5],
+      ['December 1 2018', -1],
+      ['December 2 2018', -1.5],
+      ['December 4 2018', -2],
+      ['December 6 2018', -1.5],
+      ['December 8 2018', -2],
+      ['December 10 2018', -1.5],
+      ['December 11 2018', -2],
+      ['December 14 2018', -2.5],
+      ['December 15 2018', -3],
+      ['December 18 2018', -3.5],
+      ['December 20 2018', -3],
+      ['December 22 2018', -3.5],
+      ['December 23 2018', -4],
+      ['December 27 2018', -4.5],
+      ['December 29 2018', -5],
+      ['December 31 2018', -5.5],
+      ['January 2 2019', -6],
+      ['January 4 2019', -5.5],
+      ['January 6 2019', -6],
+      ['January 8 2019', -6.5],
+      ['January 11 2019', -7],
+      ['January 12 2019', -6.5],
+      ['January 15 2019', -6],
+      ['January 18 2019', -6.5],
+      ['January 20 2019', -7],
+      ['January 22 2019', -6.5],
+      ['February 1 2019', -6],
+      ['February 2 2019', -5.5],
+      ['February 7 2019', -6],
+      ['February 9 2019', -6.5],
+      ['February 10 2019', -7],
+      ['February 12 2019', -6.5],
+      ['February 14 2019', -6],
+      ['February 16 2019', -6.5],
+      ['February 17 2019', -7],
+      ['February 20 2019', -7.5],
+      ['February 22 2019', -8],
+      ['February 24 2019', -8.5],
+      ['February 26 2019', -9],
+      ['March 2 2019', -9.5],
+      ['March 5 2019', -10],
+      ['March 7 2019', -9.5],
+      ['March 9 2019', -10],
+      ['March 10 2019', -10.5],
+      ['March 12 2019', -11],
+      ['March 14 2019', -11.5],
+      ['March 16 2019', -11],
+      ['March 19 2019', -10.5],
+      ['March 21 2019', -11],
+      ['March 23 2019', -10.5],
+      ['March 25 2019', -10],
+      ['March 28 2019', -9.5],
+      ['March 29 2019', -9],
+      ['March 31 2019', -8.5],
+      ['April 2 2019', -8],
+      ['April 4 2019', -8.5],
+      ['April 6 2019', -9]
     ]
   },
-  "Florida Panthers": {
-    "team": "Florida Panthers",
-    "year": 2018,
-    "games": [
-      [
-        "October 6 2018",
-        -0.5
-      ],
-      [
-        "October 11 2018",
-        -1
-      ],
-      [
-        "October 13 2018",
-        -1.5
-      ],
-      [
-        "October 16 2018",
-        -2
-      ],
-      [
-        "October 19 2018",
-        -1.5
-      ],
-      [
-        "October 20 2018",
-        -2
-      ],
-      [
-        "October 23 2018",
-        -2.5
-      ],
-      [
-        "October 24 2018",
-        -2
-      ],
-      [
-        "October 27 2018",
-        -2.5
-      ],
-      [
-        "November 1 2018",
-        -3
-      ],
-      [
-        "November 2 2018",
-        -2.5
-      ],
-      [
-        "November 8 2018",
-        -2
-      ],
-      [
-        "November 10 2018",
-        -1.5
-      ],
-      [
-        "November 11 2018",
-        -1
-      ],
-      [
-        "November 13 2018",
-        -0.5
-      ],
-      [
-        "November 15 2018",
-        -1
-      ],
-      [
-        "November 17 2018",
-        -1.5
-      ],
-      [
-        "November 19 2018",
-        -1
-      ],
-      [
-        "November 21 2018",
-        -1.5
-      ],
-      [
-        "November 23 2018",
-        -2
-      ],
-      [
-        "November 24 2018",
-        -2.5
-      ],
-      [
-        "November 26 2018",
-        -2
-      ],
-      [
-        "November 28 2018",
-        -2.5
-      ],
-      [
-        "November 30 2018",
-        -2
-      ],
-      [
-        "December 1 2018",
-        -2.5
-      ],
-      [
-        "December 4 2018",
-        -2
-      ],
-      [
-        "December 6 2018",
-        -2.5
-      ],
-      [
-        "December 8 2018",
-        -3
-      ],
-      [
-        "December 11 2018",
-        -3.5
-      ],
-      [
-        "December 13 2018",
-        -4
-      ],
-      [
-        "December 15 2018",
-        -3.5
-      ],
-      [
-        "December 18 2018",
-        -3
-      ],
-      [
-        "December 20 2018",
-        -3.5
-      ],
-      [
-        "December 22 2018",
-        -3
-      ],
-      [
-        "December 23 2018",
-        -2.5
-      ],
-      [
-        "December 28 2018",
-        -3
-      ],
-      [
-        "December 29 2018",
-        -2.5
-      ],
-      [
-        "December 31 2018",
-        -2
-      ],
-      [
-        "January 3 2019",
-        -2.5
-      ]
+  'Florida Panthers': {
+    team: 'Florida Panthers',
+    year: 2018,
+    games: [
+      ['October 6 2018', -0.5],
+      ['October 11 2018', -1],
+      ['October 13 2018', -1.5],
+      ['October 16 2018', -2],
+      ['October 19 2018', -1.5],
+      ['October 20 2018', -2],
+      ['October 23 2018', -2.5],
+      ['October 24 2018', -2],
+      ['October 27 2018', -2.5],
+      ['November 1 2018', -3],
+      ['November 2 2018', -2.5],
+      ['November 8 2018', -2],
+      ['November 10 2018', -1.5],
+      ['November 11 2018', -1],
+      ['November 13 2018', -0.5],
+      ['November 15 2018', -1],
+      ['November 17 2018', -1.5],
+      ['November 19 2018', -1],
+      ['November 21 2018', -1.5],
+      ['November 23 2018', -2],
+      ['November 24 2018', -2.5],
+      ['November 26 2018', -2],
+      ['November 28 2018', -2.5],
+      ['November 30 2018', -2],
+      ['December 1 2018', -2.5],
+      ['December 4 2018', -2],
+      ['December 6 2018', -2.5],
+      ['December 8 2018', -3],
+      ['December 11 2018', -3.5],
+      ['December 13 2018', -4],
+      ['December 15 2018', -3.5],
+      ['December 18 2018', -3],
+      ['December 20 2018', -3.5],
+      ['December 22 2018', -3],
+      ['December 23 2018', -2.5],
+      ['December 28 2018', -3],
+      ['December 29 2018', -2.5],
+      ['December 31 2018', -2],
+      ['January 3 2019', -2.5],
+      ['January 5 2019', -3],
+      ['January 8 2019', -3.5],
+      ['January 10 2019', -4],
+      ['January 11 2019', -4.5],
+      ['January 13 2019', -5],
+      ['January 15 2019', -5.5],
+      ['January 18 2019', -5],
+      ['January 19 2019', -4.5],
+      ['January 21 2019', -4],
+      ['February 1 2019', -4.5],
+      ['February 2 2019', -4],
+      ['February 5 2019', -4.5],
+      ['February 7 2019', -4],
+      ['February 9 2019', -3.5],
+      ['February 10 2019', -4],
+      ['February 12 2019', -4.5],
+      ['February 14 2019', -4],
+      ['February 17 2019', -3.5],
+      ['February 19 2019', -3],
+      ['February 21 2019', -3.5],
+      ['February 23 2019', -3],
+      ['February 25 2019', -2.5],
+      ['February 26 2019', -3],
+      ['February 28 2019', -3.5],
+      ['March 2 2019', -4],
+      ['March 3 2019', -4.5],
+      ['March 5 2019', -5],
+      ['March 7 2019', -5.5],
+      ['March 8 2019', -5],
+      ['March 10 2019', -4.5],
+      ['March 14 2019', -4],
+      ['March 16 2019', -3.5],
+      ['March 17 2019', -4],
+      ['March 19 2019', -4.5],
+      ['March 21 2019', -4],
+      ['March 23 2019', -4.5],
+      ['March 25 2019', -5],
+      ['March 26 2019', -5.5],
+      ['March 28 2019', -5],
+      ['March 30 2019', -4.5],
+      ['April 1 2019', -4],
+      ['April 4 2019', -4.5],
+      ['April 6 2019', -5]
     ]
   },
-  "Montreal Canadiens": {
-    "team": "Montreal Canadiens",
-    "year": 2018,
-    "games": [
-      [
-        "October 3 2018",
-        -0.5
-      ],
-      [
-        "October 6 2018",
-        0
-      ],
-      [
-        "October 11 2018",
-        -0.5
-      ],
-      [
-        "October 13 2018",
-        0
-      ],
-      [
-        "October 15 2018",
-        0.5
-      ],
-      [
-        "October 17 2018",
-        1
-      ],
-      [
-        "October 20 2018",
-        0.5
-      ],
-      [
-        "October 23 2018",
-        1
-      ],
-      [
-        "October 25 2018",
-        0.5
-      ],
-      [
-        "October 27 2018",
-        1
-      ],
-      [
-        "October 30 2018",
-        0.5
-      ],
-      [
-        "November 1 2018",
-        1
-      ],
-      [
-        "November 3 2018",
-        0.5
-      ],
-      [
-        "November 5 2018",
-        1
-      ],
-      [
-        "November 6 2018",
-        0.5
-      ],
-      [
-        "November 8 2018",
-        0
-      ],
-      [
-        "November 10 2018",
-        0.5
-      ],
-      [
-        "November 13 2018",
-        0
-      ],
-      [
-        "November 15 2018",
-        0.5
-      ],
-      [
-        "November 17 2018",
-        1
-      ],
-      [
-        "November 19 2018",
-        0.5
-      ],
-      [
-        "November 21 2018",
-        0
-      ],
-      [
-        "November 23 2018",
-        -0.5
-      ],
-      [
-        "November 24 2018",
-        -1
-      ],
-      [
-        "November 27 2018",
-        -1.5
-      ],
-      [
-        "December 1 2018",
-        -1
-      ],
-      [
-        "December 2 2018",
-        -1.5
-      ],
-      [
-        "December 4 2018",
-        -1
-      ],
-      [
-        "December 6 2018",
-        -0.5
-      ],
-      [
-        "December 9 2018",
-        0
-      ],
-      [
-        "December 11 2018",
-        -0.5
-      ],
-      [
-        "December 13 2018",
-        0
-      ],
-      [
-        "December 15 2018",
-        0.5
-      ],
-      [
-        "December 17 2018",
-        0
-      ],
-      [
-        "December 19 2018",
-        -0.5
-      ],
-      [
-        "December 20 2018",
-        0
-      ],
-      [
-        "December 22 2018",
-        0.5
-      ],
-      [
-        "December 28 2018",
-        1
-      ],
-      [
-        "December 29 2018",
-        0.5
-      ],
-      [
-        "December 31 2018",
-        1
-      ],
-      [
-        "January 3 2019",
-        1.5
-      ]
+  'Montreal Canadiens': {
+    team: 'Montreal Canadiens',
+    year: 2018,
+    games: [
+      ['October 3 2018', -0.5],
+      ['October 6 2018', 0],
+      ['October 11 2018', -0.5],
+      ['October 13 2018', 0],
+      ['October 15 2018', 0.5],
+      ['October 17 2018', 1],
+      ['October 20 2018', 0.5],
+      ['October 23 2018', 1],
+      ['October 25 2018', 0.5],
+      ['October 27 2018', 1],
+      ['October 30 2018', 0.5],
+      ['November 1 2018', 1],
+      ['November 3 2018', 0.5],
+      ['November 5 2018', 1],
+      ['November 6 2018', 0.5],
+      ['November 8 2018', 0],
+      ['November 10 2018', 0.5],
+      ['November 13 2018', 0],
+      ['November 15 2018', 0.5],
+      ['November 17 2018', 1],
+      ['November 19 2018', 0.5],
+      ['November 21 2018', 0],
+      ['November 23 2018', -0.5],
+      ['November 24 2018', -1],
+      ['November 27 2018', -1.5],
+      ['December 1 2018', -1],
+      ['December 2 2018', -1.5],
+      ['December 4 2018', -1],
+      ['December 6 2018', -0.5],
+      ['December 9 2018', 0],
+      ['December 11 2018', -0.5],
+      ['December 13 2018', 0],
+      ['December 15 2018', 0.5],
+      ['December 17 2018', 0],
+      ['December 19 2018', -0.5],
+      ['December 20 2018', 0],
+      ['December 22 2018', 0.5],
+      ['December 28 2018', 1],
+      ['December 29 2018', 0.5],
+      ['December 31 2018', 1],
+      ['January 3 2019', 1.5],
+      ['January 5 2019', 1],
+      ['January 7 2019', 0.5],
+      ['January 8 2019', 1],
+      ['January 10 2019', 0.5],
+      ['January 12 2019', 1],
+      ['January 14 2019', 1.5],
+      ['January 15 2019', 2],
+      ['January 18 2019', 2.5],
+      ['January 19 2019', 2],
+      ['January 23 2019', 2.5],
+      ['February 2 2019', 2],
+      ['February 3 2019', 2.5],
+      ['February 5 2019', 3],
+      ['February 7 2019', 3.5],
+      ['February 9 2019', 3],
+      ['February 14 2019', 2.5],
+      ['February 16 2019', 2],
+      ['February 17 2019', 1.5],
+      ['February 19 2019', 2],
+      ['February 21 2019', 2.5],
+      ['February 23 2019', 2],
+      ['February 25 2019', 1.5],
+      ['February 26 2019', 2],
+      ['March 1 2019', 2.5],
+      ['March 2 2019', 2],
+      ['March 5 2019', 2.5],
+      ['March 7 2019', 2],
+      ['March 8 2019', 1.5],
+      ['March 12 2019', 2],
+      ['March 14 2019', 1.5],
+      ['March 16 2019', 1],
+      ['March 19 2019', 1.5],
+      ['March 21 2019', 2],
+      ['March 23 2019', 2.5],
+      ['March 24 2019', 2],
+      ['March 26 2019', 2.5],
+      ['March 28 2019', 2],
+      ['March 30 2019', 2.5],
+      ['April 2 2019', 3],
+      ['April 4 2019', 2.5],
+      ['April 6 2019', 3]
     ]
   },
-  "Ottawa Senators": {
-    "team": "Ottawa Senators",
-    "year": 2018,
-    "games": []
+  'Ottawa Senators': {
+    team: 'Ottawa Senators',
+    year: 2018,
+    games: []
   },
-  "Tampa Bay Lightning": {
-    "team": "Tampa Bay Lightning",
-    "year": 2018,
-    "games": [
-      [
-        "October 6 2018",
-        0.5
-      ],
-      [
-        "October 11 2018",
-        0
-      ],
-      [
-        "October 13 2018",
-        0.5
-      ],
-      [
-        "October 16 2018",
-        1
-      ],
-      [
-        "October 18 2018",
-        1.5
-      ],
-      [
-        "October 20 2018",
-        1
-      ],
-      [
-        "October 21 2018",
-        1.5
-      ],
-      [
-        "October 24 2018",
-        2
-      ],
-      [
-        "October 26 2018",
-        2.5
-      ],
-      [
-        "October 27 2018",
-        2
-      ],
-      [
-        "October 30 2018",
-        2.5
-      ],
-      [
-        "November 1 2018",
-        2
-      ],
-      [
-        "November 3 2018",
-        2.5
-      ],
-      [
-        "November 4 2018",
-        3
-      ],
-      [
-        "November 6 2018",
-        3.5
-      ],
-      [
-        "November 8 2018",
-        4
-      ],
-      [
-        "November 10 2018",
-        3.5
-      ],
-      [
-        "November 13 2018",
-        3
-      ],
-      [
-        "November 15 2018",
-        3.5
-      ],
-      [
-        "November 17 2018",
-        4
-      ],
-      [
-        "November 19 2018",
-        3.5
-      ],
-      [
-        "November 21 2018",
-        4
-      ],
-      [
-        "November 23 2018",
-        4.5
-      ],
-      [
-        "November 25 2018",
-        5
-      ],
-      [
-        "November 27 2018",
-        4.5
-      ],
-      [
-        "November 29 2018",
-        5
-      ],
-      [
-        "December 1 2018",
-        5.5
-      ],
-      [
-        "December 3 2018",
-        6
-      ],
-      [
-        "December 4 2018",
-        6.5
-      ],
-      [
-        "December 6 2018",
-        7
-      ],
-      [
-        "December 8 2018",
-        7.5
-      ],
-      [
-        "December 10 2018",
-        8
-      ],
-      [
-        "December 13 2018",
-        8.5
-      ],
-      [
-        "December 16 2018",
-        8
-      ],
-      [
-        "December 18 2018",
-        8.5
-      ],
-      [
-        "December 20 2018",
-        9
-      ],
-      [
-        "December 22 2018",
-        9.5
-      ],
-      [
-        "December 27 2018",
-        10
-      ],
-      [
-        "December 29 2018",
-        10.5
-      ],
-      [
-        "December 31 2018",
-        11
-      ],
-      [
-        "January 3 2019",
-        11.5
-      ]
+  'Tampa Bay Lightning': {
+    team: 'Tampa Bay Lightning',
+    year: 2018,
+    games: [
+      ['October 6 2018', 0.5],
+      ['October 11 2018', 0],
+      ['October 13 2018', 0.5],
+      ['October 16 2018', 1],
+      ['October 18 2018', 1.5],
+      ['October 20 2018', 1],
+      ['October 21 2018', 1.5],
+      ['October 24 2018', 2],
+      ['October 26 2018', 2.5],
+      ['October 27 2018', 2],
+      ['October 30 2018', 2.5],
+      ['November 1 2018', 2],
+      ['November 3 2018', 2.5],
+      ['November 4 2018', 3],
+      ['November 6 2018', 3.5],
+      ['November 8 2018', 4],
+      ['November 10 2018', 3.5],
+      ['November 13 2018', 3],
+      ['November 15 2018', 3.5],
+      ['November 17 2018', 4],
+      ['November 19 2018', 3.5],
+      ['November 21 2018', 4],
+      ['November 23 2018', 4.5],
+      ['November 25 2018', 5],
+      ['November 27 2018', 4.5],
+      ['November 29 2018', 5],
+      ['December 1 2018', 5.5],
+      ['December 3 2018', 6],
+      ['December 4 2018', 6.5],
+      ['December 6 2018', 7],
+      ['December 8 2018', 7.5],
+      ['December 10 2018', 8],
+      ['December 13 2018', 8.5],
+      ['December 16 2018', 8],
+      ['December 18 2018', 8.5],
+      ['December 20 2018', 9],
+      ['December 22 2018', 9.5],
+      ['December 27 2018', 10],
+      ['December 29 2018', 10.5],
+      ['December 31 2018', 11],
+      ['January 3 2019', 11.5],
+      ['January 5 2019', 11],
+      ['January 8 2019', 11.5],
+      ['January 10 2019', 12],
+      ['January 12 2019', 12.5],
+      ['January 13 2019', 12],
+      ['January 15 2019', 12.5],
+      ['January 17 2019', 12],
+      ['January 19 2019', 12.5],
+      ['January 30 2019', 12],
+      ['February 1 2019', 12.5],
+      ['February 2 2019', 13],
+      ['February 5 2019', 12.5],
+      ['February 7 2019', 12],
+      ['February 9 2019', 12.5],
+      ['February 10 2019', 13],
+      ['February 12 2019', 13.5],
+      ['February 14 2019', 14],
+      ['February 16 2019', 14.5],
+      ['February 18 2019', 15],
+      ['February 19 2019', 15.5],
+      ['February 21 2019', 16],
+      ['February 25 2019', 16.5],
+      ['February 27 2019', 17],
+      ['February 28 2019', 16.5],
+      ['March 2 2019', 17],
+      ['March 5 2019', 17.5],
+      ['March 7 2019', 17],
+      ['March 9 2019', 17.5],
+      ['March 11 2019', 18],
+      ['March 14 2019', 18.5],
+      ['March 16 2019', 19],
+      ['March 18 2019', 19.5],
+      ['March 20 2019', 20],
+      ['March 21 2019', 20.5],
+      ['March 23 2019', 20],
+      ['March 25 2019', 20.5],
+      ['March 30 2019', 20],
+      ['April 1 2019', 20.5],
+      ['April 2 2019', 20],
+      ['April 4 2019', 20.5],
+      ['April 6 2019', 21]
     ]
   },
-  "Toronto Maple Leafs": {
-    "team": "Toronto Maple Leafs",
-    "year": 2018,
-    "games": [
-      [
-        "October 3 2018",
-        0.5
-      ],
-      [
-        "October 6 2018",
-        0
-      ],
-      [
-        "October 7 2018",
-        0.5
-      ],
-      [
-        "October 9 2018",
-        1
-      ],
-      [
-        "October 11 2018",
-        1.5
-      ],
-      [
-        "October 13 2018",
-        2
-      ],
-      [
-        "October 15 2018",
-        2.5
-      ],
-      [
-        "October 18 2018",
-        2
-      ],
-      [
-        "October 20 2018",
-        1.5
-      ],
-      [
-        "October 24 2018",
-        2
-      ],
-      [
-        "October 27 2018",
-        2.5
-      ],
-      [
-        "October 29 2018",
-        2
-      ],
-      [
-        "November 1 2018",
-        1.5
-      ],
-      [
-        "November 3 2018",
-        2
-      ],
-      [
-        "November 6 2018",
-        2.5
-      ],
-      [
-        "November 9 2018",
-        3
-      ],
-      [
-        "November 10 2018",
-        2.5
-      ],
-      [
-        "November 13 2018",
-        3
-      ],
-      [
-        "November 15 2018",
-        3.5
-      ],
-      [
-        "November 16 2018",
-        4
-      ],
-      [
-        "November 19 2018",
-        4.5
-      ],
-      [
-        "November 21 2018",
-        4
-      ],
-      [
-        "November 23 2018",
-        3.5
-      ],
-      [
-        "November 24 2018",
-        4
-      ],
-      [
-        "November 26 2018",
-        4.5
-      ],
-      [
-        "November 28 2018",
-        5
-      ],
-      [
-        "December 1 2018",
-        5.5
-      ],
-      [
-        "December 4 2018",
-        6
-      ],
-      [
-        "December 6 2018",
-        5.5
-      ],
-      [
-        "December 8 2018",
-        5
-      ],
-      [
-        "December 11 2018",
-        5.5
-      ],
-      [
-        "December 13 2018",
-        5
-      ],
-      [
-        "December 15 2018",
-        4.5
-      ],
-      [
-        "December 18 2018",
-        5
-      ],
-      [
-        "December 20 2018",
-        5.5
-      ],
-      [
-        "December 22 2018",
-        6
-      ],
-      [
-        "December 23 2018",
-        6.5
-      ],
-      [
-        "December 28 2018",
-        7
-      ],
-      [
-        "December 29 2018",
-        6.5
-      ],
-      [
-        "January 3 2019",
-        6
-      ]
+  'Toronto Maple Leafs': {
+    team: 'Toronto Maple Leafs',
+    year: 2018,
+    games: [
+      ['October 3 2018', 0.5],
+      ['October 6 2018', 0],
+      ['October 7 2018', 0.5],
+      ['October 9 2018', 1],
+      ['October 11 2018', 1.5],
+      ['October 13 2018', 2],
+      ['October 15 2018', 2.5],
+      ['October 18 2018', 2],
+      ['October 20 2018', 1.5],
+      ['October 24 2018', 2],
+      ['October 27 2018', 2.5],
+      ['October 29 2018', 2],
+      ['November 1 2018', 1.5],
+      ['November 3 2018', 2],
+      ['November 6 2018', 2.5],
+      ['November 9 2018', 3],
+      ['November 10 2018', 2.5],
+      ['November 13 2018', 3],
+      ['November 15 2018', 3.5],
+      ['November 16 2018', 4],
+      ['November 19 2018', 4.5],
+      ['November 21 2018', 4],
+      ['November 23 2018', 3.5],
+      ['November 24 2018', 4],
+      ['November 26 2018', 4.5],
+      ['November 28 2018', 5],
+      ['December 1 2018', 5.5],
+      ['December 4 2018', 6],
+      ['December 6 2018', 5.5],
+      ['December 8 2018', 5],
+      ['December 11 2018', 5.5],
+      ['December 13 2018', 5],
+      ['December 15 2018', 4.5],
+      ['December 18 2018', 5],
+      ['December 20 2018', 5.5],
+      ['December 22 2018', 6],
+      ['December 23 2018', 6.5],
+      ['December 28 2018', 7],
+      ['December 29 2018', 6.5],
+      ['January 3 2019', 6],
+      ['January 5 2019', 6.5],
+      ['January 7 2019', 6],
+      ['January 10 2019', 6.5],
+      ['January 12 2019', 6],
+      ['January 14 2019', 5.5],
+      ['January 17 2019', 6],
+      ['January 18 2019', 5.5],
+      ['January 20 2019', 5],
+      ['January 23 2019', 5.5],
+      ['February 1 2019', 5],
+      ['February 2 2019', 5.5],
+      ['February 4 2019', 6],
+      ['February 6 2019', 6.5],
+      ['February 9 2019', 7],
+      ['February 10 2019', 6.5],
+      ['February 12 2019', 7],
+      ['February 14 2019', 7.5],
+      ['February 16 2019', 7],
+      ['February 19 2019', 6.5],
+      ['February 21 2019', 6],
+      ['February 23 2019', 6.5],
+      ['February 25 2019', 7],
+      ['February 27 2019', 7.5],
+      ['February 28 2019', 7],
+      ['March 2 2019', 7.5],
+      ['March 4 2019', 8],
+      ['March 6 2019', 7.5],
+      ['March 9 2019', 8],
+      ['March 11 2019', 7.5],
+      ['March 13 2019', 7],
+      ['March 15 2019', 7.5],
+      ['March 16 2019', 7],
+      ['March 19 2019', 6.5],
+      ['March 20 2019', 7],
+      ['March 23 2019', 6.5],
+      ['March 25 2019', 7],
+      ['March 27 2019', 6.5],
+      ['March 30 2019', 6],
+      ['April 1 2019', 6.5],
+      ['April 2 2019', 6],
+      ['April 4 2019', 5.5],
+      ['April 6 2019', 5]
     ]
   },
-  "Carolina Hurricanes": {
-    "team": "Carolina Hurricanes",
-    "year": 2018,
-    "games": [
-      [
-        "October 4 2018",
-        -0.5
-      ],
-      [
-        "October 5 2018",
-        0
-      ],
-      [
-        "October 7 2018",
-        0.5
-      ],
-      [
-        "October 9 2018",
-        1
-      ],
-      [
-        "October 13 2018",
-        1.5
-      ],
-      [
-        "October 14 2018",
-        1
-      ],
-      [
-        "October 16 2018",
-        0.5
-      ],
-      [
-        "October 20 2018",
-        0
-      ],
-      [
-        "October 22 2018",
-        0.5
-      ],
-      [
-        "October 26 2018",
-        1
-      ],
-      [
-        "October 28 2018",
-        0.5
-      ],
-      [
-        "October 30 2018",
-        0
-      ],
-      [
-        "November 2 2018",
-        -0.5
-      ],
-      [
-        "November 3 2018",
-        -1
-      ],
-      [
-        "November 6 2018",
-        -1.5
-      ],
-      [
-        "November 8 2018",
-        -1
-      ],
-      [
-        "November 10 2018",
-        -1.5
-      ],
-      [
-        "November 12 2018",
-        -1
-      ],
-      [
-        "November 17 2018",
-        -1.5
-      ],
-      [
-        "November 18 2018",
-        -1
-      ],
-      [
-        "November 21 2018",
-        -0.5
-      ],
-      [
-        "November 23 2018",
-        0
-      ],
-      [
-        "November 24 2018",
-        -0.5
-      ],
-      [
-        "November 27 2018",
-        0
-      ],
-      [
-        "November 30 2018",
-        -0.5
-      ],
-      [
-        "December 2 2018",
-        -1
-      ],
-      [
-        "December 5 2018",
-        -1.5
-      ],
-      [
-        "December 7 2018",
-        -1
-      ],
-      [
-        "December 11 2018",
-        -1.5
-      ],
-      [
-        "December 13 2018",
-        -2
-      ],
-      [
-        "December 14 2018",
-        -2.5
-      ],
-      [
-        "December 16 2018",
-        -2
-      ],
-      [
-        "December 20 2018",
-        -2.5
-      ],
-      [
-        "December 22 2018",
-        -3
-      ],
-      [
-        "December 23 2018",
-        -2.5
-      ],
-      [
-        "December 27 2018",
-        -3
-      ],
-      [
-        "December 29 2018",
-        -3.5
-      ],
-      [
-        "December 31 2018",
-        -3
-      ],
-      [
-        "January 3 2019",
-        -2.5
-      ],
-      [
-        "January 4 2019",
-        -2
-      ]
+  'Carolina Hurricanes': {
+    team: 'Carolina Hurricanes',
+    year: 2018,
+    games: [
+      ['October 4 2018', -0.5],
+      ['October 5 2018', 0],
+      ['October 7 2018', 0.5],
+      ['October 9 2018', 1],
+      ['October 13 2018', 1.5],
+      ['October 14 2018', 1],
+      ['October 16 2018', 0.5],
+      ['October 20 2018', 0],
+      ['October 22 2018', 0.5],
+      ['October 26 2018', 1],
+      ['October 28 2018', 0.5],
+      ['October 30 2018', 0],
+      ['November 2 2018', -0.5],
+      ['November 3 2018', -1],
+      ['November 6 2018', -1.5],
+      ['November 8 2018', -1],
+      ['November 10 2018', -1.5],
+      ['November 12 2018', -1],
+      ['November 17 2018', -1.5],
+      ['November 18 2018', -1],
+      ['November 21 2018', -0.5],
+      ['November 23 2018', 0],
+      ['November 24 2018', -0.5],
+      ['November 27 2018', 0],
+      ['November 30 2018', -0.5],
+      ['December 2 2018', -1],
+      ['December 5 2018', -1.5],
+      ['December 7 2018', -1],
+      ['December 11 2018', -1.5],
+      ['December 13 2018', -2],
+      ['December 14 2018', -2.5],
+      ['December 16 2018', -2],
+      ['December 20 2018', -2.5],
+      ['December 22 2018', -3],
+      ['December 23 2018', -2.5],
+      ['December 27 2018', -3],
+      ['December 29 2018', -3.5],
+      ['December 31 2018', -3],
+      ['January 3 2019', -2.5],
+      ['January 4 2019', -2],
+      ['January 6 2019', -1.5],
+      ['January 8 2019', -1],
+      ['January 10 2019', -1.5],
+      ['January 11 2019', -1],
+      ['January 13 2019', -0.5],
+      ['January 15 2019', -1],
+      ['January 18 2019', -1.5],
+      ['January 20 2019', -1],
+      ['January 22 2019', -1.5],
+      ['January 23 2019', -1],
+      ['February 1 2019', -0.5],
+      ['February 3 2019', -1],
+      ['February 5 2019', -0.5],
+      ['February 7 2019', 0],
+      ['February 8 2019', 0.5],
+      ['February 10 2019', 0],
+      ['February 12 2019', 0.5],
+      ['February 15 2019', 1],
+      ['February 16 2019', 1.5],
+      ['February 19 2019', 1],
+      ['February 21 2019', 1.5],
+      ['February 23 2019', 2],
+      ['February 26 2019', 2.5],
+      ['March 1 2019', 3],
+      ['March 2 2019', 3.5],
+      ['March 5 2019', 3],
+      ['March 8 2019', 2.5],
+      ['March 9 2019', 3],
+      ['March 11 2019', 3.5],
+      ['March 15 2019', 3],
+      ['March 16 2019', 3.5],
+      ['March 19 2019', 4],
+      ['March 21 2019', 3.5],
+      ['March 23 2019', 4],
+      ['March 24 2019', 4.5],
+      ['March 26 2019', 4],
+      ['March 28 2019', 3.5],
+      ['March 30 2019', 4],
+      ['March 31 2019', 3.5],
+      ['April 2 2019', 4],
+      ['April 4 2019', 4.5],
+      ['April 6 2019', 5]
     ]
   },
-  "Columbus Blue Jackets": {
-    "team": "Columbus Blue Jackets",
-    "year": 2018,
-    "games": [
-      [
-        "October 4 2018",
-        0.5
-      ],
-      [
-        "October 5 2018",
-        0
-      ],
-      [
-        "October 9 2018",
-        0.5
-      ],
-      [
-        "October 11 2018",
-        1
-      ],
-      [
-        "October 13 2018",
-        0.5
-      ],
-      [
-        "October 18 2018",
-        1
-      ],
-      [
-        "October 20 2018",
-        0.5
-      ],
-      [
-        "October 23 2018",
-        0
-      ],
-      [
-        "October 25 2018",
-        0.5
-      ],
-      [
-        "October 27 2018",
-        1
-      ],
-      [
-        "October 30 2018",
-        0.5
-      ],
-      [
-        "November 1 2018",
-        1
-      ],
-      [
-        "November 3 2018",
-        0.5
-      ],
-      [
-        "November 4 2018",
-        0
-      ],
-      [
-        "November 6 2018",
-        0.5
-      ],
-      [
-        "November 9 2018",
-        1
-      ],
-      [
-        "November 10 2018",
-        0.5
-      ],
-      [
-        "November 12 2018",
-        1
-      ],
-      [
-        "November 15 2018",
-        1.5
-      ],
-      [
-        "November 17 2018",
-        2
-      ],
-      [
-        "November 19 2018",
-        1.5
-      ],
-      [
-        "November 23 2018",
-        2
-      ],
-      [
-        "November 24 2018",
-        1.5
-      ],
-      [
-        "November 26 2018",
-        2
-      ],
-      [
-        "November 29 2018",
-        2.5
-      ],
-      [
-        "December 1 2018",
-        2
-      ],
-      [
-        "December 4 2018",
-        1.5
-      ],
-      [
-        "December 6 2018",
-        2
-      ],
-      [
-        "December 8 2018",
-        1.5
-      ],
-      [
-        "December 11 2018",
-        1
-      ],
-      [
-        "December 13 2018",
-        1.5
-      ],
-      [
-        "December 15 2018",
-        1
-      ],
-      [
-        "December 17 2018",
-        1.5
-      ],
-      [
-        "December 20 2018",
-        2
-      ],
-      [
-        "December 22 2018",
-        2.5
-      ],
-      [
-        "December 23 2018",
-        3
-      ],
-      [
-        "December 27 2018",
-        3.5
-      ],
-      [
-        "December 28 2018",
-        3
-      ],
-      [
-        "December 31 2018",
-        3.5
-      ],
-      [
-        "January 4 2019",
-        3
-      ]
+  'Columbus Blue Jackets': {
+    team: 'Columbus Blue Jackets',
+    year: 2018,
+    games: [
+      ['October 4 2018', 0.5],
+      ['October 5 2018', 0],
+      ['October 9 2018', 0.5],
+      ['October 11 2018', 1],
+      ['October 13 2018', 0.5],
+      ['October 18 2018', 1],
+      ['October 20 2018', 0.5],
+      ['October 23 2018', 0],
+      ['October 25 2018', 0.5],
+      ['October 27 2018', 1],
+      ['October 30 2018', 0.5],
+      ['November 1 2018', 1],
+      ['November 3 2018', 0.5],
+      ['November 4 2018', 0],
+      ['November 6 2018', 0.5],
+      ['November 9 2018', 1],
+      ['November 10 2018', 0.5],
+      ['November 12 2018', 1],
+      ['November 15 2018', 1.5],
+      ['November 17 2018', 2],
+      ['November 19 2018', 1.5],
+      ['November 23 2018', 2],
+      ['November 24 2018', 1.5],
+      ['November 26 2018', 2],
+      ['November 29 2018', 2.5],
+      ['December 1 2018', 2],
+      ['December 4 2018', 1.5],
+      ['December 6 2018', 2],
+      ['December 8 2018', 1.5],
+      ['December 11 2018', 1],
+      ['December 13 2018', 1.5],
+      ['December 15 2018', 1],
+      ['December 17 2018', 1.5],
+      ['December 20 2018', 2],
+      ['December 22 2018', 2.5],
+      ['December 23 2018', 3],
+      ['December 27 2018', 3.5],
+      ['December 28 2018', 3],
+      ['December 31 2018', 3.5],
+      ['January 4 2019', 3],
+      ['January 5 2019', 3.5],
+      ['January 8 2019', 3],
+      ['January 10 2019', 3.5],
+      ['January 12 2019', 4],
+      ['January 13 2019', 4.5],
+      ['January 15 2019', 5],
+      ['January 18 2019', 4.5],
+      ['January 19 2019', 4],
+      ['January 29 2019', 3.5],
+      ['January 31 2019', 3],
+      ['February 2 2019', 2.5],
+      ['February 5 2019', 3],
+      ['February 7 2019', 3.5],
+      ['February 9 2019', 4],
+      ['February 12 2019', 4.5],
+      ['February 14 2019', 4],
+      ['February 16 2019', 4.5],
+      ['February 18 2019', 4],
+      ['February 19 2019', 3.5],
+      ['February 22 2019', 4],
+      ['February 23 2019', 4.5],
+      ['February 26 2019', 4],
+      ['February 28 2019', 4.5],
+      ['March 2 2019', 4],
+      ['March 3 2019', 3.5],
+      ['March 5 2019', 4],
+      ['March 7 2019', 3.5],
+      ['March 9 2019', 4],
+      ['March 11 2019', 3.5],
+      ['March 12 2019', 4],
+      ['March 15 2019', 4.5],
+      ['March 16 2019', 4],
+      ['March 19 2019', 3.5],
+      ['March 21 2019', 3],
+      ['March 24 2019', 3.5],
+      ['March 26 2019', 4],
+      ['March 28 2019', 4.5],
+      ['March 30 2019', 5],
+      ['March 31 2019', 5.5],
+      ['April 2 2019', 5],
+      ['April 5 2019', 5.5],
+      ['April 6 2019', 6]
     ]
   },
-  "New Jersey Devils": {
-    "team": "New Jersey Devils",
-    "year": 2018,
-    "games": [
-      [
-        "October 6 2018",
-        0.5
-      ],
-      [
-        "October 11 2018",
-        1
-      ],
-      [
-        "October 14 2018",
-        1.5
-      ],
-      [
-        "October 16 2018",
-        2
-      ],
-      [
-        "October 18 2018",
-        1.5
-      ],
-      [
-        "October 20 2018",
-        1
-      ],
-      [
-        "October 25 2018",
-        0.5
-      ],
-      [
-        "October 27 2018",
-        1
-      ],
-      [
-        "October 30 2018",
-        0.5
-      ],
-      [
-        "November 1 2018",
-        0
-      ],
-      [
-        "November 3 2018",
-        -0.5
-      ],
-      [
-        "November 5 2018",
-        0
-      ],
-      [
-        "November 6 2018",
-        -0.5
-      ],
-      [
-        "November 9 2018",
-        -1
-      ],
-      [
-        "November 11 2018",
-        -1.5
-      ],
-      [
-        "November 13 2018",
-        -1
-      ],
-      [
-        "November 15 2018",
-        -0.5
-      ],
-      [
-        "November 17 2018",
-        -1
-      ],
-      [
-        "November 18 2018",
-        -1.5
-      ],
-      [
-        "November 21 2018",
-        -1
-      ],
-      [
-        "November 23 2018",
-        -1.5
-      ],
-      [
-        "November 25 2018",
-        -2
-      ],
-      [
-        "November 26 2018",
-        -2.5
-      ],
-      [
-        "November 30 2018",
-        -3
-      ],
-      [
-        "December 1 2018",
-        -3.5
-      ],
-      [
-        "December 3 2018",
-        -4
-      ],
-      [
-        "December 6 2018",
-        -3.5
-      ],
-      [
-        "December 9 2018",
-        -4
-      ],
-      [
-        "December 10 2018",
-        -4.5
-      ],
-      [
-        "December 14 2018",
-        -4
-      ],
-      [
-        "December 15 2018",
-        -4.5
-      ],
-      [
-        "December 18 2018",
-        -5
-      ],
-      [
-        "December 20 2018",
-        -5.5
-      ],
-      [
-        "December 21 2018",
-        -5
-      ],
-      [
-        "December 23 2018",
-        -5.5
-      ],
-      [
-        "December 27 2018",
-        -5
-      ],
-      [
-        "December 29 2018",
-        -4.5
-      ],
-      [
-        "December 31 2018",
-        -4
-      ],
-      [
-        "January 2 2019",
-        -4.5
-      ],
-      [
-        "January 4 2019",
-        -4
-      ]
+  'New Jersey Devils': {
+    team: 'New Jersey Devils',
+    year: 2018,
+    games: [
+      ['October 6 2018', 0.5],
+      ['October 11 2018', 1],
+      ['October 14 2018', 1.5],
+      ['October 16 2018', 2],
+      ['October 18 2018', 1.5],
+      ['October 20 2018', 1],
+      ['October 25 2018', 0.5],
+      ['October 27 2018', 1],
+      ['October 30 2018', 0.5],
+      ['November 1 2018', 0],
+      ['November 3 2018', -0.5],
+      ['November 5 2018', 0],
+      ['November 6 2018', -0.5],
+      ['November 9 2018', -1],
+      ['November 11 2018', -1.5],
+      ['November 13 2018', -1],
+      ['November 15 2018', -0.5],
+      ['November 17 2018', -1],
+      ['November 18 2018', -1.5],
+      ['November 21 2018', -1],
+      ['November 23 2018', -1.5],
+      ['November 25 2018', -2],
+      ['November 26 2018', -2.5],
+      ['November 30 2018', -3],
+      ['December 1 2018', -3.5],
+      ['December 3 2018', -4],
+      ['December 6 2018', -3.5],
+      ['December 9 2018', -4],
+      ['December 10 2018', -4.5],
+      ['December 14 2018', -4],
+      ['December 15 2018', -4.5],
+      ['December 18 2018', -5],
+      ['December 20 2018', -5.5],
+      ['December 21 2018', -5],
+      ['December 23 2018', -5.5],
+      ['December 27 2018', -5],
+      ['December 29 2018', -4.5],
+      ['December 31 2018', -4],
+      ['January 2 2019', -4.5],
+      ['January 4 2019', -4],
+      ['January 6 2019', -4.5],
+      ['January 8 2019', -5],
+      ['January 10 2019', -5.5],
+      ['January 12 2019', -5],
+      ['January 14 2019', -4.5],
+      ['January 15 2019', -5],
+      ['January 17 2019', -5.5],
+      ['January 19 2019', -6],
+      ['January 28 2019', -5.5],
+      ['January 31 2019', -6],
+      ['February 2 2019', -5.5],
+      ['February 5 2019', -6],
+      ['February 7 2019', -6.5],
+      ['February 9 2019', -7],
+      ['February 10 2019', -6.5],
+      ['February 12 2019', -7],
+      ['February 14 2019', -7.5],
+      ['February 15 2019', -7],
+      ['February 17 2019', -6.5],
+      ['February 19 2019', -7],
+      ['February 21 2019', -6.5],
+      ['February 23 2019', -7],
+      ['February 25 2019', -6.5],
+      ['February 27 2019', -7],
+      ['March 1 2019', -7.5],
+      ['March 2 2019', -8],
+      ['March 5 2019', -8.5],
+      ['March 8 2019', -9],
+      ['March 9 2019', -9.5],
+      ['March 12 2019', -10],
+      ['March 13 2019', -9.5],
+      ['March 15 2019', -9],
+      ['March 17 2019', -9.5],
+      ['March 19 2019', -10],
+      ['March 21 2019', -10.5],
+      ['March 23 2019', -10],
+      ['March 25 2019', -9.5],
+      ['March 29 2019', -10],
+      ['March 30 2019', -10.5],
+      ['April 1 2019', -10],
+      ['April 4 2019', -10.5],
+      ['April 6 2019', -10]
     ]
   },
-  "New York Islanders": {
-    "team": "New York Islanders",
-    "year": 2018,
-    "games": [
-      [
-        "October 4 2018",
-        0.5
-      ],
-      [
-        "October 6 2018",
-        0
-      ],
-      [
-        "October 8 2018",
-        0.5
-      ],
-      [
-        "October 13 2018",
-        0
-      ],
-      [
-        "October 17 2018",
-        -0.5
-      ],
-      [
-        "October 18 2018",
-        0
-      ],
-      [
-        "October 20 2018",
-        -0.5
-      ],
-      [
-        "October 24 2018",
-        -1
-      ],
-      [
-        "October 27 2018",
-        -0.5
-      ],
-      [
-        "October 28 2018",
-        0
-      ],
-      [
-        "October 30 2018",
-        0.5
-      ],
-      [
-        "November 1 2018",
-        1
-      ],
-      [
-        "November 3 2018",
-        1.5
-      ],
-      [
-        "November 5 2018",
-        1
-      ],
-      [
-        "November 8 2018",
-        0.5
-      ],
-      [
-        "November 10 2018",
-        0
-      ],
-      [
-        "November 13 2018",
-        0.5
-      ],
-      [
-        "November 15 2018",
-        1
-      ],
-      [
-        "November 18 2018",
-        0.5
-      ],
-      [
-        "November 21 2018",
-        0
-      ],
-      [
-        "November 23 2018",
-        0.5
-      ],
-      [
-        "November 24 2018",
-        1
-      ],
-      [
-        "November 26 2018",
-        0.5
-      ],
-      [
-        "November 29 2018",
-        0
-      ],
-      [
-        "December 1 2018",
-        0.5
-      ],
-      [
-        "December 4 2018",
-        0
-      ],
-      [
-        "December 6 2018",
-        -0.5
-      ],
-      [
-        "December 8 2018",
-        0
-      ],
-      [
-        "December 10 2018",
-        -0.5
-      ],
-      [
-        "December 12 2018",
-        -1
-      ],
-      [
-        "December 15 2018",
-        -0.5
-      ],
-      [
-        "December 17 2018",
-        0
-      ],
-      [
-        "December 18 2018",
-        0.5
-      ],
-      [
-        "December 20 2018",
-        0
-      ],
-      [
-        "December 23 2018",
-        0.5
-      ],
-      [
-        "December 28 2018",
-        1
-      ],
-      [
-        "December 29 2018",
-        1.5
-      ],
-      [
-        "December 31 2018",
-        2
-      ],
-      [
-        "January 3 2019",
-        2.5
-      ]
+  'New York Islanders': {
+    team: 'New York Islanders',
+    year: 2018,
+    games: [
+      ['October 4 2018', 0.5],
+      ['October 6 2018', 0],
+      ['October 8 2018', 0.5],
+      ['October 13 2018', 0],
+      ['October 17 2018', -0.5],
+      ['October 18 2018', 0],
+      ['October 20 2018', -0.5],
+      ['October 24 2018', -1],
+      ['October 27 2018', -0.5],
+      ['October 28 2018', 0],
+      ['October 30 2018', 0.5],
+      ['November 1 2018', 1],
+      ['November 3 2018', 1.5],
+      ['November 5 2018', 1],
+      ['November 8 2018', 0.5],
+      ['November 10 2018', 0],
+      ['November 13 2018', 0.5],
+      ['November 15 2018', 1],
+      ['November 18 2018', 0.5],
+      ['November 21 2018', 0],
+      ['November 23 2018', 0.5],
+      ['November 24 2018', 1],
+      ['November 26 2018', 0.5],
+      ['November 29 2018', 0],
+      ['December 1 2018', 0.5],
+      ['December 4 2018', 0],
+      ['December 6 2018', -0.5],
+      ['December 8 2018', 0],
+      ['December 10 2018', -0.5],
+      ['December 12 2018', -1],
+      ['December 15 2018', -0.5],
+      ['December 17 2018', 0],
+      ['December 18 2018', 0.5],
+      ['December 20 2018', 0],
+      ['December 23 2018', 0.5],
+      ['December 28 2018', 1],
+      ['December 29 2018', 1.5],
+      ['December 31 2018', 2],
+      ['January 3 2019', 2.5],
+      ['January 5 2019', 3],
+      ['January 8 2019', 2.5],
+      ['January 10 2019', 3],
+      ['January 12 2019', 2.5],
+      ['January 13 2019', 3],
+      ['January 15 2019', 3.5],
+      ['January 17 2019', 4],
+      ['January 18 2019', 4.5],
+      ['January 20 2019', 5],
+      ['January 22 2019', 4.5],
+      ['February 1 2019', 4],
+      ['February 2 2019', 4.5],
+      ['February 5 2019', 4],
+      ['February 7 2019', 4.5],
+      ['February 9 2019', 5],
+      ['February 10 2019', 5.5],
+      ['February 12 2019', 5],
+      ['February 14 2019', 5.5],
+      ['February 16 2019', 6],
+      ['February 20 2019', 5.5],
+      ['February 21 2019', 5],
+      ['February 23 2019', 5.5],
+      ['February 26 2019', 5],
+      ['February 28 2019', 5.5],
+      ['March 1 2019', 5],
+      ['March 3 2019', 4.5],
+      ['March 5 2019', 5],
+      ['March 7 2019', 5.5],
+      ['March 9 2019', 5],
+      ['March 11 2019', 5.5],
+      ['March 14 2019', 6],
+      ['March 16 2019', 5.5],
+      ['March 17 2019', 6],
+      ['March 19 2019', 5.5],
+      ['March 21 2019', 5],
+      ['March 23 2019', 5.5],
+      ['March 24 2019', 6],
+      ['March 26 2019', 5.5],
+      ['March 28 2019', 6],
+      ['March 30 2019', 6.5],
+      ['April 1 2019', 6],
+      ['April 4 2019', 6.5],
+      ['April 6 2019', 7]
     ]
   },
-  "New York Rangers": {
-    "team": "New York Rangers",
-    "year": 2018,
-    "games": [
-      [
-        "October 11 2018",
-        -1
-      ],
-      [
-        "October 13 2018",
-        -1.5
-      ],
-      [
-        "October 16 2018",
-        -1
-      ],
-      [
-        "October 17 2018",
-        -1.5
-      ],
-      [
-        "October 21 2018",
-        -2
-      ],
-      [
-        "October 23 2018",
-        -1.5
-      ],
-      [
-        "October 25 2018",
-        -2
-      ],
-      [
-        "October 28 2018",
-        -2.5
-      ],
-      [
-        "October 30 2018",
-        -2
-      ],
-      [
-        "November 1 2018",
-        -1.5
-      ],
-      [
-        "November 4 2018",
-        -1
-      ],
-      [
-        "November 6 2018",
-        -0.5
-      ],
-      [
-        "November 9 2018",
-        -1
-      ],
-      [
-        "November 10 2018",
-        -0.5
-      ],
-      [
-        "November 12 2018",
-        0
-      ],
-      [
-        "November 15 2018",
-        -0.5
-      ],
-      [
-        "November 17 2018",
-        0
-      ],
-      [
-        "November 19 2018",
-        0.5
-      ],
-      [
-        "November 21 2018",
-        1
-      ],
-      [
-        "November 23 2018",
-        0.5
-      ],
-      [
-        "November 24 2018",
-        0
-      ],
-      [
-        "November 26 2018",
-        0.5
-      ],
-      [
-        "November 29 2018",
-        0
-      ],
-      [
-        "December 1 2018",
-        -0.5
-      ],
-      [
-        "December 2 2018",
-        -1
-      ],
-      [
-        "December 8 2018",
-        -0.5
-      ],
-      [
-        "December 10 2018",
-        -1
-      ],
-      [
-        "December 14 2018",
-        -1.5
-      ],
-      [
-        "December 16 2018",
-        -2
-      ],
-      [
-        "December 18 2018",
-        -1.5
-      ],
-      [
-        "December 22 2018",
-        -2
-      ],
-      [
-        "December 23 2018",
-        -2.5
-      ],
-      [
-        "December 27 2018",
-        -3
-      ],
-      [
-        "December 29 2018",
-        -2.5
-      ],
-      [
-        "December 31 2018",
-        -2
-      ],
-      [
-        "January 2 2019",
-        -2.5
-      ],
-      [
-        "January 4 2019",
-        -3
-      ]
+  'New York Rangers': {
+    team: 'New York Rangers',
+    year: 2018,
+    games: [
+      ['October 11 2018', -1],
+      ['October 13 2018', -1.5],
+      ['October 16 2018', -1],
+      ['October 17 2018', -1.5],
+      ['October 21 2018', -2],
+      ['October 23 2018', -1.5],
+      ['October 25 2018', -2],
+      ['October 28 2018', -2.5],
+      ['October 30 2018', -2],
+      ['November 1 2018', -1.5],
+      ['November 4 2018', -1],
+      ['November 6 2018', -0.5],
+      ['November 9 2018', -1],
+      ['November 10 2018', -0.5],
+      ['November 12 2018', 0],
+      ['November 15 2018', -0.5],
+      ['November 17 2018', 0],
+      ['November 19 2018', 0.5],
+      ['November 21 2018', 1],
+      ['November 23 2018', 0.5],
+      ['November 24 2018', 0],
+      ['November 26 2018', 0.5],
+      ['November 29 2018', 0],
+      ['December 1 2018', -0.5],
+      ['December 2 2018', -1],
+      ['December 8 2018', -0.5],
+      ['December 10 2018', -1],
+      ['December 14 2018', -1.5],
+      ['December 16 2018', -2],
+      ['December 18 2018', -1.5],
+      ['December 22 2018', -2],
+      ['December 23 2018', -2.5],
+      ['December 27 2018', -3],
+      ['December 29 2018', -2.5],
+      ['December 31 2018', -2],
+      ['January 2 2019', -2.5],
+      ['January 4 2019', -3],
+      ['January 6 2019', -3.5],
+      ['January 8 2019', -4],
+      ['January 10 2019', -4.5],
+      ['January 12 2019', -4],
+      ['January 13 2019', -4.5],
+      ['January 15 2019', -4],
+      ['January 17 2019', -3.5],
+      ['January 19 2019', -3],
+      ['January 29 2019', -3.5],
+      ['January 31 2019', -3],
+      ['February 2 2019', -3.5],
+      ['February 4 2019', -4],
+      ['February 6 2019', -3.5],
+      ['February 8 2019', -4],
+      ['February 10 2019', -3.5],
+      ['February 12 2019', -4],
+      ['February 15 2019', -3.5],
+      ['February 17 2019', -4],
+      ['February 19 2019', -3.5],
+      ['February 21 2019', -4],
+      ['February 23 2019', -3.5],
+      ['February 24 2019', -4],
+      ['February 27 2019', -4.5],
+      ['March 1 2019', -5],
+      ['March 3 2019', -5.5],
+      ['March 5 2019', -6],
+      ['March 7 2019', -6.5],
+      ['March 9 2019', -6],
+      ['March 11 2019', -6.5],
+      ['March 13 2019', -7],
+      ['March 15 2019', -7.5],
+      ['March 16 2019', -8],
+      ['March 19 2019', -8.5],
+      ['March 23 2019', -8],
+      ['March 25 2019', -8.5],
+      ['March 27 2019', -9],
+      ['March 29 2019', -8.5],
+      ['March 31 2019', -8],
+      ['April 1 2019', -8.5],
+      ['April 3 2019', -9],
+      ['April 5 2019', -9.5],
+      ['April 6 2019', -9]
     ]
   },
-  "Philadelphia Flyers": {
-    "team": "Philadelphia Flyers",
-    "year": 2018,
-    "games": [
-      [
-        "October 4 2018",
-        0.5
-      ],
-      [
-        "October 6 2018",
-        0
-      ],
-      [
-        "October 9 2018",
-        -0.5
-      ],
-      [
-        "October 10 2018",
-        0
-      ],
-      [
-        "October 13 2018",
-        -0.5
-      ],
-      [
-        "October 16 2018",
-        0
-      ],
-      [
-        "October 18 2018",
-        -0.5
-      ],
-      [
-        "October 20 2018",
-        0
-      ],
-      [
-        "October 22 2018",
-        -0.5
-      ],
-      [
-        "October 25 2018",
-        -1
-      ],
-      [
-        "October 27 2018",
-        -1.5
-      ],
-      [
-        "October 30 2018",
-        -1
-      ],
-      [
-        "November 1 2018",
-        -0.5
-      ],
-      [
-        "November 3 2018",
-        -1
-      ],
-      [
-        "November 5 2018",
-        -0.5
-      ],
-      [
-        "November 8 2018",
-        0
-      ],
-      [
-        "November 10 2018",
-        0.5
-      ],
-      [
-        "November 13 2018",
-        0
-      ],
-      [
-        "November 15 2018",
-        -0.5
-      ],
-      [
-        "November 17 2018",
-        -1
-      ],
-      [
-        "November 21 2018",
-        -1.5
-      ],
-      [
-        "November 23 2018",
-        -1
-      ],
-      [
-        "November 24 2018",
-        -1.5
-      ],
-      [
-        "November 27 2018",
-        -2
-      ],
-      [
-        "December 1 2018",
-        -1.5
-      ],
-      [
-        "December 6 2018",
-        -2
-      ],
-      [
-        "December 8 2018",
-        -1.5
-      ],
-      [
-        "December 9 2018",
-        -2
-      ],
-      [
-        "December 12 2018",
-        -2.5
-      ],
-      [
-        "December 14 2018",
-        -3
-      ],
-      [
-        "December 15 2018",
-        -3.5
-      ],
-      [
-        "December 18 2018",
-        -3
-      ],
-      [
-        "December 20 2018",
-        -2.5
-      ],
-      [
-        "December 22 2018",
-        -3
-      ],
-      [
-        "December 23 2018",
-        -2.5
-      ],
-      [
-        "December 27 2018",
-        -3
-      ],
-      [
-        "December 29 2018",
-        -3.5
-      ],
-      [
-        "December 31 2018",
-        -4
-      ],
-      [
-        "January 1 2019",
-        -4.5
-      ],
-      [
-        "January 3 2019",
-        -5
-      ],
-      [
-        "January 5 2019",
-        -5.5
-      ]
+  'Philadelphia Flyers': {
+    team: 'Philadelphia Flyers',
+    year: 2018,
+    games: [
+      ['October 4 2018', 0.5],
+      ['October 6 2018', 0],
+      ['October 9 2018', -0.5],
+      ['October 10 2018', 0],
+      ['October 13 2018', -0.5],
+      ['October 16 2018', 0],
+      ['October 18 2018', -0.5],
+      ['October 20 2018', 0],
+      ['October 22 2018', -0.5],
+      ['October 25 2018', -1],
+      ['October 27 2018', -1.5],
+      ['October 30 2018', -1],
+      ['November 1 2018', -0.5],
+      ['November 3 2018', -1],
+      ['November 5 2018', -0.5],
+      ['November 8 2018', 0],
+      ['November 10 2018', 0.5],
+      ['November 13 2018', 0],
+      ['November 15 2018', -0.5],
+      ['November 17 2018', -1],
+      ['November 21 2018', -1.5],
+      ['November 23 2018', -1],
+      ['November 24 2018', -1.5],
+      ['November 27 2018', -2],
+      ['December 1 2018', -1.5],
+      ['December 6 2018', -2],
+      ['December 8 2018', -1.5],
+      ['December 9 2018', -2],
+      ['December 12 2018', -2.5],
+      ['December 14 2018', -3],
+      ['December 15 2018', -3.5],
+      ['December 18 2018', -3],
+      ['December 20 2018', -2.5],
+      ['December 22 2018', -3],
+      ['December 23 2018', -2.5],
+      ['December 27 2018', -3],
+      ['December 29 2018', -3.5],
+      ['December 31 2018', -4],
+      ['January 1 2019', -4.5],
+      ['January 3 2019', -5],
+      ['January 5 2019', -5.5],
+      ['January 7 2019', -6],
+      ['January 8 2019', -6.5],
+      ['January 10 2019', -6],
+      ['January 12 2019', -6.5],
+      ['January 14 2019', -6],
+      ['January 16 2019', -5.5],
+      ['January 19 2019', -5],
+      ['January 28 2019', -4.5],
+      ['January 29 2019', -4],
+      ['January 31 2019', -3.5],
+      ['February 2 2019', -3],
+      ['February 4 2019', -2.5],
+      ['February 7 2019', -3],
+      ['February 9 2019', -2.5],
+      ['February 11 2019', -3],
+      ['February 12 2019', -2.5],
+      ['February 16 2019', -2],
+      ['February 17 2019', -1.5],
+      ['February 19 2019', -2],
+      ['February 21 2019', -2.5],
+      ['February 23 2019', -2],
+      ['February 26 2019', -1.5],
+      ['February 28 2019', -2],
+      ['March 1 2019', -1.5],
+      ['March 3 2019', -1],
+      ['March 6 2019', -1.5],
+      ['March 9 2019', -1],
+      ['March 11 2019', -0.5],
+      ['March 14 2019', -1],
+      ['March 15 2019', -1.5],
+      ['March 17 2019', -1],
+      ['March 19 2019', -1.5],
+      ['March 21 2019', -1],
+      ['March 23 2019', -1.5],
+      ['March 24 2019', -2],
+      ['March 27 2019', -1.5],
+      ['March 30 2019', -2],
+      ['March 31 2019', -2.5],
+      ['April 2 2019', -3],
+      ['April 4 2019', -3.5],
+      ['April 6 2019', -4]
     ]
   },
-  "Pittsburgh Penguins": {
-    "team": "Pittsburgh Penguins",
-    "year": 2018,
-    "games": [
-      [
-        "October 4 2018",
-        0.5
-      ],
-      [
-        "October 6 2018",
-        0
-      ],
-      [
-        "October 11 2018",
-        0.5
-      ],
-      [
-        "October 13 2018",
-        0
-      ],
-      [
-        "October 16 2018",
-        -0.5
-      ],
-      [
-        "October 18 2018",
-        0
-      ],
-      [
-        "October 23 2018",
-        0.5
-      ],
-      [
-        "October 25 2018",
-        1
-      ],
-      [
-        "October 27 2018",
-        1.5
-      ],
-      [
-        "October 30 2018",
-        1
-      ],
-      [
-        "November 1 2018",
-        0.5
-      ],
-      [
-        "November 3 2018",
-        0
-      ],
-      [
-        "November 5 2018",
-        -0.5
-      ],
-      [
-        "November 7 2018",
-        -1
-      ],
-      [
-        "November 10 2018",
-        -0.5
-      ],
-      [
-        "November 13 2018",
-        -1
-      ],
-      [
-        "November 15 2018",
-        -1.5
-      ],
-      [
-        "November 17 2018",
-        -2
-      ],
-      [
-        "November 19 2018",
-        -2.5
-      ],
-      [
-        "November 21 2018",
-        -2
-      ],
-      [
-        "November 23 2018",
-        -2.5
-      ],
-      [
-        "November 24 2018",
-        -2
-      ],
-      [
-        "November 27 2018",
-        -1.5
-      ],
-      [
-        "November 28 2018",
-        -2
-      ],
-      [
-        "December 1 2018",
-        -2.5
-      ],
-      [
-        "December 4 2018",
-        -2
-      ],
-      [
-        "December 6 2018",
-        -1.5
-      ],
-      [
-        "December 8 2018",
-        -2
-      ],
-      [
-        "December 10 2018",
-        -1.5
-      ],
-      [
-        "December 12 2018",
-        -2
-      ],
-      [
-        "December 14 2018",
-        -1.5
-      ],
-      [
-        "December 15 2018",
-        -1
-      ],
-      [
-        "December 17 2018",
-        -1.5
-      ],
-      [
-        "December 19 2018",
-        -1
-      ],
-      [
-        "December 20 2018",
-        -0.5
-      ],
-      [
-        "December 22 2018",
-        0
-      ],
-      [
-        "December 27 2018",
-        0.5
-      ],
-      [
-        "December 29 2018",
-        1
-      ],
-      [
-        "December 31 2018",
-        1.5
-      ],
-      [
-        "January 2 2019",
-        2
-      ],
-      [
-        "January 4 2019",
-        2.5
-      ]
+  'Pittsburgh Penguins': {
+    team: 'Pittsburgh Penguins',
+    year: 2018,
+    games: [
+      ['October 4 2018', 0.5],
+      ['October 6 2018', 0],
+      ['October 11 2018', 0.5],
+      ['October 13 2018', 0],
+      ['October 16 2018', -0.5],
+      ['October 18 2018', 0],
+      ['October 23 2018', 0.5],
+      ['October 25 2018', 1],
+      ['October 27 2018', 1.5],
+      ['October 30 2018', 1],
+      ['November 1 2018', 0.5],
+      ['November 3 2018', 0],
+      ['November 5 2018', -0.5],
+      ['November 7 2018', -1],
+      ['November 10 2018', -0.5],
+      ['November 13 2018', -1],
+      ['November 15 2018', -1.5],
+      ['November 17 2018', -2],
+      ['November 19 2018', -2.5],
+      ['November 21 2018', -2],
+      ['November 23 2018', -2.5],
+      ['November 24 2018', -2],
+      ['November 27 2018', -1.5],
+      ['November 28 2018', -2],
+      ['December 1 2018', -2.5],
+      ['December 4 2018', -2],
+      ['December 6 2018', -1.5],
+      ['December 8 2018', -2],
+      ['December 10 2018', -1.5],
+      ['December 12 2018', -2],
+      ['December 14 2018', -1.5],
+      ['December 15 2018', -1],
+      ['December 17 2018', -1.5],
+      ['December 19 2018', -1],
+      ['December 20 2018', -0.5],
+      ['December 22 2018', 0],
+      ['December 27 2018', 0.5],
+      ['December 29 2018', 1],
+      ['December 31 2018', 1.5],
+      ['January 2 2019', 2],
+      ['January 4 2019', 2.5],
+      ['January 6 2019', 2],
+      ['January 8 2019', 2.5],
+      ['January 11 2019', 3],
+      ['January 12 2019', 2.5],
+      ['January 15 2019', 2],
+      ['January 18 2019', 2.5],
+      ['January 19 2019', 2],
+      ['January 28 2019', 1.5],
+      ['January 30 2019', 2],
+      ['February 1 2019', 2.5],
+      ['February 2 2019', 2],
+      ['February 5 2019', 1.5],
+      ['February 7 2019', 1],
+      ['February 9 2019', 0.5],
+      ['February 11 2019', 1],
+      ['February 13 2019', 1.5],
+      ['February 16 2019', 1],
+      ['February 17 2019', 1.5],
+      ['February 19 2019', 2],
+      ['February 21 2019', 1.5],
+      ['February 23 2019', 1],
+      ['February 26 2019', 1.5],
+      ['March 1 2019', 1],
+      ['March 2 2019', 1.5],
+      ['March 5 2019', 2],
+      ['March 7 2019', 2.5],
+      ['March 9 2019', 2],
+      ['March 10 2019', 2.5],
+      ['March 12 2019', 3],
+      ['March 14 2019', 3.5],
+      ['March 16 2019', 3],
+      ['March 17 2019', 2.5],
+      ['March 19 2019', 2],
+      ['March 21 2019', 2.5],
+      ['March 23 2019', 3],
+      ['March 25 2019', 3.5],
+      ['March 29 2019', 3],
+      ['March 31 2019', 3.5],
+      ['April 2 2019', 3],
+      ['April 4 2019', 3.5],
+      ['April 6 2019', 3]
     ]
   },
-  "Washington Capitals": {
-    "team": "Washington Capitals",
-    "year": 2018,
-    "games": [
-      [
-        "October 3 2018",
-        0.5
-      ],
-      [
-        "October 4 2018",
-        0
-      ],
-      [
-        "October 10 2018",
-        0.5
-      ],
-      [
-        "October 11 2018",
-        0
-      ],
-      [
-        "October 13 2018",
-        -0.5
-      ],
-      [
-        "October 17 2018",
-        0
-      ],
-      [
-        "October 19 2018",
-        -0.5
-      ],
-      [
-        "October 22 2018",
-        0
-      ],
-      [
-        "October 25 2018",
-        -0.5
-      ],
-      [
-        "October 27 2018",
-        0
-      ],
-      [
-        "November 1 2018",
-        -0.5
-      ],
-      [
-        "November 3 2018",
-        -1
-      ],
-      [
-        "November 5 2018",
-        -0.5
-      ],
-      [
-        "November 7 2018",
-        0
-      ],
-      [
-        "November 9 2018",
-        -0.5
-      ],
-      [
-        "November 11 2018",
-        -1
-      ],
-      [
-        "November 13 2018",
-        -0.5
-      ],
-      [
-        "November 14 2018",
-        -1
-      ],
-      [
-        "November 16 2018",
-        -0.5
-      ],
-      [
-        "November 19 2018",
-        0
-      ],
-      [
-        "November 21 2018",
-        0.5
-      ],
-      [
-        "November 23 2018",
-        1
-      ],
-      [
-        "November 24 2018",
-        1.5
-      ],
-      [
-        "November 26 2018",
-        2
-      ],
-      [
-        "November 30 2018",
-        2.5
-      ],
-      [
-        "December 2 2018",
-        2
-      ],
-      [
-        "December 4 2018",
-        1.5
-      ],
-      [
-        "December 6 2018",
-        2
-      ],
-      [
-        "December 8 2018",
-        2.5
-      ],
-      [
-        "December 11 2018",
-        3
-      ],
-      [
-        "December 14 2018",
-        3.5
-      ],
-      [
-        "December 15 2018",
-        4
-      ],
-      [
-        "December 19 2018",
-        3.5
-      ],
-      [
-        "December 21 2018",
-        4
-      ],
-      [
-        "December 22 2018",
-        4.5
-      ],
-      [
-        "December 27 2018",
-        5
-      ],
-      [
-        "December 29 2018",
-        5.5
-      ],
-      [
-        "December 31 2018",
-        5
-      ],
-      [
-        "January 3 2019",
-        4.5
-      ],
-      [
-        "January 4 2019",
-        4
-      ]
+  'Washington Capitals': {
+    team: 'Washington Capitals',
+    year: 2018,
+    games: [
+      ['October 3 2018', 0.5],
+      ['October 4 2018', 0],
+      ['October 10 2018', 0.5],
+      ['October 11 2018', 0],
+      ['October 13 2018', -0.5],
+      ['October 17 2018', 0],
+      ['October 19 2018', -0.5],
+      ['October 22 2018', 0],
+      ['October 25 2018', -0.5],
+      ['October 27 2018', 0],
+      ['November 1 2018', -0.5],
+      ['November 3 2018', -1],
+      ['November 5 2018', -0.5],
+      ['November 7 2018', 0],
+      ['November 9 2018', -0.5],
+      ['November 11 2018', -1],
+      ['November 13 2018', -0.5],
+      ['November 14 2018', -1],
+      ['November 16 2018', -0.5],
+      ['November 19 2018', 0],
+      ['November 21 2018', 0.5],
+      ['November 23 2018', 1],
+      ['November 24 2018', 1.5],
+      ['November 26 2018', 2],
+      ['November 30 2018', 2.5],
+      ['December 2 2018', 2],
+      ['December 4 2018', 1.5],
+      ['December 6 2018', 2],
+      ['December 8 2018', 2.5],
+      ['December 11 2018', 3],
+      ['December 14 2018', 3.5],
+      ['December 15 2018', 4],
+      ['December 19 2018', 3.5],
+      ['December 21 2018', 4],
+      ['December 22 2018', 4.5],
+      ['December 27 2018', 5],
+      ['December 29 2018', 5.5],
+      ['December 31 2018', 5],
+      ['January 3 2019', 4.5],
+      ['January 4 2019', 4],
+      ['January 6 2019', 4.5],
+      ['January 8 2019', 5],
+      ['January 10 2019', 5.5],
+      ['January 12 2019', 5],
+      ['January 14 2019', 4.5],
+      ['January 15 2019', 4],
+      ['January 18 2019', 3.5],
+      ['January 20 2019', 3],
+      ['January 22 2019', 2.5],
+      ['January 23 2019', 2],
+      ['February 1 2019', 2.5],
+      ['February 3 2019', 2],
+      ['February 5 2019', 2.5],
+      ['February 7 2019', 3],
+      ['February 9 2019', 2.5],
+      ['February 11 2019', 3],
+      ['February 12 2019', 2.5],
+      ['February 14 2019', 3],
+      ['February 17 2019', 2.5],
+      ['February 18 2019', 3],
+      ['February 21 2019', 3.5],
+      ['February 23 2019', 3],
+      ['February 24 2019', 3.5],
+      ['February 26 2019', 4],
+      ['March 1 2019', 4.5],
+      ['March 3 2019', 5],
+      ['March 6 2019', 5.5],
+      ['March 8 2019', 6],
+      ['March 10 2019', 6.5],
+      ['March 12 2019', 6],
+      ['March 14 2019', 6.5],
+      ['March 16 2019', 6],
+      ['March 19 2019', 6.5],
+      ['March 20 2019', 6],
+      ['March 22 2019', 5.5],
+      ['March 24 2019', 6],
+      ['March 26 2019', 6.5],
+      ['March 28 2019', 7],
+      ['March 30 2019', 7.5],
+      ['April 1 2019', 7],
+      ['April 4 2019', 7.5],
+      ['April 6 2019', 7]
     ]
   },
-  "Chicago Blackhawks": {
-    "team": "Chicago Blackhawks",
-    "year": 2018,
-    "games": [
-      [
-        "October 4 2018",
-        0.5
-      ],
-      [
-        "October 6 2018",
-        1
-      ],
-      [
-        "October 7 2018",
-        0.5
-      ],
-      [
-        "October 11 2018",
-        0
-      ],
-      [
-        "October 13 2018",
-        0.5
-      ],
-      [
-        "October 18 2018",
-        0
-      ],
-      [
-        "October 20 2018",
-        0.5
-      ],
-      [
-        "October 21 2018",
-        0
-      ],
-      [
-        "October 23 2018",
-        0.5
-      ],
-      [
-        "October 25 2018",
-        1
-      ],
-      [
-        "October 27 2018",
-        0.5
-      ],
-      [
-        "October 28 2018",
-        0
-      ],
-      [
-        "October 31 2018",
-        -0.5
-      ],
-      [
-        "November 1 2018",
-        -1
-      ],
-      [
-        "November 3 2018",
-        -1.5
-      ],
-      [
-        "November 8 2018",
-        -2
-      ],
-      [
-        "November 10 2018",
-        -2.5
-      ],
-      [
-        "November 12 2018",
-        -3
-      ],
-      [
-        "November 14 2018",
-        -2.5
-      ],
-      [
-        "November 16 2018",
-        -3
-      ],
-      [
-        "November 18 2018",
-        -2.5
-      ],
-      [
-        "November 21 2018",
-        -3
-      ],
-      [
-        "November 23 2018",
-        -3.5
-      ],
-      [
-        "November 24 2018",
-        -3
-      ],
-      [
-        "November 27 2018",
-        -3.5
-      ],
-      [
-        "November 29 2018",
-        -4
-      ],
-      [
-        "December 1 2018",
-        -4.5
-      ],
-      [
-        "December 2 2018",
-        -5
-      ],
-      [
-        "December 5 2018",
-        -5.5
-      ],
-      [
-        "December 6 2018",
-        -6
-      ],
-      [
-        "December 9 2018",
-        -6.5
-      ],
-      [
-        "December 11 2018",
-        -7
-      ],
-      [
-        "December 12 2018",
-        -6.5
-      ],
-      [
-        "December 14 2018",
-        -7
-      ],
-      [
-        "December 16 2018",
-        -7.5
-      ],
-      [
-        "December 18 2018",
-        -7
-      ],
-      [
-        "December 20 2018",
-        -6.5
-      ],
-      [
-        "December 21 2018",
-        -6
-      ],
-      [
-        "December 23 2018",
-        -6.5
-      ],
-      [
-        "December 27 2018",
-        -6
-      ],
-      [
-        "December 29 2018",
-        -5.5
-      ],
-      [
-        "January 1 2019",
-        -6
-      ],
-      [
-        "January 3 2019",
-        -6.5
-      ]
+  'Chicago Blackhawks': {
+    team: 'Chicago Blackhawks',
+    year: 2018,
+    games: [
+      ['October 4 2018', 0.5],
+      ['October 6 2018', 1],
+      ['October 7 2018', 0.5],
+      ['October 11 2018', 0],
+      ['October 13 2018', 0.5],
+      ['October 18 2018', 0],
+      ['October 20 2018', 0.5],
+      ['October 21 2018', 0],
+      ['October 23 2018', 0.5],
+      ['October 25 2018', 1],
+      ['October 27 2018', 0.5],
+      ['October 28 2018', 0],
+      ['October 31 2018', -0.5],
+      ['November 1 2018', -1],
+      ['November 3 2018', -1.5],
+      ['November 8 2018', -2],
+      ['November 10 2018', -2.5],
+      ['November 12 2018', -3],
+      ['November 14 2018', -2.5],
+      ['November 16 2018', -3],
+      ['November 18 2018', -2.5],
+      ['November 21 2018', -3],
+      ['November 23 2018', -3.5],
+      ['November 24 2018', -3],
+      ['November 27 2018', -3.5],
+      ['November 29 2018', -4],
+      ['December 1 2018', -4.5],
+      ['December 2 2018', -5],
+      ['December 5 2018', -5.5],
+      ['December 6 2018', -6],
+      ['December 9 2018', -6.5],
+      ['December 11 2018', -7],
+      ['December 12 2018', -6.5],
+      ['December 14 2018', -7],
+      ['December 16 2018', -7.5],
+      ['December 18 2018', -7],
+      ['December 20 2018', -6.5],
+      ['December 21 2018', -6],
+      ['December 23 2018', -6.5],
+      ['December 27 2018', -6],
+      ['December 29 2018', -5.5],
+      ['January 1 2019', -6],
+      ['January 3 2019', -6.5],
+      ['January 6 2019', -6],
+      ['January 7 2019', -6.5],
+      ['January 9 2019', -7],
+      ['January 12 2019', -7.5],
+      ['January 14 2019', -8],
+      ['January 17 2019', -8.5],
+      ['January 20 2019', -8],
+      ['January 22 2019', -7.5],
+      ['February 1 2019', -7],
+      ['February 2 2019', -6.5],
+      ['February 5 2019', -6],
+      ['February 7 2019', -5.5],
+      ['February 10 2019', -5],
+      ['February 12 2019', -5.5],
+      ['February 14 2019', -5],
+      ['February 16 2019', -5.5],
+      ['February 18 2019', -5],
+      ['February 20 2019', -4.5],
+      ['February 22 2019', -5],
+      ['February 24 2019', -5.5],
+      ['February 27 2019', -5],
+      ['March 2 2019', -5.5],
+      ['March 3 2019', -6],
+      ['March 7 2019', -5.5],
+      ['March 9 2019', -5],
+      ['March 11 2019', -4.5],
+      ['March 13 2019', -4],
+      ['March 16 2019', -3.5],
+      ['March 18 2019', -4],
+      ['March 21 2019', -4.5],
+      ['March 23 2019', -5],
+      ['March 24 2019', -4.5],
+      ['March 26 2019', -5],
+      ['March 28 2019', -4.5],
+      ['March 30 2019', -5],
+      ['April 1 2019', -5.5],
+      ['April 3 2019', -5],
+      ['April 5 2019', -4.5],
+      ['April 6 2019', -5]
     ]
   },
-  "Colorado Avalanche": {
-    "team": "Colorado Avalanche",
-    "year": 2018,
-    "games": [
-      [
-        "October 4 2018",
-        0.5
-      ],
-      [
-        "October 6 2018",
-        1
-      ],
-      [
-        "October 9 2018",
-        0.5
-      ],
-      [
-        "October 11 2018",
-        1
-      ],
-      [
-        "October 13 2018",
-        0.5
-      ],
-      [
-        "October 16 2018",
-        0
-      ],
-      [
-        "October 18 2018",
-        0.5
-      ],
-      [
-        "October 20 2018",
-        1
-      ],
-      [
-        "October 22 2018",
-        1.5
-      ],
-      [
-        "October 24 2018",
-        1
-      ],
-      [
-        "October 26 2018",
-        1.5
-      ],
-      [
-        "October 27 2018",
-        1
-      ],
-      [
-        "November 1 2018",
-        0.5
-      ],
-      [
-        "November 2 2018",
-        0
-      ],
-      [
-        "November 7 2018",
-        -0.5
-      ],
-      [
-        "November 9 2018",
-        -1
-      ],
-      [
-        "November 11 2018",
-        -0.5
-      ],
-      [
-        "November 14 2018",
-        0
-      ],
-      [
-        "November 16 2018",
-        -0.5
-      ],
-      [
-        "November 18 2018",
-        0
-      ],
-      [
-        "November 21 2018",
-        0.5
-      ],
-      [
-        "November 23 2018",
-        1
-      ],
-      [
-        "November 24 2018",
-        1.5
-      ],
-      [
-        "November 27 2018",
-        2
-      ],
-      [
-        "November 28 2018",
-        2.5
-      ],
-      [
-        "November 30 2018",
-        2
-      ],
-      [
-        "December 2 2018",
-        2.5
-      ],
-      [
-        "December 4 2018",
-        2
-      ],
-      [
-        "December 6 2018",
-        2.5
-      ],
-      [
-        "December 8 2018",
-        2
-      ],
-      [
-        "December 11 2018",
-        1.5
-      ],
-      [
-        "December 14 2018",
-        1
-      ],
-      [
-        "December 15 2018",
-        1.5
-      ],
-      [
-        "December 17 2018",
-        1
-      ],
-      [
-        "December 19 2018",
-        1.5
-      ],
-      [
-        "December 21 2018",
-        1
-      ],
-      [
-        "December 22 2018",
-        0.5
-      ],
-      [
-        "December 27 2018",
-        0
-      ],
-      [
-        "December 29 2018",
-        -0.5
-      ],
-      [
-        "December 31 2018",
-        -1
-      ],
-      [
-        "January 2 2019",
-        -1.5
-      ],
-      [
-        "January 4 2019",
-        -1
-      ]
+  'Colorado Avalanche': {
+    team: 'Colorado Avalanche',
+    year: 2018,
+    games: [
+      ['October 4 2018', 0.5],
+      ['October 6 2018', 1],
+      ['October 9 2018', 0.5],
+      ['October 11 2018', 1],
+      ['October 13 2018', 0.5],
+      ['October 16 2018', 0],
+      ['October 18 2018', 0.5],
+      ['October 20 2018', 1],
+      ['October 22 2018', 1.5],
+      ['October 24 2018', 1],
+      ['October 26 2018', 1.5],
+      ['October 27 2018', 1],
+      ['November 1 2018', 0.5],
+      ['November 2 2018', 0],
+      ['November 7 2018', -0.5],
+      ['November 9 2018', -1],
+      ['November 11 2018', -0.5],
+      ['November 14 2018', 0],
+      ['November 16 2018', -0.5],
+      ['November 18 2018', 0],
+      ['November 21 2018', 0.5],
+      ['November 23 2018', 1],
+      ['November 24 2018', 1.5],
+      ['November 27 2018', 2],
+      ['November 28 2018', 2.5],
+      ['November 30 2018', 2],
+      ['December 2 2018', 2.5],
+      ['December 4 2018', 2],
+      ['December 6 2018', 2.5],
+      ['December 8 2018', 2],
+      ['December 11 2018', 1.5],
+      ['December 14 2018', 1],
+      ['December 15 2018', 1.5],
+      ['December 17 2018', 1],
+      ['December 19 2018', 1.5],
+      ['December 21 2018', 1],
+      ['December 22 2018', 0.5],
+      ['December 27 2018', 0],
+      ['December 29 2018', -0.5],
+      ['December 31 2018', -1],
+      ['January 2 2019', -1.5],
+      ['January 4 2019', -1],
+      ['January 8 2019', -1.5],
+      ['January 9 2019', -2],
+      ['January 12 2019', -2.5],
+      ['January 14 2019', -2],
+      ['January 16 2019', -2.5],
+      ['January 19 2019', -2],
+      ['January 21 2019', -2.5],
+      ['January 23 2019', -3],
+      ['February 2 2019', -3.5],
+      ['February 5 2019', -4],
+      ['February 7 2019', -4.5],
+      ['February 9 2019', -5],
+      ['February 10 2019', -5.5],
+      ['February 12 2019', -6],
+      ['February 14 2019', -5.5],
+      ['February 16 2019', -6],
+      ['February 18 2019', -5.5],
+      ['February 20 2019', -5],
+      ['February 22 2019', -4.5],
+      ['February 23 2019', -4],
+      ['February 25 2019', -4.5],
+      ['February 27 2019', -4],
+      ['March 1 2019', -4.5],
+      ['March 3 2019', -5],
+      ['March 5 2019', -4.5],
+      ['March 7 2019', -5],
+      ['March 9 2019', -4.5],
+      ['March 11 2019', -5],
+      ['March 15 2019', -5.5],
+      ['March 17 2019', -5],
+      ['March 19 2019', -4.5],
+      ['March 21 2019', -4],
+      ['March 23 2019', -3.5],
+      ['March 24 2019', -4],
+      ['March 27 2019', -3.5],
+      ['March 29 2019', -3],
+      ['April 1 2019', -3.5],
+      ['April 2 2019', -3],
+      ['April 4 2019', -2.5],
+      ['April 6 2019', -3]
     ]
   },
-  "Dallas Stars": {
-    "team": "Dallas Stars",
-    "year": 2018,
-    "games": [
-      [
-        "October 4 2018",
-        0.5
-      ],
-      [
-        "October 6 2018",
-        1
-      ],
-      [
-        "October 9 2018",
-        0.5
-      ],
-      [
-        "October 13 2018",
-        1
-      ],
-      [
-        "October 15 2018",
-        0.5
-      ],
-      [
-        "October 16 2018",
-        0
-      ],
-      [
-        "October 19 2018",
-        -0.5
-      ],
-      [
-        "October 23 2018",
-        0
-      ],
-      [
-        "October 25 2018",
-        0.5
-      ],
-      [
-        "October 28 2018",
-        0
-      ],
-      [
-        "October 30 2018",
-        0.5
-      ],
-      [
-        "November 1 2018",
-        1
-      ],
-      [
-        "November 3 2018",
-        1.5
-      ],
-      [
-        "November 5 2018",
-        1
-      ],
-      [
-        "November 6 2018",
-        0.5
-      ],
-      [
-        "November 8 2018",
-        1
-      ],
-      [
-        "November 10 2018",
-        0.5
-      ],
-      [
-        "November 12 2018",
-        0
-      ],
-      [
-        "November 16 2018",
-        0.5
-      ],
-      [
-        "November 18 2018",
-        1
-      ],
-      [
-        "November 19 2018",
-        0.5
-      ],
-      [
-        "November 21 2018",
-        0
-      ],
-      [
-        "November 23 2018",
-        0.5
-      ],
-      [
-        "November 24 2018",
-        0
-      ],
-      [
-        "November 27 2018",
-        -0.5
-      ],
-      [
-        "November 28 2018",
-        0
-      ],
-      [
-        "December 1 2018",
-        0.5
-      ],
-      [
-        "December 3 2018",
-        1
-      ],
-      [
-        "December 7 2018",
-        1.5
-      ],
-      [
-        "December 9 2018",
-        1
-      ],
-      [
-        "December 12 2018",
-        0.5
-      ],
-      [
-        "December 13 2018",
-        0
-      ],
-      [
-        "December 15 2018",
-        -0.5
-      ],
-      [
-        "December 18 2018",
-        0
-      ],
-      [
-        "December 20 2018",
-        -0.5
-      ],
-      [
-        "December 22 2018",
-        0
-      ],
-      [
-        "December 23 2018",
-        -0.5
-      ],
-      [
-        "December 27 2018",
-        0
-      ],
-      [
-        "December 29 2018",
-        0.5
-      ],
-      [
-        "December 31 2018",
-        0
-      ],
-      [
-        "January 2 2019",
-        0.5
-      ],
-      [
-        "January 4 2019",
-        1
-      ]
+  'Dallas Stars': {
+    team: 'Dallas Stars',
+    year: 2018,
+    games: [
+      ['October 4 2018', 0.5],
+      ['October 6 2018', 1],
+      ['October 9 2018', 0.5],
+      ['October 13 2018', 1],
+      ['October 15 2018', 0.5],
+      ['October 16 2018', 0],
+      ['October 19 2018', -0.5],
+      ['October 23 2018', 0],
+      ['October 25 2018', 0.5],
+      ['October 28 2018', 0],
+      ['October 30 2018', 0.5],
+      ['November 1 2018', 1],
+      ['November 3 2018', 1.5],
+      ['November 5 2018', 1],
+      ['November 6 2018', 0.5],
+      ['November 8 2018', 1],
+      ['November 10 2018', 0.5],
+      ['November 12 2018', 0],
+      ['November 16 2018', 0.5],
+      ['November 18 2018', 1],
+      ['November 19 2018', 0.5],
+      ['November 21 2018', 0],
+      ['November 23 2018', 0.5],
+      ['November 24 2018', 0],
+      ['November 27 2018', -0.5],
+      ['November 28 2018', 0],
+      ['December 1 2018', 0.5],
+      ['December 3 2018', 1],
+      ['December 7 2018', 1.5],
+      ['December 9 2018', 1],
+      ['December 12 2018', 0.5],
+      ['December 13 2018', 0],
+      ['December 15 2018', -0.5],
+      ['December 18 2018', 0],
+      ['December 20 2018', -0.5],
+      ['December 22 2018', 0],
+      ['December 23 2018', -0.5],
+      ['December 27 2018', 0],
+      ['December 29 2018', 0.5],
+      ['December 31 2018', 0],
+      ['January 2 2019', 0.5],
+      ['January 4 2019', 1],
+      ['January 6 2019', 0.5],
+      ['January 8 2019', 1],
+      ['January 10 2019', 0.5],
+      ['January 12 2019', 0],
+      ['January 15 2019', -0.5],
+      ['January 17 2019', -1],
+      ['January 19 2019', -0.5],
+      ['January 30 2019', 0],
+      ['February 1 2019', 0.5],
+      ['February 2 2019', 1],
+      ['February 4 2019', 1.5],
+      ['February 7 2019', 1],
+      ['February 9 2019', 0.5],
+      ['February 12 2019', 1],
+      ['February 14 2019', 0.5],
+      ['February 16 2019', 0],
+      ['February 19 2019', -0.5],
+      ['February 21 2019', 0],
+      ['February 23 2019', -0.5],
+      ['February 24 2019', 0],
+      ['February 26 2019', -0.5],
+      ['February 28 2019', 0],
+      ['March 2 2019', 0.5],
+      ['March 5 2019', 1],
+      ['March 7 2019', 1.5],
+      ['March 9 2019', 1],
+      ['March 12 2019', 1.5],
+      ['March 14 2019', 2],
+      ['March 15 2019', 1.5],
+      ['March 17 2019', 1],
+      ['March 19 2019', 1.5],
+      ['March 21 2019', 1],
+      ['March 23 2019', 0.5],
+      ['March 25 2019', 1],
+      ['March 27 2019', 1.5],
+      ['March 28 2019', 2],
+      ['March 30 2019', 1.5],
+      ['April 2 2019', 2],
+      ['April 5 2019', 1.5],
+      ['April 6 2019', 2]
     ]
   },
-  "Minnesota Wild": {
-    "team": "Minnesota Wild",
-    "year": 2018,
-    "games": [
-      [
-        "October 6 2018",
-        -1
-      ],
-      [
-        "October 11 2018",
-        -0.5
-      ],
-      [
-        "October 13 2018",
-        -1
-      ],
-      [
-        "October 15 2018",
-        -1.5
-      ],
-      [
-        "October 16 2018",
-        -1
-      ],
-      [
-        "October 19 2018",
-        -0.5
-      ],
-      [
-        "October 20 2018",
-        0
-      ],
-      [
-        "October 25 2018",
-        0.5
-      ],
-      [
-        "October 27 2018",
-        1
-      ],
-      [
-        "October 29 2018",
-        0.5
-      ],
-      [
-        "October 30 2018",
-        1
-      ],
-      [
-        "November 3 2018",
-        1.5
-      ],
-      [
-        "November 6 2018",
-        1
-      ],
-      [
-        "November 8 2018",
-        1.5
-      ],
-      [
-        "November 9 2018",
-        2
-      ],
-      [
-        "November 11 2018",
-        2.5
-      ],
-      [
-        "November 13 2018",
-        2
-      ],
-      [
-        "November 15 2018",
-        2.5
-      ],
-      [
-        "November 17 2018",
-        2
-      ],
-      [
-        "November 18 2018",
-        1.5
-      ],
-      [
-        "November 21 2018",
-        2
-      ],
-      [
-        "November 23 2018",
-        2.5
-      ],
-      [
-        "November 27 2018",
-        2
-      ],
-      [
-        "November 29 2018",
-        1.5
-      ],
-      [
-        "December 1 2018",
-        1
-      ],
-      [
-        "December 4 2018",
-        1.5
-      ],
-      [
-        "December 6 2018",
-        1
-      ],
-      [
-        "December 7 2018",
-        0.5
-      ],
-      [
-        "December 11 2018",
-        1
-      ],
-      [
-        "December 13 2018",
-        1.5
-      ],
-      [
-        "December 15 2018",
-        1
-      ],
-      [
-        "December 18 2018",
-        0.5
-      ],
-      [
-        "December 20 2018",
-        0
-      ],
-      [
-        "December 22 2018",
-        -0.5
-      ],
-      [
-        "December 27 2018",
-        -1
-      ],
-      [
-        "December 29 2018",
-        -0.5
-      ],
-      [
-        "December 31 2018",
-        -1
-      ],
-      [
-        "January 3 2019",
-        -0.5
-      ],
-      [
-        "January 5 2019",
-        0
-      ]
+  'Minnesota Wild': {
+    team: 'Minnesota Wild',
+    year: 2018,
+    games: [
+      ['October 6 2018', -1],
+      ['October 11 2018', -0.5],
+      ['October 13 2018', -1],
+      ['October 15 2018', -1.5],
+      ['October 16 2018', -1],
+      ['October 19 2018', -0.5],
+      ['October 20 2018', 0],
+      ['October 25 2018', 0.5],
+      ['October 27 2018', 1],
+      ['October 29 2018', 0.5],
+      ['October 30 2018', 1],
+      ['November 3 2018', 1.5],
+      ['November 6 2018', 1],
+      ['November 8 2018', 1.5],
+      ['November 9 2018', 2],
+      ['November 11 2018', 2.5],
+      ['November 13 2018', 2],
+      ['November 15 2018', 2.5],
+      ['November 17 2018', 2],
+      ['November 18 2018', 1.5],
+      ['November 21 2018', 2],
+      ['November 23 2018', 2.5],
+      ['November 27 2018', 2],
+      ['November 29 2018', 1.5],
+      ['December 1 2018', 1],
+      ['December 4 2018', 1.5],
+      ['December 6 2018', 1],
+      ['December 7 2018', 0.5],
+      ['December 11 2018', 1],
+      ['December 13 2018', 1.5],
+      ['December 15 2018', 1],
+      ['December 18 2018', 0.5],
+      ['December 20 2018', 0],
+      ['December 22 2018', -0.5],
+      ['December 27 2018', -1],
+      ['December 29 2018', -0.5],
+      ['December 31 2018', -1],
+      ['January 3 2019', -0.5],
+      ['January 5 2019', 0],
+      ['January 7 2019', 0.5],
+      ['January 8 2019', 0],
+      ['January 10 2019', 0.5],
+      ['January 12 2019', 0],
+      ['January 14 2019', -0.5],
+      ['January 15 2019', 0],
+      ['January 17 2019', -0.5],
+      ['January 19 2019', 0],
+      ['January 21 2019', 0.5],
+      ['January 23 2019', 1],
+      ['February 1 2019', 0.5],
+      ['February 2 2019', 0],
+      ['February 5 2019', -0.5],
+      ['February 7 2019', -1],
+      ['February 9 2019', -0.5],
+      ['February 10 2019', -1],
+      ['February 12 2019', -1.5],
+      ['February 15 2019', -2],
+      ['February 17 2019', -2.5],
+      ['February 19 2019', -3],
+      ['February 21 2019', -2.5],
+      ['February 22 2019', -2],
+      ['February 24 2019', -1.5],
+      ['February 26 2019', -1],
+      ['March 2 2019', -0.5],
+      ['March 3 2019', -1],
+      ['March 5 2019', -1.5],
+      ['March 7 2019', -1],
+      ['March 8 2019', -1.5],
+      ['March 11 2019', -2],
+      ['March 14 2019', -2.5],
+      ['March 16 2019', -2],
+      ['March 17 2019', -2.5],
+      ['March 19 2019', -3],
+      ['March 22 2019', -2.5],
+      ['March 23 2019', -3],
+      ['March 25 2019', -3.5],
+      ['March 29 2019', -3],
+      ['March 31 2019', -3.5],
+      ['April 2 2019', -3],
+      ['April 4 2019', -3.5],
+      ['April 6 2019', -4]
     ]
   },
-  "Nashville Predators": {
-    "team": "Nashville Predators",
-    "year": 2018,
-    "games": [
-      [
-        "October 4 2018",
-        0.5
-      ],
-      [
-        "October 6 2018",
-        1
-      ],
-      [
-        "October 9 2018",
-        0.5
-      ],
-      [
-        "October 11 2018",
-        1
-      ],
-      [
-        "October 13 2018",
-        1.5
-      ],
-      [
-        "October 15 2018",
-        2
-      ],
-      [
-        "October 19 2018",
-        2.5
-      ],
-      [
-        "October 20 2018",
-        3
-      ],
-      [
-        "October 23 2018",
-        2.5
-      ],
-      [
-        "October 25 2018",
-        3
-      ],
-      [
-        "October 27 2018",
-        2.5
-      ],
-      [
-        "October 30 2018",
-        3
-      ],
-      [
-        "November 1 2018",
-        3.5
-      ],
-      [
-        "November 3 2018",
-        4
-      ],
-      [
-        "November 7 2018",
-        4.5
-      ],
-      [
-        "November 10 2018",
-        5
-      ],
-      [
-        "November 12 2018",
-        4.5
-      ],
-      [
-        "November 13 2018",
-        4
-      ],
-      [
-        "November 15 2018",
-        3.5
-      ],
-      [
-        "November 17 2018",
-        4
-      ],
-      [
-        "November 19 2018",
-        4.5
-      ],
-      [
-        "November 21 2018",
-        5
-      ],
-      [
-        "November 23 2018",
-        4.5
-      ],
-      [
-        "November 25 2018",
-        5
-      ],
-      [
-        "November 27 2018",
-        4.5
-      ],
-      [
-        "November 29 2018",
-        4
-      ],
-      [
-        "December 1 2018",
-        4.5
-      ],
-      [
-        "December 3 2018",
-        5
-      ],
-      [
-        "December 6 2018",
-        4.5
-      ],
-      [
-        "December 8 2018",
-        4
-      ],
-      [
-        "December 11 2018",
-        4.5
-      ],
-      [
-        "December 13 2018",
-        5
-      ],
-      [
-        "December 15 2018",
-        5.5
-      ],
-      [
-        "December 17 2018",
-        5
-      ],
-      [
-        "December 18 2018",
-        4.5
-      ],
-      [
-        "December 20 2018",
-        4
-      ],
-      [
-        "December 22 2018",
-        3.5
-      ],
-      [
-        "December 27 2018",
-        3
-      ],
-      [
-        "December 29 2018",
-        2.5
-      ],
-      [
-        "December 31 2018",
-        3
-      ],
-      [
-        "January 1 2019",
-        3.5
-      ],
-      [
-        "January 4 2019",
-        3
-      ]
+  'Nashville Predators': {
+    team: 'Nashville Predators',
+    year: 2018,
+    games: [
+      ['October 4 2018', 0.5],
+      ['October 6 2018', 1],
+      ['October 9 2018', 0.5],
+      ['October 11 2018', 1],
+      ['October 13 2018', 1.5],
+      ['October 15 2018', 2],
+      ['October 19 2018', 2.5],
+      ['October 20 2018', 3],
+      ['October 23 2018', 2.5],
+      ['October 25 2018', 3],
+      ['October 27 2018', 2.5],
+      ['October 30 2018', 3],
+      ['November 1 2018', 3.5],
+      ['November 3 2018', 4],
+      ['November 7 2018', 4.5],
+      ['November 10 2018', 5],
+      ['November 12 2018', 4.5],
+      ['November 13 2018', 4],
+      ['November 15 2018', 3.5],
+      ['November 17 2018', 4],
+      ['November 19 2018', 4.5],
+      ['November 21 2018', 5],
+      ['November 23 2018', 4.5],
+      ['November 25 2018', 5],
+      ['November 27 2018', 4.5],
+      ['November 29 2018', 4],
+      ['December 1 2018', 4.5],
+      ['December 3 2018', 5],
+      ['December 6 2018', 4.5],
+      ['December 8 2018', 4],
+      ['December 11 2018', 4.5],
+      ['December 13 2018', 5],
+      ['December 15 2018', 5.5],
+      ['December 17 2018', 5],
+      ['December 18 2018', 4.5],
+      ['December 20 2018', 4],
+      ['December 22 2018', 3.5],
+      ['December 27 2018', 3],
+      ['December 29 2018', 2.5],
+      ['December 31 2018', 3],
+      ['January 1 2019', 3.5],
+      ['January 4 2019', 3],
+      ['January 5 2019', 3.5],
+      ['January 7 2019', 4],
+      ['January 9 2019', 4.5],
+      ['January 10 2019', 4],
+      ['January 13 2019', 3.5],
+      ['January 15 2019', 4],
+      ['January 17 2019', 3.5],
+      ['January 19 2019', 3],
+      ['January 21 2019', 3.5],
+      ['January 23 2019', 4],
+      ['February 1 2019', 4.5],
+      ['February 2 2019', 4],
+      ['February 5 2019', 4.5],
+      ['February 7 2019', 5],
+      ['February 9 2019', 4.5],
+      ['February 10 2019', 4],
+      ['February 12 2019', 3.5],
+      ['February 14 2019', 4],
+      ['February 16 2019', 3.5],
+      ['February 19 2019', 4],
+      ['February 21 2019', 4.5],
+      ['February 23 2019', 4],
+      ['February 25 2019', 4.5],
+      ['February 26 2019', 4],
+      ['March 1 2019', 3.5],
+      ['March 3 2019', 4],
+      ['March 5 2019', 4.5],
+      ['March 9 2019', 4],
+      ['March 12 2019', 3.5],
+      ['March 14 2019', 4],
+      ['March 16 2019', 4.5],
+      ['March 19 2019', 5],
+      ['March 21 2019', 4.5],
+      ['March 23 2019', 4],
+      ['March 25 2019', 4.5],
+      ['March 29 2019', 5],
+      ['March 30 2019', 4.5],
+      ['April 2 2019', 5],
+      ['April 4 2019', 5.5],
+      ['April 6 2019', 6]
     ]
   },
-  "St. Louis Blues": {
-    "team": "St. Louis Blues",
-    "year": 2018,
-    "games": [
-      [
-        "October 6 2018",
-        -1
-      ],
-      [
-        "October 11 2018",
-        -0.5
-      ],
-      [
-        "October 13 2018",
-        -1
-      ],
-      [
-        "October 14 2018",
-        -1.5
-      ],
-      [
-        "October 17 2018",
-        -2
-      ],
-      [
-        "October 20 2018",
-        -1.5
-      ],
-      [
-        "October 22 2018",
-        -2
-      ],
-      [
-        "October 25 2018",
-        -2.5
-      ],
-      [
-        "October 27 2018",
-        -2
-      ],
-      [
-        "November 1 2018",
-        -1.5
-      ],
-      [
-        "November 3 2018",
-        -2
-      ],
-      [
-        "November 6 2018",
-        -1.5
-      ],
-      [
-        "November 9 2018",
-        -1
-      ],
-      [
-        "November 11 2018",
-        -1.5
-      ],
-      [
-        "November 14 2018",
-        -2
-      ],
-      [
-        "November 16 2018",
-        -1.5
-      ],
-      [
-        "November 17 2018",
-        -2
-      ],
-      [
-        "November 19 2018",
-        -2.5
-      ],
-      [
-        "November 21 2018",
-        -3
-      ],
-      [
-        "November 23 2018",
-        -2.5
-      ],
-      [
-        "November 24 2018",
-        -3
-      ],
-      [
-        "November 28 2018",
-        -3.5
-      ],
-      [
-        "November 30 2018",
-        -3
-      ],
-      [
-        "December 1 2018",
-        -3.5
-      ],
-      [
-        "December 5 2018",
-        -4
-      ],
-      [
-        "December 7 2018",
-        -3.5
-      ],
-      [
-        "December 9 2018",
-        -4
-      ],
-      [
-        "December 11 2018",
-        -3.5
-      ],
-      [
-        "December 14 2018",
-        -3
-      ],
-      [
-        "December 16 2018",
-        -3.5
-      ],
-      [
-        "December 18 2018",
-        -3
-      ],
-      [
-        "December 20 2018",
-        -3.5
-      ],
-      [
-        "December 22 2018",
-        -3
-      ],
-      [
-        "December 27 2018",
-        -2.5
-      ],
-      [
-        "December 29 2018",
-        -3
-      ],
-      [
-        "December 31 2018",
-        -3.5
-      ],
-      [
-        "January 3 2019",
-        -3
-      ]
+  'St. Louis Blues': {
+    team: 'St. Louis Blues',
+    year: 2018,
+    games: [
+      ['October 6 2018', -1],
+      ['October 11 2018', -0.5],
+      ['October 13 2018', -1],
+      ['October 14 2018', -1.5],
+      ['October 17 2018', -2],
+      ['October 20 2018', -1.5],
+      ['October 22 2018', -2],
+      ['October 25 2018', -2.5],
+      ['October 27 2018', -2],
+      ['November 1 2018', -1.5],
+      ['November 3 2018', -2],
+      ['November 6 2018', -1.5],
+      ['November 9 2018', -1],
+      ['November 11 2018', -1.5],
+      ['November 14 2018', -2],
+      ['November 16 2018', -1.5],
+      ['November 17 2018', -2],
+      ['November 19 2018', -2.5],
+      ['November 21 2018', -3],
+      ['November 23 2018', -2.5],
+      ['November 24 2018', -3],
+      ['November 28 2018', -3.5],
+      ['November 30 2018', -3],
+      ['December 1 2018', -3.5],
+      ['December 5 2018', -4],
+      ['December 7 2018', -3.5],
+      ['December 9 2018', -4],
+      ['December 11 2018', -3.5],
+      ['December 14 2018', -3],
+      ['December 16 2018', -3.5],
+      ['December 18 2018', -3],
+      ['December 20 2018', -3.5],
+      ['December 22 2018', -3],
+      ['December 27 2018', -2.5],
+      ['December 29 2018', -3],
+      ['December 31 2018', -3.5],
+      ['January 3 2019', -3],
+      ['January 5 2019', -3.5],
+      ['January 7 2019', -3],
+      ['January 8 2019', -3.5],
+      ['January 10 2019', -3],
+      ['January 12 2019', -2.5],
+      ['January 14 2019', -2],
+      ['January 15 2019', -2.5],
+      ['January 17 2019', -3],
+      ['January 19 2019', -2.5],
+      ['January 21 2019', -3],
+      ['January 23 2019', -2.5],
+      ['February 2 2019', -2],
+      ['February 5 2019', -1.5],
+      ['February 7 2019', -1],
+      ['February 9 2019', -0.5],
+      ['February 10 2019', 0],
+      ['February 12 2019', 0.5],
+      ['February 14 2019', 1],
+      ['February 16 2019', 1.5],
+      ['February 17 2019', 2],
+      ['February 19 2019', 2.5],
+      ['February 21 2019', 2],
+      ['February 23 2019', 2.5],
+      ['February 24 2019', 2],
+      ['February 26 2019', 2.5],
+      ['March 1 2019', 2],
+      ['March 2 2019', 1.5],
+      ['March 6 2019', 2],
+      ['March 7 2019', 2.5],
+      ['March 9 2019', 2],
+      ['March 12 2019', 1.5],
+      ['March 14 2019', 1],
+      ['March 16 2019', 1.5],
+      ['March 17 2019', 1],
+      ['March 19 2019', 1.5],
+      ['March 21 2019', 2],
+      ['March 23 2019', 2.5],
+      ['March 25 2019', 3],
+      ['March 29 2019', 2.5],
+      ['March 30 2019', 3],
+      ['April 1 2019', 3.5],
+      ['April 3 2019', 3],
+      ['April 4 2019', 3.5],
+      ['April 6 2019', 4]
     ]
   },
-  "Winnipeg Jets": {
-    "team": "Winnipeg Jets",
-    "year": 2018,
-    "games": [
-      [
-        "October 4 2018",
-        0.5
-      ],
-      [
-        "October 6 2018",
-        0
-      ],
-      [
-        "October 9 2018",
-        0.5
-      ],
-      [
-        "October 11 2018",
-        0
-      ],
-      [
-        "October 14 2018",
-        0.5
-      ],
-      [
-        "October 16 2018",
-        0
-      ],
-      [
-        "October 18 2018",
-        0.5
-      ],
-      [
-        "October 20 2018",
-        1
-      ],
-      [
-        "October 22 2018",
-        1.5
-      ],
-      [
-        "October 24 2018",
-        1
-      ],
-      [
-        "October 26 2018",
-        1.5
-      ],
-      [
-        "October 27 2018",
-        1
-      ],
-      [
-        "November 1 2018",
-        1.5
-      ],
-      [
-        "November 2 2018",
-        1
-      ],
-      [
-        "November 9 2018",
-        1.5
-      ],
-      [
-        "November 11 2018",
-        2
-      ],
-      [
-        "November 14 2018",
-        2.5
-      ],
-      [
-        "November 16 2018",
-        2
-      ],
-      [
-        "November 19 2018",
-        2.5
-      ],
-      [
-        "November 21 2018",
-        2
-      ],
-      [
-        "November 23 2018",
-        1.5
-      ],
-      [
-        "November 24 2018",
-        2
-      ],
-      [
-        "November 27 2018",
-        1.5
-      ],
-      [
-        "November 29 2018",
-        2
-      ],
-      [
-        "December 1 2018",
-        2.5
-      ],
-      [
-        "December 2 2018",
-        3
-      ],
-      [
-        "December 4 2018",
-        3.5
-      ],
-      [
-        "December 7 2018",
-        3
-      ],
-      [
-        "December 9 2018",
-        3.5
-      ],
-      [
-        "December 11 2018",
-        4
-      ],
-      [
-        "December 13 2018",
-        4.5
-      ],
-      [
-        "December 14 2018",
-        5
-      ],
-      [
-        "December 16 2018",
-        5.5
-      ],
-      [
-        "December 18 2018",
-        5
-      ],
-      [
-        "December 20 2018",
-        5.5
-      ],
-      [
-        "December 22 2018",
-        6
-      ],
-      [
-        "December 27 2018",
-        5.5
-      ],
-      [
-        "December 29 2018",
-        5
-      ],
-      [
-        "December 31 2018",
-        5.5
-      ],
-      [
-        "January 4 2019",
-        5
-      ]
+  'Winnipeg Jets': {
+    team: 'Winnipeg Jets',
+    year: 2018,
+    games: [
+      ['October 4 2018', 0.5],
+      ['October 6 2018', 0],
+      ['October 9 2018', 0.5],
+      ['October 11 2018', 0],
+      ['October 14 2018', 0.5],
+      ['October 16 2018', 0],
+      ['October 18 2018', 0.5],
+      ['October 20 2018', 1],
+      ['October 22 2018', 1.5],
+      ['October 24 2018', 1],
+      ['October 26 2018', 1.5],
+      ['October 27 2018', 1],
+      ['November 1 2018', 1.5],
+      ['November 2 2018', 1],
+      ['November 9 2018', 1.5],
+      ['November 11 2018', 2],
+      ['November 14 2018', 2.5],
+      ['November 16 2018', 2],
+      ['November 19 2018', 2.5],
+      ['November 21 2018', 2],
+      ['November 23 2018', 1.5],
+      ['November 24 2018', 2],
+      ['November 27 2018', 1.5],
+      ['November 29 2018', 2],
+      ['December 1 2018', 2.5],
+      ['December 2 2018', 3],
+      ['December 4 2018', 3.5],
+      ['December 7 2018', 3],
+      ['December 9 2018', 3.5],
+      ['December 11 2018', 4],
+      ['December 13 2018', 4.5],
+      ['December 14 2018', 5],
+      ['December 16 2018', 5.5],
+      ['December 18 2018', 5],
+      ['December 20 2018', 5.5],
+      ['December 22 2018', 6],
+      ['December 27 2018', 5.5],
+      ['December 29 2018', 5],
+      ['December 31 2018', 5.5],
+      ['January 4 2019', 5],
+      ['January 6 2019', 5.5],
+      ['January 8 2019', 6],
+      ['January 10 2019', 5.5],
+      ['January 11 2019', 6],
+      ['January 13 2019', 6.5],
+      ['January 15 2019', 7],
+      ['January 17 2019', 7.5],
+      ['January 19 2019', 7],
+      ['January 28 2019', 6.5],
+      ['January 29 2019', 7],
+      ['January 31 2019', 7.5],
+      ['February 2 2019', 8],
+      ['February 5 2019', 7.5],
+      ['February 7 2019', 7],
+      ['February 9 2019', 6.5],
+      ['February 10 2019', 7],
+      ['February 12 2019', 7.5],
+      ['February 14 2019', 7],
+      ['February 16 2019', 6.5],
+      ['February 20 2019', 6],
+      ['February 22 2019', 6.5],
+      ['February 24 2019', 6],
+      ['February 26 2019', 5.5],
+      ['March 1 2019', 6],
+      ['March 3 2019', 6.5],
+      ['March 5 2019', 6],
+      ['March 8 2019', 6.5],
+      ['March 10 2019', 6],
+      ['March 12 2019', 5.5],
+      ['March 14 2019', 6],
+      ['March 16 2019', 6.5],
+      ['March 18 2019', 7],
+      ['March 20 2019', 7.5],
+      ['March 21 2019', 7],
+      ['March 23 2019', 7.5],
+      ['March 25 2019', 7],
+      ['March 28 2019', 6.5],
+      ['March 30 2019', 6],
+      ['April 1 2019', 6.5],
+      ['April 2 2019', 6],
+      ['April 4 2019', 5.5],
+      ['April 6 2019', 6]
     ]
   },
-  "Anaheim Ducks": {
-    "team": "Anaheim Ducks",
-    "year": 2018,
-    "games": [
-      [
-        "October 3 2018",
-        0.5
-      ],
-      [
-        "October 6 2018",
-        1
-      ],
-      [
-        "October 8 2018",
-        1.5
-      ],
-      [
-        "October 10 2018",
-        1
-      ],
-      [
-        "October 13 2018",
-        0.5
-      ],
-      [
-        "October 14 2018",
-        1
-      ],
-      [
-        "October 17 2018",
-        1.5
-      ],
-      [
-        "October 20 2018",
-        1
-      ],
-      [
-        "October 21 2018",
-        0.5
-      ],
-      [
-        "October 23 2018",
-        0
-      ],
-      [
-        "October 25 2018",
-        -0.5
-      ],
-      [
-        "October 28 2018",
-        -1
-      ],
-      [
-        "October 30 2018",
-        -1.5
-      ],
-      [
-        "November 1 2018",
-        -2
-      ],
-      [
-        "November 4 2018",
-        -1.5
-      ],
-      [
-        "November 6 2018",
-        -2
-      ],
-      [
-        "November 7 2018",
-        -1.5
-      ],
-      [
-        "November 9 2018",
-        -2
-      ],
-      [
-        "November 12 2018",
-        -1.5
-      ],
-      [
-        "November 14 2018",
-        -2
-      ],
-      [
-        "November 16 2018",
-        -2.5
-      ],
-      [
-        "November 18 2018",
-        -3
-      ],
-      [
-        "November 21 2018",
-        -2.5
-      ],
-      [
-        "November 23 2018",
-        -2
-      ],
-      [
-        "November 25 2018",
-        -2.5
-      ],
-      [
-        "November 27 2018",
-        -2
-      ],
-      [
-        "November 28 2018",
-        -1.5
-      ],
-      [
-        "November 30 2018",
-        -1
-      ],
-      [
-        "December 2 2018",
-        -0.5
-      ],
-      [
-        "December 5 2018",
-        0
-      ],
-      [
-        "December 7 2018",
-        -0.5
-      ],
-      [
-        "December 9 2018",
-        0
-      ],
-      [
-        "December 12 2018",
-        0.5
-      ],
-      [
-        "December 15 2018",
-        1
-      ],
-      [
-        "December 17 2018",
-        1.5
-      ],
-      [
-        "December 18 2018",
-        1
-      ],
-      [
-        "December 20 2018",
-        0.5
-      ],
-      [
-        "December 22 2018",
-        0
-      ],
-      [
-        "December 27 2018",
-        -0.5
-      ],
-      [
-        "December 29 2018",
-        -1
-      ],
-      [
-        "December 31 2018",
-        -1.5
-      ],
-      [
-        "January 4 2019",
-        -2
-      ]
+  'Anaheim Ducks': {
+    team: 'Anaheim Ducks',
+    year: 2018,
+    games: [
+      ['October 3 2018', 0.5],
+      ['October 6 2018', 1],
+      ['October 8 2018', 1.5],
+      ['October 10 2018', 1],
+      ['October 13 2018', 0.5],
+      ['October 14 2018', 1],
+      ['October 17 2018', 1.5],
+      ['October 20 2018', 1],
+      ['October 21 2018', 0.5],
+      ['October 23 2018', 0],
+      ['October 25 2018', -0.5],
+      ['October 28 2018', -1],
+      ['October 30 2018', -1.5],
+      ['November 1 2018', -2],
+      ['November 4 2018', -1.5],
+      ['November 6 2018', -2],
+      ['November 7 2018', -1.5],
+      ['November 9 2018', -2],
+      ['November 12 2018', -1.5],
+      ['November 14 2018', -2],
+      ['November 16 2018', -2.5],
+      ['November 18 2018', -3],
+      ['November 21 2018', -2.5],
+      ['November 23 2018', -2],
+      ['November 25 2018', -2.5],
+      ['November 27 2018', -2],
+      ['November 28 2018', -1.5],
+      ['November 30 2018', -1],
+      ['December 2 2018', -0.5],
+      ['December 5 2018', 0],
+      ['December 7 2018', -0.5],
+      ['December 9 2018', 0],
+      ['December 12 2018', 0.5],
+      ['December 15 2018', 1],
+      ['December 17 2018', 1.5],
+      ['December 18 2018', 1],
+      ['December 20 2018', 0.5],
+      ['December 22 2018', 0],
+      ['December 27 2018', -0.5],
+      ['December 29 2018', -1],
+      ['December 31 2018', -1.5],
+      ['January 4 2019', -2],
+      ['January 6 2019', -2.5],
+      ['January 9 2019', -3],
+      ['January 11 2019', -3.5],
+      ['January 13 2019', -4],
+      ['January 15 2019', -4.5],
+      ['January 17 2019', -4],
+      ['January 19 2019', -3.5],
+      ['January 20 2019', -4],
+      ['January 23 2019', -4.5],
+      ['February 2 2019', -5],
+      ['February 4 2019', -5.5],
+      ['February 5 2019', -6],
+      ['February 7 2019', -6.5],
+      ['February 9 2019', -7],
+      ['February 13 2019', -6.5],
+      ['February 15 2019', -7],
+      ['February 17 2019', -6.5],
+      ['February 19 2019', -6],
+      ['February 22 2019', -6.5],
+      ['February 23 2019', -7],
+      ['February 25 2019', -7.5],
+      ['February 27 2019', -8],
+      ['March 1 2019', -8.5],
+      ['March 3 2019', -8],
+      ['March 5 2019', -7.5],
+      ['March 6 2019', -8],
+      ['March 8 2019', -7.5],
+      ['March 10 2019', -8],
+      ['March 12 2019', -7.5],
+      ['March 14 2019', -8],
+      ['March 15 2019', -7.5],
+      ['March 17 2019', -7],
+      ['March 20 2019', -7.5],
+      ['March 22 2019', -7],
+      ['March 23 2019', -7.5],
+      ['March 26 2019', -7],
+      ['March 29 2019', -7.5],
+      ['March 30 2019', -7],
+      ['April 3 2019', -6.5],
+      ['April 5 2019', -6]
     ]
   },
-  "Arizona Coyotes": {
-    "team": "Arizona Coyotes",
-    "year": 2018,
-    "games": [
-      [
-        "October 10 2018",
-        -0.5
-      ],
-      [
-        "October 13 2018",
-        -1
-      ],
-      [
-        "October 16 2018",
-        -1.5
-      ],
-      [
-        "October 18 2018",
-        -1
-      ],
-      [
-        "October 20 2018",
-        -1.5
-      ],
-      [
-        "October 23 2018",
-        -1
-      ],
-      [
-        "October 25 2018",
-        -0.5
-      ],
-      [
-        "October 27 2018",
-        0
-      ],
-      [
-        "October 30 2018",
-        0.5
-      ],
-      [
-        "November 2 2018",
-        1
-      ],
-      [
-        "November 5 2018",
-        0.5
-      ],
-      [
-        "November 8 2018",
-        0
-      ],
-      [
-        "November 10 2018",
-        -0.5
-      ],
-      [
-        "November 11 2018",
-        0
-      ],
-      [
-        "November 13 2018",
-        -0.5
-      ],
-      [
-        "November 15 2018",
-        0
-      ],
-      [
-        "November 17 2018",
-        -0.5
-      ],
-      [
-        "November 21 2018",
-        -1
-      ],
-      [
-        "November 23 2018",
-        -1.5
-      ],
-      [
-        "November 25 2018",
-        -2
-      ],
-      [
-        "November 27 2018",
-        -1.5
-      ],
-      [
-        "November 29 2018",
-        -1
-      ],
-      [
-        "December 1 2018",
-        -0.5
-      ],
-      [
-        "December 4 2018",
-        0
-      ],
-      [
-        "December 6 2018",
-        -0.5
-      ],
-      [
-        "December 8 2018",
-        -1
-      ],
-      [
-        "December 11 2018",
-        -1.5
-      ],
-      [
-        "December 13 2018",
-        -2
-      ],
-      [
-        "December 14 2018",
-        -1.5
-      ],
-      [
-        "December 16 2018",
-        -2
-      ],
-      [
-        "December 18 2018",
-        -2.5
-      ],
-      [
-        "December 20 2018",
-        -3
-      ],
-      [
-        "December 22 2018",
-        -2.5
-      ],
-      [
-        "December 23 2018",
-        -2
-      ],
-      [
-        "December 27 2018",
-        -2.5
-      ],
-      [
-        "December 29 2018",
-        -2
-      ],
-      [
-        "December 30 2018",
-        -2.5
-      ],
-      [
-        "January 2 2019",
-        -3
-      ],
-      [
-        "January 4 2019",
-        -3.5
-      ]
+  'Arizona Coyotes': {
+    team: 'Arizona Coyotes',
+    year: 2018,
+    games: [
+      ['October 10 2018', -0.5],
+      ['October 13 2018', -1],
+      ['October 16 2018', -1.5],
+      ['October 18 2018', -1],
+      ['October 20 2018', -1.5],
+      ['October 23 2018', -1],
+      ['October 25 2018', -0.5],
+      ['October 27 2018', 0],
+      ['October 30 2018', 0.5],
+      ['November 2 2018', 1],
+      ['November 5 2018', 0.5],
+      ['November 8 2018', 0],
+      ['November 10 2018', -0.5],
+      ['November 11 2018', 0],
+      ['November 13 2018', -0.5],
+      ['November 15 2018', 0],
+      ['November 17 2018', -0.5],
+      ['November 21 2018', -1],
+      ['November 23 2018', -1.5],
+      ['November 25 2018', -2],
+      ['November 27 2018', -1.5],
+      ['November 29 2018', -1],
+      ['December 1 2018', -0.5],
+      ['December 4 2018', 0],
+      ['December 6 2018', -0.5],
+      ['December 8 2018', -1],
+      ['December 11 2018', -1.5],
+      ['December 13 2018', -2],
+      ['December 14 2018', -1.5],
+      ['December 16 2018', -2],
+      ['December 18 2018', -2.5],
+      ['December 20 2018', -3],
+      ['December 22 2018', -2.5],
+      ['December 23 2018', -2],
+      ['December 27 2018', -2.5],
+      ['December 29 2018', -2],
+      ['December 30 2018', -2.5],
+      ['January 2 2019', -3],
+      ['January 4 2019', -3.5],
+      ['January 6 2019', -3],
+      ['January 10 2019', -2.5],
+      ['January 12 2019', -2],
+      ['January 13 2019', -2.5],
+      ['January 16 2019', -2],
+      ['January 18 2019', -2.5],
+      ['January 20 2019', -2],
+      ['January 22 2019', -1.5],
+      ['January 23 2019', -2],
+      ['February 2 2019', -2.5],
+      ['February 4 2019', -3],
+      ['February 5 2019', -3.5],
+      ['February 7 2019', -4],
+      ['February 9 2019', -3.5],
+      ['February 12 2019', -3],
+      ['February 14 2019', -3.5],
+      ['February 16 2019', -3],
+      ['February 18 2019', -3.5],
+      ['February 19 2019', -3],
+      ['February 21 2019', -2.5],
+      ['February 24 2019', -2],
+      ['February 26 2019', -1.5],
+      ['February 28 2019', -1],
+      ['March 2 2019', -0.5],
+      ['March 5 2019', -1],
+      ['March 7 2019', -0.5],
+      ['March 9 2019', 0],
+      ['March 11 2019', -0.5],
+      ['March 12 2019', 0],
+      ['March 14 2019', 0.5],
+      ['March 16 2019', 0],
+      ['March 18 2019', -0.5],
+      ['March 21 2019', -1],
+      ['March 23 2019', -1.5],
+      ['March 24 2019', -2],
+      ['March 26 2019', -1.5],
+      ['March 29 2019', -2],
+      ['March 31 2019', -1.5],
+      ['April 2 2019', -2],
+      ['April 4 2019', -1.5],
+      ['April 6 2019', -2]
     ]
   },
-  "Calgary Flames": {
-    "team": "Calgary Flames",
-    "year": 2018,
-    "games": [
-      [
-        "October 6 2018",
-        0
-      ],
-      [
-        "October 9 2018",
-        0.5
-      ],
-      [
-        "October 11 2018",
-        0
-      ],
-      [
-        "October 13 2018",
-        0.5
-      ],
-      [
-        "October 17 2018",
-        1
-      ],
-      [
-        "October 19 2018",
-        0.5
-      ],
-      [
-        "October 21 2018",
-        1
-      ],
-      [
-        "October 23 2018",
-        0.5
-      ],
-      [
-        "October 25 2018",
-        0
-      ],
-      [
-        "October 27 2018",
-        -0.5
-      ],
-      [
-        "October 29 2018",
-        0
-      ],
-      [
-        "October 30 2018",
-        0.5
-      ],
-      [
-        "November 1 2018",
-        1
-      ],
-      [
-        "November 3 2018",
-        1.5
-      ],
-      [
-        "November 7 2018",
-        1
-      ],
-      [
-        "November 10 2018",
-        1.5
-      ],
-      [
-        "November 11 2018",
-        1
-      ],
-      [
-        "November 15 2018",
-        0.5
-      ],
-      [
-        "November 17 2018",
-        1
-      ],
-      [
-        "November 19 2018",
-        1.5
-      ],
-      [
-        "November 21 2018",
-        2
-      ],
-      [
-        "November 23 2018",
-        1.5
-      ],
-      [
-        "November 25 2018",
-        2
-      ],
-      [
-        "November 28 2018",
-        1.5
-      ],
-      [
-        "November 30 2018",
-        2
-      ],
-      [
-        "December 2 2018",
-        2.5
-      ],
-      [
-        "December 4 2018",
-        3
-      ],
-      [
-        "December 6 2018",
-        3.5
-      ],
-      [
-        "December 8 2018",
-        4
-      ],
-      [
-        "December 9 2018",
-        3.5
-      ],
-      [
-        "December 12 2018",
-        4
-      ],
-      [
-        "December 15 2018",
-        4.5
-      ],
-      [
-        "December 16 2018",
-        5
-      ],
-      [
-        "December 18 2018",
-        4.5
-      ],
-      [
-        "December 20 2018",
-        4
-      ],
-      [
-        "December 22 2018",
-        3.5
-      ],
-      [
-        "December 27 2018",
-        4
-      ],
-      [
-        "December 29 2018",
-        3.5
-      ],
-      [
-        "December 31 2018",
-        4
-      ],
-      [
-        "January 2 2019",
-        4.5
-      ],
-      [
-        "January 3 2019",
-        4
-      ],
-      [
-        "January 5 2019",
-        4.5
-      ]
+  'Calgary Flames': {
+    team: 'Calgary Flames',
+    year: 2018,
+    games: [
+      ['October 6 2018', 0],
+      ['October 9 2018', 0.5],
+      ['October 11 2018', 0],
+      ['October 13 2018', 0.5],
+      ['October 17 2018', 1],
+      ['October 19 2018', 0.5],
+      ['October 21 2018', 1],
+      ['October 23 2018', 0.5],
+      ['October 25 2018', 0],
+      ['October 27 2018', -0.5],
+      ['October 29 2018', 0],
+      ['October 30 2018', 0.5],
+      ['November 1 2018', 1],
+      ['November 3 2018', 1.5],
+      ['November 7 2018', 1],
+      ['November 10 2018', 1.5],
+      ['November 11 2018', 1],
+      ['November 15 2018', 0.5],
+      ['November 17 2018', 1],
+      ['November 19 2018', 1.5],
+      ['November 21 2018', 2],
+      ['November 23 2018', 1.5],
+      ['November 25 2018', 2],
+      ['November 28 2018', 1.5],
+      ['November 30 2018', 2],
+      ['December 2 2018', 2.5],
+      ['December 4 2018', 3],
+      ['December 6 2018', 3.5],
+      ['December 8 2018', 4],
+      ['December 9 2018', 3.5],
+      ['December 12 2018', 4],
+      ['December 15 2018', 4.5],
+      ['December 16 2018', 5],
+      ['December 18 2018', 4.5],
+      ['December 20 2018', 4],
+      ['December 22 2018', 3.5],
+      ['December 27 2018', 4],
+      ['December 29 2018', 3.5],
+      ['December 31 2018', 4],
+      ['January 2 2019', 4.5],
+      ['January 3 2019', 4],
+      ['January 5 2019', 4.5],
+      ['January 7 2019', 5],
+      ['January 9 2019', 5.5],
+      ['January 11 2019', 6],
+      ['January 13 2019', 6.5],
+      ['January 16 2019', 6],
+      ['January 18 2019', 6.5],
+      ['January 19 2019', 7],
+      ['January 22 2019', 7.5],
+      ['February 1 2019', 7],
+      ['February 3 2019', 7.5],
+      ['February 7 2019', 7],
+      ['February 9 2019', 6.5],
+      ['February 12 2019', 6],
+      ['February 14 2019', 5.5],
+      ['February 16 2019', 6],
+      ['February 18 2019', 6.5],
+      ['February 20 2019', 7],
+      ['February 22 2019', 7.5],
+      ['February 24 2019', 8],
+      ['February 26 2019', 8.5],
+      ['February 27 2019', 9],
+      ['March 2 2019', 8.5],
+      ['March 4 2019', 8],
+      ['March 6 2019', 7.5],
+      ['March 7 2019', 7],
+      ['March 10 2019', 7.5],
+      ['March 12 2019', 8],
+      ['March 15 2019', 8.5],
+      ['March 16 2019', 8],
+      ['March 19 2019', 8.5],
+      ['March 21 2019', 9],
+      ['March 23 2019', 9.5],
+      ['March 25 2019', 9],
+      ['March 27 2019', 8.5],
+      ['March 29 2019', 9],
+      ['March 31 2019', 9.5],
+      ['April 1 2019', 10],
+      ['April 3 2019', 9.5],
+      ['April 6 2019', 9]
     ]
   },
-  "Edmonton Oilers": {
-    "team": "Edmonton Oilers",
-    "year": 2018,
-    "games": [
-      [
-        "October 13 2018",
-        -0.5
-      ],
-      [
-        "October 16 2018",
-        0
-      ],
-      [
-        "October 18 2018",
-        0.5
-      ],
-      [
-        "October 20 2018",
-        0
-      ],
-      [
-        "October 23 2018",
-        -0.5
-      ],
-      [
-        "October 25 2018",
-        0
-      ],
-      [
-        "October 27 2018",
-        0.5
-      ],
-      [
-        "October 28 2018",
-        1
-      ],
-      [
-        "October 30 2018",
-        0.5
-      ],
-      [
-        "November 1 2018",
-        1
-      ],
-      [
-        "November 3 2018",
-        1.5
-      ],
-      [
-        "November 5 2018",
-        1
-      ],
-      [
-        "November 6 2018",
-        0.5
-      ],
-      [
-        "November 8 2018",
-        0
-      ],
-      [
-        "November 11 2018",
-        -0.5
-      ],
-      [
-        "November 13 2018",
-        0
-      ],
-      [
-        "November 17 2018",
-        -0.5
-      ],
-      [
-        "November 18 2018",
-        -1
-      ],
-      [
-        "November 20 2018",
-        -0.5
-      ],
-      [
-        "November 23 2018",
-        -1
-      ],
-      [
-        "November 25 2018",
-        -1.5
-      ],
-      [
-        "November 27 2018",
-        -1
-      ],
-      [
-        "November 29 2018",
-        -0.5
-      ],
-      [
-        "December 1 2018",
-        0
-      ],
-      [
-        "December 3 2018",
-        -0.5
-      ],
-      [
-        "December 5 2018",
-        0
-      ],
-      [
-        "December 7 2018",
-        0.5
-      ],
-      [
-        "December 9 2018",
-        1
-      ],
-      [
-        "December 11 2018",
-        1.5
-      ],
-      [
-        "December 13 2018",
-        1
-      ],
-      [
-        "December 14 2018",
-        1.5
-      ],
-      [
-        "December 16 2018",
-        1
-      ],
-      [
-        "December 18 2018",
-        0.5
-      ],
-      [
-        "December 22 2018",
-        0
-      ],
-      [
-        "December 27 2018",
-        -0.5
-      ],
-      [
-        "December 29 2018",
-        -1
-      ],
-      [
-        "December 31 2018",
-        -1.5
-      ],
-      [
-        "January 2 2019",
-        -1
-      ]
+  'Edmonton Oilers': {
+    team: 'Edmonton Oilers',
+    year: 2018,
+    games: [
+      ['October 13 2018', -0.5],
+      ['October 16 2018', 0],
+      ['October 18 2018', 0.5],
+      ['October 20 2018', 0],
+      ['October 23 2018', -0.5],
+      ['October 25 2018', 0],
+      ['October 27 2018', 0.5],
+      ['October 28 2018', 1],
+      ['October 30 2018', 0.5],
+      ['November 1 2018', 1],
+      ['November 3 2018', 1.5],
+      ['November 5 2018', 1],
+      ['November 6 2018', 0.5],
+      ['November 8 2018', 0],
+      ['November 11 2018', -0.5],
+      ['November 13 2018', 0],
+      ['November 17 2018', -0.5],
+      ['November 18 2018', -1],
+      ['November 20 2018', -0.5],
+      ['November 23 2018', -1],
+      ['November 25 2018', -1.5],
+      ['November 27 2018', -1],
+      ['November 29 2018', -0.5],
+      ['December 1 2018', 0],
+      ['December 3 2018', -0.5],
+      ['December 5 2018', 0],
+      ['December 7 2018', 0.5],
+      ['December 9 2018', 1],
+      ['December 11 2018', 1.5],
+      ['December 13 2018', 1],
+      ['December 14 2018', 1.5],
+      ['December 16 2018', 1],
+      ['December 18 2018', 0.5],
+      ['December 22 2018', 0],
+      ['December 27 2018', -0.5],
+      ['December 29 2018', -1],
+      ['December 31 2018', -1.5],
+      ['January 2 2019', -1],
+      ['January 5 2019', -1.5],
+      ['January 6 2019', -1],
+      ['January 8 2019', -1.5],
+      ['January 10 2019', -1],
+      ['January 12 2019', -1.5],
+      ['January 14 2019', -1],
+      ['January 16 2019', -0.5],
+      ['January 19 2019', -1],
+      ['January 20 2019', -1.5],
+      ['January 22 2019', -2],
+      ['February 2 2019', -2.5],
+      ['February 3 2019', -3],
+      ['February 5 2019', -3.5],
+      ['February 7 2019', -3],
+      ['February 9 2019', -3.5],
+      ['February 13 2019', -4],
+      ['February 15 2019', -4.5],
+      ['February 16 2019', -5],
+      ['February 19 2019', -5.5],
+      ['February 21 2019', -5],
+      ['February 23 2019', -4.5],
+      ['February 25 2019', -5],
+      ['February 27 2019', -5.5],
+      ['February 28 2019', -5],
+      ['March 2 2019', -4.5],
+      ['March 4 2019', -4],
+      ['March 7 2019', -3.5],
+      ['March 9 2019', -4],
+      ['March 11 2019', -3.5],
+      ['March 13 2019', -4],
+      ['March 16 2019', -3.5],
+      ['March 17 2019', -4],
+      ['March 19 2019', -4.5],
+      ['March 21 2019', -4],
+      ['March 23 2019', -4.5],
+      ['March 26 2019', -4],
+      ['March 28 2019', -4.5],
+      ['March 30 2019', -5],
+      ['April 1 2019', -5.5],
+      ['April 2 2019', -6],
+      ['April 4 2019', -6.5],
+      ['April 6 2019', -6]
     ]
   },
-  "Los Angeles Kings": {
-    "team": "Los Angeles Kings",
-    "year": 2018,
-    "games": [
-      [
-        "October 5 2018",
-        -0.5
-      ],
-      [
-        "October 7 2018",
-        0
-      ],
-      [
-        "October 9 2018",
-        -0.5
-      ],
-      [
-        "October 11 2018",
-        0
-      ],
-      [
-        "October 13 2018",
-        -0.5
-      ],
-      [
-        "October 15 2018",
-        -1
-      ],
-      [
-        "October 18 2018",
-        -1.5
-      ],
-      [
-        "October 20 2018",
-        -2
-      ],
-      [
-        "October 23 2018",
-        -2.5
-      ],
-      [
-        "October 25 2018",
-        -3
-      ],
-      [
-        "October 28 2018",
-        -2.5
-      ],
-      [
-        "November 1 2018",
-        -3
-      ],
-      [
-        "November 3 2018",
-        -2.5
-      ],
-      [
-        "November 6 2018",
-        -2
-      ],
-      [
-        "November 8 2018",
-        -2.5
-      ],
-      [
-        "November 10 2018",
-        -3
-      ],
-      [
-        "November 13 2018",
-        -3.5
-      ],
-      [
-        "November 16 2018",
-        -3
-      ],
-      [
-        "November 17 2018",
-        -3.5
-      ],
-      [
-        "November 19 2018",
-        -3
-      ],
-      [
-        "November 21 2018",
-        -3.5
-      ],
-      [
-        "November 24 2018",
-        -4
-      ],
-      [
-        "November 25 2018",
-        -3.5
-      ],
-      [
-        "November 27 2018",
-        -3
-      ],
-      [
-        "November 29 2018",
-        -3.5
-      ],
-      [
-        "November 30 2018",
-        -4
-      ],
-      [
-        "December 2 2018",
-        -3.5
-      ],
-      [
-        "December 4 2018",
-        -4
-      ],
-      [
-        "December 6 2018",
-        -4.5
-      ],
-      [
-        "December 8 2018",
-        -4
-      ],
-      [
-        "December 10 2018",
-        -4.5
-      ],
-      [
-        "December 11 2018",
-        -5
-      ],
-      [
-        "December 13 2018",
-        -5.5
-      ],
-      [
-        "December 15 2018",
-        -6
-      ],
-      [
-        "December 18 2018",
-        -5.5
-      ],
-      [
-        "December 22 2018",
-        -5
-      ],
-      [
-        "December 23 2018",
-        -4.5
-      ],
-      [
-        "December 27 2018",
-        -4
-      ],
-      [
-        "December 29 2018",
-        -4.5
-      ],
-      [
-        "December 31 2018",
-        -4
-      ],
-      [
-        "January 1 2019",
-        -4.5
-      ],
-      [
-        "January 3 2019",
-        -5
-      ]
+  'Los Angeles Kings': {
+    team: 'Los Angeles Kings',
+    year: 2018,
+    games: [
+      ['October 5 2018', -0.5],
+      ['October 7 2018', 0],
+      ['October 9 2018', -0.5],
+      ['October 11 2018', 0],
+      ['October 13 2018', -0.5],
+      ['October 15 2018', -1],
+      ['October 18 2018', -1.5],
+      ['October 20 2018', -2],
+      ['October 23 2018', -2.5],
+      ['October 25 2018', -3],
+      ['October 28 2018', -2.5],
+      ['November 1 2018', -3],
+      ['November 3 2018', -2.5],
+      ['November 6 2018', -2],
+      ['November 8 2018', -2.5],
+      ['November 10 2018', -3],
+      ['November 13 2018', -3.5],
+      ['November 16 2018', -3],
+      ['November 17 2018', -3.5],
+      ['November 19 2018', -3],
+      ['November 21 2018', -3.5],
+      ['November 24 2018', -4],
+      ['November 25 2018', -3.5],
+      ['November 27 2018', -3],
+      ['November 29 2018', -3.5],
+      ['November 30 2018', -4],
+      ['December 2 2018', -3.5],
+      ['December 4 2018', -4],
+      ['December 6 2018', -4.5],
+      ['December 8 2018', -4],
+      ['December 10 2018', -4.5],
+      ['December 11 2018', -5],
+      ['December 13 2018', -5.5],
+      ['December 15 2018', -6],
+      ['December 18 2018', -5.5],
+      ['December 22 2018', -5],
+      ['December 23 2018', -4.5],
+      ['December 27 2018', -4],
+      ['December 29 2018', -4.5],
+      ['December 31 2018', -4],
+      ['January 1 2019', -4.5],
+      ['January 3 2019', -5],
+      ['January 5 2019', -4.5],
+      ['January 7 2019', -5],
+      ['January 10 2019', -5.5],
+      ['January 12 2019', -5],
+      ['January 15 2019', -5.5],
+      ['January 17 2019', -5],
+      ['January 19 2019', -5.5],
+      ['January 21 2019', -5],
+      ['February 2 2019', -5.5],
+      ['February 4 2019', -5],
+      ['February 5 2019', -4.5],
+      ['February 7 2019', -4],
+      ['February 9 2019', -4.5],
+      ['February 11 2019', -5],
+      ['February 14 2019', -5.5],
+      ['February 16 2019', -6],
+      ['February 18 2019', -6.5],
+      ['February 21 2019', -7],
+      ['February 23 2019', -7.5],
+      ['February 25 2019', -8],
+      ['February 26 2019', -8.5],
+      ['February 28 2019', -9],
+      ['March 2 2019', -8.5],
+      ['March 5 2019', -9],
+      ['March 7 2019', -9.5],
+      ['March 9 2019', -10],
+      ['March 10 2019', -9.5],
+      ['March 14 2019', -10],
+      ['March 16 2019', -10.5],
+      ['March 18 2019', -11],
+      ['March 21 2019', -10.5],
+      ['March 23 2019', -10],
+      ['March 25 2019', -9.5],
+      ['March 26 2019', -10],
+      ['March 28 2019', -10.5],
+      ['March 30 2019', -10],
+      ['April 1 2019', -10.5],
+      ['April 2 2019', -10],
+      ['April 5 2019', -10.5],
+      ['April 6 2019', -10]
     ]
   },
-  "San Jose Sharks": {
-    "team": "San Jose Sharks",
-    "year": 2018,
-    "games": [
-      [
-        "October 5 2018",
-        0
-      ],
-      [
-        "October 8 2018",
-        -0.5
-      ],
-      [
-        "October 9 2018",
-        0
-      ],
-      [
-        "October 11 2018",
-        -0.5
-      ],
-      [
-        "October 14 2018",
-        -1
-      ],
-      [
-        "October 18 2018",
-        -0.5
-      ],
-      [
-        "October 20 2018",
-        0
-      ],
-      [
-        "October 23 2018",
-        0.5
-      ],
-      [
-        "October 26 2018",
-        0
-      ],
-      [
-        "October 28 2018",
-        0.5
-      ],
-      [
-        "October 30 2018",
-        0
-      ],
-      [
-        "November 1 2018",
-        -0.5
-      ],
-      [
-        "November 3 2018",
-        0
-      ],
-      [
-        "November 6 2018",
-        0.5
-      ],
-      [
-        "November 8 2018",
-        0
-      ],
-      [
-        "November 9 2018",
-        -0.5
-      ],
-      [
-        "November 11 2018",
-        0
-      ],
-      [
-        "November 13 2018",
-        0.5
-      ],
-      [
-        "November 15 2018",
-        0
-      ],
-      [
-        "November 17 2018",
-        0.5
-      ],
-      [
-        "November 20 2018",
-        0
-      ],
-      [
-        "November 23 2018",
-        0.5
-      ],
-      [
-        "November 24 2018",
-        0
-      ],
-      [
-        "November 27 2018",
-        -0.5
-      ],
-      [
-        "November 28 2018",
-        -1
-      ],
-      [
-        "December 1 2018",
-        -1.5
-      ],
-      [
-        "December 2 2018",
-        -1
-      ],
-      [
-        "December 5 2018",
-        -0.5
-      ],
-      [
-        "December 7 2018",
-        -1
-      ],
-      [
-        "December 8 2018",
-        -0.5
-      ],
-      [
-        "December 10 2018",
-        0
-      ],
-      [
-        "December 13 2018",
-        0.5
-      ],
-      [
-        "December 16 2018",
-        1
-      ],
-      [
-        "December 18 2018",
-        1.5
-      ],
-      [
-        "December 20 2018",
-        1
-      ],
-      [
-        "December 22 2018",
-        0.5
-      ],
-      [
-        "December 23 2018",
-        0
-      ],
-      [
-        "December 27 2018",
-        0.5
-      ],
-      [
-        "December 29 2018",
-        1
-      ],
-      [
-        "December 31 2018",
-        0.5
-      ],
-      [
-        "January 2 2019",
-        1
-      ]
+  'San Jose Sharks': {
+    team: 'San Jose Sharks',
+    year: 2018,
+    games: [
+      ['October 5 2018', 0],
+      ['October 8 2018', -0.5],
+      ['October 9 2018', 0],
+      ['October 11 2018', -0.5],
+      ['October 14 2018', -1],
+      ['October 18 2018', -0.5],
+      ['October 20 2018', 0],
+      ['October 23 2018', 0.5],
+      ['October 26 2018', 0],
+      ['October 28 2018', 0.5],
+      ['October 30 2018', 0],
+      ['November 1 2018', -0.5],
+      ['November 3 2018', 0],
+      ['November 6 2018', 0.5],
+      ['November 8 2018', 0],
+      ['November 9 2018', -0.5],
+      ['November 11 2018', 0],
+      ['November 13 2018', 0.5],
+      ['November 15 2018', 0],
+      ['November 17 2018', 0.5],
+      ['November 20 2018', 0],
+      ['November 23 2018', 0.5],
+      ['November 24 2018', 0],
+      ['November 27 2018', -0.5],
+      ['November 28 2018', -1],
+      ['December 1 2018', -1.5],
+      ['December 2 2018', -1],
+      ['December 5 2018', -0.5],
+      ['December 7 2018', -1],
+      ['December 8 2018', -0.5],
+      ['December 10 2018', 0],
+      ['December 13 2018', 0.5],
+      ['December 16 2018', 1],
+      ['December 18 2018', 1.5],
+      ['December 20 2018', 1],
+      ['December 22 2018', 0.5],
+      ['December 23 2018', 0],
+      ['December 27 2018', 0.5],
+      ['December 29 2018', 1],
+      ['December 31 2018', 0.5],
+      ['January 2 2019', 1],
+      ['January 5 2019', 1.5],
+      ['January 7 2019', 2],
+      ['January 8 2019', 2.5],
+      ['January 10 2019', 3],
+      ['January 12 2019', 3.5],
+      ['January 15 2019', 4],
+      ['January 16 2019', 3.5],
+      ['January 19 2019', 3],
+      ['January 21 2019', 2.5],
+      ['January 22 2019', 3],
+      ['February 2 2019', 3.5],
+      ['February 5 2019', 4],
+      ['February 7 2019', 4.5],
+      ['February 9 2019', 5],
+      ['February 11 2019', 5.5],
+      ['February 14 2019', 5],
+      ['February 16 2019', 5.5],
+      ['February 18 2019', 5],
+      ['February 21 2019', 5.5],
+      ['February 23 2019', 5],
+      ['February 24 2019', 5.5],
+      ['February 26 2019', 5],
+      ['March 1 2019', 5.5],
+      ['March 3 2019', 6],
+      ['March 7 2019', 6.5],
+      ['March 9 2019', 7],
+      ['March 11 2019', 7.5],
+      ['March 12 2019', 8],
+      ['March 14 2019', 7.5],
+      ['March 16 2019', 7],
+      ['March 18 2019', 6.5],
+      ['March 21 2019', 6],
+      ['March 22 2019', 5.5],
+      ['March 25 2019', 5],
+      ['March 28 2019', 4.5],
+      ['March 30 2019', 5],
+      ['March 31 2019', 4.5],
+      ['April 2 2019', 4],
+      ['April 4 2019', 4.5],
+      ['April 6 2019', 5]
     ]
   },
-  "Vancouver Canucks": {
-    "team": "Vancouver Canucks",
-    "year": 2018,
-    "games": [
-      [
-        "October 3 2018",
-        0.5
-      ],
-      [
-        "October 6 2018",
-        0
-      ],
-      [
-        "October 9 2018",
-        -0.5
-      ],
-      [
-        "October 11 2018",
-        0
-      ],
-      [
-        "October 13 2018",
-        0.5
-      ],
-      [
-        "October 16 2018",
-        1
-      ],
-      [
-        "October 18 2018",
-        0.5
-      ],
-      [
-        "October 20 2018",
-        1
-      ],
-      [
-        "October 22 2018",
-        0.5
-      ],
-      [
-        "October 24 2018",
-        1
-      ],
-      [
-        "October 25 2018",
-        0.5
-      ],
-      [
-        "October 27 2018",
-        0
-      ],
-      [
-        "October 29 2018",
-        0.5
-      ],
-      [
-        "October 31 2018",
-        1
-      ],
-      [
-        "November 2 2018",
-        1.5
-      ],
-      [
-        "November 6 2018",
-        1
-      ],
-      [
-        "November 8 2018",
-        1.5
-      ],
-      [
-        "November 10 2018",
-        1
-      ],
-      [
-        "November 12 2018",
-        0.5
-      ],
-      [
-        "November 13 2018",
-        0
-      ],
-      [
-        "November 15 2018",
-        -0.5
-      ],
-      [
-        "November 17 2018",
-        -1
-      ],
-      [
-        "November 19 2018",
-        -1.5
-      ],
-      [
-        "November 21 2018",
-        -2
-      ],
-      [
-        "November 23 2018",
-        -2.5
-      ],
-      [
-        "November 24 2018",
-        -2
-      ],
-      [
-        "November 27 2018",
-        -2.5
-      ],
-      [
-        "November 29 2018",
-        -3
-      ],
-      [
-        "December 1 2018",
-        -3.5
-      ],
-      [
-        "December 4 2018",
-        -4
-      ],
-      [
-        "December 6 2018",
-        -3.5
-      ],
-      [
-        "December 9 2018",
-        -3
-      ],
-      [
-        "December 11 2018",
-        -2.5
-      ],
-      [
-        "December 13 2018",
-        -3
-      ],
-      [
-        "December 15 2018",
-        -2.5
-      ],
-      [
-        "December 16 2018",
-        -2
-      ],
-      [
-        "December 18 2018",
-        -2.5
-      ],
-      [
-        "December 20 2018",
-        -2
-      ],
-      [
-        "December 22 2018",
-        -2.5
-      ],
-      [
-        "December 27 2018",
-        -2
-      ],
-      [
-        "December 29 2018",
-        -1.5
-      ],
-      [
-        "December 31 2018",
-        -2
-      ],
-      [
-        "January 2 2019",
-        -1.5
-      ],
-      [
-        "January 3 2019",
-        -2
-      ]
+  'Vancouver Canucks': {
+    team: 'Vancouver Canucks',
+    year: 2018,
+    games: [
+      ['October 3 2018', 0.5],
+      ['October 6 2018', 0],
+      ['October 9 2018', -0.5],
+      ['October 11 2018', 0],
+      ['October 13 2018', 0.5],
+      ['October 16 2018', 1],
+      ['October 18 2018', 0.5],
+      ['October 20 2018', 1],
+      ['October 22 2018', 0.5],
+      ['October 24 2018', 1],
+      ['October 25 2018', 0.5],
+      ['October 27 2018', 0],
+      ['October 29 2018', 0.5],
+      ['October 31 2018', 1],
+      ['November 2 2018', 1.5],
+      ['November 6 2018', 1],
+      ['November 8 2018', 1.5],
+      ['November 10 2018', 1],
+      ['November 12 2018', 0.5],
+      ['November 13 2018', 0],
+      ['November 15 2018', -0.5],
+      ['November 17 2018', -1],
+      ['November 19 2018', -1.5],
+      ['November 21 2018', -2],
+      ['November 23 2018', -2.5],
+      ['November 24 2018', -2],
+      ['November 27 2018', -2.5],
+      ['November 29 2018', -3],
+      ['December 1 2018', -3.5],
+      ['December 4 2018', -4],
+      ['December 6 2018', -3.5],
+      ['December 9 2018', -3],
+      ['December 11 2018', -2.5],
+      ['December 13 2018', -3],
+      ['December 15 2018', -2.5],
+      ['December 16 2018', -2],
+      ['December 18 2018', -2.5],
+      ['December 20 2018', -2],
+      ['December 22 2018', -2.5],
+      ['December 27 2018', -2],
+      ['December 29 2018', -1.5],
+      ['December 31 2018', -2],
+      ['January 2 2019', -1.5],
+      ['January 3 2019', -2],
+      ['January 5 2019', -2.5],
+      ['January 10 2019', -3],
+      ['January 13 2019', -2.5],
+      ['January 16 2019', -3],
+      ['January 18 2019', -2.5],
+      ['January 20 2019', -2],
+      ['January 23 2019', -2.5],
+      ['February 2 2019', -2],
+      ['February 4 2019', -2.5],
+      ['February 5 2019', -3],
+      ['February 7 2019', -3.5],
+      ['February 9 2019', -3],
+      ['February 11 2019', -3.5],
+      ['February 13 2019', -4],
+      ['February 14 2019', -3.5],
+      ['February 16 2019', -4],
+      ['February 21 2019', -4.5],
+      ['February 23 2019', -5],
+      ['February 25 2019', -4.5],
+      ['February 27 2019', -5],
+      ['February 28 2019', -5.5],
+      ['March 3 2019', -6],
+      ['March 6 2019', -5.5],
+      ['March 7 2019', -6],
+      ['March 9 2019', -6.5],
+      ['March 13 2019', -6],
+      ['March 15 2019', -6.5],
+      ['March 17 2019', -6],
+      ['March 18 2019', -5.5],
+      ['March 20 2019', -5],
+      ['March 23 2019', -5.5],
+      ['March 24 2019', -6],
+      ['March 26 2019', -6.5],
+      ['March 28 2019', -6],
+      ['March 30 2019', -5.5],
+      ['April 2 2019', -5],
+      ['April 4 2019', -5.5],
+      ['April 6 2019', -6]
     ]
   },
-  "Vegas Golden Knights": {
-    "team": "Vegas Golden Knights",
-    "year": 2018,
-    "games": [
-      [
-        "October 6 2018",
-        0
-      ],
-      [
-        "October 8 2018",
-        -0.5
-      ],
-      [
-        "October 10 2018",
-        -1
-      ],
-      [
-        "October 11 2018",
-        -1.5
-      ],
-      [
-        "October 13 2018",
-        -1
-      ],
-      [
-        "October 16 2018",
-        -0.5
-      ],
-      [
-        "October 20 2018",
-        0
-      ],
-      [
-        "October 24 2018",
-        -0.5
-      ],
-      [
-        "October 26 2018",
-        -1
-      ],
-      [
-        "October 28 2018",
-        -0.5
-      ],
-      [
-        "October 30 2018",
-        -1
-      ],
-      [
-        "November 1 2018",
-        -1.5
-      ],
-      [
-        "November 3 2018",
-        -1
-      ],
-      [
-        "November 6 2018",
-        -1.5
-      ],
-      [
-        "November 8 2018",
-        -1
-      ],
-      [
-        "November 10 2018",
-        -1.5
-      ],
-      [
-        "November 11 2018",
-        -2
-      ],
-      [
-        "November 14 2018",
-        -1.5
-      ],
-      [
-        "November 16 2018",
-        -2
-      ],
-      [
-        "November 18 2018",
-        -1.5
-      ],
-      [
-        "November 19 2018",
-        -2
-      ],
-      [
-        "November 21 2018",
-        -1.5
-      ],
-      [
-        "November 23 2018",
-        -1
-      ],
-      [
-        "November 24 2018",
-        -0.5
-      ],
-      [
-        "November 27 2018",
-        0
-      ],
-      [
-        "November 29 2018",
-        0.5
-      ],
-      [
-        "December 1 2018",
-        0
-      ],
-      [
-        "December 4 2018",
-        0.5
-      ],
-      [
-        "December 6 2018",
-        1
-      ],
-      [
-        "December 8 2018",
-        0.5
-      ],
-      [
-        "December 9 2018",
-        1
-      ],
-      [
-        "December 12 2018",
-        1.5
-      ],
-      [
-        "December 14 2018",
-        1
-      ],
-      [
-        "December 16 2018",
-        1.5
-      ],
-      [
-        "December 17 2018",
-        1
-      ],
-      [
-        "December 20 2018",
-        1.5
-      ],
-      [
-        "December 22 2018",
-        1
-      ],
-      [
-        "December 23 2018",
-        0.5
-      ],
-      [
-        "December 27 2018",
-        1
-      ],
-      [
-        "December 29 2018",
-        1.5
-      ],
-      [
-        "December 30 2018",
-        2
-      ],
-      [
-        "January 1 2019",
-        2.5
-      ],
-      [
-        "January 4 2019",
-        3
-      ]
+  'Vegas Golden Knights': {
+    team: 'Vegas Golden Knights',
+    year: 2018,
+    games: [
+      ['October 6 2018', 0],
+      ['October 8 2018', -0.5],
+      ['October 10 2018', -1],
+      ['October 11 2018', -1.5],
+      ['October 13 2018', -1],
+      ['October 16 2018', -0.5],
+      ['October 20 2018', 0],
+      ['October 24 2018', -0.5],
+      ['October 26 2018', -1],
+      ['October 28 2018', -0.5],
+      ['October 30 2018', -1],
+      ['November 1 2018', -1.5],
+      ['November 3 2018', -1],
+      ['November 6 2018', -1.5],
+      ['November 8 2018', -1],
+      ['November 10 2018', -1.5],
+      ['November 11 2018', -2],
+      ['November 14 2018', -1.5],
+      ['November 16 2018', -2],
+      ['November 18 2018', -1.5],
+      ['November 19 2018', -2],
+      ['November 21 2018', -1.5],
+      ['November 23 2018', -1],
+      ['November 24 2018', -0.5],
+      ['November 27 2018', 0],
+      ['November 29 2018', 0.5],
+      ['December 1 2018', 0],
+      ['December 4 2018', 0.5],
+      ['December 6 2018', 1],
+      ['December 8 2018', 0.5],
+      ['December 9 2018', 1],
+      ['December 12 2018', 1.5],
+      ['December 14 2018', 1],
+      ['December 16 2018', 1.5],
+      ['December 17 2018', 1],
+      ['December 20 2018', 1.5],
+      ['December 22 2018', 1],
+      ['December 23 2018', 0.5],
+      ['December 27 2018', 1],
+      ['December 29 2018', 1.5],
+      ['December 30 2018', 2],
+      ['January 1 2019', 2.5],
+      ['January 4 2019', 3],
+      ['January 6 2019', 3.5],
+      ['January 8 2019', 4],
+      ['January 10 2019', 3.5],
+      ['January 12 2019', 4],
+      ['January 15 2019', 3.5],
+      ['January 19 2019', 4],
+      ['January 21 2019', 3.5],
+      ['January 23 2019', 3],
+      ['February 1 2019', 2.5],
+      ['February 2 2019', 2],
+      ['February 5 2019', 2.5],
+      ['February 7 2019', 3],
+      ['February 9 2019', 2.5],
+      ['February 12 2019', 2],
+      ['February 14 2019', 1.5],
+      ['February 16 2019', 2],
+      ['February 18 2019', 1.5],
+      ['February 20 2019', 1],
+      ['February 22 2019', 0.5],
+      ['February 26 2019', 1],
+      ['February 28 2019', 1.5],
+      ['March 1 2019', 2],
+      ['March 3 2019', 2.5],
+      ['March 6 2019', 3],
+      ['March 9 2019', 3.5],
+      ['March 10 2019', 3],
+      ['March 15 2019', 3.5],
+      ['March 17 2019', 4],
+      ['March 18 2019', 4.5],
+      ['March 21 2019', 5],
+      ['March 23 2019', 4.5],
+      ['March 25 2019', 4],
+      ['March 27 2019', 3.5],
+      ['March 29 2019', 3],
+      ['March 30 2019', 2.5],
+      ['April 1 2019', 3],
+      ['April 4 2019', 2.5],
+      ['April 6 2019', 2]
     ]
   }
 }

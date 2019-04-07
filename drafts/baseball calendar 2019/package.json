@@ -16,18 +16,18 @@
     "somehow": "0.0.16",
     "somehow-input": "0.0.7",
     "sometime": "0.0.8",
-    "spacetime": "5.4.0",
+    "spacetime": "5.5.0",
     "spencer-color": "0.1.0",
-    "wtf_wikipedia": "7.2.10"
+    "wtf_wikipedia": "7.3.0"
   },
   "devDependencies": {
-    "@babel/core": "7.3.4",
-    "@babel/preset-env": "7.3.4",
+    "@babel/core": "7.4.3",
+    "@babel/preset-env": "7.4.3",
     "babelify": "10.0.0",
     "budo": "11.6.1",
     "derequire": "2.0.6",
-    "slow": "0.0.13",
-    "terser": "3.16.1",
+    "slow": "1.0.1",
+    "terser": "3.17.0",
     "wtf-mlb": "1.1.3"
   }
 }
