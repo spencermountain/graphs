@@ -2,7 +2,7 @@
   "name": "",
   "description": "",
   "version": "0.0.1",
-  "licence":"CC-BY-4.0",
+  "licence": "CC-BY-4.0",
   "private": true,
   "author": "Spencer Kelly (spencermountain)",
   "homepage": "https://github.com/spencermountain/frown#readme",
@@ -12,18 +12,25 @@
     "build": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | derequire > ./assets/bundle.js",
     "build:old": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | terser -m -c > ./assets/bundle.js"
   },
+  "prettier": {
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100
+  },
   "dependencies": {
-    "somehow": "0.0.9",
-    "spacetime": "5.2.1",
+    "somehow": "0.0.17",
+    "spacetime": "5.7.0",
     "spencer-color": "0.1.0",
-    "wtf_wikipedia": "7.2.8"
+    "wtf_wikipedia": "7.3.0"
   },
   "devDependencies": {
-    "@babel/core": "7.2.2",
-    "@babel/preset-env": "7.2.3",
+    "@babel/core": "7.4.3",
+    "@babel/preset-env": "7.4.3",
     "babelify": "10.0.0",
-    "budo": "11.5.0",
+    "budo": "11.6.2",
     "derequire": "2.0.6",
-    "terser": "3.14.1"
+    "terser": "3.17.0"
   }
 }

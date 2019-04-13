@@ -20,16 +20,23 @@
     "url": "https://github.com/spencermountain/frown/issues"
   },
   "homepage": "https://github.com/spencermountain/frown#readme",
+  "prettier": {
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100
+  },
   "devDependencies": {
-    "@babel/core": "7.3.4",
-    "@babel/preset-env": "7.3.4",
+    "@babel/core": "7.4.3",
+    "@babel/preset-env": "7.4.3",
     "babelify": "10.0.0",
-    "budo": "11.6.1",
+    "budo": "11.6.2",
     "derequire": "2.0.6",
     "shelljs": "0.8.3"
   },
   "dependencies": {
-    "htm": "2.1.0",
+    "htm": "2.1.1",
     "spencer-color": "0.1.0",
     "spencer-css": "1.0.2",
     "vhtml": "2.1.0"
