@@ -91,6 +91,10 @@ module.exports = {
     num: '06',
     title: 'nhl arenas',
     thumb: 'thumb.png'
+  }, {
+    num: '07',
+    title: 'baseball schedule',
+    thumb: 'thumb.png'
   }]
 };
 

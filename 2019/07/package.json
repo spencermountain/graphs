@@ -15,7 +15,7 @@
   "dependencies": {
     "somehow": "0.0.16",
     "somehow-input": "0.0.7",
-    "sometime": "0.0.8",
+    "somehow-calendar": "0.1.1",
     "spacetime": "5.5.0",
     "spencer-color": "0.1.0",
     "wtf_wikipedia": "7.3.0"
@@ -24,7 +24,7 @@
     "@babel/core": "7.4.3",
     "@babel/preset-env": "7.4.3",
     "babelify": "10.0.0",
-    "budo": "11.6.1",
+    "budo": "11.6.2",
     "derequire": "2.0.6",
     "slow": "1.0.1",
     "terser": "3.17.0",
