@@ -48,19 +48,19 @@ el.innerHTML = result.join(' ');
 module.exports = {
   '2018': [{
     num: '01',
-    title: 'sports seasons by city',
+    title: 'Sports seasons by city',
     thumb: 'thumb.png'
   }, {
     num: '02',
-    title: 'weather by latitude',
+    title: 'Weather by latitude',
     thumb: 'thumb.png'
   }, {
     num: '03',
-    title: 'lunar astronauts by age',
+    title: 'Lunar astronauts by age',
     thumb: 'thumb.png'
   }, {
     num: '04',
-    title: 'toronto and montreal',
+    title: 'Toronto and montreal',
     thumb: 'thumb.png'
   }, {
     num: '05',
@@ -69,7 +69,7 @@ module.exports = {
   }],
   '2019': [{
     num: '01',
-    title: 'nhl seasons by team',
+    title: 'NHL performance by team',
     thumb: 'thumb.png'
   }, {
     num: '02',
@@ -89,11 +89,11 @@ module.exports = {
     thumb: 'thumb.png'
   }, {
     num: '06',
-    title: 'nhl arenas',
+    title: 'NHL arenas',
     thumb: 'thumb.png'
   }, {
     num: '07',
-    title: 'baseball schedule',
+    title: 'Baseball schedule',
     thumb: 'thumb.png'
   }]
 };
