@@ -13,10 +13,10 @@
     "build:old": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | terser -m -c > ./assets/bundle.js"
   },
   "dependencies": {
-    "somehow": "0.0.16",
+    "somehow": "0.0.17",
+    "somehow-calendar": "0.2.1",
     "somehow-input": "0.0.7",
-    "somehow-calendar": "0.1.1",
-    "spacetime": "5.5.0",
+    "spacetime": "5.7.0",
     "spencer-color": "0.1.0",
     "wtf_wikipedia": "7.3.0"
   },

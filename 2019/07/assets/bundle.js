@@ -10896,14 +10896,17 @@ var input = _dereq_('somehow-input');
 
 var init = 'Toronto Blue Jays'; // console.log(sometime)
 
-var home = '#275291';
-var away = '#2D85A8';
+var home = '#415abe';
+var away = '#5969a6';
 var options = {
   show_today: false
 };
 
 var drawTeam = function drawTeam(team) {
   var cal = calendar.months('March 1 2019', 'Oct 2 2019', options);
+  cal.width('2rem');
+  cal.height('2rem');
+  cal.radius('3px');
   var schedule = schedules.find(function (o) {
     return o.team === team;
   }).games;
@@ -10930,7 +10933,7 @@ drawTeam(init);
 
 },{"./data/schedules":1,"somehow-calendar":3,"somehow-input":4}],3:[function(_dereq_,module,exports){
 (function (global){
-/* somehow-calendar v0.1.1
+/* somehow-calendar v0.2.1
    github.com/spencermountain/somehow-calendar
    MIT
 */
@@ -15284,7 +15287,9 @@ var htm = _dereq_('htm');
 
 var vhtml = _dereq_('vhtml');
 
-var drawMonth = _dereq_('./month');
+var drawMonth = _dereq_('./draw/month');
+
+var drawTimeline = _dereq_('./draw/timeline');
 
 var styles = {
   container: "\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  align-items: flex-start;\n  text-align: center;\n  flex-wrap: wrap;\n  align-self: stretch;\n  "
@@ -15307,6 +15312,9 @@ function () {
     this.start = spacetime(start);
     this.end = spacetime(end);
     this.options = Object.assign({}, defaults, options);
+    this._width = '0.9rem';
+    this._height = '1rem';
+    this._radius = '1px';
     this.data = {
       colors: {},
       underline: {}
@@ -15318,6 +15326,24 @@ function () {
     key: "bind",
     value: function bind(r) {
       this.h = htm.bind(r);
+      return this;
+    }
+  }, {
+    key: "width",
+    value: function width(w) {
+      this._width = w;
+      return this;
+    }
+  }, {
+    key: "height",
+    value: function height(h) {
+      this._height = h;
+      return this;
+    }
+  }, {
+    key: "radius",
+    value: function radius(r) {
+      this._radius = r;
       return this;
     }
   }, {
@@ -15367,6 +15393,10 @@ function () {
       beginning = beginning.startOf('month').minus(2, 'hours');
       var months = beginning.every('month', this.end);
       months = months.map(function (d) {
+        if (_this3.options.mode === 'timeline') {
+          return drawTimeline(d, _this3);
+        }
+
         return drawMonth(d, _this3);
       });
       return this.h(_templateObject(), styles.container, months);
@@ -15378,18 +15408,7 @@ function () {
 
 module.exports = Show;
 
-},{"./month":6,"htm":1,"spacetime":2,"vhtml":3}],5:[function(_dereq_,module,exports){
-"use strict";
-
-var Show = _dereq_('./Show');
-
-module.exports = {
-  months: function months(start, end) {
-    return new Show(start, end);
-  }
-};
-
-},{"./Show":4}],6:[function(_dereq_,module,exports){
+},{"./draw/month":5,"./draw/timeline":6,"htm":1,"spacetime":2,"vhtml":3}],5:[function(_dereq_,module,exports){
 "use strict";
 
 function _templateObject3() {
@@ -15429,7 +15448,7 @@ var spacetime = _dereq_('spacetime');
 var today = spacetime.now();
 var styles = {
   month: "\n    margin: 0.35rem;\n  ",
-  monthName: "\n    font-size: .667rem;\n    color: #838b91;\n    text-align: center;\n    margin-bottom: 0.2rem;\n    margin-top: 0.2rem;\n  ",
+  monthName: "\n    font-size: .53rem;\n    color: #838b91;\n    text-align: right;\n    margin-bottom: 0.2rem;\n    margin-top: 0.2rem;\n    margin-right: 0.7rem;\n  ",
   week: "\n    display: flex;\n    flex-direction: row;\n    justify-content: space-around;\n    align-items: center;\n    text-align: center;\n    flex-wrap: nowrap;\n    align-self: stretch;\n  "
 };
 
@@ -15445,10 +15464,11 @@ var drawDay = function drawDay(d, cal, month) {
   var style = {
     'flex-basis': 50,
     flex: 1,
-    'min-width': '0.9rem',
-    height: '1rem',
+    'min-width': cal._width,
+    height: cal._height,
     border: '1px solid #d7d5d2',
     'box-sizing': 'border-box',
+    'border-radius': cal._radius,
     'font-size': '9px',
     color: '#a3a5a5',
     overflow: 'hidden' //don't show leading/trailing days
@@ -15491,7 +15511,6 @@ var drawDay = function drawDay(d, cal, month) {
 
   if (cal.data.colors[date]) {
     style['background-color'] = cal.data.colors[date];
-    style['border'] = '1px solid ' + cal.data.colors[date];
   } //is it underlined?
 
 
@@ -15512,6 +15531,7 @@ var drawWeek = function drawWeek(w, cal, month) {
 };
 
 var drawMonth = function drawMonth(start, cal) {
+  var monthName = start.format('month-short');
   start = start.startOf('month');
   var month = start.format('month');
   var end = start.endOf('month');
@@ -15519,12 +15539,188 @@ var drawMonth = function drawMonth(start, cal) {
   var weeks = start.every('week', end).map(function (d) {
     return drawWeek(d, cal, month);
   });
-  return cal.h(_templateObject3(), styles.month, styles.monthName, month, weeks);
+  return cal.h(_templateObject3(), styles.month, styles.monthName, monthName, weeks);
 };
 
 module.exports = drawMonth;
 
-},{"spacetime":2}]},{},[5])(5)
+},{"spacetime":2}],6:[function(_dereq_,module,exports){
+"use strict";
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["<div style=\"", "\">\n    <div style=\"", "\">", "</div>\n    <div style=\"", "\">\n      ", "\n    </div>\n  </div>"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3() {
+  var data = _taggedTemplateLiteral(["<div style=\"margin-left:0.9rem;\"></div>"]);
+
+  _templateObject3 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["<div style=", ">\n    ", "\n  </div>"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["<div style=\"", "\" title=\"", "\">\n    ", "\n  </div>"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var spacetime = _dereq_('spacetime');
+
+var today = spacetime.now();
+var styles = {
+  month: "\n    margin-left: -0.9rem;\n  ",
+  weeks: "\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  align-items: center;\n  text-align: center;\n  flex-wrap: nowrap;\n  align-self: stretch;\n  ",
+  monthName: "\n    font-size: .53rem;\n    color: #a3a5a5;\n    max-width:10px;\n    text-align: center;\n    margin-bottom: 0rem;\n    margin-top: 0.2rem;\n    margin-left: 0.5rem;\n    transform:rotate(-45deg)\n  ",
+  week: "\n    display: flex;\n    flex-direction: column-reverse;\n    justify-content: space-around;\n    align-items: center;\n    text-align: center;\n    flex-wrap: nowrap;\n    align-self: stretch;\n  "
+};
+
+var toStyle = function toStyle(obj) {
+  return Object.keys(obj).reduce(function (str, k) {
+    str += "".concat(k, ":").concat(obj[k], "; ");
+    return str;
+  }, '');
+}; //
+
+
+var drawDay = function drawDay(d, cal, month, weekNum) {
+  var style = {
+    'flex-basis': 50,
+    flex: 1,
+    'min-height': cal._height,
+    'min-width': cal._width,
+    height: cal._height,
+    border: '1px solid #d7d5d2',
+    'box-sizing': 'border-box',
+    'border-radius': cal._radius,
+    'font-size': '9px',
+    color: '#a3a5a5',
+    overflow: 'hidden' // transform: 'rotate(-90deg)'
+    //don't show leading/trailing days
+
+  };
+
+  if (d.format('month') !== month) {
+    style.opacity = 0;
+  } //show the day numbers?
+
+
+  var inside = '';
+
+  if (cal.options.show_numbers) {
+    inside = d.date();
+  } //dim the weekends?
+
+
+  if (cal.options.show_weekends) {
+    var day = d.dayName();
+
+    if (day === 'saturday' || day === 'sunday') {
+      style['background-color'] = '#ededed';
+    }
+  } //dim the past?
+
+
+  if (cal.options.dim_past && d.epoch < today.epoch) {
+    style.opacity = '0.4';
+  } //highlight today?
+
+
+  if (cal.options.show_today && d.isSame(today, 'day')) {
+    style['background-color'] = 'steelblue';
+    style['border'] = '1px solid steelblue';
+  } //is it highlighted?
+
+
+  var date = d.format('iso-short');
+
+  if (cal.data.colors[date]) {
+    style['background-color'] = cal.data.colors[date];
+  } //is it underlined?
+
+
+  if (cal.data.underline[date]) {
+    style['border-bottom'] = '3px solid ' + cal.data.underline[date];
+  }
+
+  if (weekNum === 0) {
+    style['border-left'] = '3px solid #d7d5d2';
+    style['margin-left'] = '5px';
+  }
+
+  return cal.h(_templateObject(), toStyle(style), d.format('nice-year'), inside);
+};
+
+var drawWeek = function drawWeek(w, cal, month, weekNum) {
+  var end = w.endOf('week');
+  w = w.minus(2, 'hour');
+  var days = w.every('day', end).map(function (d) {
+    return drawDay(d, cal, month, weekNum);
+  });
+  return cal.h(_templateObject2(), styles.week, days);
+};
+
+var drawMonth = function drawMonth(start, cal) {
+  var monthName = start.format('month-short');
+  start = start.startOf('month');
+  var month = start.format('month');
+  var end = start.endOf('month');
+  start = start.startOf('week').minus(2, 'hours');
+  var weeks = start.every('week', end).map(function (d, weekNum) {
+    return drawWeek(d, cal, month, weekNum);
+  }); //if the month is a clean break, give it a margin
+
+  if (end.day() === 0) {
+    weeks.push(cal.h(_templateObject3()));
+  }
+
+  return cal.h(_templateObject4(), styles.month, styles.monthName, monthName, styles.weeks, weeks);
+};
+
+module.exports = drawMonth;
+
+},{"spacetime":2}],7:[function(_dereq_,module,exports){
+"use strict";
+
+var Show = _dereq_('./Show');
+
+module.exports = {
+  months: function months(start, end) {
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    return new Show(start, end, options);
+  },
+  timeline: function timeline(start, end) {
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    options.mode = 'timeline';
+    return new Show(start, end, options);
+  }
+};
+
+},{"./Show":4}]},{},[7])(7)
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})

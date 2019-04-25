@@ -15,10 +15,10 @@ let allTeams = []
 // no game log section for: '2019 St. Louis Cardinals season'
 
 const doTeam = function(team, cb) {
-  wtfMLB.fetch(team, year).then((res) => {
+  wtfMLB.fetch(team, year).then(res => {
     allTeams.push({
       team: team,
-      games: res.games.map((o) => {
+      games: res.games.map(o => {
         return {
           date: o.date,
           home: o.home
@@ -34,3 +34,5 @@ slow.steady(teams, doTeam, () => {
   fs.writeFileSync('./data/schedules.js', 'module.exports= ' + str)
   console.log('done')
 })
+
+// doTeam('Los_Angeles_Dodgers', console.log)
