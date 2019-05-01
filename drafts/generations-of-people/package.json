@@ -12,11 +12,10 @@
     "build": "browserify src/index.js -t [ babelify --presets [ @babel/preset-env ] ] | derequire > ./assets/bundle.js"
   },
   "dependencies": {
-    "somehow": "0.0.17",
-    "somehow-input": "0.0.8",
-    "spacetime": "5.7.0",
-    "spencer-color": "0.1.0",
-    "wtf_wikipedia": "7.3.0"
+    "somehow": "^0.1.0",
+    "somehow-input": "^0.0.8",
+    "spacetime": "^5.7.0",
+    "spencer-color": "^0.1.0"
   },
   "devDependencies": {
     "@babel/core": "7.4.4",

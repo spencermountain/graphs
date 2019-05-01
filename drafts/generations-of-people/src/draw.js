@@ -59,6 +59,7 @@ const drawIt = function(gens, age, genLength, gender) {
   }
   w.fit()
   w.xAxis.ticks(10)
+  w.x.clip()
 
   showEvents(w)
 
