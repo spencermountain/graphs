@@ -61,6 +61,11 @@ module.exports = {
       num: '07',
       title: 'Baseball schedule',
       thumb: 'thumb.png'
+    },
+    {
+      num: '08',
+      title: 'Generations of people',
+      thumb: 'thumb.png'
     }
   ]
 }
