@@ -1,10 +1,11 @@
 const lifespan = 70
-const somehow = require('somehow')
+// const somehow = require('somehow')
+const somehow = require('/Users/spencer/mountain/somehow/src')
 const spacetime = require('spacetime')
 const showEvents = require('./events')
 const drawWorld = require('./world')
 
-const h = 12
+const h = 15
 
 const mNames = ['you', 'father', 'grandfather']
 const fNames = ['you', 'mother', 'grandmother']
@@ -26,9 +27,10 @@ const toOrdinal = function(i) {
 
 const drawIt = function(gens, age, genLength, gender) {
   let height = 200
-  if (genLength * h > height) {
-    height = genLength * h
+  if (gens * h > height) {
+    height = gens * h
   }
+  console.log(gens * h)
   let w = somehow({
     height: height,
     width: 800
@@ -51,22 +53,29 @@ const drawIt = function(gens, age, genLength, gender) {
     }
     w.text(name)
       .at(d.iso(), i)
-      .font(10)
+      .font(9)
       .dy(2)
       .dx(5)
 
     d = d.minus(genLength, 'years')
   }
   w.fit()
-  w.xAxis.ticks(10)
+
+  // console.time('ticks')
+  // w.xAxis.ticks(10)
+  // console.timeEnd('ticks')
   w.x.clip()
 
   showEvents(w)
 
   w.yAxis.remove()
+  console.time('build')
   document.querySelector('#graph').innerHTML = w.build()
+  console.timeEnd('build')
 
   //re-draw earth population graph too
-  drawWorld(d.iso())
+  // console.time('earth')
+  // drawWorld(d.iso())
+  // console.timeEnd('earth')
 }
 module.exports = drawIt
