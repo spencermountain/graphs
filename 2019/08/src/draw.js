@@ -1,9 +1,9 @@
-const lifespan = 70
+const lifespan = require('./_lifespan')
 // const somehow = require('somehow')
 const somehow = require('/Users/spencer/mountain/somehow/src')
 const spacetime = require('spacetime')
 const showEvents = require('./events')
-const drawWorld = require('./world')
+// const drawWorld = require('./world')
 
 const h = 15
 
@@ -39,7 +39,8 @@ const drawIt = function(gens, age, genLength, gender) {
   let d = spacetime.now().minus(age, 'years')
 
   for (let i = 0; i < gens; i += 1) {
-    let end = d.add(lifespan, 'years')
+    let life = lifespan(d.year())
+    let end = d.add(life, 'years')
     if (end.isAfter(spacetime.now())) {
       end = spacetime.now()
     }
