@@ -3,9 +3,9 @@ const draw = require('./draw')
 
 let gens = 10
 let age = 33
-let genLength = 25
+let gender = 'paternal'
 
-draw(gens, age, genLength)
+draw(gens, age, gender)
 
 let ageSlider = inputs.slider({
   width: 800,
@@ -16,24 +16,23 @@ let ageSlider = inputs.slider({
   debounce: false,
   cb: val => {
     age = val
-    console.log(val)
-    draw(gens, age, genLength)
+    draw(gens, age, gender)
   }
 })
 document.querySelector('#age').innerHTML = ageSlider.build()
 
-// let genderSelect = inputs.select({
-//   width: 800,
-//   value: 'paternal',
-//   options: ['paternal', 'maternal'],
-//   label: 'line',
-//   debounce: false,
-//   cb: val => {
-//     gens = val
-//     draw(gens, age, genLength)
-//   }
-// })
-// document.querySelector('#gender').innerHTML = genderSelect.build()
+let genderSelect = inputs.select({
+  width: 800,
+  value: 'paternal',
+  options: ['paternal', 'maternal'],
+  label: 'line',
+  debounce: false,
+  cb: val => {
+    gender = val
+    draw(gens, age, gender)
+  }
+})
+document.querySelector('#gender').innerHTML = genderSelect.build()
 
 let genSlider = inputs.slider({
   width: 800,
@@ -44,7 +43,7 @@ let genSlider = inputs.slider({
   debounce: true,
   cb: val => {
     gens = val
-    draw(gens, age, genLength)
+    draw(gens, age, gender)
   }
 })
 document.querySelector('#generations').innerHTML = genSlider.build()
