@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/spencermountain/frown#readme",
   "prettier": {
-    "trailingComma": "none",
+    "trailingComma": "es5op",
     "tabWidth": 2,
     "semi": false,
     "singleQuote": true,

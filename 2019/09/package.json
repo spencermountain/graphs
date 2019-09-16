@@ -9,7 +9,6 @@
   "scripts": {
     "start": "budo index.js:assets/bundle.js --live",
     "watch": "npm run start",
-    "yaml": "js-yaml ./data/tree.yaml > data/tree.json",
     "build": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | derequire > ./assets/bundle.js",
     "build:old": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | terser -m -c > ./assets/bundle.js"
   },
@@ -21,17 +20,18 @@
     "printWidth": 100
   },
   "dependencies": {
-    "js-yaml": "^3.13.1",
-    "somehow": "0.0.17",
-    "spacetime": "5.7.0",
-    "spencer-color": "0.1.0"
+    "somehow": "0.3.1",
+    "somehow-input": "0.0.9",
+    "spacetime": "6.0.1",
+    "spencer-color": "0.1.0",
+    "suncalc": "^1.8.0"
   },
   "devDependencies": {
-    "@babel/core": "7.4.3",
-    "@babel/preset-env": "7.4.3",
+    "@babel/core": "7.6.0",
+    "@babel/preset-env": "7.6.0",
     "babelify": "10.0.0",
-    "budo": "11.6.2",
+    "budo": "11.6.3",
     "derequire": "2.0.6",
-    "terser": "3.17.0"
+    "terser": "4.3.1"
   }
 }

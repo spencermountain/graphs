@@ -25,7 +25,7 @@ let graphs = planets.map(obj => {
   for (let n = 0; n < year; n += obj.day) {
     // console.log(n, obj.name)
     w.line()
-      .set([[n, 2], [n + obj.day * 0.99, 2]])
+      .set([[n, 2], [n + obj.day * 0.7, 2]])
       .color(obj.color)
     dayCount += 1
   }

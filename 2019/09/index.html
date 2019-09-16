@@ -2,19 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta id="testViewport" name="viewport" content="initial-scale=1,width=800" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <link href="./assets/spencer.min.css" rel="stylesheet" />
   </head>
 
-  <body class="body m1">
+  <body class="font">
     <!-- title -->
     <div class="blue ml1 goleft left">
-      <a class="link f1 grey " href="../../">〱 ./2019/</a>
+      <a class="link f1 " href="../../">〱 ./2019/ 09</a>
       <div class="brown ml1"></div>
     </div>
     <!-- stage -->
-    <div id="stage" class="col m2"></div>
+    <div class="row m3 wrap">
+      <div class="shrink lightgrey">hours<br />of<br />sunlight</div>
+      <div class="w75p col" style="min-width:400px; min-height:500px;">
+        <div id="graph" class="w100p"></div>
+        <div id="table" class="w100p"></div>
+        <div id="byDay" class="w100p"></div>
+      </div>
+      <div id="slider" class="left" style="align-self: flex-start;"></div>
+    </div>
     <!-- footer -->
     <div class="footer">
       <a class="m2" href="https://github.com/spencermountain/thensome">source</a>

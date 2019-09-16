@@ -66,6 +66,11 @@ module.exports = {
       num: '08',
       title: 'Generations of people',
       thumb: 'thumb.png'
+    },
+    {
+      num: '09',
+      title: 'Daylight by latitude',
+      thumb: 'thumb.jpg'
     }
   ]
 }
