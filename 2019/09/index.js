@@ -47,7 +47,7 @@ const getByMonth = function(lat) {
     months.push([s.iso(), start / 60, end / 60])
     s = s.add(1, 'month')
   }
-  console.log(months)
+  // console.log(months)
   return months
 }
 
@@ -135,7 +135,6 @@ let slider = inputs.vslider({
   debounce: false,
   reverse: true,
   cb: val => {
-    console.log(val)
     drawGraph(val)
   }
 })
