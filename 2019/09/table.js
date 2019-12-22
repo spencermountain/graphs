@@ -9,7 +9,7 @@ const round = function(num) {
 
 const table = function(byMonth) {
   let timeRow = byMonth.map(a => {
-    return `<td>${parseInt(a[1], 10) + 'h'}</td>`
+    return `<td>${round(a[1]) + 'h'}</td>`
   })
   let diffRow = byMonth.map((a, i) => {
     let last
@@ -18,17 +18,27 @@ const table = function(byMonth) {
     } else {
       last = byMonth[byMonth.length - 1][1]
     }
-    let n = parseInt(a[1], 10)
-    let diff = round(n - last)
-    if (diff > 0) {
-      diff = '+' + diff
+    // let n = parseInt(a[1], 10)
+    let delta = a[1] - last
+    let diff = ''
+    if (delta < 1 && delta > -1) {
+      diff = round(delta * 60) + 'm'
+    } else {
+      diff = round(delta)
+      // if (diff > 0) {
+      // diff = '+' + diff
+      // }
+      diff += 'h'
     }
+    // let diff = round(a[2] - a[1])
+    // console.log(a)
     return `<td><span class="f2">${diff}</span></td>`
   })
   return `<div class="center w100p grey"> 
-  <span class="underline">change (hours):</span>
+  <span class="underline">change:</span>
   <table class="w100p grey mt2 center" style="">
     <tr class="slate underline">${monthRow.join('')}</tr>
+    <tr class="h3">${timeRow.join('')}</tr>
     <tr class="h3">${diffRow.join('')}</tr>
   <table>
   </div>

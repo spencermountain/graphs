@@ -12,13 +12,13 @@ const year = date.getFullYear()
 
 const summerSolstice = function(lat) {
   let d = new Date('July 21 ' + year)
-  let obj = SunCalc.getTimes(d, lat, -0.1)
+  let obj = SunCalc.getTimes(d, lat, -0.1, -79)
   let minutes = spacetime(obj.sunrise).diff(obj.sunset).minutes
   return minutes / 60
 }
 const winterSolstice = function(lat) {
   let d = new Date('Dec 21 ' + year)
-  let obj = SunCalc.getTimes(d, lat, -0.1)
+  let obj = SunCalc.getTimes(d, lat, -0.1, -79)
   let minutes = spacetime(obj.sunrise).diff(obj.sunset).minutes
   return minutes / 60
 }
@@ -27,7 +27,7 @@ const getByWeek = function(lat) {
   let months = []
   let s = spacetime('Jan 1 ' + year)
   for (let i = 0; i <= 52; i++) {
-    let obj = SunCalc.getTimes(s.d, lat, 0)
+    let obj = SunCalc.getTimes(s.d, lat, 0, -79)
     let minutes = spacetime(obj.sunrise).diff(obj.sunset).minutes
     months.push([s.iso(), minutes / 60])
     s = s.add(1, 'week')
@@ -38,11 +38,16 @@ const getByMonth = function(lat) {
   let months = []
   let s = spacetime('Jan 1 ' + year)
   for (let i = 0; i < 12; i++) {
-    let obj = SunCalc.getTimes(s.d, lat, 0)
-    let minutes = spacetime(obj.sunrise).diff(obj.sunset).minutes
-    months.push([s.iso(), minutes / 60])
+    let obj = SunCalc.getTimes(s.d, lat, -79)
+    let start = spacetime(obj.sunrise).diff(obj.sunset).minutes
+
+    s = s.endOf('month')
+    obj = SunCalc.getTimes(s.d, lat, -79)
+    let end = spacetime(obj.sunrise).diff(obj.sunset).minutes
+    months.push([s.iso(), start / 60, end / 60])
     s = s.add(1, 'month')
   }
+  console.log(months)
   return months
 }
 
