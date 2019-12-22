@@ -58,31 +58,73 @@ var spacetime = _dereq_('spacetime');
 
 var getCity = _dereq_('./getCity');
 
+var line1 = function line1(w, lat, year) {
+  // let d = new Date('July 21 ' + year)
+  var s = spacetime('July 21 ' + year, 'Canada/Eastern');
+  var summer = SunCalc.getTimes(s.d, lat, -79);
+  var sunrise = spacetime(summer.sunrise, 'Canada/Eastern').progress('day') * 100;
+  var sunset = spacetime(summer.sunset, 'Canada/Eastern').progress('day') * 100; // console.log(sunrise, sunset)
+
+  if (sunrise > 90) {
+    sunrise = sunrise - 100;
+  }
+
+  w.arc().from(sunrise).to(sunset).radius(50).color('lightblue').width(2).dotted(1);
+}; //winter
+
+
+var line2 = function line2(w, lat, year) {
+  var d = new Date('Dec 21 ' + year);
+  var winter = SunCalc.getTimes(d, lat, -79);
+  var sunrise = spacetime(winter.sunrise).progress('day') * 100;
+  var sunset = spacetime(winter.sunset).progress('day') * 100;
+
+  if (sunrise > 89) {
+    sunrise = sunrise - 100;
+  }
+
+  w.arc().from(sunrise).to(sunset).radius(50).color('blue').width(2);
+};
+
 var circle = function circle(lat, year) {
-  var w = somehowCircle();
-  document.querySelector('#city').innerHTML = getCity(lat); // simple circle
+  var w = somehowCircle(); // simple circle
 
-  w.circle().radius(50); //summer
+  w.circle().radius(50);
 
-  var d = new Date('July 21 ' + year);
-  var summer = SunCalc.getTimes(d, lat, -0.1);
-  var sunrise = spacetime(summer.sunrise).progress('day') * 100;
-  var sunset = spacetime(summer.sunset).progress('day') * 100;
-  console.log(sunrise, sunset);
-  w.arc().from(sunrise).to(sunset).radius(50).color('lightblue').width(2).dotted(1); //winter
+  if (lat < -24) {
+    line2(w, lat, year);
+    line1(w, lat, year);
+  } else {
+    line1(w, lat, year);
+    line2(w, lat, year);
+  }
 
-  d = new Date('Dec 21 ' + year);
-  var winter = SunCalc.getTimes(d, lat, -0.1);
-  sunrise = spacetime(winter.sunrise).progress('day') * 100;
-  sunset = spacetime(winter.sunset).progress('day') * 100;
-  w.arc().from(sunrise).to(sunset).radius(50).color('blue').width(2); // let start = spacetime(winter.sunrise)
+  document.querySelector('#city').innerHTML = getCity(lat); //summer
+  // if (length2 > length) {
+  //   console.log('here')
+  //   two.z(2)
+  // }
+  // console.log(length, length2)
+  // let start = spacetime()
   // w.label(start.format('time'))
   //   .at(sunrise)
   //   .min(100)
   // w.text('midnight').rotate(30)
   // .at(95)
 
-  w.rotate(-90);
+  w.rotate(180); // w.label('6am')
+  //   .at(25, 30)
+  //   .min(50)
+  // w.label('noon')
+  //   .at(50, 30)
+  //   .min(50)
+  // w.label('6pm')
+  //   .at(75, 30)
+  //   .min(50)
+  // w.label('9pm')
+  //   .at(75 + 12, 30)
+  //   .min(50)
+
   w.fit();
   w.xScale.fit(0, 100);
   document.querySelector('#circle').innerHTML = w.build();
@@ -379,14 +421,14 @@ var year = date.getFullYear();
 
 var summerSolstice = function summerSolstice(lat) {
   var d = new Date('July 21 ' + year);
-  var obj = SunCalc.getTimes(d, lat, -0.1);
+  var obj = SunCalc.getTimes(d, lat, -0.1, -79);
   var minutes = spacetime(obj.sunrise).diff(obj.sunset).minutes;
   return minutes / 60;
 };
 
 var winterSolstice = function winterSolstice(lat) {
   var d = new Date('Dec 21 ' + year);
-  var obj = SunCalc.getTimes(d, lat, -0.1);
+  var obj = SunCalc.getTimes(d, lat, -0.1, -79);
   var minutes = spacetime(obj.sunrise).diff(obj.sunset).minutes;
   return minutes / 60;
 };
@@ -396,7 +438,7 @@ var getByWeek = function getByWeek(lat) {
   var s = spacetime('Jan 1 ' + year);
 
   for (var i = 0; i <= 52; i++) {
-    var obj = SunCalc.getTimes(s.d, lat, 0);
+    var obj = SunCalc.getTimes(s.d, lat, 0, -79);
     var minutes = spacetime(obj.sunrise).diff(obj.sunset).minutes;
     months.push([s.iso(), minutes / 60]);
     s = s.add(1, 'week');
@@ -407,15 +449,39 @@ var getByWeek = function getByWeek(lat) {
 
 var getByMonth = function getByMonth(lat) {
   var months = [];
-  var s = spacetime('Jan 1 ' + year);
+  var s = spacetime('Jan 1 ' + year, 'Canada/Eastern');
 
   for (var i = 0; i < 12; i++) {
-    var obj = SunCalc.getTimes(s.d, lat, 0);
-    var minutes = spacetime(obj.sunrise).diff(obj.sunset).minutes;
-    months.push([s.iso(), minutes / 60]);
-    s = s.add(1, 'month');
+    var res = {};
+    res.month = spacetime(s.d).format('month'); //start of month
+
+    var obj = SunCalc.getTimes(s.d, lat, -79);
+    var rise = spacetime(obj.sunrise, 'Canada/Eastern');
+    var set = spacetime(obj.sunset, 'Canada/Eastern');
+    var diff = rise.diff(set).minutes;
+    res.start = {
+      time: s.format('nice'),
+      length: diff / 60
+    }; //end of month
+
+    s = s.endOf('month'); // s = s.add('month')
+
+    var obj2 = SunCalc.getTimes(s.d, lat, -79);
+    rise = spacetime(obj2.sunrise, 'Canada/Eastern');
+    set = spacetime(obj2.sunset, 'Canada/Eastern');
+    diff = rise.diff(set).minutes;
+    res.end = {
+      time: s.format('nice'),
+      length: diff / 60
+    };
+    res.diff = res.end.length - res.start.length;
+    res.hours = parseInt(res.diff, 10);
+    res.minutes = parseInt((res.diff - res.hours) * 60, 10);
+    months.push(res);
+    s = s.next('month');
   }
 
+  console.log(months);
   return months;
 };
 
@@ -468,7 +534,6 @@ var slider = inputs.vslider({
   debounce: false,
   reverse: true,
   cb: function cb(val) {
-    console.log(val);
     drawGraph(val);
   }
 });
@@ -14078,27 +14143,50 @@ var round = function round(num) {
 
 var table = function table(byMonth) {
   var timeRow = byMonth.map(function (a) {
-    return "<td>".concat(parseInt(a[1], 10) + 'h', "</td>");
+    return "<td>".concat(round(a[1]) + 'h', "</td>");
   });
   var diffRow = byMonth.map(function (a, i) {
-    var last;
+    // let last
+    // if (byMonth[i - 1]) {
+    //   last = byMonth[i - 1][1]
+    // } else {
+    //   last = byMonth[byMonth.length - 1][1]
+    // }
+    // // let n = parseInt(a[1], 10)
+    // let delta = a[1] - last
+    // let diff = ''
+    // if (delta < 1 && delta > -1) {
+    //   diff = round(delta * 60) + 'm'
+    // } else {
+    //   diff = round(delta)
+    //   // if (diff > 0) {
+    //   // diff = '+' + diff
+    //   // }
+    //   diff += 'h'
+    // }
+    // let diff = round(a[2] - a[1])
+    // console.log(a)
+    var str = Math.abs(a.hours || 0); // }
 
-    if (byMonth[i - 1]) {
-      last = byMonth[i - 1][1];
+    if (a.minutes !== 0) {
+      var min = '' + Math.abs(a.minutes);
+
+      if (min.length === 1) {
+        min = '0' + min;
+      }
+
+      str += ':' + min;
+    }
+
+    if (a.hours < 0 || a.minutes < 0) {
+      str = '-' + str;
     } else {
-      last = byMonth[byMonth.length - 1][1];
+      str = '+' + str;
     }
 
-    var n = parseInt(a[1], 10);
-    var diff = round(n - last);
-
-    if (diff > 0) {
-      diff = '+' + diff;
-    }
-
-    return "<td><span class=\"f2\">".concat(diff, "</span></td>");
+    return "<td><span class=\"f2\">".concat(str, "</span></td>");
   });
-  return "<div class=\"center w100p grey\"> \n  <span class=\"underline\">change (hours):</span>\n  <table class=\"w100p grey mt2 center\" style=\"\">\n    <tr class=\"slate underline\">".concat(monthRow.join(''), "</tr>\n    <tr class=\"h3\">").concat(diffRow.join(''), "</tr>\n  <table>\n  </div>\n  ");
+  return "<div class=\"center w100p grey\"> \n  <span class=\"underline\">change:</span>\n  <table class=\"w100p grey mt2 center\" style=\"\">\n    <tr class=\"slate underline\">".concat(monthRow.join(''), "</tr>\n    <tr class=\"h3\">").concat(diffRow.join(''), "</tr>\n  <table>\n  </div>\n  ");
 };
 
 module.exports = table;

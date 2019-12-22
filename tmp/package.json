@@ -12,10 +12,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spencermountain/frown.git"
+    "url": "git+https://github.com/spencermountain/thensome.git"
   },
   "author": "Spencer Kelly (spencermountain)",
-  "license": "CC-BY-4.0",
+  "license": "UNLICENCED",
   "bugs": {
     "url": "https://github.com/spencermountain/frown/issues"
   },

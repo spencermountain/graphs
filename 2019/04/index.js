@@ -1,13 +1,12 @@
-const sometime = require('sometime');
+const sometime = require('somehow-calendar')
 // const colors = require('spencer-color').list
 const combos = require('spencer-color').combos
 let colors = [...combos.ken, ...combos.dupont, ...combos.bloor]
 const plusMinus = require('./plus-minus')
-const compute = require('./compute');
-const htm = require('htm');
-const h = htm.bind(require('vhtml'));
+const compute = require('./compute')
+const htm = require('htm')
+const h = htm.bind(require('vhtml'))
 const thisYear = new Date().getFullYear()
-
 
 const makeList = function(parts) {
   let list = parts.map((s, i) => {

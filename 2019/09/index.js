@@ -36,18 +36,40 @@ const getByWeek = function(lat) {
 }
 const getByMonth = function(lat) {
   let months = []
-  let s = spacetime('Jan 1 ' + year)
+  let s = spacetime('Jan 1 ' + year, 'Canada/Eastern')
   for (let i = 0; i < 12; i++) {
-    let obj = SunCalc.getTimes(s.d, lat, -79)
-    let start = spacetime(obj.sunrise).diff(obj.sunset).minutes
+    let res = {}
+    res.month = spacetime(s.d).format('month')
 
+    //start of month
+    let obj = SunCalc.getTimes(s.d, lat, -79)
+    let rise = spacetime(obj.sunrise, 'Canada/Eastern')
+    let set = spacetime(obj.sunset, 'Canada/Eastern')
+    let diff = rise.diff(set).minutes
+    res.start = {
+      time: s.format('nice'),
+      length: diff / 60
+    }
+
+    //end of month
     s = s.endOf('month')
-    obj = SunCalc.getTimes(s.d, lat, -79)
-    let end = spacetime(obj.sunrise).diff(obj.sunset).minutes
-    months.push([s.iso(), start / 60, end / 60])
-    s = s.add(1, 'month')
+    // s = s.add('month')
+    let obj2 = SunCalc.getTimes(s.d, lat, -79)
+    rise = spacetime(obj2.sunrise, 'Canada/Eastern')
+    set = spacetime(obj2.sunset, 'Canada/Eastern')
+    diff = rise.diff(set).minutes
+    res.end = {
+      time: s.format('nice'),
+      length: diff / 60
+    }
+    res.diff = res.end.length - res.start.length
+    res.hours = parseInt(res.diff, 10)
+    res.minutes = parseInt((res.diff - res.hours) * 60, 10)
+
+    months.push(res)
+    s = s.next('month')
   }
-  // console.log(months)
+  console.log(months)
   return months
 }
 
