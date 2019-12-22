@@ -5,6 +5,7 @@ const SunCalc = require('suncalc')
 const inputs = require('somehow-input')
 const getTable = require('./table')
 const byDay = require('./byDay')
+const makeCircle = require('./circle')
 
 let date = new Date()
 const year = date.getFullYear()
@@ -72,10 +73,15 @@ const drawGraph = function(lat) {
   w.line()
     .color('grey')
     .width(1)
-    .set([['June 21 ' + year, jan], ['June 21 ' + year, aug]])
+    .set([
+      ['June 21 ' + year, jan],
+      ['June 21 ' + year, aug]
+    ])
 
   let max = summerSolstice(lat)
   let min = winterSolstice(lat)
+
+  makeCircle(lat, year)
   let maxDiff = max - min
   w.text(Math.abs(maxDiff.toFixed(1)) + 'hr diff')
     .color('lightgrey')
@@ -93,12 +99,18 @@ const drawGraph = function(lat) {
     .dotted()
     .color('grey')
     .width(1)
-    .set([['Jan 1 ' + year, jan], ['Dec 30 ' + year, jan]])
+    .set([
+      ['Jan 1 ' + year, jan],
+      ['Dec 30 ' + year, jan]
+    ])
   w.line()
     .dotted()
     .color('grey')
     .width(1)
-    .set([['Jan 1 ' + year, aug], ['Dec 30 ' + year, aug]])
+    .set([
+      ['Jan 1 ' + year, aug],
+      ['Dec 30 ' + year, aug]
+    ])
 
   w.x.fit()
   w.y.fit(0, 24)
@@ -113,10 +125,10 @@ let slider = inputs.vslider({
   width: 600,
   max: 60,
   min: -60,
-  value: 40,
+  value: 43,
   label: 'latitude',
   debounce: false,
-  reverse: false,
+  reverse: true,
   cb: val => {
     console.log(val)
     drawGraph(val)

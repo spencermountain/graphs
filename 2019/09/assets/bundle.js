@@ -47,7 +47,316 @@ var byDay = function byDay(lat, year) {
 
 module.exports = byDay;
 
-},{"spacetime":44,"suncalc":45}],2:[function(_dereq_,module,exports){
+},{"spacetime":56,"suncalc":58}],2:[function(_dereq_,module,exports){
+"use strict";
+
+var somehowCircle = _dereq_('somehow-circle');
+
+var SunCalc = _dereq_('suncalc');
+
+var spacetime = _dereq_('spacetime');
+
+var getCity = _dereq_('./getCity');
+
+var circle = function circle(lat, year) {
+  var w = somehowCircle();
+  document.querySelector('#city').innerHTML = getCity(lat); // simple circle
+
+  w.circle().radius(50); //summer
+
+  var d = new Date('July 21 ' + year);
+  var summer = SunCalc.getTimes(d, lat, -0.1);
+  var sunrise = spacetime(summer.sunrise).progress('day') * 100;
+  var sunset = spacetime(summer.sunset).progress('day') * 100;
+  console.log(sunrise, sunset);
+  w.arc().from(sunrise).to(sunset).radius(50).color('lightblue').width(2).dotted(1); //winter
+
+  d = new Date('Dec 21 ' + year);
+  var winter = SunCalc.getTimes(d, lat, -0.1);
+  sunrise = spacetime(winter.sunrise).progress('day') * 100;
+  sunset = spacetime(winter.sunset).progress('day') * 100;
+  w.arc().from(sunrise).to(sunset).radius(50).color('blue').width(2); // let start = spacetime(winter.sunrise)
+  // w.label(start.format('time'))
+  //   .at(sunrise)
+  //   .min(100)
+  // w.text('midnight').rotate(30)
+  // .at(95)
+
+  w.rotate(-90);
+  w.fit();
+  w.xScale.fit(0, 100);
+  document.querySelector('#circle').innerHTML = w.build();
+};
+
+module.exports = circle;
+
+},{"./getCity":4,"somehow-circle":11,"spacetime":56,"suncalc":58}],3:[function(_dereq_,module,exports){
+"use strict";
+
+module.exports = {
+  '0': {
+    city: 'Quito'
+  },
+  '1': {
+    city: 'Singapore'
+  },
+  '3': {
+    city: 'Kuala Lumpur'
+  },
+  '4': {
+    city: 'Bogotá'
+  },
+  '5': {
+    city: 'Abidjan'
+  },
+  '6': {
+    city: 'Lagos'
+  },
+  '7': {
+    city: 'Ibadan'
+  },
+  '9': {
+    city: 'Addis Ababa'
+  },
+  '10': {
+    city: 'Ho Chi Minh City'
+  },
+  '11': {
+    city: 'Phnom Penh'
+  },
+  '12': {
+    city: 'Managua'
+  },
+  '13': {
+    city: 'Bangkok'
+  },
+  '14': {
+    city: 'Manila'
+  },
+  '15': {
+    city: 'Khartoum'
+  },
+  '16': {
+    city: 'Yangon'
+  },
+  '17': {
+    city: 'Hyderabad'
+  },
+  '18': {
+    city: 'Pune'
+  },
+  '19': {
+    city: 'Mexico City'
+  },
+  '20': {
+    city: 'Guadalajara'
+  },
+  '21': {
+    city: 'Hanoi'
+  },
+  '22': {
+    city: 'Kolkata'
+  },
+  '23': {
+    city: 'Guangzhou'
+  },
+  '24': {
+    city: 'Karachi'
+  },
+  '25': {
+    city: 'Taipei'
+  },
+  '26': {
+    city: 'Fuzhou'
+  },
+  '27': {
+    city: 'Zunyi'
+  },
+  '28': {
+    city: 'Delhi'
+  },
+  '29': {
+    city: 'Chongqing'
+  },
+  '30': {
+    city: 'Cairo'
+  },
+  '31': {
+    city: 'Shanghai'
+  },
+  '32': {
+    city: 'Nanjing'
+  },
+  '33': {
+    city: 'Baghdad'
+  },
+  '34': {
+    city: 'Osaka'
+  },
+  '35': {
+    city: 'Tokyo'
+  },
+  '36': {
+    city: 'Qingdao'
+  },
+  '37': {
+    city: 'Seoul'
+  },
+  '38': {
+    city: 'Shijiazhuang'
+  },
+  '39': {
+    city: 'Philadelphia'
+  },
+  '40': {
+    city: 'Madrid'
+  },
+  '41': {
+    city: 'Istanbul'
+  },
+  '42': {
+    city: 'Sofia'
+  },
+  '43': {
+    city: 'Toronto'
+  },
+  '44': {
+    city: 'Bucharest'
+  },
+  '45': {
+    city: 'Harbin'
+  },
+  '47': {
+    city: 'Budapest'
+  },
+  '48': {
+    city: 'Paris'
+  },
+  '50': {
+    city: 'Cologne'
+  },
+  '51': {
+    city: 'London'
+  },
+  '52': {
+    city: 'Berlin'
+  },
+  '53': {
+    city: 'Hamburg'
+  },
+  '54': {
+    city: 'Omsk'
+  },
+  '55': {
+    city: 'Moscow'
+  },
+  '56': {
+    city: 'Yekaterinburg'
+  },
+  '59': {
+    city: 'Saint Petersburg'
+  },
+  '-23': {
+    city: 'São Paulo'
+  },
+  '-6': {
+    city: 'Jakarta'
+  },
+  '-22': {
+    city: 'Rio de Janeiro'
+  },
+  '-4': {
+    city: 'Kinshasa'
+  },
+  '-34': {
+    city: 'Buenos Aires'
+  },
+  '-12': {
+    city: 'Lima'
+  },
+  '-7': {
+    city: 'Surabaya'
+  },
+  '-33': {
+    city: 'Santiago'
+  },
+  '-8': {
+    city: 'Luanda'
+  },
+  '-19': {
+    city: 'Belo Horizonte'
+  },
+  '-2': {
+    city: 'Guayaquil'
+  },
+  '-37': {
+    city: 'Melbourne'
+  },
+  '-26': {
+    city: 'Johannesburg'
+  },
+  '-30': {
+    city: 'Porto Alegre'
+  },
+  '-3': {
+    city: 'Fortaleza'
+  },
+  '-15': {
+    city: 'Brasília'
+  },
+  '-29': {
+    city: 'Durban'
+  },
+  '-25': {
+    city: 'Curitiba'
+  },
+  '-1': {
+    city: 'Nairobi'
+  },
+  '-17': {
+    city: 'Santa Cruz de la Sierra'
+  },
+  '-36': {
+    city: 'Auckland'
+  },
+  '-31': {
+    city: 'Córdoba, Argentina'
+  },
+  '-32': {
+    city: 'Rosario, Santa Fe'
+  }
+};
+
+},{}],4:[function(_dereq_,module,exports){
+"use strict";
+
+var cities = _dereq_('./data/by-latitude');
+
+var getCity = function getCity(lat) {
+  if (cities[lat]) {
+    return cities[lat].city;
+  }
+
+  for (var i = 0; i < 60; i++) {
+    var n = lat + i;
+
+    if (cities[n]) {
+      return cities[n].city;
+    }
+
+    n = lat - i;
+
+    if (cities[n]) {
+      return cities[n].city;
+    }
+  }
+
+  return null;
+};
+
+module.exports = getCity;
+
+},{"./data/by-latitude":3}],5:[function(_dereq_,module,exports){
 "use strict";
 
 var somehow = _dereq_('somehow'); // const somehow = require('/Users/spencer/mountain/somehow/src')
@@ -62,6 +371,8 @@ var inputs = _dereq_('somehow-input');
 var getTable = _dereq_('./table');
 
 var byDay = _dereq_('./byDay');
+
+var makeCircle = _dereq_('./circle');
 
 var date = new Date();
 var year = date.getFullYear();
@@ -132,6 +443,7 @@ var drawGraph = function drawGraph(lat) {
   w.line().color('grey').width(1).set([['June 21 ' + year, jan], ['June 21 ' + year, aug]]);
   var max = summerSolstice(lat);
   var min = winterSolstice(lat);
+  makeCircle(lat, year);
   var maxDiff = max - min;
   w.text(Math.abs(maxDiff.toFixed(1)) + 'hr diff').color('lightgrey').set([['June 21 ' + year, 2]]).dy(-3);
   var line = w.area().soft().color('sky').opacity(0.3);
@@ -151,10 +463,10 @@ var slider = inputs.vslider({
   width: 600,
   max: 60,
   min: -60,
-  value: 40,
+  value: 43,
   label: 'latitude',
   debounce: false,
-  reverse: false,
+  reverse: true,
   cb: function cb(val) {
     console.log(val);
     drawGraph(val);
@@ -162,7 +474,7 @@ var slider = inputs.vslider({
 });
 document.querySelector('#slider').innerHTML = slider.build();
 
-},{"./byDay":1,"./table":47,"somehow":20,"somehow-input":7,"spacetime":44,"suncalc":45}],3:[function(_dereq_,module,exports){
+},{"./byDay":1,"./circle":2,"./table":60,"somehow":35,"somehow-input":17,"spacetime":56,"suncalc":58}],6:[function(_dereq_,module,exports){
 // https://d3js.org/d3-path/ v1.0.8 Copyright 2019 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -305,7 +617,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 
-},{}],4:[function(_dereq_,module,exports){
+},{}],7:[function(_dereq_,module,exports){
 // https://d3js.org/d3-shape/ v1.3.5 Copyright 2019 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, _dereq_('d3-path')) :
@@ -2256,15 +2568,638 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
 
-},{"d3-path":3}],5:[function(_dereq_,module,exports){
-(function (global){
-!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).fitAspect=e()}}(function(){return function a(o,s,d){function c(t,e){if(!s[t]){if(!o[t]){var i="function"==typeof _dereq_&&_dereq_;if(!e&&i)return i(t,!0);if(l)return l(t,!0);var n=new Error("Cannot find module '"+t+"'");throw n.code="MODULE_NOT_FOUND",n}var r=s[t]={exports:{}};o[t][0].call(r.exports,function(e){return c(o[t][1][e]||e)},r,r.exports,a,o,s,d)}return s[t].exports}for(var l="function"==typeof _dereq_&&_dereq_,e=0;e<d.length;e++)c(d[e]);return c}({1:[function(e,t,i){"use strict";var n=[{names:["square","1:1","instagram"],description:"Square",decimal:1,orientation:"landscape"},{names:["4:3","fullscreen","four three","1.33:1","ipad","pythagorean"],description:"Traditional TVs",decimal:1.333333,orientation:"landscape"},{names:["a4","√2:1","paper","lichtenberg","1:1.41"],description:"A4 paper",decimal:1.41},{names:["imax","1.43:1"],description:"IMAX film",decimal:1.43,orientation:"landscape"},{names:["3:2","35mm","photo","1.5:1","1.5"],description:"35mm photos",decimal:1.5,orientation:"landscape"},{names:["business card","bank card","1.58:1"],description:"Bank Cards",decimal:1.58577,orientation:"landscape"},{names:["golden","kepler","1.618","1.6:1"],description:"Golden ratio",decimal:1.61803,orientation:"landscape"},{names:["16:9","hd","hdtv","fhd","tv","computer","iphone","4k","8k","1.78:1"],description:"HD video",decimal:1.77777,orientation:"landscape"},{names:["widescreen","1.85:1"],description:"Movie-theatres",decimal:1.85,orientation:"landscape"},{names:["2:1","univisium","mobile","18:9"],description:"2:1",decimal:2,orientation:"landscape"},{names:["cinemascope","widescreen","wide","2.35:1","2.39:1"],description:"Widescreen",decimal:2.35,orientation:"landscape"},{names:["silver","1 + √2","2.41:1"],description:"Silver ratio",decimal:2.41,orientation:"landscape"}],r=n.map(function(e){return(e=Object.assign({},e)).decimal=1/e.decimal,e.orientation="portrait",e}),a={};n.forEach(function(t){t.names.forEach(function(e){a[e]=t})}),t.exports={lookup:a,portraits:r,list:n}},{}],2:[function(e,t,i){"use strict";var n=e("./aspects");t.exports=function(e,t){var i=e/t;return(i=parseInt(100*i,10)/100)<1?function(e,t){for(var i=0;i<t.length;i+=1)if(e>t[i].decimal){if(t[i-1]){var n=Math.abs(e-t[i].decimal);if(Math.abs(e-t[i-1].decimal)<n)return t[i-1]}return t[i]}return t[t.length-1]}(i,n.portraits):function(e,t){for(var i=0;i<t.length;i+=1)if(e<=t[i].decimal){if(t[i-1]){var n=Math.abs(e-t[i].decimal);if(Math.abs(e-t[i-1].decimal)<n)return t[i-1]}return t[i]}return t[t.length-1]}(i,n.list)}},{"./aspects":1}],3:[function(e,t,i){"use strict";var n=function(e,t){var i=1/t.decimal,n=e.orientation||"landscape";"portrait"===n&&(i=1/i);var r=e.width*i;return r=Math.round(r),{closest:t,width:e.width,height:r,orientation:n,original:e}},r=function(e,t){var i=t.decimal,n=e.orientation||"landscape";"portrait"===n&&(i=1/i);var r=e.height*i;return{closest:t,width:r=Math.round(r),height:e.height,orientation:n,original:e}};t.exports={both:function(e,t){var i=r(e,t);return i.width>e.width?n(e,t):i},width:r,height:n}},{}],4:[function(i,n,e){(function(e){"use strict";var o=i("./find-best-ratio"),s=i("./parse-ratio"),d=i("./fit"),t=function(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{};if(!e.aspect&&!e.ratio){var t=o(e.width,e.height),i=1/t.decimal,n=e.width*i,r=(n-e.height)/e.height;return r=parseInt(1e3*r,10)/10,n=Math.round(n),{closest:t,percent_change:r,width:e.width,height:n}}var a=s(e.aspect||e.ratio||"");return null===a?(console.error("find-aspect-ratio error: Could not find a given aspect ratio."),e):"number"==typeof e.width&&"number"==typeof e.height?d.both(e,a):"number"==typeof e.width?d.height(e,a):"number"==typeof e.height?d.width(e,a):(console.error("find-aspect-ratio error: Please supply a height, width, or ratio value."),e)};"undefined"!=typeof self?self.nlp=t:"undefined"!=typeof window?window.nlp=t:void 0!==e&&(e.nlp=t),void 0!==n&&(n.exports=t)}).call(this,"undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{})},{"./find-best-ratio":2,"./fit":3,"./parse-ratio":5}],5:[function(e,t,i){"use strict";var n=e("./aspects"),r=/^[0-9\.]+:[0-9\.]+$/;t.exports=function(e){if(e=(e=(e=(e=e.toLowerCase()).trim()).replace(" ratio","")).replace("-"," "),!0===n.lookup.hasOwnProperty(e))return n.lookup[e];if(!0!==r.test(e))return null;var t=e.split(":");return{description:"custom",decimal:parseFloat(t[0])/parseFloat(t[1])}}},{"./aspects":1}]},{},[4])(4)});
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],6:[function(_dereq_,module,exports){
+},{"d3-path":6}],8:[function(_dereq_,module,exports){
 !function(){var n=function(t,e,u,r){for(var o=1;o<e.length;o++){var s=e[o],f="number"==typeof s?u[s]:s,p=e[++o];1===p?r[0]=f:3===p?r[1]=Object.assign(r[1]||{},f):5===p?(r[1]=r[1]||{})[e[++o]]=f:6===p?r[1][e[++o]]+=f+"":r.push(p?t.apply(null,n(t,f,u,["",null])):f)}return r},t=function(n){for(var t,e,u=1,r="",o="",s=[0],f=function(n){1===u&&(n||(r=r.replace(/^\s*\n\s*|\s*\n\s*$/g,"")))?s.push(n||r,0):3===u&&(n||r)?(s.push(n||r,1),u=2):2===u&&"..."===r&&n?s.push(n,3):2===u&&r&&!n?s.push(!0,5,r):u>=5&&((r||!n&&5===u)&&(s.push(r,u,e),u=6),n&&(s.push(n,u,e),u=6)),r=""},p=0;p<n.length;p++){p&&(1===u&&f(),f(p));for(var h=0;h<n[p].length;h++)t=n[p][h],1===u?"<"===t?(f(),s=[s],u=3):r+=t:4===u?"--"===r&&">"===t?(u=1,r=""):r=t+r[0]:o?t===o?o="":r+=t:'"'===t||"'"===t?o=t:">"===t?(f(),u=1):u&&("="===t?(u=5,e=r,r=""):"/"===t&&(u<5||">"===n[p][h+1])?(f(),3===u&&(s=s[0]),u=s,(s=s[0]).push(u,2),u=0):" "===t||"\t"===t||"\n"===t||"\r"===t?(f(),u=2):r+=t),3===u&&"!--"===r&&(u=4,s=s[0])}return f(),s},e="function"==typeof Map,u=e?new Map:{},r=e?function(n){var e=u.get(n);return e||u.set(n,e=t(n)),e}:function(n){for(var e="",r=0;r<n.length;r++)e+=n[r].length+"-"+n[r];return u[e]||(u[e]=t(n))},o=function(t){var e=n(this,r(t),arguments,[]);return e.length>1?e:e[0]};"undefined"!=typeof module?module.exports=o:self.htm=o}();
 
-},{}],7:[function(_dereq_,module,exports){
+},{}],9:[function(_dereq_,module,exports){
+const htm = _dereq_('htm')
+const vhtml = _dereq_('vhtml')
+const scaleLinear = _dereq_('./_linear')
+const Line = _dereq_('./shapes/Line')
+const Circle = _dereq_('./shapes/Circle')
+const Arc = _dereq_('./shapes/Arc')
+const Text = _dereq_('./shapes/Text')
+const Label = _dereq_('./shapes/Label')
+const trig = [-Math.PI, Math.PI]
+
+class World {
+  constructor(obj = {}) {
+    this.width = 100
+    this.height = 100
+    this._from = obj.from || 0
+    this._to = obj.to || 0
+    this._rotate = obj.rotate || 0
+    this.shapes = []
+    this.xScale = scaleLinear({
+      world: trig,
+      minmax: [0, 100]
+    })
+    this.rScale = scaleLinear({
+      world: [0, 50],
+      minmax: [0, 100]
+    })
+    this.html = htm.bind(vhtml)
+  }
+  findPoint(x, r) {
+    let xScale = this.xScale
+    let angle = xScale(x)
+    return {
+      x: r * Math.sin(angle),
+      y: -r * Math.cos(angle)
+    }
+  }
+  bind(fn) {
+    this.html = htm.bind(fn)
+  }
+  from(n) {
+    this._from = n
+    return this
+  }
+  to(n) {
+    this._to = n
+    return this
+  }
+  rotate(n) {
+    this._rotate = n
+    return this
+  }
+
+  // shapes
+  line(obj) {
+    let shape = new Line(obj, this)
+    this.shapes.push(shape)
+    return shape
+  }
+  circle(obj) {
+    let shape = new Circle(obj, this)
+    this.shapes.push(shape)
+    return shape
+  }
+  arc(obj) {
+    let shape = new Arc(obj, this)
+    this.shapes.push(shape)
+    return shape
+  }
+  text(obj) {
+    let shape = new Text(obj, this)
+    this.shapes.push(shape)
+    return shape
+  }
+  label(obj) {
+    let shape = new Label(obj, this)
+    this.shapes.push(shape)
+    return shape
+  }
+
+  // scaling logic
+  fitX() {
+    let min = 0
+    let max = 0
+    this.shapes.forEach(s => {
+      let o = s.xBounds()
+      if (o.min !== null && o.min < min) {
+        min = o.min
+      }
+      if (o.max !== null && o.max > max) {
+        max = o.max
+      }
+    })
+    if (min === 0 && max === 0) {
+      max = 100
+    }
+    this.xScale = scaleLinear({
+      world: trig,
+      minmax: [min, max]
+    })
+  }
+  fitR() {
+    let min = 0
+    let max = 0
+    this.shapes.forEach(s => {
+      let o = s.rBounds()
+      if (o.min !== null && o.min < min) {
+        min = o.min
+      }
+      if (o.max !== null && o.max > max) {
+        max = o.max
+      }
+    })
+    this.rScale = scaleLinear({
+      world: [0, 50],
+      minmax: [min, max]
+    })
+  }
+  fit() {
+    this.fitX()
+    this.fitR()
+    return this
+  }
+  build() {
+    let h = this.html
+    let elements = []
+
+    // if (this.xAxis) {
+    //   elements.push(this.xAxis.build())
+    // }
+    elements = elements.concat(this.shapes.map(shape => shape.build()))
+    let attrs = {
+      // width: this.width,
+      // height: this.height,
+      viewBox: `-50,-50,${this.width},${this.height}`,
+      // viewBox: `0,0,10,10`,
+      preserveAspectRatio: 'xMidYMid meet',
+      transform: `rotate(${this._rotate},0,0)`
+      // style: 'overflow:visible; margin: 10px 20px 25px 25px;' // border:1px solid lightgrey;
+    }
+    return h`<svg ...${attrs}>
+      ${elements}
+    </svg>`
+  }
+}
+module.exports = World
+
+},{"./_linear":10,"./shapes/Arc":12,"./shapes/Circle":13,"./shapes/Label":14,"./shapes/Line":15,"./shapes/Text":16,"htm":8,"vhtml":59}],10:[function(_dereq_,module,exports){
+//a very-tiny version of d3-scale's scaleLinear
+const scaleLinear = function(obj) {
+  let world = obj.world || []
+  let minmax = obj.minmax || []
+  const calc = num => {
+    let range = minmax[1] - minmax[0]
+    let percent = (num - minmax[0]) / range
+    let size = world[1] - world[0]
+    return size * percent
+  }
+  // invert the calculation. return a %?
+  calc.backward = num => {
+    let size = world[1] - world[0]
+    let range = minmax[1] - minmax[0]
+    let percent = (num - world[0]) / size
+    return percent * range
+  }
+  calc.fit = (a, b) => {
+    if (b > minmax[1]) {
+      minmax[1] = b
+    }
+    if (a < minmax[0]) {
+      minmax[0] = a
+    }
+  }
+  return calc
+}
+module.exports = scaleLinear
+
+// let scale = scaleLinear({
+//   world: [0, 300],
+//   minmax: [0, 100]
+// })
+// console.log(scale(50))
+// console.log(scale.backward(150))
+
+},{}],11:[function(_dereq_,module,exports){
+const World = _dereq_('./World')
+// const version = require('../_version')
+
+// ...people call this a 'factory'
+const somehowCircle = function(obj) {
+  return new World(obj)
+}
+// somehow.version = version
+module.exports = somehowCircle
+
+},{"./World":9}],12:[function(_dereq_,module,exports){
+const d3Shape = _dereq_('d3-shape')
+const colors = _dereq_('spencer-color').colors
+
+class Arc {
+  constructor(obj = {}, world) {
+    this.world = world
+    this.data = obj.data || []
+    this.attrs = {}
+    this._stroke = 'none'
+    this._fill = 'steelblue'
+    this._radius = 25
+    this._width = 5
+    this._from = 0
+    this._to = 50
+    this._opacity = 1
+  }
+  opacity(n) {
+    this._opacity = n
+    return this
+  }
+  dotted(n) {
+    if (n === true) {
+      n = 4
+    }
+    this.attrs['stroke-dasharray'] = n || 4
+    return this
+  }
+  rBounds() {
+    return {
+      min: 0,
+      max: this._radius + this._width
+    }
+  }
+  xBounds() {
+    return {
+      min: this._from,
+      max: this._to
+    }
+  }
+  color(c) {
+    this._fill = colors[c] || c
+    return this
+  }
+  stroke(c) {
+    this._stroke = colors[c] || c
+    return this
+  }
+  width(n) {
+    this._width = n
+    return this
+  }
+  radius(n) {
+    this._radius = n
+    return this
+  }
+  r(n) {
+    this._radius = n
+    return this
+  }
+  from(n) {
+    this._from = n
+    return this
+  }
+  to(n) {
+    this._to = n
+    return this
+  }
+  path() {
+    let rScale = this.world.rScale
+    let xScale = this.world.xScale
+    let r = rScale(this._radius)
+    return d3Shape.arc()({
+      startAngle: xScale(this._from),
+      endAngle: xScale(this._to),
+      innerRadius: r,
+      outerRadius: r // + rScale(this._width)
+    })
+  }
+  build() {
+    let h = this.world.html
+    let attrs = {
+      d: this.path(),
+      stroke: this._fill,
+      'stroke-width': this._width,
+      fill: 'none',
+      opacity: this._opacity,
+      'stroke-dasharray': this.attrs['stroke-dasharray']
+    }
+    return h`<path ...${attrs}/>`
+  }
+}
+module.exports = Arc
+
+},{"d3-shape":7,"spencer-color":57}],13:[function(_dereq_,module,exports){
+const colors = _dereq_('spencer-color').colors
+
+class Circle {
+  constructor(obj = {}, world) {
+    this.world = world
+    this.attrs = {}
+    this._color = 'lightgrey'
+    this.fill = 'none'
+    this._radius = 50
+    this._width = 0.2
+  }
+  rBounds() {
+    return {
+      min: 0,
+      max: this._radius + this._width
+    }
+  }
+  color(c) {
+    this._color = colors[c] || c
+    return this
+  }
+  xBounds() {
+    return {
+      min: null,
+      max: null //hmm
+    }
+  }
+  width(n) {
+    this._width = n
+    return this
+  }
+  radius(n) {
+    this._radius = n
+    return this
+  }
+  build() {
+    let h = this.world.html
+    let rScale = this.world.rScale
+
+    let attrs = {
+      cx: '0',
+      cy: '0',
+      r: rScale(this._radius),
+      stroke: this._color,
+      fill: this.fill,
+      'stroke-width': this._width
+    }
+    return h`<circle ...${attrs}/>`
+  }
+}
+module.exports = Circle
+
+},{"spencer-color":57}],14:[function(_dereq_,module,exports){
+const colors = _dereq_('spencer-color').colors
+
+class Label {
+  constructor(text, world) {
+    this.world = world
+    this._text = text
+    this.attrs = {}
+    this._color = 'grey'
+    this.fill = 'none'
+    this._radius = 50
+    this._width = 0.2
+    this._min = 0
+    this._x = 0
+    this._r = 40
+    this._size = 3
+  }
+  rBounds() {
+    return {
+      min: 0,
+      max: this._radius
+    }
+  }
+  xBounds() {
+    return {
+      min: this._x,
+      max: this._x
+    }
+  }
+  at(x, r) {
+    this._x = x
+    this._r = r
+    return this
+  }
+  min(x) {
+    this._min = x
+    return this
+  }
+  length(n) {
+    this._length = n
+    return this
+  }
+  color(c) {
+    this._color = colors[c] || c
+    return this
+  }
+  width(n) {
+    this._width = n
+    return this
+  }
+  radius(n) {
+    this._radius = n
+    return this
+  }
+  drawLine() {
+    let h = this.world.html
+    let r = this.world.rScale(this._r * 0.9)
+    let { x, y } = this.world.findPoint(this._x, r * 0.9)
+    let min = this.world.findPoint(this._x, this._min)
+    return h`<line x1=${min.x} y1=${min.y} x2=${x} y2=${y} stroke=${this._color} stroke-width=${this._width}/>`
+  }
+  drawText() {
+    let world = this.world
+    let h = world.html
+    let r = world.rScale(this._r)
+    let { x, y } = world.findPoint(this._x, r)
+    return h`<text x=${x} y=${y} stroke="none" style="border:1px solid grey;" fill=${
+      this._color
+    } font-size=${
+      this._size
+    }  dominant-baseline="middle" text-anchor="middle" transform=rotate(${-world._rotate},${x},${y})>${
+      this._text
+    }</text>`
+  }
+  build() {
+    let h = this.world.html
+    return h`<g>
+      ${this.drawLine()}
+      ${this.drawText()}
+    </g>`
+  }
+}
+module.exports = Label
+
+},{"spencer-color":57}],15:[function(_dereq_,module,exports){
+const d3Shape = _dereq_('d3-shape')
+const colors = _dereq_('spencer-color').colors
+
+class Line {
+  constructor(obj = {}, world) {
+    this.world = world
+    this.data = obj.data || []
+    this.attrs = {}
+    this.curve = d3Shape.curveCatmullRomClosed
+    this._color = 'steelblue'
+    this.fill = 'none'
+    this.closed = true
+    this._width = 1
+    this._opacity = 0
+  }
+  dotted(n) {
+    if (n === true) {
+      n = 4
+    }
+    this.attrs['stroke-dasharray'] = n || 4
+    return this
+  }
+  rBounds() {
+    let min = 0
+    let max = 0
+    this.data.forEach(o => {
+      if (o.r > max) {
+        max = o.r + this._width
+      }
+      if (o.r < min) {
+        min = o.r
+      }
+    })
+    return {
+      min: min,
+      max: max
+    }
+  }
+  xBounds() {
+    let min = 0
+    let max = 0
+    this.data.forEach(o => {
+      if (o.x > max) {
+        max = o.x
+      }
+      if (o.x < min) {
+        min = o.x
+      }
+    })
+    return {
+      min: min,
+      max: max
+    }
+  }
+  straight() {
+    this.curve = d3Shape.curveLinearClosed
+    return this
+  }
+  opacity(n) {
+    this._opacity = n
+    return this
+  }
+  close(bool) {
+    this.closed = bool
+    if (this.curve === d3Shape.curveLinearClosed || this.curve === d3Shape.curveLinearOpen) {
+      this.curve = bool ? d3Shape.curveLinearClosed : d3Shape.curveLinearOpen
+    } else {
+      this.curve = bool ? d3Shape.curveCatmullRomClosed : d3Shape.curveCatmullRomOpen
+    }
+    return this
+  }
+  open(bool) {
+    return this.close(!bool)
+  }
+  color(c) {
+    this._color = colors[c] || c
+    return this
+  }
+  fill(c) {
+    this.fill = colors[c] || c
+    return this
+  }
+  set(data) {
+    this.data = data
+    return this
+  }
+  width(n) {
+    this._width = n
+    return this
+  }
+  path(data) {
+    let x = this.world.xScale
+    let rScale = this.world.rScale
+    let line = d3Shape
+      .radialLine()
+      .angle(function(d) {
+        return x(d.x)
+      })
+      .radius(function(d) {
+        return rScale(d.r)
+      })
+      .curve(this.curve)
+    return line(data)
+  }
+  build() {
+    let h = this.world.html
+
+    let path = this.path(this.data)
+    let attrs = {
+      d: path,
+      stroke: this._color,
+      fill: this.fill,
+      opacity: this._opacity,
+      'stroke-width': this._width,
+      'stroke-dasharray': this.attrs['stroke-dasharray']
+    }
+    return h`<path ...${attrs}/>`
+  }
+}
+module.exports = Line
+
+},{"d3-shape":7,"spencer-color":57}],16:[function(_dereq_,module,exports){
+const colors = _dereq_('spencer-color').colors
+
+class Text {
+  constructor(txt = '', world) {
+    this.world = world
+    this.attrs = {}
+    this.text = txt
+    this._color = 'grey'
+    this.size = 5
+    this._dx = 0
+    this._dr = 0
+    this._dy = 0
+    this._x = 0
+    this._r = 0
+    this._opacity = 1
+    this._align = 'middle'
+    this._rotate = true
+  }
+  opacity(n) {
+    this._opacity = n
+    return this
+  }
+  xBounds() {
+    return {
+      min: 0,
+      max: this._x
+    }
+  }
+  rBounds() {
+    return {
+      min: 0,
+      max: this._r
+    }
+  }
+  rotate(bool) {
+    this._rotate = bool
+    return this
+  }
+  at(x, r) {
+    this._x = x
+    this._r = r
+    return this
+  }
+  color(c) {
+    this._color = colors[c] || c
+    return this
+  }
+  dx(n) {
+    this._dx = n
+    return this
+  }
+  dy(n) {
+    this._dy = n
+    return this
+  }
+  dr(n) {
+    this._dr = n
+    return this
+  }
+  font(n) {
+    this.size = n
+    return this
+  }
+  build() {
+    let h = this.world.html
+
+    let attrs = {
+      x: this._dx,
+      y: this._dy,
+      fill: this._color,
+      opacity: this._opacity,
+      'text-anchor': this._align,
+      'font-size': this.size
+    }
+    return h`<text ...${attrs}>${this.text}</text>`
+  }
+}
+module.exports = Text
+
+},{"spencer-color":57}],17:[function(_dereq_,module,exports){
 (function (global){
 /* somehow v0.0.9
    github.com/spencermountain/somehow-input
@@ -3850,7 +4785,7 @@ module.exports = {
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],8:[function(_dereq_,module,exports){
+},{}],18:[function(_dereq_,module,exports){
 (function (global){
 /* somehow v0.0.3
    github.com/spencermountain/somehow-ticks
@@ -4146,14 +5081,2425 @@ module.exports = methods;
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],9:[function(_dereq_,module,exports){
-module.exports = '0.3.1'
-},{}],10:[function(_dereq_,module,exports){
-(function (global){
-!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).spencerColor=e()}}(function(){return function u(i,a,c){function f(r,e){if(!a[r]){if(!i[r]){var o="function"==typeof _dereq_&&_dereq_;if(!e&&o)return o(r,!0);if(d)return d(r,!0);var n=new Error("Cannot find module '"+r+"'");throw n.code="MODULE_NOT_FOUND",n}var t=a[r]={exports:{}};i[r][0].call(t.exports,function(e){return f(i[r][1][e]||e)},t,t.exports,u,i,a,c)}return a[r].exports}for(var d="function"==typeof _dereq_&&_dereq_,e=0;e<c.length;e++)f(c[e]);return f}({1:[function(e,r,o){"use strict";r.exports={blue:"#6699cc",green:"#6accb2",yellow:"#e1e6b3",red:"#cc7066",pink:"#F2C0BB",brown:"#705E5C",orange:"#cc8a66",purple:"#d8b3e6",navy:"#335799",olive:"#7f9c6c",fuscia:"#735873",beige:"#e6d7b3",slate:"#8C8C88",suede:"#9c896c",burnt:"#603a39",sea:"#50617A",sky:"#2D85A8",night:"#303b50",rouge:"#914045",grey:"#838B91",mud:"#C4ABAB",royal:"#275291",cherry:"#cc6966",tulip:"#e6b3bc",rose:"#D68881",fire:"#AB5850",greyblue:"#72697D",greygreen:"#8BA3A2",greypurple:"#978BA3",burn:"#6D5685",slategrey:"#bfb0b3",light:"#a3a5a5",lighter:"#d7d5d2",fudge:"#4d4d4d",lightgrey:"#949a9e",white:"#fbfbfb",dimgrey:"#606c74",softblack:"#463D4F",dark:"#443d3d",black:"#333333"}},{}],2:[function(e,r,o){"use strict";var n=e("./colors"),t={juno:["blue","mud","navy","slate","pink","burn"],barrow:["rouge","red","orange","burnt","brown","greygreen"],roma:["#8a849a","#b5b0bf","rose","lighter","greygreen","mud"],palmer:["red","navy","olive","pink","suede","sky"],mark:["#848f9a","#9aa4ac","slate","#b0b8bf","mud","grey"],salmon:["sky","sea","fuscia","slate","mud","fudge"],dupont:["green","brown","orange","red","olive","blue"],bloor:["night","navy","beige","rouge","mud","grey"],yukon:["mud","slate","brown","sky","beige","red"],david:["blue","green","yellow","red","pink","light"],neste:["mud","cherry","royal","rouge","greygreen","greypurple"],ken:["red","sky","#c67a53","greygreen","#dfb59f","mud"]};Object.keys(t).forEach(function(e){t[e]=t[e].map(function(e){return n[e]||e})}),r.exports=t},{"./colors":1}],3:[function(e,r,o){"use strict";var n=e("./colors"),t=e("./combos"),u={colors:n,list:Object.keys(n).map(function(e){return n[e]}),combos:t};r.exports=u},{"./colors":1,"./combos":2}]},{},[3])(3)});
+},{}],19:[function(_dereq_,module,exports){
+module.exports = '0.3.5'
+},{}],20:[function(_dereq_,module,exports){
+// https://d3js.org/d3-shape/ v1.3.7 Copyright 2019 Mike Bostock
+(function (global, factory) {
+typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, _dereq_('d3-path')) :
+typeof define === 'function' && define.amd ? define(['exports', 'd3-path'], factory) :
+(global = global || self, factory(global.d3 = global.d3 || {}, global.d3));
+}(this, function (exports, d3Path) { 'use strict';
 
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],11:[function(_dereq_,module,exports){
+function constant(x) {
+  return function constant() {
+    return x;
+  };
+}
+
+var abs = Math.abs;
+var atan2 = Math.atan2;
+var cos = Math.cos;
+var max = Math.max;
+var min = Math.min;
+var sin = Math.sin;
+var sqrt = Math.sqrt;
+
+var epsilon = 1e-12;
+var pi = Math.PI;
+var halfPi = pi / 2;
+var tau = 2 * pi;
+
+function acos(x) {
+  return x > 1 ? 0 : x < -1 ? pi : Math.acos(x);
+}
+
+function asin(x) {
+  return x >= 1 ? halfPi : x <= -1 ? -halfPi : Math.asin(x);
+}
+
+function arcInnerRadius(d) {
+  return d.innerRadius;
+}
+
+function arcOuterRadius(d) {
+  return d.outerRadius;
+}
+
+function arcStartAngle(d) {
+  return d.startAngle;
+}
+
+function arcEndAngle(d) {
+  return d.endAngle;
+}
+
+function arcPadAngle(d) {
+  return d && d.padAngle; // Note: optional!
+}
+
+function intersect(x0, y0, x1, y1, x2, y2, x3, y3) {
+  var x10 = x1 - x0, y10 = y1 - y0,
+      x32 = x3 - x2, y32 = y3 - y2,
+      t = y32 * x10 - x32 * y10;
+  if (t * t < epsilon) return;
+  t = (x32 * (y0 - y2) - y32 * (x0 - x2)) / t;
+  return [x0 + t * x10, y0 + t * y10];
+}
+
+// Compute perpendicular offset line of length rc.
+// http://mathworld.wolfram.com/Circle-LineIntersection.html
+function cornerTangents(x0, y0, x1, y1, r1, rc, cw) {
+  var x01 = x0 - x1,
+      y01 = y0 - y1,
+      lo = (cw ? rc : -rc) / sqrt(x01 * x01 + y01 * y01),
+      ox = lo * y01,
+      oy = -lo * x01,
+      x11 = x0 + ox,
+      y11 = y0 + oy,
+      x10 = x1 + ox,
+      y10 = y1 + oy,
+      x00 = (x11 + x10) / 2,
+      y00 = (y11 + y10) / 2,
+      dx = x10 - x11,
+      dy = y10 - y11,
+      d2 = dx * dx + dy * dy,
+      r = r1 - rc,
+      D = x11 * y10 - x10 * y11,
+      d = (dy < 0 ? -1 : 1) * sqrt(max(0, r * r * d2 - D * D)),
+      cx0 = (D * dy - dx * d) / d2,
+      cy0 = (-D * dx - dy * d) / d2,
+      cx1 = (D * dy + dx * d) / d2,
+      cy1 = (-D * dx + dy * d) / d2,
+      dx0 = cx0 - x00,
+      dy0 = cy0 - y00,
+      dx1 = cx1 - x00,
+      dy1 = cy1 - y00;
+
+  // Pick the closer of the two intersection points.
+  // TODO Is there a faster way to determine which intersection to use?
+  if (dx0 * dx0 + dy0 * dy0 > dx1 * dx1 + dy1 * dy1) cx0 = cx1, cy0 = cy1;
+
+  return {
+    cx: cx0,
+    cy: cy0,
+    x01: -ox,
+    y01: -oy,
+    x11: cx0 * (r1 / r - 1),
+    y11: cy0 * (r1 / r - 1)
+  };
+}
+
+function arc() {
+  var innerRadius = arcInnerRadius,
+      outerRadius = arcOuterRadius,
+      cornerRadius = constant(0),
+      padRadius = null,
+      startAngle = arcStartAngle,
+      endAngle = arcEndAngle,
+      padAngle = arcPadAngle,
+      context = null;
+
+  function arc() {
+    var buffer,
+        r,
+        r0 = +innerRadius.apply(this, arguments),
+        r1 = +outerRadius.apply(this, arguments),
+        a0 = startAngle.apply(this, arguments) - halfPi,
+        a1 = endAngle.apply(this, arguments) - halfPi,
+        da = abs(a1 - a0),
+        cw = a1 > a0;
+
+    if (!context) context = buffer = d3Path.path();
+
+    // Ensure that the outer radius is always larger than the inner radius.
+    if (r1 < r0) r = r1, r1 = r0, r0 = r;
+
+    // Is it a point?
+    if (!(r1 > epsilon)) context.moveTo(0, 0);
+
+    // Or is it a circle or annulus?
+    else if (da > tau - epsilon) {
+      context.moveTo(r1 * cos(a0), r1 * sin(a0));
+      context.arc(0, 0, r1, a0, a1, !cw);
+      if (r0 > epsilon) {
+        context.moveTo(r0 * cos(a1), r0 * sin(a1));
+        context.arc(0, 0, r0, a1, a0, cw);
+      }
+    }
+
+    // Or is it a circular or annular sector?
+    else {
+      var a01 = a0,
+          a11 = a1,
+          a00 = a0,
+          a10 = a1,
+          da0 = da,
+          da1 = da,
+          ap = padAngle.apply(this, arguments) / 2,
+          rp = (ap > epsilon) && (padRadius ? +padRadius.apply(this, arguments) : sqrt(r0 * r0 + r1 * r1)),
+          rc = min(abs(r1 - r0) / 2, +cornerRadius.apply(this, arguments)),
+          rc0 = rc,
+          rc1 = rc,
+          t0,
+          t1;
+
+      // Apply padding? Note that since r1 ≥ r0, da1 ≥ da0.
+      if (rp > epsilon) {
+        var p0 = asin(rp / r0 * sin(ap)),
+            p1 = asin(rp / r1 * sin(ap));
+        if ((da0 -= p0 * 2) > epsilon) p0 *= (cw ? 1 : -1), a00 += p0, a10 -= p0;
+        else da0 = 0, a00 = a10 = (a0 + a1) / 2;
+        if ((da1 -= p1 * 2) > epsilon) p1 *= (cw ? 1 : -1), a01 += p1, a11 -= p1;
+        else da1 = 0, a01 = a11 = (a0 + a1) / 2;
+      }
+
+      var x01 = r1 * cos(a01),
+          y01 = r1 * sin(a01),
+          x10 = r0 * cos(a10),
+          y10 = r0 * sin(a10);
+
+      // Apply rounded corners?
+      if (rc > epsilon) {
+        var x11 = r1 * cos(a11),
+            y11 = r1 * sin(a11),
+            x00 = r0 * cos(a00),
+            y00 = r0 * sin(a00),
+            oc;
+
+        // Restrict the corner radius according to the sector angle.
+        if (da < pi && (oc = intersect(x01, y01, x00, y00, x11, y11, x10, y10))) {
+          var ax = x01 - oc[0],
+              ay = y01 - oc[1],
+              bx = x11 - oc[0],
+              by = y11 - oc[1],
+              kc = 1 / sin(acos((ax * bx + ay * by) / (sqrt(ax * ax + ay * ay) * sqrt(bx * bx + by * by))) / 2),
+              lc = sqrt(oc[0] * oc[0] + oc[1] * oc[1]);
+          rc0 = min(rc, (r0 - lc) / (kc - 1));
+          rc1 = min(rc, (r1 - lc) / (kc + 1));
+        }
+      }
+
+      // Is the sector collapsed to a line?
+      if (!(da1 > epsilon)) context.moveTo(x01, y01);
+
+      // Does the sector’s outer ring have rounded corners?
+      else if (rc1 > epsilon) {
+        t0 = cornerTangents(x00, y00, x01, y01, r1, rc1, cw);
+        t1 = cornerTangents(x11, y11, x10, y10, r1, rc1, cw);
+
+        context.moveTo(t0.cx + t0.x01, t0.cy + t0.y01);
+
+        // Have the corners merged?
+        if (rc1 < rc) context.arc(t0.cx, t0.cy, rc1, atan2(t0.y01, t0.x01), atan2(t1.y01, t1.x01), !cw);
+
+        // Otherwise, draw the two corners and the ring.
+        else {
+          context.arc(t0.cx, t0.cy, rc1, atan2(t0.y01, t0.x01), atan2(t0.y11, t0.x11), !cw);
+          context.arc(0, 0, r1, atan2(t0.cy + t0.y11, t0.cx + t0.x11), atan2(t1.cy + t1.y11, t1.cx + t1.x11), !cw);
+          context.arc(t1.cx, t1.cy, rc1, atan2(t1.y11, t1.x11), atan2(t1.y01, t1.x01), !cw);
+        }
+      }
+
+      // Or is the outer ring just a circular arc?
+      else context.moveTo(x01, y01), context.arc(0, 0, r1, a01, a11, !cw);
+
+      // Is there no inner ring, and it’s a circular sector?
+      // Or perhaps it’s an annular sector collapsed due to padding?
+      if (!(r0 > epsilon) || !(da0 > epsilon)) context.lineTo(x10, y10);
+
+      // Does the sector’s inner ring (or point) have rounded corners?
+      else if (rc0 > epsilon) {
+        t0 = cornerTangents(x10, y10, x11, y11, r0, -rc0, cw);
+        t1 = cornerTangents(x01, y01, x00, y00, r0, -rc0, cw);
+
+        context.lineTo(t0.cx + t0.x01, t0.cy + t0.y01);
+
+        // Have the corners merged?
+        if (rc0 < rc) context.arc(t0.cx, t0.cy, rc0, atan2(t0.y01, t0.x01), atan2(t1.y01, t1.x01), !cw);
+
+        // Otherwise, draw the two corners and the ring.
+        else {
+          context.arc(t0.cx, t0.cy, rc0, atan2(t0.y01, t0.x01), atan2(t0.y11, t0.x11), !cw);
+          context.arc(0, 0, r0, atan2(t0.cy + t0.y11, t0.cx + t0.x11), atan2(t1.cy + t1.y11, t1.cx + t1.x11), cw);
+          context.arc(t1.cx, t1.cy, rc0, atan2(t1.y11, t1.x11), atan2(t1.y01, t1.x01), !cw);
+        }
+      }
+
+      // Or is the inner ring just a circular arc?
+      else context.arc(0, 0, r0, a10, a00, cw);
+    }
+
+    context.closePath();
+
+    if (buffer) return context = null, buffer + "" || null;
+  }
+
+  arc.centroid = function() {
+    var r = (+innerRadius.apply(this, arguments) + +outerRadius.apply(this, arguments)) / 2,
+        a = (+startAngle.apply(this, arguments) + +endAngle.apply(this, arguments)) / 2 - pi / 2;
+    return [cos(a) * r, sin(a) * r];
+  };
+
+  arc.innerRadius = function(_) {
+    return arguments.length ? (innerRadius = typeof _ === "function" ? _ : constant(+_), arc) : innerRadius;
+  };
+
+  arc.outerRadius = function(_) {
+    return arguments.length ? (outerRadius = typeof _ === "function" ? _ : constant(+_), arc) : outerRadius;
+  };
+
+  arc.cornerRadius = function(_) {
+    return arguments.length ? (cornerRadius = typeof _ === "function" ? _ : constant(+_), arc) : cornerRadius;
+  };
+
+  arc.padRadius = function(_) {
+    return arguments.length ? (padRadius = _ == null ? null : typeof _ === "function" ? _ : constant(+_), arc) : padRadius;
+  };
+
+  arc.startAngle = function(_) {
+    return arguments.length ? (startAngle = typeof _ === "function" ? _ : constant(+_), arc) : startAngle;
+  };
+
+  arc.endAngle = function(_) {
+    return arguments.length ? (endAngle = typeof _ === "function" ? _ : constant(+_), arc) : endAngle;
+  };
+
+  arc.padAngle = function(_) {
+    return arguments.length ? (padAngle = typeof _ === "function" ? _ : constant(+_), arc) : padAngle;
+  };
+
+  arc.context = function(_) {
+    return arguments.length ? ((context = _ == null ? null : _), arc) : context;
+  };
+
+  return arc;
+}
+
+function Linear(context) {
+  this._context = context;
+}
+
+Linear.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._point = 0;
+  },
+  lineEnd: function() {
+    if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
+      case 1: this._point = 2; // proceed
+      default: this._context.lineTo(x, y); break;
+    }
+  }
+};
+
+function curveLinear(context) {
+  return new Linear(context);
+}
+
+function x(p) {
+  return p[0];
+}
+
+function y(p) {
+  return p[1];
+}
+
+function line() {
+  var x$1 = x,
+      y$1 = y,
+      defined = constant(true),
+      context = null,
+      curve = curveLinear,
+      output = null;
+
+  function line(data) {
+    var i,
+        n = data.length,
+        d,
+        defined0 = false,
+        buffer;
+
+    if (context == null) output = curve(buffer = d3Path.path());
+
+    for (i = 0; i <= n; ++i) {
+      if (!(i < n && defined(d = data[i], i, data)) === defined0) {
+        if (defined0 = !defined0) output.lineStart();
+        else output.lineEnd();
+      }
+      if (defined0) output.point(+x$1(d, i, data), +y$1(d, i, data));
+    }
+
+    if (buffer) return output = null, buffer + "" || null;
+  }
+
+  line.x = function(_) {
+    return arguments.length ? (x$1 = typeof _ === "function" ? _ : constant(+_), line) : x$1;
+  };
+
+  line.y = function(_) {
+    return arguments.length ? (y$1 = typeof _ === "function" ? _ : constant(+_), line) : y$1;
+  };
+
+  line.defined = function(_) {
+    return arguments.length ? (defined = typeof _ === "function" ? _ : constant(!!_), line) : defined;
+  };
+
+  line.curve = function(_) {
+    return arguments.length ? (curve = _, context != null && (output = curve(context)), line) : curve;
+  };
+
+  line.context = function(_) {
+    return arguments.length ? (_ == null ? context = output = null : output = curve(context = _), line) : context;
+  };
+
+  return line;
+}
+
+function area() {
+  var x0 = x,
+      x1 = null,
+      y0 = constant(0),
+      y1 = y,
+      defined = constant(true),
+      context = null,
+      curve = curveLinear,
+      output = null;
+
+  function area(data) {
+    var i,
+        j,
+        k,
+        n = data.length,
+        d,
+        defined0 = false,
+        buffer,
+        x0z = new Array(n),
+        y0z = new Array(n);
+
+    if (context == null) output = curve(buffer = d3Path.path());
+
+    for (i = 0; i <= n; ++i) {
+      if (!(i < n && defined(d = data[i], i, data)) === defined0) {
+        if (defined0 = !defined0) {
+          j = i;
+          output.areaStart();
+          output.lineStart();
+        } else {
+          output.lineEnd();
+          output.lineStart();
+          for (k = i - 1; k >= j; --k) {
+            output.point(x0z[k], y0z[k]);
+          }
+          output.lineEnd();
+          output.areaEnd();
+        }
+      }
+      if (defined0) {
+        x0z[i] = +x0(d, i, data), y0z[i] = +y0(d, i, data);
+        output.point(x1 ? +x1(d, i, data) : x0z[i], y1 ? +y1(d, i, data) : y0z[i]);
+      }
+    }
+
+    if (buffer) return output = null, buffer + "" || null;
+  }
+
+  function arealine() {
+    return line().defined(defined).curve(curve).context(context);
+  }
+
+  area.x = function(_) {
+    return arguments.length ? (x0 = typeof _ === "function" ? _ : constant(+_), x1 = null, area) : x0;
+  };
+
+  area.x0 = function(_) {
+    return arguments.length ? (x0 = typeof _ === "function" ? _ : constant(+_), area) : x0;
+  };
+
+  area.x1 = function(_) {
+    return arguments.length ? (x1 = _ == null ? null : typeof _ === "function" ? _ : constant(+_), area) : x1;
+  };
+
+  area.y = function(_) {
+    return arguments.length ? (y0 = typeof _ === "function" ? _ : constant(+_), y1 = null, area) : y0;
+  };
+
+  area.y0 = function(_) {
+    return arguments.length ? (y0 = typeof _ === "function" ? _ : constant(+_), area) : y0;
+  };
+
+  area.y1 = function(_) {
+    return arguments.length ? (y1 = _ == null ? null : typeof _ === "function" ? _ : constant(+_), area) : y1;
+  };
+
+  area.lineX0 =
+  area.lineY0 = function() {
+    return arealine().x(x0).y(y0);
+  };
+
+  area.lineY1 = function() {
+    return arealine().x(x0).y(y1);
+  };
+
+  area.lineX1 = function() {
+    return arealine().x(x1).y(y0);
+  };
+
+  area.defined = function(_) {
+    return arguments.length ? (defined = typeof _ === "function" ? _ : constant(!!_), area) : defined;
+  };
+
+  area.curve = function(_) {
+    return arguments.length ? (curve = _, context != null && (output = curve(context)), area) : curve;
+  };
+
+  area.context = function(_) {
+    return arguments.length ? (_ == null ? context = output = null : output = curve(context = _), area) : context;
+  };
+
+  return area;
+}
+
+function descending(a, b) {
+  return b < a ? -1 : b > a ? 1 : b >= a ? 0 : NaN;
+}
+
+function identity(d) {
+  return d;
+}
+
+function pie() {
+  var value = identity,
+      sortValues = descending,
+      sort = null,
+      startAngle = constant(0),
+      endAngle = constant(tau),
+      padAngle = constant(0);
+
+  function pie(data) {
+    var i,
+        n = data.length,
+        j,
+        k,
+        sum = 0,
+        index = new Array(n),
+        arcs = new Array(n),
+        a0 = +startAngle.apply(this, arguments),
+        da = Math.min(tau, Math.max(-tau, endAngle.apply(this, arguments) - a0)),
+        a1,
+        p = Math.min(Math.abs(da) / n, padAngle.apply(this, arguments)),
+        pa = p * (da < 0 ? -1 : 1),
+        v;
+
+    for (i = 0; i < n; ++i) {
+      if ((v = arcs[index[i] = i] = +value(data[i], i, data)) > 0) {
+        sum += v;
+      }
+    }
+
+    // Optionally sort the arcs by previously-computed values or by data.
+    if (sortValues != null) index.sort(function(i, j) { return sortValues(arcs[i], arcs[j]); });
+    else if (sort != null) index.sort(function(i, j) { return sort(data[i], data[j]); });
+
+    // Compute the arcs! They are stored in the original data's order.
+    for (i = 0, k = sum ? (da - n * pa) / sum : 0; i < n; ++i, a0 = a1) {
+      j = index[i], v = arcs[j], a1 = a0 + (v > 0 ? v * k : 0) + pa, arcs[j] = {
+        data: data[j],
+        index: i,
+        value: v,
+        startAngle: a0,
+        endAngle: a1,
+        padAngle: p
+      };
+    }
+
+    return arcs;
+  }
+
+  pie.value = function(_) {
+    return arguments.length ? (value = typeof _ === "function" ? _ : constant(+_), pie) : value;
+  };
+
+  pie.sortValues = function(_) {
+    return arguments.length ? (sortValues = _, sort = null, pie) : sortValues;
+  };
+
+  pie.sort = function(_) {
+    return arguments.length ? (sort = _, sortValues = null, pie) : sort;
+  };
+
+  pie.startAngle = function(_) {
+    return arguments.length ? (startAngle = typeof _ === "function" ? _ : constant(+_), pie) : startAngle;
+  };
+
+  pie.endAngle = function(_) {
+    return arguments.length ? (endAngle = typeof _ === "function" ? _ : constant(+_), pie) : endAngle;
+  };
+
+  pie.padAngle = function(_) {
+    return arguments.length ? (padAngle = typeof _ === "function" ? _ : constant(+_), pie) : padAngle;
+  };
+
+  return pie;
+}
+
+var curveRadialLinear = curveRadial(curveLinear);
+
+function Radial(curve) {
+  this._curve = curve;
+}
+
+Radial.prototype = {
+  areaStart: function() {
+    this._curve.areaStart();
+  },
+  areaEnd: function() {
+    this._curve.areaEnd();
+  },
+  lineStart: function() {
+    this._curve.lineStart();
+  },
+  lineEnd: function() {
+    this._curve.lineEnd();
+  },
+  point: function(a, r) {
+    this._curve.point(r * Math.sin(a), r * -Math.cos(a));
+  }
+};
+
+function curveRadial(curve) {
+
+  function radial(context) {
+    return new Radial(curve(context));
+  }
+
+  radial._curve = curve;
+
+  return radial;
+}
+
+function lineRadial(l) {
+  var c = l.curve;
+
+  l.angle = l.x, delete l.x;
+  l.radius = l.y, delete l.y;
+
+  l.curve = function(_) {
+    return arguments.length ? c(curveRadial(_)) : c()._curve;
+  };
+
+  return l;
+}
+
+function lineRadial$1() {
+  return lineRadial(line().curve(curveRadialLinear));
+}
+
+function areaRadial() {
+  var a = area().curve(curveRadialLinear),
+      c = a.curve,
+      x0 = a.lineX0,
+      x1 = a.lineX1,
+      y0 = a.lineY0,
+      y1 = a.lineY1;
+
+  a.angle = a.x, delete a.x;
+  a.startAngle = a.x0, delete a.x0;
+  a.endAngle = a.x1, delete a.x1;
+  a.radius = a.y, delete a.y;
+  a.innerRadius = a.y0, delete a.y0;
+  a.outerRadius = a.y1, delete a.y1;
+  a.lineStartAngle = function() { return lineRadial(x0()); }, delete a.lineX0;
+  a.lineEndAngle = function() { return lineRadial(x1()); }, delete a.lineX1;
+  a.lineInnerRadius = function() { return lineRadial(y0()); }, delete a.lineY0;
+  a.lineOuterRadius = function() { return lineRadial(y1()); }, delete a.lineY1;
+
+  a.curve = function(_) {
+    return arguments.length ? c(curveRadial(_)) : c()._curve;
+  };
+
+  return a;
+}
+
+function pointRadial(x, y) {
+  return [(y = +y) * Math.cos(x -= Math.PI / 2), y * Math.sin(x)];
+}
+
+var slice = Array.prototype.slice;
+
+function linkSource(d) {
+  return d.source;
+}
+
+function linkTarget(d) {
+  return d.target;
+}
+
+function link(curve) {
+  var source = linkSource,
+      target = linkTarget,
+      x$1 = x,
+      y$1 = y,
+      context = null;
+
+  function link() {
+    var buffer, argv = slice.call(arguments), s = source.apply(this, argv), t = target.apply(this, argv);
+    if (!context) context = buffer = d3Path.path();
+    curve(context, +x$1.apply(this, (argv[0] = s, argv)), +y$1.apply(this, argv), +x$1.apply(this, (argv[0] = t, argv)), +y$1.apply(this, argv));
+    if (buffer) return context = null, buffer + "" || null;
+  }
+
+  link.source = function(_) {
+    return arguments.length ? (source = _, link) : source;
+  };
+
+  link.target = function(_) {
+    return arguments.length ? (target = _, link) : target;
+  };
+
+  link.x = function(_) {
+    return arguments.length ? (x$1 = typeof _ === "function" ? _ : constant(+_), link) : x$1;
+  };
+
+  link.y = function(_) {
+    return arguments.length ? (y$1 = typeof _ === "function" ? _ : constant(+_), link) : y$1;
+  };
+
+  link.context = function(_) {
+    return arguments.length ? ((context = _ == null ? null : _), link) : context;
+  };
+
+  return link;
+}
+
+function curveHorizontal(context, x0, y0, x1, y1) {
+  context.moveTo(x0, y0);
+  context.bezierCurveTo(x0 = (x0 + x1) / 2, y0, x0, y1, x1, y1);
+}
+
+function curveVertical(context, x0, y0, x1, y1) {
+  context.moveTo(x0, y0);
+  context.bezierCurveTo(x0, y0 = (y0 + y1) / 2, x1, y0, x1, y1);
+}
+
+function curveRadial$1(context, x0, y0, x1, y1) {
+  var p0 = pointRadial(x0, y0),
+      p1 = pointRadial(x0, y0 = (y0 + y1) / 2),
+      p2 = pointRadial(x1, y0),
+      p3 = pointRadial(x1, y1);
+  context.moveTo(p0[0], p0[1]);
+  context.bezierCurveTo(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
+}
+
+function linkHorizontal() {
+  return link(curveHorizontal);
+}
+
+function linkVertical() {
+  return link(curveVertical);
+}
+
+function linkRadial() {
+  var l = link(curveRadial$1);
+  l.angle = l.x, delete l.x;
+  l.radius = l.y, delete l.y;
+  return l;
+}
+
+var circle = {
+  draw: function(context, size) {
+    var r = Math.sqrt(size / pi);
+    context.moveTo(r, 0);
+    context.arc(0, 0, r, 0, tau);
+  }
+};
+
+var cross = {
+  draw: function(context, size) {
+    var r = Math.sqrt(size / 5) / 2;
+    context.moveTo(-3 * r, -r);
+    context.lineTo(-r, -r);
+    context.lineTo(-r, -3 * r);
+    context.lineTo(r, -3 * r);
+    context.lineTo(r, -r);
+    context.lineTo(3 * r, -r);
+    context.lineTo(3 * r, r);
+    context.lineTo(r, r);
+    context.lineTo(r, 3 * r);
+    context.lineTo(-r, 3 * r);
+    context.lineTo(-r, r);
+    context.lineTo(-3 * r, r);
+    context.closePath();
+  }
+};
+
+var tan30 = Math.sqrt(1 / 3),
+    tan30_2 = tan30 * 2;
+
+var diamond = {
+  draw: function(context, size) {
+    var y = Math.sqrt(size / tan30_2),
+        x = y * tan30;
+    context.moveTo(0, -y);
+    context.lineTo(x, 0);
+    context.lineTo(0, y);
+    context.lineTo(-x, 0);
+    context.closePath();
+  }
+};
+
+var ka = 0.89081309152928522810,
+    kr = Math.sin(pi / 10) / Math.sin(7 * pi / 10),
+    kx = Math.sin(tau / 10) * kr,
+    ky = -Math.cos(tau / 10) * kr;
+
+var star = {
+  draw: function(context, size) {
+    var r = Math.sqrt(size * ka),
+        x = kx * r,
+        y = ky * r;
+    context.moveTo(0, -r);
+    context.lineTo(x, y);
+    for (var i = 1; i < 5; ++i) {
+      var a = tau * i / 5,
+          c = Math.cos(a),
+          s = Math.sin(a);
+      context.lineTo(s * r, -c * r);
+      context.lineTo(c * x - s * y, s * x + c * y);
+    }
+    context.closePath();
+  }
+};
+
+var square = {
+  draw: function(context, size) {
+    var w = Math.sqrt(size),
+        x = -w / 2;
+    context.rect(x, x, w, w);
+  }
+};
+
+var sqrt3 = Math.sqrt(3);
+
+var triangle = {
+  draw: function(context, size) {
+    var y = -Math.sqrt(size / (sqrt3 * 3));
+    context.moveTo(0, y * 2);
+    context.lineTo(-sqrt3 * y, -y);
+    context.lineTo(sqrt3 * y, -y);
+    context.closePath();
+  }
+};
+
+var c = -0.5,
+    s = Math.sqrt(3) / 2,
+    k = 1 / Math.sqrt(12),
+    a = (k / 2 + 1) * 3;
+
+var wye = {
+  draw: function(context, size) {
+    var r = Math.sqrt(size / a),
+        x0 = r / 2,
+        y0 = r * k,
+        x1 = x0,
+        y1 = r * k + r,
+        x2 = -x1,
+        y2 = y1;
+    context.moveTo(x0, y0);
+    context.lineTo(x1, y1);
+    context.lineTo(x2, y2);
+    context.lineTo(c * x0 - s * y0, s * x0 + c * y0);
+    context.lineTo(c * x1 - s * y1, s * x1 + c * y1);
+    context.lineTo(c * x2 - s * y2, s * x2 + c * y2);
+    context.lineTo(c * x0 + s * y0, c * y0 - s * x0);
+    context.lineTo(c * x1 + s * y1, c * y1 - s * x1);
+    context.lineTo(c * x2 + s * y2, c * y2 - s * x2);
+    context.closePath();
+  }
+};
+
+var symbols = [
+  circle,
+  cross,
+  diamond,
+  square,
+  star,
+  triangle,
+  wye
+];
+
+function symbol() {
+  var type = constant(circle),
+      size = constant(64),
+      context = null;
+
+  function symbol() {
+    var buffer;
+    if (!context) context = buffer = d3Path.path();
+    type.apply(this, arguments).draw(context, +size.apply(this, arguments));
+    if (buffer) return context = null, buffer + "" || null;
+  }
+
+  symbol.type = function(_) {
+    return arguments.length ? (type = typeof _ === "function" ? _ : constant(_), symbol) : type;
+  };
+
+  symbol.size = function(_) {
+    return arguments.length ? (size = typeof _ === "function" ? _ : constant(+_), symbol) : size;
+  };
+
+  symbol.context = function(_) {
+    return arguments.length ? (context = _ == null ? null : _, symbol) : context;
+  };
+
+  return symbol;
+}
+
+function noop() {}
+
+function point(that, x, y) {
+  that._context.bezierCurveTo(
+    (2 * that._x0 + that._x1) / 3,
+    (2 * that._y0 + that._y1) / 3,
+    (that._x0 + 2 * that._x1) / 3,
+    (that._y0 + 2 * that._y1) / 3,
+    (that._x0 + 4 * that._x1 + x) / 6,
+    (that._y0 + 4 * that._y1 + y) / 6
+  );
+}
+
+function Basis(context) {
+  this._context = context;
+}
+
+Basis.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 =
+    this._y0 = this._y1 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 3: point(this, this._x1, this._y1); // proceed
+      case 2: this._context.lineTo(this._x1, this._y1); break;
+    }
+    if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
+      case 1: this._point = 2; break;
+      case 2: this._point = 3; this._context.lineTo((5 * this._x0 + this._x1) / 6, (5 * this._y0 + this._y1) / 6); // proceed
+      default: point(this, x, y); break;
+    }
+    this._x0 = this._x1, this._x1 = x;
+    this._y0 = this._y1, this._y1 = y;
+  }
+};
+
+function basis(context) {
+  return new Basis(context);
+}
+
+function BasisClosed(context) {
+  this._context = context;
+}
+
+BasisClosed.prototype = {
+  areaStart: noop,
+  areaEnd: noop,
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 = this._x3 = this._x4 =
+    this._y0 = this._y1 = this._y2 = this._y3 = this._y4 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 1: {
+        this._context.moveTo(this._x2, this._y2);
+        this._context.closePath();
+        break;
+      }
+      case 2: {
+        this._context.moveTo((this._x2 + 2 * this._x3) / 3, (this._y2 + 2 * this._y3) / 3);
+        this._context.lineTo((this._x3 + 2 * this._x2) / 3, (this._y3 + 2 * this._y2) / 3);
+        this._context.closePath();
+        break;
+      }
+      case 3: {
+        this.point(this._x2, this._y2);
+        this.point(this._x3, this._y3);
+        this.point(this._x4, this._y4);
+        break;
+      }
+    }
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; this._x2 = x, this._y2 = y; break;
+      case 1: this._point = 2; this._x3 = x, this._y3 = y; break;
+      case 2: this._point = 3; this._x4 = x, this._y4 = y; this._context.moveTo((this._x0 + 4 * this._x1 + x) / 6, (this._y0 + 4 * this._y1 + y) / 6); break;
+      default: point(this, x, y); break;
+    }
+    this._x0 = this._x1, this._x1 = x;
+    this._y0 = this._y1, this._y1 = y;
+  }
+};
+
+function basisClosed(context) {
+  return new BasisClosed(context);
+}
+
+function BasisOpen(context) {
+  this._context = context;
+}
+
+BasisOpen.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 =
+    this._y0 = this._y1 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    if (this._line || (this._line !== 0 && this._point === 3)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; break;
+      case 1: this._point = 2; break;
+      case 2: this._point = 3; var x0 = (this._x0 + 4 * this._x1 + x) / 6, y0 = (this._y0 + 4 * this._y1 + y) / 6; this._line ? this._context.lineTo(x0, y0) : this._context.moveTo(x0, y0); break;
+      case 3: this._point = 4; // proceed
+      default: point(this, x, y); break;
+    }
+    this._x0 = this._x1, this._x1 = x;
+    this._y0 = this._y1, this._y1 = y;
+  }
+};
+
+function basisOpen(context) {
+  return new BasisOpen(context);
+}
+
+function Bundle(context, beta) {
+  this._basis = new Basis(context);
+  this._beta = beta;
+}
+
+Bundle.prototype = {
+  lineStart: function() {
+    this._x = [];
+    this._y = [];
+    this._basis.lineStart();
+  },
+  lineEnd: function() {
+    var x = this._x,
+        y = this._y,
+        j = x.length - 1;
+
+    if (j > 0) {
+      var x0 = x[0],
+          y0 = y[0],
+          dx = x[j] - x0,
+          dy = y[j] - y0,
+          i = -1,
+          t;
+
+      while (++i <= j) {
+        t = i / j;
+        this._basis.point(
+          this._beta * x[i] + (1 - this._beta) * (x0 + t * dx),
+          this._beta * y[i] + (1 - this._beta) * (y0 + t * dy)
+        );
+      }
+    }
+
+    this._x = this._y = null;
+    this._basis.lineEnd();
+  },
+  point: function(x, y) {
+    this._x.push(+x);
+    this._y.push(+y);
+  }
+};
+
+var bundle = (function custom(beta) {
+
+  function bundle(context) {
+    return beta === 1 ? new Basis(context) : new Bundle(context, beta);
+  }
+
+  bundle.beta = function(beta) {
+    return custom(+beta);
+  };
+
+  return bundle;
+})(0.85);
+
+function point$1(that, x, y) {
+  that._context.bezierCurveTo(
+    that._x1 + that._k * (that._x2 - that._x0),
+    that._y1 + that._k * (that._y2 - that._y0),
+    that._x2 + that._k * (that._x1 - x),
+    that._y2 + that._k * (that._y1 - y),
+    that._x2,
+    that._y2
+  );
+}
+
+function Cardinal(context, tension) {
+  this._context = context;
+  this._k = (1 - tension) / 6;
+}
+
+Cardinal.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 =
+    this._y0 = this._y1 = this._y2 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 2: this._context.lineTo(this._x2, this._y2); break;
+      case 3: point$1(this, this._x1, this._y1); break;
+    }
+    if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
+      case 1: this._point = 2; this._x1 = x, this._y1 = y; break;
+      case 2: this._point = 3; // proceed
+      default: point$1(this, x, y); break;
+    }
+    this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
+    this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
+  }
+};
+
+var cardinal = (function custom(tension) {
+
+  function cardinal(context) {
+    return new Cardinal(context, tension);
+  }
+
+  cardinal.tension = function(tension) {
+    return custom(+tension);
+  };
+
+  return cardinal;
+})(0);
+
+function CardinalClosed(context, tension) {
+  this._context = context;
+  this._k = (1 - tension) / 6;
+}
+
+CardinalClosed.prototype = {
+  areaStart: noop,
+  areaEnd: noop,
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 = this._x3 = this._x4 = this._x5 =
+    this._y0 = this._y1 = this._y2 = this._y3 = this._y4 = this._y5 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 1: {
+        this._context.moveTo(this._x3, this._y3);
+        this._context.closePath();
+        break;
+      }
+      case 2: {
+        this._context.lineTo(this._x3, this._y3);
+        this._context.closePath();
+        break;
+      }
+      case 3: {
+        this.point(this._x3, this._y3);
+        this.point(this._x4, this._y4);
+        this.point(this._x5, this._y5);
+        break;
+      }
+    }
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; this._x3 = x, this._y3 = y; break;
+      case 1: this._point = 2; this._context.moveTo(this._x4 = x, this._y4 = y); break;
+      case 2: this._point = 3; this._x5 = x, this._y5 = y; break;
+      default: point$1(this, x, y); break;
+    }
+    this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
+    this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
+  }
+};
+
+var cardinalClosed = (function custom(tension) {
+
+  function cardinal(context) {
+    return new CardinalClosed(context, tension);
+  }
+
+  cardinal.tension = function(tension) {
+    return custom(+tension);
+  };
+
+  return cardinal;
+})(0);
+
+function CardinalOpen(context, tension) {
+  this._context = context;
+  this._k = (1 - tension) / 6;
+}
+
+CardinalOpen.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 =
+    this._y0 = this._y1 = this._y2 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    if (this._line || (this._line !== 0 && this._point === 3)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; break;
+      case 1: this._point = 2; break;
+      case 2: this._point = 3; this._line ? this._context.lineTo(this._x2, this._y2) : this._context.moveTo(this._x2, this._y2); break;
+      case 3: this._point = 4; // proceed
+      default: point$1(this, x, y); break;
+    }
+    this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
+    this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
+  }
+};
+
+var cardinalOpen = (function custom(tension) {
+
+  function cardinal(context) {
+    return new CardinalOpen(context, tension);
+  }
+
+  cardinal.tension = function(tension) {
+    return custom(+tension);
+  };
+
+  return cardinal;
+})(0);
+
+function point$2(that, x, y) {
+  var x1 = that._x1,
+      y1 = that._y1,
+      x2 = that._x2,
+      y2 = that._y2;
+
+  if (that._l01_a > epsilon) {
+    var a = 2 * that._l01_2a + 3 * that._l01_a * that._l12_a + that._l12_2a,
+        n = 3 * that._l01_a * (that._l01_a + that._l12_a);
+    x1 = (x1 * a - that._x0 * that._l12_2a + that._x2 * that._l01_2a) / n;
+    y1 = (y1 * a - that._y0 * that._l12_2a + that._y2 * that._l01_2a) / n;
+  }
+
+  if (that._l23_a > epsilon) {
+    var b = 2 * that._l23_2a + 3 * that._l23_a * that._l12_a + that._l12_2a,
+        m = 3 * that._l23_a * (that._l23_a + that._l12_a);
+    x2 = (x2 * b + that._x1 * that._l23_2a - x * that._l12_2a) / m;
+    y2 = (y2 * b + that._y1 * that._l23_2a - y * that._l12_2a) / m;
+  }
+
+  that._context.bezierCurveTo(x1, y1, x2, y2, that._x2, that._y2);
+}
+
+function CatmullRom(context, alpha) {
+  this._context = context;
+  this._alpha = alpha;
+}
+
+CatmullRom.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 =
+    this._y0 = this._y1 = this._y2 = NaN;
+    this._l01_a = this._l12_a = this._l23_a =
+    this._l01_2a = this._l12_2a = this._l23_2a =
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 2: this._context.lineTo(this._x2, this._y2); break;
+      case 3: this.point(this._x2, this._y2); break;
+    }
+    if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+
+    if (this._point) {
+      var x23 = this._x2 - x,
+          y23 = this._y2 - y;
+      this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
+    }
+
+    switch (this._point) {
+      case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
+      case 1: this._point = 2; break;
+      case 2: this._point = 3; // proceed
+      default: point$2(this, x, y); break;
+    }
+
+    this._l01_a = this._l12_a, this._l12_a = this._l23_a;
+    this._l01_2a = this._l12_2a, this._l12_2a = this._l23_2a;
+    this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
+    this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
+  }
+};
+
+var catmullRom = (function custom(alpha) {
+
+  function catmullRom(context) {
+    return alpha ? new CatmullRom(context, alpha) : new Cardinal(context, 0);
+  }
+
+  catmullRom.alpha = function(alpha) {
+    return custom(+alpha);
+  };
+
+  return catmullRom;
+})(0.5);
+
+function CatmullRomClosed(context, alpha) {
+  this._context = context;
+  this._alpha = alpha;
+}
+
+CatmullRomClosed.prototype = {
+  areaStart: noop,
+  areaEnd: noop,
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 = this._x3 = this._x4 = this._x5 =
+    this._y0 = this._y1 = this._y2 = this._y3 = this._y4 = this._y5 = NaN;
+    this._l01_a = this._l12_a = this._l23_a =
+    this._l01_2a = this._l12_2a = this._l23_2a =
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 1: {
+        this._context.moveTo(this._x3, this._y3);
+        this._context.closePath();
+        break;
+      }
+      case 2: {
+        this._context.lineTo(this._x3, this._y3);
+        this._context.closePath();
+        break;
+      }
+      case 3: {
+        this.point(this._x3, this._y3);
+        this.point(this._x4, this._y4);
+        this.point(this._x5, this._y5);
+        break;
+      }
+    }
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+
+    if (this._point) {
+      var x23 = this._x2 - x,
+          y23 = this._y2 - y;
+      this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
+    }
+
+    switch (this._point) {
+      case 0: this._point = 1; this._x3 = x, this._y3 = y; break;
+      case 1: this._point = 2; this._context.moveTo(this._x4 = x, this._y4 = y); break;
+      case 2: this._point = 3; this._x5 = x, this._y5 = y; break;
+      default: point$2(this, x, y); break;
+    }
+
+    this._l01_a = this._l12_a, this._l12_a = this._l23_a;
+    this._l01_2a = this._l12_2a, this._l12_2a = this._l23_2a;
+    this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
+    this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
+  }
+};
+
+var catmullRomClosed = (function custom(alpha) {
+
+  function catmullRom(context) {
+    return alpha ? new CatmullRomClosed(context, alpha) : new CardinalClosed(context, 0);
+  }
+
+  catmullRom.alpha = function(alpha) {
+    return custom(+alpha);
+  };
+
+  return catmullRom;
+})(0.5);
+
+function CatmullRomOpen(context, alpha) {
+  this._context = context;
+  this._alpha = alpha;
+}
+
+CatmullRomOpen.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 = this._x2 =
+    this._y0 = this._y1 = this._y2 = NaN;
+    this._l01_a = this._l12_a = this._l23_a =
+    this._l01_2a = this._l12_2a = this._l23_2a =
+    this._point = 0;
+  },
+  lineEnd: function() {
+    if (this._line || (this._line !== 0 && this._point === 3)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+
+    if (this._point) {
+      var x23 = this._x2 - x,
+          y23 = this._y2 - y;
+      this._l23_a = Math.sqrt(this._l23_2a = Math.pow(x23 * x23 + y23 * y23, this._alpha));
+    }
+
+    switch (this._point) {
+      case 0: this._point = 1; break;
+      case 1: this._point = 2; break;
+      case 2: this._point = 3; this._line ? this._context.lineTo(this._x2, this._y2) : this._context.moveTo(this._x2, this._y2); break;
+      case 3: this._point = 4; // proceed
+      default: point$2(this, x, y); break;
+    }
+
+    this._l01_a = this._l12_a, this._l12_a = this._l23_a;
+    this._l01_2a = this._l12_2a, this._l12_2a = this._l23_2a;
+    this._x0 = this._x1, this._x1 = this._x2, this._x2 = x;
+    this._y0 = this._y1, this._y1 = this._y2, this._y2 = y;
+  }
+};
+
+var catmullRomOpen = (function custom(alpha) {
+
+  function catmullRom(context) {
+    return alpha ? new CatmullRomOpen(context, alpha) : new CardinalOpen(context, 0);
+  }
+
+  catmullRom.alpha = function(alpha) {
+    return custom(+alpha);
+  };
+
+  return catmullRom;
+})(0.5);
+
+function LinearClosed(context) {
+  this._context = context;
+}
+
+LinearClosed.prototype = {
+  areaStart: noop,
+  areaEnd: noop,
+  lineStart: function() {
+    this._point = 0;
+  },
+  lineEnd: function() {
+    if (this._point) this._context.closePath();
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    if (this._point) this._context.lineTo(x, y);
+    else this._point = 1, this._context.moveTo(x, y);
+  }
+};
+
+function linearClosed(context) {
+  return new LinearClosed(context);
+}
+
+function sign(x) {
+  return x < 0 ? -1 : 1;
+}
+
+// Calculate the slopes of the tangents (Hermite-type interpolation) based on
+// the following paper: Steffen, M. 1990. A Simple Method for Monotonic
+// Interpolation in One Dimension. Astronomy and Astrophysics, Vol. 239, NO.
+// NOV(II), P. 443, 1990.
+function slope3(that, x2, y2) {
+  var h0 = that._x1 - that._x0,
+      h1 = x2 - that._x1,
+      s0 = (that._y1 - that._y0) / (h0 || h1 < 0 && -0),
+      s1 = (y2 - that._y1) / (h1 || h0 < 0 && -0),
+      p = (s0 * h1 + s1 * h0) / (h0 + h1);
+  return (sign(s0) + sign(s1)) * Math.min(Math.abs(s0), Math.abs(s1), 0.5 * Math.abs(p)) || 0;
+}
+
+// Calculate a one-sided slope.
+function slope2(that, t) {
+  var h = that._x1 - that._x0;
+  return h ? (3 * (that._y1 - that._y0) / h - t) / 2 : t;
+}
+
+// According to https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Representations
+// "you can express cubic Hermite interpolation in terms of cubic Bézier curves
+// with respect to the four values p0, p0 + m0 / 3, p1 - m1 / 3, p1".
+function point$3(that, t0, t1) {
+  var x0 = that._x0,
+      y0 = that._y0,
+      x1 = that._x1,
+      y1 = that._y1,
+      dx = (x1 - x0) / 3;
+  that._context.bezierCurveTo(x0 + dx, y0 + dx * t0, x1 - dx, y1 - dx * t1, x1, y1);
+}
+
+function MonotoneX(context) {
+  this._context = context;
+}
+
+MonotoneX.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x0 = this._x1 =
+    this._y0 = this._y1 =
+    this._t0 = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    switch (this._point) {
+      case 2: this._context.lineTo(this._x1, this._y1); break;
+      case 3: point$3(this, this._t0, slope2(this, this._t0)); break;
+    }
+    if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
+    this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    var t1 = NaN;
+
+    x = +x, y = +y;
+    if (x === this._x1 && y === this._y1) return; // Ignore coincident points.
+    switch (this._point) {
+      case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
+      case 1: this._point = 2; break;
+      case 2: this._point = 3; point$3(this, slope2(this, t1 = slope3(this, x, y)), t1); break;
+      default: point$3(this, this._t0, t1 = slope3(this, x, y)); break;
+    }
+
+    this._x0 = this._x1, this._x1 = x;
+    this._y0 = this._y1, this._y1 = y;
+    this._t0 = t1;
+  }
+};
+
+function MonotoneY(context) {
+  this._context = new ReflectContext(context);
+}
+
+(MonotoneY.prototype = Object.create(MonotoneX.prototype)).point = function(x, y) {
+  MonotoneX.prototype.point.call(this, y, x);
+};
+
+function ReflectContext(context) {
+  this._context = context;
+}
+
+ReflectContext.prototype = {
+  moveTo: function(x, y) { this._context.moveTo(y, x); },
+  closePath: function() { this._context.closePath(); },
+  lineTo: function(x, y) { this._context.lineTo(y, x); },
+  bezierCurveTo: function(x1, y1, x2, y2, x, y) { this._context.bezierCurveTo(y1, x1, y2, x2, y, x); }
+};
+
+function monotoneX(context) {
+  return new MonotoneX(context);
+}
+
+function monotoneY(context) {
+  return new MonotoneY(context);
+}
+
+function Natural(context) {
+  this._context = context;
+}
+
+Natural.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x = [];
+    this._y = [];
+  },
+  lineEnd: function() {
+    var x = this._x,
+        y = this._y,
+        n = x.length;
+
+    if (n) {
+      this._line ? this._context.lineTo(x[0], y[0]) : this._context.moveTo(x[0], y[0]);
+      if (n === 2) {
+        this._context.lineTo(x[1], y[1]);
+      } else {
+        var px = controlPoints(x),
+            py = controlPoints(y);
+        for (var i0 = 0, i1 = 1; i1 < n; ++i0, ++i1) {
+          this._context.bezierCurveTo(px[0][i0], py[0][i0], px[1][i0], py[1][i0], x[i1], y[i1]);
+        }
+      }
+    }
+
+    if (this._line || (this._line !== 0 && n === 1)) this._context.closePath();
+    this._line = 1 - this._line;
+    this._x = this._y = null;
+  },
+  point: function(x, y) {
+    this._x.push(+x);
+    this._y.push(+y);
+  }
+};
+
+// See https://www.particleincell.com/2012/bezier-splines/ for derivation.
+function controlPoints(x) {
+  var i,
+      n = x.length - 1,
+      m,
+      a = new Array(n),
+      b = new Array(n),
+      r = new Array(n);
+  a[0] = 0, b[0] = 2, r[0] = x[0] + 2 * x[1];
+  for (i = 1; i < n - 1; ++i) a[i] = 1, b[i] = 4, r[i] = 4 * x[i] + 2 * x[i + 1];
+  a[n - 1] = 2, b[n - 1] = 7, r[n - 1] = 8 * x[n - 1] + x[n];
+  for (i = 1; i < n; ++i) m = a[i] / b[i - 1], b[i] -= m, r[i] -= m * r[i - 1];
+  a[n - 1] = r[n - 1] / b[n - 1];
+  for (i = n - 2; i >= 0; --i) a[i] = (r[i] - a[i + 1]) / b[i];
+  b[n - 1] = (x[n] + a[n - 1]) / 2;
+  for (i = 0; i < n - 1; ++i) b[i] = 2 * x[i + 1] - a[i + 1];
+  return [a, b];
+}
+
+function natural(context) {
+  return new Natural(context);
+}
+
+function Step(context, t) {
+  this._context = context;
+  this._t = t;
+}
+
+Step.prototype = {
+  areaStart: function() {
+    this._line = 0;
+  },
+  areaEnd: function() {
+    this._line = NaN;
+  },
+  lineStart: function() {
+    this._x = this._y = NaN;
+    this._point = 0;
+  },
+  lineEnd: function() {
+    if (0 < this._t && this._t < 1 && this._point === 2) this._context.lineTo(this._x, this._y);
+    if (this._line || (this._line !== 0 && this._point === 1)) this._context.closePath();
+    if (this._line >= 0) this._t = 1 - this._t, this._line = 1 - this._line;
+  },
+  point: function(x, y) {
+    x = +x, y = +y;
+    switch (this._point) {
+      case 0: this._point = 1; this._line ? this._context.lineTo(x, y) : this._context.moveTo(x, y); break;
+      case 1: this._point = 2; // proceed
+      default: {
+        if (this._t <= 0) {
+          this._context.lineTo(this._x, y);
+          this._context.lineTo(x, y);
+        } else {
+          var x1 = this._x * (1 - this._t) + x * this._t;
+          this._context.lineTo(x1, this._y);
+          this._context.lineTo(x1, y);
+        }
+        break;
+      }
+    }
+    this._x = x, this._y = y;
+  }
+};
+
+function step(context) {
+  return new Step(context, 0.5);
+}
+
+function stepBefore(context) {
+  return new Step(context, 0);
+}
+
+function stepAfter(context) {
+  return new Step(context, 1);
+}
+
+function none(series, order) {
+  if (!((n = series.length) > 1)) return;
+  for (var i = 1, j, s0, s1 = series[order[0]], n, m = s1.length; i < n; ++i) {
+    s0 = s1, s1 = series[order[i]];
+    for (j = 0; j < m; ++j) {
+      s1[j][1] += s1[j][0] = isNaN(s0[j][1]) ? s0[j][0] : s0[j][1];
+    }
+  }
+}
+
+function none$1(series) {
+  var n = series.length, o = new Array(n);
+  while (--n >= 0) o[n] = n;
+  return o;
+}
+
+function stackValue(d, key) {
+  return d[key];
+}
+
+function stack() {
+  var keys = constant([]),
+      order = none$1,
+      offset = none,
+      value = stackValue;
+
+  function stack(data) {
+    var kz = keys.apply(this, arguments),
+        i,
+        m = data.length,
+        n = kz.length,
+        sz = new Array(n),
+        oz;
+
+    for (i = 0; i < n; ++i) {
+      for (var ki = kz[i], si = sz[i] = new Array(m), j = 0, sij; j < m; ++j) {
+        si[j] = sij = [0, +value(data[j], ki, j, data)];
+        sij.data = data[j];
+      }
+      si.key = ki;
+    }
+
+    for (i = 0, oz = order(sz); i < n; ++i) {
+      sz[oz[i]].index = i;
+    }
+
+    offset(sz, oz);
+    return sz;
+  }
+
+  stack.keys = function(_) {
+    return arguments.length ? (keys = typeof _ === "function" ? _ : constant(slice.call(_)), stack) : keys;
+  };
+
+  stack.value = function(_) {
+    return arguments.length ? (value = typeof _ === "function" ? _ : constant(+_), stack) : value;
+  };
+
+  stack.order = function(_) {
+    return arguments.length ? (order = _ == null ? none$1 : typeof _ === "function" ? _ : constant(slice.call(_)), stack) : order;
+  };
+
+  stack.offset = function(_) {
+    return arguments.length ? (offset = _ == null ? none : _, stack) : offset;
+  };
+
+  return stack;
+}
+
+function expand(series, order) {
+  if (!((n = series.length) > 0)) return;
+  for (var i, n, j = 0, m = series[0].length, y; j < m; ++j) {
+    for (y = i = 0; i < n; ++i) y += series[i][j][1] || 0;
+    if (y) for (i = 0; i < n; ++i) series[i][j][1] /= y;
+  }
+  none(series, order);
+}
+
+function diverging(series, order) {
+  if (!((n = series.length) > 0)) return;
+  for (var i, j = 0, d, dy, yp, yn, n, m = series[order[0]].length; j < m; ++j) {
+    for (yp = yn = 0, i = 0; i < n; ++i) {
+      if ((dy = (d = series[order[i]][j])[1] - d[0]) > 0) {
+        d[0] = yp, d[1] = yp += dy;
+      } else if (dy < 0) {
+        d[1] = yn, d[0] = yn += dy;
+      } else {
+        d[0] = 0, d[1] = dy;
+      }
+    }
+  }
+}
+
+function silhouette(series, order) {
+  if (!((n = series.length) > 0)) return;
+  for (var j = 0, s0 = series[order[0]], n, m = s0.length; j < m; ++j) {
+    for (var i = 0, y = 0; i < n; ++i) y += series[i][j][1] || 0;
+    s0[j][1] += s0[j][0] = -y / 2;
+  }
+  none(series, order);
+}
+
+function wiggle(series, order) {
+  if (!((n = series.length) > 0) || !((m = (s0 = series[order[0]]).length) > 0)) return;
+  for (var y = 0, j = 1, s0, m, n; j < m; ++j) {
+    for (var i = 0, s1 = 0, s2 = 0; i < n; ++i) {
+      var si = series[order[i]],
+          sij0 = si[j][1] || 0,
+          sij1 = si[j - 1][1] || 0,
+          s3 = (sij0 - sij1) / 2;
+      for (var k = 0; k < i; ++k) {
+        var sk = series[order[k]],
+            skj0 = sk[j][1] || 0,
+            skj1 = sk[j - 1][1] || 0;
+        s3 += skj0 - skj1;
+      }
+      s1 += sij0, s2 += s3 * sij0;
+    }
+    s0[j - 1][1] += s0[j - 1][0] = y;
+    if (s1) y -= s2 / s1;
+  }
+  s0[j - 1][1] += s0[j - 1][0] = y;
+  none(series, order);
+}
+
+function appearance(series) {
+  var peaks = series.map(peak);
+  return none$1(series).sort(function(a, b) { return peaks[a] - peaks[b]; });
+}
+
+function peak(series) {
+  var i = -1, j = 0, n = series.length, vi, vj = -Infinity;
+  while (++i < n) if ((vi = +series[i][1]) > vj) vj = vi, j = i;
+  return j;
+}
+
+function ascending(series) {
+  var sums = series.map(sum);
+  return none$1(series).sort(function(a, b) { return sums[a] - sums[b]; });
+}
+
+function sum(series) {
+  var s = 0, i = -1, n = series.length, v;
+  while (++i < n) if (v = +series[i][1]) s += v;
+  return s;
+}
+
+function descending$1(series) {
+  return ascending(series).reverse();
+}
+
+function insideOut(series) {
+  var n = series.length,
+      i,
+      j,
+      sums = series.map(sum),
+      order = appearance(series),
+      top = 0,
+      bottom = 0,
+      tops = [],
+      bottoms = [];
+
+  for (i = 0; i < n; ++i) {
+    j = order[i];
+    if (top < bottom) {
+      top += sums[j];
+      tops.push(j);
+    } else {
+      bottom += sums[j];
+      bottoms.push(j);
+    }
+  }
+
+  return bottoms.reverse().concat(tops);
+}
+
+function reverse(series) {
+  return none$1(series).reverse();
+}
+
+exports.arc = arc;
+exports.area = area;
+exports.areaRadial = areaRadial;
+exports.curveBasis = basis;
+exports.curveBasisClosed = basisClosed;
+exports.curveBasisOpen = basisOpen;
+exports.curveBundle = bundle;
+exports.curveCardinal = cardinal;
+exports.curveCardinalClosed = cardinalClosed;
+exports.curveCardinalOpen = cardinalOpen;
+exports.curveCatmullRom = catmullRom;
+exports.curveCatmullRomClosed = catmullRomClosed;
+exports.curveCatmullRomOpen = catmullRomOpen;
+exports.curveLinear = curveLinear;
+exports.curveLinearClosed = linearClosed;
+exports.curveMonotoneX = monotoneX;
+exports.curveMonotoneY = monotoneY;
+exports.curveNatural = natural;
+exports.curveStep = step;
+exports.curveStepAfter = stepAfter;
+exports.curveStepBefore = stepBefore;
+exports.line = line;
+exports.lineRadial = lineRadial$1;
+exports.linkHorizontal = linkHorizontal;
+exports.linkRadial = linkRadial;
+exports.linkVertical = linkVertical;
+exports.pie = pie;
+exports.pointRadial = pointRadial;
+exports.radialArea = areaRadial;
+exports.radialLine = lineRadial$1;
+exports.stack = stack;
+exports.stackOffsetDiverging = diverging;
+exports.stackOffsetExpand = expand;
+exports.stackOffsetNone = none;
+exports.stackOffsetSilhouette = silhouette;
+exports.stackOffsetWiggle = wiggle;
+exports.stackOrderAppearance = appearance;
+exports.stackOrderAscending = ascending;
+exports.stackOrderDescending = descending$1;
+exports.stackOrderInsideOut = insideOut;
+exports.stackOrderNone = none$1;
+exports.stackOrderReverse = reverse;
+exports.symbol = symbol;
+exports.symbolCircle = circle;
+exports.symbolCross = cross;
+exports.symbolDiamond = diamond;
+exports.symbolSquare = square;
+exports.symbolStar = star;
+exports.symbolTriangle = triangle;
+exports.symbolWye = wye;
+exports.symbols = symbols;
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+}));
+
+},{"d3-path":6}],21:[function(_dereq_,module,exports){
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = global || self, global.fitAspect = factory());
+}(this, (function () { 'use strict';
+
+  //lists are stored in landscape orientation
+  const list = [{
+    names: ['square', '1:1', 'instagram'],
+    description: 'Square',
+    decimal: 1,
+    orientation: 'landscape'
+  }, {
+    names: ['4:3', 'fullscreen', 'four three', '1.33:1', 'ipad', 'pythagorean'],
+    description: 'Traditional TVs',
+    decimal: 1.333333,
+    orientation: 'landscape'
+  }, {
+    names: ['a4', '√2:1', 'paper', 'lichtenberg', '1:1.41'],
+    description: 'A4 paper',
+    decimal: 1.41
+  }, {
+    names: ['imax', '1.43:1'],
+    description: 'IMAX film',
+    decimal: 1.43,
+    orientation: 'landscape'
+  }, {
+    names: ['3:2', '35mm', 'photo', '1.5:1', '1.5'],
+    description: '35mm photos',
+    decimal: 1.5,
+    orientation: 'landscape'
+  }, {
+    names: ['business card', 'bank card', '1.58:1'],
+    description: 'Bank Cards',
+    decimal: 1.58577,
+    orientation: 'landscape'
+  }, {
+    names: ['golden', 'kepler', '1.618', '1.6:1'],
+    description: 'Golden ratio',
+    decimal: 1.61803,
+    orientation: 'landscape'
+  }, {
+    names: ['16:9', 'hd', 'hdtv', 'fhd', 'tv', 'computer', 'iphone', '4k', '8k', '1.78:1'],
+    description: 'HD video',
+    decimal: 1.77777,
+    orientation: 'landscape'
+  }, {
+    names: ['widescreen', '1.85:1'],
+    description: 'Movie-theatres',
+    decimal: 1.85,
+    orientation: 'landscape'
+  }, {
+    names: ['2:1', 'univisium', 'mobile', '18:9'],
+    description: '2:1',
+    decimal: 2,
+    orientation: 'landscape'
+  }, {
+    names: ['cinemascope', 'widescreen', 'wide', '2.35:1', '2.39:1'],
+    description: 'Widescreen',
+    decimal: 2.35,
+    orientation: 'landscape'
+  }, {
+    names: ['silver', '1 + √2', '2.41:1'],
+    description: 'Silver ratio',
+    decimal: 2.41,
+    orientation: 'landscape'
+  }]; //create portrait mode
+
+  let portraits = list.map(o => {
+    o = Object.assign({}, o);
+    o.decimal = 1 / o.decimal;
+    o.orientation = 'portrait';
+    return o;
+  }); // const list = portrait.concat(landscape)
+  //flip it into a nice lookup hash
+
+  let lookup = {};
+  list.forEach(o => {
+    o.names.forEach(name => {
+      lookup[name] = o;
+    });
+  });
+  var aspects = {
+    lookup: lookup,
+    portraits: portraits,
+    list: list
+  };
+
+  const findLandscape = function (decimal, list) {
+    for (let i = 0; i < list.length; i += 1) {
+      if (decimal <= list[i].decimal) {
+        //was the previous one even closer?
+        if (list[i - 1]) {
+          let diffThis = Math.abs(decimal - list[i].decimal);
+          let diffLast = Math.abs(decimal - list[i - 1].decimal);
+
+          if (diffLast < diffThis) {
+            return list[i - 1];
+          }
+        }
+
+        return list[i];
+      }
+    }
+
+    return list[list.length - 1];
+  }; //find the closest portrait ratio
+
+
+  const findPortrait = function (decimal, list) {
+    for (let i = 0; i < list.length; i += 1) {
+      if (decimal > list[i].decimal) {
+        //was the previous one even closer?
+        if (list[i - 1]) {
+          let diffThis = Math.abs(decimal - list[i].decimal);
+          let diffLast = Math.abs(decimal - list[i - 1].decimal);
+
+          if (diffLast < diffThis) {
+            return list[i - 1];
+          }
+        }
+
+        return list[i];
+      }
+    }
+
+    return list[list.length - 1];
+  }; //find the closest aspect ratio from width/height
+
+
+  const findBestRatio = function (width, height) {
+    let decimal = width / height; //round it to 2 decimals
+
+    decimal = parseInt(decimal * 100, 10) / 100; //do we want a portrait or landscape aspect ratio?
+
+    if (decimal < 1) {
+      return findPortrait(decimal, aspects.portraits);
+    }
+
+    return findLandscape(decimal, aspects.list);
+  };
+
+  var findBestRatio_1 = findBestRatio;
+
+  const isRatio = /^[0-9\.]+:[0-9\.]+$/; //determine aspect ratio from name
+
+  const parseRatio = function (name) {
+    name = name.toLowerCase();
+    name = name.trim();
+    name = name.replace(' ratio', '');
+    name = name.replace('-', ' '); //if we know it..
+
+    if (aspects.lookup.hasOwnProperty(name) === true) {
+      return aspects.lookup[name];
+    } //if it's numerical
+
+
+    if (isRatio.test(name) === true) {
+      let arr = name.split(':');
+      let width = parseFloat(arr[0]);
+      let height = parseFloat(arr[1]);
+      let aspect = {
+        description: 'custom',
+        decimal: width / height
+      };
+      return aspect;
+    }
+
+    return null;
+  };
+
+  var parseRatio_1 = parseRatio;
+
+  const fitHeight = function (obj, aspect) {
+    let decimal = 1 / aspect.decimal;
+    let orientation = obj.orientation || 'landscape'; //reverse it (again), if in portrait
+
+    if (orientation === 'portrait') {
+      decimal = 1 / decimal;
+    }
+
+    let height = obj.width * decimal;
+    height = Math.round(height);
+    return {
+      closest: aspect,
+      width: obj.width,
+      height: height,
+      orientation: orientation,
+      original: obj
+    };
+  };
+
+  const fitWidth = function (obj, aspect) {
+    let decimal = aspect.decimal;
+    let orientation = obj.orientation || 'landscape'; //reverse it, if in portrait
+
+    if (orientation === 'portrait') {
+      decimal = 1 / decimal;
+    }
+
+    let width = obj.height * decimal;
+    width = Math.round(width);
+    return {
+      closest: aspect,
+      width: width,
+      height: obj.height,
+      orientation: orientation,
+      original: obj
+    };
+  }; //shorten the side that's too long
+
+
+  const shrink = function (obj, aspect) {
+    let moveWidth = fitWidth(obj, aspect); //did this make our width longer?
+
+    if (moveWidth.width > obj.width) {
+      return fitHeight(obj, aspect);
+    }
+
+    return moveWidth;
+  };
+
+  var fit = {
+    both: shrink,
+    width: fitWidth,
+    height: fitHeight
+  };
+
+  //
+
+  const fitAspect = function (obj = {}) {
+    //for these numbers, calculate best ratio
+    if (!obj.aspect && !obj.ratio) {
+      let aspect = findBestRatio_1(obj.width, obj.height);
+      let inverse = 1 / aspect.decimal;
+      let height = obj.width * inverse; //calculate change %
+
+      let change = (height - obj.height) / obj.height;
+      change = parseInt(change * 1000, 10) / 10;
+      height = Math.round(height);
+      return {
+        closest: aspect,
+        percent_change: change,
+        width: obj.width,
+        height: height
+      };
+    } //lookup aspect ratio
+
+
+    let aspect = parseRatio_1(obj.aspect || obj.ratio || '');
+
+    if (aspect === null) {
+      console.error('find-aspect-ratio error: Could not find a given aspect ratio.');
+      return obj;
+    } //shrink both to fit
+
+
+    if (typeof obj.width === 'number' && typeof obj.height === 'number') {
+      return fit.both(obj, aspect);
+    } //determine missing height
+
+
+    if (typeof obj.width === 'number') {
+      return fit.height(obj, aspect);
+    } //determine missing width
+
+
+    if (typeof obj.height === 'number') {
+      return fit.width(obj, aspect);
+    } //doh
+
+
+    console.error('find-aspect-ratio error: Please supply a height, width, or ratio value.');
+    return obj;
+  };
+
+  var src = fitAspect;
+
+  return src;
+
+})));
+
+
+},{}],22:[function(_dereq_,module,exports){
+module.exports = '0.2.1'
+},{}],23:[function(_dereq_,module,exports){
+const reduceTo = function(arr, n) {
+  if (arr.length <= n || arr.length <= 5) {
+    return arr
+  }
+  while (arr.length > n) {
+    //remove every other one
+    arr = arr.filter((o, i) => {
+      return i % 2 === 0
+    })
+    if (arr.length <= n || arr.length <= 5) {
+      return arr
+    }
+  }
+  return arr
+}
+module.exports = reduceTo
+
+},{}],24:[function(_dereq_,module,exports){
+const spacetime = _dereq_('spacetime')
+const methods = _dereq_('./methods')
+const version = _dereq_('../_version')
+
+const chooseMethod = function(start, end, n = 6) {
+  let diff = start.diff(end)
+  if (diff.years > 300) {
+    return methods.centuries(start, end, n)
+  }
+  if (diff.years > 30) {
+    return methods.decades(start, end, n)
+  }
+  if (diff.years > 3) {
+    return methods.years(start, end, n)
+  }
+  if (diff.months > 3) {
+    return methods.months(start, end, n)
+  }
+  if (diff.days > 3) {
+    return methods.days(start, end, n)
+  }
+  if (diff.hours > 3) {
+    return methods.hours(start, end, n)
+  }
+  if (diff.minutes > 3) {
+    return methods.minutes(start, end, n)
+  }
+  return methods.months(start, end, n)
+}
+
+//flip it around backwards
+const reverseTicks = function(ticks) {
+  ticks = ticks.map(o => {
+    o.value = 1 - o.value
+    return o
+  })
+  return ticks.reverse()
+}
+
+const spacetimeTicks = function(start, end, n = 6) {
+  let reverse = false
+  start = spacetime(start)
+  end = spacetime(end)
+  //reverse them, if necessary
+  if (start.epoch > end.epoch) {
+    reverse = true
+    let tmp = start.epoch
+    start.epoch = end.epoch
+    end.epoch = tmp
+  }
+  // nudge first one back 1 minute
+  if (start.time() === '12:00am') {
+    start = start.minus(1, 'minute')
+  }
+  let ticks = chooseMethod(start, end, n)
+  //support backwards ticks
+  if (reverse === true) {
+    ticks = reverseTicks(ticks)
+  }
+  return ticks
+}
+spacetimeTicks.version = version
+
+module.exports = spacetimeTicks
+
+},{"../_version":22,"./methods":25,"spacetime":56}],25:[function(_dereq_,module,exports){
+const reduceTo = _dereq_('./_reduce')
+
+//increment by this unit
+const allTicks = function(start, end, unit) {
+  let ticks = []
+  start = start.add(1, unit)
+  start = start.startOf(unit)
+  while (start.isBefore(end)) {
+    ticks.push(start)
+    start = start.add(1, unit)
+  }
+  return ticks
+}
+
+const formatTicks = function(arr, fmt, start, end) {
+  let delta = end.epoch - start.epoch
+  return arr.map(s => {
+    let percent = (s.epoch - start.epoch) / delta
+    return {
+      label: s.format(fmt),
+      epoch: s.epoch,
+      value: parseInt(percent * 1000, 10) / 1000
+    }
+  })
+}
+
+const methods = {
+  centuries: (start, end, n) => {
+    let ticks = allTicks(start, end, 'century')
+    ticks = reduceTo(ticks, n)
+    let fmt = '{year}'
+    if (start.diff(end, 'year') > 6) {
+      fmt = '{year}'
+    }
+    ticks = formatTicks(ticks, fmt, start, end)
+    return ticks
+  },
+  decades: (start, end, n) => {
+    let ticks = allTicks(start, end, 'decade')
+    ticks = reduceTo(ticks, n)
+    let fmt = '{year}'
+    if (start.diff(end, 'year') > 6) {
+      fmt = '{year}'
+    }
+    ticks = formatTicks(ticks, fmt, start, end)
+    return ticks
+  },
+  years: (start, end, n) => {
+    let ticks = allTicks(start, end, 'year')
+    ticks = reduceTo(ticks, n)
+    let fmt = '{month-short} {year-short}'
+    if (start.diff(end, 'year') > 6) {
+      fmt = '{year}'
+    }
+    ticks = formatTicks(ticks, fmt, start, end)
+    return ticks
+  },
+  months: (start, end, n) => {
+    let ticks = allTicks(start, end, 'month')
+    ticks = reduceTo(ticks, n)
+    let fmt = '{month-short} {date}'
+    if (start.isSame(end, 'year') === false) {
+      fmt = '{month-short} {year}'
+    }
+    ticks = formatTicks(ticks, fmt, start, end)
+    return ticks
+  },
+  days: (start, end, n) => {
+    let ticks = allTicks(start, end, 'day')
+    ticks = reduceTo(ticks, n)
+    let fmt = '{month-short} {date}'
+    ticks = formatTicks(ticks, fmt, start, end)
+    return ticks
+  },
+  hours: (start, end, n) => {
+    let ticks = allTicks(start, end, 'hour')
+    ticks = reduceTo(ticks, n)
+    let fmt = '{time}'
+    if (start.isSame(end, 'day') === false) {
+      fmt = '{day-short} {hour}{ampm}'
+    }
+    ticks = formatTicks(ticks, fmt, start, end)
+    return ticks
+  },
+  minutes: (start, end, n) => {
+    let ticks = allTicks(start, end, 'minute')
+    ticks = reduceTo(ticks, n)
+    let fmt = '{time}'
+    ticks = formatTicks(ticks, fmt, start, end)
+    return ticks
+  }
+}
+module.exports = methods
+
+},{"./_reduce":23}],26:[function(_dereq_,module,exports){
 const fitAspect = _dereq_('fit-aspect-ratio')
 const htm = _dereq_('htm')
 const vhtml = _dereq_('vhtml')
@@ -4176,6 +7522,7 @@ const Bar = _dereq_('./shapes/Bar')
 const Image = _dereq_('./shapes/Image')
 const Arrow = _dereq_('./shapes/Arrow')
 const Now = _dereq_('./shapes/Now')
+const Snake = _dereq_('./shapes/Snake')
 const Title = _dereq_('./shapes/Title')
 
 class World {
@@ -4267,6 +7614,11 @@ class World {
     this.shapes.push(shape)
     return shape
   }
+  snake(obj) {
+    let shape = new Snake(obj, this)
+    this.shapes.push(shape)
+    return shape
+  }
   title(obj) {
     let shape = new Title(obj, this)
     this.shapes.push(shape)
@@ -4297,6 +7649,8 @@ class World {
           font-size: 4px;
         }
       }
+      .grow:hover {
+        stroke-width: 6px;
       }
     </style>`
   }
@@ -4342,7 +7696,7 @@ Object.keys(aliases).forEach(k => {
 })
 module.exports = World
 
-},{"./_clip":12,"./axis/XAxis":15,"./axis/YAxis":16,"./methods":21,"./scales/Scale":23,"./scales/YScale":24,"./shapes/Annotation":26,"./shapes/Area":27,"./shapes/Arrow":28,"./shapes/Bar":29,"./shapes/Dot":30,"./shapes/Image":31,"./shapes/Line":32,"./shapes/MidArea":33,"./shapes/Now":34,"./shapes/Rect":35,"./shapes/Shape":36,"./shapes/Text":37,"./shapes/Title":38,"fit-aspect-ratio":5,"htm":6,"vhtml":46}],12:[function(_dereq_,module,exports){
+},{"./_clip":27,"./axis/XAxis":30,"./axis/YAxis":31,"./methods":36,"./scales/Scale":38,"./scales/YScale":39,"./shapes/Annotation":41,"./shapes/Area":42,"./shapes/Arrow":43,"./shapes/Bar":44,"./shapes/Dot":45,"./shapes/Image":46,"./shapes/Line":47,"./shapes/MidArea":48,"./shapes/Now":49,"./shapes/Rect":50,"./shapes/Shape":51,"./shapes/Snake":52,"./shapes/Text":53,"./shapes/Title":54,"fit-aspect-ratio":21,"htm":8,"vhtml":59}],27:[function(_dereq_,module,exports){
 //remove shapes outside of boundaries
 const clipShapes = function(shapes, xScale, yScale) {
   shapes = shapes.filter(s => {
@@ -4397,7 +7751,7 @@ const clipShapes = function(shapes, xScale, yScale) {
 }
 module.exports = clipShapes
 
-},{}],13:[function(_dereq_,module,exports){
+},{}],28:[function(_dereq_,module,exports){
 const extent = function(arr) {
   let min = null
   let max = null
@@ -4430,7 +7784,7 @@ module.exports = {
   uid: uid
 }
 
-},{}],14:[function(_dereq_,module,exports){
+},{}],29:[function(_dereq_,module,exports){
 const colors = _dereq_('spencer-color')
 const ticks = _dereq_('./_ticks')
 const drawTick = _dereq_('./_custom')
@@ -4451,6 +7805,8 @@ class Axis {
     this._given = undefined
     this._show = true
     this._label = ''
+    this._suffix = ''
+    this._prefix = ''
   }
   color(color) {
     this.attrs.stroke = colors[color] || color
@@ -4458,6 +7814,14 @@ class Axis {
   }
   label(str) {
     this._label = str
+    return this
+  }
+  suffix(str) {
+    this._suffix = str
+    return this
+  }
+  prefix(str) {
+    this._prefix = str
     return this
   }
   remove() {
@@ -4489,7 +7853,7 @@ class Axis {
 }
 module.exports = Axis
 
-},{"./_custom":17,"./_ticks":19,"spencer-color":10}],15:[function(_dereq_,module,exports){
+},{"./_custom":32,"./_ticks":34,"spencer-color":57}],30:[function(_dereq_,module,exports){
 const Axis = _dereq_('./Axis')
 
 class XAxis extends Axis {
@@ -4520,6 +7884,7 @@ class XAxis extends Axis {
       x: '50%',
       y: '115%',
       fill: this.attrs.stroke,
+      'font-size': '2px',
       style: 'text-anchor:middle;'
     }
     return h`<g>
@@ -4533,7 +7898,7 @@ class XAxis extends Axis {
 }
 module.exports = XAxis
 
-},{"./Axis":14}],16:[function(_dereq_,module,exports){
+},{"./Axis":29}],31:[function(_dereq_,module,exports){
 const Axis = _dereq_('./Axis')
 
 class YAxis extends Axis {
@@ -4565,6 +7930,7 @@ class YAxis extends Axis {
     let textAttrs = {
       x: '-5%',
       y: '50%',
+      'font-size': '2px',
       fill: this.attrs.stroke,
       style: 'text-anchor:end;'
     }
@@ -4579,7 +7945,7 @@ class YAxis extends Axis {
 }
 module.exports = YAxis
 
-},{"./Axis":14}],17:[function(_dereq_,module,exports){
+},{"./Axis":29}],32:[function(_dereq_,module,exports){
 const spacetime = _dereq_('spacetime')
 const prettyNum = _dereq_('./_prettyNum')
 
@@ -4603,14 +7969,14 @@ const drawTick = function(s, axis) {
   //support '52'
   let num = Number(s)
   return {
-    num: num,
+    value: num / 100,
     pos: parseInt(scale(num), 10),
     label: label || prettyNum(num)
   }
 }
 module.exports = drawTick
 
-},{"./_prettyNum":18,"spacetime":44}],18:[function(_dereq_,module,exports){
+},{"./_prettyNum":33,"spacetime":56}],33:[function(_dereq_,module,exports){
 const bil = 1000000000
 const mil = 1000000
 const tenThou = 10000
@@ -4638,7 +8004,7 @@ const prettyNum = function(num) {
 }
 module.exports = prettyNum
 
-},{}],19:[function(_dereq_,module,exports){
+},{}],34:[function(_dereq_,module,exports){
 const spacetimeTicks = _dereq_('spacetime-ticks')
 const somehowTicks = _dereq_('somehow-ticks')
 
@@ -4647,6 +8013,12 @@ const generic = function(axis, n = 5) {
   let start = scale.min || 0
   let end = scale.max || 0
   let ticks = somehowTicks(start, end, n)
+  if (axis._suffix) {
+    ticks.forEach(tick => (tick.label += axis._suffix))
+  }
+  if (axis._prefix) {
+    ticks.forEach(tick => (tick.label = axis._prefix + tick.label))
+  }
   return ticks
 }
 
@@ -4662,7 +8034,7 @@ module.exports = {
   date: date
 }
 
-},{"somehow-ticks":8,"spacetime-ticks":42}],20:[function(_dereq_,module,exports){
+},{"somehow-ticks":18,"spacetime-ticks":24}],35:[function(_dereq_,module,exports){
 const World = _dereq_('./World')
 const version = _dereq_('../_version')
 
@@ -4673,7 +8045,7 @@ const somehow = function(obj) {
 somehow.version = version
 module.exports = somehow
 
-},{"../_version":9,"./World":11}],21:[function(_dereq_,module,exports){
+},{"../_version":19,"./World":26}],36:[function(_dereq_,module,exports){
 const { parseX, parseY } = _dereq_('./parse')
 const fns = _dereq_('./_fns')
 
@@ -4767,7 +8139,7 @@ let methods = {
 }
 module.exports = methods
 
-},{"./_fns":13,"./parse":22}],22:[function(_dereq_,module,exports){
+},{"./_fns":28,"./parse":37}],37:[function(_dereq_,module,exports){
 const spacetime = _dereq_('spacetime')
 //
 const parse = function(str) {
@@ -4836,7 +8208,7 @@ module.exports = {
   parseY: parseY
 }
 
-},{"spacetime":44}],23:[function(_dereq_,module,exports){
+},{"spacetime":56}],38:[function(_dereq_,module,exports){
 // const scaleLinear = require('d3-scale').scaleLinear
 const scaleLinear = _dereq_('./_linear')
 const { parseX } = _dereq_('../parse')
@@ -4901,7 +8273,6 @@ class Scale {
       let num = this.byPercent(obj.value)
       let val = this.scale.backward(num)
       if (this.is_y) {
-        console.log(num, val)
         return this.to - val
       }
       return val
@@ -4937,7 +8308,7 @@ class Scale {
 
 module.exports = Scale
 
-},{"../parse":22,"./_linear":25}],24:[function(_dereq_,module,exports){
+},{"../parse":37,"./_linear":40}],39:[function(_dereq_,module,exports){
 const Scale = _dereq_('./Scale')
 const scaleLinear = _dereq_('./_linear')
 // const scaleLinear = require('d3-scale').scaleLinear
@@ -4961,7 +8332,7 @@ class YScale extends Scale {
 }
 module.exports = YScale
 
-},{"../parse":22,"./Scale":23,"./_linear":25}],25:[function(_dereq_,module,exports){
+},{"../parse":37,"./Scale":38,"./_linear":40}],40:[function(_dereq_,module,exports){
 //a very-tiny version of d3-scale's scaleLinear
 const scaleLinear = function(obj) {
   let world = obj.world || []
@@ -4990,7 +8361,7 @@ module.exports = scaleLinear
 // console.log(scale(50))
 // console.log(scale.backward(150))
 
-},{}],26:[function(_dereq_,module,exports){
+},{}],41:[function(_dereq_,module,exports){
 const colors = _dereq_('spencer-color').colors
 const Text = _dereq_('./Text')
 
@@ -5131,7 +8502,7 @@ class Annotation extends Text {
 }
 module.exports = Annotation
 
-},{"./Text":37,"spencer-color":10}],27:[function(_dereq_,module,exports){
+},{"./Text":53,"spencer-color":57}],42:[function(_dereq_,module,exports){
 const colors = _dereq_('spencer-color').colors
 const Shape = _dereq_('./Shape')
 const d3Shape = _dereq_('d3-shape')
@@ -5224,7 +8595,7 @@ class Area extends Shape {
 
 module.exports = Area
 
-},{"../parse":22,"./Shape":36,"d3-shape":4,"spencer-color":10}],28:[function(_dereq_,module,exports){
+},{"../parse":37,"./Shape":51,"d3-shape":20,"spencer-color":57}],43:[function(_dereq_,module,exports){
 const colors = _dereq_('spencer-color').colors
 const d3Shape = _dereq_('d3-shape')
 const Shape = _dereq_('./Shape')
@@ -5327,7 +8698,7 @@ class Arrow extends Shape {
 
 module.exports = Arrow
 
-},{"./Shape":36,"d3-shape":4,"spencer-color":10}],29:[function(_dereq_,module,exports){
+},{"./Shape":51,"d3-shape":20,"spencer-color":57}],44:[function(_dereq_,module,exports){
 const colors = _dereq_('spencer-color').colors
 const Rect = _dereq_('./Rect')
 const { parseX, parseY } = _dereq_('../parse')
@@ -5397,7 +8768,7 @@ class Bar extends Rect {
 }
 module.exports = Bar
 
-},{"../parse":22,"./Rect":35,"spencer-color":10}],30:[function(_dereq_,module,exports){
+},{"../parse":37,"./Rect":50,"spencer-color":57}],45:[function(_dereq_,module,exports){
 const colors = _dereq_('spencer-color').colors
 const Shape = _dereq_('./Shape')
 
@@ -5432,7 +8803,7 @@ class Dot extends Shape {
 
 module.exports = Dot
 
-},{"./Shape":36,"spencer-color":10}],31:[function(_dereq_,module,exports){
+},{"./Shape":51,"spencer-color":57}],46:[function(_dereq_,module,exports){
 const Shape = _dereq_('./Shape')
 const colors = _dereq_('spencer-color').colors
 
@@ -5491,7 +8862,7 @@ class Image extends Shape {
 }
 module.exports = Image
 
-},{"./Shape":36,"spencer-color":10}],32:[function(_dereq_,module,exports){
+},{"./Shape":51,"spencer-color":57}],47:[function(_dereq_,module,exports){
 const colors = _dereq_('spencer-color').colors
 const d3Shape = _dereq_('d3-shape')
 const Shape = _dereq_('./Shape')
@@ -5535,7 +8906,7 @@ class Line extends Shape {
 
 module.exports = Line
 
-},{"./Shape":36,"d3-shape":4,"spencer-color":10}],33:[function(_dereq_,module,exports){
+},{"./Shape":51,"d3-shape":20,"spencer-color":57}],48:[function(_dereq_,module,exports){
 const Area = _dereq_('./Area')
 const { parseY } = _dereq_('../parse')
 const parseInput = _dereq_('./lib/parseInput')
@@ -5611,7 +8982,7 @@ class Midarea extends Area {
 }
 module.exports = Midarea
 
-},{"../parse":22,"./Area":27,"./lib/parseInput":39,"d3-shape":4}],34:[function(_dereq_,module,exports){
+},{"../parse":37,"./Area":42,"./lib/parseInput":55,"d3-shape":20}],49:[function(_dereq_,module,exports){
 const colors = _dereq_('spencer-color').colors
 const Line = _dereq_('./Line')
 
@@ -5668,7 +9039,7 @@ class Now extends Line {
 
 module.exports = Now
 
-},{"./Line":32,"spencer-color":10}],35:[function(_dereq_,module,exports){
+},{"./Line":47,"spencer-color":57}],50:[function(_dereq_,module,exports){
 const colors = _dereq_('spencer-color').colors
 const Shape = _dereq_('./Shape')
 
@@ -5740,7 +9111,7 @@ class Rect extends Shape {
 
 module.exports = Rect
 
-},{"./Shape":36,"spencer-color":10}],36:[function(_dereq_,module,exports){
+},{"./Shape":51,"spencer-color":57}],51:[function(_dereq_,module,exports){
 const d3Shape = _dereq_('d3-shape')
 const colors = _dereq_('spencer-color').colors
 const fns = _dereq_('../_fns')
@@ -5766,6 +9137,7 @@ class Shape {
     this._title = ''
     this._click = obj.click
     this._hover = obj.hover
+    this._grow = false
     //nudge pixels
     this._dx = 0
     this._dy = 0
@@ -5780,12 +9152,17 @@ class Shape {
     this.curve = d3Shape.curveLinear
     return this
   }
-  id(str) {
-    this._id = str
+  soft() {
+    // this.curve = d3Shape.curveBundle.beta(0.5)
+    this.curve = d3Shape.curveBasis
     return this
   }
-  soft() {
-    this.curve = d3Shape.curveBasis
+  grow(bool) {
+    this._grow = bool
+    return this
+  }
+  id(str) {
+    this._id = str
     return this
   }
   dx(n) {
@@ -5912,7 +9289,7 @@ class Shape {
       .x0(d => d[0])
       .y0(d => d[1])
       .y1(zero)
-      .curve(d3Shape.curveMonotoneX)(points)
+      .curve(this.curve)(points)
   }
   drawSyle() {
     return Object.keys(this.style)
@@ -5927,12 +9304,76 @@ class Shape {
     let attrs = Object.assign({}, this.attrs, {
       d: this.path()
     })
-    return h`<path ...${attrs} id=${this._id} style="${this.drawSyle()}"/>`
+    let classes = ''
+    if (this._grow) {
+      classes += 'grow'
+    }
+    return h`<path ...${attrs} id=${this._id} class=${classes} style="${this.drawSyle()}"/>`
   }
 }
 module.exports = Shape
 
-},{"../_fns":13,"../parse":22,"./lib/parseInput":39,"d3-shape":4,"spencer-color":10}],37:[function(_dereq_,module,exports){
+},{"../_fns":28,"../parse":37,"./lib/parseInput":55,"d3-shape":20,"spencer-color":57}],52:[function(_dereq_,module,exports){
+const colors = _dereq_('spencer-color').colors
+const d3Shape = _dereq_('d3-shape')
+const Shape = _dereq_('./Shape')
+const parseInput = _dereq_('./lib/parseInput')
+
+const defaults = {
+  fill: 'none',
+  stroke: colors.blue,
+  'stroke-width': 4,
+  'stroke-linecap': 'round'
+}
+
+class Snake extends Shape {
+  constructor(obj = {}, world) {
+    obj = Object.assign({}, defaults, obj)
+    super(obj, world)
+  }
+  color(color) {
+    this.attrs.stroke = colors[color] || color
+    return this
+  }
+  dotted(n) {
+    if (n === true) {
+      n = 4
+    }
+    this.attrs['stroke-dasharray'] = n || 4
+    return this
+  }
+  set(str) {
+    let data = parseInput(str, this.world)
+    let more = []
+    // make it into a snake-form
+    data.forEach((obj, i) => {
+      more.push(obj)
+      if (data[i + 1]) {
+        more.push({
+          x: obj.x,
+          y: data[i + 1].y
+        })
+      }
+    })
+    this.data = more
+    return this
+  }
+  width(num) {
+    this.attrs['stroke-width'] = num
+    return this
+  }
+  path() {
+    let points = this.points()
+    return d3Shape
+      .line()
+      .x(d => d[0])
+      .y(d => d[1])(points)
+  }
+}
+
+module.exports = Snake
+
+},{"./Shape":51,"./lib/parseInput":55,"d3-shape":20,"spencer-color":57}],53:[function(_dereq_,module,exports){
 const Shape = _dereq_('./Shape')
 const colors = _dereq_('spencer-color').colors
 
@@ -5966,6 +9407,7 @@ class Text extends Shape {
       this.textLines = [this.textLines]
     }
     this._order = 0
+    this._responsive = false
     this.data = [
       {
         x: {
@@ -5983,6 +9425,8 @@ class Text extends Shape {
       y: 4
     }
     this._underline = ''
+    this.style = this.style || {}
+    this.style['font-size'] = this.style['font-size'] || '4px'
   }
   before(x, y) {
     this.attrs['text-anchor'] = 'end'
@@ -6037,6 +9481,10 @@ class Text extends Shape {
   }
   size(num) {
     return this.font(num)
+  }
+  responsive(bool) {
+    this._responsive = bool
+    return this
   }
   extent() {
     // let longest = this.textLines.sort((a, b) => a.length < b.length ? 1 : -1)[0] || ''
@@ -6109,6 +9557,7 @@ class Text extends Shape {
     res.width = width
     res.y = point[1] + this._dodge.y - height
     res.x = point[0] + 2 + this._dodge.x
+    res.y -= 2
     return res
   }
   build() {
@@ -6122,8 +9571,12 @@ class Text extends Shape {
     let inside = textArr.map(str => h`<tspan x="0" dy="1.2em" >${String(str)}</tspan>`)
     let { x, y } = this.position()
     let transform = `translate(${x} ${y})`
-    return h`<g transform="${transform}" style="${this.drawSyle()}">
-      <text ...${this.attrs} class="somehow-legible">
+    let classes = ''
+    if (this._responsive) {
+      classes = 'somehow-legible'
+    }
+    return h`<g transform="${transform}" >
+      <text ...${this.attrs} style="${this.drawSyle()}" class=${classes}>
         ${inside}
       </text>
     </g>`
@@ -6132,7 +9585,7 @@ class Text extends Shape {
 
 module.exports = Text
 
-},{"./Shape":36,"spencer-color":10}],38:[function(_dereq_,module,exports){
+},{"./Shape":51,"spencer-color":57}],54:[function(_dereq_,module,exports){
 const colors = _dereq_('spencer-color').colors
 const Text = _dereq_('./Text')
 
@@ -6202,7 +9655,7 @@ class Title extends Text {
 
 module.exports = Title
 
-},{"./Text":37,"spencer-color":10}],39:[function(_dereq_,module,exports){
+},{"./Text":53,"spencer-color":57}],55:[function(_dereq_,module,exports){
 const { parseX, parseY } = _dereq_('../../parse')
 
 //a very-flexible input language
@@ -6247,184 +9700,7 @@ const parseInput = function(set, world) {
 
 module.exports = parseInput
 
-},{"../../parse":22}],40:[function(_dereq_,module,exports){
-module.exports = '0.2.0'
-},{}],41:[function(_dereq_,module,exports){
-const reduceTo = function(arr, n) {
-  if (arr.length <= n || arr.length <= 5) {
-    return arr
-  }
-  while (arr.length > n) {
-    //remove every other one
-    arr = arr.filter((o, i) => {
-      return i % 2 === 0
-    })
-    if (arr.length <= n || arr.length <= 5) {
-      return arr
-    }
-  }
-  return arr
-}
-module.exports = reduceTo
-
-},{}],42:[function(_dereq_,module,exports){
-const spacetime = _dereq_('spacetime')
-const methods = _dereq_('./methods')
-const version = _dereq_('../_version')
-
-const chooseMethod = function(start, end, n = 6) {
-  let diff = start.diff(end)
-  if (diff.years > 300) {
-    return methods.centuries(start, end, n)
-  }
-  if (diff.years > 30) {
-    return methods.decades(start, end, n)
-  }
-  if (diff.years > 3) {
-    return methods.years(start, end, n)
-  }
-  if (diff.months > 3) {
-    return methods.months(start, end, n)
-  }
-  if (diff.days > 3) {
-    return methods.days(start, end, n)
-  }
-  if (diff.hours > 3) {
-    return methods.hours(start, end, n)
-  }
-  if (diff.minutes > 3) {
-    return methods.minutes(start, end, n)
-  }
-  return methods.months(start, end, n)
-}
-
-//flip it around backwards
-const reverseTicks = function(ticks) {
-  ticks = ticks.map(o => {
-    o.value = 1 - o.value
-    return o
-  })
-  return ticks.reverse()
-}
-
-const spacetimeTicks = function(start, end, n = 6) {
-  let reverse = false
-  start = spacetime(start)
-  end = spacetime(end)
-  //reverse them, if necessary
-  if (start.epoch > end.epoch) {
-    reverse = true
-    let tmp = start.epoch
-    start.epoch = end.epoch
-    end.epoch = tmp
-  }
-  let ticks = chooseMethod(start, end, n)
-  //support backwards ticks
-  if (reverse === true) {
-    ticks = reverseTicks(ticks)
-  }
-  return ticks
-}
-spacetimeTicks.version = version
-
-module.exports = spacetimeTicks
-
-},{"../_version":40,"./methods":43,"spacetime":44}],43:[function(_dereq_,module,exports){
-const reduceTo = _dereq_('./_reduce')
-
-//increment by this unit
-const allTicks = function(start, end, unit) {
-  let ticks = []
-  start = start.add(1, unit)
-  start = start.startOf(unit)
-  while (start.isBefore(end)) {
-    ticks.push(start)
-    start = start.add(1, unit)
-  }
-  return ticks
-}
-
-const formatTicks = function(arr, fmt, start, end) {
-  let delta = end.epoch - start.epoch
-  return arr.map(s => {
-    let percent = (s.epoch - start.epoch) / delta
-    return {
-      label: s.format(fmt),
-      epoch: s.epoch,
-      value: parseInt(percent * 1000, 10) / 1000
-    }
-  })
-}
-
-const methods = {
-  centuries: (start, end, n) => {
-    let ticks = allTicks(start, end, 'century')
-    ticks = reduceTo(ticks, n)
-    let fmt = '{year}'
-    if (start.diff(end, 'year') > 6) {
-      fmt = '{year}'
-    }
-    ticks = formatTicks(ticks, fmt, start, end)
-    return ticks
-  },
-  decades: (start, end, n) => {
-    let ticks = allTicks(start, end, 'decade')
-    ticks = reduceTo(ticks, n)
-    let fmt = '{year}'
-    if (start.diff(end, 'year') > 6) {
-      fmt = '{year}'
-    }
-    ticks = formatTicks(ticks, fmt, start, end)
-    return ticks
-  },
-  years: (start, end, n) => {
-    let ticks = allTicks(start, end, 'year')
-    ticks = reduceTo(ticks, n)
-    let fmt = '{month-short} {year-short}'
-    if (start.diff(end, 'year') > 6) {
-      fmt = '{year}'
-    }
-    ticks = formatTicks(ticks, fmt, start, end)
-    return ticks
-  },
-  months: (start, end, n) => {
-    let ticks = allTicks(start, end, 'month')
-    ticks = reduceTo(ticks, n)
-    let fmt = '{month-short} {date}'
-    if (start.isSame(end, 'year') === false) {
-      fmt = '{month-short} {year}'
-    }
-    ticks = formatTicks(ticks, fmt, start, end)
-    return ticks
-  },
-  days: (start, end, n) => {
-    let ticks = allTicks(start, end, 'day')
-    ticks = reduceTo(ticks, n)
-    let fmt = '{month-short} {date}'
-    ticks = formatTicks(ticks, fmt, start, end)
-    return ticks
-  },
-  hours: (start, end, n) => {
-    let ticks = allTicks(start, end, 'hour')
-    ticks = reduceTo(ticks, n)
-    let fmt = '{time}'
-    if (start.isSame(end, 'day') === false) {
-      fmt = '{day-short} {hour}{ampm}'
-    }
-    ticks = formatTicks(ticks, fmt, start, end)
-    return ticks
-  },
-  minutes: (start, end, n) => {
-    let ticks = allTicks(start, end, 'minute')
-    ticks = reduceTo(ticks, n)
-    let fmt = '{time}'
-    ticks = formatTicks(ticks, fmt, start, end)
-    return ticks
-  }
-}
-module.exports = methods
-
-},{"./_reduce":41}],44:[function(_dereq_,module,exports){
+},{"../../parse":37}],56:[function(_dereq_,module,exports){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
@@ -6658,9 +9934,9 @@ module.exports = methods
 		"3|n|03/31:02->10/27:03": "8/chisinau,8/tiraspol",
 		"3|n|03/31:00->10/26:24": "2/beirut",
 		"3|n|03/29:02->10/27:02": "2/jerusalem,2/tel_aviv",
+		"3|n|03/29:00->10/26:01": "2/gaza,2/hebron",
 		"3|n|03/29:00->10/25:01": "2/amman",
 		"3|n|03/29:00->10/24:24": "2/damascus",
-		"3|n|03/23:01->10/26:01": "2/gaza,2/hebron",
 		"3|n": "0/addis_ababa,0/asmara,0/asmera,0/dar_es_salaam,0/djibouti,0/juba,0/kampala,0/mogadishu,0/nairobi,2/aden,2/baghdad,2/bahrain,2/istanbul,2/kuwait,2/qatar,2/riyadh,8/istanbul,8/kirov,8/minsk,8/moscow,8/simferopol,9/comoro,9/mayotte",
 		"2|s|03/31:02->10/27:02": "12/troll",
 		"2|s": "0/gaborone,0/harare,0/johannesburg,0/lubumbashi,0/lusaka,0/maputo,0/maseru,0/mbabane",
@@ -6676,9 +9952,9 @@ module.exports = methods
 		"13|s|01/15:02->11/05:03": "11/tongatapu",
 		"13|n": "11/enderbury,11/fakaofo",
 		"12|s|04/07:03->09/29:02": "12/mcmurdo,12/south_pole,11/auckland",
-		"12|s|01/13:03->11/03:02": "11/fiji",
+		"12|s|01/13:03->11/10:02": "11/fiji",
 		"12|n": "2/anadyr,2/kamchatka,2/srednekolymsk,11/funafuti,11/kwajalein,11/majuro,11/nauru,11/tarawa,11/wake,11/wallis",
-		"12.75|s|04/07:03->04/07:02": "11/chatham",
+		"12.75|s|04/07:03->09/29:02": "11/chatham",
 		"11|s": "12/macquarie,11/bougainville",
 		"11|n": "2/magadan,2/sakhalin,11/efate,11/guadalcanal,11/kosrae,11/noumea,11/pohnpei,11/ponape",
 		"11.5|n": "11/norfolk",
@@ -6713,8 +9989,7 @@ module.exports = methods
 		"-4|n|03/10:02->11/03:02": "1/detroit,1/fort_wayne,1/grand_turk,1/indianapolis,1/iqaluit,1/louisville,1/montreal,1/nassau,1/new_york,1/nipigon,1/pangnirtung,1/port-au-prince,1/thunder_bay,1/toronto,6/eastern",
 		"-4|n|03/10:00->11/03:01": "1/havana",
 		"-4|n": "1/anguilla,1/antigua,1/aruba,1/barbados,1/blanc-sablon,1/boa_vista,1/caracas,1/curacao,1/dominica,1/grenada,1/guadeloupe,1/guyana,1/kralendijk,1/lower_princes,1/marigot,1/martinique,1/montserrat,1/port_of_spain,1/porto_velho,1/puerto_rico,1/santo_domingo,1/st_barthelemy,1/st_kitts,1/st_lucia,1/st_thomas,1/st_vincent,1/tortola,1/virgin",
-		"-3|s|02/16:24->11/03:00": "1/sao_paulo,5/east",
-		"-3|s": "1/argentina,1/buenos_aires,1/cordoba,1/fortaleza,1/montevideo,1/punta_arenas,12/rothera,3/stanley",
+		"-3|s": "1/argentina,1/buenos_aires,1/cordoba,1/fortaleza,1/montevideo,1/punta_arenas,1/sao_paulo,12/rothera,3/stanley,5/east",
 		"-3|n|03/10:02->11/03:02": "1/glace_bay,1/goose_bay,1/halifax,1/moncton,1/thule,3/bermuda,6/atlantic",
 		"-3|n": "1/araguaina,1/bahia,1/belem,1/catamarca,1/cayenne,1/jujuy,1/maceio,1/mendoza,1/paramaribo,1/recife,1/rosario,1/santarem",
 		"-2|s": "5/denoronha",
@@ -6760,11 +10035,10 @@ module.exports = methods
 	all['utc'] = {
 	  offset: 0,
 	  hem: 'n' //(sorry)
-	  //add etc/gmt+n
 
-	};
+	}; //add etc/gmt+n
 
-	for (var i = -13; i <= 13; i += 0.5) {
+	for (var i = -14; i <= 14; i += 0.5) {
 	  var num = i;
 
 	  if (num > 0) {
@@ -7005,7 +10279,7 @@ module.exports = methods
 	    // console.warn('spacetime warning: missed setting ' + unit)
 	    s.epoch = original; // i mean, but make it close...
 
-	    s.epoch += milliseconds[unit] * diff * 0.97; // i guess?
+	    s.epoch += milliseconds[unit] * diff * 0.89; // i guess?
 	  }
 	}; //find the desired date by a increment/check while loop
 
@@ -7027,7 +10301,7 @@ module.exports = methods
 	      var d = s.d;
 	      var current = d.getMonth();
 	      var original = s.epoch;
-	      var startUnit = d.getYear();
+	      var startUnit = d.getFullYear();
 
 	      if (current === n) {
 	        return;
@@ -7038,7 +10312,7 @@ module.exports = methods
 	      s.epoch += milliseconds.day * (diff * 28); //special case
 	      //oops, did we change the year? revert it.
 
-	      if (startUnit !== s.d.getYear()) {
+	      if (startUnit !== s.d.getFullYear()) {
 	        s.epoch = original;
 	      } //incriment by day
 
@@ -7365,9 +10639,9 @@ module.exports = methods
 	    s = parseTime_1(s, arr[4]);
 	    return s;
 	  }
-	}, //iso "2015-03-25" or "2015/03/25" //0-based-months!
+	}, //iso "2015-03-25" or "2015/03/25" or "2015/03/25 12:26:14 PM"
 	{
-	  reg: /^([0-9]{4})[\-\/]([0-9]{1,2})[\-\/]([0-9]{1,2})$/,
+	  reg: /^([0-9]{4})[\-\/]([0-9]{1,2})[\-\/]([0-9]{1,2}),?( [0-9]{1,2}:[0-9]{2}:?[0-9]{0,2}? ?(am|pm|gmt))?$/i,
 	  parse: function parse(s, arr) {
 	    var obj = {
 	      year: arr[1],
@@ -7387,20 +10661,19 @@ module.exports = methods
 	    }
 
 	    walk_1(s, obj);
-	    s = parseTime_1(s);
+	    s = parseTime_1(s, arr[4]);
 	    return s;
 	  }
-	}, //short - uk "03/25/2015"  //0-based-months!
+	}, //mm/dd/yyyy - uk/canada "6/28/2019, 12:26:14 PM"
 	{
-	  reg: /^([0-9]{1,2})[\-\/]([0-9]{1,2})[\-\/]?([0-9]{4})?$/,
+	  reg: /^([0-9]{1,2})[\-\/]([0-9]{1,2})[\-\/]?([0-9]{4})?,?( [0-9]{1,2}:[0-9]{2}:?[0-9]{0,2}? ?(am|pm|gmt))?$/i,
 	  parse: function parse(s, arr) {
 	    var month = parseInt(arr[1], 10) - 1;
-	    var date = parseInt(arr[2], 10);
+	    var date = parseInt(arr[2], 10); //support dd/mm/yyy
 
-	    if (month >= 12) {
-	      //support yyyy/dd/mm (weird, but ok)
-	      month = parseInt(arr[2], 10) - 1;
+	    if (s.british || month >= 12) {
 	      date = parseInt(arr[1], 10);
+	      month = parseInt(arr[2], 10) - 1;
 	    }
 
 	    var year = arr[3] || new Date().getFullYear();
@@ -7416,13 +10689,34 @@ module.exports = methods
 	    }
 
 	    walk_1(s, obj);
-	    s = parseTime_1(s);
+	    s = parseTime_1(s, arr[4]);
+	    return s;
+	  }
+	}, //common british format - "25-feb-2015"
+	{
+	  reg: /^([0-9]{1,2})[\-\/]([a-z]+)[\-\/]?([0-9]{4})?$/i,
+	  parse: function parse(s, arr) {
+	    var month = months$1[arr[2].toLowerCase()];
+	    var year = parseYear(arr[3]);
+	    var obj = {
+	      year: year,
+	      month: month,
+	      date: fns.toCardinal(arr[1] || '')
+	    };
+
+	    if (hasDate_1(obj) === false) {
+	      s.epoch = null;
+	      return s;
+	    }
+
+	    walk_1(s, obj);
+	    s = parseTime_1(s, arr[4]);
 	    return s;
 	  }
 	}, //Long "Mar 25 2015"
 	//February 22, 2017 15:30:00
 	{
-	  reg: /^([a-z]+) ([0-9]{1,2}(?:st|nd|rd|th)?),?( [0-9]{4})?( ([0-9:]+( ?am| ?pm)?))?$/i,
+	  reg: /^([a-z]+) ([0-9]{1,2}(?:st|nd|rd|th)?),?( [0-9]{4})?( ([0-9:]+( ?am| ?pm| ?gmt)?))?$/i,
 	  parse: function parse(s, arr) {
 	    var month = months$1[arr[1].toLowerCase()];
 	    var year = parseYear(arr[3]);
@@ -7464,9 +10758,14 @@ module.exports = methods
 	  }
 	}, //Long "25 Mar 2015"
 	{
-	  reg: /^([0-9]{1,2}(?:st|nd|rd|th)?) ([a-z]+),?( [0-9]{4})?$/i,
+	  reg: /^([0-9]{1,2}(?:st|nd|rd|th)?) ([a-z]+),?( [0-9]{4})?,? ?([0-9]{1,2}:[0-9]{2}:?[0-9]{0,2}? ?(am|pm|gmt))?$/i,
 	  parse: function parse(s, arr) {
 	    var month = months$1[arr[2].toLowerCase()];
+
+	    if (!month) {
+	      return null;
+	    }
+
 	    var year = parseYear(arr[3]);
 	    var obj = {
 	      year: year,
@@ -7480,14 +10779,19 @@ module.exports = methods
 	    }
 
 	    walk_1(s, obj);
-	    s = parseTime_1(s);
+	    s = parseTime_1(s, arr[4]);
 	    return s;
 	  }
 	}, {
-	  // '1992'
-	  reg: /^[0-9]{4}$/i,
+	  // '200bc'
+	  reg: /^[0-9,]+ ?b\.?c\.?$/i,
 	  parse: function parse(s, arr) {
-	    var year = parseYear(arr[0]);
+	    var str = arr[0] || ''; //make negative-year
+
+	    str = str.replace(/^([0-9,]+) ?b\.?c\.?$/i, '-$1'); //remove commas
+
+	    str = str.replace(/,/g, '');
+	    var year = parseInt(str.trim(), 10);
 	    var d = new Date();
 	    var obj = {
 	      year: year,
@@ -7505,15 +10809,34 @@ module.exports = methods
 	    return s;
 	  }
 	}, {
-	  // '200bc'
-	  reg: /^[0-9,]+ ?b\.?c\.?$/i,
+	  // '200ad'
+	  reg: /^[0-9,]+ ?(a\.?d\.?|c\.?e\.?)$/i,
 	  parse: function parse(s, arr) {
-	    var str = arr[0] || ''; //make negative-year
-
-	    str = str.replace(/^([0-9,]+) ?b\.?c\.?$/i, '-$1'); //remove commas
+	    var str = arr[0] || ''; //remove commas
 
 	    str = str.replace(/,/g, '');
 	    var year = parseInt(str.trim(), 10);
+	    var d = new Date();
+	    var obj = {
+	      year: year,
+	      month: d.getMonth(),
+	      date: d.getDate()
+	    };
+
+	    if (hasDate_1(obj) === false) {
+	      s.epoch = null;
+	      return s;
+	    }
+
+	    walk_1(s, obj);
+	    s = parseTime_1(s);
+	    return s;
+	  }
+	}, {
+	  // '1992'
+	  reg: /^[0-9]{4}( ?a\.?d\.?)?$/i,
+	  parse: function parse(s, arr) {
+	    var year = parseYear(arr[0]);
 	    var d = new Date();
 	    var obj = {
 	      year: year,
@@ -7592,9 +10915,8 @@ module.exports = methods
 	var defaults = {
 	  year: new Date().getFullYear(),
 	  month: 0,
-	  date: 1 //support [2016, 03, 01] format
-
-	};
+	  date: 1
+	}; //support [2016, 03, 01] format
 
 	var handleArray = function handleArray(s, arr) {
 	  var order = ['year', 'month', 'date', 'hour', 'minute', 'second', 'millisecond'];
@@ -7696,8 +11018,11 @@ module.exports = methods
 	    var m = input.match(strParse[i].reg);
 
 	    if (m) {
-	      s = strParse[i].parse(s, m, givenTz);
-	      return s;
+	      var res = strParse[i].parse(s, m, givenTz);
+
+	      if (res !== null) {
+	        return res;
+	      }
 	    }
 	  }
 
@@ -7884,6 +11209,9 @@ module.exports = methods
 	  era: function era(s) {
 	    return s.era();
 	  },
+	  json: function json(s) {
+	    return s.json();
+	  },
 	  timezone: function timezone(s) {
 	    return s.timezone().name;
 	  },
@@ -7940,9 +11268,9 @@ module.exports = methods
 	  },
 	  'nice-full': function niceFull(s) {
 	    return "".concat(s.dayName(), " ").concat(fns.titleCase(s.monthName()), " ").concat(fns.ordinal(s.date()), ", ").concat(s.time());
-	  } //aliases
+	  }
+	}; //aliases
 
-	};
 	var aliases = {
 	  'day-name': 'day',
 	  'month-name': 'month',
@@ -7980,10 +11308,14 @@ module.exports = methods
 
 
 	  if (format.hasOwnProperty(str)) {
-	    var out = String(format[str](s) || '');
+	    var out = format[str](s) || '';
 
-	    if (str !== 'ampm') {
-	      out = fns.titleCase(out);
+	    if (str !== 'json') {
+	      out = String(out);
+
+	      if (str !== 'ampm') {
+	        out = fns.titleCase(out);
+	      }
 	    }
 
 	    return out;
@@ -8465,9 +11797,8 @@ module.exports = methods
 	  seconds: {
 	    almost: 50,
 	    over: 20
-	  } //get number of hours/minutes... between the two dates
-
-	};
+	  }
+	}; //get number of hours/minutes... between the two dates
 
 	function getDiff(a, b) {
 	  var isBefore = a.isBefore(b);
@@ -8748,7 +12079,8 @@ module.exports = methods
 	  },
 	  century: function century(s) {
 	    s = s.startOf('year');
-	    var year = s.year();
+	    var year = s.year(); // near 0AD goes '-1 | +1'
+
 	    var decade = parseInt(year / 100, 10) * 100;
 	    s = s.year(decade);
 	    return s;
@@ -8942,6 +12274,8 @@ module.exports = methods
 
 	var timezone_1 = timezone;
 
+	var units$3 = ['century', 'decade', 'year', 'month', 'date', 'day', 'hour', 'minute', 'second', 'millisecond']; //the spacetime instance methods (also, the API)
+
 	var methods = {
 	  set: function set(input$1, tz) {
 	    var s = this.clone();
@@ -9051,6 +12385,14 @@ module.exports = methods
 	    console.log(format_1(this, 'full-short'));
 	    return this;
 	  },
+	  json: function json() {
+	    var _this = this;
+
+	    return units$3.reduce(function (h, unit) {
+	      h[unit] = _this[unit]();
+	      return h;
+	    }, {});
+	  },
 	  debug: function debug() {
 	    var tz = this.timezone();
 	    var date = this.format('MM') + ' ' + this.format('date-ordinal') + ' ' + this.year();
@@ -9093,9 +12435,9 @@ module.exports = methods
 	    }
 
 	    return this;
-	  } // aliases
+	  }
+	}; // aliases
 
-	};
 	methods.inDST = methods.isDST;
 	methods.round = methods.nearest;
 	methods.each = methods.every;
@@ -9569,7 +12911,7 @@ module.exports = methods
 	    for (var i = 1; i <= month; i++) {
 	      tmp = new Date();
 	      tmp.setDate(1);
-	      tmp.setYear(this.d.getFullYear()); //the year matters, because leap-years
+	      tmp.setFullYear(this.d.getFullYear()); //the year matters, because leap-years
 
 	      tmp.setHours(1);
 	      tmp.setMinutes(1);
@@ -9583,6 +12925,7 @@ module.exports = methods
 	  },
 	  //since the start of the year
 	  week: function week(num) {
+	    // week-setter
 	    if (num !== undefined) {
 	      var s = this.clone();
 	      s = s.month(0);
@@ -9609,8 +12952,16 @@ module.exports = methods
 
 	    if (tmp.monthName() === 'december') {
 	      tmp = tmp.add(1, 'week');
+	    } // is first monday the 1st?
+
+
+	    var toAdd = 1;
+
+	    if (tmp.date() === 1) {
+	      toAdd = 0;
 	    }
 
+	    tmp = tmp.minus(1, 'second');
 	    var thisOne = this.epoch; //if the week technically hasn't started yet
 
 	    if (tmp.epoch > thisOne) {
@@ -9625,7 +12976,7 @@ module.exports = methods
 
 	    for (; i < 52; i++) {
 	      if (tmp.epoch > thisOne) {
-	        return i;
+	        return i + toAdd;
 	      }
 
 	      tmp = tmp.add(1, 'week');
@@ -9738,6 +13089,120 @@ module.exports = methods
 	    }
 
 	    return 'AD';
+	  },
+	  // 2019 -> 2010
+	  decade: function decade(input) {
+	    if (input !== undefined) {
+	      input = String(input);
+	      input = input.replace(/([0-9])'?s$/, '$1'); //1950's
+
+	      input = input.replace(/([0-9])(th|rd|st|nd)/, '$1'); //fix ordinals
+
+	      if (!input) {
+	        console.warn('Spacetime: Invalid decade input');
+	        return this;
+	      } // assume 20th century?? for '70s'.
+
+
+	      if (input.length === 2 && /[0-9][0-9]/.test(input)) {
+	        input = '19' + input;
+	      }
+
+	      var year = Number(input);
+
+	      if (isNaN(year)) {
+	        return this;
+	      } // round it down to the decade
+
+
+	      year = Math.floor(year / 10) * 10;
+	      return this.year(year); //.startOf('decade')
+	    }
+
+	    return this.startOf('decade').year();
+	  },
+	  // 1950 -> 19+1
+	  century: function century(input) {
+	    if (input !== undefined) {
+	      if (typeof input === 'string') {
+	        input = input.replace(/([0-9])(th|rd|st|nd)/, '$1'); //fix ordinals
+
+	        input = input.replace(/([0-9]+) ?(b\.?c\.?|a\.?d\.?)/i, function (a, b, c) {
+	          if (c.match(/b\.?c\.?/i)) {
+	            b = '-' + b;
+	          }
+
+	          return b;
+	        });
+	        input = input.replace(/c$/, ''); //20thC
+	      }
+
+	      var year = Number(input);
+
+	      if (isNaN(input)) {
+	        console.warn('Spacetime: Invalid century input');
+	        return this;
+	      } // there is no century 0
+
+
+	      if (year === 0) {
+	        year = 1;
+	      }
+
+	      if (year >= 0) {
+	        year = (year - 1) * 100;
+	      } else {
+	        year = (year + 1) * 100;
+	      }
+
+	      return this.year(year);
+	    } // century getter
+
+
+	    var num = this.startOf('century').year();
+	    num = Math.floor(num / 100);
+
+	    if (num < 0) {
+	      return num - 1;
+	    }
+
+	    return num + 1;
+	  },
+	  // 2019 -> 2+1
+	  millenium: function millenium(input) {
+	    if (input !== undefined) {
+	      if (typeof input === 'string') {
+	        input = input.replace(/([0-9])(th|rd|st|nd)/, '$1'); //fix ordinals
+
+	        input = Number(input);
+
+	        if (isNaN(input)) {
+	          console.warn('Spacetime: Invalid millenium input');
+	          return this;
+	        }
+	      }
+
+	      if (input > 0) {
+	        input -= 1;
+	      }
+
+	      var year = input * 1000; // there is no year 0
+
+	      if (year === 0) {
+	        year = 1;
+	      }
+
+	      return this.year(year);
+	    } // get the current millenium
+
+
+	    var num = Math.floor(this.year() / 1000);
+
+	    if (num >= 0) {
+	      num += 1;
+	    }
+
+	    return num;
 	  }
 	};
 	var _03Year = methods$3;
@@ -9792,10 +13257,9 @@ module.exports = methods
 	  month: true,
 	  quarter: true,
 	  season: true,
-	  year: true //month is the only thing we 'model/compute'
-	  //- because ms-shifting can be off by enough
-
-	};
+	  year: true
+	}; //month is the only thing we 'model/compute'
+	//- because ms-shifting can be off by enough
 
 	var rollMonth = function rollMonth(want, old) {
 	  //increment year
@@ -10025,9 +13489,9 @@ module.exports = methods
 	      }
 
 	      return startEpoch < this.epoch && this.epoch < endEpoch;
-	    } //hook them into proto
+	    }
+	  }; //hook them into proto
 
-	  };
 	  Object.keys(methods).forEach(function (k) {
 	    SpaceTime.prototype[k] = methods[k];
 	  });
@@ -10047,9 +13511,9 @@ module.exports = methods
 	      if (fns.isObject(data.months)) {
 	        months.set(data.months);
 	      }
-	    } //hook them into proto
+	    }
+	  }; //hook them into proto
 
-	  };
 	  Object.keys(methods).forEach(function (k) {
 	    SpaceTime.prototype[k] = methods[k];
 	  });
@@ -10066,7 +13530,9 @@ module.exports = methods
 
 	  this.tz = find(tz, timezones); //whether to output warnings to console
 
-	  this.silent = options.silent || true; //does the week start on sunday, or monday:
+	  this.silent = options.silent || true; // favour british interpretation of 02/02/2018, etc
+
+	  this.british = options.dmy || options.british; //does the week start on sunday, or monday:
 
 	  this._weekStart = 1; //default to monday
 
@@ -10170,7 +13636,7 @@ module.exports = methods
 
 	var whereIts_1 = whereIts;
 
-	var _version = '6.0.1';
+	var _version = '6.3.0';
 
 	var main$1 = function main(input, tz, options) {
 	  return new spacetime(input, tz, options);
@@ -10215,7 +13681,12 @@ module.exports = methods
 }));
 
 
-},{}],45:[function(_dereq_,module,exports){
+},{}],57:[function(_dereq_,module,exports){
+(function (global){
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{("undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this).spencerColor=e()}}(function(){return function u(i,a,c){function f(r,e){if(!a[r]){if(!i[r]){var o="function"==typeof _dereq_&&_dereq_;if(!e&&o)return o(r,!0);if(d)return d(r,!0);var n=new Error("Cannot find module '"+r+"'");throw n.code="MODULE_NOT_FOUND",n}var t=a[r]={exports:{}};i[r][0].call(t.exports,function(e){return f(i[r][1][e]||e)},t,t.exports,u,i,a,c)}return a[r].exports}for(var d="function"==typeof _dereq_&&_dereq_,e=0;e<c.length;e++)f(c[e]);return f}({1:[function(e,r,o){"use strict";r.exports={blue:"#6699cc",green:"#6accb2",yellow:"#e1e6b3",red:"#cc7066",pink:"#F2C0BB",brown:"#705E5C",orange:"#cc8a66",purple:"#d8b3e6",navy:"#335799",olive:"#7f9c6c",fuscia:"#735873",beige:"#e6d7b3",slate:"#8C8C88",suede:"#9c896c",burnt:"#603a39",sea:"#50617A",sky:"#2D85A8",night:"#303b50",rouge:"#914045",grey:"#838B91",mud:"#C4ABAB",royal:"#275291",cherry:"#cc6966",tulip:"#e6b3bc",rose:"#D68881",fire:"#AB5850",greyblue:"#72697D",greygreen:"#8BA3A2",greypurple:"#978BA3",burn:"#6D5685",slategrey:"#bfb0b3",light:"#a3a5a5",lighter:"#d7d5d2",fudge:"#4d4d4d",lightgrey:"#949a9e",white:"#fbfbfb",dimgrey:"#606c74",softblack:"#463D4F",dark:"#443d3d",black:"#333333"}},{}],2:[function(e,r,o){"use strict";var n=e("./colors"),t={juno:["blue","mud","navy","slate","pink","burn"],barrow:["rouge","red","orange","burnt","brown","greygreen"],roma:["#8a849a","#b5b0bf","rose","lighter","greygreen","mud"],palmer:["red","navy","olive","pink","suede","sky"],mark:["#848f9a","#9aa4ac","slate","#b0b8bf","mud","grey"],salmon:["sky","sea","fuscia","slate","mud","fudge"],dupont:["green","brown","orange","red","olive","blue"],bloor:["night","navy","beige","rouge","mud","grey"],yukon:["mud","slate","brown","sky","beige","red"],david:["blue","green","yellow","red","pink","light"],neste:["mud","cherry","royal","rouge","greygreen","greypurple"],ken:["red","sky","#c67a53","greygreen","#dfb59f","mud"]};Object.keys(t).forEach(function(e){t[e]=t[e].map(function(e){return n[e]||e})}),r.exports=t},{"./colors":1}],3:[function(e,r,o){"use strict";var n=e("./colors"),t=e("./combos"),u={colors:n,list:Object.keys(n).map(function(e){return n[e]}),combos:t};r.exports=u},{"./colors":1,"./combos":2}]},{},[3])(3)});
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],58:[function(_dereq_,module,exports){
 /*
  (c) 2011-2015, Vladimir Agafonkin
  SunCalc is a JavaScript library for calculating sun/moon position and light phases.
@@ -10527,7 +13998,7 @@ else window.SunCalc = SunCalc;
 
 }());
 
-},{}],46:[function(_dereq_,module,exports){
+},{}],59:[function(_dereq_,module,exports){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
@@ -10593,7 +14064,7 @@ return h;
 })));
 
 
-},{}],47:[function(_dereq_,module,exports){
+},{}],60:[function(_dereq_,module,exports){
 "use strict";
 
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -10632,4 +14103,4 @@ var table = function table(byMonth) {
 
 module.exports = table;
 
-},{}]},{},[2]);
+},{}]},{},[5]);
