@@ -103,6 +103,11 @@ module.exports = {
     num: '09',
     title: 'Daylight by latitude',
     thumb: 'thumb.jpg'
+  }],
+  '2020': [{
+    num: '01',
+    title: 'Causes of death in Ontario',
+    thumb: 'thumb.png'
   }]
 };
 
