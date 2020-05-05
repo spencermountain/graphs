@@ -108,11 +108,15 @@ module.exports = {
     num: '01',
     title: 'Causes of death in Ontario',
     thumb: 'thumb.png'
+  }, {
+    num: '02',
+    title: 'Daylight Savings times',
+    thumb: 'thumb.png'
   }]
 };
 
 },{}],3:[function(_dereq_,module,exports){
-!function(){var n=function(t,e,r,u){for(var o=1;o<e.length;o++){var f=e[o++],s="number"==typeof f?r[f]:f;1===e[o]?u[0]=s:2===e[o]?(u[1]=u[1]||{})[e[++o]]=s:3===e[o]?u[1]=Object.assign(u[1]||{},s):u.push(e[o]?t.apply(null,n(t,s,r,["",null])):s)}return u},t=function(n){for(var t,e,r=1,u="",o="",f=[0],s=function(n){1===r&&(n||(u=u.replace(/^\s*\n\s*|\s*\n\s*$/g,"")))?f.push(n||u,0):3===r&&(n||u)?(f.push(n||u,1),r=2):2===r&&"..."===u&&n?f.push(n,3):2===r&&u&&!n?f.push(!0,2,u):4===r&&e&&(f.push(n||u,2,e),e=""),u=""},p=0;p<n.length;p++){p&&(1===r&&s(),s(p));for(var h=0;h<n[p].length;h++)t=n[p][h],1===r?"<"===t?(s(),f=[f],r=3):u+=t:o?t===o?o="":u+=t:'"'===t||"'"===t?o=t:">"===t?(s(),r=1):r&&("="===t?(r=4,e=u,u=""):"/"===t?(s(),3===r&&(f=f[0]),r=f,(f=f[0]).push(r,4),r=0):" "===t||"\t"===t||"\n"===t||"\r"===t?(s(),r=2):u+=t)}return s(),f},e="function"==typeof Map,r=e?new Map:{},u=e?function(n){var e=r.get(n);return e||r.set(n,e=t(n)),e}:function(n){for(var e="",u=0;u<n.length;u++)e+=n[u].length+"-"+n[u];return r[e]||(r[e]=t(n))},o=function(t){var e=n(this,u(t),arguments,[]);return e.length>1?e:e[0]};"undefined"!=typeof module?module.exports=o:self.htm=o}();
+!function(){var n=function(t,e,s,u){var r;e[0]=0;for(var h=1;h<e.length;h++){var p=e[h++],a=e[h]?(e[0]|=p?1:2,s[e[h++]]):e[++h];3===p?u[0]=a:4===p?u[1]=Object.assign(u[1]||{},a):5===p?(u[1]=u[1]||{})[e[++h]]=a:6===p?u[1][e[++h]]+=a+"":p?(r=t.apply(a,n(t,a,s,["",null])),u.push(r),a[0]?e[0]|=2:(e[h-2]=0,e[h]=r)):u.push(a)}return u},t=new Map,e=function(e){var s=t.get(this);return s||(s=new Map,t.set(this,s)),(s=n(this,s.get(e)||(s.set(e,s=function(n){for(var t,e,s=1,u="",r="",h=[0],p=function(n){1===s&&(n||(u=u.replace(/^\s*\n\s*|\s*\n\s*$/g,"")))?h.push(0,n,u):3===s&&(n||u)?(h.push(3,n,u),s=2):2===s&&"..."===u&&n?h.push(4,n,0):2===s&&u&&!n?h.push(5,0,!0,u):s>=5&&((u||!n&&5===s)&&(h.push(s,0,u,e),s=6),n&&(h.push(s,n,0,e),s=6)),u=""},a=0;a<n.length;a++){a&&(1===s&&p(),p(a));for(var o=0;o<n[a].length;o++)t=n[a][o],1===s?"<"===t?(p(),h=[h],s=3):u+=t:4===s?"--"===u&&">"===t?(s=1,u=""):u=t+u[0]:r?t===r?r="":u+=t:'"'===t||"'"===t?r=t:">"===t?(p(),s=1):s&&("="===t?(s=5,e=u,u=""):"/"===t&&(s<5||">"===n[a][o+1])?(p(),3===s&&(h=h[0]),s=h,(h=h[0]).push(2,0,s),s=0):" "===t||"\t"===t||"\n"===t||"\r"===t?(p(),s=2):u+=t),3===s&&"!--"===u&&(s=4,h=h[0])}return p(),h}(e)),s),arguments,[])).length>1?s:s[0]};"undefined"!=typeof module?module.exports=e:self.htm=e}();
 
 },{}],4:[function(_dereq_,module,exports){
 (function (global, factory) {
@@ -129,31 +133,41 @@ var esc = function esc(str) {
 	});
 };
 var map = { '&': 'amp', '<': 'lt', '>': 'gt', '"': 'quot', "'": 'apos' };
+var setInnerHTMLAttr = 'dangerouslySetInnerHTML';
+var DOMAttributeNames = {
+	className: 'class',
+	htmlFor: 'for'
+};
 
 var sanitized = {};
 
 function h(name, attrs) {
-	var stack = [];
+	var stack = [],
+	    s = '';
+	attrs = attrs || {};
 	for (var i = arguments.length; i-- > 2;) {
 		stack.push(arguments[i]);
 	}
 
 	if (typeof name === 'function') {
-		(attrs || (attrs = {})).children = stack.reverse();
+		attrs.children = stack.reverse();
 		return name(attrs);
 	}
 
-	var s = '<' + name;
-	if (attrs) for (var _i in attrs) {
-		if (attrs[_i] !== false && attrs[_i] != null) {
-			s += ' ' + esc(_i) + '="' + esc(attrs[_i]) + '"';
+	if (name) {
+		s += '<' + name;
+		if (attrs) for (var _i in attrs) {
+			if (attrs[_i] !== false && attrs[_i] != null && _i !== setInnerHTMLAttr) {
+				s += ' ' + (DOMAttributeNames[_i] ? DOMAttributeNames[_i] : esc(_i)) + '="' + esc(attrs[_i]) + '"';
+			}
 		}
+		s += '>';
 	}
 
 	if (emptyTags.indexOf(name) === -1) {
-		s += '>';
-
-		while (stack.length) {
+		if (attrs[setInnerHTMLAttr]) {
+			s += attrs[setInnerHTMLAttr].__html;
+		} else while (stack.length) {
 			var child = stack.pop();
 			if (child) {
 				if (child.pop) {
@@ -166,9 +180,7 @@ function h(name, attrs) {
 			}
 		}
 
-		s += '</' + name + '>';
-	} else {
-		s += '>';
+		s += name ? '</' + name + '>' : '';
 	}
 
 	sanitized[s] = true;

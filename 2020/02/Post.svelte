@@ -1,7 +1,7 @@
 <script>
   import Head from '../../components/Head.svelte'
   import Foot from '../../components/Foot.svelte'
-  export let title = 'Daylight-savings time changes'
+  export let title = 'Daylight savings time changes'
   export let sub = "'Eastern Standard' time"
   import data from './data'
   import {
@@ -12,30 +12,25 @@
     Now,
     Column,
     Label,
+    colors,
   } from '/Users/spencer/mountain/somehow-timeline/src'
   let year = 2019
   let start = 'Jan 1 '
   let end = 'Dec 31 '
   let height = 900
-
   let byTime = {}
-  data.forEach(a => {
-    // a[1] += `/${year}`
-    // a[2] += `/${year}`
-    let time = a[1] + ':' + a[2]
-    byTime[time] = byTime[time] || []
-    byTime[time].push(a[0])
+  let zones = data.map((zone, i) => {
+    zone.color = colors.combos.roma[i % 6]
+    return zone
   })
-  let zones = Object.keys(byTime).map(k => {
-    let t = k.split(/:/)
-    return {
-      start: t[0],
-      end: t[1],
-      zones: byTime[k],
-      label: byTime[k].length == 1 ? byTime[k][0].split(/\//)[1] : byTime[k].length + ' zones',
+  zones = zones.sort((a, b) => {
+    if (a.offset > b.offset) {
+      return -1
+    } else if (a.offset < b.offset) {
+      return 1
     }
+    return 0
   })
-  console.log(zones)
 </script>
 
 <style>
@@ -45,16 +40,23 @@
 </style>
 
 <div>
-  <Head {title} {sub} />
+  <Head {title} {sub} num="02" />
   <div class="m3">
     <Timeline {start} {end} {height} {title}>
       <Ticks every="month" />
       <Line />
       <Now label="today" color="pink" />
       {#each zones as zone, i}
-        <Column width="15px">
-          <Line space="15px" start={zone.start} end={zone.end} color="green" label={zone.label} />
-        </Column>
+        {#each zone.times as time}
+          <Column width="15px">
+            <Line
+              space="15px"
+              start={time.start}
+              end={time.end}
+              color={zone.color}
+              label={time.zones.length} />
+          </Column>
+        {/each}
       {/each}
     </Timeline>
 

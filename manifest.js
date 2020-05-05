@@ -79,5 +79,10 @@ module.exports = {
       title: 'Causes of death in Ontario',
       thumb: 'thumb.png',
     },
+    {
+      num: '02',
+      title: 'Daylight Savings times',
+      thumb: 'thumb.png',
+    },
   ],
 }

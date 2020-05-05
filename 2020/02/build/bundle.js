@@ -221,12 +221,6 @@ var app = (function () {
             block.o(local);
         }
     }
-
-    const globals = (typeof window !== 'undefined'
-        ? window
-        : typeof globalThis !== 'undefined'
-            ? globalThis
-            : global);
     function create_component(block) {
         block && block.c();
     }
@@ -598,187 +592,455 @@ var app = (function () {
     }
 
     var data = [
-      ['australia/adelaide', '04/07', '10/06'],
-      ['australia/broken_hill', '04/07', '10/06'],
-      ['australia/south', '04/07', '10/06'],
-      ['australia/yancowinna', '04/07', '10/06'],
-      ['asia/ulan_bator', '03/25', '09/29'],
-      ['asia/tehran', '03/22', '09/21'],
-      ['asia/nicosia', '03/31', '10/27'],
-      ['europe/athens', '03/31', '10/27'],
-      ['europe/bucharest', '03/31', '10/27'],
-      ['europe/helsinki', '03/31', '10/27'],
-      ['europe/kiev', '03/31', '10/27'],
-      ['europe/mariehamn', '03/31', '10/27'],
-      ['europe/nicosia', '03/31', '10/27'],
-      ['europe/riga', '03/31', '10/27'],
-      ['europe/sofia', '03/31', '10/27'],
-      ['europe/tallinn', '03/31', '10/27'],
-      ['europe/uzhgorod', '03/31', '10/27'],
-      ['europe/vilnius', '03/31', '10/27'],
-      ['europe/zaporozhye', '03/31', '10/27'],
-      ['europe/chisinau', '03/31', '10/27'],
-      ['europe/tiraspol', '03/31', '10/27'],
-      ['asia/beirut', '03/31', '10/26'],
-      ['asia/jerusalem', '03/29', '10/27'],
-      ['asia/tel_aviv', '03/29', '10/27'],
-      ['asia/gaza', '03/29', '10/26'],
-      ['asia/hebron', '03/29', '10/26'],
-      ['asia/amman', '03/29', '10/25'],
-      ['asia/damascus', '03/29', '10/24'],
-      ['antarctica/troll', '03/31', '10/27'],
-      ['africa/ceuta', '03/31', '10/27'],
-      ['arctic/longyearbyen', '03/31', '10/27'],
-      ['atlantic/jan_mayen', '03/31', '10/27'],
-      ['europe/amsterdam', '03/31', '10/27'],
-      ['europe/andorra', '03/31', '10/27'],
-      ['europe/belgrade', '03/31', '10/27'],
-      ['europe/berlin', '03/31', '10/27'],
-      ['europe/bratislava', '03/31', '10/27'],
-      ['europe/brussels', '03/31', '10/27'],
-      ['europe/budapest', '03/31', '10/27'],
-      ['europe/busingen', '03/31', '10/27'],
-      ['europe/copenhagen', '03/31', '10/27'],
-      ['europe/gibraltar', '03/31', '10/27'],
-      ['europe/ljubljana', '03/31', '10/27'],
-      ['europe/luxembourg', '03/31', '10/27'],
-      ['europe/madrid', '03/31', '10/27'],
-      ['europe/malta', '03/31', '10/27'],
-      ['europe/monaco', '03/31', '10/27'],
-      ['europe/oslo', '03/31', '10/27'],
-      ['europe/paris', '03/31', '10/27'],
-      ['europe/podgorica', '03/31', '10/27'],
-      ['europe/prague', '03/31', '10/27'],
-      ['europe/rome', '03/31', '10/27'],
-      ['europe/san_marino', '03/31', '10/27'],
-      ['europe/sarajevo', '03/31', '10/27'],
-      ['europe/skopje', '03/31', '10/27'],
-      ['europe/stockholm', '03/31', '10/27'],
-      ['europe/tirane', '03/31', '10/27'],
-      ['europe/vaduz', '03/31', '10/27'],
-      ['europe/vatican', '03/31', '10/27'],
-      ['europe/vienna', '03/31', '10/27'],
-      ['europe/warsaw', '03/31', '10/27'],
-      ['europe/zagreb', '03/31', '10/27'],
-      ['europe/zurich', '03/31', '10/27'],
-      ['africa/windhoek', '04/02', '09/03'],
-      ['africa/casablanca', '05/05', '06/09'],
-      ['africa/el_aaiun', '05/05', '06/09'],
-      ['atlantic/canary', '03/31', '10/27'],
-      ['atlantic/faeroe', '03/31', '10/27'],
-      ['atlantic/faroe', '03/31', '10/27'],
-      ['atlantic/madeira', '03/31', '10/27'],
-      ['europe/belfast', '03/31', '10/27'],
-      ['europe/dublin', '03/31', '10/27'],
-      ['europe/guernsey', '03/31', '10/27'],
-      ['europe/isle_of_man', '03/31', '10/27'],
-      ['europe/jersey', '03/31', '10/27'],
-      ['europe/lisbon', '03/31', '10/27'],
-      ['europe/london', '03/31', '10/27'],
-      ['pacific/apia', '04/07', '09/29'],
-      ['pacific/tongatapu', '01/15', '11/05'],
-      ['antarctica/mcmurdo', '04/07', '09/29'],
-      ['antarctica/south_pole', '04/07', '09/29'],
-      ['pacific/auckland', '04/07', '09/29'],
-      ['pacific/fiji', '01/13', '11/10'],
-      ['pacific/chatham', '04/07', '09/29'],
-      ['australia/act', '04/07', '10/06'],
-      ['australia/canberra', '04/07', '10/06'],
-      ['australia/currie', '04/07', '10/06'],
-      ['australia/hobart', '04/07', '10/06'],
-      ['australia/melbourne', '04/07', '10/06'],
-      ['australia/nsw', '04/07', '10/06'],
-      ['australia/sydney', '04/07', '10/06'],
-      ['australia/tasmania', '04/07', '10/06'],
-      ['australia/victoria', '04/07', '10/06'],
-      ['australia/lhi', '04/07', '10/06'],
-      ['australia/lord_howe', '04/07', '10/06'],
-      ['america/scoresbysund', '03/31', '10/27'],
-      ['atlantic/azores', '03/31', '10/27'],
-      ['america/adak', '03/10', '11/03'],
-      ['america/atka', '03/10', '11/03'],
-      ['america/anchorage', '03/10', '11/03'],
-      ['america/juneau', '03/10', '11/03'],
-      ['america/metlakatla', '03/10', '11/03'],
-      ['america/nome', '03/10', '11/03'],
-      ['america/sitka', '03/10', '11/03'],
-      ['america/yakutat', '03/10', '11/03'],
-      ['america/dawson', '03/10', '11/03'],
-      ['america/ensenada', '03/10', '11/03'],
-      ['america/los_angeles', '03/10', '11/03'],
-      ['america/santa_isabel', '03/10', '11/03'],
-      ['america/tijuana', '03/10', '11/03'],
-      ['america/vancouver', '03/10', '11/03'],
-      ['america/whitehorse', '03/10', '11/03'],
-      ['canada/pacific', '03/10', '11/03'],
-      ['canada/yukon', '03/10', '11/03'],
-      ['mexico/bajanorte', '03/10', '11/03'],
-      ['chile/easterisland', '04/06', '09/07'],
-      ['pacific/easter', '04/06', '09/07'],
-      ['america/chihuahua', '04/07', '10/27'],
-      ['america/mazatlan', '04/07', '10/27'],
-      ['mexico/bajasur', '04/07', '10/27'],
-      ['america/boise', '03/10', '11/03'],
-      ['america/cambridge_bay', '03/10', '11/03'],
-      ['america/denver', '03/10', '11/03'],
-      ['america/edmonton', '03/10', '11/03'],
-      ['america/inuvik', '03/10', '11/03'],
-      ['america/ojinaga', '03/10', '11/03'],
-      ['america/shiprock', '03/10', '11/03'],
-      ['america/yellowknife', '03/10', '11/03'],
-      ['canada/mountain', '03/10', '11/03'],
-      ['america/bahia_banderas', '04/07', '10/27'],
-      ['america/merida', '04/07', '10/27'],
-      ['america/mexico_city', '04/07', '10/27'],
-      ['america/monterrey', '04/07', '10/27'],
-      ['mexico/general', '04/07', '10/27'],
-      ['america/north_dakota', '03/12', '11/05'],
-      ['america/chicago', '03/10', '11/03'],
-      ['america/knox_in', '03/10', '11/03'],
-      ['america/matamoros', '03/10', '11/03'],
-      ['america/menominee', '03/10', '11/03'],
-      ['america/rainy_river', '03/10', '11/03'],
-      ['america/rankin_inlet', '03/10', '11/03'],
-      ['america/resolute', '03/10', '11/03'],
-      ['america/winnipeg', '03/10', '11/03'],
-      ['canada/central', '03/10', '11/03'],
-      ['antarctica/palmer', '05/13', '08/13'],
-      ['america/santiago', '04/06', '09/08'],
-      ['chile/continental', '04/06', '09/08'],
-      ['america/asuncion', '03/23', '10/06'],
-      ['america/campo_grande', '02/16', '11/03'],
-      ['america/cuiaba', '02/16', '11/03'],
-      ['america/indiana', '03/12', '11/05'],
-      ['america/kentucky', '03/12', '11/05'],
-      ['america/detroit', '03/10', '11/03'],
-      ['america/fort_wayne', '03/10', '11/03'],
-      ['america/grand_turk', '03/10', '11/03'],
-      ['america/indianapolis', '03/10', '11/03'],
-      ['america/iqaluit', '03/10', '11/03'],
-      ['america/louisville', '03/10', '11/03'],
-      ['america/montreal', '03/10', '11/03'],
-      ['america/nassau', '03/10', '11/03'],
-      ['america/new_york', '03/10', '11/03'],
-      ['america/nipigon', '03/10', '11/03'],
-      ['america/pangnirtung', '03/10', '11/03'],
-      ['america/port-au-prince', '03/10', '11/03'],
-      ['america/thunder_bay', '03/10', '11/03'],
-      ['america/toronto', '03/10', '11/03'],
-      ['canada/eastern', '03/10', '11/03'],
-      ['america/havana', '03/10', '11/03'],
-      ['america/sao_paulo', '02/16', '11/03'],
-      ['brazil/east', '02/16', '11/03'],
-      ['america/glace_bay', '03/10', '11/03'],
-      ['america/goose_bay', '03/10', '11/03'],
-      ['america/halifax', '03/10', '11/03'],
-      ['america/moncton', '03/10', '11/03'],
-      ['america/thule', '03/10', '11/03'],
-      ['atlantic/bermuda', '03/10', '11/03'],
-      ['canada/atlantic', '03/10', '11/03'],
-      ['america/godthab', '03/30', '10/26'],
-      ['america/miquelon', '03/10', '11/03'],
-      ['america/st_johns', '03/10', '11/03'],
-      ['canada/newfoundland', '03/10', '11/03'],
+      {
+        offset: 0,
+        times: [
+          {
+            start: '03/29',
+            end: '10/25',
+            zones: ['Scoresbysund', 'Azores'],
+          },
+        ],
+      },
+      {
+        offset: 1,
+        times: [
+          {
+            start: '04/19',
+            end: '05/24',
+            zones: ['Casablanca', 'El aaiun'],
+          },
+          {
+            start: '04/02',
+            end: '09/03',
+            zones: ['Windhoek'],
+          },
+          {
+            start: '03/29',
+            end: '10/25',
+            zones: [
+              'Canary',
+              'Faeroe',
+              'Faroe',
+              'Madeira',
+              'Belfast',
+              'Dublin',
+              'Guernsey',
+              'Isle of man',
+              'Jersey',
+              'Lisbon',
+              'London',
+            ],
+          },
+        ],
+      },
+      {
+        offset: 2,
+        times: [
+          {
+            start: '03/29',
+            end: '10/25',
+            zones: [
+              'Ceuta',
+              'Longyearbyen',
+              'Jan mayen',
+              'Amsterdam',
+              'Andorra',
+              'Belgrade',
+              'Berlin',
+              'Bratislava',
+              'Brussels',
+              'Budapest',
+              'Busingen',
+              'Copenhagen',
+              'Gibraltar',
+              'Ljubljana',
+              'Luxembourg',
+              'Madrid',
+              'Malta',
+              'Monaco',
+              'Oslo',
+              'Paris',
+              'Podgorica',
+              'Prague',
+              'Rome',
+              'San marino',
+              'Sarajevo',
+              'Skopje',
+              'Stockholm',
+              'Tirane',
+              'Vaduz',
+              'Vatican',
+              'Vienna',
+              'Warsaw',
+              'Zagreb',
+              'Zurich',
+            ],
+          },
+          {
+            start: '03/29',
+            end: '10/25',
+            zones: ['Troll'],
+          },
+        ],
+      },
+      {
+        offset: 3,
+        times: [
+          {
+            start: '03/27',
+            end: '10/30',
+            zones: ['Amman'],
+          },
+          {
+            start: '03/29',
+            end: '10/24',
+            zones: ['Beirut'],
+          },
+          {
+            start: '03/27',
+            end: '10/29',
+            zones: ['Damascus'],
+          },
+          {
+            start: '03/29',
+            end: '10/25',
+            zones: [
+              'Famagusta',
+              'Nicosia',
+              'Athens',
+              'Bucharest',
+              'Helsinki',
+              'Kiev',
+              'Mariehamn',
+              'Nicosia',
+              'Riga',
+              'Sofia',
+              'Tallinn',
+              'Uzhgorod',
+              'Vilnius',
+              'Zaporozhye',
+            ],
+          },
+          {
+            start: '03/27',
+            end: '10/31',
+            zones: ['Gaza', 'Hebron'],
+          },
+          {
+            start: '03/27',
+            end: '10/25',
+            zones: ['Jerusalem', 'Tel aviv'],
+          },
+          {
+            start: '03/29',
+            end: '10/25',
+            zones: ['Chisinau', 'Tiraspol'],
+          },
+        ],
+      },
+      {
+        offset: 8,
+        times: [
+          {
+            start: '03/25',
+            end: '09/29',
+            zones: ['Ulan bator'],
+          },
+        ],
+      },
+      {
+        offset: 10,
+        times: [
+          {
+            start: '04/05',
+            end: '10/04',
+            zones: [
+              'Act',
+              'Canberra',
+              'Currie',
+              'Hobart',
+              'Melbourne',
+              'Nsw',
+              'Sydney',
+              'Tasmania',
+              'Victoria',
+            ],
+          },
+        ],
+      },
+      {
+        offset: 12,
+        times: [
+          {
+            start: '04/05',
+            end: '09/27',
+            zones: ['Mcmurdo', 'South pole', 'Auckland'],
+          },
+          {
+            start: '01/12',
+            end: '11/08',
+            zones: ['Fiji'],
+          },
+        ],
+      },
+      {
+        offset: 13,
+        times: [
+          {
+            start: '04/05',
+            end: '09/27',
+            zones: ['Apia'],
+          },
+          {
+            start: '01/15',
+            end: '11/05',
+            zones: ['Tongatapu'],
+          },
+        ],
+      },
+      {
+        offset: -9,
+        times: [
+          {
+            start: '03/08',
+            end: '11/01',
+            zones: ['Adak', 'Atka'],
+          },
+        ],
+      },
+      {
+        offset: -8,
+        times: [
+          {
+            start: '03/08',
+            end: '11/01',
+            zones: ['Anchorage', 'Juneau', 'Metlakatla', 'Nome', 'Sitka', 'Yakutat'],
+          },
+        ],
+      },
+      {
+        offset: -4,
+        times: [
+          {
+            start: '03/21',
+            end: '10/04',
+            zones: ['Asuncion'],
+          },
+          {
+            start: '02/16',
+            end: '11/03',
+            zones: ['Campo grande', 'Cuiaba'],
+          },
+          {
+            start: '03/08',
+            end: '11/01',
+            zones: [
+              'Detroit',
+              'Fort wayne',
+              'Grand turk',
+              'Indianapolis',
+              'Iqaluit',
+              'Louisville',
+              'Montreal',
+              'Nassau',
+              'New york',
+              'Nipigon',
+              'Pangnirtung',
+              'Port-au-prince',
+              'Thunder bay',
+              'Toronto',
+              'Eastern',
+            ],
+          },
+          {
+            start: '03/08',
+            end: '11/01',
+            zones: ['Havana'],
+          },
+          {
+            start: '03/12',
+            end: '11/05',
+            zones: ['Indiana', 'Kentucky'],
+          },
+          {
+            start: '04/04',
+            end: '09/06',
+            zones: ['Santiago', 'Continental'],
+          },
+          {
+            start: '05/13',
+            end: '08/13',
+            zones: ['Palmer'],
+          },
+        ],
+      },
+      {
+        offset: -5,
+        times: [
+          {
+            start: '04/05',
+            end: '10/25',
+            zones: ['Bahia banderas', 'Merida', 'Mexico city', 'Monterrey', 'General'],
+          },
+          {
+            start: '03/08',
+            end: '11/01',
+            zones: [
+              'Chicago',
+              'Knox in',
+              'Matamoros',
+              'Menominee',
+              'Rainy river',
+              'Rankin inlet',
+              'Resolute',
+              'Winnipeg',
+              'Central',
+            ],
+          },
+          {
+            start: '03/12',
+            end: '11/05',
+            zones: ['North dakota'],
+          },
+        ],
+      },
+      {
+        offset: -6,
+        times: [
+          {
+            start: '03/08',
+            end: '11/01',
+            zones: [
+              'Boise',
+              'Cambridge bay',
+              'Denver',
+              'Edmonton',
+              'Inuvik',
+              'Ojinaga',
+              'Shiprock',
+              'Yellowknife',
+              'Mountain',
+            ],
+          },
+          {
+            start: '04/05',
+            end: '10/25',
+            zones: ['Chihuahua', 'Mazatlan', 'Bajasur'],
+          },
+          {
+            start: '04/04',
+            end: '09/05',
+            zones: ['Easterisland', 'Easter'],
+          },
+        ],
+      },
+      {
+        offset: -7,
+        times: [
+          {
+            start: '03/08',
+            end: '11/01',
+            zones: [
+              'Dawson',
+              'Ensenada',
+              'Los angeles',
+              'Santa isabel',
+              'Tijuana',
+              'Vancouver',
+              'Whitehorse',
+              'Pacific',
+              'Yukon',
+              'Bajanorte',
+            ],
+          },
+        ],
+      },
+      {
+        offset: -3,
+        times: [
+          {
+            start: '03/08',
+            end: '11/01',
+            zones: ['Glace bay', 'Goose bay', 'Halifax', 'Moncton', 'Thule', 'Bermuda', 'Atlantic'],
+          },
+        ],
+      },
+      {
+        offset: -2,
+        times: [
+          {
+            start: '03/28',
+            end: '10/24',
+            zones: ['Godthab'],
+          },
+          {
+            start: '03/08',
+            end: '11/01',
+            zones: ['Miquelon'],
+          },
+        ],
+      },
+      {
+        offset: -2.5,
+        times: [
+          {
+            start: '03/08',
+            end: '11/01',
+            zones: ['St johns', 'Newfoundland'],
+          },
+        ],
+      },
+      {
+        offset: 4.5,
+        times: [
+          {
+            start: '03/21',
+            end: '09/20',
+            zones: ['Tehran'],
+          },
+        ],
+      },
+      {
+        offset: 9.5,
+        times: [
+          {
+            start: '04/05',
+            end: '10/04',
+            zones: ['Adelaide', 'Broken hill', 'South', 'Yancowinna'],
+          },
+        ],
+      },
+      {
+        offset: 10.5,
+        times: [
+          {
+            start: '04/05',
+            end: '10/04',
+            zones: ['Lhi', 'Lord howe'],
+          },
+        ],
+      },
+      {
+        offset: 12.75,
+        times: [
+          {
+            start: '04/05',
+            end: '04/05',
+            zones: ['Chatham'],
+          },
+        ],
+      },
+      {
+        offset: 11.5,
+        times: [
+          {
+            start: '04/05',
+            end: '10/04',
+            zones: ['Norfolk'],
+          },
+        ],
+      },
     ];
 
     /* spencermountain/spacetime 6.4.3 Apache 2.0 */
@@ -6484,9 +6746,13 @@ var app = (function () {
 
     /* drafts/dst-changes/Post.svelte generated by Svelte v3.22.2 */
 
-    const { Object: Object_1, console: console_1 } = globals;
-
     const file$9 = "drafts/dst-changes/Post.svelte";
+
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[11] = list[i];
+    	return child_ctx;
+    }
 
     function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
@@ -6495,7 +6761,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (55:8) <Column width="15px">
+    // (51:10) <Column width="15px">
     function create_default_slot_1(ctx) {
     	let t;
     	let current;
@@ -6503,10 +6769,10 @@ var app = (function () {
     	const line = new Line({
     			props: {
     				space: "15px",
-    				start: /*zone*/ ctx[8].start,
-    				end: /*zone*/ ctx[8].end,
-    				color: "green",
-    				label: /*zone*/ ctx[8].label
+    				start: /*time*/ ctx[11].start,
+    				end: /*time*/ ctx[11].end,
+    				color: /*zone*/ ctx[8].color,
+    				label: /*time*/ ctx[11].zones.length
     			},
     			$$inline: true
     		});
@@ -6521,7 +6787,14 @@ var app = (function () {
     			insert_dev(target, t, anchor);
     			current = true;
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			const line_changes = {};
+    			if (dirty & /*zones*/ 4) line_changes.start = /*time*/ ctx[11].start;
+    			if (dirty & /*zones*/ 4) line_changes.end = /*time*/ ctx[11].end;
+    			if (dirty & /*zones*/ 4) line_changes.color = /*zone*/ ctx[8].color;
+    			if (dirty & /*zones*/ 4) line_changes.label = /*time*/ ctx[11].zones.length;
+    			line.$set(line_changes);
+    		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(line.$$.fragment, local);
@@ -6541,15 +6814,15 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(55:8) <Column width=\\\"15px\\\">",
+    		source: "(51:10) <Column width=\\\"15px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (54:6) {#each zones as zone, i}
-    function create_each_block$1(ctx) {
+    // (50:8) {#each zone.times as time}
+    function create_each_block_1(ctx) {
     	let current;
 
     	const column = new Column({
@@ -6572,7 +6845,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const column_changes = {};
 
-    			if (dirty & /*$$scope*/ 2048) {
+    			if (dirty & /*$$scope, zones*/ 16388) {
     				column_changes.$$scope = { dirty, ctx };
     			}
 
@@ -6594,16 +6867,112 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block$1.name,
+    		id: create_each_block_1.name,
     		type: "each",
-    		source: "(54:6) {#each zones as zone, i}",
+    		source: "(50:8) {#each zone.times as time}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (50:4) <Timeline {start} {end} {height} {title}>
+    // (49:6) {#each zones as zone, i}
+    function create_each_block$1(ctx) {
+    	let each_1_anchor;
+    	let current;
+    	let each_value_1 = /*zone*/ ctx[8].times;
+    	validate_each_argument(each_value_1);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	const block = {
+    		c: function create() {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*zones*/ 4) {
+    				each_value_1 = /*zone*/ ctx[8].times;
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block_1(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				group_outros();
+
+    				for (i = each_value_1.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			for (let i = 0; i < each_value_1.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block$1.name,
+    		type: "each",
+    		source: "(49:6) {#each zones as zone, i}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (45:4) <Timeline {start} {end} {height} {title}>
     function create_default_slot(ctx) {
     	let t0;
     	let t1;
@@ -6623,7 +6992,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	let each_value = /*zones*/ ctx[5];
+    	let each_value = /*zones*/ ctx[2];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -6666,8 +7035,8 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*zones*/ 32) {
-    				each_value = /*zones*/ ctx[5];
+    			if (dirty & /*zones*/ 4) {
+    				each_value = /*zones*/ ctx[2];
     				validate_each_argument(each_value);
     				let i;
 
@@ -6734,7 +7103,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(50:4) <Timeline {start} {end} {height} {title}>",
+    		source: "(45:4) <Timeline {start} {end} {height} {title}>",
     		ctx
     	});
 
@@ -6751,16 +7120,17 @@ var app = (function () {
     	const head = new Head({
     			props: {
     				title: /*title*/ ctx[0],
-    				sub: /*sub*/ ctx[1]
+    				sub: /*sub*/ ctx[1],
+    				num: "02"
     			},
     			$$inline: true
     		});
 
     	const timeline = new Timeline({
     			props: {
-    				start: /*start*/ ctx[2],
-    				end: /*end*/ ctx[3],
-    				height: /*height*/ ctx[4],
+    				start: /*start*/ ctx[3],
+    				end: /*end*/ ctx[4],
+    				height: /*height*/ ctx[5],
     				title: /*title*/ ctx[0],
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
@@ -6783,8 +7153,8 @@ var app = (function () {
     			t1 = space();
     			create_component(foot.$$.fragment);
     			attr_dev(div0, "class", "m3 svelte-1o2k1lr");
-    			add_location(div0, file$9, 48, 2, 1026);
-    			add_location(div1, file$9, 46, 0, 993);
+    			add_location(div0, file$9, 43, 2, 856);
+    			add_location(div1, file$9, 41, 0, 814);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6807,7 +7177,7 @@ var app = (function () {
     			const timeline_changes = {};
     			if (dirty & /*title*/ 1) timeline_changes.title = /*title*/ ctx[0];
 
-    			if (dirty & /*$$scope*/ 2048) {
+    			if (dirty & /*$$scope, zones*/ 16388) {
     				timeline_changes.$$scope = { dirty, ctx };
     			}
 
@@ -6849,7 +7219,7 @@ var app = (function () {
     }
 
     function instance$9($$self, $$props, $$invalidate) {
-    	let { title = "Daylight-savings time changes" } = $$props;
+    	let { title = "Daylight savings time changes" } = $$props;
     	let { sub = "'Eastern Standard' time" } = $$props;
     	let year = 2019;
     	let start = "Jan 1 ";
@@ -6857,33 +7227,25 @@ var app = (function () {
     	let height = 900;
     	let byTime = {};
 
-    	data.forEach(a => {
-    		// a[1] += `/${year}`
-    		// a[2] += `/${year}`
-    		let time = a[1] + ":" + a[2];
-
-    		byTime[time] = byTime[time] || [];
-    		byTime[time].push(a[0]);
+    	let zones = data.map((zone, i) => {
+    		zone.color = spencerColor.combos.roma[i % 6];
+    		return zone;
     	});
 
-    	let zones = Object.keys(byTime).map(k => {
-    		let t = k.split(/:/);
+    	zones = zones.sort((a, b) => {
+    		if (a.offset > b.offset) {
+    			return -1;
+    		} else if (a.offset < b.offset) {
+    			return 1;
+    		}
 
-    		return {
-    			start: t[0],
-    			end: t[1],
-    			zones: byTime[k],
-    			label: byTime[k].length == 1
-    			? byTime[k][0].split(/\//)[1]
-    			: byTime[k].length + " zones"
-    		};
+    		return 0;
     	});
 
-    	console.log(zones);
     	const writable_props = ["title", "sub"];
 
-    	Object_1.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<Post> was created with unknown prop '${key}'`);
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Post> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
@@ -6907,6 +7269,7 @@ var app = (function () {
     		Now,
     		Column,
     		Label,
+    		colors: spencerColor,
     		year,
     		start,
     		end,
@@ -6919,18 +7282,18 @@ var app = (function () {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
     		if ("sub" in $$props) $$invalidate(1, sub = $$props.sub);
     		if ("year" in $$props) year = $$props.year;
-    		if ("start" in $$props) $$invalidate(2, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(3, end = $$props.end);
-    		if ("height" in $$props) $$invalidate(4, height = $$props.height);
+    		if ("start" in $$props) $$invalidate(3, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(4, end = $$props.end);
+    		if ("height" in $$props) $$invalidate(5, height = $$props.height);
     		if ("byTime" in $$props) byTime = $$props.byTime;
-    		if ("zones" in $$props) $$invalidate(5, zones = $$props.zones);
+    		if ("zones" in $$props) $$invalidate(2, zones = $$props.zones);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [title, sub, start, end, height, zones];
+    	return [title, sub, zones, start, end, height];
     }
 
     class Post extends SvelteComponentDev {

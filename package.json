@@ -27,7 +27,15 @@
     "singleQuote": true,
     "printWidth": 100
   },
-  "dependencies": {},
+  "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babelify": "^10.0.0",
+    "browserify": "^16.5.1",
+    "derequire": "^2.1.0",
+    "htm": "^3.0.4",
+    "vhtml": "^2.2.0"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "11.1.0",
     "@rollup/plugin-node-resolve": "^7.0.0",
