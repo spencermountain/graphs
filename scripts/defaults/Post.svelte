@@ -6,13 +6,13 @@
 </script>
 
 <style>
-
+  .m3 {
+    margin: 3rem;
+  }
 </style>
 
 <div>
-  <stage>
-    <Head {title} {sub} />
-    <div>hello</div>
-  </stage>
+  <Head {title} {sub} />
+  <div class="m3">hello</div>
   <Foot {title} />
 </div>

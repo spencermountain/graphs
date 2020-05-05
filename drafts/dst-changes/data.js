@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   ['australia/adelaide', '04/07', '10/06'],
   ['australia/broken_hill', '04/07', '10/06'],
   ['australia/south', '04/07', '10/06'],
@@ -179,5 +179,5 @@ module.exports = [
   ['america/godthab', '03/30', '10/26'],
   ['america/miquelon', '03/10', '11/03'],
   ['america/st_johns', '03/10', '11/03'],
-  ['canada/newfoundland', '03/10', '11/03']
+  ['canada/newfoundland', '03/10', '11/03'],
 ]
