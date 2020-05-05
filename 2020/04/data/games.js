@@ -1,4 +1,646 @@
 module.exports = {
+  '2010': [
+    {
+      date: '4-12',
+      is_open: false,
+    },
+    {
+      date: '4-13',
+      is_open: false,
+    },
+    {
+      date: '4-14',
+      is_open: false,
+    },
+    {
+      date: '4-15',
+      is_open: true,
+    },
+    {
+      date: '4-16',
+      is_open: false,
+    },
+    {
+      date: '4-17',
+      is_open: false,
+    },
+    {
+      date: '4-18',
+      is_open: false,
+    },
+    {
+      date: '4-19',
+      is_open: false,
+    },
+    {
+      date: '4-20',
+      is_open: false,
+    },
+    {
+      date: '4-21',
+      is_open: true,
+    },
+    {
+      date: '4-26',
+      is_open: false,
+    },
+    {
+      date: '4-27',
+      is_open: false,
+    },
+    {
+      date: '4-28',
+      is_open: false,
+    },
+    {
+      date: '4-29',
+      is_open: true,
+    },
+    {
+      date: '4-30',
+      is_open: true,
+    },
+    {
+      date: '5-1',
+      is_open: false,
+    },
+    {
+      date: '5-2',
+      is_open: true,
+    },
+    {
+      date: '5-14',
+      is_open: true,
+    },
+    {
+      date: '5-15',
+      is_open: false,
+    },
+    {
+      date: '5-16',
+      is_open: true,
+    },
+    {
+      date: '5-17',
+      is_open: true,
+    },
+    {
+      date: '5-18',
+      is_open: true,
+    },
+    {
+      date: '5-28',
+      is_open: true,
+    },
+    {
+      date: '5-29',
+      is_open: true,
+    },
+    {
+      date: '5-30',
+      is_open: true,
+    },
+    {
+      date: '5-30',
+      is_open: false,
+    },
+    {
+      date: '6-1',
+      is_open: true,
+    },
+    {
+      date: '6-2',
+      is_open: false,
+    },
+    {
+      date: '6-4',
+      is_open: false,
+    },
+    {
+      date: '6-5',
+      is_open: true,
+    },
+    {
+      date: '6-6',
+      is_open: false,
+    },
+    {
+      date: '6-18',
+      is_open: true,
+    },
+    {
+      date: '6-19',
+      is_open: true,
+    },
+    {
+      date: '6-20',
+      is_open: true,
+    },
+    {
+      date: '6-22',
+      is_open: true,
+    },
+    {
+      date: '6-23',
+      is_open: true,
+    },
+    {
+      date: '6-24',
+      is_open: true,
+    },
+    {
+      date: '7-6',
+      is_open: true,
+    },
+    {
+      date: '7-7',
+      is_open: false,
+    },
+    {
+      date: '7-8',
+      is_open: true,
+    },
+    {
+      date: '7-9',
+      is_open: true,
+    },
+    {
+      date: '7-10',
+      is_open: true,
+    },
+    {
+      date: '7-11',
+      is_open: true,
+    },
+    {
+      date: '7-26',
+      is_open: true,
+    },
+    {
+      date: '7-27',
+      is_open: true,
+    },
+    {
+      date: '7-28',
+      is_open: false,
+    },
+    {
+      date: '7-30',
+      is_open: true,
+    },
+    {
+      date: '7-31',
+      is_open: true,
+    },
+    {
+      date: '8-1',
+      is_open: true,
+    },
+    {
+      date: '8-6',
+      is_open: true,
+    },
+    {
+      date: '8-7',
+      is_open: true,
+    },
+    {
+      date: '8-8',
+      is_open: false,
+    },
+    {
+      date: '8-10',
+      is_open: true,
+    },
+    {
+      date: '8-11',
+      is_open: true,
+    },
+    {
+      date: '8-12',
+      is_open: true,
+    },
+    {
+      date: '8-23',
+      is_open: false,
+    },
+    {
+      date: '8-24',
+      is_open: true,
+    },
+    {
+      date: '8-25',
+      is_open: false,
+    },
+    {
+      date: '8-26',
+      is_open: true,
+    },
+    {
+      date: '8-27',
+      is_open: true,
+    },
+    {
+      date: '8-28',
+      is_open: true,
+    },
+    {
+      date: '8-29',
+      is_open: true,
+    },
+    {
+      date: '9-6',
+      is_open: false,
+    },
+    {
+      date: '9-7',
+      is_open: true,
+    },
+    {
+      date: '9-8',
+      is_open: false,
+    },
+    {
+      date: '9-9',
+      is_open: false,
+    },
+    {
+      date: '9-10',
+      is_open: true,
+    },
+    {
+      date: '9-11',
+      is_open: true,
+    },
+    {
+      date: '9-12',
+      is_open: true,
+    },
+    {
+      date: '9-21',
+      is_open: true,
+    },
+    {
+      date: '9-22',
+      is_open: true,
+    },
+    {
+      date: '9-23',
+      is_open: true,
+    },
+    {
+      date: '9-24',
+      is_open: true,
+    },
+    {
+      date: '9-25',
+      is_open: true,
+    },
+    {
+      date: '9-26',
+      is_open: true,
+    },
+    {
+      date: '9-27',
+      is_open: false,
+    },
+    {
+      date: '9-28',
+      is_open: false,
+    },
+    {
+      date: '9-29',
+      is_open: true,
+    },
+  ],
+
+  '2011': [
+    {
+      date: '4-1',
+      is_open: false,
+    },
+    {
+      date: '4-2',
+      is_open: false,
+    },
+    {
+      date: '4-3',
+      is_open: false,
+    },
+    {
+      date: '4-5',
+      is_open: false,
+    },
+    {
+      date: '4-6',
+      is_open: false,
+    },
+    {
+      date: '4-7',
+      is_open: false,
+    },
+    {
+      date: '4-19',
+      is_open: false,
+    },
+    {
+      date: '4-20',
+      is_open: false,
+    },
+    {
+      date: '4-22',
+      is_open: false,
+    },
+    {
+      date: '4-23',
+      is_open: false,
+    },
+    {
+      date: '4-24',
+      is_open: false,
+    },
+    {
+      date: '5-6',
+      is_open: false,
+    },
+    {
+      date: '5-7',
+      is_open: true,
+    },
+    {
+      date: '5-8',
+      is_open: true,
+    },
+    {
+      date: '5-9',
+      is_open: true,
+    },
+    {
+      date: '5-10',
+      is_open: false,
+    },
+    {
+      date: '5-11',
+      is_open: true,
+    },
+    {
+      date: '5-18',
+      is_open: false,
+    },
+    {
+      date: '5-19',
+      is_open: true,
+    },
+    {
+      date: '5-20',
+      is_open: true,
+    },
+    {
+      date: '5-21',
+      is_open: true,
+    },
+    {
+      date: '5-22',
+      is_open: false,
+    },
+    {
+      date: '5-26',
+      is_open: false,
+    },
+    {
+      date: '5-27',
+      is_open: false,
+    },
+    {
+      date: '5-28',
+      is_open: true,
+    },
+    {
+      date: '5-29',
+      is_open: true,
+    },
+    {
+      date: '5-30',
+      is_open: true,
+    },
+    {
+      date: '5-30',
+      is_open: true,
+    },
+    {
+      date: '6-1',
+      is_open: true,
+    },
+    {
+      date: '6-10',
+      is_open: true,
+    },
+    {
+      date: '6-11',
+      is_open: true,
+    },
+    {
+      date: '6-12',
+      is_open: true,
+    },
+    {
+      date: '6-14',
+      is_open: true,
+    },
+    {
+      date: '6-15',
+      is_open: true,
+    },
+    {
+      date: '6-16',
+      is_open: true,
+    },
+    {
+      date: '6-28',
+      is_open: true,
+    },
+    {
+      date: '6-29',
+      is_open: true,
+    },
+    {
+      date: '6-30',
+      is_open: true,
+    },
+    {
+      date: '7-1',
+      is_open: true,
+    },
+    {
+      date: '7-2',
+      is_open: true,
+    },
+    {
+      date: '7-3',
+      is_open: true,
+    },
+    {
+      date: '7-14',
+      is_open: true,
+    },
+    {
+      date: '7-15',
+      is_open: true,
+    },
+    {
+      date: '7-16',
+      is_open: true,
+    },
+    {
+      date: '7-17',
+      is_open: true,
+    },
+    {
+      date: '7-19',
+      is_open: true,
+    },
+    {
+      date: '7-20',
+      is_open: true,
+    },
+    {
+      date: '7-21',
+      is_open: false,
+    },
+    {
+      date: '7-26',
+      is_open: true,
+    },
+    {
+      date: '7-27',
+      is_open: true,
+    },
+    {
+      date: '7-28',
+      is_open: true,
+    },
+    {
+      date: '7-29',
+      is_open: true,
+    },
+    {
+      date: '7-30',
+      is_open: true,
+    },
+    {
+      date: '7-31',
+      is_open: true,
+    },
+    {
+      date: '8-9',
+      is_open: true,
+    },
+    {
+      date: '8-10',
+      is_open: true,
+    },
+    {
+      date: '8-11',
+      is_open: true,
+    },
+    {
+      date: '8-12',
+      is_open: true,
+    },
+    {
+      date: '8-13',
+      is_open: true,
+    },
+    {
+      date: '8-14',
+      is_open: true,
+    },
+    {
+      date: '8-23',
+      is_open: true,
+    },
+    {
+      date: '8-24',
+      is_open: false,
+    },
+    {
+      date: '8-25',
+      is_open: true,
+    },
+    {
+      date: '8-26',
+      is_open: true,
+    },
+    {
+      date: '8-27',
+      is_open: true,
+    },
+    {
+      date: '8-28',
+      is_open: true,
+    },
+    {
+      date: '8-29',
+      is_open: true,
+    },
+    {
+      date: '9-5',
+      is_open: true,
+    },
+    {
+      date: '9-6',
+      is_open: true,
+    },
+    {
+      date: '9-7',
+      is_open: true,
+    },
+    {
+      date: '9-8',
+      is_open: true,
+    },
+    {
+      date: '9-9',
+      is_open: true,
+    },
+    {
+      date: '9-10',
+      is_open: true,
+    },
+    {
+      date: '9-11',
+      is_open: true,
+    },
+    {
+      date: '9-16',
+      is_open: true,
+    },
+    {
+      date: '9-17',
+      is_open: true,
+    },
+    {
+      date: '9-18',
+      is_open: true,
+    },
+    {
+      date: '9-19',
+      is_open: false,
+    },
+    {
+      date: '9-20',
+      is_open: true,
+    },
+    {
+      date: '9-21',
+      is_open: false,
+    },
+    {
+      date: '9-22',
+      is_open: true,
+    },
+  ],
+
   '2012': [
     {
       date: '4-09',

@@ -1,3 +1,8 @@
+<script>
+  export let num = ''
+  export let year = ''
+</script>
+
 <style>
   .footer {
     display: flex;
@@ -28,6 +33,12 @@
 
 <!-- footer -->
 <div class="footer">
-  <a class="m2" href="https://github.com/spencermountain/thensome">source</a>
+  {#if num && year}
+    <a class="m2" href="https://github.com/spencermountain/thensome/tree/gh-pages/{year}/{num}">
+      source
+    </a>
+  {:else}
+    <a class="m2" href="https://github.com/spencermountain/thensome">source</a>
+  {/if}
   <a class="name" href="http://twitter.com/spencermountain/">@spencermountain</a>
 </div>

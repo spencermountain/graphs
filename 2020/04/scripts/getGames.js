@@ -6,7 +6,7 @@ const fetchGames = async function (year) {
   let url = ` https://www.baseball-reference.com/teams/TOR/${year}-schedule-scores.shtml#all_results`
   return axios.get(url).then((res) => {
     let games = []
-    console.log(res.data)
+    // console.log(res.data)
     $('td[data-stat="boxscore"]', res.data).each(function () {
       let href = $(this).html()
       console.log(href)
@@ -25,4 +25,4 @@ const fetchGames = async function (year) {
 //   arr.push(els[i].querySelector('a').href)
 // }
 
-console.log(fetchGames(2012))
+console.log(fetchGames(2010))

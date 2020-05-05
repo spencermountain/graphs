@@ -4,7 +4,7 @@ const $ = require('cheerio')
 let results = {}
 //
 const fetchGame = async function (id) {
-  let url = `https://www.baseball-reference.com/boxes/TOR/${id}.shtml`
+  let url = `https://www.baseball-reference.com/boxes/TOR/TOR${id}.shtml`
   return axios
     .get(url)
     .then((response) => {

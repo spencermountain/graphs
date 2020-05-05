@@ -537,43 +537,130 @@ var app = (function () {
 
     const file$1 = "components/Foot.svelte";
 
+    // (40:2) {:else}
+    function create_else_block(ctx) {
+    	let a;
+
+    	const block = {
+    		c: function create() {
+    			a = element("a");
+    			a.textContent = "source";
+    			attr_dev(a, "class", "m2 svelte-1xt868z");
+    			attr_dev(a, "href", "https://github.com/spencermountain/thensome");
+    			add_location(a, file$1, 40, 4, 712);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, a, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(a);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block.name,
+    		type: "else",
+    		source: "(40:2) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (36:2) {#if num && year}
+    function create_if_block(ctx) {
+    	let a;
+    	let t;
+    	let a_href_value;
+
+    	const block = {
+    		c: function create() {
+    			a = element("a");
+    			t = text("source");
+    			attr_dev(a, "class", "m2 svelte-1xt868z");
+    			attr_dev(a, "href", a_href_value = "https://github.com/spencermountain/thensome/tree/gh-pages/" + /*year*/ ctx[1] + "/" + /*num*/ ctx[0]);
+    			add_location(a, file$1, 36, 4, 583);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, a, anchor);
+    			append_dev(a, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*year, num*/ 3 && a_href_value !== (a_href_value = "https://github.com/spencermountain/thensome/tree/gh-pages/" + /*year*/ ctx[1] + "/" + /*num*/ ctx[0])) {
+    				attr_dev(a, "href", a_href_value);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(a);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block.name,
+    		type: "if",
+    		source: "(36:2) {#if num && year}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
     function create_fragment$1(ctx) {
     	let div;
-    	let a0;
-    	let t1;
-    	let a1;
+    	let t0;
+    	let a;
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*num*/ ctx[0] && /*year*/ ctx[1]) return create_if_block;
+    		return create_else_block;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			a0 = element("a");
-    			a0.textContent = "source";
-    			t1 = space();
-    			a1 = element("a");
-    			a1.textContent = "@spencermountain";
-    			attr_dev(a0, "class", "m2 svelte-1xt868z");
-    			attr_dev(a0, "href", "https://github.com/spencermountain/thensome");
-    			add_location(a0, file$1, 30, 2, 496);
-    			attr_dev(a1, "class", "name svelte-1xt868z");
-    			attr_dev(a1, "href", "http://twitter.com/spencermountain/");
-    			add_location(a1, file$1, 31, 2, 574);
+    			if_block.c();
+    			t0 = space();
+    			a = element("a");
+    			a.textContent = "@spencermountain";
+    			attr_dev(a, "class", "name svelte-1xt868z");
+    			attr_dev(a, "href", "http://twitter.com/spencermountain/");
+    			add_location(a, file$1, 42, 2, 798);
     			attr_dev(div, "class", "footer svelte-1xt868z");
-    			add_location(div, file$1, 29, 0, 473);
+    			add_location(div, file$1, 34, 0, 538);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
-    			append_dev(div, a0);
-    			append_dev(div, t1);
-    			append_dev(div, a1);
+    			if_block.m(div, null);
+    			append_dev(div, t0);
+    			append_dev(div, a);
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(div, t0);
+    				}
+    			}
+    		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
+    			if_block.d();
     		}
     	};
 
@@ -588,8 +675,10 @@ var app = (function () {
     	return block;
     }
 
-    function instance$1($$self, $$props) {
-    	const writable_props = [];
+    function instance$1($$self, $$props, $$invalidate) {
+    	let { num = "" } = $$props;
+    	let { year = "" } = $$props;
+    	const writable_props = ["num", "year"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Foot> was created with unknown prop '${key}'`);
@@ -597,13 +686,30 @@ var app = (function () {
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("Foot", $$slots, []);
-    	return [];
+
+    	$$self.$set = $$props => {
+    		if ("num" in $$props) $$invalidate(0, num = $$props.num);
+    		if ("year" in $$props) $$invalidate(1, year = $$props.year);
+    	};
+
+    	$$self.$capture_state = () => ({ num, year });
+
+    	$$self.$inject_state = $$props => {
+    		if ("num" in $$props) $$invalidate(0, num = $$props.num);
+    		if ("year" in $$props) $$invalidate(1, year = $$props.year);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [num, year];
     }
 
     class Foot extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {});
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { num: 0, year: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -611,6 +717,22 @@ var app = (function () {
     			options,
     			id: create_fragment$1.name
     		});
+    	}
+
+    	get num() {
+    		throw new Error("<Foot>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set num(value) {
+    		throw new Error("<Foot>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get year() {
+    		throw new Error("<Foot>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set year(value) {
+    		throw new Error("<Foot>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
@@ -6440,6 +6562,648 @@ var app = (function () {
     }
 
     var games = {
+      '2010': [
+        {
+          date: '4-12',
+          is_open: false,
+        },
+        {
+          date: '4-13',
+          is_open: false,
+        },
+        {
+          date: '4-14',
+          is_open: false,
+        },
+        {
+          date: '4-15',
+          is_open: true,
+        },
+        {
+          date: '4-16',
+          is_open: false,
+        },
+        {
+          date: '4-17',
+          is_open: false,
+        },
+        {
+          date: '4-18',
+          is_open: false,
+        },
+        {
+          date: '4-19',
+          is_open: false,
+        },
+        {
+          date: '4-20',
+          is_open: false,
+        },
+        {
+          date: '4-21',
+          is_open: true,
+        },
+        {
+          date: '4-26',
+          is_open: false,
+        },
+        {
+          date: '4-27',
+          is_open: false,
+        },
+        {
+          date: '4-28',
+          is_open: false,
+        },
+        {
+          date: '4-29',
+          is_open: true,
+        },
+        {
+          date: '4-30',
+          is_open: true,
+        },
+        {
+          date: '5-1',
+          is_open: false,
+        },
+        {
+          date: '5-2',
+          is_open: true,
+        },
+        {
+          date: '5-14',
+          is_open: true,
+        },
+        {
+          date: '5-15',
+          is_open: false,
+        },
+        {
+          date: '5-16',
+          is_open: true,
+        },
+        {
+          date: '5-17',
+          is_open: true,
+        },
+        {
+          date: '5-18',
+          is_open: true,
+        },
+        {
+          date: '5-28',
+          is_open: true,
+        },
+        {
+          date: '5-29',
+          is_open: true,
+        },
+        {
+          date: '5-30',
+          is_open: true,
+        },
+        {
+          date: '5-30',
+          is_open: false,
+        },
+        {
+          date: '6-1',
+          is_open: true,
+        },
+        {
+          date: '6-2',
+          is_open: false,
+        },
+        {
+          date: '6-4',
+          is_open: false,
+        },
+        {
+          date: '6-5',
+          is_open: true,
+        },
+        {
+          date: '6-6',
+          is_open: false,
+        },
+        {
+          date: '6-18',
+          is_open: true,
+        },
+        {
+          date: '6-19',
+          is_open: true,
+        },
+        {
+          date: '6-20',
+          is_open: true,
+        },
+        {
+          date: '6-22',
+          is_open: true,
+        },
+        {
+          date: '6-23',
+          is_open: true,
+        },
+        {
+          date: '6-24',
+          is_open: true,
+        },
+        {
+          date: '7-6',
+          is_open: true,
+        },
+        {
+          date: '7-7',
+          is_open: false,
+        },
+        {
+          date: '7-8',
+          is_open: true,
+        },
+        {
+          date: '7-9',
+          is_open: true,
+        },
+        {
+          date: '7-10',
+          is_open: true,
+        },
+        {
+          date: '7-11',
+          is_open: true,
+        },
+        {
+          date: '7-26',
+          is_open: true,
+        },
+        {
+          date: '7-27',
+          is_open: true,
+        },
+        {
+          date: '7-28',
+          is_open: false,
+        },
+        {
+          date: '7-30',
+          is_open: true,
+        },
+        {
+          date: '7-31',
+          is_open: true,
+        },
+        {
+          date: '8-1',
+          is_open: true,
+        },
+        {
+          date: '8-6',
+          is_open: true,
+        },
+        {
+          date: '8-7',
+          is_open: true,
+        },
+        {
+          date: '8-8',
+          is_open: false,
+        },
+        {
+          date: '8-10',
+          is_open: true,
+        },
+        {
+          date: '8-11',
+          is_open: true,
+        },
+        {
+          date: '8-12',
+          is_open: true,
+        },
+        {
+          date: '8-23',
+          is_open: false,
+        },
+        {
+          date: '8-24',
+          is_open: true,
+        },
+        {
+          date: '8-25',
+          is_open: false,
+        },
+        {
+          date: '8-26',
+          is_open: true,
+        },
+        {
+          date: '8-27',
+          is_open: true,
+        },
+        {
+          date: '8-28',
+          is_open: true,
+        },
+        {
+          date: '8-29',
+          is_open: true,
+        },
+        {
+          date: '9-6',
+          is_open: false,
+        },
+        {
+          date: '9-7',
+          is_open: true,
+        },
+        {
+          date: '9-8',
+          is_open: false,
+        },
+        {
+          date: '9-9',
+          is_open: false,
+        },
+        {
+          date: '9-10',
+          is_open: true,
+        },
+        {
+          date: '9-11',
+          is_open: true,
+        },
+        {
+          date: '9-12',
+          is_open: true,
+        },
+        {
+          date: '9-21',
+          is_open: true,
+        },
+        {
+          date: '9-22',
+          is_open: true,
+        },
+        {
+          date: '9-23',
+          is_open: true,
+        },
+        {
+          date: '9-24',
+          is_open: true,
+        },
+        {
+          date: '9-25',
+          is_open: true,
+        },
+        {
+          date: '9-26',
+          is_open: true,
+        },
+        {
+          date: '9-27',
+          is_open: false,
+        },
+        {
+          date: '9-28',
+          is_open: false,
+        },
+        {
+          date: '9-29',
+          is_open: true,
+        },
+      ],
+
+      '2011': [
+        {
+          date: '4-1',
+          is_open: false,
+        },
+        {
+          date: '4-2',
+          is_open: false,
+        },
+        {
+          date: '4-3',
+          is_open: false,
+        },
+        {
+          date: '4-5',
+          is_open: false,
+        },
+        {
+          date: '4-6',
+          is_open: false,
+        },
+        {
+          date: '4-7',
+          is_open: false,
+        },
+        {
+          date: '4-19',
+          is_open: false,
+        },
+        {
+          date: '4-20',
+          is_open: false,
+        },
+        {
+          date: '4-22',
+          is_open: false,
+        },
+        {
+          date: '4-23',
+          is_open: false,
+        },
+        {
+          date: '4-24',
+          is_open: false,
+        },
+        {
+          date: '5-6',
+          is_open: false,
+        },
+        {
+          date: '5-7',
+          is_open: true,
+        },
+        {
+          date: '5-8',
+          is_open: true,
+        },
+        {
+          date: '5-9',
+          is_open: true,
+        },
+        {
+          date: '5-10',
+          is_open: false,
+        },
+        {
+          date: '5-11',
+          is_open: true,
+        },
+        {
+          date: '5-18',
+          is_open: false,
+        },
+        {
+          date: '5-19',
+          is_open: true,
+        },
+        {
+          date: '5-20',
+          is_open: true,
+        },
+        {
+          date: '5-21',
+          is_open: true,
+        },
+        {
+          date: '5-22',
+          is_open: false,
+        },
+        {
+          date: '5-26',
+          is_open: false,
+        },
+        {
+          date: '5-27',
+          is_open: false,
+        },
+        {
+          date: '5-28',
+          is_open: true,
+        },
+        {
+          date: '5-29',
+          is_open: true,
+        },
+        {
+          date: '5-30',
+          is_open: true,
+        },
+        {
+          date: '5-30',
+          is_open: true,
+        },
+        {
+          date: '6-1',
+          is_open: true,
+        },
+        {
+          date: '6-10',
+          is_open: true,
+        },
+        {
+          date: '6-11',
+          is_open: true,
+        },
+        {
+          date: '6-12',
+          is_open: true,
+        },
+        {
+          date: '6-14',
+          is_open: true,
+        },
+        {
+          date: '6-15',
+          is_open: true,
+        },
+        {
+          date: '6-16',
+          is_open: true,
+        },
+        {
+          date: '6-28',
+          is_open: true,
+        },
+        {
+          date: '6-29',
+          is_open: true,
+        },
+        {
+          date: '6-30',
+          is_open: true,
+        },
+        {
+          date: '7-1',
+          is_open: true,
+        },
+        {
+          date: '7-2',
+          is_open: true,
+        },
+        {
+          date: '7-3',
+          is_open: true,
+        },
+        {
+          date: '7-14',
+          is_open: true,
+        },
+        {
+          date: '7-15',
+          is_open: true,
+        },
+        {
+          date: '7-16',
+          is_open: true,
+        },
+        {
+          date: '7-17',
+          is_open: true,
+        },
+        {
+          date: '7-19',
+          is_open: true,
+        },
+        {
+          date: '7-20',
+          is_open: true,
+        },
+        {
+          date: '7-21',
+          is_open: false,
+        },
+        {
+          date: '7-26',
+          is_open: true,
+        },
+        {
+          date: '7-27',
+          is_open: true,
+        },
+        {
+          date: '7-28',
+          is_open: true,
+        },
+        {
+          date: '7-29',
+          is_open: true,
+        },
+        {
+          date: '7-30',
+          is_open: true,
+        },
+        {
+          date: '7-31',
+          is_open: true,
+        },
+        {
+          date: '8-9',
+          is_open: true,
+        },
+        {
+          date: '8-10',
+          is_open: true,
+        },
+        {
+          date: '8-11',
+          is_open: true,
+        },
+        {
+          date: '8-12',
+          is_open: true,
+        },
+        {
+          date: '8-13',
+          is_open: true,
+        },
+        {
+          date: '8-14',
+          is_open: true,
+        },
+        {
+          date: '8-23',
+          is_open: true,
+        },
+        {
+          date: '8-24',
+          is_open: false,
+        },
+        {
+          date: '8-25',
+          is_open: true,
+        },
+        {
+          date: '8-26',
+          is_open: true,
+        },
+        {
+          date: '8-27',
+          is_open: true,
+        },
+        {
+          date: '8-28',
+          is_open: true,
+        },
+        {
+          date: '8-29',
+          is_open: true,
+        },
+        {
+          date: '9-5',
+          is_open: true,
+        },
+        {
+          date: '9-6',
+          is_open: true,
+        },
+        {
+          date: '9-7',
+          is_open: true,
+        },
+        {
+          date: '9-8',
+          is_open: true,
+        },
+        {
+          date: '9-9',
+          is_open: true,
+        },
+        {
+          date: '9-10',
+          is_open: true,
+        },
+        {
+          date: '9-11',
+          is_open: true,
+        },
+        {
+          date: '9-16',
+          is_open: true,
+        },
+        {
+          date: '9-17',
+          is_open: true,
+        },
+        {
+          date: '9-18',
+          is_open: true,
+        },
+        {
+          date: '9-19',
+          is_open: false,
+        },
+        {
+          date: '9-20',
+          is_open: true,
+        },
+        {
+          date: '9-21',
+          is_open: false,
+        },
+        {
+          date: '9-22',
+          is_open: true,
+        },
+      ],
+
       '2012': [
         {
           date: '4-09',
@@ -9157,7 +9921,7 @@ var app = (function () {
     }
 
     // (60:10) {#if year === '2020'}
-    function create_if_block(ctx) {
+    function create_if_block$1(ctx) {
     	let current;
 
     	const line = new Line({
@@ -9197,7 +9961,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block.name,
+    		id: create_if_block$1.name,
     		type: "if",
     		source: "(60:10) {#if year === '2020'}",
     		ctx
@@ -9359,7 +10123,7 @@ var app = (function () {
     	let t2;
     	let t3;
     	let current;
-    	let if_block = /*year*/ ctx[12] === "2020" && create_if_block(ctx);
+    	let if_block = /*year*/ ctx[12] === "2020" && create_if_block$1(ctx);
     	let each_value_1 = games[/*year*/ ctx[12]];
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
@@ -9749,7 +10513,11 @@ var app = (function () {
     		});
 
     	const foot = new Foot({
-    			props: { title: /*title*/ ctx[0] },
+    			props: {
+    				title: /*title*/ ctx[0],
+    				year: "2020",
+    				num: "04"
+    			},
     			$$inline: true
     		});
 

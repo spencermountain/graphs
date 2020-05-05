@@ -104,5 +104,5 @@
       </Column> -->
     </Timeline>
   </div>
-  <Foot {title} />
+  <Foot {title} year="2020" num="04" />
 </div>
