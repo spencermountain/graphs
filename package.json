@@ -30,9 +30,12 @@
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
+    "axios": "^0.19.2",
     "babelify": "^10.0.0",
     "browserify": "^16.5.1",
+    "cheerio": "^1.0.0-rc.3",
     "derequire": "^2.1.0",
+    "got": "^11.1.0",
     "htm": "^3.0.4",
     "vhtml": "^2.2.0"
   },
