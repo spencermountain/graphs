@@ -13,15 +13,20 @@
     align-self: flex-start;
   }
   .f1 {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   a {
     color: #69c;
     cursor: pointer;
-    text-decoration: underline;
+    padding: 1px;
+    text-decoration: none;
+    border-bottom: 1px solid #69c;
   }
-  a:hover {
+  .link:hover {
     text-decoration-color: #cc7066;
+    font-weight: 500;
+    /* border-bottom: 1px solid#cc7066; */
+    border-bottom: 1px solid #23415a;
   }
 </style>
 

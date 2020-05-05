@@ -1,11 +1,14 @@
 <style>
   .footer {
+    display: flex;
     margin: auto 1rem 1rem auto;
     padding: 0.5rem;
     justify-content: flex-end;
     align-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
     padding-top: 5rem;
+    width: 100%;
+    font-size: 0.8rem;
   }
   .m2 {
     margin: 1.5rem;
@@ -18,10 +21,13 @@
   a:hover {
     text-decoration-color: #cc7066;
   }
+  .name {
+    margin-right: 4rem;
+  }
 </style>
 
 <!-- footer -->
 <div class="footer">
   <a class="m2" href="https://github.com/spencermountain/thensome">source</a>
-  <a class="" href="http://twitter.com/spencermountain/">@spencermountain</a>
+  <a class="name" href="http://twitter.com/spencermountain/">@spencermountain</a>
 </div>

@@ -8,11 +8,12 @@
     colors,
     Ticks,
     Section,
+    WideLabel,
     Now,
   } from '/Users/spencer/mountain/somehow-timeline/src'
   import games from './data/games'
   let years = Object.keys(games) //.reverse()
-  export let title = 'Skydome roof by year'
+  export let title = 'Skydome open-roof games, by year'
   export let sub = ''
   let start = 'March 20 2020'
   let end = 'Nov 8 2020'
@@ -32,6 +33,8 @@
     }
   })
   console.log(byYear)
+  let openColor = colors.colors.sky
+  let closeColor = colors.colors.lighter
 </script>
 
 <style>
@@ -53,7 +56,7 @@
       </Column>
 
       {#each years as year, i}
-        <Column width="35px" label={year}>
+        <Column width="38px" label={year}>
           {#if year === '2020'}
             <Line
               width="3px"
@@ -66,17 +69,24 @@
           {#each games[year] as game}
             <Line
               space="15px"
-              width="5px"
+              width="15px"
               start={`2020-${game.date}`}
               duration="18 hours"
               size="14px"
-              color={game.is_open ? 'steelblue' : 'lightsteelblue'} />
+              opacity="0.7"
+              color={game.is_open ? openColor : closeColor} />
           {/each}
-          <Section date="Nov 5 2020">
-            <b style="font-size:20px">{byYear[year].count}</b>
+          <!-- first-game -->
+          <Section date={'2020-' + byYear[year].first}>
+            <div
+              style="width:100%; position:relative; top:7px; height:1px;border-bottom:1px solid {openColor};" />
+          </Section>
+          <!-- <WideLabel date={byYear[year].first} label={byYear[year].first} /> -->
+          <!-- bottom counts -->
+          <Section date="Nov 1 2020">
+            <b style="font-size:20px; color:{openColor};">{byYear[year].count}</b>
             <span
-              style="font-size:11px; margin-left:17px; position:relative; top:-10px;
-              color:lightgrey;">
+              style="font-size:11px; margin-left:17px; position:relative; top:-10px; color:{closeColor};">
               /{byYear[year].total}
             </span>
           </Section>
