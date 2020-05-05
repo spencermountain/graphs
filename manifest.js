@@ -84,5 +84,10 @@ module.exports = {
       title: 'Daylight Savings times',
       thumb: 'thumb.png',
     },
+    {
+      num: '03',
+      title: 'The Year in Toronto',
+      thumb: 'thumb.png',
+    },
   ],
 }

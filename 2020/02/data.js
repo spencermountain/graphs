@@ -1,6 +1,6 @@
 export default [
   {
-    offset: 0,
+    offset: '0',
     times: [
       {
         start: '03/29',

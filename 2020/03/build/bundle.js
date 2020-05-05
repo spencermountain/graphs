@@ -6512,146 +6512,8 @@ var app = (function () {
     	return block;
     }
 
-    // (54:2) <Column width="10px">
+    // (55:2) <Column width="185px">
     function create_default_slot_3(ctx) {
-    	let t0;
-    	let t1;
-    	let current;
-
-    	const line0 = new Line({
-    			props: {
-    				space: "15px",
-    				start: "Jan 1 " + /*year*/ ctx[1],
-    				end: "Feb 10 " + /*year*/ ctx[1],
-    				color: "lighter",
-    				label: "snow"
-    			},
-    			$$inline: true
-    		});
-
-    	const line1 = new Line({
-    			props: {
-    				space: "15px",
-    				start: "Dec 10 " + /*year*/ ctx[1],
-    				end: "Dec 31 " + /*year*/ ctx[1],
-    				color: "lighter",
-    				label: "snow"
-    			},
-    			$$inline: true
-    		});
-
-    	const line2 = new Line({
-    			props: {
-    				space: "15px",
-    				start: "May 5 " + /*year*/ ctx[1],
-    				end: "Oct 1 " + /*year*/ ctx[1],
-    				color: "green",
-    				label: "Leaves<br/> on trees"
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(line0.$$.fragment);
-    			t0 = space();
-    			create_component(line1.$$.fragment);
-    			t1 = space();
-    			create_component(line2.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(line0, target, anchor);
-    			insert_dev(target, t0, anchor);
-    			mount_component(line1, target, anchor);
-    			insert_dev(target, t1, anchor);
-    			mount_component(line2, target, anchor);
-    			current = true;
-    		},
-    		p: noop,
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(line0.$$.fragment, local);
-    			transition_in(line1.$$.fragment, local);
-    			transition_in(line2.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(line0.$$.fragment, local);
-    			transition_out(line1.$$.fragment, local);
-    			transition_out(line2.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(line0, detaching);
-    			if (detaching) detach_dev(t0);
-    			destroy_component(line1, detaching);
-    			if (detaching) detach_dev(t1);
-    			destroy_component(line2, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_3.name,
-    		type: "slot",
-    		source: "(54:2) <Column width=\\\"10px\\\">",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (64:2) <Column width="60px">
-    function create_default_slot_2(ctx) {
-    	let current;
-
-    	const line = new Line({
-    			props: {
-    				space: "15px",
-    				start: "May 24 " + /*year*/ ctx[1],
-    				end: "Sept 1 " + /*year*/ ctx[1],
-    				color: "purple",
-    				label: "shorts"
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(line.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(line, target, anchor);
-    			current = true;
-    		},
-    		p: noop,
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(line.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(line.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(line, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_2.name,
-    		type: "slot",
-    		source: "(64:2) <Column width=\\\"60px\\\">",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (67:2) <Column width="40px">
-    function create_default_slot_1(ctx) {
     	let t0;
     	let t1;
     	let t2;
@@ -6665,7 +6527,8 @@ var app = (function () {
     				label: "Patios",
     				color: "green",
     				side: "left",
-    				align: "left"
+    				align: "left",
+    				opacity: "0.7"
     			},
     			$$inline: true
     		});
@@ -6676,7 +6539,8 @@ var app = (function () {
     				label: "Pride",
     				color: "rose",
     				side: "left",
-    				align: "left"
+    				align: "left",
+    				opacity: "0.7"
     			},
     			$$inline: true
     		});
@@ -6687,7 +6551,8 @@ var app = (function () {
     				label: "Fringe",
     				color: "rose",
     				side: "left",
-    				align: "left"
+    				align: "left",
+    				opacity: "0.7"
     			},
     			$$inline: true
     		});
@@ -6698,7 +6563,8 @@ var app = (function () {
     				label: "CNE",
     				color: "rose",
     				side: "left",
-    				align: "left"
+    				align: "left",
+    				opacity: "0.7"
     			},
     			$$inline: true
     		});
@@ -6706,10 +6572,11 @@ var app = (function () {
     	const label4 = new Label({
     			props: {
     				value: "Sept 14 " + /*year*/ ctx[1],
-    				label: "Tiff",
+    				label: "TIFF",
     				color: "rose",
     				side: "left",
-    				align: "left"
+    				align: "left",
+    				opacity: "0.7"
     			},
     			$$inline: true
     		});
@@ -6717,10 +6584,11 @@ var app = (function () {
     	const label5 = new Label({
     			props: {
     				value: "Oct 14 " + /*year*/ ctx[1],
-    				label: "Nuit Blanche",
+    				label: "Nuit-blanche",
     				color: "orange",
     				side: "left",
-    				align: "left"
+    				align: "left",
+    				opacity: "0.7"
     			},
     			$$inline: true
     		});
@@ -6790,9 +6658,229 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
+    		id: create_default_slot_3.name,
+    		type: "slot",
+    		source: "(55:2) <Column width=\\\"185px\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (100:2) <Column width="40px">
+    function create_default_slot_2(ctx) {
+    	let t0;
+    	let t1;
+    	let t2;
+    	let t3;
+    	let current;
+
+    	const line0 = new Line({
+    			props: {
+    				space: "15px",
+    				start: "Jan 1 " + /*year*/ ctx[1],
+    				end: "Feb 10 " + /*year*/ ctx[1],
+    				color: "lighter",
+    				label: "snow"
+    			},
+    			$$inline: true
+    		});
+
+    	const line1 = new Line({
+    			props: {
+    				space: "15px",
+    				start: "Dec 10 " + /*year*/ ctx[1],
+    				end: "Dec 31 " + /*year*/ ctx[1],
+    				color: "lighter",
+    				label: "snow"
+    			},
+    			$$inline: true
+    		});
+
+    	const line2 = new Line({
+    			props: {
+    				space: "15px",
+    				start: "Feb 11 " + /*year*/ ctx[1],
+    				end: "May 4 " + /*year*/ ctx[1],
+    				color: "sky",
+    				label: "rain",
+    				opacity: "0.4"
+    			},
+    			$$inline: true
+    		});
+
+    	const line3 = new Line({
+    			props: {
+    				space: "15px",
+    				start: "May 5 " + /*year*/ ctx[1],
+    				end: "Oct 1 " + /*year*/ ctx[1],
+    				color: "green",
+    				label: "Leaves"
+    			},
+    			$$inline: true
+    		});
+
+    	const line4 = new Line({
+    			props: {
+    				space: "15px",
+    				start: "oct 2 " + /*year*/ ctx[1],
+    				end: "dec 9 " + /*year*/ ctx[1],
+    				color: "sky",
+    				label: "rain",
+    				opacity: "0.4"
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(line0.$$.fragment);
+    			t0 = space();
+    			create_component(line1.$$.fragment);
+    			t1 = space();
+    			create_component(line2.$$.fragment);
+    			t2 = space();
+    			create_component(line3.$$.fragment);
+    			t3 = space();
+    			create_component(line4.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(line0, target, anchor);
+    			insert_dev(target, t0, anchor);
+    			mount_component(line1, target, anchor);
+    			insert_dev(target, t1, anchor);
+    			mount_component(line2, target, anchor);
+    			insert_dev(target, t2, anchor);
+    			mount_component(line3, target, anchor);
+    			insert_dev(target, t3, anchor);
+    			mount_component(line4, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(line0.$$.fragment, local);
+    			transition_in(line1.$$.fragment, local);
+    			transition_in(line2.$$.fragment, local);
+    			transition_in(line3.$$.fragment, local);
+    			transition_in(line4.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(line0.$$.fragment, local);
+    			transition_out(line1.$$.fragment, local);
+    			transition_out(line2.$$.fragment, local);
+    			transition_out(line3.$$.fragment, local);
+    			transition_out(line4.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(line0, detaching);
+    			if (detaching) detach_dev(t0);
+    			destroy_component(line1, detaching);
+    			if (detaching) detach_dev(t1);
+    			destroy_component(line2, detaching);
+    			if (detaching) detach_dev(t2);
+    			destroy_component(line3, detaching);
+    			if (detaching) detach_dev(t3);
+    			destroy_component(line4, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_2.name,
+    		type: "slot",
+    		source: "(100:2) <Column width=\\\"40px\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (119:2) <Column width="60px">
+    function create_default_slot_1(ctx) {
+    	let t0;
+    	let t1;
+    	let current;
+
+    	const line0 = new Line({
+    			props: {
+    				space: "15px",
+    				start: "Jan 1 " + /*year*/ ctx[1],
+    				end: "April 12 " + /*year*/ ctx[1],
+    				color: "blue",
+    				label: "coats"
+    			},
+    			$$inline: true
+    		});
+
+    	const line1 = new Line({
+    			props: {
+    				space: "15px",
+    				start: "Nov 1 " + /*year*/ ctx[1],
+    				end: "Dec 31 " + /*year*/ ctx[1],
+    				color: "blue",
+    				label: "coats"
+    			},
+    			$$inline: true
+    		});
+
+    	const line2 = new Line({
+    			props: {
+    				space: "15px",
+    				start: "May 24 " + /*year*/ ctx[1],
+    				end: "Sept 1 " + /*year*/ ctx[1],
+    				color: "purple",
+    				label: "shorts"
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(line0.$$.fragment);
+    			t0 = space();
+    			create_component(line1.$$.fragment);
+    			t1 = space();
+    			create_component(line2.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(line0, target, anchor);
+    			insert_dev(target, t0, anchor);
+    			mount_component(line1, target, anchor);
+    			insert_dev(target, t1, anchor);
+    			mount_component(line2, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(line0.$$.fragment, local);
+    			transition_in(line1.$$.fragment, local);
+    			transition_in(line2.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(line0.$$.fragment, local);
+    			transition_out(line1.$$.fragment, local);
+    			transition_out(line2.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(line0, detaching);
+    			if (detaching) detach_dev(t0);
+    			destroy_component(line1, detaching);
+    			if (detaching) detach_dev(t1);
+    			destroy_component(line2, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(67:2) <Column width=\\\"40px\\\">",
+    		source: "(119:2) <Column width=\\\"60px\\\">",
     		ctx
     	});
 
@@ -6862,7 +6950,7 @@ var app = (function () {
 
     	const column4 = new Column({
     			props: {
-    				width: "10px",
+    				width: "185px",
     				$$slots: { default: [create_default_slot_3] },
     				$$scope: { ctx }
     			},
@@ -6871,7 +6959,7 @@ var app = (function () {
 
     	const column5 = new Column({
     			props: {
-    				width: "60px",
+    				width: "40px",
     				$$slots: { default: [create_default_slot_2] },
     				$$scope: { ctx }
     			},
@@ -6880,7 +6968,7 @@ var app = (function () {
 
     	const column6 = new Column({
     			props: {
-    				width: "40px",
+    				width: "60px",
     				$$slots: { default: [create_default_slot_1] },
     				$$scope: { ctx }
     			},

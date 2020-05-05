@@ -1,7 +1,7 @@
 <script>
   import Head from '../../components/Head.svelte'
   import Foot from '../../components/Foot.svelte'
-  export let title = 'Daylight savings time changes'
+  export let title = 'Daylight savings time changes in 2020'
   export let sub = "'Eastern Standard' time"
   import data from './data'
   import {

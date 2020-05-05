@@ -6,7 +6,7 @@ const post = process.argv[2] || ''
 
 let abs = path.join(__dirname, '../')
 if (post) {
-  abs = path.join(abs, `drafts/${post}`)
+  abs = path.join(abs, `${post}`)
 }
 server(abs)
 
