@@ -89,5 +89,10 @@ module.exports = {
       title: 'The Year in Toronto',
       thumb: 'thumb.png',
     },
+    {
+      num: '04',
+      title: 'Skydome roof by year',
+      thumb: 'thumb.png',
+    },
   ],
 }
