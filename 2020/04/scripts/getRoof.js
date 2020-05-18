@@ -1,6 +1,6 @@
 const games = require('./games')
 const axios = require('axios')
-const $ = require('cheerio')
+// const $ = require('cheerio')
 let results = {}
 //
 const fetchGame = async function (id) {

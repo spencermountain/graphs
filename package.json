@@ -37,6 +37,7 @@
     "derequire": "^2.1.0",
     "got": "^11.1.0",
     "htm": "^3.0.4",
+    "kld-intersections": "^0.7.0",
     "spacetime": "^6.4.3",
     "vhtml": "^2.2.0"
   },
