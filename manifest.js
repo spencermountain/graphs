@@ -85,22 +85,22 @@ module.exports = {
   ],
   '2020': [
     {
-      num: '01',
+      num: 'ontario-covid',
       title: 'Causes of death in Ontario',
       thumb: 'thumb.png',
     },
     {
-      num: '02',
+      num: 'daylight-savings-changes',
       title: 'Daylight Savings times',
       thumb: 'thumb.png',
     },
     {
-      num: '03',
+      num: 'year-in-toronto',
       title: 'The Year in Toronto',
       thumb: 'thumb.png',
     },
     {
-      num: '04',
+      num: 'skydome-roof-by-year',
       title: 'Skydome roof by year',
       thumb: 'thumb.png',
     },
