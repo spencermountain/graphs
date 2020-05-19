@@ -94,5 +94,10 @@ module.exports = {
       title: 'Skydome roof by year',
       thumb: 'thumb.png',
     },
+    {
+      num: 'toronto-streets',
+      title: 'Toronto street-map',
+      thumb: 'thumb.png',
+    },
   ],
 }

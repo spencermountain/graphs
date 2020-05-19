@@ -12,7 +12,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<a href=\"", "\" class=\"left mw20 m3\" >\n    <div class=\"\">\n      <span class=\"olive\" >", "</span>\n      <span class=\"link\"> / ", "</span>\n    </div>\n    <img class=\"block\" style=\"margin-left:95px; max-width:450px; max-height:100px;\" src=\"", "\" />\n    </a>\n    "]);
+  var data = _taggedTemplateLiteral(["<a href=\"", "\" class=\"left mw20 m3\" >\n    <div class=\"\">\n      <span class=\"link\">", "</span>\n    </div>\n    <img class=\"block\" style=\"margin-left:95px; max-width:450px; max-height:100px;\" src=\"", "\" />\n    </a>\n    "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -35,7 +35,7 @@ var result = [];
 years.forEach(function (y) {
   var posts = manifest[y].map(function (o) {
     var path = y + '/' + o.num;
-    return h(_templateObject(), path, o.num, o.title, path + '/' + o.thumb);
+    return h(_templateObject(), path, o.title, path + '/' + o.thumb);
   });
   result.push(h(_templateObject2(), y));
   result = result.concat(posts);
@@ -119,6 +119,10 @@ module.exports = {
   }, {
     num: '04',
     title: 'Skydome roof by year',
+    thumb: 'thumb.png'
+  }, {
+    num: 'toronto-streets',
+    title: 'Toronto street-map',
     thumb: 'thumb.png'
   }]
 };

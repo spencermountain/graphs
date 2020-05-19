@@ -41,7 +41,7 @@ out body;
 out skel qt;
  -->
 
-<Head {title} />
+<Head {title} num="05" />
 <div>an attempt at making point+click roadmaps of Toronto</div>
 <div>click to highlight a road</div>
 <div on:mousedown={onMouseDown} on:mouseup={onMouseUp}>
