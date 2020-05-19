@@ -1,0 +1,114 @@
+.header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: #fbfbfb;
+  font-size: 1.3rem;
+  padding-top: 0.5rem;
+  padding-bottom: 3px;
+  height: 2rem;
+  width: 100%;
+  border: 1px solid #ececec;
+  text-align: left;
+  white-space: nowrap;
+}
+.header > .title {
+  padding-left: 0.8rem;
+  padding-right: 1.2rem;
+  cursor: pointer;
+  border-bottom: 2px solid #69c;
+  text-decoration: none;
+  color: #4d4d4d;
+  font-weight: 400;
+  padding-top: 1.5rem;
+  transition: padding-right 0.3s;
+}
+.header > .title:hover {
+  padding-right: 3rem;
+}
+.header > .back {
+  display: inline-block;
+  font-weight: 400;
+  text-decoration: none;
+  font-size: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 1.2rem;
+  width: 3rem;
+  color: #838b91;
+  cursor: pointer;
+  transition: width 0.2s, padding-left 0.2s, color 0.2s;
+}
+.header > .back:hover {
+  font-weight: 700;
+  color: steelblue;
+  width: 4rem;
+  padding-left: 3rem;
+}
+
+.footer {
+  text-align: right;
+}
+.footer > a {
+  text-decoration: none;
+}
+
+.top {
+  padding-top: 5.063rem;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Tajawal'), local('Tajawal-Regular'),
+    url(./tajawal.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+body {
+  font-family: 'Tajawal';
+  font-size: 1.2rem;
+  background-color: #fbfbfb;
+}
+
+/* 
+  19.1% - 61.8% - 19.1% 
+*/
+.main {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  flex-wrap: wrap;
+  margin-left: 19.1%;
+  margin-right: 19.1%;
+  align-items: flex-start;
+  transition: margin-left 0.3s, margin-right 0.3s;
+}
+
+/* 
+small-screen:
+  9.55% - 80.9% - 9.55% 
+*/
+/* @media (max-width: 550px) {
+  .main {
+    margin-left: 9.55%;
+    margin-right: 9.55%;
+  }
+  .header > .back {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+} */
+/* 
+wide-screens:
+  28.65% - 42.7% - 28.65% 
+*/
+/* @media (min-width: 1550px) {
+  .main {
+    margin-left: 28.65%;
+    margin-right: 28.65%;
+  }
+} */

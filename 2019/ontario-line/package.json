@@ -1,0 +1,27 @@
+{
+  "name": "",
+  "description": "",
+  "version": "0.0.1",
+  "licence": "CC-BY-4.0",
+  "private": true,
+  "author": "Spencer Kelly (spencermountain)",
+  "homepage": "https://github.com/spencermountain/frown#readme",
+  "scripts": {
+    "start": "budo index.js:assets/bundle.js --live",
+    "watch": "pug ./ --watch",
+    "build": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | derequire > ./assets/bundle.js"
+  },
+  "dependencies": {
+    "@deck.gl/core": "^7.3.3",
+    "@deck.gl/layers": "^7.3.3",
+    "pure-md5": "^0.1.9"
+  },
+  "devDependencies": {
+    "@babel/core": "7.5.5",
+    "@babel/preset-env": "7.5.5",
+    "babelify": "10.0.0",
+    "budo": "11.6.3",
+    "derequire": "2.0.6",
+    "terser": "4.1.3"
+  }
+}

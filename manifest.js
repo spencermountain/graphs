@@ -72,6 +72,16 @@ module.exports = {
       title: 'Daylight by latitude',
       thumb: 'thumb.jpg',
     },
+    {
+      num: 'ontario-landfills',
+      title: 'Ontario Landfills',
+      thumb: 'thumb.png',
+    },
+    {
+      num: 'ontario-line',
+      title: 'Ontario Line Map',
+      thumb: 'thumb.png',
+    },
   ],
   '2020': [
     {
