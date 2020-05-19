@@ -99,5 +99,10 @@ module.exports = {
       title: 'Toronto street-map',
       thumb: 'thumb.png',
     },
+    {
+      num: 'mayors-of-toronto',
+      title: 'Mayors of Toronto',
+      thumb: 'thumb.png',
+    },
   ],
 }

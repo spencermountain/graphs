@@ -12,7 +12,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["<a href=\"", "\" class=\"left mw20 m3\" >\n    <div class=\"\">\n      <span class=\"link\">", "</span>\n    </div>\n    <img class=\"block\" style=\"margin-left:95px; max-width:450px; max-height:100px;\" src=\"", "\" />\n    </a>\n    "]);
+  var data = _taggedTemplateLiteral(["<a href=\"", "\" class=\"left mw20 m3\" style=\"cursor:pointer;\">\n    <div class=\"\">\n      <span class=\"link\">", "</span>\n    </div>\n    <img class=\"block\" style=\"margin-left:95px; max-width:450px; max-height:100px;\" src=\"", "\" />\n    </a>\n    "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -123,6 +123,10 @@ module.exports = {
   }, {
     num: 'toronto-streets',
     title: 'Toronto street-map',
+    thumb: 'thumb.png'
+  }, {
+    num: 'mayors-of-toronto',
+    title: 'Mayors of Toronto',
     thumb: 'thumb.png'
   }]
 };

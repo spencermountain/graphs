@@ -34,7 +34,7 @@ export default [
   // ['Warring Kennedy', '1894', '1895'],
   // ['Robert John Fleming', '1896', '1897'],
   // ['John Shaw', '1897', '1899'],
-  ['Ernest A. Macdonald', '1900', '1900'],
+  // ['Ernest A. Macdonald', '1900', '1900'],
   ['Oliver Aiken Howland', '1901', '1902'],
   ['Thomas Urquhart', '1903', '1905'],
   ['Emerson Coatsworth', '1906', '1907'],
