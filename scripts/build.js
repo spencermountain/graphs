@@ -2,15 +2,16 @@ const rollup = require('rollup')
 const svelte = require('rollup-plugin-svelte')
 const resolve = require('@rollup/plugin-node-resolve')
 const commonjs = require('@rollup/plugin-commonjs')
+const json = require('@rollup/plugin-json')
 
 const buildPost = function (abs) {
   abs = abs.replace(/\/$/, '')
-  console.log(abs)
   return (
     rollup
       .rollup({
         input: `${abs}/build/app.js`,
         plugins: [
+          json(),
           svelte({
             dev: true,
             css: (css) => {
