@@ -28,47 +28,47 @@ module.exports = {
   ],
   '2019': [
     {
-      num: '01',
+      num: 'nhl-team-performance',
       title: 'NHL performance by team',
       thumb: 'thumb.png',
     },
     {
-      num: '02',
+      num: 'nhl-history',
       title: 'History of the NHL',
       thumb: 'thumb.png',
     },
     {
-      num: '03',
+      num: 'rain-in-toronto',
       title: 'Rain in Toronto',
       thumb: 'thumb.png',
     },
     {
-      num: '04',
+      num: 'break-up-the-year',
       title: 'Break-up the year',
       thumb: 'thumb.png',
     },
+    // {
+    //   num: '05',
+    //   title: 'Reading all of wikipedia',
+    //   thumb: 'thumb.png',
+    // },
     {
-      num: '05',
-      title: 'Reading all of wikipedia',
-      thumb: 'thumb.png',
-    },
-    {
-      num: '06',
+      num: 'nhl-arenas',
       title: 'NHL arenas',
       thumb: 'thumb.png',
     },
     {
-      num: '07',
+      num: 'baseball-schedule',
       title: 'Baseball schedule',
       thumb: 'thumb.png',
     },
     {
-      num: '08',
+      num: 'generations-of-people',
       title: 'Generations of people',
       thumb: 'thumb.png',
     },
     {
-      num: '09',
+      num: 'daylight-by-latitude',
       title: 'Daylight by latitude',
       thumb: 'thumb.jpg',
     },
