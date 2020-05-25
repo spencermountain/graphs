@@ -13,7 +13,7 @@
 
   let year = new Date().getFullYear()
   let start = 'Jan 1 1950'
-  let end = 'Dec 31 2022'
+  let end = 'Dec 31 2021'
   let height = 3500
   export let title = 'Rocket Launches'
 
@@ -23,6 +23,8 @@
   import japan from './data/japan.json'
   import shuttle from './data/shuttle.json'
   import spacex from './data/spacex.json'
+  import india from './data/india.json'
+  import proton from './data/proton.json'
 </script>
 
 <style>
@@ -71,6 +73,18 @@
       <Column width="75px" label="SpaceX">
         {#each spacex as rocket}
           <Dash start={rocket.date} color="sea" opacity="0.5" dotted={false} />
+        {/each}
+      </Column>
+
+      <Column width="75px" label="India">
+        {#each india as rocket}
+          <Dash start={rocket.date} color="suede" opacity="0.5" dotted={false} />
+        {/each}
+      </Column>
+
+      <Column width="75px" label="Proton">
+        {#each proton as rocket}
+          <Dash start={rocket.date} color="red" opacity="0.5" dotted={false} />
         {/each}
       </Column>
     </Timeline>

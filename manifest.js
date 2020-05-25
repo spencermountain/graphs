@@ -101,7 +101,7 @@ module.exports = {
     },
     {
       num: 'skydome-roof-by-year',
-      title: 'Skydome roof by year',
+      title: 'Skydome roof',
       thumb: 'thumb.png',
     },
     {

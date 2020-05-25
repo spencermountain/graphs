@@ -32,11 +32,35 @@ let all = []
   //     })
   //   })
 
-  // china
-  let doc = await wtf.fetch('List_of_Long_March_launches')
-  let launches = doc.templates().filter((t) => t.template === 'launch')
-  launches.forEach((t) => {
-    all.push({ date: t.date.replace(/ [0-9:]*$/, ''), name: t.serial })
+  // // china
+  // let doc = await wtf.fetch('List_of_Long_March_launches')
+  // let launches = doc.templates().filter((t) => t.template === 'launch')
+  // launches.forEach((t) => {
+  //   all.push({ date: t.date.replace(/ [0-9:]*$/, ''), name: t.serial })
+  // })
+  // proton
+  // let doc = await wtf.fetch('List of Proton launches (2000–2009)')
+  // let launches = doc.templates().filter((t) => t.template === 'launch')
+  // launches.forEach((t) => {
+  //   all.push({ date: t.date.replace(/ [0-9:]*$/, ''), name: t.serial })
+  // })
+
+  // proton 2
+  let doc = wtf(require('./proton'))
+  doc.tables().forEach((table) => {
+    let rows = table.json()
+    // console.log(rows)
+    rows.forEach((row) => {
+      if (!row['Flight №']) {
+        console.log(row)
+      }
+      all.push({
+        // date: row['Date/Time (UTC)'].text,
+        // name: row['S/N'].text,
+        date: row['Date / time (UTC)'].text,
+        name: row['Flight №'].text,
+      })
+    })
   })
 
   console.log(JSON.stringify(all, null, 2))
