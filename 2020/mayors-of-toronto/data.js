@@ -116,14 +116,14 @@ export default [
     born: '1814-09-22',
     died: '1891-12-28',
     start: 'jan 1 1859',
-    end: 'dec 31 1861',
+    end: 'dec 26 1861',
   },
   {
     name: 'John George Bowes',
     born: '1969-12-31',
     died: '1864-05-20',
     start: 'jan 1 1861',
-    end: 'dec 31 1864',
+    end: 'dec 26 1864',
   },
   {
     name: 'Francis Henry Medcalf',

@@ -4996,19 +4996,19 @@ var app = (function () {
     			t = space();
     			div1 = element("div");
     			attr_dev(div0, "class", "line svelte-1cnt9dg");
-    			set_style(div0, "border-left", /*width*/ ctx[1] + " solid " + /*color*/ ctx[0]);
-    			add_location(div0, file$3, 106, 2, 2301);
+    			set_style(div0, "border-left", /*width*/ ctx[1] + " " + (/*dotted*/ ctx[7] ? "dotted" : "solid") + " " + /*color*/ ctx[0]);
+    			add_location(div0, file$3, 108, 2, 2363);
     			attr_dev(div1, "class", "label svelte-1cnt9dg");
     			set_style(div1, "top", "20%");
     			set_style(div1, "color", /*color*/ ctx[0]);
-    			set_style(div1, "font-size", /*size*/ ctx[3]);
-    			add_location(div1, file$3, 107, 2, 2368);
+    			set_style(div1, "font-size", /*size*/ ctx[4]);
+    			add_location(div1, file$3, 109, 2, 2455);
     			attr_dev(div2, "class", "container svelte-1cnt9dg");
     			set_style(div2, "min-width", /*space*/ ctx[2]);
-    			set_style(div2, "opacity", /*opacity*/ ctx[4]);
-    			set_style(div2, "top", /*top*/ ctx[8] + "px");
-    			set_style(div2, "height", /*height*/ ctx[9] + "px");
-    			add_location(div2, file$3, 84, 0, 1810);
+    			set_style(div2, "opacity", /*opacity*/ ctx[5]);
+    			set_style(div2, "top", /*top*/ ctx[10] + "px");
+    			set_style(div2, "height", /*height*/ ctx[11] - /*margin*/ ctx[3] + "px");
+    			add_location(div2, file$3, 86, 0, 1862);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5018,35 +5018,39 @@ var app = (function () {
     			append_dev(div2, div0);
     			append_dev(div2, t);
     			append_dev(div2, div1);
-    			div1.innerHTML = /*label*/ ctx[5];
+    			div1.innerHTML = /*label*/ ctx[6];
     			if (remount) run_all(dispose);
 
     			dispose = [
-    				listen_dev(div2, "mouseenter", /*mouseenter_handler*/ ctx[17], false, false, false),
-    				listen_dev(div2, "mouseleave", /*mouseleave_handler*/ ctx[18], false, false, false),
-    				listen_dev(div2, "click", /*click_handler*/ ctx[19], false, false, false)
+    				listen_dev(div2, "mouseenter", /*mouseenter_handler*/ ctx[19], false, false, false),
+    				listen_dev(div2, "mouseleave", /*mouseleave_handler*/ ctx[20], false, false, false),
+    				listen_dev(div2, "click", /*click_handler*/ ctx[21], false, false, false)
     			];
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*width, color*/ 3) {
-    				set_style(div0, "border-left", /*width*/ ctx[1] + " solid " + /*color*/ ctx[0]);
+    			if (dirty & /*width, dotted, color*/ 131) {
+    				set_style(div0, "border-left", /*width*/ ctx[1] + " " + (/*dotted*/ ctx[7] ? "dotted" : "solid") + " " + /*color*/ ctx[0]);
     			}
 
-    			if (dirty & /*label*/ 32) div1.innerHTML = /*label*/ ctx[5];
+    			if (dirty & /*label*/ 64) div1.innerHTML = /*label*/ ctx[6];
     			if (dirty & /*color*/ 1) {
     				set_style(div1, "color", /*color*/ ctx[0]);
     			}
 
-    			if (dirty & /*size*/ 8) {
-    				set_style(div1, "font-size", /*size*/ ctx[3]);
+    			if (dirty & /*size*/ 16) {
+    				set_style(div1, "font-size", /*size*/ ctx[4]);
     			}
 
     			if (dirty & /*space*/ 4) {
     				set_style(div2, "min-width", /*space*/ ctx[2]);
     			}
 
-    			if (dirty & /*opacity*/ 16) {
-    				set_style(div2, "opacity", /*opacity*/ ctx[4]);
+    			if (dirty & /*opacity*/ 32) {
+    				set_style(div2, "opacity", /*opacity*/ ctx[5]);
+    			}
+
+    			if (dirty & /*margin*/ 8) {
+    				set_style(div2, "height", /*height*/ ctx[11] - /*margin*/ ctx[3] + "px");
     			}
     		},
     		i: noop,
@@ -5072,9 +5076,11 @@ var app = (function () {
     	let { color = "steelblue" } = $$props;
     	let { width = "5px" } = $$props;
     	let { space = "5px" } = $$props;
+    	let { margin = 0 } = $$props;
     	let { size = "14px" } = $$props;
     	let { opacity = "1" } = $$props;
     	let { label = "" } = $$props;
+    	let { dotted = false } = $$props;
     	let { duration = "" } = $$props;
     	let { start = getContext("start") } = $$props;
     	let { end = getContext("end") } = $$props;
@@ -5106,9 +5112,11 @@ var app = (function () {
     		"color",
     		"width",
     		"space",
+    		"margin",
     		"size",
     		"opacity",
     		"label",
+    		"dotted",
     		"duration",
     		"start",
     		"end"
@@ -5124,7 +5132,7 @@ var app = (function () {
     	const mouseenter_handler = () => {
     		setTimeout(
     			function () {
-    				$$invalidate(7, show_label = true);
+    				$$invalidate(9, show_label = true);
     			},
     			100
     		);
@@ -5133,7 +5141,7 @@ var app = (function () {
     	const mouseleave_handler = () => {
     		setTimeout(
     			function () {
-    				$$invalidate(7, show_label = !freeze_label ? false : true);
+    				$$invalidate(9, show_label = !freeze_label ? false : true);
     			},
     			100
     		);
@@ -5141,11 +5149,11 @@ var app = (function () {
 
     	const click_handler = () => {
     		if (!freeze_label) {
-    			$$invalidate(7, show_label = true);
-    			$$invalidate(6, freeze_label = true);
+    			$$invalidate(9, show_label = true);
+    			$$invalidate(8, freeze_label = true);
     		} else {
-    			$$invalidate(7, show_label = false);
-    			$$invalidate(6, freeze_label = false);
+    			$$invalidate(9, show_label = false);
+    			$$invalidate(8, freeze_label = false);
     		}
     	};
 
@@ -5153,12 +5161,14 @@ var app = (function () {
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     		if ("width" in $$props) $$invalidate(1, width = $$props.width);
     		if ("space" in $$props) $$invalidate(2, space = $$props.space);
-    		if ("size" in $$props) $$invalidate(3, size = $$props.size);
-    		if ("opacity" in $$props) $$invalidate(4, opacity = $$props.opacity);
-    		if ("label" in $$props) $$invalidate(5, label = $$props.label);
-    		if ("duration" in $$props) $$invalidate(12, duration = $$props.duration);
-    		if ("start" in $$props) $$invalidate(10, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(11, end = $$props.end);
+    		if ("margin" in $$props) $$invalidate(3, margin = $$props.margin);
+    		if ("size" in $$props) $$invalidate(4, size = $$props.size);
+    		if ("opacity" in $$props) $$invalidate(5, opacity = $$props.opacity);
+    		if ("label" in $$props) $$invalidate(6, label = $$props.label);
+    		if ("dotted" in $$props) $$invalidate(7, dotted = $$props.dotted);
+    		if ("duration" in $$props) $$invalidate(14, duration = $$props.duration);
+    		if ("start" in $$props) $$invalidate(12, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(13, end = $$props.end);
     	};
 
     	$$self.$capture_state = () => ({
@@ -5168,9 +5178,11 @@ var app = (function () {
     		color,
     		width,
     		space,
+    		margin,
     		size,
     		opacity,
     		label,
+    		dotted,
     		duration,
     		start,
     		end,
@@ -5188,17 +5200,19 @@ var app = (function () {
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     		if ("width" in $$props) $$invalidate(1, width = $$props.width);
     		if ("space" in $$props) $$invalidate(2, space = $$props.space);
-    		if ("size" in $$props) $$invalidate(3, size = $$props.size);
-    		if ("opacity" in $$props) $$invalidate(4, opacity = $$props.opacity);
-    		if ("label" in $$props) $$invalidate(5, label = $$props.label);
-    		if ("duration" in $$props) $$invalidate(12, duration = $$props.duration);
-    		if ("start" in $$props) $$invalidate(10, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(11, end = $$props.end);
-    		if ("top" in $$props) $$invalidate(8, top = $$props.top);
+    		if ("margin" in $$props) $$invalidate(3, margin = $$props.margin);
+    		if ("size" in $$props) $$invalidate(4, size = $$props.size);
+    		if ("opacity" in $$props) $$invalidate(5, opacity = $$props.opacity);
+    		if ("label" in $$props) $$invalidate(6, label = $$props.label);
+    		if ("dotted" in $$props) $$invalidate(7, dotted = $$props.dotted);
+    		if ("duration" in $$props) $$invalidate(14, duration = $$props.duration);
+    		if ("start" in $$props) $$invalidate(12, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(13, end = $$props.end);
+    		if ("top" in $$props) $$invalidate(10, top = $$props.top);
     		if ("bottom" in $$props) bottom = $$props.bottom;
-    		if ("height" in $$props) $$invalidate(9, height = $$props.height);
-    		if ("freeze_label" in $$props) $$invalidate(6, freeze_label = $$props.freeze_label);
-    		if ("show_label" in $$props) $$invalidate(7, show_label = $$props.show_label);
+    		if ("height" in $$props) $$invalidate(11, height = $$props.height);
+    		if ("freeze_label" in $$props) $$invalidate(8, freeze_label = $$props.freeze_label);
+    		if ("show_label" in $$props) $$invalidate(9, show_label = $$props.show_label);
     		if ("tooltipY" in $$props) tooltipY = $$props.tooltipY;
     	};
 
@@ -5209,16 +5223,18 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	 $$invalidate(7, show_label = false);
+    	 $$invalidate(9, show_label = false);
     	 tooltipY = 10;
 
     	return [
     		color,
     		width,
     		space,
+    		margin,
     		size,
     		opacity,
     		label,
+    		dotted,
     		freeze_label,
     		show_label,
     		top,
@@ -5244,12 +5260,14 @@ var app = (function () {
     			color: 0,
     			width: 1,
     			space: 2,
-    			size: 3,
-    			opacity: 4,
-    			label: 5,
-    			duration: 12,
-    			start: 10,
-    			end: 11
+    			margin: 3,
+    			size: 4,
+    			opacity: 5,
+    			label: 6,
+    			dotted: 7,
+    			duration: 14,
+    			start: 12,
+    			end: 13
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -5284,6 +5302,14 @@ var app = (function () {
     		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
+    	get margin() {
+    		throw new Error("<Line>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set margin(value) {
+    		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
     	get size() {
     		throw new Error("<Line>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
@@ -5305,6 +5331,14 @@ var app = (function () {
     	}
 
     	set label(value) {
+    		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get dotted() {
+    		throw new Error("<Line>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set dotted(value) {
     		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -6410,7 +6444,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			t = text(/*label*/ ctx[0]);
-    			attr_dev(div, "class", "wide svelte-1vhq4sn");
+    			attr_dev(div, "class", "wide svelte-ovx4o2");
     			set_style(div, "top", /*y*/ ctx[3] + "px");
     			set_style(div, "text-align", /*align*/ ctx[1]);
     			set_style(div, "color", /*color*/ ctx[2]);
@@ -6670,14 +6704,14 @@ var app = (function () {
         born: '1814-09-22',
         died: '1891-12-28',
         start: 'jan 1 1859',
-        end: 'dec 31 1861',
+        end: 'dec 26 1861',
       },
       {
         name: 'John George Bowes',
         born: '1969-12-31',
         died: '1864-05-20',
         start: 'jan 1 1861',
-        end: 'dec 31 1864',
+        end: 'dec 26 1864',
       },
       {
         name: 'Francis Henry Medcalf',
@@ -7069,8 +7103,10 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (40:6) <Column width="35px">
+    // (42:6) <Column width="40px">
     function create_default_slot_9(ctx) {
+    	let t0;
+    	let t1;
     	let current;
 
     	const now_1 = new Now({
@@ -7082,26 +7118,70 @@ var app = (function () {
     			$$inline: true
     		});
 
+    	const line0 = new Line({
+    			props: {
+    				space: "15px",
+    				start: "28 July 1914",
+    				end: "11 November 1918",
+    				color: "rose",
+    				opacity: "0.5",
+    				size: "10px",
+    				dotted: false,
+    				label: "WW1"
+    			},
+    			$$inline: true
+    		});
+
+    	const line1 = new Line({
+    			props: {
+    				space: "15px",
+    				start: "September 13 1939",
+    				end: "September 2 1945",
+    				color: "rose",
+    				dotted: false,
+    				size: "10px",
+    				opacity: "0.5",
+    				label: "WW2"
+    			},
+    			$$inline: true
+    		});
+
     	const block = {
     		c: function create() {
     			create_component(now_1.$$.fragment);
+    			t0 = space();
+    			create_component(line0.$$.fragment);
+    			t1 = space();
+    			create_component(line1.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(now_1, target, anchor);
+    			insert_dev(target, t0, anchor);
+    			mount_component(line0, target, anchor);
+    			insert_dev(target, t1, anchor);
+    			mount_component(line1, target, anchor);
     			current = true;
     		},
     		p: noop,
     		i: function intro(local) {
     			if (current) return;
     			transition_in(now_1.$$.fragment, local);
+    			transition_in(line0.$$.fragment, local);
+    			transition_in(line1.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(now_1.$$.fragment, local);
+    			transition_out(line0.$$.fragment, local);
+    			transition_out(line1.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			destroy_component(now_1, detaching);
+    			if (detaching) detach_dev(t0);
+    			destroy_component(line0, detaching);
+    			if (detaching) detach_dev(t1);
+    			destroy_component(line1, detaching);
     		}
     	};
 
@@ -7109,22 +7189,23 @@ var app = (function () {
     		block,
     		id: create_default_slot_9.name,
     		type: "slot",
-    		source: "(40:6) <Column width=\\\"35px\\\">",
+    		source: "(42:6) <Column width=\\\"40px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (45:8) {#each mayors as mayor, i}
+    // (65:8) {#each mayors as mayor, i}
     function create_each_block$1(ctx) {
     	let current;
 
     	const line = new Line({
     			props: {
     				space: "15px",
-    				width: "3px",
+    				width: "4px",
     				start: /*mayor*/ ctx[5].start,
+    				margin: 3,
     				size: "14px",
     				end: /*mayor*/ ctx[5].end,
     				color: spencerColor.combos.dupont[/*i*/ ctx[7] % 6],
@@ -7160,14 +7241,14 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(45:8) {#each mayors as mayor, i}",
+    		source: "(65:8) {#each mayors as mayor, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (44:6) <Column width="350px">
+    // (64:6) <Column width="270px">
     function create_default_slot_8(ctx) {
     	let each_1_anchor;
     	let current;
@@ -7256,14 +7337,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_8.name,
     		type: "slot",
-    		source: "(44:6) <Column width=\\\"350px\\\">",
+    		source: "(64:6) <Column width=\\\"270px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (57:6) <Column width="5px">
+    // (78:6) <Column width="5px">
     function create_default_slot_7(ctx) {
     	let current;
 
@@ -7305,14 +7386,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_7.name,
     		type: "slot",
-    		source: "(57:6) <Column width=\\\"5px\\\">",
+    		source: "(78:6) <Column width=\\\"5px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (60:6) <Column width="5px">
+    // (82:6) <Column width="5px">
     function create_default_slot_6(ctx) {
     	let current;
 
@@ -7354,18 +7435,32 @@ var app = (function () {
     		block,
     		id: create_default_slot_6.name,
     		type: "slot",
-    		source: "(60:6) <Column width=\\\"5px\\\">",
+    		source: "(82:6) <Column width=\\\"5px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (63:6) <Column width="5px">
+    // (86:6) <Column width="5px">
     function create_default_slot_5(ctx) {
+    	let t;
     	let current;
 
-    	const line = new Line({
+    	const line0 = new Line({
+    			props: {
+    				start: "July 1 1952",
+    				end: "August 1956",
+    				opacity: "0.5",
+    				label: "401",
+    				color: "grey",
+    				side: "left",
+    				align: "left"
+    			},
+    			$$inline: true
+    		});
+
+    	const line1 = new Line({
     			props: {
     				space: "15px",
     				opacity: "0.5",
@@ -7378,24 +7473,32 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(line.$$.fragment);
+    			create_component(line0.$$.fragment);
+    			t = space();
+    			create_component(line1.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(line, target, anchor);
+    			mount_component(line0, target, anchor);
+    			insert_dev(target, t, anchor);
+    			mount_component(line1, target, anchor);
     			current = true;
     		},
     		p: noop,
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(line.$$.fragment, local);
+    			transition_in(line0.$$.fragment, local);
+    			transition_in(line1.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(line.$$.fragment, local);
+    			transition_out(line0.$$.fragment, local);
+    			transition_out(line1.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(line, detaching);
+    			destroy_component(line0, detaching);
+    			if (detaching) detach_dev(t);
+    			destroy_component(line1, detaching);
     		}
     	};
 
@@ -7403,18 +7506,32 @@ var app = (function () {
     		block,
     		id: create_default_slot_5.name,
     		type: "slot",
-    		source: "(63:6) <Column width=\\\"5px\\\">",
+    		source: "(86:6) <Column width=\\\"5px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (66:6) <Column width="5px">
+    // (97:6) <Column width="5px">
     function create_default_slot_4(ctx) {
+    	let t;
     	let current;
 
-    	const line = new Line({
+    	const line0 = new Line({
+    			props: {
+    				start: "July 1 1955",
+    				end: "October 30, 1962",
+    				opacity: "0.5",
+    				label: "DVP",
+    				color: "grey",
+    				side: "left",
+    				align: "left"
+    			},
+    			$$inline: true
+    		});
+
+    	const line1 = new Line({
     			props: {
     				space: "15px",
     				opacity: "0.5",
@@ -7427,24 +7544,32 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(line.$$.fragment);
+    			create_component(line0.$$.fragment);
+    			t = space();
+    			create_component(line1.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(line, target, anchor);
+    			mount_component(line0, target, anchor);
+    			insert_dev(target, t, anchor);
+    			mount_component(line1, target, anchor);
     			current = true;
     		},
     		p: noop,
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(line.$$.fragment, local);
+    			transition_in(line0.$$.fragment, local);
+    			transition_in(line1.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(line.$$.fragment, local);
+    			transition_out(line0.$$.fragment, local);
+    			transition_out(line1.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(line, detaching);
+    			destroy_component(line0, detaching);
+    			if (detaching) detach_dev(t);
+    			destroy_component(line1, detaching);
     		}
     	};
 
@@ -7452,18 +7577,32 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(66:6) <Column width=\\\"5px\\\">",
+    		source: "(97:6) <Column width=\\\"5px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (69:6) <Column width="5px">
+    // (108:6) <Column width="5px">
     function create_default_slot_3(ctx) {
+    	let t;
     	let current;
 
-    	const line = new Line({
+    	const line0 = new Line({
+    			props: {
+    				start: "Jan 1 1955",
+    				end: "August 1960",
+    				opacity: "0.5",
+    				label: "Gardiner",
+    				color: "grey",
+    				side: "left",
+    				align: "left"
+    			},
+    			$$inline: true
+    		});
+
+    	const line1 = new Line({
     			props: {
     				space: "15px",
     				opacity: "0.5",
@@ -7476,24 +7615,32 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(line.$$.fragment);
+    			create_component(line0.$$.fragment);
+    			t = space();
+    			create_component(line1.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(line, target, anchor);
+    			mount_component(line0, target, anchor);
+    			insert_dev(target, t, anchor);
+    			mount_component(line1, target, anchor);
     			current = true;
     		},
     		p: noop,
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(line.$$.fragment, local);
+    			transition_in(line0.$$.fragment, local);
+    			transition_in(line1.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(line.$$.fragment, local);
+    			transition_out(line0.$$.fragment, local);
+    			transition_out(line1.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(line, detaching);
+    			destroy_component(line0, detaching);
+    			if (detaching) detach_dev(t);
+    			destroy_component(line1, detaching);
     		}
     	};
 
@@ -7501,14 +7648,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(69:6) <Column width=\\\"5px\\\">",
+    		source: "(108:6) <Column width=\\\"5px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (72:6) <Column width="55px">
+    // (119:6) <Column width="55px">
     function create_default_slot_2(ctx) {
     	let current;
 
@@ -7550,35 +7697,22 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(72:6) <Column width=\\\"55px\\\">",
+    		source: "(119:6) <Column width=\\\"55px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (80:6) <Column width="75px">
+    // (128:6) <Column width="75px">
     function create_default_slot_1(ctx) {
     	let t0;
     	let t1;
     	let t2;
     	let t3;
-    	let t4;
     	let current;
 
     	const line0 = new Line({
-    			props: {
-    				space: "15px",
-    				start: "28 July 1914",
-    				end: "11 November 1918",
-    				color: "rose",
-    				opacity: "0.5",
-    				label: "WW1"
-    			},
-    			$$inline: true
-    		});
-
-    	const line1 = new Line({
     			props: {
     				space: "15px",
     				start: "1889",
@@ -7590,19 +7724,19 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const line2 = new Line({
+    	const line1 = new Line({
     			props: {
     				space: "15px",
-    				start: "September 13 1939",
-    				end: "September 2 1945",
+    				start: "1927",
+    				end: "1929",
     				color: "rose",
     				opacity: "0.5",
-    				label: "WW2"
+    				label: "Royal York Hotel"
     			},
     			$$inline: true
     		});
 
-    	const line3 = new Line({
+    	const line2 = new Line({
     			props: {
     				start: "November 7 1961",
     				end: "September 13 1965",
@@ -7615,7 +7749,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const line4 = new Line({
+    	const line3 = new Line({
     			props: {
     				start: "August 20 1973",
     				end: "August 20 1976",
@@ -7628,7 +7762,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const line5 = new Line({
+    	const line4 = new Line({
     			props: {
     				start: "October 3, 1986",
     				end: "June 3 1989",
@@ -7652,8 +7786,6 @@ var app = (function () {
     			create_component(line3.$$.fragment);
     			t3 = space();
     			create_component(line4.$$.fragment);
-    			t4 = space();
-    			create_component(line5.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(line0, target, anchor);
@@ -7665,8 +7797,6 @@ var app = (function () {
     			mount_component(line3, target, anchor);
     			insert_dev(target, t3, anchor);
     			mount_component(line4, target, anchor);
-    			insert_dev(target, t4, anchor);
-    			mount_component(line5, target, anchor);
     			current = true;
     		},
     		p: noop,
@@ -7677,7 +7807,6 @@ var app = (function () {
     			transition_in(line2.$$.fragment, local);
     			transition_in(line3.$$.fragment, local);
     			transition_in(line4.$$.fragment, local);
-    			transition_in(line5.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -7686,7 +7815,6 @@ var app = (function () {
     			transition_out(line2.$$.fragment, local);
     			transition_out(line3.$$.fragment, local);
     			transition_out(line4.$$.fragment, local);
-    			transition_out(line5.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -7699,8 +7827,6 @@ var app = (function () {
     			destroy_component(line3, detaching);
     			if (detaching) detach_dev(t3);
     			destroy_component(line4, detaching);
-    			if (detaching) detach_dev(t4);
-    			destroy_component(line5, detaching);
     		}
     	};
 
@@ -7708,7 +7834,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(80:6) <Column width=\\\"75px\\\">",
+    		source: "(128:6) <Column width=\\\"75px\\\">",
     		ctx
     	});
 
@@ -7728,13 +7854,33 @@ var app = (function () {
     	let t8;
     	let t9;
     	let t10;
+    	let t11;
+    	let t12;
     	let current;
 
-    	const widelabel = new WideLabel({
+    	const widelabel0 = new WideLabel({
     			props: {
     				date: "July 1, 1867",
     				color: "lightgrey",
     				label: "Confederation"
+    			},
+    			$$inline: true
+    		});
+
+    	const widelabel1 = new WideLabel({
+    			props: {
+    				date: "Jan 1, 1998",
+    				color: "lightgrey",
+    				label: "amalgamation"
+    			},
+    			$$inline: true
+    		});
+
+    	const widelabel2 = new WideLabel({
+    			props: {
+    				date: "Jan 1, 1908",
+    				color: "lightgrey",
+    				label: "electricity"
     			},
     			$$inline: true
     		});
@@ -7756,7 +7902,7 @@ var app = (function () {
 
     	const column0 = new Column({
     			props: {
-    				width: "35px",
+    				width: "40px",
     				$$slots: { default: [create_default_slot_9] },
     				$$scope: { ctx }
     			},
@@ -7765,7 +7911,7 @@ var app = (function () {
 
     	const column1 = new Column({
     			props: {
-    				width: "350px",
+    				width: "270px",
     				$$slots: { default: [create_default_slot_8] },
     				$$scope: { ctx }
     			},
@@ -7837,53 +7983,61 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(widelabel.$$.fragment);
+    			create_component(widelabel0.$$.fragment);
     			t0 = space();
-    			create_component(ticks0.$$.fragment);
+    			create_component(widelabel1.$$.fragment);
     			t1 = space();
-    			create_component(ticks1.$$.fragment);
+    			create_component(widelabel2.$$.fragment);
     			t2 = space();
-    			create_component(column0.$$.fragment);
+    			create_component(ticks0.$$.fragment);
     			t3 = space();
-    			create_component(column1.$$.fragment);
+    			create_component(ticks1.$$.fragment);
     			t4 = space();
-    			create_component(column2.$$.fragment);
+    			create_component(column0.$$.fragment);
     			t5 = space();
-    			create_component(column3.$$.fragment);
+    			create_component(column1.$$.fragment);
     			t6 = space();
-    			create_component(column4.$$.fragment);
+    			create_component(column2.$$.fragment);
     			t7 = space();
-    			create_component(column5.$$.fragment);
+    			create_component(column3.$$.fragment);
     			t8 = space();
-    			create_component(column6.$$.fragment);
+    			create_component(column4.$$.fragment);
     			t9 = space();
-    			create_component(column7.$$.fragment);
+    			create_component(column5.$$.fragment);
     			t10 = space();
+    			create_component(column6.$$.fragment);
+    			t11 = space();
+    			create_component(column7.$$.fragment);
+    			t12 = space();
     			create_component(column8.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(widelabel, target, anchor);
+    			mount_component(widelabel0, target, anchor);
     			insert_dev(target, t0, anchor);
-    			mount_component(ticks0, target, anchor);
+    			mount_component(widelabel1, target, anchor);
     			insert_dev(target, t1, anchor);
-    			mount_component(ticks1, target, anchor);
+    			mount_component(widelabel2, target, anchor);
     			insert_dev(target, t2, anchor);
-    			mount_component(column0, target, anchor);
+    			mount_component(ticks0, target, anchor);
     			insert_dev(target, t3, anchor);
-    			mount_component(column1, target, anchor);
+    			mount_component(ticks1, target, anchor);
     			insert_dev(target, t4, anchor);
-    			mount_component(column2, target, anchor);
+    			mount_component(column0, target, anchor);
     			insert_dev(target, t5, anchor);
-    			mount_component(column3, target, anchor);
+    			mount_component(column1, target, anchor);
     			insert_dev(target, t6, anchor);
-    			mount_component(column4, target, anchor);
+    			mount_component(column2, target, anchor);
     			insert_dev(target, t7, anchor);
-    			mount_component(column5, target, anchor);
+    			mount_component(column3, target, anchor);
     			insert_dev(target, t8, anchor);
-    			mount_component(column6, target, anchor);
+    			mount_component(column4, target, anchor);
     			insert_dev(target, t9, anchor);
-    			mount_component(column7, target, anchor);
+    			mount_component(column5, target, anchor);
     			insert_dev(target, t10, anchor);
+    			mount_component(column6, target, anchor);
+    			insert_dev(target, t11, anchor);
+    			mount_component(column7, target, anchor);
+    			insert_dev(target, t12, anchor);
     			mount_component(column8, target, anchor);
     			current = true;
     		},
@@ -7954,7 +8108,9 @@ var app = (function () {
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(widelabel.$$.fragment, local);
+    			transition_in(widelabel0.$$.fragment, local);
+    			transition_in(widelabel1.$$.fragment, local);
+    			transition_in(widelabel2.$$.fragment, local);
     			transition_in(ticks0.$$.fragment, local);
     			transition_in(ticks1.$$.fragment, local);
     			transition_in(column0.$$.fragment, local);
@@ -7969,7 +8125,9 @@ var app = (function () {
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(widelabel.$$.fragment, local);
+    			transition_out(widelabel0.$$.fragment, local);
+    			transition_out(widelabel1.$$.fragment, local);
+    			transition_out(widelabel2.$$.fragment, local);
     			transition_out(ticks0.$$.fragment, local);
     			transition_out(ticks1.$$.fragment, local);
     			transition_out(column0.$$.fragment, local);
@@ -7984,28 +8142,32 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(widelabel, detaching);
+    			destroy_component(widelabel0, detaching);
     			if (detaching) detach_dev(t0);
-    			destroy_component(ticks0, detaching);
+    			destroy_component(widelabel1, detaching);
     			if (detaching) detach_dev(t1);
-    			destroy_component(ticks1, detaching);
+    			destroy_component(widelabel2, detaching);
     			if (detaching) detach_dev(t2);
-    			destroy_component(column0, detaching);
+    			destroy_component(ticks0, detaching);
     			if (detaching) detach_dev(t3);
-    			destroy_component(column1, detaching);
+    			destroy_component(ticks1, detaching);
     			if (detaching) detach_dev(t4);
-    			destroy_component(column2, detaching);
+    			destroy_component(column0, detaching);
     			if (detaching) detach_dev(t5);
-    			destroy_component(column3, detaching);
+    			destroy_component(column1, detaching);
     			if (detaching) detach_dev(t6);
-    			destroy_component(column4, detaching);
+    			destroy_component(column2, detaching);
     			if (detaching) detach_dev(t7);
-    			destroy_component(column5, detaching);
+    			destroy_component(column3, detaching);
     			if (detaching) detach_dev(t8);
-    			destroy_component(column6, detaching);
+    			destroy_component(column4, detaching);
     			if (detaching) detach_dev(t9);
-    			destroy_component(column7, detaching);
+    			destroy_component(column5, detaching);
     			if (detaching) detach_dev(t10);
+    			destroy_component(column6, detaching);
+    			if (detaching) detach_dev(t11);
+    			destroy_component(column7, detaching);
+    			if (detaching) detach_dev(t12);
     			destroy_component(column8, detaching);
     		}
     	};
