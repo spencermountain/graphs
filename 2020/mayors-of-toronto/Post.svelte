@@ -141,6 +141,13 @@
           color="rose"
           opacity="0.5"
           label="Royal York Hotel" />
+        <Line
+          space="15px"
+          start="May 30, 1931"
+          end="November 12, 1931"
+          color="rose"
+          opacity="0.5"
+          label="Maple Leaf Gardens" />
 
         <Line
           start="November 7 1961"

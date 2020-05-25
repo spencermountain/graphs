@@ -7710,6 +7710,7 @@ var app = (function () {
     	let t1;
     	let t2;
     	let t3;
+    	let t4;
     	let current;
 
     	const line0 = new Line({
@@ -7738,6 +7739,18 @@ var app = (function () {
 
     	const line2 = new Line({
     			props: {
+    				space: "15px",
+    				start: "May 30, 1931",
+    				end: "November 12, 1931",
+    				color: "rose",
+    				opacity: "0.5",
+    				label: "Maple Leaf Gardens"
+    			},
+    			$$inline: true
+    		});
+
+    	const line3 = new Line({
+    			props: {
     				start: "November 7 1961",
     				end: "September 13 1965",
     				opacity: "0.5",
@@ -7749,7 +7762,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const line3 = new Line({
+    	const line4 = new Line({
     			props: {
     				start: "August 20 1973",
     				end: "August 20 1976",
@@ -7762,7 +7775,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const line4 = new Line({
+    	const line5 = new Line({
     			props: {
     				start: "October 3, 1986",
     				end: "June 3 1989",
@@ -7786,6 +7799,8 @@ var app = (function () {
     			create_component(line3.$$.fragment);
     			t3 = space();
     			create_component(line4.$$.fragment);
+    			t4 = space();
+    			create_component(line5.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(line0, target, anchor);
@@ -7797,6 +7812,8 @@ var app = (function () {
     			mount_component(line3, target, anchor);
     			insert_dev(target, t3, anchor);
     			mount_component(line4, target, anchor);
+    			insert_dev(target, t4, anchor);
+    			mount_component(line5, target, anchor);
     			current = true;
     		},
     		p: noop,
@@ -7807,6 +7824,7 @@ var app = (function () {
     			transition_in(line2.$$.fragment, local);
     			transition_in(line3.$$.fragment, local);
     			transition_in(line4.$$.fragment, local);
+    			transition_in(line5.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -7815,6 +7833,7 @@ var app = (function () {
     			transition_out(line2.$$.fragment, local);
     			transition_out(line3.$$.fragment, local);
     			transition_out(line4.$$.fragment, local);
+    			transition_out(line5.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -7827,6 +7846,8 @@ var app = (function () {
     			destroy_component(line3, detaching);
     			if (detaching) detach_dev(t3);
     			destroy_component(line4, detaching);
+    			if (detaching) detach_dev(t4);
+    			destroy_component(line5, detaching);
     		}
     	};
 
