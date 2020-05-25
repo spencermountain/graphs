@@ -1,6 +1,7 @@
 <script>
   import Head from '../../components/Head.svelte'
   import Foot from '../../components/Foot.svelte'
+
   import {
     Timeline,
     Column,
@@ -9,12 +10,13 @@
     Ticks,
     Label,
     Now,
+    WideLabel,
   } from '/Users/spencer/mountain/somehow-timeline/src'
   import mayors from './data'
   let year = new Date().getFullYear()
-  let start = 'Jan 1 1900'
+  let start = 'Jan 1 1834'
   let end = 'Dec 31 2030'
-  let height = 1800
+  let height = 3500
   export let title = 'Mayors of Toronto'
 </script>
 
@@ -28,6 +30,7 @@
   <Head {title} num="06" />
   <div class="m3">
     <Timeline {start} {end} {height} {title}>
+      <WideLabel date="July 1, 1867" color="lightgrey" label="Confederation" />
       <Ticks every="decade" />
       <Ticks every="year" size="8px" color="lightgrey" underline={false} />
       <!-- <Column width="2px">
@@ -43,11 +46,11 @@
           <Line
             space="15px"
             width="3px"
-            start={mayor[1]}
+            start={mayor.start}
             size="14px"
-            end={mayor[2]}
+            end={mayor.end}
             color={colors.combos.dupont[i % 6]}
-            label={mayor[0]} />
+            label={mayor.name} />
         {/each}
       </Column>
 
@@ -82,6 +85,13 @@
           color="rose"
           opacity="0.5"
           label="WW1" />
+        <Line
+          space="15px"
+          start="1889"
+          end="1899"
+          color="rose"
+          opacity="0.5"
+          label="(Old) City Hall" />
         <Line
           space="15px"
           start="September 13 1939"
