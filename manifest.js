@@ -114,5 +114,10 @@ module.exports = {
       title: 'Mayors of Toronto',
       thumb: 'thumb.png',
     },
+    {
+      num: 'rocket-launches',
+      title: 'Rocket Launches',
+      thumb: 'thumb.png',
+    },
   ],
 }
