@@ -61,7 +61,7 @@
           label="WW2" />
       </Column>
 
-      <Column width="270px">
+      <Column width="250px">
         {#each mayors as mayor, i}
           <Line
             space="15px"
@@ -125,7 +125,7 @@
           opacity="0.5"
           label="Finch West" />
       </Column>
-      <Column width="75px">
+      <Column width="150px">
 
         <Line
           space="15px"
@@ -176,6 +176,32 @@
 
       </Column>
 
+      <Column width="30px">
+        <Line
+          start="October 3, 1957"
+          end="February 28, 1964"
+          label="Pearson #1"
+          color="purple"
+          opacity="0.7"
+          side="left"
+          align="left" />
+        <Line
+          start="1970"
+          end="June 15, 1972"
+          label="Terminal 2"
+          color="purple"
+          opacity="0.7"
+          side="left"
+          align="left" />
+        <Line
+          start="1989"
+          end="February 21 1991"
+          label="Terminal 3"
+          color="purple"
+          opacity="0.7"
+          side="left"
+          align="left" />
+      </Column>
       <!-- population -->
       <!-- <Column width="200px">
           <Area data={population} width="120" color="slategrey" opacity="0.6" />
