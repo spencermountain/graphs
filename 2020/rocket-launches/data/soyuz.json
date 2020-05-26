@@ -748,10 +748,6 @@
     "name": "Kosmos 118 (Meteor)"
   },
   {
-    "date": "Voskhod (11A57)",
-    "name": "LC-41/1, Plesetsk"
-  },
-  {
     "date": "R-7A Semyorka (8K74)",
     "name": "LC-1/5, Baikonur"
   },
@@ -919,10 +915,7 @@
     "date": "17 June 1967",
     "name": "Kosmos 167 (Venera)"
   },
-  {
-    "date": "Voskhod (11A57)",
-    "name": "LC-41/1, Plesetsk"
-  },
+
   {
     "date": "4 July 1967",
     "name": "Ya15001-05"
@@ -1436,10 +1429,6 @@
     "name": "Kosmos 353 (Zenit-2M)"
   },
   {
-    "date": "Voskhod (11A57)",
-    "name": "LC-43/4, Plesetsk"
-  },
-  {
     "date": "7 August 1970",
     "name": "Kosmos 355 (Zenit-4)"
   },
@@ -1548,10 +1537,6 @@
     "name": "Kosmos 399 (Zenit-4M)"
   },
   {
-    "date": "Voskhod (11A57)",
-    "name": "LC-43/4, Plesetsk"
-  },
-  {
     "date": "27 March 1971",
     "name": "Kosmos 401 (Zenit-4M)"
   },
@@ -1599,10 +1584,7 @@
     "date": "24 June 1971",
     "name": "Kosmos 428 (Zenit-2M)"
   },
-  {
-    "date": "Voskhod (11A57)",
-    "name": "LC-43/3, Plesetsk"
-  },
+
   {
     "date": "16 July 1971",
     "name": "Meteor-1-9"
@@ -1631,10 +1613,7 @@
     "date": "12 August 1971",
     "name": "Kosmos 434 (Lunny Korabl)"
   },
-  {
-    "date": "Voskhod (11A57)",
-    "name": "LC-31/6, Baikonur"
-  },
+
   {
     "date": "14 September 1971",
     "name": "Kosmos 438 (Zenit-4MK)"
@@ -1670,10 +1649,6 @@
   {
     "date": "24 November 1971",
     "name": "Molniya-2-1"
-  },
-  {
-    "date": "Voskhod (11A57)",
-    "name": "LC-43/4, Plesetsk"
   },
   {
     "date": "6 December 1971",
@@ -1828,10 +1803,6 @@
     "name": "Kosmos 517 (Zenit-2M)"
   },
   {
-    "date": "Voskhod (11A57)",
-    "name": "LC-43/4, Plesetsk"
-  },
-  {
     "date": "15 September 1972",
     "name": "Kosmos 518 (Zenit-2M)"
   },
@@ -1979,10 +1950,7 @@
     "date": "27 June 1973",
     "name": "Kosmos 576 (Zenit-4MT)"
   },
-  {
-    "date": "Voskhod (11A57)",
-    "name": "LC-43/3, Plesetsk"
-  },
+
   {
     "date": "11 July 1973",
     "name": "Molniya 2-6"
@@ -2142,10 +2110,6 @@
   {
     "date": "11 April 1974",
     "name": "Kosmos 640 (Zenit-2M)"
-  },
-  {
-    "date": "Voskhod (11A57)",
-    "name": "LC-31/6, Baikonur"
   },
   {
     "date": "20 April 1974",
@@ -2796,10 +2760,6 @@
     "name": "Molniya 2-17"
   },
   {
-    "date": "Soyuz-U (11A511U)",
-    "name": "LC-31/6, Baikonur"
-  },
-  {
     "date": "26 February 1977",
     "name": "Kosmos 895 (Tselina-D)"
   },
@@ -3260,10 +3220,6 @@
     "name": "Kosmos 1077 (Tselina-D)"
   },
   {
-    "date": "Soyuz-U (11A511U)",
-    "name": "LC-41/1, Plesetsk"
-  },
-  {
     "date": "22 February 1979",
     "name": "Kosmos 1078 (Zenit-4MKM)"
   },
@@ -3434,10 +3390,6 @@
   {
     "date": "5 October 1979",
     "name": "Kosmos 1139 (Zenit-4MT)"
-  },
-  {
-    "date": "Soyuz-U (11A511U)",
-    "name": "LC-43/3, Plesetsk"
   },
   {
     "date": "20 October 1979",
@@ -7605,10 +7557,6 @@
     "name": "Progress MS-01"
   },
   {
-    "date": "Date / time (UTC)",
-    "name": "Payload"
-  },
-  {
     "date": "7 February 2016",
     "name": "Kosmos 2514 (GLONASS-M)"
   },
@@ -7663,10 +7611,6 @@
   {
     "date": "1 December 2016",
     "name": "Progress MS-04"
-  },
-  {
-    "date": "Date / time (UTC)",
-    "name": "Payload"
   },
   {
     "date": "28 January 2017",
@@ -7728,10 +7672,7 @@
     "date": "17 December 2017",
     "name": "Soyuz MS-07"
   },
-  {
-    "date": "Date / time (UTC)",
-    "name": "Payload"
-  },
+
   {
     "date": "1 February 2018",
     "name": "Kanopus-V-3 Kanopus-V-4 9 cubesats"
@@ -7795,10 +7736,6 @@
   {
     "date": "27 December 2018",
     "name": "Kanopus-V-5 Kanopus-V-6 26 cubesats"
-  },
-  {
-    "date": "Date / time (UTC)",
-    "name": "Payload"
   },
   {
     "date": "21 February 2019",

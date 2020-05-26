@@ -52,10 +52,6 @@
     "name": "Kosmos 1980 (Tselina-2)"
   },
   {
-    "date": "Date / time (UTC)",
-    "name": "Payload"
-  },
-  {
     "date": "22 May 1990",
     "name": "Kosmos 2082 (Tselina-2)"
   },
@@ -104,10 +100,6 @@
     "name": "Kosmos 2297 (Tselina-2)"
   },
   {
-    "date": "Date / time (UTC)",
-    "name": "Payload"
-  },
-  {
     "date": "31 October 1995",
     "name": "Kosmos 2322 (Tselina-2)"
   },
@@ -143,10 +135,7 @@
     "date": "10 October 1999",
     "name": "DirecTV-1R"
   },
-  {
-    "date": "Date / time (UTC)",
-    "name": "Payload"
-  },
+
   {
     "date": "3 February 2000",
     "name": "Kosmos 2369 (Tselina-2)"
@@ -210,10 +199,6 @@
   {
     "date": "29 June 2004",
     "name": "APSTAR-V/Telstar 18"
-  },
-  {
-    "date": "Date / time (UTC)",
-    "name": "Payload"
   },
   {
     "date": "1 March 2005",
@@ -298,10 +283,6 @@
   {
     "date": "30 November 2009",
     "name": "Intelsat 15"
-  },
-  {
-    "date": "Date / time (UTC)",
-    "name": "Payload"
   },
   {
     "date": "20 January 2011",

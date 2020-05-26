@@ -58,7 +58,7 @@
 
       <Column width="75px" label="Shuttle">
         {#each shuttle as rocket}
-          <Dash start={rocket.date} color="pink" opacity="0.5" dotted={false} />
+          <Dash start={rocket.date} color="pink" opacity="0.7" dotted={false} />
         {/each}
       </Column>
 
