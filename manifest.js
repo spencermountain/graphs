@@ -119,5 +119,10 @@ module.exports = {
       title: 'Rocket Launches',
       thumb: 'thumb.png',
     },
+    {
+      num: 'nhl-playoffs',
+      title: 'NHL playoffs by year',
+      thumb: 'thumb.png',
+    },
   ],
 }

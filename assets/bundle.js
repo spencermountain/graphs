@@ -128,7 +128,7 @@ module.exports = {
     thumb: 'thumb.png'
   }, {
     num: 'skydome-roof-by-year',
-    title: 'Skydome roof by year',
+    title: 'Skydome roof',
     thumb: 'thumb.png'
   }, {
     num: 'toronto-streets',
@@ -141,6 +141,10 @@ module.exports = {
   }, {
     num: 'rocket-launches',
     title: 'Rocket Launches',
+    thumb: 'thumb.png'
+  }, {
+    num: 'nhl-playoffs',
+    title: 'NHL playoffs by year',
     thumb: 'thumb.png'
   }]
 };

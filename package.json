@@ -38,9 +38,11 @@
     "got": "11.1.4",
     "htm": "^3.0.4",
     "kld-intersections": "^0.7.0",
+    "slow": "^1.1.0",
     "somehow-maps": "^1.0.0",
     "spacetime": "^6.4.3",
-    "vhtml": "^2.2.0"
+    "vhtml": "^2.2.0",
+    "wtf_wikipedia": "^8.3.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "11.1.0",
