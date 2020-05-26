@@ -1,0 +1,358 @@
+[
+  {
+    "date": "13 April 1985",
+    "name": "EPN 03.0694 #1 (Tselina-2 mass simulator)"
+  },
+  {
+    "date": "21 June 1985",
+    "name": "EPN 03.0694 #2 (Tselina-2 mass simulator)"
+  },
+  {
+    "date": "22 October 1985",
+    "name": "Kosmos 1697 (EPN 03.0694 #3) (Tselina-2 mass simulator)"
+  },
+  {
+    "date": "28 December 1985",
+    "name": "Kosmos 1714 (Tselina-2)"
+  },
+  {
+    "date": "30 July 1986",
+    "name": "Kosmos 1767 (EPN 03.0695 #1) (Mass simulator)"
+  },
+  {
+    "date": "22 October 1986",
+    "name": "Kosmos 1786 (Taifun-1B)"
+  },
+  {
+    "date": "14 February 1987",
+    "name": "Kosmos 1820 (EPN 03.0695 #2) (Mass simulator)"
+  },
+  {
+    "date": "18 March 1987",
+    "name": "Kosmos 1833 (EPN 03.0694 #4) (Tselina-2 mass simulator)"
+  },
+  {
+    "date": "13 May 1987",
+    "name": "Kosmos 1844 (Tselina-2)"
+  },
+  {
+    "date": "1 August 1987",
+    "name": "Kosmos 1871 (EPN 03.0695 #3) (Mass simulator)"
+  },
+  {
+    "date": "28 August 1987",
+    "name": "Kosmos 1873 (EPN 03.0695 #4) (Mass simulator)"
+  },
+  {
+    "date": "15 May 1988",
+    "name": "Kosmos 1943 (Tselina-2)"
+  },
+  {
+    "date": "23 November 1988",
+    "name": "Kosmos 1980 (Tselina-2)"
+  },
+  {
+    "date": "Date / time (UTC)",
+    "name": "Payload"
+  },
+  {
+    "date": "22 May 1990",
+    "name": "Kosmos 2082 (Tselina-2)"
+  },
+  {
+    "date": "4 October 1990",
+    "name": "Tselina-2"
+  },
+  {
+    "date": "30 August 1991",
+    "name": "Tselina-2"
+  },
+  {
+    "date": "5 February 1992",
+    "name": "Tselina-2"
+  },
+  {
+    "date": "17 November 1992",
+    "name": "Kosmos 2219 (Tselina-2)"
+  },
+  {
+    "date": "25 December 1992",
+    "name": "Kosmos 2227 (Tselina-2)"
+  },
+  {
+    "date": "26 March 1993",
+    "name": "Kosmos 2237 (Tselina-2)"
+  },
+  {
+    "date": "16 September 1993",
+    "name": "Kosmos 2263 (Tselina-2)"
+  },
+  {
+    "date": "23 April 1994",
+    "name": "Kosmos 2278 (Tselina-2)"
+  },
+  {
+    "date": "26 August 1994",
+    "name": "Kosmos 2290 (Orlets-2)"
+  },
+  {
+    "date": "4 November 1994",
+    "name": "Resurs-O1 No.3"
+  },
+  {
+    "date": "24 November 1994",
+    "name": "Kosmos 2297 (Tselina-2)"
+  },
+  {
+    "date": "Date / time (UTC)",
+    "name": "Payload"
+  },
+  {
+    "date": "31 October 1995",
+    "name": "Kosmos 2322 (Tselina-2)"
+  },
+  {
+    "date": "4 September 1996",
+    "name": "Kosmos 2333 (Tselina-2)"
+  },
+  {
+    "date": "20 May 1997",
+    "name": "Tselina-2"
+  },
+  {
+    "date": "10 July 1998",
+    "name": "Resurs-O1 No.4 TMSat Techsat 1B FASat Bravo Safir 2 OHB-System WESTPAC-1"
+  },
+  {
+    "date": "28 July 1998",
+    "name": "Kosmos 2360 (Tselina-2)"
+  },
+  {
+    "date": "9 September 1998",
+    "name": "Globalstar"
+  },
+  {
+    "date": "28 March 1999",
+    "name": "DemoSat"
+  },
+  {
+    "date": "17 July 1999",
+    "name": "Okean-O No.1"
+  },
+  {
+    "date": "10 October 1999",
+    "name": "DirecTV-1R"
+  },
+  {
+    "date": "Date / time (UTC)",
+    "name": "Payload"
+  },
+  {
+    "date": "3 February 2000",
+    "name": "Kosmos 2369 (Tselina-2)"
+  },
+  {
+    "date": "12 March 2000",
+    "name": "ICO F-1"
+  },
+  {
+    "date": "28 July 2000",
+    "name": "PAS-9"
+  },
+  {
+    "date": "25 September 2000",
+    "name": "Kosmos 2372 (Orlets-2)"
+  },
+  {
+    "date": "21 October 2000",
+    "name": "Thuraya 1"
+  },
+  {
+    "date": "18 March 2001",
+    "name": "XM-2 (XM Rock)"
+  },
+  {
+    "date": "8 May 2001",
+    "name": "XM-1 (XM Roll)"
+  },
+  {
+    "date": "10 December 2001",
+    "name": "Meteor-3M No.1 Kompass 1 Badr B MAROC-TUBSAT REFLECTOR"
+  },
+  {
+    "date": "15 June 2002",
+    "name": "Galaxy 3C"
+  },
+  {
+    "date": "10 June 2003",
+    "name": "Thuraya 2"
+  },
+  {
+    "date": "8 August 2003",
+    "name": "EchoStar IX"
+  },
+  {
+    "date": "1 October 2003",
+    "name": "Galaxy 13/Horizons 1"
+  },
+  {
+    "date": "11 January 2004",
+    "name": "Telstar 14"
+  },
+  {
+    "date": "4 May 2004",
+    "name": "DirecTV-7S"
+  },
+  {
+    "date": "10 June 2004",
+    "name": "Kosmos 2406 (Tselina-2)"
+  },
+  {
+    "date": "29 June 2004",
+    "name": "APSTAR-V/Telstar 18"
+  },
+  {
+    "date": "Date / time (UTC)",
+    "name": "Payload"
+  },
+  {
+    "date": "1 March 2005",
+    "name": "XM-3 (XM Rhythm)"
+  },
+  {
+    "date": "26 April 2005",
+    "name": "Spaceway 1"
+  },
+  {
+    "date": "23 June 2005",
+    "name": "Intelsat Americas 8"
+  },
+  {
+    "date": "8 November 2005",
+    "name": "Inmarsat-4 F2"
+  },
+  {
+    "date": "15 February 2006",
+    "name": "EchoStar X"
+  },
+  {
+    "date": "12 April 2006",
+    "name": "JCSat 9"
+  },
+  {
+    "date": "18 June 2006",
+    "name": "Galaxy 16"
+  },
+  {
+    "date": "22 August 2006",
+    "name": "Koreasat 5"
+  },
+  {
+    "date": "30 October 2006",
+    "name": "XM-4 (XM Blues)"
+  },
+  {
+    "date": "30 January 2007",
+    "name": "NSS-8"
+  },
+  {
+    "date": "29 June 2007",
+    "name": "Kosmos 2428 (Tselina-2)"
+  },
+  {
+    "date": "15 January 2008",
+    "name": "Thuraya 3"
+  },
+  {
+    "date": "19 March 2008",
+    "name": "DirecTV-11"
+  },
+  {
+    "date": "28 April 2008",
+    "name": "Amos-3"
+  },
+  {
+    "date": "21 May 2008",
+    "name": "Galaxy 18"
+  },
+  {
+    "date": "16 July 2008",
+    "name": "EchoStar XI"
+  },
+  {
+    "date": "24 September 2008",
+    "name": "Galaxy 19"
+  },
+  {
+    "date": "26 February 2009",
+    "name": "Telstar 11N"
+  },
+  {
+    "date": "20 April 2009",
+    "name": "SICRAL 1B"
+  },
+  {
+    "date": "21 June 2009",
+    "name": "MEASAT-3a"
+  },
+  {
+    "date": "30 November 2009",
+    "name": "Intelsat 15"
+  },
+  {
+    "date": "Date / time (UTC)",
+    "name": "Payload"
+  },
+  {
+    "date": "20 January 2011",
+    "name": "Elektro-L No.1"
+  },
+  {
+    "date": "18 July 2011",
+    "name": "Spektr-R"
+  },
+  {
+    "date": "24 September 2011",
+    "name": "Atlantic Bird 7"
+  },
+  {
+    "date": "5 October 2011",
+    "name": "Intelsat 18"
+  },
+  {
+    "date": "8 November 2011",
+    "name": "Fobos-Grunt"
+  },
+  {
+    "date": "1 June 2012",
+    "name": "Intelsat 19"
+  },
+  {
+    "date": "19 August 2012",
+    "name": "Intelsat 21"
+  },
+  {
+    "date": "3 December 2012",
+    "name": "Eutelsat 70B"
+  },
+  {
+    "date": "1 February 2013",
+    "name": "Intelsat 27"
+  },
+  {
+    "date": "31 August 2013",
+    "name": "Amos-4"
+  },
+  {
+    "date": "26 May 2014",
+    "name": "Eutelsat 3B"
+  },
+  {
+    "date": "11 December 2015",
+    "name": "Elektro-L No.2"
+  },
+  {
+    "date": "26 December 2017",
+    "name": "AngoSat 1"
+  }
+]

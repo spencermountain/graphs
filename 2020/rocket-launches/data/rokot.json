@@ -1,0 +1,142 @@
+[
+  {
+    "date": "20 November 1990",
+    "name": "Experimental Payload"
+  },
+  {
+    "date": "20 December 1991",
+    "name": "Experimental Payload"
+  },
+  {
+    "date": "26 December 1994",
+    "name": "Radio-ROSTO"
+  },
+  {
+    "date": "22 December 1999",
+    "name": "RSVN-40"
+  },
+  {
+    "date": "16 May 2000",
+    "name": "SimSat-1 and 2"
+  },
+  {
+    "date": "17 March 2002",
+    "name": "GRACE-1 and 2"
+  },
+  {
+    "date": "20 June 2002",
+    "name": "Iridium-97 and 98"
+  },
+  {
+    "date": "30 June 2003",
+    "name": "MIMOSA DTUsat"
+  },
+  {
+    "date": "30 October 2003",
+    "name": "SERVIS-1"
+  },
+  {
+    "date": "26 August 2005",
+    "name": "Monitor-E"
+  },
+  {
+    "date": "8 October 2005",
+    "name": "CryoSat"
+  },
+  {
+    "date": "28 July 2006",
+    "name": "KOMPSAT 2"
+  },
+  {
+    "date": "23 May 2008",
+    "name": "Kosmos 2437 Kosmos 2438 Kosmos 2439 (3X Strela-3) Yubileiny"
+  },
+  {
+    "date": "17 March 2009",
+    "name": "GOCE"
+  },
+  {
+    "date": "6 July 2009",
+    "name": "Kosmos 2451 Kosmos 2452 Kosmos 2453 (3X Strela-3)"
+  },
+  {
+    "date": "2 November 2009",
+    "name": "SMOS PROBA-2"
+  },
+  {
+    "date": "2 June 2010",
+    "name": "SERVIS-2"
+  },
+  {
+    "date": "8 September 2010",
+    "name": "Gonets-M-2 Kosmos 2467 Kosmos 2468 (2X Strela-3)"
+  },
+  {
+    "date": "1 February 2011",
+    "name": "Geo-IK-2 No.11"
+  },
+  {
+    "date": "28 July 2012",
+    "name": "Gonets-M-3 Gonets-M-4 Kosmos 2481 (Strela-3) MiR"
+  },
+  {
+    "date": "15 January 2013",
+    "name": "Kosmos 2482 Kosmos 2483 Kosmos 2484 (3X Strela-3M)"
+  },
+  {
+    "date": "11 September 2013",
+    "name": "Gonets-M-5 Gonets-M-6 Gonets-M-7"
+  },
+  {
+    "date": "22 November 2013",
+    "name": "Swarm A/B/C"
+  },
+  {
+    "date": "25 December 2013",
+    "name": "Kosmos 2488 Kosmos 2489 Kosmos 2490 (3X Strela-3M) Kosmos 2491"
+  },
+  {
+    "date": "23 May 2014",
+    "name": "Kosmos 2496 Kosmos 2497 Kosmos 2498 (3X Strela-3M) Kosmos 2499"
+  },
+  {
+    "date": "3 July 2014",
+    "name": "Gonets-M-8 Gonets-M-9 Gonets-M-10"
+  },
+  {
+    "date": "31 March 2015",
+    "name": "Gonets-M-11 Gonets-M-12 Gonets-M-13 Kosmos 2504"
+  },
+  {
+    "date": "23 September 2015",
+    "name": "Kosmos 2507 Kosmos 2508 Kosmos 2509 (3X Strela-3M)"
+  },
+  {
+    "date": "16 February 2016",
+    "name": "Sentinel-3A"
+  },
+  {
+    "date": "4 June 2016",
+    "name": "Kosmos 2517 (Geo-IK-2 No.12)"
+  },
+  {
+    "date": "13 October 2017",
+    "name": "Sentinel-5 Precursor"
+  },
+  {
+    "date": "25 April 2018",
+    "name": "Sentinel-3B"
+  },
+  {
+    "date": "30 November 2018",
+    "name": "Kosmos 2530 Kosmos 2531 Kosmos 2532 (3X Strela-3M)"
+  },
+  {
+    "date": "30 August 2019",
+    "name": "Kosmos 2540 (Geo-IK-2 No.13)"
+  },
+  {
+    "date": "26 December 2019",
+    "name": "Gonets-M-14 Gonets-M-15 Gonets-M-16 BLITS-M"
+  }
+]
