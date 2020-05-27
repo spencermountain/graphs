@@ -12,10 +12,12 @@
   } from '/Users/spencer/mountain/somehow-timeline/src'
   export let title = 'NHL roster changes'
   export let sub = ''
-  let start = 'jan 1 2009'
+  let start = 'nov 1 2008'
   let end = 'dec 31 2019'
   let height = '1500'
-  let cols = colors.combos.juno.concat(colors.combos.bloor).concat(colors.combos.roma)
+  // let cols = colors.combos.yukon.concat(colors.combos.bloor).concat(colors.combos.roma)
+  let cols = [].concat(colors.combos.yukon, colors.combos.yukon, colors.combos.yukon)
+  // cols = []
   // let years = Object.keys(data)
 </script>
 
@@ -64,12 +66,14 @@
       <Ticks every="decade" />
       <Ticks every="year" size="8px" color="lightgrey" underline={false} />
       {#each byCol as list, i}
-        <Column width="75px">
+        <Column width="50px">
           {#each list as player, i}
             <Line
               start={'jan 1 ' + player.start}
               duration={player.years + ' years'}
-              label={player.name} />
+              label={player.name}
+              opacity="0.5"
+              color={i % 2 === 0 ? 'blue' : 'cherry'} />
           {/each}
         </Column>
       {/each}

@@ -6996,7 +6996,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (68:10) {#each list as player, i}
+    // (70:10) {#each list as player, i}
     function create_each_block_1(ctx) {
     	let current;
 
@@ -7004,7 +7004,9 @@ var app = (function () {
     			props: {
     				start: "jan 1 " + /*player*/ ctx[9].start,
     				duration: /*player*/ ctx[9].years + " years",
-    				label: /*player*/ ctx[9].name
+    				label: /*player*/ ctx[9].name,
+    				opacity: "0.5",
+    				color: /*i*/ ctx[8] % 2 === 0 ? "blue" : "cherry"
     			},
     			$$inline: true
     		});
@@ -7036,14 +7038,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(68:10) {#each list as player, i}",
+    		source: "(70:10) {#each list as player, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (67:8) <Column width="75px">
+    // (69:8) <Column width="50px">
     function create_default_slot_1(ctx) {
     	let t;
     	let current;
@@ -7132,20 +7134,20 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(67:8) <Column width=\\\"75px\\\">",
+    		source: "(69:8) <Column width=\\\"50px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (66:6) {#each byCol as list, i}
+    // (68:6) {#each byCol as list, i}
     function create_each_block$1(ctx) {
     	let current;
 
     	const column = new Column({
     			props: {
-    				width: "75px",
+    				width: "50px",
     				$$slots: { default: [create_default_slot_1] },
     				$$scope: { ctx }
     			},
@@ -7187,14 +7189,14 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(66:6) {#each byCol as list, i}",
+    		source: "(68:6) {#each byCol as list, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (63:4) <Timeline {start} {end} {height}>
+    // (65:4) <Timeline {start} {end} {height}>
     function create_default_slot(ctx) {
     	let t0;
     	let t1;
@@ -7319,7 +7321,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(63:4) <Timeline {start} {end} {height}>",
+    		source: "(65:4) <Timeline {start} {end} {height}>",
     		ctx
     	});
 
@@ -7373,10 +7375,10 @@ var app = (function () {
     			t3 = space();
     			create_component(foot.$$.fragment);
     			attr_dev(div0, "class", "m3 svelte-1jjzmoh");
-    			add_location(div0, file$7, 60, 2, 1230);
+    			add_location(div0, file$7, 62, 2, 1335);
     			attr_dev(div1, "class", "m3 svelte-1jjzmoh");
-    			add_location(div1, file$7, 61, 2, 1262);
-    			add_location(div2, file$7, 58, 0, 1197);
+    			add_location(div1, file$7, 63, 2, 1367);
+    			add_location(div2, file$7, 60, 0, 1302);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7446,10 +7448,13 @@ var app = (function () {
     function instance$7($$self, $$props, $$invalidate) {
     	let { title = "NHL roster changes" } = $$props;
     	let { sub = "" } = $$props;
-    	let start = "jan 1 2009";
+    	let start = "nov 1 2008";
     	let end = "dec 31 2019";
     	let height = "1500";
-    	let cols = spencerColor.combos.juno.concat(spencerColor.combos.bloor).concat(spencerColor.combos.roma);
+
+    	// let cols = colors.combos.yukon.concat(colors.combos.bloor).concat(colors.combos.roma)
+    	let cols = [].concat(spencerColor.combos.yukon, spencerColor.combos.yukon, spencerColor.combos.yukon);
+
     	const writable_props = ["title", "sub"];
 
     	Object.keys($$props).forEach(key => {
