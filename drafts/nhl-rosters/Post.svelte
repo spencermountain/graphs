@@ -1,7 +1,7 @@
 <script>
   import Head from '../../components/Head.svelte'
   import Foot from '../../components/Foot.svelte'
-  import data from './data/cleanup.json'
+  import byCol from './data/byCol.json'
   import {
     Timeline,
     Column,
@@ -15,8 +15,8 @@
   let start = 'jan 1 2009'
   let end = 'dec 31 2019'
   let height = '1500'
-
-  let years = Object.keys(data)
+  let cols = colors.combos.juno.concat(colors.combos.bloor).concat(colors.combos.roma)
+  // let years = Object.keys(data)
 </script>
 
 <style>
@@ -60,22 +60,20 @@
   <Head {title} {sub} />
   <div class="m3">{title}</div>
   <div class="m3">
-    {#each years as year, i}
-      <div class="row">
-        <div class="year">{year}</div>
-        {#each data[year] as a, o}
-          {#if years[i - 1] && data[years[i - 1]][o] === a}
-            <div class="player">
-              <div class="name">{''}</div>
-            </div>
-          {:else}
-            <div class="player">
-              <div class="name">{a}</div>
-            </div>
-          {/if}
-        {/each}
-      </div>
-    {/each}
+    <Timeline {start} {end} {height}>
+      <Ticks every="decade" />
+      <Ticks every="year" size="8px" color="lightgrey" underline={false} />
+      {#each byCol as list, i}
+        <Column width="75px">
+          {#each list as player, i}
+            <Line
+              start={'jan 1 ' + player.start}
+              duration={player.years + ' years'}
+              label={player.name} />
+          {/each}
+        </Column>
+      {/each}
+    </Timeline>
   </div>
   <Foot {title} />
 </div>

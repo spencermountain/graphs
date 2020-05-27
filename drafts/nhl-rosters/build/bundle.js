@@ -190,6 +190,19 @@ var app = (function () {
     }
     const outroing = new Set();
     let outros;
+    function group_outros() {
+        outros = {
+            r: 0,
+            c: [],
+            p: outros // parent group
+        };
+    }
+    function check_outros() {
+        if (!outros.r) {
+            run_all(outros.c);
+        }
+        outros = outros.p;
+    }
     function transition_in(block, local) {
         if (block && block.i) {
             outroing.delete(block);
@@ -212,12 +225,6 @@ var app = (function () {
             block.o(local);
         }
     }
-
-    const globals = (typeof window !== 'undefined'
-        ? window
-        : typeof globalThis !== 'undefined'
-            ? globalThis
-            : global);
     function create_component(block) {
         block && block.c();
     }
@@ -723,250 +730,618 @@ var app = (function () {
     	}
     }
 
-    var data = {
-    	"2009": [
-    	"Tomas Kaberle",
-    	"Francois Beauchemin",
-    	"Nikolai Kulemin",
-    	"Colton Orr",
-    	"Luke Schenn",
-    	"Phil Kessel",
-    	"Wayne Primeau",
-    	"Rickard Wallin",
-    	"Alexei Ponikarovsky",
-    	"John Mitchell",
-    	"Mikhail Grabovski",
-    	"Lee Stempniak",
-    	"Ian White",
-    	"Matt Stajan",
-    	"Niklas Hagman",
-    	"Jason Blake",
-    	"Garnet Exelby",
-    	"Jamal Mayers",
-    	"Carl Gunnarsson",
-    	"Viktor Stalberg"
-    ],
-    	"2010": [
-    	"Tomas Kaberle",
-    	"Francois Beauchemin",
-    	"Nikolai Kulemin",
-    	"Colton Orr",
-    	"Luke Schenn",
-    	"Phil Kessel",
-    	"Tyler Bozak",
-    	"Mike Komisarek",
-    	"Tim Brent",
-    	"John Mitchell",
-    	"Mikhail Grabovski",
-    	"Clarke MacArthur",
-    	"Kris Versteeg",
-    	"Joey Crabb",
-    	"Fredrik Sjostrom",
-    	"Mike Brown",
-    	"Dion Phaneuf",
-    	"Colby Armstrong",
-    	"Carl Gunnarsson",
-    	"Darryl Boyce"
-    ],
-    	"2011": [
-    	"Dave Steckel",
-    	"Joffrey Lupul",
-    	"Nikolai Kulemin",
-    	"Colton Orr",
-    	"Luke Schenn",
-    	"Phil Kessel",
-    	"Tyler Bozak",
-    	"Mike Komisarek",
-    	"Tim Connolly",
-    	"Jake Gardiner",
-    	"Mikhail Grabovski",
-    	"Clarke MacArthur",
-    	"John-Michael Liles",
-    	"Joey Crabb",
-    	"Philippe Dupuis",
-    	"Mike Brown",
-    	"Dion Phaneuf",
-    	"Colby Armstrong",
-    	"Carl Gunnarsson",
-    	"Darryl Boyce"
-    ],
-    	"2012": [
-    	"Nazem Kadri",
-    	"Joffrey Lupul",
-    	"Nikolai Kulemin",
-    	"Colton Orr",
-    	"Frazer McLaren",
-    	"Phil Kessel",
-    	"Tyler Bozak",
-    	"Mike Komisarek",
-    	"Jay McClement",
-    	"Jake Gardiner",
-    	"Mikhail Grabovski",
-    	"Clarke MacArthur",
-    	"John-Michael Liles",
-    	"James van Riemsdyk",
-    	"Mike Kostka",
-    	"Mark Fraser",
-    	"Dion Phaneuf",
-    	"Leo Komarov",
-    	"Carl Gunnarsson",
-    	"Cody Franson"
-    ],
-    	"2013": [
-    	"Nazem Kadri",
-    	"Joffrey Lupul",
-    	"Nikolai Kulemin",
-    	"Colton Orr",
-    	"Frazer McLaren",
-    	"Phil Kessel",
-    	"Tyler Bozak",
-    	"Morgan Rielly",
-    	"Jay McClement",
-    	"Jake Gardiner",
-    	"Mason Raymond",
-    	"Peter Holland",
-    	"John-Michael Liles",
-    	"James van Riemsdyk",
-    	"Paul Ranger",
-    	"Mark Fraser",
-    	"Dion Phaneuf",
-    	"Troy Bodie",
-    	"Carl Gunnarsson",
-    	"Cody Franson"
-    ],
-    	"2014": [
-    	"Nazem Kadri",
-    	"Joffrey Lupul",
-    	"Mike Santorelli",
-    	"Colton Orr",
-    	"Roman Polak",
-    	"Phil Kessel",
-    	"Tyler Bozak",
-    	"Morgan Rielly",
-    	"Leo Komarov",
-    	"Jake Gardiner",
-    	"Richard Panik",
-    	"Peter Holland",
-    	"David Clarkson",
-    	"James van Riemsdyk",
-    	"David Booth",
-    	"Daniel Winnik",
-    	"Dion Phaneuf",
-    	"Troy Bodie",
-    	"Trevor Smith",
-    	"Cody Franson"
-    ],
-    	"2015": [
-    	"Nazem Kadri",
-    	"Joffrey Lupul",
-    	"Michael Grabner",
-    	"P. A. Parenteau",
-    	"Roman Polak",
-    	"Shawn Matthias",
-    	"Tyler Bozak",
-    	"Morgan Rielly",
-    	"Leo Komarov",
-    	"Jake Gardiner",
-    	"Matt Hunwick",
-    	"Peter Holland",
-    	"Martin Marincin",
-    	"James van Riemsdyk",
-    	"Brad Boyes",
-    	"Daniel Winnik",
-    	"Dion Phaneuf",
-    	"Byron Froese",
-    	"Mark Arcobello",
-    	"Rich Clune"
-    ],
-    	"2016": [
-    	"Nazem Kadri",
-    	"Matt Martin",
-    	"Auston Matthews",
-    	"William Nylander",
-    	"Roman Polak",
-    	"Mitch Marner",
-    	"Tyler Bozak",
-    	"Morgan Rielly",
-    	"Leo Komarov",
-    	"Jake Gardiner",
-    	"Matt Hunwick",
-    	"Peter Holland",
-    	"Martin Marincin",
-    	"James van Riemsdyk",
-    	"Connor Brown",
-    	"Nikita Zaitsev",
-    	"Zach Hyman",
-    	"Byron Froese",
-    	"Josh Leivo",
-    	"Nikita Soshnikov"
-    ],
-    	"2017": [
-    	"Nazem Kadri",
-    	"Matt Martin",
-    	"Auston Matthews",
-    	"William Nylander",
-    	"Roman Polak",
-    	"Mitch Marner",
-    	"Tyler Bozak",
-    	"Morgan Rielly",
-    	"Leo Komarov",
-    	"Jake Gardiner",
-    	"Patrick Marleau",
-    	"Ron Hainsey",
-    	"Martin Marincin",
-    	"James van Riemsdyk",
-    	"Connor Brown",
-    	"Nikita Zaitsev",
-    	"Zach Hyman",
-    	"Connor Carrick",
-    	"Josh Leivo",
-    	"Nikita Soshnikov"
-    ],
-    	"2018": [
-    	"Nazem Kadri",
-    	"Travis Dermott",
-    	"Auston Matthews",
-    	"William Nylander",
-    	"John Tavares",
-    	"Mitch Marner",
-    	"Kasperi Kapanen",
-    	"Morgan Rielly",
-    	"Andreas Johnsson",
-    	"Jake Gardiner",
-    	"Patrick Marleau",
-    	"Ron Hainsey",
-    	"Martin Marincin",
-    	"Igor Ozhiganov",
-    	"Connor Brown",
-    	"Nikita Zaitsev",
-    	"Zach Hyman",
-    	"Frederik Gauthier",
-    	"Josh Leivo",
-    	"Par Lindholm"
-    ],
-    	"2019": [
-    	"Tyson Barrie",
-    	"Travis Dermott",
-    	"Auston Matthews",
-    	"William Nylander",
-    	"John Tavares",
-    	"Mitch Marner",
-    	"Kasperi Kapanen",
-    	"Morgan Rielly",
-    	"Andreas Johnsson",
-    	"Alexander Kerfoot",
-    	"Justin Holl",
-    	"Jason Spezza",
-    	"Martin Marincin",
-    	"Trevor Moore",
-    	"Yegor Korshkov",
-    	"Pierre Engvall",
-    	"Zach Hyman",
-    	"Frederik Gauthier",
-    	"Jake Muzzin",
-    	"Dmytro Timashov"
-    ]
-    };
+    var byCol = [
+    	[
+    		{
+    			name: "Tomas Kaberle",
+    			years: 2,
+    			start: 2009,
+    			col: 0
+    		},
+    		{
+    			name: "Dave Steckel",
+    			years: 1,
+    			start: 2011,
+    			col: 0
+    		},
+    		{
+    			name: "Nazem Kadri",
+    			years: 7,
+    			start: 2012,
+    			col: 0
+    		},
+    		{
+    			name: "Tyson Barrie",
+    			years: 1,
+    			start: 2019,
+    			col: 0
+    		}
+    	],
+    	[
+    		{
+    			name: "Francois Beauchemin",
+    			years: 2,
+    			start: 2009,
+    			col: 1
+    		},
+    		{
+    			name: "Joffrey Lupul",
+    			years: 5,
+    			start: 2011,
+    			col: 1
+    		},
+    		{
+    			name: "Matt Martin",
+    			years: 2,
+    			start: 2016,
+    			col: 1
+    		},
+    		{
+    			name: "Travis Dermott",
+    			years: 2,
+    			start: 2018,
+    			col: 1
+    		}
+    	],
+    	[
+    		{
+    			name: "Nikolai Kulemin",
+    			years: 5,
+    			start: 2009,
+    			col: 2
+    		},
+    		{
+    			name: "Mike Santorelli",
+    			years: 1,
+    			start: 2014,
+    			col: 2
+    		},
+    		{
+    			name: "Michael Grabner",
+    			years: 1,
+    			start: 2015,
+    			col: 2
+    		},
+    		{
+    			name: "Auston Matthews",
+    			years: 4,
+    			start: 2016,
+    			col: 2
+    		}
+    	],
+    	[
+    		{
+    			name: "Colton Orr",
+    			years: 6,
+    			start: 2009,
+    			col: 3
+    		},
+    		{
+    			name: "P. A. Parenteau",
+    			years: 1,
+    			start: 2015,
+    			col: 3
+    		},
+    		{
+    			name: "William Nylander",
+    			years: 4,
+    			start: 2016,
+    			col: 3
+    		}
+    	],
+    	[
+    		{
+    			name: "Luke Schenn",
+    			years: 3,
+    			start: 2009,
+    			col: 4
+    		},
+    		{
+    			name: "Frazer McLaren",
+    			years: 2,
+    			start: 2012,
+    			col: 4
+    		},
+    		{
+    			name: "Roman Polak",
+    			years: 4,
+    			start: 2014,
+    			col: 4
+    		},
+    		{
+    			name: "John Tavares",
+    			years: 2,
+    			start: 2018,
+    			col: 4
+    		}
+    	],
+    	[
+    		{
+    			name: "Phil Kessel",
+    			years: 6,
+    			start: 2009,
+    			col: 5
+    		},
+    		{
+    			name: "Shawn Matthias",
+    			years: 1,
+    			start: 2015,
+    			col: 5
+    		},
+    		{
+    			name: "Mitch Marner",
+    			years: 4,
+    			start: 2016,
+    			col: 5
+    		}
+    	],
+    	[
+    		{
+    			name: "Wayne Primeau",
+    			years: 1,
+    			start: 2009,
+    			col: 6
+    		},
+    		{
+    			name: "Tyler Bozak",
+    			years: 8,
+    			start: 2010,
+    			col: 6
+    		},
+    		{
+    			name: "Kasperi Kapanen",
+    			years: 2,
+    			start: 2018,
+    			col: 6
+    		}
+    	],
+    	[
+    		{
+    			name: "Rickard Wallin",
+    			years: 1,
+    			start: 2009,
+    			col: 7
+    		},
+    		{
+    			name: "Mike Komisarek",
+    			years: 3,
+    			start: 2010,
+    			col: 7
+    		},
+    		{
+    			name: "Morgan Rielly",
+    			years: 7,
+    			start: 2013,
+    			col: 7
+    		}
+    	],
+    	[
+    		{
+    			name: "Alexei Ponikarovsky",
+    			years: 1,
+    			start: 2009,
+    			col: 8
+    		},
+    		{
+    			name: "Tim Brent",
+    			years: 1,
+    			start: 2010,
+    			col: 8
+    		},
+    		{
+    			name: "Tim Connolly",
+    			years: 1,
+    			start: 2011,
+    			col: 8
+    		},
+    		{
+    			name: "Jay McClement",
+    			years: 2,
+    			start: 2012,
+    			col: 8
+    		},
+    		{
+    			name: "Leo Komarov",
+    			years: 4,
+    			start: 2014,
+    			col: 8
+    		},
+    		{
+    			name: "Andreas Johnsson",
+    			years: 2,
+    			start: 2018,
+    			col: 8
+    		}
+    	],
+    	[
+    		{
+    			name: "John Mitchell",
+    			years: 2,
+    			start: 2009,
+    			col: 9
+    		},
+    		{
+    			name: "Jake Gardiner",
+    			years: 8,
+    			start: 2011,
+    			col: 9
+    		},
+    		{
+    			name: "Alexander Kerfoot",
+    			years: 1,
+    			start: 2019,
+    			col: 9
+    		}
+    	],
+    	[
+    		{
+    			name: "Mikhail Grabovski",
+    			years: 4,
+    			start: 2009,
+    			col: 10
+    		},
+    		{
+    			name: "Mason Raymond",
+    			years: 1,
+    			start: 2013,
+    			col: 10
+    		},
+    		{
+    			name: "Richard Panik",
+    			years: 1,
+    			start: 2014,
+    			col: 10
+    		},
+    		{
+    			name: "Matt Hunwick",
+    			years: 2,
+    			start: 2015,
+    			col: 10
+    		},
+    		{
+    			name: "Patrick Marleau",
+    			years: 2,
+    			start: 2017,
+    			col: 10
+    		},
+    		{
+    			name: "Justin Holl",
+    			years: 1,
+    			start: 2019,
+    			col: 10
+    		}
+    	],
+    	[
+    		{
+    			name: "Lee Stempniak",
+    			years: 1,
+    			start: 2009,
+    			col: 11
+    		},
+    		{
+    			name: "Clarke MacArthur",
+    			years: 3,
+    			start: 2010,
+    			col: 11
+    		},
+    		{
+    			name: "Peter Holland",
+    			years: 4,
+    			start: 2013,
+    			col: 11
+    		},
+    		{
+    			name: "Ron Hainsey",
+    			years: 2,
+    			start: 2017,
+    			col: 11
+    		},
+    		{
+    			name: "Jason Spezza",
+    			years: 1,
+    			start: 2019,
+    			col: 11
+    		}
+    	],
+    	[
+    		{
+    			name: "Ian White",
+    			years: 1,
+    			start: 2009,
+    			col: 12
+    		},
+    		{
+    			name: "Kris Versteeg",
+    			years: 1,
+    			start: 2010,
+    			col: 12
+    		},
+    		{
+    			name: "John-Michael Liles",
+    			years: 3,
+    			start: 2011,
+    			col: 12
+    		},
+    		{
+    			name: "David Clarkson",
+    			years: 1,
+    			start: 2014,
+    			col: 12
+    		},
+    		{
+    			name: "Martin Marincin",
+    			years: 5,
+    			start: 2015,
+    			col: 12
+    		}
+    	],
+    	[
+    		{
+    			name: "Matt Stajan",
+    			years: 1,
+    			start: 2009,
+    			col: 13
+    		},
+    		{
+    			name: "Joey Crabb",
+    			years: 2,
+    			start: 2010,
+    			col: 13
+    		},
+    		{
+    			name: "James van Riemsdyk",
+    			years: 6,
+    			start: 2012,
+    			col: 13
+    		},
+    		{
+    			name: "Igor Ozhiganov",
+    			years: 1,
+    			start: 2018,
+    			col: 13
+    		},
+    		{
+    			name: "Trevor Moore",
+    			years: 1,
+    			start: 2019,
+    			col: 13
+    		}
+    	],
+    	[
+    		{
+    			name: "Niklas Hagman",
+    			years: 1,
+    			start: 2009,
+    			col: 14
+    		},
+    		{
+    			name: "Fredrik Sjostrom",
+    			years: 1,
+    			start: 2010,
+    			col: 14
+    		},
+    		{
+    			name: "Philippe Dupuis",
+    			years: 1,
+    			start: 2011,
+    			col: 14
+    		},
+    		{
+    			name: "Mike Kostka",
+    			years: 1,
+    			start: 2012,
+    			col: 14
+    		},
+    		{
+    			name: "Paul Ranger",
+    			years: 1,
+    			start: 2013,
+    			col: 14
+    		},
+    		{
+    			name: "David Booth",
+    			years: 1,
+    			start: 2014,
+    			col: 14
+    		},
+    		{
+    			name: "Brad Boyes",
+    			years: 1,
+    			start: 2015,
+    			col: 14
+    		},
+    		{
+    			name: "Connor Brown",
+    			years: 3,
+    			start: 2016,
+    			col: 14
+    		},
+    		{
+    			name: "Yegor Korshkov",
+    			years: 1,
+    			start: 2019,
+    			col: 14
+    		}
+    	],
+    	[
+    		{
+    			name: "Jason Blake",
+    			years: 1,
+    			start: 2009,
+    			col: 15
+    		},
+    		{
+    			name: "Mike Brown",
+    			years: 2,
+    			start: 2010,
+    			col: 15
+    		},
+    		{
+    			name: "Mark Fraser",
+    			years: 2,
+    			start: 2012,
+    			col: 15
+    		},
+    		{
+    			name: "Daniel Winnik",
+    			years: 2,
+    			start: 2014,
+    			col: 15
+    		},
+    		{
+    			name: "Nikita Zaitsev",
+    			years: 3,
+    			start: 2016,
+    			col: 15
+    		},
+    		{
+    			name: "Pierre Engvall",
+    			years: 1,
+    			start: 2019,
+    			col: 15
+    		}
+    	],
+    	[
+    		{
+    			name: "Garnet Exelby",
+    			years: 1,
+    			start: 2009,
+    			col: 16
+    		},
+    		{
+    			name: "Dion Phaneuf",
+    			years: 6,
+    			start: 2010,
+    			col: 16
+    		},
+    		{
+    			name: "Zach Hyman",
+    			years: 4,
+    			start: 2016,
+    			col: 16
+    		}
+    	],
+    	[
+    		{
+    			name: "Jamal Mayers",
+    			years: 1,
+    			start: 2009,
+    			col: 17
+    		},
+    		{
+    			name: "Colby Armstrong",
+    			years: 2,
+    			start: 2010,
+    			col: 17
+    		},
+    		{
+    			name: "Leo Komarov",
+    			years: 1,
+    			start: 2012,
+    			col: 17
+    		},
+    		{
+    			name: "Troy Bodie",
+    			years: 2,
+    			start: 2013,
+    			col: 17
+    		},
+    		{
+    			name: "Byron Froese",
+    			years: 2,
+    			start: 2015,
+    			col: 17
+    		},
+    		{
+    			name: "Connor Carrick",
+    			years: 1,
+    			start: 2017,
+    			col: 17
+    		},
+    		{
+    			name: "Frederik Gauthier",
+    			years: 2,
+    			start: 2018,
+    			col: 17
+    		}
+    	],
+    	[
+    		{
+    			name: "Carl Gunnarsson",
+    			years: 5,
+    			start: 2009,
+    			col: 18
+    		},
+    		{
+    			name: "Trevor Smith",
+    			years: 1,
+    			start: 2014,
+    			col: 18
+    		},
+    		{
+    			name: "Mark Arcobello",
+    			years: 1,
+    			start: 2015,
+    			col: 18
+    		},
+    		{
+    			name: "Josh Leivo",
+    			years: 3,
+    			start: 2016,
+    			col: 18
+    		},
+    		{
+    			name: "Jake Muzzin",
+    			years: 1,
+    			start: 2019,
+    			col: 18
+    		}
+    	],
+    	[
+    		{
+    			name: "Viktor Stalberg",
+    			years: 1,
+    			start: 2009,
+    			col: 19
+    		},
+    		{
+    			name: "Darryl Boyce",
+    			years: 2,
+    			start: 2010,
+    			col: 19
+    		},
+    		{
+    			name: "Cody Franson",
+    			years: 3,
+    			start: 2012,
+    			col: 19
+    		},
+    		{
+    			name: "Rich Clune",
+    			years: 1,
+    			start: 2015,
+    			col: 19
+    		},
+    		{
+    			name: "Nikita Soshnikov",
+    			years: 2,
+    			start: 2016,
+    			col: 19
+    		},
+    		{
+    			name: "Par Lindholm",
+    			years: 1,
+    			start: 2018,
+    			col: 19
+    		},
+    		{
+    			name: "Dmytro Timashov",
+    			years: 1,
+    			start: 2019,
+    			col: 19
+    		}
+    	]
+    ];
 
     /* spencermountain/spacetime 6.4.3 Apache 2.0 */
     function createCommonjsModule(fn, module) {
@@ -1272,10 +1647,10 @@ var app = (function () {
     //prefixes for iana names..
     var _prefixes = ['africa', 'america', 'asia', 'atlantic', 'australia', 'brazil', 'canada', 'chile', 'europe', 'indian', 'mexico', 'pacific', 'antarctica', 'etc'];
 
-    var data$1 = getCjsExportFromNamespace(_build$1);
+    var data = getCjsExportFromNamespace(_build$1);
 
     var all = {};
-    Object.keys(data$1).forEach(function (k) {
+    Object.keys(data).forEach(function (k) {
       var split = k.split('|');
       var obj = {
         offset: Number(split[0]),
@@ -1286,7 +1661,7 @@ var app = (function () {
         obj.dst = split[2];
       }
 
-      var names = data$1[k].split(',');
+      var names = data[k].split(',');
       names.forEach(function (str) {
         str = str.replace(/(^[0-9]+)\//, function (before, num) {
           num = Number(num);
@@ -6605,14 +6980,12 @@ var app = (function () {
 
     /* drafts/nhl-rosters/Post.svelte generated by Svelte v3.22.3 */
 
-    const { Object: Object_1 } = globals;
-
     const file$7 = "drafts/nhl-rosters/Post.svelte";
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
     	child_ctx[9] = list[i];
-    	child_ctx[11] = i;
+    	child_ctx[8] = i;
     	return child_ctx;
     }
 
@@ -6623,108 +6996,39 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (71:10) {:else}
-    function create_else_block$2(ctx) {
-    	let div1;
-    	let div0;
-    	let t_value = /*a*/ ctx[9] + "";
-    	let t;
-
-    	const block = {
-    		c: function create() {
-    			div1 = element("div");
-    			div0 = element("div");
-    			t = text(t_value);
-    			attr_dev(div0, "class", "name svelte-1jjzmoh");
-    			add_location(div0, file$7, 72, 14, 1538);
-    			attr_dev(div1, "class", "player svelte-1jjzmoh");
-    			add_location(div1, file$7, 71, 12, 1503);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, div0);
-    			append_dev(div0, t);
-    		},
-    		p: noop,
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div1);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_else_block$2.name,
-    		type: "else",
-    		source: "(71:10) {:else}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (67:10) {#if years[i - 1] && data[years[i - 1]][o] === a}
-    function create_if_block$2(ctx) {
-    	let div1;
-    	let div0;
-
-    	const block = {
-    		c: function create() {
-    			div1 = element("div");
-    			div0 = element("div");
-    			div0.textContent = `${""}`;
-    			attr_dev(div0, "class", "name svelte-1jjzmoh");
-    			add_location(div0, file$7, 68, 14, 1425);
-    			attr_dev(div1, "class", "player svelte-1jjzmoh");
-    			add_location(div1, file$7, 67, 12, 1390);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, div0);
-    		},
-    		p: noop,
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div1);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block$2.name,
-    		type: "if",
-    		source: "(67:10) {#if years[i - 1] && data[years[i - 1]][o] === a}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (66:8) {#each data[year] as a, o}
+    // (68:10) {#each list as player, i}
     function create_each_block_1(ctx) {
-    	let if_block_anchor;
+    	let current;
 
-    	function select_block_type(ctx, dirty) {
-    		if (/*years*/ ctx[2][/*i*/ ctx[8] - 1] && data[/*years*/ ctx[2][/*i*/ ctx[8] - 1]][/*o*/ ctx[11]] === /*a*/ ctx[9]) return create_if_block$2;
-    		return create_else_block$2;
-    	}
-
-    	let current_block_type = select_block_type(ctx);
-    	let if_block = current_block_type(ctx);
+    	const line = new Line({
+    			props: {
+    				start: "jan 1 " + /*player*/ ctx[9].start,
+    				duration: /*player*/ ctx[9].years + " years",
+    				label: /*player*/ ctx[9].name
+    			},
+    			$$inline: true
+    		});
 
     	const block = {
     		c: function create() {
-    			if_block.c();
-    			if_block_anchor = empty();
+    			create_component(line.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			if_block.m(target, anchor);
-    			insert_dev(target, if_block_anchor, anchor);
+    			mount_component(line, target, anchor);
+    			current = true;
     		},
-    		p: function update(ctx, dirty) {
-    			if_block.p(ctx, dirty);
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(line.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(line.$$.fragment, local);
+    			current = false;
     		},
     		d: function destroy(detaching) {
-    			if_block.d(detaching);
-    			if (detaching) detach_dev(if_block_anchor);
+    			destroy_component(line, detaching);
     		}
     	};
 
@@ -6732,22 +7036,18 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(66:8) {#each data[year] as a, o}",
+    		source: "(68:10) {#each list as player, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (63:4) {#each years as year, i}
-    function create_each_block$1(ctx) {
-    	let div1;
-    	let div0;
-    	let t0_value = /*year*/ ctx[6] + "";
-    	let t0;
-    	let t1;
-    	let t2;
-    	let each_value_1 = data[/*year*/ ctx[6]];
+    // (67:8) <Column width="75px">
+    function create_default_slot_1(ctx) {
+    	let t;
+    	let current;
+    	let each_value_1 = /*list*/ ctx[6];
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
 
@@ -6755,38 +7055,29 @@ var app = (function () {
     		each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
     	}
 
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
+
     	const block = {
     		c: function create() {
-    			div1 = element("div");
-    			div0 = element("div");
-    			t0 = text(t0_value);
-    			t1 = space();
-
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t2 = space();
-    			attr_dev(div0, "class", "year svelte-1jjzmoh");
-    			add_location(div0, file$7, 64, 8, 1252);
-    			attr_dev(div1, "class", "row svelte-1jjzmoh");
-    			add_location(div1, file$7, 63, 6, 1226);
+    			t = space();
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, div0);
-    			append_dev(div0, t0);
-    			append_dev(div1, t1);
-
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div1, null);
+    				each_blocks[i].m(target, anchor);
     			}
 
-    			append_dev(div1, t2);
+    			insert_dev(target, t, anchor);
+    			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*years, data*/ 4) {
-    				each_value_1 = data[/*year*/ ctx[6]];
+    			if (dirty & /*byCol*/ 0) {
+    				each_value_1 = /*list*/ ctx[6];
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -6795,23 +7086,100 @@ var app = (function () {
 
     					if (each_blocks[i]) {
     						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
     					} else {
     						each_blocks[i] = create_each_block_1(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(div1, t2);
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(t.parentNode, t);
     					}
     				}
 
-    				for (; i < each_blocks.length; i += 1) {
-    					each_blocks[i].d(1);
+    				group_outros();
+
+    				for (i = each_value_1.length; i < each_blocks.length; i += 1) {
+    					out(i);
     				}
 
-    				each_blocks.length = each_value_1.length;
+    				check_outros();
     			}
     		},
+    		i: function intro(local) {
+    			if (current) return;
+
+    			for (let i = 0; i < each_value_1.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
+    		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div1);
     			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_1.name,
+    		type: "slot",
+    		source: "(67:8) <Column width=\\\"75px\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (66:6) {#each byCol as list, i}
+    function create_each_block$1(ctx) {
+    	let current;
+
+    	const column = new Column({
+    			props: {
+    				width: "75px",
+    				$$slots: { default: [create_default_slot_1] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(column.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(column, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const column_changes = {};
+
+    			if (dirty & /*$$scope*/ 2048) {
+    				column_changes.$$scope = { dirty, ctx };
+    			}
+
+    			column.$set(column_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(column.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(column.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(column, detaching);
     		}
     	};
 
@@ -6819,7 +7187,139 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(63:4) {#each years as year, i}",
+    		source: "(66:6) {#each byCol as list, i}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (63:4) <Timeline {start} {end} {height}>
+    function create_default_slot(ctx) {
+    	let t0;
+    	let t1;
+    	let each_1_anchor;
+    	let current;
+
+    	const ticks0 = new Ticks({
+    			props: { every: "decade" },
+    			$$inline: true
+    		});
+
+    	const ticks1 = new Ticks({
+    			props: {
+    				every: "year",
+    				size: "8px",
+    				color: "lightgrey",
+    				underline: false
+    			},
+    			$$inline: true
+    		});
+
+    	let each_value = byCol;
+    	validate_each_argument(each_value);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	const block = {
+    		c: function create() {
+    			create_component(ticks0.$$.fragment);
+    			t0 = space();
+    			create_component(ticks1.$$.fragment);
+    			t1 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			each_1_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(ticks0, target, anchor);
+    			insert_dev(target, t0, anchor);
+    			mount_component(ticks1, target, anchor);
+    			insert_dev(target, t1, anchor);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(target, anchor);
+    			}
+
+    			insert_dev(target, each_1_anchor, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*byCol*/ 0) {
+    				each_value = byCol;
+    				validate_each_argument(each_value);
+    				let i;
+
+    				for (i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context$1(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block$1(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    					}
+    				}
+
+    				group_outros();
+
+    				for (i = each_value.length; i < each_blocks.length; i += 1) {
+    					out(i);
+    				}
+
+    				check_outros();
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(ticks0.$$.fragment, local);
+    			transition_in(ticks1.$$.fragment, local);
+
+    			for (let i = 0; i < each_value.length; i += 1) {
+    				transition_in(each_blocks[i]);
+    			}
+
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(ticks0.$$.fragment, local);
+    			transition_out(ticks1.$$.fragment, local);
+    			each_blocks = each_blocks.filter(Boolean);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				transition_out(each_blocks[i]);
+    			}
+
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(ticks0, detaching);
+    			if (detaching) detach_dev(t0);
+    			destroy_component(ticks1, detaching);
+    			if (detaching) detach_dev(t1);
+    			destroy_each(each_blocks, detaching);
+    			if (detaching) detach_dev(each_1_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot.name,
+    		type: "slot",
+    		source: "(63:4) <Timeline {start} {end} {height}>",
     		ctx
     	});
 
@@ -6844,13 +7344,16 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	let each_value = /*years*/ ctx[2];
-    	validate_each_argument(each_value);
-    	let each_blocks = [];
-
-    	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block$1(get_each_context$1(ctx, each_value, i));
-    	}
+    	const timeline = new Timeline({
+    			props: {
+    				start: /*start*/ ctx[2],
+    				end: /*end*/ ctx[3],
+    				height: /*height*/ ctx[4],
+    				$$slots: { default: [create_default_slot] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
 
     	const foot = new Foot({
     			props: { title: /*title*/ ctx[0] },
@@ -6866,18 +7369,14 @@ var app = (function () {
     			t1 = text(/*title*/ ctx[0]);
     			t2 = space();
     			div1 = element("div");
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
+    			create_component(timeline.$$.fragment);
     			t3 = space();
     			create_component(foot.$$.fragment);
     			attr_dev(div0, "class", "m3 svelte-1jjzmoh");
-    			add_location(div0, file$7, 60, 2, 1142);
+    			add_location(div0, file$7, 60, 2, 1230);
     			attr_dev(div1, "class", "m3 svelte-1jjzmoh");
-    			add_location(div1, file$7, 61, 2, 1174);
-    			add_location(div2, file$7, 58, 0, 1109);
+    			add_location(div1, file$7, 61, 2, 1262);
+    			add_location(div2, file$7, 58, 0, 1197);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6890,11 +7389,7 @@ var app = (function () {
     			append_dev(div0, t1);
     			append_dev(div2, t2);
     			append_dev(div2, div1);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div1, null);
-    			}
-
+    			mount_component(timeline, div1, null);
     			append_dev(div2, t3);
     			mount_component(foot, div2, null);
     			current = true;
@@ -6905,31 +7400,13 @@ var app = (function () {
     			if (dirty & /*sub*/ 2) head_changes.sub = /*sub*/ ctx[1];
     			head.$set(head_changes);
     			if (!current || dirty & /*title*/ 1) set_data_dev(t1, /*title*/ ctx[0]);
+    			const timeline_changes = {};
 
-    			if (dirty & /*data, years*/ 4) {
-    				each_value = /*years*/ ctx[2];
-    				validate_each_argument(each_value);
-    				let i;
-
-    				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context$1(ctx, each_value, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks[i] = create_each_block$1(child_ctx);
-    						each_blocks[i].c();
-    						each_blocks[i].m(div1, null);
-    					}
-    				}
-
-    				for (; i < each_blocks.length; i += 1) {
-    					each_blocks[i].d(1);
-    				}
-
-    				each_blocks.length = each_value.length;
+    			if (dirty & /*$$scope*/ 2048) {
+    				timeline_changes.$$scope = { dirty, ctx };
     			}
 
+    			timeline.$set(timeline_changes);
     			const foot_changes = {};
     			if (dirty & /*title*/ 1) foot_changes.title = /*title*/ ctx[0];
     			foot.$set(foot_changes);
@@ -6937,18 +7414,20 @@ var app = (function () {
     		i: function intro(local) {
     			if (current) return;
     			transition_in(head.$$.fragment, local);
+    			transition_in(timeline.$$.fragment, local);
     			transition_in(foot.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(head.$$.fragment, local);
+    			transition_out(timeline.$$.fragment, local);
     			transition_out(foot.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div2);
     			destroy_component(head);
-    			destroy_each(each_blocks, detaching);
+    			destroy_component(timeline);
     			destroy_component(foot);
     		}
     	};
@@ -6970,10 +7449,10 @@ var app = (function () {
     	let start = "jan 1 2009";
     	let end = "dec 31 2019";
     	let height = "1500";
-    	let years = Object.keys(data);
+    	let cols = spencerColor.combos.juno.concat(spencerColor.combos.bloor).concat(spencerColor.combos.roma);
     	const writable_props = ["title", "sub"];
 
-    	Object_1.keys($$props).forEach(key => {
+    	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Post> was created with unknown prop '${key}'`);
     	});
 
@@ -6988,7 +7467,7 @@ var app = (function () {
     	$$self.$capture_state = () => ({
     		Head,
     		Foot,
-    		data,
+    		byCol,
     		Timeline,
     		Column,
     		Line,
@@ -7000,23 +7479,23 @@ var app = (function () {
     		start,
     		end,
     		height,
-    		years
+    		cols
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
     		if ("sub" in $$props) $$invalidate(1, sub = $$props.sub);
-    		if ("start" in $$props) start = $$props.start;
-    		if ("end" in $$props) end = $$props.end;
-    		if ("height" in $$props) height = $$props.height;
-    		if ("years" in $$props) $$invalidate(2, years = $$props.years);
+    		if ("start" in $$props) $$invalidate(2, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(3, end = $$props.end);
+    		if ("height" in $$props) $$invalidate(4, height = $$props.height);
+    		if ("cols" in $$props) cols = $$props.cols;
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [title, sub, years];
+    	return [title, sub, start, end, height];
     }
 
     class Post extends SvelteComponentDev {
