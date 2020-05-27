@@ -725,1442 +725,246 @@ var app = (function () {
 
     var data = {
     	"2009": [
-    	[
-    		"Phil Kessel",
-    		70
-    	],
-    	[
-    		"Tomas Kaberle",
-    		82
-    	],
-    	[
-    		"Alexei Ponikarovsky",
-    		61
-    	],
-    	[
-    		"Matt Stajan",
-    		55
-    	],
-    	[
-    		"Nikolai Kulemin",
-    		78
-    	],
-    	[
-    		"Mikhail Grabovski",
-    		59
-    	],
-    	[
-    		"Niklas Hagman",
-    		55
-    	],
-    	[
-    		"Lee Stempniak",
-    		62
-    	],
-    	[
-    		"Tyler Bozak",
-    		37
-    	],
-    	[
-    		"Jason Blake",
-    		56
-    	],
-    	[
-    		"Ian White",
-    		56
-    	],
-    	[
-    		"Francois Beauchemin",
-    		82
-    	],
-    	[
-    		"John Mitchell",
-    		60
-    	],
-    	[
-    		"Luke Schenn",
-    		79
-    	],
-    	[
-    		"Carl Gunnarsson",
-    		43
-    	],
-    	[
-    		"Viktor Stalberg",
-    		40
-    	],
-    	[
-    		"Jeff Finger",
-    		39
-    	],
-    	[
-    		"Dion Phaneuf",
-    		26
-    	],
-    	[
-    		"Rickard Wallin",
-    		60
-    	],
-    	[
-    		"Wayne Primeau",
-    		59
-    	],
-    	[
-    		"Jamal Mayers",
-    		44
-    	],
-    	[
-    		"Christian Hanson",
-    		31
-    	],
-    	[
-    		"Colton Orr",
-    		82
-    	],
-    	[
-    		"Luca Caputi",
-    		19
-    	],
-    	[
-    		"Fredrik Sjostrom",
-    		19
-    	],
-    	[
-    		"Garnet Exelby",
-    		51
-    	],
-    	[
-    		"Mike Komisarek",
-    		34
-    	],
-    	[
-    		"Jamie Lundmark",
-    		15
-    	],
-    	[
-    		"Jay Rosehill",
-    		15
-    	],
-    	[
-    		"Tim Brent",
-    		1
-    	],
-    	[
-    		"Andre Deveaux",
-    		1
-    	],
-    	[
-    		"Nazem Kadri",
-    		1
-    	],
-    	[
-    		"Brayden Irwin",
-    		2
-    	],
-    	[
-    		"Jiri Tlusty",
-    		2
-    	]
+    	"Tomas Kaberle",
+    	"Francois Beauchemin",
+    	"Nikolai Kulemin",
+    	"Colton Orr",
+    	"Luke Schenn",
+    	"Phil Kessel",
+    	"Wayne Primeau",
+    	"Rickard Wallin",
+    	"Alexei Ponikarovsky",
+    	"John Mitchell",
+    	"Mikhail Grabovski",
+    	"Lee Stempniak",
+    	"Ian White",
+    	"Matt Stajan",
+    	"Niklas Hagman",
+    	"Jason Blake",
+    	"Garnet Exelby",
+    	"Jamal Mayers",
+    	"Carl Gunnarsson",
+    	"Viktor Stalberg"
     ],
     	"2010": [
-    	[
-    		"Phil Kessel",
-    		82
-    	],
-    	[
-    		"Clarke MacArthur",
-    		82
-    	],
-    	[
-    		"Mikhail Grabovski",
-    		81
-    	],
-    	[
-    		"Nikolai Kulemin",
-    		82
-    	],
-    	[
-    		"Tomas Kaberle",
-    		58
-    	],
-    	[
-    		"Kris Versteeg",
-    		52
-    	],
-    	[
-    		"Tyler Bozak",
-    		82
-    	],
-    	[
-    		"Dion Phaneuf",
-    		66
-    	],
-    	[
-    		"Colby Armstrong",
-    		50
-    	],
-    	[
-    		"Luke Schenn",
-    		82
-    	],
-    	[
-    		"Tim Brent",
-    		79
-    	],
-    	[
-    		"Carl Gunnarsson",
-    		68
-    	],
-    	[
-    		"Joffrey Lupul",
-    		28
-    	],
-    	[
-    		"Joey Crabb",
-    		48
-    	],
-    	[
-    		"Darryl Boyce",
-    		46
-    	],
-    	[
-    		"Nazem Kadri",
-    		29
-    	],
-    	[
-    		"Francois Beauchemin",
-    		54
-    	],
-    	[
-    		"Mike Komisarek",
-    		75
-    	],
-    	[
-    		"Mike Brown",
-    		50
-    	],
-    	[
-    		"Fredrik Sjostrom",
-    		66
-    	],
-    	[
-    		"Brett Lebda",
-    		41
-    	],
-    	[
-    		"Jay Rosehill",
-    		26
-    	],
-    	[
-    		"John Mitchell",
-    		23
-    	],
-    	[
-    		"Colton Orr",
-    		46
-    	],
-    	[
-    		"Keith Aulie",
-    		40
-    	],
-    	[
-    		"Michael Zigomanis",
-    		8
-    	],
-    	[
-    		"Matt Lashoff",
-    		11
-    	],
-    	[
-    		"Joe Colborne",
-    		1
-    	],
-    	[
-    		"Korbinian Holzer",
-    		2
-    	],
-    	[
-    		"Luca Caputi",
-    		7
-    	],
-    	[
-    		"Matt Frattin",
-    		1
-    	],
-    	[
-    		"Christian Hanson",
-    		6
-    	],
-    	[
-    		"Marcel Mueller",
-    		3
-    	]
+    	"Tomas Kaberle",
+    	"Francois Beauchemin",
+    	"Nikolai Kulemin",
+    	"Colton Orr",
+    	"Luke Schenn",
+    	"Phil Kessel",
+    	"Tyler Bozak",
+    	"Mike Komisarek",
+    	"Tim Brent",
+    	"John Mitchell",
+    	"Mikhail Grabovski",
+    	"Clarke MacArthur",
+    	"Kris Versteeg",
+    	"Joey Crabb",
+    	"Fredrik Sjostrom",
+    	"Mike Brown",
+    	"Dion Phaneuf",
+    	"Colby Armstrong",
+    	"Carl Gunnarsson",
+    	"Darryl Boyce"
     ],
     	"2011": [
-    	[
-    		"Phil Kessel",
-    		82
-    	],
-    	[
-    		"Joffrey Lupul",
-    		66
-    	],
-    	[
-    		"Mikhail Grabovski",
-    		74
-    	],
-    	[
-    		"Tyler Bozak",
-    		73
-    	],
-    	[
-    		"Dion Phaneuf",
-    		82
-    	],
-    	[
-    		"Clarke MacArthur",
-    		73
-    	],
-    	[
-    		"Tim Connolly",
-    		70
-    	],
-    	[
-    		"Jake Gardiner",
-    		75
-    	],
-    	[
-    		"Nikolai Kulemin",
-    		70
-    	],
-    	[
-    		"John-Michael Liles",
-    		66
-    	],
-    	[
-    		"Joey Crabb",
-    		67
-    	],
-    	[
-    		"Luke Schenn",
-    		79
-    	],
-    	[
-    		"Cody Franson",
-    		57
-    	],
-    	[
-    		"Carl Gunnarsson",
-    		76
-    	],
-    	[
-    		"Matthew Lombardi",
-    		62
-    	],
-    	[
-    		"Matt Frattin",
-    		56
-    	],
-    	[
-    		"Dave Steckel",
-    		76
-    	],
-    	[
-    		"Nazem Kadri",
-    		21
-    	],
-    	[
-    		"Mike Komisarek",
-    		45
-    	],
-    	[
-    		"Joe Colborne",
-    		10
-    	],
-    	[
-    		"Mike Brown",
-    		50
-    	],
-    	[
-    		"Colby Armstrong",
-    		29
-    	],
-    	[
-    		"Darryl Boyce",
-    		17
-    	],
-    	[
-    		"Keith Aulie",
-    		17
-    	],
-    	[
-    		"Colton Orr",
-    		5
-    	],
-    	[
-    		"Ryan Hamilton",
-    		2
-    	],
-    	[
-    		"Philippe Dupuis",
-    		30
-    	],
-    	[
-    		"Jay Rosehill",
-    		31
-    	],
-    	[
-    		"Carter Ashton",
-    		15
-    	]
+    	"Dave Steckel",
+    	"Joffrey Lupul",
+    	"Nikolai Kulemin",
+    	"Colton Orr",
+    	"Luke Schenn",
+    	"Phil Kessel",
+    	"Tyler Bozak",
+    	"Mike Komisarek",
+    	"Tim Connolly",
+    	"Jake Gardiner",
+    	"Mikhail Grabovski",
+    	"Clarke MacArthur",
+    	"John-Michael Liles",
+    	"Joey Crabb",
+    	"Philippe Dupuis",
+    	"Mike Brown",
+    	"Dion Phaneuf",
+    	"Colby Armstrong",
+    	"Carl Gunnarsson",
+    	"Darryl Boyce"
     ],
     	"2012": [
-    	[
-    		"Phil Kessel",
-    		48
-    	],
-    	[
-    		"Nazem Kadri",
-    		48
-    	],
-    	[
-    		"James van Riemsdyk",
-    		48
-    	],
-    	[
-    		"Cody Franson",
-    		45
-    	],
-    	[
-    		"Dion Phaneuf",
-    		48
-    	],
-    	[
-    		"Tyler Bozak",
-    		46
-    	],
-    	[
-    		"Nikolai Kulemin",
-    		48
-    	],
-    	[
-    		"Clarke MacArthur",
-    		40
-    	],
-    	[
-    		"Joffrey Lupul",
-    		16
-    	],
-    	[
-    		"Jay McClement",
-    		48
-    	],
-    	[
-    		"Mikhail Grabovski",
-    		48
-    	],
-    	[
-    		"Carl Gunnarsson",
-    		37
-    	],
-    	[
-    		"Matt Frattin",
-    		25
-    	],
-    	[
-    		"John-Michael Liles",
-    		32
-    	],
-    	[
-    		"Leo Komarov",
-    		42
-    	],
-    	[
-    		"Mark Fraser",
-    		45
-    	],
-    	[
-    		"Mike Kostka",
-    		35
-    	],
-    	[
-    		"Frazer McLaren",
-    		35
-    	],
-    	[
-    		"Colton Orr",
-    		44
-    	],
-    	[
-    		"Jake Gardiner",
-    		12
-    	],
-    	[
-    		"Korbinian Holzer",
-    		22
-    	],
-    	[
-    		"Ryan O'Byrne",
-    		8
-    	],
-    	[
-    		"Ryan Hamilton",
-    		10
-    	],
-    	[
-    		"Mike Komisarek",
-    		4
-    	],
-    	[
-    		"Joe Colborne",
-    		5
-    	]
+    	"Nazem Kadri",
+    	"Joffrey Lupul",
+    	"Nikolai Kulemin",
+    	"Colton Orr",
+    	"Frazer McLaren",
+    	"Phil Kessel",
+    	"Tyler Bozak",
+    	"Mike Komisarek",
+    	"Jay McClement",
+    	"Jake Gardiner",
+    	"Mikhail Grabovski",
+    	"Clarke MacArthur",
+    	"John-Michael Liles",
+    	"James van Riemsdyk",
+    	"Mike Kostka",
+    	"Mark Fraser",
+    	"Dion Phaneuf",
+    	"Leo Komarov",
+    	"Carl Gunnarsson",
+    	"Cody Franson"
     ],
     	"2013": [
-    	[
-    		"Phil Kessel",
-    		82
-    	],
-    	[
-    		"James van Riemsdyk",
-    		80
-    	],
-    	[
-    		"Nazem Kadri",
-    		78
-    	],
-    	[
-    		"Tyler Bozak",
-    		58
-    	],
-    	[
-    		"Mason Raymond",
-    		82
-    	],
-    	[
-    		"Joffrey Lupul",
-    		69
-    	],
-    	[
-    		"Cody Franson",
-    		79
-    	],
-    	[
-    		"Jake Gardiner",
-    		80
-    	],
-    	[
-    		"Dion Phaneuf",
-    		80
-    	],
-    	[
-    		"Morgan Rielly",
-    		73
-    	],
-    	[
-    		"Nikolai Kulemin",
-    		70
-    	],
-    	[
-    		"Carl Gunnarsson",
-    		80
-    	],
-    	[
-    		"Paul Ranger",
-    		53
-    	],
-    	[
-    		"Dave Bolland",
-    		23
-    	],
-    	[
-    		"David Clarkson",
-    		60
-    	],
-    	[
-    		"Peter Holland",
-    		39
-    	],
-    	[
-    		"Jay McClement",
-    		81
-    	],
-    	[
-    		"Troy Bodie",
-    		47
-    	],
-    	[
-    		"Trevor Smith",
-    		28
-    	],
-    	[
-    		"Tim Gleason",
-    		39
-    	],
-    	[
-    		"Jerry D'Amigo",
-    		22
-    	],
-    	[
-    		"Carter Ashton",
-    		32
-    	],
-    	[
-    		"Josh Leivo",
-    		7
-    	],
-    	[
-    		"David Broll",
-    		5
-    	],
-    	[
-    		"Mark Fraser",
-    		19
-    	],
-    	[
-    		"Jerred Smithson",
-    		18
-    	],
-    	[
-    		"Colton Orr",
-    		54
-    	],
-    	[
-    		"Frazer McLaren",
-    		27
-    	],
-    	[
-    		"Jamie Devane",
-    		2
-    	],
-    	[
-    		"Greg McKegg",
-    		1
-    	],
-    	[
-    		"Petter Granberg",
-    		1
-    	],
-    	[
-    		"Spencer Abbott",
-    		1
-    	],
-    	[
-    		"John-Michael Liles",
-    		6
-    	]
+    	"Nazem Kadri",
+    	"Joffrey Lupul",
+    	"Nikolai Kulemin",
+    	"Colton Orr",
+    	"Frazer McLaren",
+    	"Phil Kessel",
+    	"Tyler Bozak",
+    	"Morgan Rielly",
+    	"Jay McClement",
+    	"Jake Gardiner",
+    	"Mason Raymond",
+    	"Peter Holland",
+    	"John-Michael Liles",
+    	"James van Riemsdyk",
+    	"Paul Ranger",
+    	"Mark Fraser",
+    	"Dion Phaneuf",
+    	"Troy Bodie",
+    	"Carl Gunnarsson",
+    	"Cody Franson"
     ],
     	"2014": [
-    	[
-    		"Phil Kessel",
-    		82
-    	],
-    	[
-    		"James van Riemsdyk",
-    		82
-    	],
-    	[
-    		"Tyler Bozak",
-    		82
-    	],
-    	[
-    		"Nazem Kadri",
-    		73
-    	],
-    	[
-    		"Cody Franson",
-    		55
-    	],
-    	[
-    		"Mike Santorelli",
-    		57
-    	],
-    	[
-    		"Morgan Rielly",
-    		81
-    	],
-    	[
-    		"Dion Phaneuf",
-    		70
-    	],
-    	[
-    		"Leo Komarov",
-    		62
-    	],
-    	[
-    		"Peter Holland",
-    		62
-    	],
-    	[
-    		"Daniel Winnik",
-    		60
-    	],
-    	[
-    		"Jake Gardiner",
-    		79
-    	],
-    	[
-    		"Joffrey Lupul",
-    		55
-    	],
-    	[
-    		"Richard Panik",
-    		76
-    	],
-    	[
-    		"David Clarkson",
-    		58
-    	],
-    	[
-    		"David Booth",
-    		59
-    	],
-    	[
-    		"Roman Polak",
-    		56
-    	],
-    	[
-    		"Stephane Robidas",
-    		52
-    	],
-    	[
-    		"Korbinian Holzer",
-    		34
-    	],
-    	[
-    		"Eric Brewer",
-    		18
-    	],
-    	[
-    		"Trevor Smith",
-    		54
-    	],
-    	[
-    		"Brandon Kozun",
-    		20
-    	],
-    	[
-    		"Joakim Lindstrom",
-    		19
-    	],
-    	[
-    		"Stuart Percy",
-    		9
-    	],
-    	[
-    		"Sam Carrick",
-    		16
-    	],
-    	[
-    		"Andrew MacWilliam",
-    		12
-    	],
-    	[
-    		"Tim Erixon",
-    		15
-    	],
-    	[
-    		"Josh Leivo",
-    		9
-    	],
-    	[
-    		"Casey Bailey",
-    		6
-    	],
-    	[
-    		"T. J. Brennan",
-    		6
-    	],
-    	[
-    		"Zach Sill",
-    		21
-    	],
-    	[
-    		"Olli Jokinen",
-    		6
-    	],
-    	[
-    		"Colton Orr",
-    		1
-    	],
-    	[
-    		"Troy Bodie",
-    		5
-    	],
-    	[
-    		"Matt Frattin",
-    		9
-    	],
-    	[
-    		"Greg McKegg",
-    		3
-    	],
-    	[
-    		"Petter Granberg",
-    		7
-    	],
-    	[
-    		"Carter Ashton",
-    		7
-    	]
+    	"Nazem Kadri",
+    	"Joffrey Lupul",
+    	"Mike Santorelli",
+    	"Colton Orr",
+    	"Roman Polak",
+    	"Phil Kessel",
+    	"Tyler Bozak",
+    	"Morgan Rielly",
+    	"Leo Komarov",
+    	"Jake Gardiner",
+    	"Richard Panik",
+    	"Peter Holland",
+    	"David Clarkson",
+    	"James van Riemsdyk",
+    	"David Booth",
+    	"Daniel Winnik",
+    	"Dion Phaneuf",
+    	"Troy Bodie",
+    	"Trevor Smith",
+    	"Cody Franson"
     ],
     	"2015": [
-    	[
-    		"Nazem Kadri",
-    		76
-    	],
-    	[
-    		"P. A. Parenteau",
-    		77
-    	],
-    	[
-    		"Leo Komarov",
-    		67
-    	],
-    	[
-    		"Morgan Rielly",
-    		82
-    	],
-    	[
-    		"Tyler Bozak",
-    		57
-    	],
-    	[
-    		"Jake Gardiner",
-    		79
-    	],
-    	[
-    		"James van Riemsdyk",
-    		40
-    	],
-    	[
-    		"Peter Holland",
-    		65
-    	],
-    	[
-    		"Brad Boyes",
-    		60
-    	],
-    	[
-    		"Dion Phaneuf",
-    		51
-    	],
-    	[
-    		"Michael Grabner",
-    		80
-    	],
-    	[
-    		"Shawn Matthias",
-    		51
-    	],
-    	[
-    		"Colin Greening",
-    		30
-    	],
-    	[
-    		"Joffrey Lupul",
-    		46
-    	],
-    	[
-    		"Daniel Winnik",
-    		56
-    	],
-    	[
-    		"William Nylander",
-    		22
-    	],
-    	[
-    		"Roman Polak",
-    		55
-    	],
-    	[
-    		"Matt Hunwick",
-    		60
-    	],
-    	[
-    		"Brooks Laich",
-    		21
-    	],
-    	[
-    		"Martin Marincin",
-    		65
-    	],
-    	[
-    		"Nick Spaling",
-    		35
-    	],
-    	[
-    		"Zach Hyman",
-    		16
-    	],
-    	[
-    		"Ben Smith",
-    		16
-    	],
-    	[
-    		"Connor Brown",
-    		7
-    	],
-    	[
-    		"Milan Michalek",
-    		13
-    	],
-    	[
-    		"Frank Corrado",
-    		39
-    	],
-    	[
-    		"Josh Leivo",
-    		12
-    	],
-    	[
-    		"Nikita Soshnikov",
-    		11
-    	],
-    	[
-    		"Byron Froese",
-    		56
-    	],
-    	[
-    		"Mark Arcobello",
-    		20
-    	],
-    	[
-    		"Connor Carrick",
-    		16
-    	],
-    	[
-    		"Rich Clune",
-    		19
-    	],
-    	[
-    		"Brendan Leipsic",
-    		6
-    	],
-    	[
-    		"Viktor Loov",
-    		4
-    	],
-    	[
-    		"Tobias Lindberg",
-    		6
-    	],
-    	[
-    		"T. J. Brennan",
-    		7
-    	],
-    	[
-    		"Andrew Campbell",
-    		6
-    	],
-    	[
-    		"Scott Harrington",
-    		15
-    	],
-    	[
-    		"Frederik Gauthier",
-    		7
-    	],
-    	[
-    		"Sam Carrick",
-    		3
-    	],
-    	[
-    		"Stuart Percy",
-    		3
-    	],
-    	[
-    		"Rinat Valiev",
-    		10
-    	],
-    	[
-    		"Kasperi Kapanen",
-    		9
-    	]
+    	"Nazem Kadri",
+    	"Joffrey Lupul",
+    	"Michael Grabner",
+    	"P. A. Parenteau",
+    	"Roman Polak",
+    	"Shawn Matthias",
+    	"Tyler Bozak",
+    	"Morgan Rielly",
+    	"Leo Komarov",
+    	"Jake Gardiner",
+    	"Matt Hunwick",
+    	"Peter Holland",
+    	"Martin Marincin",
+    	"James van Riemsdyk",
+    	"Brad Boyes",
+    	"Daniel Winnik",
+    	"Dion Phaneuf",
+    	"Byron Froese",
+    	"Mark Arcobello",
+    	"Rich Clune"
     ],
     	"2016": [
-    	[
-    		"Auston Matthews",
-    		82
-    	],
-    	[
-    		"James van Riemsdyk",
-    		82
-    	],
-    	[
-    		"Nazem Kadri",
-    		82
-    	],
-    	[
-    		"William Nylander",
-    		81
-    	],
-    	[
-    		"Mitch Marner",
-    		77
-    	],
-    	[
-    		"Tyler Bozak",
-    		78
-    	],
-    	[
-    		"Jake Gardiner",
-    		82
-    	],
-    	[
-    		"Connor Brown",
-    		82
-    	],
-    	[
-    		"Nikita Zaitsev",
-    		82
-    	],
-    	[
-    		"Leo Komarov",
-    		82
-    	],
-    	[
-    		"Zach Hyman",
-    		82
-    	],
-    	[
-    		"Morgan Rielly",
-    		76
-    	],
-    	[
-    		"Matt Hunwick",
-    		72
-    	],
-    	[
-    		"Roman Polak",
-    		75
-    	],
-    	[
-    		"Josh Leivo",
-    		13
-    	],
-    	[
-    		"Matt Martin",
-    		82
-    	],
-    	[
-    		"Nikita Soshnikov",
-    		56
-    	],
-    	[
-    		"Connor Carrick",
-    		67
-    	],
-    	[
-    		"Martin Marincin",
-    		25
-    	],
-    	[
-    		"Ben Smith",
-    		36
-    	],
-    	[
-    		"Frederik Gauthier",
-    		21
-    	],
-    	[
-    		"Brian Boyle",
-    		21
-    	],
-    	[
-    		"Milan Michalek",
-    		5
-    	],
-    	[
-    		"Alexey Marchenko",
-    		11
-    	],
-    	[
-    		"Kasperi Kapanen",
-    		8
-    	],
-    	[
-    		"Peter Holland",
-    		8
-    	],
-    	[
-    		"Byron Froese",
-    		2
-    	],
-    	[
-    		"Eric Fehr",
-    		1
-    	],
-    	[
-    		"Seth Griffith",
-    		3
-    	],
-    	[
-    		"Frank Corrado",
-    		2
-    	]
+    	"Nazem Kadri",
+    	"Matt Martin",
+    	"Auston Matthews",
+    	"William Nylander",
+    	"Roman Polak",
+    	"Mitch Marner",
+    	"Tyler Bozak",
+    	"Morgan Rielly",
+    	"Leo Komarov",
+    	"Jake Gardiner",
+    	"Matt Hunwick",
+    	"Peter Holland",
+    	"Martin Marincin",
+    	"James van Riemsdyk",
+    	"Connor Brown",
+    	"Nikita Zaitsev",
+    	"Zach Hyman",
+    	"Byron Froese",
+    	"Josh Leivo",
+    	"Nikita Soshnikov"
     ],
     	"2017": [
-    	[
-    		"Mitch Marner",
-    		82
-    	],
-    	[
-    		"Auston Matthews",
-    		62
-    	],
-    	[
-    		"William Nylander",
-    		82
-    	],
-    	[
-    		"Nazem Kadri",
-    		80
-    	],
-    	[
-    		"James van Riemsdyk",
-    		81
-    	],
-    	[
-    		"Morgan Rielly",
-    		76
-    	],
-    	[
-    		"Jake Gardiner",
-    		82
-    	],
-    	[
-    		"Patrick Marleau",
-    		82
-    	],
-    	[
-    		"Tyler Bozak",
-    		81
-    	],
-    	[
-    		"Zach Hyman",
-    		82
-    	],
-    	[
-    		"Connor Brown",
-    		82
-    	],
-    	[
-    		"Ron Hainsey",
-    		80
-    	],
-    	[
-    		"Leo Komarov",
-    		74
-    	],
-    	[
-    		"Nikita Zaitsev",
-    		60
-    	],
-    	[
-    		"Travis Dermott",
-    		37
-    	],
-    	[
-    		"Dominic Moore",
-    		50
-    	],
-    	[
-    		"Connor Carrick",
-    		47
-    	],
-    	[
-    		"Matt Martin",
-    		50
-    	],
-    	[
-    		"Roman Polak",
-    		54
-    	],
-    	[
-    		"Andreas Borgman",
-    		48
-    	],
-    	[
-    		"Kasperi Kapanen",
-    		38
-    	],
-    	[
-    		"Josh Leivo",
-    		16
-    	],
-    	[
-    		"Andreas Johnsson",
-    		9
-    	],
-    	[
-    		"Justin Holl",
-    		2
-    	],
-    	[
-    		"Tomas Plekanec",
-    		17
-    	],
-    	[
-    		"Frederik Gauthier",
-    		9
-    	],
-    	[
-    		"Calle Rosen",
-    		4
-    	],
-    	[
-    		"Eric Fehr",
-    		4
-    	],
-    	[
-    		"Nikita Soshnikov",
-    		3
-    	],
-    	[
-    		"Martin Marincin",
-    		2
-    	]
+    	"Nazem Kadri",
+    	"Matt Martin",
+    	"Auston Matthews",
+    	"William Nylander",
+    	"Roman Polak",
+    	"Mitch Marner",
+    	"Tyler Bozak",
+    	"Morgan Rielly",
+    	"Leo Komarov",
+    	"Jake Gardiner",
+    	"Patrick Marleau",
+    	"Ron Hainsey",
+    	"Martin Marincin",
+    	"James van Riemsdyk",
+    	"Connor Brown",
+    	"Nikita Zaitsev",
+    	"Zach Hyman",
+    	"Connor Carrick",
+    	"Josh Leivo",
+    	"Nikita Soshnikov"
     ],
     	"2018": [
-    	[
-    		"Mitch Marner",
-    		82
-    	],
-    	[
-    		"John Tavares",
-    		82
-    	],
-    	[
-    		"Auston Matthews",
-    		68
-    	],
-    	[
-    		"Morgan Rielly",
-    		82
-    	],
-    	[
-    		"Kasperi Kapanen",
-    		78
-    	],
-    	[
-    		"Nazem Kadri",
-    		73
-    	],
-    	[
-    		"Andreas Johnsson",
-    		73
-    	],
-    	[
-    		"Zach Hyman",
-    		71
-    	],
-    	[
-    		"Patrick Marleau",
-    		82
-    	],
-    	[
-    		"Jake Gardiner",
-    		62
-    	],
-    	[
-    		"Connor Brown",
-    		82
-    	],
-    	[
-    		"William Nylander",
-    		54
-    	],
-    	[
-    		"Ron Hainsey",
-    		81
-    	],
-    	[
-    		"Tyler Ennis",
-    		51
-    	],
-    	[
-    		"Travis Dermott",
-    		64
-    	],
-    	[
-    		"Jake Muzzin",
-    		30
-    	],
-    	[
-    		"Frederik Gauthier",
-    		70
-    	],
-    	[
-    		"Nikita Zaitsev",
-    		81
-    	],
-    	[
-    		"Par Lindholm",
-    		61
-    	],
-    	[
-    		"Trevor Moore",
-    		25
-    	],
-    	[
-    		"Igor Ozhiganov",
-    		53
-    	],
-    	[
-    		"Josh Leivo",
-    		27
-    	],
-    	[
-    		"Martin Marincin",
-    		24
-    	],
-    	[
-    		"Calle Rosen",
-    		4
-    	],
-    	[
-    		"Nic Petan",
-    		5
-    	],
-    	[
-    		"Justin Holl",
-    		11
-    	]
+    	"Nazem Kadri",
+    	"Travis Dermott",
+    	"Auston Matthews",
+    	"William Nylander",
+    	"John Tavares",
+    	"Mitch Marner",
+    	"Kasperi Kapanen",
+    	"Morgan Rielly",
+    	"Andreas Johnsson",
+    	"Jake Gardiner",
+    	"Patrick Marleau",
+    	"Ron Hainsey",
+    	"Martin Marincin",
+    	"Igor Ozhiganov",
+    	"Connor Brown",
+    	"Nikita Zaitsev",
+    	"Zach Hyman",
+    	"Frederik Gauthier",
+    	"Josh Leivo",
+    	"Par Lindholm"
     ],
     	"2019": [
-    	[
-    		"Auston Matthews",
-    		70
-    	],
-    	[
-    		"Mitch Marner",
-    		59
-    	],
-    	[
-    		"John Tavares",
-    		63
-    	],
-    	[
-    		"William Nylander",
-    		68
-    	],
-    	[
-    		"Tyson Barrie",
-    		70
-    	],
-    	[
-    		"Zach Hyman",
-    		51
-    	],
-    	[
-    		"Kasperi Kapanen",
-    		69
-    	],
-    	[
-    		"Alexander Kerfoot",
-    		65
-    	],
-    	[
-    		"Morgan Rielly",
-    		47
-    	],
-    	[
-    		"Jason Spezza",
-    		58
-    	],
-    	[
-    		"Ilya Mikheyev",
-    		39
-    	],
-    	[
-    		"Jake Muzzin",
-    		53
-    	],
-    	[
-    		"Andreas Johnsson",
-    		43
-    	],
-    	[
-    		"Justin Holl",
-    		68
-    	],
-    	[
-    		"Pierre Engvall",
-    		48
-    	],
-    	[
-    		"Frederik Gauthier",
-    		61
-    	],
-    	[
-    		"Travis Dermott",
-    		56
-    	],
-    	[
-    		"Dmytro Timashov",
-    		39
-    	],
-    	[
-    		"Rasmus Sandin",
-    		28
-    	],
-    	[
-    		"Cody Ceci",
-    		56
-    	],
-    	[
-    		"Trevor Moore",
-    		27
-    	],
-    	[
-    		"Martin Marincin",
-    		26
-    	],
-    	[
-    		"Nick Shore",
-    		21
-    	],
-    	[
-    		"Kyle Clifford",
-    		16
-    	],
-    	[
-    		"Nic Petan",
-    		16
-    	],
-    	[
-    		"Adam Brooks",
-    		7
-    	],
-    	[
-    		"Yegor Korshkov",
-    		1
-    	],
-    	[
-    		"Mason Marchment",
-    		4
-    	],
-    	[
-    		"Timothy Liljegren",
-    		11
-    	],
-    	[
-    		"Pontus Aberg",
-    		5
-    	],
-    	[
-    		"Calle Rosen",
-    		4
-    	],
-    	[
-    		"Denis Malgin",
-    		8
-    	],
-    	[
-    		"Kevin Gravel",
-    		3
-    	]
+    	"Tyson Barrie",
+    	"Travis Dermott",
+    	"Auston Matthews",
+    	"William Nylander",
+    	"John Tavares",
+    	"Mitch Marner",
+    	"Kasperi Kapanen",
+    	"Morgan Rielly",
+    	"Andreas Johnsson",
+    	"Alexander Kerfoot",
+    	"Justin Holl",
+    	"Jason Spezza",
+    	"Martin Marincin",
+    	"Trevor Moore",
+    	"Yegor Korshkov",
+    	"Pierre Engvall",
+    	"Zach Hyman",
+    	"Frederik Gauthier",
+    	"Jake Muzzin",
+    	"Dmytro Timashov"
     ]
     };
 
@@ -7801,44 +6605,47 @@ var app = (function () {
 
     /* drafts/nhl-rosters/Post.svelte generated by Svelte v3.22.3 */
 
-    const { Object: Object_1, console: console_1 } = globals;
+    const { Object: Object_1 } = globals;
 
     const file$7 = "drafts/nhl-rosters/Post.svelte";
 
-    function get_each_context$1(ctx, list, i) {
+    function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[8] = list[i];
+    	child_ctx[9] = list[i];
+    	child_ctx[11] = i;
     	return child_ctx;
     }
 
-    // (71:4) {#each data[year] as a}
-    function create_each_block$1(ctx) {
+    function get_each_context$1(ctx, list, i) {
+    	const child_ctx = ctx.slice();
+    	child_ctx[6] = list[i];
+    	child_ctx[8] = i;
+    	return child_ctx;
+    }
+
+    // (71:10) {:else}
+    function create_else_block$2(ctx) {
     	let div1;
     	let div0;
-    	let t0_value = /*a*/ ctx[8][0] + "";
-    	let t0;
-    	let t1;
+    	let t_value = /*a*/ ctx[9] + "";
+    	let t;
 
     	const block = {
     		c: function create() {
     			div1 = element("div");
     			div0 = element("div");
-    			t0 = text(t0_value);
-    			t1 = space();
-    			attr_dev(div0, "class", "name svelte-yjfq78");
-    			add_location(div0, file$7, 72, 8, 1463);
-    			attr_dev(div1, "class", "player svelte-yjfq78");
-    			add_location(div1, file$7, 71, 6, 1434);
+    			t = text(t_value);
+    			attr_dev(div0, "class", "name svelte-1jjzmoh");
+    			add_location(div0, file$7, 72, 14, 1538);
+    			attr_dev(div1, "class", "player svelte-1jjzmoh");
+    			add_location(div1, file$7, 71, 12, 1503);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
     			append_dev(div1, div0);
-    			append_dev(div0, t0);
-    			append_dev(div1, t1);
+    			append_dev(div0, t);
     		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*data*/ 4 && t0_value !== (t0_value = /*a*/ ctx[8][0] + "")) set_data_dev(t0, t0_value);
-    		},
+    		p: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div1);
     		}
@@ -7846,9 +6653,173 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
+    		id: create_else_block$2.name,
+    		type: "else",
+    		source: "(71:10) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (67:10) {#if years[i - 1] && data[years[i - 1]][o] === a}
+    function create_if_block$2(ctx) {
+    	let div1;
+    	let div0;
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			div0.textContent = `${""}`;
+    			attr_dev(div0, "class", "name svelte-1jjzmoh");
+    			add_location(div0, file$7, 68, 14, 1425);
+    			attr_dev(div1, "class", "player svelte-1jjzmoh");
+    			add_location(div1, file$7, 67, 12, 1390);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$2.name,
+    		type: "if",
+    		source: "(67:10) {#if years[i - 1] && data[years[i - 1]][o] === a}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (66:8) {#each data[year] as a, o}
+    function create_each_block_1(ctx) {
+    	let if_block_anchor;
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*years*/ ctx[2][/*i*/ ctx[8] - 1] && data[/*years*/ ctx[2][/*i*/ ctx[8] - 1]][/*o*/ ctx[11]] === /*a*/ ctx[9]) return create_if_block$2;
+    		return create_else_block$2;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
+
+    	const block = {
+    		c: function create() {
+    			if_block.c();
+    			if_block_anchor = empty();
+    		},
+    		m: function mount(target, anchor) {
+    			if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if_block.p(ctx, dirty);
+    		},
+    		d: function destroy(detaching) {
+    			if_block.d(detaching);
+    			if (detaching) detach_dev(if_block_anchor);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_each_block_1.name,
+    		type: "each",
+    		source: "(66:8) {#each data[year] as a, o}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (63:4) {#each years as year, i}
+    function create_each_block$1(ctx) {
+    	let div1;
+    	let div0;
+    	let t0_value = /*year*/ ctx[6] + "";
+    	let t0;
+    	let t1;
+    	let t2;
+    	let each_value_1 = data[/*year*/ ctx[6]];
+    	validate_each_argument(each_value_1);
+    	let each_blocks = [];
+
+    	for (let i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			t0 = text(t0_value);
+    			t1 = space();
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+
+    			t2 = space();
+    			attr_dev(div0, "class", "year svelte-1jjzmoh");
+    			add_location(div0, file$7, 64, 8, 1252);
+    			attr_dev(div1, "class", "row svelte-1jjzmoh");
+    			add_location(div1, file$7, 63, 6, 1226);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    			append_dev(div0, t0);
+    			append_dev(div1, t1);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div1, null);
+    			}
+
+    			append_dev(div1, t2);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*years, data*/ 4) {
+    				each_value_1 = data[/*year*/ ctx[6]];
+    				validate_each_argument(each_value_1);
+    				let i;
+
+    				for (i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(child_ctx, dirty);
+    					} else {
+    						each_blocks[i] = create_each_block_1(child_ctx);
+    						each_blocks[i].c();
+    						each_blocks[i].m(div1, t2);
+    					}
+    				}
+
+    				for (; i < each_blocks.length; i += 1) {
+    					each_blocks[i].d(1);
+    				}
+
+    				each_blocks.length = each_value_1.length;
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div1);
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(71:4) {#each data[year] as a}",
+    		source: "(63:4) {#each years as year, i}",
     		ctx
     	});
 
@@ -7856,15 +6827,13 @@ var app = (function () {
     }
 
     function create_fragment$7(ctx) {
-    	let div3;
+    	let div2;
     	let t0;
     	let div0;
     	let t1;
     	let t2;
-    	let div2;
     	let div1;
-    	let t4;
-    	let t5;
+    	let t3;
     	let current;
 
     	const head = new Head({
@@ -7875,7 +6844,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	let each_value = /*data*/ ctx[2][/*year*/ ctx[3]];
+    	let each_value = /*years*/ ctx[2];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -7890,51 +6859,44 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div3 = element("div");
+    			div2 = element("div");
     			create_component(head.$$.fragment);
     			t0 = space();
     			div0 = element("div");
     			t1 = text(/*title*/ ctx[0]);
     			t2 = space();
-    			div2 = element("div");
     			div1 = element("div");
-    			div1.textContent = `${/*year*/ ctx[3]}`;
-    			t4 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t5 = space();
+    			t3 = space();
     			create_component(foot.$$.fragment);
-    			attr_dev(div0, "class", "m3 svelte-yjfq78");
-    			add_location(div0, file$7, 67, 2, 1312);
-    			attr_dev(div1, "class", "year");
-    			add_location(div1, file$7, 69, 4, 1369);
-    			attr_dev(div2, "class", "m3 row svelte-yjfq78");
-    			add_location(div2, file$7, 68, 2, 1344);
-    			add_location(div3, file$7, 65, 0, 1279);
+    			attr_dev(div0, "class", "m3 svelte-1jjzmoh");
+    			add_location(div0, file$7, 60, 2, 1142);
+    			attr_dev(div1, "class", "m3 svelte-1jjzmoh");
+    			add_location(div1, file$7, 61, 2, 1174);
+    			add_location(div2, file$7, 58, 0, 1109);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div3, anchor);
-    			mount_component(head, div3, null);
-    			append_dev(div3, t0);
-    			append_dev(div3, div0);
+    			insert_dev(target, div2, anchor);
+    			mount_component(head, div2, null);
+    			append_dev(div2, t0);
+    			append_dev(div2, div0);
     			append_dev(div0, t1);
-    			append_dev(div3, t2);
-    			append_dev(div3, div2);
+    			append_dev(div2, t2);
     			append_dev(div2, div1);
-    			append_dev(div2, t4);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(div2, null);
+    				each_blocks[i].m(div1, null);
     			}
 
-    			append_dev(div3, t5);
-    			mount_component(foot, div3, null);
+    			append_dev(div2, t3);
+    			mount_component(foot, div2, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -7944,8 +6906,8 @@ var app = (function () {
     			head.$set(head_changes);
     			if (!current || dirty & /*title*/ 1) set_data_dev(t1, /*title*/ ctx[0]);
 
-    			if (dirty & /*data, year*/ 12) {
-    				each_value = /*data*/ ctx[2][/*year*/ ctx[3]];
+    			if (dirty & /*data, years*/ 4) {
+    				each_value = /*years*/ ctx[2];
     				validate_each_argument(each_value);
     				let i;
 
@@ -7957,7 +6919,7 @@ var app = (function () {
     					} else {
     						each_blocks[i] = create_each_block$1(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(div2, null);
+    						each_blocks[i].m(div1, null);
     					}
     				}
 
@@ -7984,7 +6946,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div3);
+    			if (detaching) detach_dev(div2);
     			destroy_component(head);
     			destroy_each(each_blocks, detaching);
     			destroy_component(foot);
@@ -8008,29 +6970,11 @@ var app = (function () {
     	let start = "jan 1 2009";
     	let end = "dec 31 2019";
     	let height = "1500";
-    	console.log(data);
     	let years = Object.keys(data);
-
-    	// let year = data[2009]
-    	data[2009] = data[2009].sort((a, b) => {
-    		if (a[1] > b[1]) {
-    			return -1;
-    		} else if (a < b) {
-    			return 1;
-    		}
-
-    		return 0;
-    	});
-
-    	data[2009] = data[2009].slice(0, 20);
-
-    	// console.log(year)
-    	let year = 2009;
-
     	const writable_props = ["title", "sub"];
 
     	Object_1.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<Post> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Post> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
@@ -8056,8 +7000,7 @@ var app = (function () {
     		start,
     		end,
     		height,
-    		years,
-    		year
+    		years
     	});
 
     	$$self.$inject_state = $$props => {
@@ -8066,15 +7009,14 @@ var app = (function () {
     		if ("start" in $$props) start = $$props.start;
     		if ("end" in $$props) end = $$props.end;
     		if ("height" in $$props) height = $$props.height;
-    		if ("years" in $$props) years = $$props.years;
-    		if ("year" in $$props) $$invalidate(3, year = $$props.year);
+    		if ("years" in $$props) $$invalidate(2, years = $$props.years);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [title, sub, data, year];
+    	return [title, sub, years];
     }
 
     class Post extends SvelteComponentDev {

@@ -26,9 +26,17 @@ years.forEach((year) => {
   newYear = newYear.map((name, i) => {
     let found = players.find((a) => a[0] === name)
     if (found) {
+      players = players.filter((a) => a[0] !== name)
       return name
     }
     return null
+  })
+  console.log(year, 'need ' + newYear.filter((a) => a).length)
+  newYear = newYear.map((n) => {
+    if (n) {
+      return n
+    }
+    return players.shift()[0]
   })
   all[year] = newYear
 })
