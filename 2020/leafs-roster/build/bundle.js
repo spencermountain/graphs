@@ -735,25 +735,29 @@ var app = (function () {
     		{
     			name: "Tomas Kaberle",
     			years: 2,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 0
     		},
     		{
     			name: "Dave Steckel",
     			years: 1,
-    			start: 2011,
+    			color: "#c67a53",
+    			start: "2011",
     			col: 0
     		},
     		{
     			name: "Nazem Kadri",
     			years: 7,
-    			start: 2012,
+    			color: "#8BA3A2",
+    			start: "2012",
     			col: 0
     		},
     		{
     			name: "Tyson Barrie",
     			years: 1,
-    			start: 2019,
+    			color: "#F2C0BB",
+    			start: "2019",
     			col: 0
     		}
     	],
@@ -761,25 +765,29 @@ var app = (function () {
     		{
     			name: "Francois Beauchemin",
     			years: 2,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 1
     		},
     		{
     			name: "Joffrey Lupul",
     			years: 5,
-    			start: 2011,
+    			color: "#c67a53",
+    			start: "2011",
     			col: 1
     		},
     		{
     			name: "Matt Martin",
     			years: 2,
-    			start: 2016,
+    			color: "#6accb2",
+    			start: "2016",
     			col: 1
     		},
     		{
     			name: "Travis Dermott",
     			years: 2,
-    			start: 2018,
+    			color: "#cc7066",
+    			start: "2018",
     			col: 1
     		}
     	],
@@ -787,25 +795,29 @@ var app = (function () {
     		{
     			name: "Nikolai Kulemin",
     			years: 5,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 2
     		},
     		{
     			name: "Mike Santorelli",
     			years: 1,
-    			start: 2014,
+    			color: "#C4ABAB",
+    			start: "2014",
     			col: 2
     		},
     		{
     			name: "Michael Grabner",
     			years: 1,
-    			start: 2015,
+    			color: "#6699cc",
+    			start: "2015",
     			col: 2
     		},
     		{
     			name: "Auston Matthews",
     			years: 4,
-    			start: 2016,
+    			color: "#6accb2",
+    			start: "2016",
     			col: 2
     		}
     	],
@@ -813,19 +825,22 @@ var app = (function () {
     		{
     			name: "Colton Orr",
     			years: 6,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 3
     		},
     		{
     			name: "P. A. Parenteau",
     			years: 1,
-    			start: 2015,
+    			color: "#6699cc",
+    			start: "2015",
     			col: 3
     		},
     		{
     			name: "William Nylander",
     			years: 4,
-    			start: 2016,
+    			color: "#6accb2",
+    			start: "2016",
     			col: 3
     		}
     	],
@@ -833,25 +848,29 @@ var app = (function () {
     		{
     			name: "Luke Schenn",
     			years: 3,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 4
     		},
     		{
     			name: "Frazer McLaren",
     			years: 2,
-    			start: 2012,
+    			color: "#8BA3A2",
+    			start: "2012",
     			col: 4
     		},
     		{
     			name: "Roman Polak",
     			years: 4,
-    			start: 2014,
+    			color: "#C4ABAB",
+    			start: "2014",
     			col: 4
     		},
     		{
     			name: "John Tavares",
     			years: 2,
-    			start: 2018,
+    			color: "#cc7066",
+    			start: "2018",
     			col: 4
     		}
     	],
@@ -859,19 +878,22 @@ var app = (function () {
     		{
     			name: "Phil Kessel",
     			years: 6,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 5
     		},
     		{
     			name: "Shawn Matthias",
     			years: 1,
-    			start: 2015,
+    			color: "#6699cc",
+    			start: "2015",
     			col: 5
     		},
     		{
     			name: "Mitch Marner",
     			years: 4,
-    			start: 2016,
+    			color: "#6accb2",
+    			start: "2016",
     			col: 5
     		}
     	],
@@ -879,19 +901,22 @@ var app = (function () {
     		{
     			name: "Wayne Primeau",
     			years: 1,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 6
     		},
     		{
     			name: "Tyler Bozak",
     			years: 8,
-    			start: 2010,
+    			color: "#2D85A8",
+    			start: "2010",
     			col: 6
     		},
     		{
     			name: "Kasperi Kapanen",
     			years: 2,
-    			start: 2018,
+    			color: "#cc7066",
+    			start: "2018",
     			col: 6
     		}
     	],
@@ -899,19 +924,22 @@ var app = (function () {
     		{
     			name: "Rickard Wallin",
     			years: 1,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 7
     		},
     		{
     			name: "Mike Komisarek",
     			years: 3,
-    			start: 2010,
+    			color: "#2D85A8",
+    			start: "2010",
     			col: 7
     		},
     		{
     			name: "Morgan Rielly",
     			years: 7,
-    			start: 2013,
+    			color: "#dfb59f",
+    			start: "2013",
     			col: 7
     		}
     	],
@@ -919,37 +947,43 @@ var app = (function () {
     		{
     			name: "Alexei Ponikarovsky",
     			years: 1,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 8
     		},
     		{
     			name: "Tim Brent",
     			years: 1,
-    			start: 2010,
+    			color: "#2D85A8",
+    			start: "2010",
     			col: 8
     		},
     		{
     			name: "Tim Connolly",
     			years: 1,
-    			start: 2011,
+    			color: "#c67a53",
+    			start: "2011",
     			col: 8
     		},
     		{
     			name: "Jay McClement",
     			years: 2,
-    			start: 2012,
+    			color: "#8BA3A2",
+    			start: "2012",
     			col: 8
     		},
     		{
     			name: "Leo Komarov",
     			years: 4,
-    			start: 2014,
+    			color: "#C4ABAB",
+    			start: "2014",
     			col: 8
     		},
     		{
     			name: "Andreas Johnsson",
     			years: 2,
-    			start: 2018,
+    			color: "#cc7066",
+    			start: "2018",
     			col: 8
     		}
     	],
@@ -957,19 +991,22 @@ var app = (function () {
     		{
     			name: "John Mitchell",
     			years: 2,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 9
     		},
     		{
     			name: "Jake Gardiner",
     			years: 8,
-    			start: 2011,
+    			color: "#c67a53",
+    			start: "2011",
     			col: 9
     		},
     		{
     			name: "Alexander Kerfoot",
     			years: 1,
-    			start: 2019,
+    			color: "#F2C0BB",
+    			start: "2019",
     			col: 9
     		}
     	],
@@ -977,37 +1014,43 @@ var app = (function () {
     		{
     			name: "Mikhail Grabovski",
     			years: 4,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 10
     		},
     		{
     			name: "Mason Raymond",
     			years: 1,
-    			start: 2013,
+    			color: "#dfb59f",
+    			start: "2013",
     			col: 10
     		},
     		{
     			name: "Richard Panik",
     			years: 1,
-    			start: 2014,
+    			color: "#C4ABAB",
+    			start: "2014",
     			col: 10
     		},
     		{
     			name: "Matt Hunwick",
     			years: 2,
-    			start: 2015,
+    			color: "#6699cc",
+    			start: "2015",
     			col: 10
     		},
     		{
     			name: "Patrick Marleau",
     			years: 2,
-    			start: 2017,
+    			color: "#e1e6b3",
+    			start: "2017",
     			col: 10
     		},
     		{
     			name: "Justin Holl",
     			years: 1,
-    			start: 2019,
+    			color: "#F2C0BB",
+    			start: "2019",
     			col: 10
     		}
     	],
@@ -1015,31 +1058,36 @@ var app = (function () {
     		{
     			name: "Lee Stempniak",
     			years: 1,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 11
     		},
     		{
     			name: "Clarke MacArthur",
     			years: 3,
-    			start: 2010,
+    			color: "#2D85A8",
+    			start: "2010",
     			col: 11
     		},
     		{
     			name: "Peter Holland",
     			years: 4,
-    			start: 2013,
+    			color: "#dfb59f",
+    			start: "2013",
     			col: 11
     		},
     		{
     			name: "Ron Hainsey",
     			years: 2,
-    			start: 2017,
+    			color: "#e1e6b3",
+    			start: "2017",
     			col: 11
     		},
     		{
     			name: "Jason Spezza",
     			years: 1,
-    			start: 2019,
+    			color: "#F2C0BB",
+    			start: "2019",
     			col: 11
     		}
     	],
@@ -1047,31 +1095,36 @@ var app = (function () {
     		{
     			name: "Ian White",
     			years: 1,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 12
     		},
     		{
     			name: "Kris Versteeg",
     			years: 1,
-    			start: 2010,
+    			color: "#2D85A8",
+    			start: "2010",
     			col: 12
     		},
     		{
     			name: "John-Michael Liles",
     			years: 3,
-    			start: 2011,
+    			color: "#c67a53",
+    			start: "2011",
     			col: 12
     		},
     		{
     			name: "David Clarkson",
     			years: 1,
-    			start: 2014,
+    			color: "#C4ABAB",
+    			start: "2014",
     			col: 12
     		},
     		{
     			name: "Martin Marincin",
     			years: 5,
-    			start: 2015,
+    			color: "#6699cc",
+    			start: "2015",
     			col: 12
     		}
     	],
@@ -1079,31 +1132,36 @@ var app = (function () {
     		{
     			name: "Matt Stajan",
     			years: 1,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 13
     		},
     		{
     			name: "Joey Crabb",
     			years: 2,
-    			start: 2010,
+    			color: "#2D85A8",
+    			start: "2010",
     			col: 13
     		},
     		{
     			name: "James van Riemsdyk",
     			years: 6,
-    			start: 2012,
+    			color: "#8BA3A2",
+    			start: "2012",
     			col: 13
     		},
     		{
     			name: "Igor Ozhiganov",
     			years: 1,
-    			start: 2018,
+    			color: "#cc7066",
+    			start: "2018",
     			col: 13
     		},
     		{
     			name: "Trevor Moore",
     			years: 1,
-    			start: 2019,
+    			color: "#F2C0BB",
+    			start: "2019",
     			col: 13
     		}
     	],
@@ -1111,55 +1169,64 @@ var app = (function () {
     		{
     			name: "Niklas Hagman",
     			years: 1,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 14
     		},
     		{
     			name: "Fredrik Sjostrom",
     			years: 1,
-    			start: 2010,
+    			color: "#2D85A8",
+    			start: "2010",
     			col: 14
     		},
     		{
     			name: "Philippe Dupuis",
     			years: 1,
-    			start: 2011,
+    			color: "#c67a53",
+    			start: "2011",
     			col: 14
     		},
     		{
     			name: "Mike Kostka",
     			years: 1,
-    			start: 2012,
+    			color: "#8BA3A2",
+    			start: "2012",
     			col: 14
     		},
     		{
     			name: "Paul Ranger",
     			years: 1,
-    			start: 2013,
+    			color: "#dfb59f",
+    			start: "2013",
     			col: 14
     		},
     		{
     			name: "David Booth",
     			years: 1,
-    			start: 2014,
+    			color: "#C4ABAB",
+    			start: "2014",
     			col: 14
     		},
     		{
     			name: "Brad Boyes",
     			years: 1,
-    			start: 2015,
+    			color: "#6699cc",
+    			start: "2015",
     			col: 14
     		},
     		{
     			name: "Connor Brown",
     			years: 3,
-    			start: 2016,
+    			color: "#6accb2",
+    			start: "2016",
     			col: 14
     		},
     		{
     			name: "Yegor Korshkov",
     			years: 1,
-    			start: 2019,
+    			color: "#F2C0BB",
+    			start: "2019",
     			col: 14
     		}
     	],
@@ -1167,37 +1234,43 @@ var app = (function () {
     		{
     			name: "Jason Blake",
     			years: 1,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 15
     		},
     		{
     			name: "Mike Brown",
     			years: 2,
-    			start: 2010,
+    			color: "#2D85A8",
+    			start: "2010",
     			col: 15
     		},
     		{
     			name: "Mark Fraser",
     			years: 2,
-    			start: 2012,
+    			color: "#8BA3A2",
+    			start: "2012",
     			col: 15
     		},
     		{
     			name: "Daniel Winnik",
     			years: 2,
-    			start: 2014,
+    			color: "#C4ABAB",
+    			start: "2014",
     			col: 15
     		},
     		{
     			name: "Nikita Zaitsev",
     			years: 3,
-    			start: 2016,
+    			color: "#6accb2",
+    			start: "2016",
     			col: 15
     		},
     		{
     			name: "Pierre Engvall",
     			years: 1,
-    			start: 2019,
+    			color: "#F2C0BB",
+    			start: "2019",
     			col: 15
     		}
     	],
@@ -1205,19 +1278,22 @@ var app = (function () {
     		{
     			name: "Garnet Exelby",
     			years: 1,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 16
     		},
     		{
     			name: "Dion Phaneuf",
     			years: 6,
-    			start: 2010,
+    			color: "#2D85A8",
+    			start: "2010",
     			col: 16
     		},
     		{
     			name: "Zach Hyman",
     			years: 4,
-    			start: 2016,
+    			color: "#6accb2",
+    			start: "2016",
     			col: 16
     		}
     	],
@@ -1225,43 +1301,50 @@ var app = (function () {
     		{
     			name: "Jamal Mayers",
     			years: 1,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 17
     		},
     		{
     			name: "Colby Armstrong",
     			years: 2,
-    			start: 2010,
+    			color: "#2D85A8",
+    			start: "2010",
     			col: 17
     		},
     		{
     			name: "Leo Komarov",
     			years: 1,
-    			start: 2012,
+    			color: "#8BA3A2",
+    			start: "2012",
     			col: 17
     		},
     		{
     			name: "Troy Bodie",
     			years: 2,
-    			start: 2013,
+    			color: "#dfb59f",
+    			start: "2013",
     			col: 17
     		},
     		{
     			name: "Byron Froese",
     			years: 2,
-    			start: 2015,
+    			color: "#6699cc",
+    			start: "2015",
     			col: 17
     		},
     		{
     			name: "Connor Carrick",
     			years: 1,
-    			start: 2017,
+    			color: "#e1e6b3",
+    			start: "2017",
     			col: 17
     		},
     		{
     			name: "Frederik Gauthier",
     			years: 2,
-    			start: 2018,
+    			color: "#cc7066",
+    			start: "2018",
     			col: 17
     		}
     	],
@@ -1269,31 +1352,36 @@ var app = (function () {
     		{
     			name: "Carl Gunnarsson",
     			years: 5,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 18
     		},
     		{
     			name: "Trevor Smith",
     			years: 1,
-    			start: 2014,
+    			color: "#C4ABAB",
+    			start: "2014",
     			col: 18
     		},
     		{
     			name: "Mark Arcobello",
     			years: 1,
-    			start: 2015,
+    			color: "#6699cc",
+    			start: "2015",
     			col: 18
     		},
     		{
     			name: "Josh Leivo",
     			years: 3,
-    			start: 2016,
+    			color: "#6accb2",
+    			start: "2016",
     			col: 18
     		},
     		{
     			name: "Jake Muzzin",
     			years: 1,
-    			start: 2019,
+    			color: "#F2C0BB",
+    			start: "2019",
     			col: 18
     		}
     	],
@@ -1301,43 +1389,50 @@ var app = (function () {
     		{
     			name: "Viktor Stalberg",
     			years: 1,
-    			start: 2009,
+    			color: "#cc7066",
+    			start: "2009",
     			col: 19
     		},
     		{
     			name: "Darryl Boyce",
     			years: 2,
-    			start: 2010,
+    			color: "#2D85A8",
+    			start: "2010",
     			col: 19
     		},
     		{
     			name: "Cody Franson",
     			years: 3,
-    			start: 2012,
+    			color: "#8BA3A2",
+    			start: "2012",
     			col: 19
     		},
     		{
     			name: "Rich Clune",
     			years: 1,
-    			start: 2015,
+    			color: "#6699cc",
+    			start: "2015",
     			col: 19
     		},
     		{
     			name: "Nikita Soshnikov",
     			years: 2,
-    			start: 2016,
+    			color: "#6accb2",
+    			start: "2016",
     			col: 19
     		},
     		{
     			name: "Par Lindholm",
     			years: 1,
-    			start: 2018,
+    			color: "#cc7066",
+    			start: "2018",
     			col: 19
     		},
     		{
     			name: "Dmytro Timashov",
     			years: 1,
-    			start: 2019,
+    			color: "#F2C0BB",
+    			start: "2019",
     			col: 19
     		}
     	]
@@ -5608,20 +5703,22 @@ var app = (function () {
     			div0 = element("div");
     			t = space();
     			div1 = element("div");
-    			attr_dev(div0, "class", "line svelte-1cnt9dg");
-    			set_style(div0, "border-left", /*width*/ ctx[1] + " " + (/*dotted*/ ctx[7] ? "dotted" : "solid") + " " + /*color*/ ctx[0]);
-    			add_location(div0, file$3, 114, 2, 2491);
-    			attr_dev(div1, "class", "label svelte-1cnt9dg");
+    			attr_dev(div0, "class", "line svelte-1191co4");
+    			set_style(div0, "border-left", /*width*/ ctx[1] + " " + (/*dotted*/ ctx[8] ? "dotted" : "solid") + " " + /*color*/ ctx[0]);
+    			add_location(div0, file$3, 129, 2, 2895);
+    			attr_dev(div1, "class", "label svelte-1191co4");
     			set_style(div1, "top", "20%");
     			set_style(div1, "color", /*color*/ ctx[0]);
-    			set_style(div1, "font-size", /*size*/ ctx[4]);
-    			add_location(div1, file$3, 115, 2, 2583);
-    			attr_dev(div2, "class", "container svelte-1cnt9dg");
-    			set_style(div2, "min-width", /*space*/ ctx[2]);
-    			set_style(div2, "opacity", /*opacity*/ ctx[5]);
-    			set_style(div2, "top", /*top*/ ctx[10] + "px");
-    			set_style(div2, "height", /*height*/ ctx[11] - /*margin*/ ctx[3] + "px");
-    			add_location(div2, file$3, 92, 0, 1990);
+    			set_style(div1, "font-size", /*size*/ ctx[5]);
+    			toggle_class(div1, "rotate", /*rotate*/ ctx[9]);
+    			add_location(div1, file$3, 130, 2, 2986);
+    			attr_dev(div2, "class", "container svelte-1191co4");
+    			set_style(div2, "min-width", /*space*/ ctx[3]);
+    			set_style(div2, "opacity", /*opacity*/ ctx[6]);
+    			set_style(div2, "top", /*top*/ ctx[12] + /*margin*/ ctx[4] + "px");
+    			set_style(div2, "height", /*height*/ ctx[13] - /*margin*/ ctx[4] * 2 + "px");
+    			attr_dev(div2, "title", /*title*/ ctx[2]);
+    			add_location(div2, file$3, 106, 0, 2371);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5631,39 +5728,51 @@ var app = (function () {
     			append_dev(div2, div0);
     			append_dev(div2, t);
     			append_dev(div2, div1);
-    			div1.innerHTML = /*label*/ ctx[6];
+    			div1.innerHTML = /*label*/ ctx[7];
     			if (remount) run_all(dispose);
 
     			dispose = [
-    				listen_dev(div2, "mouseenter", /*mouseenter_handler*/ ctx[19], false, false, false),
-    				listen_dev(div2, "mouseleave", /*mouseleave_handler*/ ctx[20], false, false, false),
-    				listen_dev(div2, "click", /*click_handler*/ ctx[21], false, false, false)
+    				listen_dev(div2, "mouseenter", /*mouseenter_handler*/ ctx[21], false, false, false),
+    				listen_dev(div2, "mouseleave", /*mouseleave_handler*/ ctx[22], false, false, false),
+    				listen_dev(div2, "click", /*click_handler*/ ctx[23], false, false, false)
     			];
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*width, dotted, color*/ 131) {
-    				set_style(div0, "border-left", /*width*/ ctx[1] + " " + (/*dotted*/ ctx[7] ? "dotted" : "solid") + " " + /*color*/ ctx[0]);
+    			if (dirty & /*width, dotted, color*/ 259) {
+    				set_style(div0, "border-left", /*width*/ ctx[1] + " " + (/*dotted*/ ctx[8] ? "dotted" : "solid") + " " + /*color*/ ctx[0]);
     			}
 
-    			if (dirty & /*label*/ 64) div1.innerHTML = /*label*/ ctx[6];
+    			if (dirty & /*label*/ 128) div1.innerHTML = /*label*/ ctx[7];
     			if (dirty & /*color*/ 1) {
     				set_style(div1, "color", /*color*/ ctx[0]);
     			}
 
-    			if (dirty & /*size*/ 16) {
-    				set_style(div1, "font-size", /*size*/ ctx[4]);
+    			if (dirty & /*size*/ 32) {
+    				set_style(div1, "font-size", /*size*/ ctx[5]);
     			}
 
-    			if (dirty & /*space*/ 4) {
-    				set_style(div2, "min-width", /*space*/ ctx[2]);
+    			if (dirty & /*rotate*/ 512) {
+    				toggle_class(div1, "rotate", /*rotate*/ ctx[9]);
     			}
 
-    			if (dirty & /*opacity*/ 32) {
-    				set_style(div2, "opacity", /*opacity*/ ctx[5]);
+    			if (dirty & /*space*/ 8) {
+    				set_style(div2, "min-width", /*space*/ ctx[3]);
     			}
 
-    			if (dirty & /*margin*/ 8) {
-    				set_style(div2, "height", /*height*/ ctx[11] - /*margin*/ ctx[3] + "px");
+    			if (dirty & /*opacity*/ 64) {
+    				set_style(div2, "opacity", /*opacity*/ ctx[6]);
+    			}
+
+    			if (dirty & /*margin*/ 16) {
+    				set_style(div2, "top", /*top*/ ctx[12] + /*margin*/ ctx[4] + "px");
+    			}
+
+    			if (dirty & /*margin*/ 16) {
+    				set_style(div2, "height", /*height*/ ctx[13] - /*margin*/ ctx[4] * 2 + "px");
+    			}
+
+    			if (dirty & /*title*/ 4) {
+    				attr_dev(div2, "title", /*title*/ ctx[2]);
     			}
     		},
     		i: noop,
@@ -5688,17 +5797,26 @@ var app = (function () {
     function instance$3($$self, $$props, $$invalidate) {
     	let { color = "steelblue" } = $$props;
     	let { width = "5px" } = $$props;
+    	let { title = "" } = $$props;
     	let { space = "5px" } = $$props;
     	let { margin = 0 } = $$props;
     	let { size = "14px" } = $$props;
     	let { opacity = "1" } = $$props;
     	let { label = "" } = $$props;
     	let { dotted = false } = $$props;
+    	let { rotate = false } = $$props;
     	let { duration = "1 day" } = $$props;
     	let { start = getContext("start") } = $$props;
     	let { end = getContext("end") } = $$props;
     	start = src(start);
 
+    	// console.log(spacetime.version)
+    	// console.log(
+    	//   spacetime('2012-01-01')
+    	//     // .add(7, 'years')
+    	//     .add(12 * 7, 'months')
+    	//     .format()
+    	// )
     	if (!end && duration) {
     		let words = duration.split(" ");
     		end = start.add(words[0], words[1]);
@@ -5712,7 +5830,7 @@ var app = (function () {
     	if (duration) {
     		let split = duration.split(" ");
     		end = src(start).add(Number(split[0]), split[1]).epoch;
-    	}
+    	} // console.log(spacetime(start).format(), split, spacetime(end).format())
 
     	let top = scale(start);
     	let bottom = scale(end);
@@ -5731,12 +5849,14 @@ var app = (function () {
     	const writable_props = [
     		"color",
     		"width",
+    		"title",
     		"space",
     		"margin",
     		"size",
     		"opacity",
     		"label",
     		"dotted",
+    		"rotate",
     		"duration",
     		"start",
     		"end"
@@ -5752,7 +5872,7 @@ var app = (function () {
     	const mouseenter_handler = () => {
     		setTimeout(
     			function () {
-    				$$invalidate(9, show_label = true);
+    				$$invalidate(11, show_label = true);
     			},
     			100
     		);
@@ -5761,7 +5881,7 @@ var app = (function () {
     	const mouseleave_handler = () => {
     		setTimeout(
     			function () {
-    				$$invalidate(9, show_label = !freeze_label ? false : true);
+    				$$invalidate(11, show_label = !freeze_label ? false : true);
     			},
     			100
     		);
@@ -5769,26 +5889,28 @@ var app = (function () {
 
     	const click_handler = () => {
     		if (!freeze_label) {
-    			$$invalidate(9, show_label = true);
-    			$$invalidate(8, freeze_label = true);
+    			$$invalidate(11, show_label = true);
+    			$$invalidate(10, freeze_label = true);
     		} else {
-    			$$invalidate(9, show_label = false);
-    			$$invalidate(8, freeze_label = false);
+    			$$invalidate(11, show_label = false);
+    			$$invalidate(10, freeze_label = false);
     		}
     	};
 
     	$$self.$set = $$props => {
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     		if ("width" in $$props) $$invalidate(1, width = $$props.width);
-    		if ("space" in $$props) $$invalidate(2, space = $$props.space);
-    		if ("margin" in $$props) $$invalidate(3, margin = $$props.margin);
-    		if ("size" in $$props) $$invalidate(4, size = $$props.size);
-    		if ("opacity" in $$props) $$invalidate(5, opacity = $$props.opacity);
-    		if ("label" in $$props) $$invalidate(6, label = $$props.label);
-    		if ("dotted" in $$props) $$invalidate(7, dotted = $$props.dotted);
-    		if ("duration" in $$props) $$invalidate(14, duration = $$props.duration);
-    		if ("start" in $$props) $$invalidate(12, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(13, end = $$props.end);
+    		if ("title" in $$props) $$invalidate(2, title = $$props.title);
+    		if ("space" in $$props) $$invalidate(3, space = $$props.space);
+    		if ("margin" in $$props) $$invalidate(4, margin = $$props.margin);
+    		if ("size" in $$props) $$invalidate(5, size = $$props.size);
+    		if ("opacity" in $$props) $$invalidate(6, opacity = $$props.opacity);
+    		if ("label" in $$props) $$invalidate(7, label = $$props.label);
+    		if ("dotted" in $$props) $$invalidate(8, dotted = $$props.dotted);
+    		if ("rotate" in $$props) $$invalidate(9, rotate = $$props.rotate);
+    		if ("duration" in $$props) $$invalidate(16, duration = $$props.duration);
+    		if ("start" in $$props) $$invalidate(14, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(15, end = $$props.end);
     	};
 
     	$$self.$capture_state = () => ({
@@ -5797,12 +5919,14 @@ var app = (function () {
     		c: spencerColor,
     		color,
     		width,
+    		title,
     		space,
     		margin,
     		size,
     		opacity,
     		label,
     		dotted,
+    		rotate,
     		duration,
     		start,
     		end,
@@ -5819,20 +5943,22 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     		if ("width" in $$props) $$invalidate(1, width = $$props.width);
-    		if ("space" in $$props) $$invalidate(2, space = $$props.space);
-    		if ("margin" in $$props) $$invalidate(3, margin = $$props.margin);
-    		if ("size" in $$props) $$invalidate(4, size = $$props.size);
-    		if ("opacity" in $$props) $$invalidate(5, opacity = $$props.opacity);
-    		if ("label" in $$props) $$invalidate(6, label = $$props.label);
-    		if ("dotted" in $$props) $$invalidate(7, dotted = $$props.dotted);
-    		if ("duration" in $$props) $$invalidate(14, duration = $$props.duration);
-    		if ("start" in $$props) $$invalidate(12, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(13, end = $$props.end);
-    		if ("top" in $$props) $$invalidate(10, top = $$props.top);
+    		if ("title" in $$props) $$invalidate(2, title = $$props.title);
+    		if ("space" in $$props) $$invalidate(3, space = $$props.space);
+    		if ("margin" in $$props) $$invalidate(4, margin = $$props.margin);
+    		if ("size" in $$props) $$invalidate(5, size = $$props.size);
+    		if ("opacity" in $$props) $$invalidate(6, opacity = $$props.opacity);
+    		if ("label" in $$props) $$invalidate(7, label = $$props.label);
+    		if ("dotted" in $$props) $$invalidate(8, dotted = $$props.dotted);
+    		if ("rotate" in $$props) $$invalidate(9, rotate = $$props.rotate);
+    		if ("duration" in $$props) $$invalidate(16, duration = $$props.duration);
+    		if ("start" in $$props) $$invalidate(14, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(15, end = $$props.end);
+    		if ("top" in $$props) $$invalidate(12, top = $$props.top);
     		if ("bottom" in $$props) bottom = $$props.bottom;
-    		if ("height" in $$props) $$invalidate(11, height = $$props.height);
-    		if ("freeze_label" in $$props) $$invalidate(8, freeze_label = $$props.freeze_label);
-    		if ("show_label" in $$props) $$invalidate(9, show_label = $$props.show_label);
+    		if ("height" in $$props) $$invalidate(13, height = $$props.height);
+    		if ("freeze_label" in $$props) $$invalidate(10, freeze_label = $$props.freeze_label);
+    		if ("show_label" in $$props) $$invalidate(11, show_label = $$props.show_label);
     		if ("tooltipY" in $$props) tooltipY = $$props.tooltipY;
     	};
 
@@ -5843,18 +5969,20 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	 $$invalidate(9, show_label = false);
+    	 $$invalidate(11, show_label = false);
     	 tooltipY = 10;
 
     	return [
     		color,
     		width,
+    		title,
     		space,
     		margin,
     		size,
     		opacity,
     		label,
     		dotted,
+    		rotate,
     		freeze_label,
     		show_label,
     		top,
@@ -5879,15 +6007,17 @@ var app = (function () {
     		init(this, options, instance$3, create_fragment$3, safe_not_equal, {
     			color: 0,
     			width: 1,
-    			space: 2,
-    			margin: 3,
-    			size: 4,
-    			opacity: 5,
-    			label: 6,
-    			dotted: 7,
-    			duration: 14,
-    			start: 12,
-    			end: 13
+    			title: 2,
+    			space: 3,
+    			margin: 4,
+    			size: 5,
+    			opacity: 6,
+    			label: 7,
+    			dotted: 8,
+    			rotate: 9,
+    			duration: 16,
+    			start: 14,
+    			end: 15
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -5911,6 +6041,14 @@ var app = (function () {
     	}
 
     	set width(value) {
+    		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get title() {
+    		throw new Error("<Line>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set title(value) {
     		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -5959,6 +6097,14 @@ var app = (function () {
     	}
 
     	set dotted(value) {
+    		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get rotate() {
+    		throw new Error("<Line>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set rotate(value) {
     		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -6996,17 +7142,20 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (70:10) {#each list as player, i}
+    // (92:10) {#each list as player, i}
     function create_each_block_1(ctx) {
     	let current;
 
     	const line = new Line({
     			props: {
     				start: "jan 1 " + /*player*/ ctx[9].start,
-    				duration: /*player*/ ctx[9].years + " years",
+    				duration: /*player*/ ctx[9].years * 12 + " months",
     				label: /*player*/ ctx[9].name,
+    				title: /*player*/ ctx[9].start + "-" + /*player*/ ctx[9].years,
+    				rotate: true,
+    				margin: 5,
     				opacity: "0.5",
-    				color: /*i*/ ctx[8] % 2 === 0 ? "blue" : "cherry"
+    				color: /*colors*/ ctx[5][/*player*/ ctx[9].start] || "blue"
     			},
     			$$inline: true
     		});
@@ -7038,14 +7187,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(70:10) {#each list as player, i}",
+    		source: "(92:10) {#each list as player, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (69:8) <Column width="50px">
+    // (91:8) <Column width="50px">
     function create_default_slot_1(ctx) {
     	let t;
     	let current;
@@ -7078,7 +7227,7 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*byCol*/ 0) {
+    			if (dirty & /*byCol, colors*/ 32) {
     				each_value_1 = /*list*/ ctx[6];
     				validate_each_argument(each_value_1);
     				let i;
@@ -7134,14 +7283,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(69:8) <Column width=\\\"50px\\\">",
+    		source: "(91:8) <Column width=\\\"50px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (68:6) {#each byCol as list, i}
+    // (90:6) {#each byCol as list, i}
     function create_each_block$1(ctx) {
     	let current;
 
@@ -7189,14 +7338,14 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(68:6) {#each byCol as list, i}",
+    		source: "(90:6) {#each byCol as list, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (65:4) <Timeline {start} {end} {height}>
+    // (87:4) <Timeline {start} {end} {height}>
     function create_default_slot(ctx) {
     	let t0;
     	let t1;
@@ -7257,7 +7406,7 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*byCol*/ 0) {
+    			if (dirty & /*byCol, colors*/ 32) {
     				each_value = byCol;
     				validate_each_argument(each_value);
     				let i;
@@ -7321,7 +7470,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(65:4) <Timeline {start} {end} {height}>",
+    		source: "(87:4) <Timeline {start} {end} {height}>",
     		ctx
     	});
 
@@ -7341,7 +7490,8 @@ var app = (function () {
     	const head = new Head({
     			props: {
     				title: /*title*/ ctx[0],
-    				sub: /*sub*/ ctx[1]
+    				sub: /*sub*/ ctx[1],
+    				num: "08"
     			},
     			$$inline: true
     		});
@@ -7375,10 +7525,10 @@ var app = (function () {
     			t3 = space();
     			create_component(foot.$$.fragment);
     			attr_dev(div0, "class", "m3 svelte-1jjzmoh");
-    			add_location(div0, file$7, 62, 2, 1335);
+    			add_location(div0, file$7, 84, 2, 1891);
     			attr_dev(div1, "class", "m3 svelte-1jjzmoh");
-    			add_location(div1, file$7, 63, 2, 1367);
-    			add_location(div2, file$7, 60, 0, 1302);
+    			add_location(div1, file$7, 85, 2, 1923);
+    			add_location(div2, file$7, 82, 0, 1847);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7446,14 +7596,31 @@ var app = (function () {
     }
 
     function instance$7($$self, $$props, $$invalidate) {
-    	let { title = "NHL roster changes" } = $$props;
+    	let { title = "Toronto Maple Leafs roster changes" } = $$props;
     	let { sub = "" } = $$props;
     	let start = "nov 1 2008";
     	let end = "dec 31 2019";
     	let height = "1500";
 
     	// let cols = colors.combos.yukon.concat(colors.combos.bloor).concat(colors.combos.roma)
-    	let cols = [].concat(spencerColor.combos.yukon, spencerColor.combos.yukon, spencerColor.combos.yukon);
+    	// let cols = [].concat(colors.combos.yukon, colors.combos.yukon, colors.combos.yukon)
+    	// cols = []
+    	// let years = Object.keys(data)
+    	const colors = {
+    		2009: "blue",
+    		2010: "red",
+    		2011: "fuscia",
+    		2012: "navy",
+    		2013: "blue",
+    		2014: "red",
+    		2015: "fuscia",
+    		2016: "navy",
+    		2017: "blue",
+    		2018: "red",
+    		2019: "fuscia"
+    	}; // 2011: 'green',
+    	// 2012: 'suede',
+    	// 2013: 'pink',
 
     	const writable_props = ["title", "sub"];
 
@@ -7476,7 +7643,6 @@ var app = (function () {
     		Timeline,
     		Column,
     		Line,
-    		colors: spencerColor,
     		Ticks,
     		Bar,
     		title,
@@ -7484,7 +7650,7 @@ var app = (function () {
     		start,
     		end,
     		height,
-    		cols
+    		colors
     	});
 
     	$$self.$inject_state = $$props => {
@@ -7493,14 +7659,13 @@ var app = (function () {
     		if ("start" in $$props) $$invalidate(2, start = $$props.start);
     		if ("end" in $$props) $$invalidate(3, end = $$props.end);
     		if ("height" in $$props) $$invalidate(4, height = $$props.height);
-    		if ("cols" in $$props) cols = $$props.cols;
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [title, sub, start, end, height];
+    	return [title, sub, start, end, height, colors];
     }
 
     class Post extends SvelteComponentDev {

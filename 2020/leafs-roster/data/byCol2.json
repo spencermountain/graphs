@@ -1,0 +1,707 @@
+[
+  [
+    {
+      "name": "Tomas Kaberle",
+      "years": 2,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 0
+    },
+    {
+      "name": "Dave Steckel",
+      "years": 1,
+      "color": "#c67a53",
+      "start": "2011",
+      "col": 0
+    },
+    {
+      "name": "Nazem Kadri",
+      "years": 7,
+      "color": "#8BA3A2",
+      "start": "2012",
+      "col": 0
+    },
+    {
+      "name": "Tyson Barrie",
+      "years": 1,
+      "color": "#F2C0BB",
+      "start": "2019",
+      "col": 0
+    }
+  ],
+  [
+    {
+      "name": "Francois Beauchemin",
+      "years": 2,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 1
+    },
+    {
+      "name": "Joffrey Lupul",
+      "years": 5,
+      "color": "#c67a53",
+      "start": "2011",
+      "col": 1
+    },
+    {
+      "name": "Matt Martin",
+      "years": 2,
+      "color": "#6accb2",
+      "start": "2016",
+      "col": 1
+    },
+    {
+      "name": "Travis Dermott",
+      "years": 2,
+      "color": "#cc7066",
+      "start": "2018",
+      "col": 1
+    }
+  ],
+  [
+    {
+      "name": "Nikolai Kulemin",
+      "years": 5,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 2
+    },
+    {
+      "name": "Mike Santorelli",
+      "years": 1,
+      "color": "#C4ABAB",
+      "start": "2014",
+      "col": 2
+    },
+    {
+      "name": "Michael Grabner",
+      "years": 1,
+      "color": "#6699cc",
+      "start": "2015",
+      "col": 2
+    },
+    {
+      "name": "Auston Matthews",
+      "years": 4,
+      "color": "#6accb2",
+      "start": "2016",
+      "col": 2
+    }
+  ],
+  [
+    {
+      "name": "Colton Orr",
+      "years": 6,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 3
+    },
+    {
+      "name": "P. A. Parenteau",
+      "years": 1,
+      "color": "#6699cc",
+      "start": "2015",
+      "col": 3
+    },
+    {
+      "name": "William Nylander",
+      "years": 4,
+      "color": "#6accb2",
+      "start": "2016",
+      "col": 3
+    }
+  ],
+  [
+    {
+      "name": "Luke Schenn",
+      "years": 3,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 4
+    },
+    {
+      "name": "Frazer McLaren",
+      "years": 2,
+      "color": "#8BA3A2",
+      "start": "2012",
+      "col": 4
+    },
+    {
+      "name": "Roman Polak",
+      "years": 4,
+      "color": "#C4ABAB",
+      "start": "2014",
+      "col": 4
+    },
+    {
+      "name": "John Tavares",
+      "years": 2,
+      "color": "#cc7066",
+      "start": "2018",
+      "col": 4
+    }
+  ],
+  [
+    {
+      "name": "Phil Kessel",
+      "years": 6,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 5
+    },
+    {
+      "name": "Shawn Matthias",
+      "years": 1,
+      "color": "#6699cc",
+      "start": "2015",
+      "col": 5
+    },
+    {
+      "name": "Mitch Marner",
+      "years": 4,
+      "color": "#6accb2",
+      "start": "2016",
+      "col": 5
+    }
+  ],
+  [
+    {
+      "name": "Wayne Primeau",
+      "years": 1,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 6
+    },
+    {
+      "name": "Tyler Bozak",
+      "years": 8,
+      "color": "#2D85A8",
+      "start": "2010",
+      "col": 6
+    },
+    {
+      "name": "Kasperi Kapanen",
+      "years": 2,
+      "color": "#cc7066",
+      "start": "2018",
+      "col": 6
+    }
+  ],
+  [
+    {
+      "name": "Rickard Wallin",
+      "years": 1,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 7
+    },
+    {
+      "name": "Mike Komisarek",
+      "years": 3,
+      "color": "#2D85A8",
+      "start": "2010",
+      "col": 7
+    },
+    {
+      "name": "Morgan Rielly",
+      "years": 7,
+      "color": "#dfb59f",
+      "start": "2013",
+      "col": 7
+    }
+  ],
+  [
+    {
+      "name": "Alexei Ponikarovsky",
+      "years": 1,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 8
+    },
+    {
+      "name": "Tim Brent",
+      "years": 1,
+      "color": "#2D85A8",
+      "start": "2010",
+      "col": 8
+    },
+    {
+      "name": "Tim Connolly",
+      "years": 1,
+      "color": "#c67a53",
+      "start": "2011",
+      "col": 8
+    },
+    {
+      "name": "Jay McClement",
+      "years": 2,
+      "color": "#8BA3A2",
+      "start": "2012",
+      "col": 8
+    },
+    {
+      "name": "Leo Komarov",
+      "years": 4,
+      "color": "#C4ABAB",
+      "start": "2014",
+      "col": 8
+    },
+    {
+      "name": "Andreas Johnsson",
+      "years": 2,
+      "color": "#cc7066",
+      "start": "2018",
+      "col": 8
+    }
+  ],
+  [
+    {
+      "name": "John Mitchell",
+      "years": 2,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 9
+    },
+    {
+      "name": "Jake Gardiner",
+      "years": 8,
+      "color": "#c67a53",
+      "start": "2011",
+      "col": 9
+    },
+    {
+      "name": "Alexander Kerfoot",
+      "years": 1,
+      "color": "#F2C0BB",
+      "start": "2019",
+      "col": 9
+    }
+  ],
+  [
+    {
+      "name": "Mikhail Grabovski",
+      "years": 4,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 10
+    },
+    {
+      "name": "Mason Raymond",
+      "years": 1,
+      "color": "#dfb59f",
+      "start": "2013",
+      "col": 10
+    },
+    {
+      "name": "Richard Panik",
+      "years": 1,
+      "color": "#C4ABAB",
+      "start": "2014",
+      "col": 10
+    },
+    {
+      "name": "Matt Hunwick",
+      "years": 2,
+      "color": "#6699cc",
+      "start": "2015",
+      "col": 10
+    },
+    {
+      "name": "Patrick Marleau",
+      "years": 2,
+      "color": "#e1e6b3",
+      "start": "2017",
+      "col": 10
+    },
+    {
+      "name": "Justin Holl",
+      "years": 1,
+      "color": "#F2C0BB",
+      "start": "2019",
+      "col": 10
+    }
+  ],
+  [
+    {
+      "name": "Lee Stempniak",
+      "years": 1,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 11
+    },
+    {
+      "name": "Clarke MacArthur",
+      "years": 3,
+      "color": "#2D85A8",
+      "start": "2010",
+      "col": 11
+    },
+    {
+      "name": "Peter Holland",
+      "years": 4,
+      "color": "#dfb59f",
+      "start": "2013",
+      "col": 11
+    },
+    {
+      "name": "Ron Hainsey",
+      "years": 2,
+      "color": "#e1e6b3",
+      "start": "2017",
+      "col": 11
+    },
+    {
+      "name": "Jason Spezza",
+      "years": 1,
+      "color": "#F2C0BB",
+      "start": "2019",
+      "col": 11
+    }
+  ],
+  [
+    {
+      "name": "Ian White",
+      "years": 1,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 12
+    },
+    {
+      "name": "Kris Versteeg",
+      "years": 1,
+      "color": "#2D85A8",
+      "start": "2010",
+      "col": 12
+    },
+    {
+      "name": "John-Michael Liles",
+      "years": 3,
+      "color": "#c67a53",
+      "start": "2011",
+      "col": 12
+    },
+    {
+      "name": "David Clarkson",
+      "years": 1,
+      "color": "#C4ABAB",
+      "start": "2014",
+      "col": 12
+    },
+    {
+      "name": "Martin Marincin",
+      "years": 5,
+      "color": "#6699cc",
+      "start": "2015",
+      "col": 12
+    }
+  ],
+  [
+    {
+      "name": "Matt Stajan",
+      "years": 1,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 13
+    },
+    {
+      "name": "Joey Crabb",
+      "years": 2,
+      "color": "#2D85A8",
+      "start": "2010",
+      "col": 13
+    },
+    {
+      "name": "James van Riemsdyk",
+      "years": 6,
+      "color": "#8BA3A2",
+      "start": "2012",
+      "col": 13
+    },
+    {
+      "name": "Igor Ozhiganov",
+      "years": 1,
+      "color": "#cc7066",
+      "start": "2018",
+      "col": 13
+    },
+    {
+      "name": "Trevor Moore",
+      "years": 1,
+      "color": "#F2C0BB",
+      "start": "2019",
+      "col": 13
+    }
+  ],
+  [
+    {
+      "name": "Niklas Hagman",
+      "years": 1,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 14
+    },
+    {
+      "name": "Fredrik Sjostrom",
+      "years": 1,
+      "color": "#2D85A8",
+      "start": "2010",
+      "col": 14
+    },
+    {
+      "name": "Philippe Dupuis",
+      "years": 1,
+      "color": "#c67a53",
+      "start": "2011",
+      "col": 14
+    },
+    {
+      "name": "Mike Kostka",
+      "years": 1,
+      "color": "#8BA3A2",
+      "start": "2012",
+      "col": 14
+    },
+    {
+      "name": "Paul Ranger",
+      "years": 1,
+      "color": "#dfb59f",
+      "start": "2013",
+      "col": 14
+    },
+    {
+      "name": "David Booth",
+      "years": 1,
+      "color": "#C4ABAB",
+      "start": "2014",
+      "col": 14
+    },
+    {
+      "name": "Brad Boyes",
+      "years": 1,
+      "color": "#6699cc",
+      "start": "2015",
+      "col": 14
+    },
+    {
+      "name": "Connor Brown",
+      "years": 3,
+      "color": "#6accb2",
+      "start": "2016",
+      "col": 14
+    },
+    {
+      "name": "Yegor Korshkov",
+      "years": 1,
+      "color": "#F2C0BB",
+      "start": "2019",
+      "col": 14
+    }
+  ],
+  [
+    {
+      "name": "Jason Blake",
+      "years": 1,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 15
+    },
+    {
+      "name": "Mike Brown",
+      "years": 2,
+      "color": "#2D85A8",
+      "start": "2010",
+      "col": 15
+    },
+    {
+      "name": "Mark Fraser",
+      "years": 2,
+      "color": "#8BA3A2",
+      "start": "2012",
+      "col": 15
+    },
+    {
+      "name": "Daniel Winnik",
+      "years": 2,
+      "color": "#C4ABAB",
+      "start": "2014",
+      "col": 15
+    },
+    {
+      "name": "Nikita Zaitsev",
+      "years": 3,
+      "color": "#6accb2",
+      "start": "2016",
+      "col": 15
+    },
+    {
+      "name": "Pierre Engvall",
+      "years": 1,
+      "color": "#F2C0BB",
+      "start": "2019",
+      "col": 15
+    }
+  ],
+  [
+    {
+      "name": "Garnet Exelby",
+      "years": 1,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 16
+    },
+    {
+      "name": "Dion Phaneuf",
+      "years": 6,
+      "color": "#2D85A8",
+      "start": "2010",
+      "col": 16
+    },
+    {
+      "name": "Zach Hyman",
+      "years": 4,
+      "color": "#6accb2",
+      "start": "2016",
+      "col": 16
+    }
+  ],
+  [
+    {
+      "name": "Jamal Mayers",
+      "years": 1,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 17
+    },
+    {
+      "name": "Colby Armstrong",
+      "years": 2,
+      "color": "#2D85A8",
+      "start": "2010",
+      "col": 17
+    },
+    {
+      "name": "Leo Komarov",
+      "years": 1,
+      "color": "#8BA3A2",
+      "start": "2012",
+      "col": 17
+    },
+    {
+      "name": "Troy Bodie",
+      "years": 2,
+      "color": "#dfb59f",
+      "start": "2013",
+      "col": 17
+    },
+    {
+      "name": "Byron Froese",
+      "years": 2,
+      "color": "#6699cc",
+      "start": "2015",
+      "col": 17
+    },
+    {
+      "name": "Connor Carrick",
+      "years": 1,
+      "color": "#e1e6b3",
+      "start": "2017",
+      "col": 17
+    },
+    {
+      "name": "Frederik Gauthier",
+      "years": 2,
+      "color": "#cc7066",
+      "start": "2018",
+      "col": 17
+    }
+  ],
+  [
+    {
+      "name": "Carl Gunnarsson",
+      "years": 5,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 18
+    },
+    {
+      "name": "Trevor Smith",
+      "years": 1,
+      "color": "#C4ABAB",
+      "start": "2014",
+      "col": 18
+    },
+    {
+      "name": "Mark Arcobello",
+      "years": 1,
+      "color": "#6699cc",
+      "start": "2015",
+      "col": 18
+    },
+    {
+      "name": "Josh Leivo",
+      "years": 3,
+      "color": "#6accb2",
+      "start": "2016",
+      "col": 18
+    },
+    {
+      "name": "Jake Muzzin",
+      "years": 1,
+      "color": "#F2C0BB",
+      "start": "2019",
+      "col": 18
+    }
+  ],
+  [
+    {
+      "name": "Viktor Stalberg",
+      "years": 1,
+      "color": "#cc7066",
+      "start": "2009",
+      "col": 19
+    },
+    {
+      "name": "Darryl Boyce",
+      "years": 2,
+      "color": "#2D85A8",
+      "start": "2010",
+      "col": 19
+    },
+    {
+      "name": "Cody Franson",
+      "years": 3,
+      "color": "#8BA3A2",
+      "start": "2012",
+      "col": 19
+    },
+    {
+      "name": "Rich Clune",
+      "years": 1,
+      "color": "#6699cc",
+      "start": "2015",
+      "col": 19
+    },
+    {
+      "name": "Nikita Soshnikov",
+      "years": 2,
+      "color": "#6accb2",
+      "start": "2016",
+      "col": 19
+    },
+    {
+      "name": "Par Lindholm",
+      "years": 1,
+      "color": "#cc7066",
+      "start": "2018",
+      "col": 19
+    },
+    {
+      "name": "Dmytro Timashov",
+      "years": 1,
+      "color": "#F2C0BB",
+      "start": "2019",
+      "col": 19
+    }
+  ]
+]
