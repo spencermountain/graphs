@@ -148,7 +148,11 @@ module.exports = {
     thumb: 'thumb.png'
   }, {
     num: 'leafs-roster',
-    title: 'Toronto roster by year',
+    title: 'Toronto Maple leafs roster',
+    thumb: 'thumb.png'
+  }, {
+    num: 'leafs-budget',
+    title: 'Toronto Maple leafs budget',
     thumb: 'thumb.png'
   }]
 };

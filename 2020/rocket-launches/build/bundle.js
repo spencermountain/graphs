@@ -5001,20 +5001,22 @@ var app = (function () {
     			div0 = element("div");
     			t = space();
     			div1 = element("div");
-    			attr_dev(div0, "class", "line svelte-1cnt9dg");
-    			set_style(div0, "border-left", /*width*/ ctx[1] + " " + (/*dotted*/ ctx[7] ? "dotted" : "solid") + " " + /*color*/ ctx[0]);
-    			add_location(div0, file$3, 114, 2, 2491);
-    			attr_dev(div1, "class", "label svelte-1cnt9dg");
+    			attr_dev(div0, "class", "line svelte-1191co4");
+    			set_style(div0, "border-left", /*width*/ ctx[1] + " " + (/*dotted*/ ctx[8] ? "dotted" : "solid") + " " + /*color*/ ctx[0]);
+    			add_location(div0, file$3, 129, 2, 2895);
+    			attr_dev(div1, "class", "label svelte-1191co4");
     			set_style(div1, "top", "20%");
     			set_style(div1, "color", /*color*/ ctx[0]);
-    			set_style(div1, "font-size", /*size*/ ctx[4]);
-    			add_location(div1, file$3, 115, 2, 2583);
-    			attr_dev(div2, "class", "container svelte-1cnt9dg");
-    			set_style(div2, "min-width", /*space*/ ctx[2]);
-    			set_style(div2, "opacity", /*opacity*/ ctx[5]);
-    			set_style(div2, "top", /*top*/ ctx[10] + "px");
-    			set_style(div2, "height", /*height*/ ctx[11] - /*margin*/ ctx[3] + "px");
-    			add_location(div2, file$3, 92, 0, 1990);
+    			set_style(div1, "font-size", /*size*/ ctx[5]);
+    			toggle_class(div1, "rotate", /*rotate*/ ctx[9]);
+    			add_location(div1, file$3, 130, 2, 2986);
+    			attr_dev(div2, "class", "container svelte-1191co4");
+    			set_style(div2, "min-width", /*space*/ ctx[3]);
+    			set_style(div2, "opacity", /*opacity*/ ctx[6]);
+    			set_style(div2, "top", /*top*/ ctx[12] + /*margin*/ ctx[4] + "px");
+    			set_style(div2, "height", /*height*/ ctx[13] - /*margin*/ ctx[4] * 2 + "px");
+    			attr_dev(div2, "title", /*title*/ ctx[2]);
+    			add_location(div2, file$3, 106, 0, 2371);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -5024,39 +5026,51 @@ var app = (function () {
     			append_dev(div2, div0);
     			append_dev(div2, t);
     			append_dev(div2, div1);
-    			div1.innerHTML = /*label*/ ctx[6];
+    			div1.innerHTML = /*label*/ ctx[7];
     			if (remount) run_all(dispose);
 
     			dispose = [
-    				listen_dev(div2, "mouseenter", /*mouseenter_handler*/ ctx[19], false, false, false),
-    				listen_dev(div2, "mouseleave", /*mouseleave_handler*/ ctx[20], false, false, false),
-    				listen_dev(div2, "click", /*click_handler*/ ctx[21], false, false, false)
+    				listen_dev(div2, "mouseenter", /*mouseenter_handler*/ ctx[21], false, false, false),
+    				listen_dev(div2, "mouseleave", /*mouseleave_handler*/ ctx[22], false, false, false),
+    				listen_dev(div2, "click", /*click_handler*/ ctx[23], false, false, false)
     			];
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*width, dotted, color*/ 131) {
-    				set_style(div0, "border-left", /*width*/ ctx[1] + " " + (/*dotted*/ ctx[7] ? "dotted" : "solid") + " " + /*color*/ ctx[0]);
+    			if (dirty & /*width, dotted, color*/ 259) {
+    				set_style(div0, "border-left", /*width*/ ctx[1] + " " + (/*dotted*/ ctx[8] ? "dotted" : "solid") + " " + /*color*/ ctx[0]);
     			}
 
-    			if (dirty & /*label*/ 64) div1.innerHTML = /*label*/ ctx[6];
+    			if (dirty & /*label*/ 128) div1.innerHTML = /*label*/ ctx[7];
     			if (dirty & /*color*/ 1) {
     				set_style(div1, "color", /*color*/ ctx[0]);
     			}
 
-    			if (dirty & /*size*/ 16) {
-    				set_style(div1, "font-size", /*size*/ ctx[4]);
+    			if (dirty & /*size*/ 32) {
+    				set_style(div1, "font-size", /*size*/ ctx[5]);
     			}
 
-    			if (dirty & /*space*/ 4) {
-    				set_style(div2, "min-width", /*space*/ ctx[2]);
+    			if (dirty & /*rotate*/ 512) {
+    				toggle_class(div1, "rotate", /*rotate*/ ctx[9]);
     			}
 
-    			if (dirty & /*opacity*/ 32) {
-    				set_style(div2, "opacity", /*opacity*/ ctx[5]);
+    			if (dirty & /*space*/ 8) {
+    				set_style(div2, "min-width", /*space*/ ctx[3]);
     			}
 
-    			if (dirty & /*margin*/ 8) {
-    				set_style(div2, "height", /*height*/ ctx[11] - /*margin*/ ctx[3] + "px");
+    			if (dirty & /*opacity*/ 64) {
+    				set_style(div2, "opacity", /*opacity*/ ctx[6]);
+    			}
+
+    			if (dirty & /*margin*/ 16) {
+    				set_style(div2, "top", /*top*/ ctx[12] + /*margin*/ ctx[4] + "px");
+    			}
+
+    			if (dirty & /*margin*/ 16) {
+    				set_style(div2, "height", /*height*/ ctx[13] - /*margin*/ ctx[4] * 2 + "px");
+    			}
+
+    			if (dirty & /*title*/ 4) {
+    				attr_dev(div2, "title", /*title*/ ctx[2]);
     			}
     		},
     		i: noop,
@@ -5081,17 +5095,26 @@ var app = (function () {
     function instance$3($$self, $$props, $$invalidate) {
     	let { color = "steelblue" } = $$props;
     	let { width = "5px" } = $$props;
+    	let { title = "" } = $$props;
     	let { space = "5px" } = $$props;
     	let { margin = 0 } = $$props;
     	let { size = "14px" } = $$props;
     	let { opacity = "1" } = $$props;
     	let { label = "" } = $$props;
     	let { dotted = false } = $$props;
+    	let { rotate = false } = $$props;
     	let { duration = "1 day" } = $$props;
     	let { start = getContext("start") } = $$props;
     	let { end = getContext("end") } = $$props;
     	start = src(start);
 
+    	// console.log(spacetime.version)
+    	// console.log(
+    	//   spacetime('2012-01-01')
+    	//     // .add(7, 'years')
+    	//     .add(12 * 7, 'months')
+    	//     .format()
+    	// )
     	if (!end && duration) {
     		let words = duration.split(" ");
     		end = start.add(words[0], words[1]);
@@ -5105,7 +5128,7 @@ var app = (function () {
     	if (duration) {
     		let split = duration.split(" ");
     		end = src(start).add(Number(split[0]), split[1]).epoch;
-    	}
+    	} // console.log(spacetime(start).format(), split, spacetime(end).format())
 
     	let top = scale(start);
     	let bottom = scale(end);
@@ -5124,12 +5147,14 @@ var app = (function () {
     	const writable_props = [
     		"color",
     		"width",
+    		"title",
     		"space",
     		"margin",
     		"size",
     		"opacity",
     		"label",
     		"dotted",
+    		"rotate",
     		"duration",
     		"start",
     		"end"
@@ -5145,7 +5170,7 @@ var app = (function () {
     	const mouseenter_handler = () => {
     		setTimeout(
     			function () {
-    				$$invalidate(9, show_label = true);
+    				$$invalidate(11, show_label = true);
     			},
     			100
     		);
@@ -5154,7 +5179,7 @@ var app = (function () {
     	const mouseleave_handler = () => {
     		setTimeout(
     			function () {
-    				$$invalidate(9, show_label = !freeze_label ? false : true);
+    				$$invalidate(11, show_label = !freeze_label ? false : true);
     			},
     			100
     		);
@@ -5162,26 +5187,28 @@ var app = (function () {
 
     	const click_handler = () => {
     		if (!freeze_label) {
-    			$$invalidate(9, show_label = true);
-    			$$invalidate(8, freeze_label = true);
+    			$$invalidate(11, show_label = true);
+    			$$invalidate(10, freeze_label = true);
     		} else {
-    			$$invalidate(9, show_label = false);
-    			$$invalidate(8, freeze_label = false);
+    			$$invalidate(11, show_label = false);
+    			$$invalidate(10, freeze_label = false);
     		}
     	};
 
     	$$self.$set = $$props => {
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     		if ("width" in $$props) $$invalidate(1, width = $$props.width);
-    		if ("space" in $$props) $$invalidate(2, space = $$props.space);
-    		if ("margin" in $$props) $$invalidate(3, margin = $$props.margin);
-    		if ("size" in $$props) $$invalidate(4, size = $$props.size);
-    		if ("opacity" in $$props) $$invalidate(5, opacity = $$props.opacity);
-    		if ("label" in $$props) $$invalidate(6, label = $$props.label);
-    		if ("dotted" in $$props) $$invalidate(7, dotted = $$props.dotted);
-    		if ("duration" in $$props) $$invalidate(14, duration = $$props.duration);
-    		if ("start" in $$props) $$invalidate(12, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(13, end = $$props.end);
+    		if ("title" in $$props) $$invalidate(2, title = $$props.title);
+    		if ("space" in $$props) $$invalidate(3, space = $$props.space);
+    		if ("margin" in $$props) $$invalidate(4, margin = $$props.margin);
+    		if ("size" in $$props) $$invalidate(5, size = $$props.size);
+    		if ("opacity" in $$props) $$invalidate(6, opacity = $$props.opacity);
+    		if ("label" in $$props) $$invalidate(7, label = $$props.label);
+    		if ("dotted" in $$props) $$invalidate(8, dotted = $$props.dotted);
+    		if ("rotate" in $$props) $$invalidate(9, rotate = $$props.rotate);
+    		if ("duration" in $$props) $$invalidate(16, duration = $$props.duration);
+    		if ("start" in $$props) $$invalidate(14, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(15, end = $$props.end);
     	};
 
     	$$self.$capture_state = () => ({
@@ -5190,12 +5217,14 @@ var app = (function () {
     		c: spencerColor,
     		color,
     		width,
+    		title,
     		space,
     		margin,
     		size,
     		opacity,
     		label,
     		dotted,
+    		rotate,
     		duration,
     		start,
     		end,
@@ -5212,20 +5241,22 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     		if ("width" in $$props) $$invalidate(1, width = $$props.width);
-    		if ("space" in $$props) $$invalidate(2, space = $$props.space);
-    		if ("margin" in $$props) $$invalidate(3, margin = $$props.margin);
-    		if ("size" in $$props) $$invalidate(4, size = $$props.size);
-    		if ("opacity" in $$props) $$invalidate(5, opacity = $$props.opacity);
-    		if ("label" in $$props) $$invalidate(6, label = $$props.label);
-    		if ("dotted" in $$props) $$invalidate(7, dotted = $$props.dotted);
-    		if ("duration" in $$props) $$invalidate(14, duration = $$props.duration);
-    		if ("start" in $$props) $$invalidate(12, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(13, end = $$props.end);
-    		if ("top" in $$props) $$invalidate(10, top = $$props.top);
+    		if ("title" in $$props) $$invalidate(2, title = $$props.title);
+    		if ("space" in $$props) $$invalidate(3, space = $$props.space);
+    		if ("margin" in $$props) $$invalidate(4, margin = $$props.margin);
+    		if ("size" in $$props) $$invalidate(5, size = $$props.size);
+    		if ("opacity" in $$props) $$invalidate(6, opacity = $$props.opacity);
+    		if ("label" in $$props) $$invalidate(7, label = $$props.label);
+    		if ("dotted" in $$props) $$invalidate(8, dotted = $$props.dotted);
+    		if ("rotate" in $$props) $$invalidate(9, rotate = $$props.rotate);
+    		if ("duration" in $$props) $$invalidate(16, duration = $$props.duration);
+    		if ("start" in $$props) $$invalidate(14, start = $$props.start);
+    		if ("end" in $$props) $$invalidate(15, end = $$props.end);
+    		if ("top" in $$props) $$invalidate(12, top = $$props.top);
     		if ("bottom" in $$props) bottom = $$props.bottom;
-    		if ("height" in $$props) $$invalidate(11, height = $$props.height);
-    		if ("freeze_label" in $$props) $$invalidate(8, freeze_label = $$props.freeze_label);
-    		if ("show_label" in $$props) $$invalidate(9, show_label = $$props.show_label);
+    		if ("height" in $$props) $$invalidate(13, height = $$props.height);
+    		if ("freeze_label" in $$props) $$invalidate(10, freeze_label = $$props.freeze_label);
+    		if ("show_label" in $$props) $$invalidate(11, show_label = $$props.show_label);
     		if ("tooltipY" in $$props) tooltipY = $$props.tooltipY;
     	};
 
@@ -5236,18 +5267,20 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	 $$invalidate(9, show_label = false);
+    	 $$invalidate(11, show_label = false);
     	 tooltipY = 10;
 
     	return [
     		color,
     		width,
+    		title,
     		space,
     		margin,
     		size,
     		opacity,
     		label,
     		dotted,
+    		rotate,
     		freeze_label,
     		show_label,
     		top,
@@ -5272,15 +5305,17 @@ var app = (function () {
     		init(this, options, instance$3, create_fragment$3, safe_not_equal, {
     			color: 0,
     			width: 1,
-    			space: 2,
-    			margin: 3,
-    			size: 4,
-    			opacity: 5,
-    			label: 6,
-    			dotted: 7,
-    			duration: 14,
-    			start: 12,
-    			end: 13
+    			title: 2,
+    			space: 3,
+    			margin: 4,
+    			size: 5,
+    			opacity: 6,
+    			label: 7,
+    			dotted: 8,
+    			rotate: 9,
+    			duration: 16,
+    			start: 14,
+    			end: 15
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -5304,6 +5339,14 @@ var app = (function () {
     	}
 
     	set width(value) {
+    		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get title() {
+    		throw new Error("<Line>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set title(value) {
     		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -5352,6 +5395,14 @@ var app = (function () {
     	}
 
     	set dotted(value) {
+    		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get rotate() {
+    		throw new Error("<Line>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set rotate(value) {
     		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -6231,11 +6282,11 @@ var app = (function () {
     			t0 = text(/*label*/ ctx[1]);
     			t1 = space();
     			if (default_slot) default_slot.c();
-    			attr_dev(div0, "class", "label svelte-gr5sfz");
-    			add_location(div0, file$6, 18, 2, 320);
-    			attr_dev(div1, "class", "part column svelte-gr5sfz");
+    			attr_dev(div0, "class", "label svelte-n200n5");
+    			add_location(div0, file$6, 21, 2, 387);
+    			attr_dev(div1, "class", "part column svelte-n200n5");
     			set_style(div1, "width", /*width*/ ctx[0]);
-    			add_location(div1, file$6, 17, 0, 269);
+    			add_location(div1, file$6, 20, 0, 336);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
