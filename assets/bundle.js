@@ -146,6 +146,10 @@ module.exports = {
     num: 'nhl-playoffs',
     title: 'NHL playoffs by year',
     thumb: 'thumb.png'
+  }, {
+    num: 'leafs-roster',
+    title: 'Toronto roster by year',
+    thumb: 'thumb.png'
   }]
 };
 
