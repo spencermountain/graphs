@@ -1,5 +1,5 @@
 <script>
-  import { Sankey, Path } from 'somehow-sankey'
+  import { Sankey, Node } from 'somehow-sankey'
   import { Head, Foot } from '../../components/'
   export let title = 'Population of Canada'
   //from Wikipedia by Metro area
@@ -87,13 +87,15 @@
   <div class="m3">Population of Canada</div>
   <div class="m3">
     <Sankey height={800}>
-      <Path source="Toronto" target="Canada" value="6" />
-      <Path source="Ontario" target="Canada" value="7.7" />
-      <Path source="Montreal" target="Canada" value="4" />
-      <Path source="Quebec" target="Canada" value="2.5" />
-      <Path source="Vancouver" target="Canada" value="2.4" />
-      <Path source="B.C." target="Canada" value="2.2" />
-      <Path source="rest" target="Canada" value="7.9" />
+      <Node name="Toronto" to="Canada" value="6" />
+      <Node name="Ontario" to="Canada" value="7.7" color="sky" />
+      <Node name="Montreal" to="Canada" value="4" />
+      <Node name="Quebec" to="Canada" value="2.5" />
+
+      <Node name="Vancouver" to="Canada" value="2.4" color="greypurple" />
+      <Node name="B.C." to="Canada" value="2.2" color="burn" />
+
+      <Node name="rest" to="Canada" value="7.9" opacity="0.6" />
     </Sankey>
   </div>
 

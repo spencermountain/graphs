@@ -18907,12 +18907,6 @@ var app = (function () {
         zoomIdentity: identity$9
     });
 
-    function getCjsExportFromNamespace (n) {
-    	return n && n['default'] || n;
-    }
-
-    var d3$1 = getCjsExportFromNamespace(d3);
-
     var plugin = function () {
       var sankey = {},
         nodeWidth = 24,
@@ -18971,7 +18965,7 @@ var app = (function () {
         function link(d) {
           var x0 = d.source.x + d.source.dx,
             x1 = d.target.x,
-            xi = d3$1.interpolateNumber(x0, x1),
+            xi = d3.interpolateNumber(x0, x1),
             x2 = xi(curvature),
             x3 = xi(1 - curvature),
             y0 = d.source.y + d.sy + d.dy / 2,
@@ -19008,7 +19002,7 @@ var app = (function () {
       // Compute the value (size) of each node by summing the associated links.
       function computeNodeValues() {
         nodes.forEach(function (node) {
-          node.value = Math.max(d3$1.sum(node.sourceLinks, value), d3$1.sum(node.targetLinks, value));
+          node.value = Math.max(d3.sum(node.sourceLinks, value), d3.sum(node.targetLinks, value));
         });
       }
 
@@ -19056,12 +19050,12 @@ var app = (function () {
       }
 
       function computeNodeDepths(iterations) {
-        var nodesByBreadth = d3$1
+        var nodesByBreadth = d3
           .nest()
           .key(function (d) {
             return d.x
           })
-          .sortKeys(d3$1.ascending)
+          .sortKeys(d3.ascending)
           .entries(nodes)
           .map(function (d) {
             return d.values
@@ -19078,8 +19072,8 @@ var app = (function () {
         }
 
         function initializeNodeDepth() {
-          var ky = d3$1.min(nodesByBreadth, function (nodes) {
-            return (size[1] - (nodes.length - 1) * nodePadding) / d3$1.sum(nodes, value)
+          var ky = d3.min(nodesByBreadth, function (nodes) {
+            return (size[1] - (nodes.length - 1) * nodePadding) / d3.sum(nodes, value)
           });
 
           nodesByBreadth.forEach(function (nodes) {
@@ -19098,7 +19092,7 @@ var app = (function () {
           nodesByBreadth.forEach(function (nodes, breadth) {
             nodes.forEach(function (node) {
               if (node.targetLinks.length) {
-                var y = d3$1.sum(node.targetLinks, weightedSource) / d3$1.sum(node.targetLinks, value);
+                var y = d3.sum(node.targetLinks, weightedSource) / d3.sum(node.targetLinks, value);
                 node.y += (y - center(node)) * alpha;
               }
             });
@@ -19116,7 +19110,7 @@ var app = (function () {
             .forEach(function (nodes) {
               nodes.forEach(function (node) {
                 if (node.sourceLinks.length) {
-                  var y = d3$1.sum(node.sourceLinks, weightedTarget) / d3$1.sum(node.sourceLinks, value);
+                  var y = d3.sum(node.sourceLinks, weightedTarget) / d3.sum(node.sourceLinks, value);
                   node.y += (y - center(node)) * alpha;
                 }
               });
@@ -19205,13 +19199,12 @@ var app = (function () {
 
     let d4 = Object.assign({}, d3);
     d4.sankey = plugin;
+    // unique values of an array
+    const onlyUnique = function (value, index, self) {
+      return self.indexOf(value) === index
+    };
 
     const build = function (data, width, height) {
-      // unique values of an array
-      const onlyUnique = function (value, index, self) {
-        return self.indexOf(value) === index
-      };
-
       let sanKey = d4
         .sankey()
         .nodeWidth(150)
@@ -19248,7 +19241,13 @@ var app = (function () {
       });
 
       sanKey.nodes(nodes).links(links).layout(32);
-
+      nodes.forEach((n, i) => {
+        if (data[i]) {
+          n.color = data[i].color;
+          n.accent = data[i].accent;
+          n.opacity = data[i].opacity;
+        }
+      });
       return {
         nodes: nodes,
         links,
@@ -19311,30 +19310,42 @@ var app = (function () {
 
     const items = writable([]);
 
+    function createCommonjsModule(fn, module) {
+    	return module = { exports: {} }, fn(module, module.exports), module.exports;
+    }
+
+    function commonjsRequire () {
+    	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
+    }
+
+    var spencerColor = createCommonjsModule(function (module, exports) {
+    !function(e){module.exports=e();}(function(){return function u(i,a,c){function f(r,e){if(!a[r]){if(!i[r]){var o="function"==typeof commonjsRequire&&commonjsRequire;if(!e&&o)return o(r,!0);if(d)return d(r,!0);var n=new Error("Cannot find module '"+r+"'");throw n.code="MODULE_NOT_FOUND",n}var t=a[r]={exports:{}};i[r][0].call(t.exports,function(e){return f(i[r][1][e]||e)},t,t.exports,u,i,a,c);}return a[r].exports}for(var d="function"==typeof commonjsRequire&&commonjsRequire,e=0;e<c.length;e++)f(c[e]);return f}({1:[function(e,r,o){r.exports={blue:"#6699cc",green:"#6accb2",yellow:"#e1e6b3",red:"#cc7066",pink:"#F2C0BB",brown:"#705E5C",orange:"#cc8a66",purple:"#d8b3e6",navy:"#335799",olive:"#7f9c6c",fuscia:"#735873",beige:"#e6d7b3",slate:"#8C8C88",suede:"#9c896c",burnt:"#603a39",sea:"#50617A",sky:"#2D85A8",night:"#303b50",rouge:"#914045",grey:"#838B91",mud:"#C4ABAB",royal:"#275291",cherry:"#cc6966",tulip:"#e6b3bc",rose:"#D68881",fire:"#AB5850",greyblue:"#72697D",greygreen:"#8BA3A2",greypurple:"#978BA3",burn:"#6D5685",slategrey:"#bfb0b3",light:"#a3a5a5",lighter:"#d7d5d2",fudge:"#4d4d4d",lightgrey:"#949a9e",white:"#fbfbfb",dimgrey:"#606c74",softblack:"#463D4F",dark:"#443d3d",black:"#333333"};},{}],2:[function(e,r,o){var n=e("./colors"),t={juno:["blue","mud","navy","slate","pink","burn"],barrow:["rouge","red","orange","burnt","brown","greygreen"],roma:["#8a849a","#b5b0bf","rose","lighter","greygreen","mud"],palmer:["red","navy","olive","pink","suede","sky"],mark:["#848f9a","#9aa4ac","slate","#b0b8bf","mud","grey"],salmon:["sky","sea","fuscia","slate","mud","fudge"],dupont:["green","brown","orange","red","olive","blue"],bloor:["night","navy","beige","rouge","mud","grey"],yukon:["mud","slate","brown","sky","beige","red"],david:["blue","green","yellow","red","pink","light"],neste:["mud","cherry","royal","rouge","greygreen","greypurple"],ken:["red","sky","#c67a53","greygreen","#dfb59f","mud"]};Object.keys(t).forEach(function(e){t[e]=t[e].map(function(e){return n[e]||e});}),r.exports=t;},{"./colors":1}],3:[function(e,r,o){var n=e("./colors"),t=e("./combos"),u={colors:n,list:Object.keys(n).map(function(e){return n[e]}),combos:t};r.exports=u;},{"./colors":1,"./combos":2}]},{},[3])(3)});
+    });
+
     /* node_modules/somehow-sankey/src/Sankey.svelte generated by Svelte v3.22.3 */
     const file = "node_modules/somehow-sankey/src/Sankey.svelte";
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[10] = list[i];
+    	child_ctx[12] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[10] = list[i];
+    	child_ctx[12] = list[i];
     	return child_ctx;
     }
 
-    // (51:4) {#each nodes as d}
+    // (53:4) {#each nodes as d}
     function create_each_block_1(ctx) {
     	let div2;
     	let div0;
-    	let t0_value = /*d*/ ctx[10].name + "";
+    	let t0_value = /*d*/ ctx[12].name + "";
     	let t0;
     	let t1;
     	let div1;
-    	let t2_value = Math.ceil(/*d*/ ctx[10].value * 100) / 100 + "";
+    	let t2_value = Math.ceil(/*d*/ ctx[12].value * 100) / 100 + "";
     	let t2;
     	let t3;
     	let t4;
@@ -19350,18 +19361,21 @@ var app = (function () {
     			t3 = text("m");
     			t4 = space();
     			attr_dev(div0, "class", "label");
-    			add_location(div0, file, 56, 8, 1343);
+    			add_location(div0, file, 59, 8, 1510);
     			attr_dev(div1, "class", "value svelte-sj91yl");
-    			toggle_class(div1, "tiny", /*d*/ ctx[10].y > 300);
-    			add_location(div1, file, 57, 8, 1385);
+    			set_style(div1, "color", /*colors*/ ctx[6][/*d*/ ctx[12].accent] || /*accent*/ ctx[8]);
+    			toggle_class(div1, "tiny", /*d*/ ctx[12].y > 300);
+    			add_location(div1, file, 60, 8, 1552);
     			attr_dev(div2, "class", "node svelte-sj91yl");
-    			set_style(div2, "left", /*d*/ ctx[10].x + "px");
-    			set_style(div2, "top", /*d*/ ctx[10].y + "px");
+    			set_style(div2, "left", /*d*/ ctx[12].x + "px");
+    			set_style(div2, "top", /*d*/ ctx[12].y + "px");
     			set_style(div2, "width", /*nodeWidth*/ ctx[5] + "px");
-    			set_style(div2, "background-color", /*color*/ ctx[6]);
-    			set_style(div2, "height", (/*d*/ ctx[10].dy < 0 ? 0.1 : /*d*/ ctx[10].dy) + "px");
-    			toggle_class(div2, "tiny", /*d*/ ctx[10].y > 300);
-    			add_location(div2, file, 51, 6, 1145);
+    			set_style(div2, "background-color", /*colors*/ ctx[6][/*d*/ ctx[12].color] || /*color*/ ctx[7]);
+    			set_style(div2, "height", (/*d*/ ctx[12].dy < 0 ? 0.1 : /*d*/ ctx[12].dy) + "px");
+    			set_style(div2, "border-bottom", "4px solid " + (/*colors*/ ctx[6][/*d*/ ctx[12].accent] || /*accent*/ ctx[8]));
+    			set_style(div2, "opacity", /*d*/ ctx[12].opacity || 1);
+    			toggle_class(div2, "tiny", /*d*/ ctx[12].y > 300);
+    			add_location(div2, file, 53, 6, 1204);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -19374,19 +19388,23 @@ var app = (function () {
     			append_dev(div2, t4);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*nodes*/ 4 && t0_value !== (t0_value = /*d*/ ctx[10].name + "")) set_data_dev(t0, t0_value);
-    			if (dirty & /*nodes*/ 4 && t2_value !== (t2_value = Math.ceil(/*d*/ ctx[10].value * 100) / 100 + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*nodes*/ 4 && t0_value !== (t0_value = /*d*/ ctx[12].name + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*nodes*/ 4 && t2_value !== (t2_value = Math.ceil(/*d*/ ctx[12].value * 100) / 100 + "")) set_data_dev(t2, t2_value);
 
     			if (dirty & /*nodes*/ 4) {
-    				toggle_class(div1, "tiny", /*d*/ ctx[10].y > 300);
+    				set_style(div1, "color", /*colors*/ ctx[6][/*d*/ ctx[12].accent] || /*accent*/ ctx[8]);
     			}
 
     			if (dirty & /*nodes*/ 4) {
-    				set_style(div2, "left", /*d*/ ctx[10].x + "px");
+    				toggle_class(div1, "tiny", /*d*/ ctx[12].y > 300);
     			}
 
     			if (dirty & /*nodes*/ 4) {
-    				set_style(div2, "top", /*d*/ ctx[10].y + "px");
+    				set_style(div2, "left", /*d*/ ctx[12].x + "px");
+    			}
+
+    			if (dirty & /*nodes*/ 4) {
+    				set_style(div2, "top", /*d*/ ctx[12].y + "px");
     			}
 
     			if (dirty & /*nodeWidth*/ 32) {
@@ -19394,11 +19412,23 @@ var app = (function () {
     			}
 
     			if (dirty & /*nodes*/ 4) {
-    				set_style(div2, "height", (/*d*/ ctx[10].dy < 0 ? 0.1 : /*d*/ ctx[10].dy) + "px");
+    				set_style(div2, "background-color", /*colors*/ ctx[6][/*d*/ ctx[12].color] || /*color*/ ctx[7]);
     			}
 
     			if (dirty & /*nodes*/ 4) {
-    				toggle_class(div2, "tiny", /*d*/ ctx[10].y > 300);
+    				set_style(div2, "height", (/*d*/ ctx[12].dy < 0 ? 0.1 : /*d*/ ctx[12].dy) + "px");
+    			}
+
+    			if (dirty & /*nodes*/ 4) {
+    				set_style(div2, "border-bottom", "4px solid " + (/*colors*/ ctx[6][/*d*/ ctx[12].accent] || /*accent*/ ctx[8]));
+    			}
+
+    			if (dirty & /*nodes*/ 4) {
+    				set_style(div2, "opacity", /*d*/ ctx[12].opacity || 1);
+    			}
+
+    			if (dirty & /*nodes*/ 4) {
+    				toggle_class(div2, "tiny", /*d*/ ctx[12].y > 300);
     			}
     		},
     		d: function destroy(detaching) {
@@ -19410,24 +19440,24 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(51:4) {#each nodes as d}",
+    		source: "(53:4) {#each nodes as d}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (68:6) {#each links as d}
+    // (74:6) {#each links as d}
     function create_each_block(ctx) {
     	let path_1;
     	let title;
-    	let t0_value = /*d*/ ctx[10].source.name + "";
+    	let t0_value = /*d*/ ctx[12].source.name + "";
     	let t0;
     	let t1;
-    	let t2_value = /*d*/ ctx[10].target.name + "";
+    	let t2_value = /*d*/ ctx[12].target.name + "";
     	let t2;
     	let t3;
-    	let t4_value = parseInt(/*d*/ ctx[10].value, 10) + "";
+    	let t4_value = parseInt(/*d*/ ctx[12].value, 10) + "";
     	let t4;
     	let path_1_d_value;
     	let path_1_stroke_width_value;
@@ -19441,13 +19471,13 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = text(" $");
     			t4 = text(t4_value);
-    			add_location(title, file, 75, 10, 1795);
+    			add_location(title, file, 81, 10, 2036);
     			attr_dev(path_1, "class", "link svelte-sj91yl");
-    			attr_dev(path_1, "d", path_1_d_value = /*path*/ ctx[4](/*d*/ ctx[10]));
+    			attr_dev(path_1, "d", path_1_d_value = /*path*/ ctx[4](/*d*/ ctx[12]));
     			attr_dev(path_1, "stroke", "steelblue");
     			attr_dev(path_1, "fill", "none");
-    			attr_dev(path_1, "stroke-width", path_1_stroke_width_value = Math.max(1, /*d*/ ctx[10].dy));
-    			add_location(path_1, file, 68, 8, 1620);
+    			attr_dev(path_1, "stroke-width", path_1_stroke_width_value = Math.max(1, /*d*/ ctx[12].dy));
+    			add_location(path_1, file, 74, 8, 1861);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, path_1, anchor);
@@ -19459,15 +19489,15 @@ var app = (function () {
     			append_dev(title, t4);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*links*/ 8 && t0_value !== (t0_value = /*d*/ ctx[10].source.name + "")) set_data_dev(t0, t0_value);
-    			if (dirty & /*links*/ 8 && t2_value !== (t2_value = /*d*/ ctx[10].target.name + "")) set_data_dev(t2, t2_value);
-    			if (dirty & /*links*/ 8 && t4_value !== (t4_value = parseInt(/*d*/ ctx[10].value, 10) + "")) set_data_dev(t4, t4_value);
+    			if (dirty & /*links*/ 8 && t0_value !== (t0_value = /*d*/ ctx[12].source.name + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*links*/ 8 && t2_value !== (t2_value = /*d*/ ctx[12].target.name + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*links*/ 8 && t4_value !== (t4_value = parseInt(/*d*/ ctx[12].value, 10) + "")) set_data_dev(t4, t4_value);
 
-    			if (dirty & /*path, links*/ 24 && path_1_d_value !== (path_1_d_value = /*path*/ ctx[4](/*d*/ ctx[10]))) {
+    			if (dirty & /*path, links*/ 24 && path_1_d_value !== (path_1_d_value = /*path*/ ctx[4](/*d*/ ctx[12]))) {
     				attr_dev(path_1, "d", path_1_d_value);
     			}
 
-    			if (dirty & /*links*/ 8 && path_1_stroke_width_value !== (path_1_stroke_width_value = Math.max(1, /*d*/ ctx[10].dy))) {
+    			if (dirty & /*links*/ 8 && path_1_stroke_width_value !== (path_1_stroke_width_value = Math.max(1, /*d*/ ctx[12].dy))) {
     				attr_dev(path_1, "stroke-width", path_1_stroke_width_value);
     			}
     		},
@@ -19480,7 +19510,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(68:6) {#each links as d}",
+    		source: "(74:6) {#each links as d}",
     		ctx
     	});
 
@@ -19512,8 +19542,8 @@ var app = (function () {
     		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
     	}
 
-    	const default_slot_template = /*$$slots*/ ctx[9].default;
-    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[8], null);
+    	const default_slot_template = /*$$slots*/ ctx[11].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[10], null);
 
     	const block = {
     		c: function create() {
@@ -19537,14 +19567,14 @@ var app = (function () {
     			set_style(div0, "position", "absolute");
     			set_style(div0, "width", /*width*/ ctx[0] + "px");
     			set_style(div0, "height", /*height*/ ctx[1] + "px");
-    			add_location(div0, file, 48, 2, 1025);
-    			add_location(g, file, 66, 4, 1583);
+    			add_location(div0, file, 51, 2, 1106);
+    			add_location(g, file, 72, 4, 1824);
     			attr_dev(svg, "viewBox", svg_viewBox_value = "0,0," + /*width*/ ctx[0] + "," + /*height*/ ctx[1]);
     			attr_dev(svg, "width", /*width*/ ctx[0]);
     			attr_dev(svg, "height", /*height*/ ctx[1]);
-    			add_location(svg, file, 65, 2, 1525);
+    			add_location(svg, file, 71, 2, 1766);
     			set_style(div1, "position", "relative");
-    			add_location(div1, file, 47, 0, 990);
+    			add_location(div1, file, 50, 0, 1071);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -19574,7 +19604,7 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*nodes, nodeWidth, color, Math*/ 100) {
+    			if (dirty & /*nodes, nodeWidth, colors, color, accent, Math*/ 484) {
     				each_value_1 = /*nodes*/ ctx[2];
     				validate_each_argument(each_value_1);
     				let i;
@@ -19643,8 +19673,8 @@ var app = (function () {
     			}
 
     			if (default_slot) {
-    				if (default_slot.p && dirty & /*$$scope*/ 256) {
-    					default_slot.p(get_slot_context(default_slot_template, ctx, /*$$scope*/ ctx[8], null), get_slot_changes(default_slot_template, /*$$scope*/ ctx[8], dirty, null));
+    				if (default_slot.p && dirty & /*$$scope*/ 1024) {
+    					default_slot.p(get_slot_context(default_slot_template, ctx, /*$$scope*/ ctx[10], null), get_slot_changes(default_slot_template, /*$$scope*/ ctx[10], dirty, null));
     				}
     			}
     		},
@@ -19678,6 +19708,7 @@ var app = (function () {
     }
 
     function instance($$self, $$props, $$invalidate) {
+    	let colors = spencerColor.colors;
     	let { data = [] } = $$props;
     	let { width = 800 } = $$props;
     	let { height = 500 } = $$props;
@@ -19689,6 +19720,7 @@ var app = (function () {
     	});
 
     	let color = "steelblue";
+    	let accent = "#d98b89";
     	const writable_props = ["data", "width", "height"];
 
     	Object.keys($$props).forEach(key => {
@@ -19699,15 +19731,17 @@ var app = (function () {
     	validate_slots("Sankey", $$slots, ['default']);
 
     	$$self.$set = $$props => {
-    		if ("data" in $$props) $$invalidate(7, data = $$props.data);
+    		if ("data" in $$props) $$invalidate(9, data = $$props.data);
     		if ("width" in $$props) $$invalidate(0, width = $$props.width);
     		if ("height" in $$props) $$invalidate(1, height = $$props.height);
-    		if ("$$scope" in $$props) $$invalidate(8, $$scope = $$props.$$scope);
+    		if ("$$scope" in $$props) $$invalidate(10, $$scope = $$props.$$scope);
     	};
 
     	$$self.$capture_state = () => ({
     		build,
     		items,
+    		c: spencerColor,
+    		colors,
     		data,
     		width,
     		height,
@@ -19715,31 +19749,47 @@ var app = (function () {
     		links,
     		path,
     		nodeWidth,
-    		color
+    		color,
+    		accent
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("data" in $$props) $$invalidate(7, data = $$props.data);
+    		if ("colors" in $$props) $$invalidate(6, colors = $$props.colors);
+    		if ("data" in $$props) $$invalidate(9, data = $$props.data);
     		if ("width" in $$props) $$invalidate(0, width = $$props.width);
     		if ("height" in $$props) $$invalidate(1, height = $$props.height);
     		if ("nodes" in $$props) $$invalidate(2, nodes = $$props.nodes);
     		if ("links" in $$props) $$invalidate(3, links = $$props.links);
     		if ("path" in $$props) $$invalidate(4, path = $$props.path);
     		if ("nodeWidth" in $$props) $$invalidate(5, nodeWidth = $$props.nodeWidth);
-    		if ("color" in $$props) $$invalidate(6, color = $$props.color);
+    		if ("color" in $$props) $$invalidate(7, color = $$props.color);
+    		if ("accent" in $$props) $$invalidate(8, accent = $$props.accent);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [width, height, nodes, links, path, nodeWidth, color, data, $$scope, $$slots];
+    	return [
+    		width,
+    		height,
+    		nodes,
+    		links,
+    		path,
+    		nodeWidth,
+    		colors,
+    		color,
+    		accent,
+    		data,
+    		$$scope,
+    		$$slots
+    	];
     }
 
     class Sankey extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { data: 7, width: 0, height: 1 });
+    		init(this, options, instance, create_fragment, safe_not_equal, { data: 9, width: 0, height: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -19774,7 +19824,7 @@ var app = (function () {
     	}
     }
 
-    /* node_modules/somehow-sankey/src/Path.svelte generated by Svelte v3.22.3 */
+    /* node_modules/somehow-sankey/src/Node.svelte generated by Svelte v3.22.3 */
 
     function create_fragment$1(ctx) {
     	const block = {
@@ -19802,36 +19852,62 @@ var app = (function () {
 
     function instance$1($$self, $$props, $$invalidate) {
     	let { value = 1 } = $$props;
-    	let { source = "source" } = $$props;
-    	let { target = "target" } = $$props;
-    	let row = { source, target, value };
+    	let { name = "" } = $$props;
+    	let { to = "" } = $$props;
+    	let { color = "steelblue" } = $$props;
+    	let { accent = "#d98b89" } = $$props;
+    	let { opacity = "1" } = $$props;
+
+    	let row = {
+    		source: name,
+    		target: to,
+    		value,
+    		color,
+    		accent,
+    		opacity
+    	};
 
     	items.update(arr => {
     		arr.push(row);
     		return arr;
     	});
 
-    	const writable_props = ["value", "source", "target"];
+    	const writable_props = ["value", "name", "to", "color", "accent", "opacity"];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Path> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Node> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
-    	validate_slots("Path", $$slots, []);
+    	validate_slots("Node", $$slots, []);
 
     	$$self.$set = $$props => {
     		if ("value" in $$props) $$invalidate(0, value = $$props.value);
-    		if ("source" in $$props) $$invalidate(1, source = $$props.source);
-    		if ("target" in $$props) $$invalidate(2, target = $$props.target);
+    		if ("name" in $$props) $$invalidate(1, name = $$props.name);
+    		if ("to" in $$props) $$invalidate(2, to = $$props.to);
+    		if ("color" in $$props) $$invalidate(3, color = $$props.color);
+    		if ("accent" in $$props) $$invalidate(4, accent = $$props.accent);
+    		if ("opacity" in $$props) $$invalidate(5, opacity = $$props.opacity);
     	};
 
-    	$$self.$capture_state = () => ({ items, value, source, target, row });
+    	$$self.$capture_state = () => ({
+    		items,
+    		value,
+    		name,
+    		to,
+    		color,
+    		accent,
+    		opacity,
+    		row
+    	});
 
     	$$self.$inject_state = $$props => {
     		if ("value" in $$props) $$invalidate(0, value = $$props.value);
-    		if ("source" in $$props) $$invalidate(1, source = $$props.source);
-    		if ("target" in $$props) $$invalidate(2, target = $$props.target);
+    		if ("name" in $$props) $$invalidate(1, name = $$props.name);
+    		if ("to" in $$props) $$invalidate(2, to = $$props.to);
+    		if ("color" in $$props) $$invalidate(3, color = $$props.color);
+    		if ("accent" in $$props) $$invalidate(4, accent = $$props.accent);
+    		if ("opacity" in $$props) $$invalidate(5, opacity = $$props.opacity);
     		if ("row" in $$props) row = $$props.row;
     	};
 
@@ -19839,44 +19915,76 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [value, source, target];
+    	return [value, name, to, color, accent, opacity];
     }
 
-    class Path$1 extends SvelteComponentDev {
+    class Node$2 extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { value: 0, source: 1, target: 2 });
+
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
+    			value: 0,
+    			name: 1,
+    			to: 2,
+    			color: 3,
+    			accent: 4,
+    			opacity: 5
+    		});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
-    			tagName: "Path",
+    			tagName: "Node",
     			options,
     			id: create_fragment$1.name
     		});
     	}
 
     	get value() {
-    		throw new Error("<Path>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Node>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set value(value) {
-    		throw new Error("<Path>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<Node>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get source() {
-    		throw new Error("<Path>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	get name() {
+    		throw new Error("<Node>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set source(value) {
-    		throw new Error("<Path>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	set name(value) {
+    		throw new Error("<Node>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get target() {
-    		throw new Error("<Path>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	get to() {
+    		throw new Error("<Node>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set target(value) {
-    		throw new Error("<Path>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	set to(value) {
+    		throw new Error("<Node>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get color() {
+    		throw new Error("<Node>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set color(value) {
+    		throw new Error("<Node>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get accent() {
+    		throw new Error("<Node>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set accent(value) {
+    		throw new Error("<Node>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get opacity() {
+    		throw new Error("<Node>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set opacity(value) {
+    		throw new Error("<Node>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
@@ -20206,137 +20314,141 @@ var app = (function () {
     	let t5;
     	let current;
 
-    	const path0 = new Path$1({
+    	const node0 = new Node$2({
     			props: {
-    				source: "Toronto",
-    				target: "Canada",
+    				name: "Toronto",
+    				to: "Canada",
     				value: "6"
     			},
     			$$inline: true
     		});
 
-    	const path1 = new Path$1({
+    	const node1 = new Node$2({
     			props: {
-    				source: "Ontario",
-    				target: "Canada",
-    				value: "7.7"
+    				name: "Ontario",
+    				to: "Canada",
+    				value: "7.7",
+    				color: "sky"
     			},
     			$$inline: true
     		});
 
-    	const path2 = new Path$1({
+    	const node2 = new Node$2({
     			props: {
-    				source: "Montreal",
-    				target: "Canada",
+    				name: "Montreal",
+    				to: "Canada",
     				value: "4"
     			},
     			$$inline: true
     		});
 
-    	const path3 = new Path$1({
+    	const node3 = new Node$2({
     			props: {
-    				source: "Quebec",
-    				target: "Canada",
+    				name: "Quebec",
+    				to: "Canada",
     				value: "2.5"
     			},
     			$$inline: true
     		});
 
-    	const path4 = new Path$1({
+    	const node4 = new Node$2({
     			props: {
-    				source: "Vancouver",
-    				target: "Canada",
-    				value: "2.4"
+    				name: "Vancouver",
+    				to: "Canada",
+    				value: "2.4",
+    				color: "greypurple"
     			},
     			$$inline: true
     		});
 
-    	const path5 = new Path$1({
+    	const node5 = new Node$2({
     			props: {
-    				source: "B.C.",
-    				target: "Canada",
-    				value: "2.2"
+    				name: "B.C.",
+    				to: "Canada",
+    				value: "2.2",
+    				color: "burn"
     			},
     			$$inline: true
     		});
 
-    	const path6 = new Path$1({
+    	const node6 = new Node$2({
     			props: {
-    				source: "rest",
-    				target: "Canada",
-    				value: "7.9"
+    				name: "rest",
+    				to: "Canada",
+    				value: "7.9",
+    				opacity: "0.6"
     			},
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(path0.$$.fragment);
+    			create_component(node0.$$.fragment);
     			t0 = space();
-    			create_component(path1.$$.fragment);
+    			create_component(node1.$$.fragment);
     			t1 = space();
-    			create_component(path2.$$.fragment);
+    			create_component(node2.$$.fragment);
     			t2 = space();
-    			create_component(path3.$$.fragment);
+    			create_component(node3.$$.fragment);
     			t3 = space();
-    			create_component(path4.$$.fragment);
+    			create_component(node4.$$.fragment);
     			t4 = space();
-    			create_component(path5.$$.fragment);
+    			create_component(node5.$$.fragment);
     			t5 = space();
-    			create_component(path6.$$.fragment);
+    			create_component(node6.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(path0, target, anchor);
+    			mount_component(node0, target, anchor);
     			insert_dev(target, t0, anchor);
-    			mount_component(path1, target, anchor);
+    			mount_component(node1, target, anchor);
     			insert_dev(target, t1, anchor);
-    			mount_component(path2, target, anchor);
+    			mount_component(node2, target, anchor);
     			insert_dev(target, t2, anchor);
-    			mount_component(path3, target, anchor);
+    			mount_component(node3, target, anchor);
     			insert_dev(target, t3, anchor);
-    			mount_component(path4, target, anchor);
+    			mount_component(node4, target, anchor);
     			insert_dev(target, t4, anchor);
-    			mount_component(path5, target, anchor);
+    			mount_component(node5, target, anchor);
     			insert_dev(target, t5, anchor);
-    			mount_component(path6, target, anchor);
+    			mount_component(node6, target, anchor);
     			current = true;
     		},
     		p: noop,
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(path0.$$.fragment, local);
-    			transition_in(path1.$$.fragment, local);
-    			transition_in(path2.$$.fragment, local);
-    			transition_in(path3.$$.fragment, local);
-    			transition_in(path4.$$.fragment, local);
-    			transition_in(path5.$$.fragment, local);
-    			transition_in(path6.$$.fragment, local);
+    			transition_in(node0.$$.fragment, local);
+    			transition_in(node1.$$.fragment, local);
+    			transition_in(node2.$$.fragment, local);
+    			transition_in(node3.$$.fragment, local);
+    			transition_in(node4.$$.fragment, local);
+    			transition_in(node5.$$.fragment, local);
+    			transition_in(node6.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(path0.$$.fragment, local);
-    			transition_out(path1.$$.fragment, local);
-    			transition_out(path2.$$.fragment, local);
-    			transition_out(path3.$$.fragment, local);
-    			transition_out(path4.$$.fragment, local);
-    			transition_out(path5.$$.fragment, local);
-    			transition_out(path6.$$.fragment, local);
+    			transition_out(node0.$$.fragment, local);
+    			transition_out(node1.$$.fragment, local);
+    			transition_out(node2.$$.fragment, local);
+    			transition_out(node3.$$.fragment, local);
+    			transition_out(node4.$$.fragment, local);
+    			transition_out(node5.$$.fragment, local);
+    			transition_out(node6.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(path0, detaching);
+    			destroy_component(node0, detaching);
     			if (detaching) detach_dev(t0);
-    			destroy_component(path1, detaching);
+    			destroy_component(node1, detaching);
     			if (detaching) detach_dev(t1);
-    			destroy_component(path2, detaching);
+    			destroy_component(node2, detaching);
     			if (detaching) detach_dev(t2);
-    			destroy_component(path3, detaching);
+    			destroy_component(node3, detaching);
     			if (detaching) detach_dev(t3);
-    			destroy_component(path4, detaching);
+    			destroy_component(node4, detaching);
     			if (detaching) detach_dev(t4);
-    			destroy_component(path5, detaching);
+    			destroy_component(node5, detaching);
     			if (detaching) detach_dev(t5);
-    			destroy_component(path6, detaching);
+    			destroy_component(node6, detaching);
     		}
     	};
 
@@ -20524,7 +20636,7 @@ var app = (function () {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
     	};
 
-    	$$self.$capture_state = () => ({ Sankey, Path: Path$1, Head, Foot, title, data });
+    	$$self.$capture_state = () => ({ Sankey, Node: Node$2, Head, Foot, title, data });
 
     	$$self.$inject_state = $$props => {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);

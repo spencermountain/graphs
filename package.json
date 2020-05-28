@@ -40,7 +40,7 @@
     "kld-intersections": "^0.7.0",
     "slow": "^1.1.0",
     "somehow-maps": "^1.0.0",
-    "somehow-sankey": "^0.1.0",
+    "somehow-sankey": "1.0.0",
     "spacetime": "^6.4.3",
     "vhtml": "^2.2.0",
     "wtf_wikipedia": "^8.3.0"

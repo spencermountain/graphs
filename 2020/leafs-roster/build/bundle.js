@@ -7002,11 +7002,11 @@ var app = (function () {
     			t0 = text(/*label*/ ctx[1]);
     			t1 = space();
     			if (default_slot) default_slot.c();
-    			attr_dev(div0, "class", "label svelte-gr5sfz");
-    			add_location(div0, file$6, 18, 2, 320);
-    			attr_dev(div1, "class", "part column svelte-gr5sfz");
+    			attr_dev(div0, "class", "label svelte-n200n5");
+    			add_location(div0, file$6, 21, 2, 387);
+    			attr_dev(div1, "class", "part column svelte-n200n5");
     			set_style(div1, "width", /*width*/ ctx[0]);
-    			add_location(div1, file$6, 17, 0, 269);
+    			add_location(div1, file$6, 20, 0, 336);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
