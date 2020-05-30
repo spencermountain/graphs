@@ -13,9 +13,7 @@ if (typeof URLSearchParams !== undefined) {
 
 const app = new Post({
   target: document.body,
-  props: {
-    name: name,
-  },
+  props: {},
 })
 
 export default app

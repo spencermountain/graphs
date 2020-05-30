@@ -6,40 +6,35 @@ const json = require('@rollup/plugin-json')
 
 const buildPost = function (abs) {
   abs = abs.replace(/\/$/, '')
-  return (
-    rollup
-      .rollup({
-        input: `${abs}/build/app.js`,
-        plugins: [
-          json(),
-          svelte({
-            dev: true,
-            css: (css) => {
-              css.write(`${abs}/build/bundle.css`, false)
-            },
-          }),
-          resolve({
-            browser: true,
-            dedupe: ['svelte'],
-          }),
-          commonjs(),
-        ],
+  return rollup
+    .rollup({
+      input: `${abs}/build/app.js`,
+      plugins: [
+        json(),
+        svelte({
+          dev: true,
+          css: (css) => {
+            css.write(`${abs}/build/bundle.css`, false)
+          },
+        }),
+        resolve({
+          browser: true,
+          dedupe: ['svelte'],
+        }),
+        commonjs(),
+      ],
+    })
+    .then((bundle) => {
+      bundle.write({
+        sourcemap: false,
+        format: 'iife',
+        name: 'app',
+        file: `${abs}/build/bundle.js`,
       })
-      .then((bundle) => {
-        bundle.write({
-          sourcemap: false,
-          format: 'iife',
-          name: 'app',
-          file: `${abs}/build/bundle.js`,
-        })
-      })
-      // .then(() => {
-      // fs.unlinkSync(`${abs}/_Post.html`)
-      // })
-      .catch((e) => {
-        console.log(e)
-      })
-  )
+    })
+    .catch((e) => {
+      console.log(e)
+    })
 }
 
 module.exports = buildPost

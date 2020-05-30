@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "new": "node ./scripts/new.js",
+    "bake": "node ./scripts/bake.js",
     "watch": "node ./scripts/watch.js",
     "start": "budo index.js:assets/bundle.js --live",
     "build": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | derequire > ./assets/bundle.js"

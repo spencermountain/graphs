@@ -154,6 +154,10 @@ module.exports = {
     num: 'leafs-budget',
     title: 'Toronto Maple leafs budget',
     thumb: 'thumb.png'
+  }, {
+    num: 'population-of-canada',
+    title: 'Population of Canada',
+    thumb: 'thumb.png'
   }]
 };
 

@@ -28,6 +28,21 @@ var app = (function () {
     function safe_not_equal(a, b) {
         return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
     }
+    function validate_store(store, name) {
+        if (store != null && typeof store.subscribe !== 'function') {
+            throw new Error(`'${name}' is not a store with a 'subscribe' method`);
+        }
+    }
+    function subscribe(store, ...callbacks) {
+        if (store == null) {
+            return noop;
+        }
+        const unsub = store.subscribe(...callbacks);
+        return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
+    }
+    function component_subscribe(component, store, callback) {
+        component.$$.on_destroy.push(subscribe(store, callback));
+    }
     function create_slot(definition, ctx, $$scope, fn) {
         if (definition) {
             const slot_ctx = get_slot_context(definition, ctx, $$scope, fn);
@@ -109,6 +124,14 @@ var app = (function () {
     let current_component;
     function set_current_component(component) {
         current_component = component;
+    }
+    function get_current_component() {
+        if (!current_component)
+            throw new Error(`Function called outside component initialization`);
+        return current_component;
+    }
+    function onMount(fn) {
+        get_current_component().$$.on_mount.push(fn);
     }
 
     const dirty_components = [];
@@ -10328,17 +10351,18 @@ var app = (function () {
       });
     }
 
-    function scaleTranslate(k, dx, dy) {
+    function scaleTranslate(k, dx, dy, sx, sy) {
       function transform(x, y) {
+        x *= sx; y *= sy;
         return [dx + k * x, dy - k * y];
       }
       transform.invert = function(x, y) {
-        return [(x - dx) / k, (dy - y) / k];
+        return [(x - dx) / k * sx, (dy - y) / k * sy];
       };
       return transform;
     }
 
-    function scaleTranslateRotate(k, dx, dy, alpha) {
+    function scaleTranslateRotate(k, dx, dy, sx, sy, alpha) {
       var cosAlpha = cos$1(alpha),
           sinAlpha = sin$1(alpha),
           a = cosAlpha * k,
@@ -10348,10 +10372,11 @@ var app = (function () {
           ci = (sinAlpha * dy - cosAlpha * dx) / k,
           fi = (sinAlpha * dx + cosAlpha * dy) / k;
       function transform(x, y) {
+        x *= sx; y *= sy;
         return [a * x - b * y + dx, dy - b * x - a * y];
       }
       transform.invert = function(x, y) {
-        return [ai * x - bi * y + ci, fi - bi * x - ai * y];
+        return [sx * (ai * x - bi * y + ci), sy * (fi - bi * x - ai * y)];
       };
       return transform;
     }
@@ -10366,7 +10391,9 @@ var app = (function () {
           x = 480, y = 250, // translate
           lambda = 0, phi = 0, // center
           deltaLambda = 0, deltaPhi = 0, deltaGamma = 0, rotate, // pre-rotate
-          alpha = 0, // post-rotate
+          alpha = 0, // post-rotate angle
+          sx = 1, // reflectX
+          sy = 1, // reflectX
           theta = null, preclip = clipAntimeridian, // pre-clip angle
           x0 = null, y0, x1, y1, postclip = identity$4, // post-clip extent
           delta2 = 0.5, // precision
@@ -10425,6 +10452,14 @@ var app = (function () {
         return arguments.length ? (alpha = _ % 360 * radians, recenter()) : alpha * degrees$1;
       };
 
+      projection.reflectX = function(_) {
+        return arguments.length ? (sx = _ ? -1 : 1, recenter()) : sx < 0;
+      };
+
+      projection.reflectY = function(_) {
+        return arguments.length ? (sy = _ ? -1 : 1, recenter()) : sy < 0;
+      };
+
       projection.precision = function(_) {
         return arguments.length ? (projectResample = resample(projectTransform, delta2 = _ * _), reset()) : sqrt(delta2);
       };
@@ -10446,8 +10481,8 @@ var app = (function () {
       };
 
       function recenter() {
-        var center = scaleTranslateRotate(k, 0, 0, alpha).apply(null, project(lambda, phi)),
-            transform = (alpha ? scaleTranslateRotate : scaleTranslate)(k, x - center[0], y - center[1], alpha);
+        var center = scaleTranslateRotate(k, 0, 0, sx, sy, alpha).apply(null, project(lambda, phi)),
+            transform = (alpha ? scaleTranslateRotate : scaleTranslate)(k, x - center[0], y - center[1], sx, sy, alpha);
         rotate = rotateRadians(deltaLambda, deltaPhi, deltaGamma);
         projectTransform = compose(project, transform);
         projectRotateTransform = compose(rotate, projectTransform);
@@ -10508,8 +10543,11 @@ var app = (function () {
       }
 
       project.invert = function(x, y) {
-        var r0y = r0 - y;
-        return [atan2(x, abs(r0y)) / n * sign(r0y), asin((c - (x * x + r0y * r0y) * n * n) / (2 * n))];
+        var r0y = r0 - y,
+            l = atan2(x, abs(r0y)) * sign(r0y);
+        if (r0y * n < 0)
+          l -= pi$3 * sign(x) * sign(r0y);
+        return [l / n, asin((c - (x * x + r0y * r0y) * n * n) / (2 * n))];
       };
 
       return project;
@@ -10758,8 +10796,11 @@ var app = (function () {
       }
 
       project.invert = function(x, y) {
-        var fy = f - y, r = sign(n) * sqrt(x * x + fy * fy);
-        return [atan2(x, abs(fy)) / n * sign(fy), 2 * atan(pow(f / r, 1 / n)) - halfPi$2];
+        var fy = f - y, r = sign(n) * sqrt(x * x + fy * fy),
+          l = atan2(x, abs(fy)) * sign(fy);
+        if (fy * n < 0)
+          l -= pi$3 * sign(x) * sign(fy);
+        return [l / n, 2 * atan(pow(f / r, 1 / n)) - halfPi$2];
       };
 
       return project;
@@ -10795,8 +10836,11 @@ var app = (function () {
       }
 
       project.invert = function(x, y) {
-        var gy = g - y;
-        return [atan2(x, abs(gy)) / n * sign(gy), g - sign(n) * sqrt(x * x + gy * gy)];
+        var gy = g - y,
+            l = atan2(x, abs(gy)) * sign(gy);
+        if (gy * n < 0)
+          l -= pi$3 * sign(x) * sign(gy);
+        return [l / n, g - sign(n) * sqrt(x * x + gy * gy)];
       };
 
       return project;
@@ -10855,62 +10899,84 @@ var app = (function () {
           .clipAngle(60);
     }
 
-    function scaleTranslate$1(kx, ky, tx, ty) {
-      return kx === 1 && ky === 1 && tx === 0 && ty === 0 ? identity$4 : transformer({
-        point: function(x, y) {
-          this.stream.point(x * kx + tx, y * ky + ty);
-        }
-      });
-    }
-
     function identity$5() {
-      var k = 1, tx = 0, ty = 0, sx = 1, sy = 1, transform = identity$4, // scale, translate and reflect
+      var k = 1, tx = 0, ty = 0, sx = 1, sy = 1, // scale, translate and reflect
+          alpha = 0, ca, sa, // angle
           x0 = null, y0, x1, y1, // clip extent
+          kx = 1, ky = 1,
+          transform = transformer({
+            point: function(x, y) {
+              var p = projection([x, y]);
+              this.stream.point(p[0], p[1]);
+            }
+          }),
           postclip = identity$4,
           cache,
-          cacheStream,
-          projection;
+          cacheStream;
 
       function reset() {
+        kx = k * sx;
+        ky = k * sy;
         cache = cacheStream = null;
         return projection;
       }
 
-      return projection = {
-        stream: function(stream) {
-          return cache && cacheStream === stream ? cache : cache = transform(postclip(cacheStream = stream));
-        },
-        postclip: function(_) {
-          return arguments.length ? (postclip = _, x0 = y0 = x1 = y1 = null, reset()) : postclip;
-        },
-        clipExtent: function(_) {
-          return arguments.length ? (postclip = _ == null ? (x0 = y0 = x1 = y1 = null, identity$4) : clipRectangle(x0 = +_[0][0], y0 = +_[0][1], x1 = +_[1][0], y1 = +_[1][1]), reset()) : x0 == null ? null : [[x0, y0], [x1, y1]];
-        },
-        scale: function(_) {
-          return arguments.length ? (transform = scaleTranslate$1((k = +_) * sx, k * sy, tx, ty), reset()) : k;
-        },
-        translate: function(_) {
-          return arguments.length ? (transform = scaleTranslate$1(k * sx, k * sy, tx = +_[0], ty = +_[1]), reset()) : [tx, ty];
-        },
-        reflectX: function(_) {
-          return arguments.length ? (transform = scaleTranslate$1(k * (sx = _ ? -1 : 1), k * sy, tx, ty), reset()) : sx < 0;
-        },
-        reflectY: function(_) {
-          return arguments.length ? (transform = scaleTranslate$1(k * sx, k * (sy = _ ? -1 : 1), tx, ty), reset()) : sy < 0;
-        },
-        fitExtent: function(extent, object) {
-          return fitExtent(projection, extent, object);
-        },
-        fitSize: function(size, object) {
-          return fitSize(projection, size, object);
-        },
-        fitWidth: function(width, object) {
-          return fitWidth(projection, width, object);
-        },
-        fitHeight: function(height, object) {
-          return fitHeight(projection, height, object);
+      function projection (p) {
+        var x = p[0] * kx, y = p[1] * ky;
+        if (alpha) {
+          var t = y * ca - x * sa;
+          x = x * ca + y * sa;
+          y = t;
+        }    
+        return [x + tx, y + ty];
+      }
+      projection.invert = function(p) {
+        var x = p[0] - tx, y = p[1] - ty;
+        if (alpha) {
+          var t = y * ca + x * sa;
+          x = x * ca - y * sa;
+          y = t;
         }
+        return [x / kx, y / ky];
       };
+      projection.stream = function(stream) {
+        return cache && cacheStream === stream ? cache : cache = transform(postclip(cacheStream = stream));
+      };
+      projection.postclip = function(_) {
+        return arguments.length ? (postclip = _, x0 = y0 = x1 = y1 = null, reset()) : postclip;
+      };
+      projection.clipExtent = function(_) {
+        return arguments.length ? (postclip = _ == null ? (x0 = y0 = x1 = y1 = null, identity$4) : clipRectangle(x0 = +_[0][0], y0 = +_[0][1], x1 = +_[1][0], y1 = +_[1][1]), reset()) : x0 == null ? null : [[x0, y0], [x1, y1]];
+      };
+      projection.scale = function(_) {
+        return arguments.length ? (k = +_, reset()) : k;
+      };
+      projection.translate = function(_) {
+        return arguments.length ? (tx = +_[0], ty = +_[1], reset()) : [tx, ty];
+      };
+      projection.angle = function(_) {
+        return arguments.length ? (alpha = _ % 360 * radians, sa = sin$1(alpha), ca = cos$1(alpha), reset()) : alpha * degrees$1;
+      };
+      projection.reflectX = function(_) {
+        return arguments.length ? (sx = _ ? -1 : 1, reset()) : sx < 0;
+      };
+      projection.reflectY = function(_) {
+        return arguments.length ? (sy = _ ? -1 : 1, reset()) : sy < 0;
+      };
+      projection.fitExtent = function(extent, object) {
+        return fitExtent(projection, extent, object);
+      };
+      projection.fitSize = function(size, object) {
+        return fitSize(projection, size, object);
+      };
+      projection.fitWidth = function(width, object) {
+        return fitWidth(projection, width, object);
+      };
+      projection.fitHeight = function(height, object) {
+        return fitHeight(projection, height, object);
+      };
+
+      return projection;
     }
 
     function naturalEarth1Raw(lambda, phi) {
@@ -18907,80 +18973,142 @@ var app = (function () {
         zoomIdentity: identity$9
     });
 
-    var plugin = function () {
+    function createCommonjsModule(fn, module) {
+    	return module = { exports: {} }, fn(module, module.exports), module.exports;
+    }
+
+    function getCjsExportFromNamespace (n) {
+    	return n && n['default'] || n;
+    }
+
+    function commonjsRequire () {
+    	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
+    }
+
+    var d3$1 = getCjsExportFromNamespace(d3);
+
+    var toPath = function () {
+      var curvature = 0.4;
+
+      function link(d) {
+        var x0 = d.source.x + d.source.dx,
+          x1 = d.target.x,
+          xi = d3$1.interpolateNumber(x0, x1),
+          x2 = xi(curvature),
+          x3 = xi(1 - curvature),
+          y0 = d.source.y + d.sy + d.dy / 2,
+          y1 = d.target.y + d.ty + d.dy / 2;
+        return (
+          'M' +
+          x0 +
+          ',' +
+          y0 +
+          'C' +
+          x2 +
+          ',' +
+          y0 +
+          ' ' +
+          x3 +
+          ',' +
+          y1 +
+          ' ' +
+          x1 +
+          ',' +
+          y1
+        )
+      }
+
+      link.curvature = function (_) {
+        if (!arguments.length) return curvature
+        curvature = +_;
+        return link
+      };
+
+      return link
+    };
+
+    function value(link) {
+      return link.value
+    }
+
+    var nodeStartY = function (nodesByCol, links, size, nodePadding) {
+      var ky = d3$1.min(nodesByCol, function (nodes) {
+        return (size[1] - (nodes.length - 1) * nodePadding) / d3$1.sum(nodes, value)
+      });
+
+      // set y to byCol index
+      nodesByCol.forEach(function (nodes) {
+        nodes.forEach(function (node, i) {
+          node.y = i;
+          node.dy = node.value * ky;
+        });
+      });
+
+      links.forEach(function (link) {
+        link.dy = link.value * ky;
+      });
+    };
+
+    var computeY = function (nodesByCol, nodePadding) {
+      nodesByCol.forEach(function (colNodes) {
+        var node,
+          dy,
+          y0 = 0,
+          n = colNodes.length,
+          i;
+        // Push any overlapping nodes down.
+        for (i = 0; i < n; ++i) {
+          node = colNodes[i];
+
+          dy = y0 - node.y;
+          if (dy > 0) {
+            node.y += dy;
+          }
+          y0 = node.y + node.dy + nodePadding;
+        }
+      });
+      // ensure it's below input
+      nodesByCol.forEach(function (colNodes) {
+        colNodes.forEach((no) => {
+          if (no.sourceLinks[0]) {
+            let targetY = no.sourceLinks[0].target.y;
+            if (targetY > no.y) {
+              // console.log(no.name, targetY)
+              no.y = targetY;
+            }
+          }
+        });
+      });
+    };
+
+    var nodeLayout = {
+    	nodeStartY: nodeStartY,
+    	computeY: computeY
+    };
+
+    const { nodeStartY: nodeStartY$1, computeY: computeY$1 } = nodeLayout;
+
+    function value$1(link) {
+      return link.value
+    }
+
+    var plugin = function (width, height, nodeWidth) {
       var sankey = {},
-        nodeWidth = 24,
-        nodePadding = 8,
-        size = [1, 1],
+        nodePadding = 12,
+        size = [width, height],
         nodes = [],
         links = [];
 
-      sankey.nodeWidth = function (_) {
-        if (!arguments.length) return nodeWidth
-        nodeWidth = +_;
-        return sankey
+      sankey.nodeWidth = function () {
+        return nodeWidth
       };
-
-      sankey.nodePadding = function (_) {
-        if (!arguments.length) return nodePadding
-        nodePadding = +_;
-        return sankey
-      };
-
-      sankey.nodes = function (_) {
-        if (!arguments.length) return nodes
-        nodes = _;
-        return sankey
-      };
-
-      sankey.links = function (_) {
-        if (!arguments.length) return links
-        links = _;
-        return sankey
-      };
-
       sankey.size = function (_) {
         if (!arguments.length) return size
         size = _;
         return sankey
       };
 
-      sankey.layout = function (iterations) {
-        computeNodeLinks();
-        computeNodeValues();
-        computeNodeBreadths();
-        computeNodeDepths(iterations);
-        computeLinkDepths();
-        return sankey
-      };
-
-      sankey.relayout = function () {
-        computeLinkDepths();
-        return sankey
-      };
-
-      sankey.link = function () {
-        var curvature = 0.5;
-
-        function link(d) {
-          var x0 = d.source.x + d.source.dx,
-            x1 = d.target.x,
-            xi = d3.interpolateNumber(x0, x1),
-            x2 = xi(curvature),
-            x3 = xi(1 - curvature),
-            y0 = d.source.y + d.sy + d.dy / 2,
-            y1 = d.target.y + d.ty + d.dy / 2;
-          return 'M' + x0 + ',' + y0 + 'C' + x2 + ',' + y0 + ' ' + x3 + ',' + y1 + ' ' + x1 + ',' + y1
-        }
-
-        link.curvature = function (_) {
-          if (!arguments.length) return curvature
-          curvature = +_;
-          return link
-        };
-
-        return link
-      };
+      sankey.toPath = toPath;
 
       // Populate the sourceLinks and targetLinks for each node.
       // Also, if the source and target are not objects, assume they are indices.
@@ -18990,27 +19118,39 @@ var app = (function () {
           node.targetLinks = [];
         });
         links.forEach(function (link) {
-          var source = link.source,
-            target = link.target;
-          if (typeof source === 'number') source = link.source = nodes[link.source];
-          if (typeof target === 'number') target = link.target = nodes[link.target];
+          let source = link.source;
+          let target = link.target;
+          if (typeof source === 'number') {
+            source = link.source = nodes[link.source];
+          }
+          if (typeof target === 'number') {
+            target = link.target = nodes[link.target];
+          }
           source.sourceLinks.push(link);
           target.targetLinks.push(link);
         });
       }
 
-      // Compute the value (size) of each node by summing the associated links.
+      // use given value, or incoming values
       function computeNodeValues() {
         nodes.forEach(function (node) {
-          node.value = Math.max(d3.sum(node.sourceLinks, value), d3.sum(node.targetLinks, value));
+          node.value = Math.max(
+            d3$1.sum(node.sourceLinks, value$1),
+            d3$1.sum(node.targetLinks, value$1)
+          );
         });
       }
 
+      function scaleNodeBreadths(kx) {
+        nodes.forEach(function (node) {
+          node.x *= kx;
+        });
+      }
       // Iteratively assign the breadth (x-position) for each node.
       // Nodes are assigned the maximum breadth of incoming neighbors plus one;
       // nodes with no incoming links are assigned breadth zero, while
       // nodes with no outgoing links are assigned the maximum breadth.
-      function computeNodeBreadths() {
+      function computeNodeX() {
         var remainingNodes = nodes,
           nextNodes,
           x = 0;
@@ -19019,6 +19159,9 @@ var app = (function () {
           nextNodes = [];
           remainingNodes.forEach(function (node) {
             node.x = x;
+            // if (node.meta && node.meta.col !== undefined) {
+            //   node.x = Number(node.meta.col)
+            // }
             node.dx = nodeWidth;
             node.sourceLinks.forEach(function (link) {
               if (nextNodes.indexOf(link.target) < 0) {
@@ -19030,140 +19173,31 @@ var app = (function () {
           ++x;
         }
 
+        // console.log(nodes)
+
         //
-        moveSinksRight(x);
+        // moveSinksRight(x)
         scaleNodeBreadths((size[0] - nodeWidth) / (x - 1));
       }
 
-      function moveSinksRight(x) {
-        nodes.forEach(function (node) {
-          if (!node.sourceLinks.length) {
-            node.x = x - 1;
+      function computeNodeY() {
+        let nodesByCol = [];
+        nodes.forEach((node) => {
+          let col = 0;
+          if (node.meta) {
+            col = node.meta.col;
           }
+          nodesByCol[col] = nodesByCol[col] || [];
+          nodesByCol[col].push(node);
         });
-      }
+        // make sure it never goes backwards
 
-      function scaleNodeBreadths(kx) {
-        nodes.forEach(function (node) {
-          node.x *= kx;
-        });
-      }
-
-      function computeNodeDepths(iterations) {
-        var nodesByBreadth = d3
-          .nest()
-          .key(function (d) {
-            return d.x
-          })
-          .sortKeys(d3.ascending)
-          .entries(nodes)
-          .map(function (d) {
-            return d.values
-          });
-
-        //
-        initializeNodeDepth();
-        resolveCollisions();
-        for (var alpha = 1; iterations > 0; --iterations) {
-          relaxRightToLeft((alpha *= 0.99));
-          resolveCollisions();
-          relaxLeftToRight(alpha);
-          resolveCollisions();
-        }
-
-        function initializeNodeDepth() {
-          var ky = d3.min(nodesByBreadth, function (nodes) {
-            return (size[1] - (nodes.length - 1) * nodePadding) / d3.sum(nodes, value)
-          });
-
-          nodesByBreadth.forEach(function (nodes) {
-            nodes.forEach(function (node, i) {
-              node.y = i;
-              node.dy = node.value * ky;
-            });
-          });
-
-          links.forEach(function (link) {
-            link.dy = link.value * ky;
-          });
-        }
-
-        function relaxLeftToRight(alpha) {
-          nodesByBreadth.forEach(function (nodes, breadth) {
-            nodes.forEach(function (node) {
-              if (node.targetLinks.length) {
-                var y = d3.sum(node.targetLinks, weightedSource) / d3.sum(node.targetLinks, value);
-                node.y += (y - center(node)) * alpha;
-              }
-            });
-          });
-
-          function weightedSource(link) {
-            return center(link.source) * link.value
-          }
-        }
-
-        function relaxRightToLeft(alpha) {
-          nodesByBreadth
-            .slice()
-            .reverse()
-            .forEach(function (nodes) {
-              nodes.forEach(function (node) {
-                if (node.sourceLinks.length) {
-                  var y = d3.sum(node.sourceLinks, weightedTarget) / d3.sum(node.sourceLinks, value);
-                  node.y += (y - center(node)) * alpha;
-                }
-              });
-            });
-
-          function weightedTarget(link) {
-            return center(link.target) * link.value
-          }
-        }
-
-        function resolveCollisions() {
-          nodesByBreadth.forEach(function (nodes) {
-            var node,
-              dy,
-              y0 = 0,
-              n = nodes.length,
-              i;
-
-            // Push any overlapping nodes down.
-            nodes.sort(ascendingDepth);
-            for (i = 0; i < n; ++i) {
-              node = nodes[i];
-              dy = y0 - node.y;
-              if (dy > 0) node.y += dy;
-              y0 = node.y + node.dy + nodePadding;
-            }
-
-            // If the bottommost node goes outside the bounds, push it back up.
-            dy = y0 - nodePadding - size[1];
-            if (dy > 0) {
-              y0 = node.y -= dy;
-
-              // Push any overlapping nodes back up.
-              for (i = n - 2; i >= 0; --i) {
-                node = nodes[i];
-                dy = node.y + node.dy + nodePadding - y0;
-                if (dy > 0) node.y -= dy;
-                y0 = node.y;
-              }
-            }
-          });
-        }
-
-        function ascendingDepth(a, b) {
-          return a.y - b.y
-        }
+        //set y to byCol index
+        nodeStartY$1(nodesByCol, links, size, nodePadding);
+        computeY$1(nodesByCol, nodePadding);
       }
 
       function computeLinkDepths() {
-        nodes.forEach(function (node) {
-          node.sourceLinks.sort(ascendingTargetDepth);
-          node.targetLinks.sort(ascendingSourceDepth);
-        });
         nodes.forEach(function (node) {
           var sy = 0,
             ty = 0;
@@ -19176,42 +19210,38 @@ var app = (function () {
             ty += link.dy;
           });
         });
-
-        function ascendingSourceDepth(a, b) {
-          return a.source.y - b.source.y
-        }
-
-        function ascendingTargetDepth(a, b) {
-          return a.target.y - b.target.y
-        }
       }
-
-      function center(node) {
-        return node.y + node.dy / 2
-      }
-
-      function value(link) {
-        return link.value
-      }
-
+      // this is the main thing.
+      sankey.layout = function (ns, ls) {
+        nodes = ns;
+        links = ls;
+        computeNodeLinks();
+        computeNodeValues();
+        computeNodeX();
+        computeNodeY();
+        computeLinkDepths();
+        return sankey
+      };
       return sankey
     };
 
     let d4 = Object.assign({}, d3);
     d4.sankey = plugin;
+
+    const nodeWidth = 120;
     // unique values of an array
     const onlyUnique = function (value, index, self) {
       return self.indexOf(value) === index
     };
 
     const build = function (data, width, height) {
-      let sanKey = d4
-        .sankey()
-        .nodeWidth(150)
-        .nodePadding(height / 10)
-        .size([width, height]);
+      let sanKey = d4.sankey(width, height, nodeWidth);
 
-      let path = sanKey.link();
+      let path = sanKey.toPath();
+      let meta = {};
+      data.forEach((o) => {
+        meta[o.source] = o;
+      });
 
       // create an array to push all sources and targets, before making them unique
       let arr = [];
@@ -19223,15 +19253,18 @@ var app = (function () {
         return {
           node: i,
           name: d,
+          meta: meta[d],
         }
       });
 
       // create links array
       let links = data.map(function (row) {
         function getNode(type) {
-          return nodes.filter(function (node_object) {
-            return node_object.name === row[type]
-          })[0].node
+          return (
+            nodes.filter(function (node_object) {
+              return node_object.name === row[type]
+            })[0] || {}
+          ).node
         }
         return {
           source: getNode('source'),
@@ -19240,19 +19273,20 @@ var app = (function () {
         }
       });
 
-      sanKey.nodes(nodes).links(links).layout(32);
+      sanKey.layout(nodes, links);
+      // add metadata back to each node
       nodes.forEach((n, i) => {
-        if (data[i]) {
-          n.color = data[i].color;
-          n.accent = data[i].accent;
-          n.opacity = data[i].opacity;
+        if (n.meta) {
+          n.color = n.meta.color;
+          n.opacity = n.meta.opacity;
+          n.accent = n.meta.accent;
         }
       });
       return {
         nodes: nodes,
         links,
         path,
-        nodeWidth: sanKey.nodeWidth(),
+        nodeWidth: nodeWidth,
       }
     };
 
@@ -19310,20 +19344,12 @@ var app = (function () {
 
     const items = writable([]);
 
-    function createCommonjsModule(fn, module) {
-    	return module = { exports: {} }, fn(module, module.exports), module.exports;
-    }
-
-    function commonjsRequire () {
-    	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
-    }
-
     var spencerColor = createCommonjsModule(function (module, exports) {
     !function(e){module.exports=e();}(function(){return function u(i,a,c){function f(r,e){if(!a[r]){if(!i[r]){var o="function"==typeof commonjsRequire&&commonjsRequire;if(!e&&o)return o(r,!0);if(d)return d(r,!0);var n=new Error("Cannot find module '"+r+"'");throw n.code="MODULE_NOT_FOUND",n}var t=a[r]={exports:{}};i[r][0].call(t.exports,function(e){return f(i[r][1][e]||e)},t,t.exports,u,i,a,c);}return a[r].exports}for(var d="function"==typeof commonjsRequire&&commonjsRequire,e=0;e<c.length;e++)f(c[e]);return f}({1:[function(e,r,o){r.exports={blue:"#6699cc",green:"#6accb2",yellow:"#e1e6b3",red:"#cc7066",pink:"#F2C0BB",brown:"#705E5C",orange:"#cc8a66",purple:"#d8b3e6",navy:"#335799",olive:"#7f9c6c",fuscia:"#735873",beige:"#e6d7b3",slate:"#8C8C88",suede:"#9c896c",burnt:"#603a39",sea:"#50617A",sky:"#2D85A8",night:"#303b50",rouge:"#914045",grey:"#838B91",mud:"#C4ABAB",royal:"#275291",cherry:"#cc6966",tulip:"#e6b3bc",rose:"#D68881",fire:"#AB5850",greyblue:"#72697D",greygreen:"#8BA3A2",greypurple:"#978BA3",burn:"#6D5685",slategrey:"#bfb0b3",light:"#a3a5a5",lighter:"#d7d5d2",fudge:"#4d4d4d",lightgrey:"#949a9e",white:"#fbfbfb",dimgrey:"#606c74",softblack:"#463D4F",dark:"#443d3d",black:"#333333"};},{}],2:[function(e,r,o){var n=e("./colors"),t={juno:["blue","mud","navy","slate","pink","burn"],barrow:["rouge","red","orange","burnt","brown","greygreen"],roma:["#8a849a","#b5b0bf","rose","lighter","greygreen","mud"],palmer:["red","navy","olive","pink","suede","sky"],mark:["#848f9a","#9aa4ac","slate","#b0b8bf","mud","grey"],salmon:["sky","sea","fuscia","slate","mud","fudge"],dupont:["green","brown","orange","red","olive","blue"],bloor:["night","navy","beige","rouge","mud","grey"],yukon:["mud","slate","brown","sky","beige","red"],david:["blue","green","yellow","red","pink","light"],neste:["mud","cherry","royal","rouge","greygreen","greypurple"],ken:["red","sky","#c67a53","greygreen","#dfb59f","mud"]};Object.keys(t).forEach(function(e){t[e]=t[e].map(function(e){return n[e]||e});}),r.exports=t;},{"./colors":1}],3:[function(e,r,o){var n=e("./colors"),t=e("./combos"),u={colors:n,list:Object.keys(n).map(function(e){return n[e]}),combos:t};r.exports=u;},{"./colors":1,"./combos":2}]},{},[3])(3)});
     });
 
-    /* node_modules/somehow-sankey/src/Sankey.svelte generated by Svelte v3.22.3 */
-    const file = "node_modules/somehow-sankey/src/Sankey.svelte";
+    /* Users/spencer/mountain/somehow-sankey/src/Sankey.svelte generated by Svelte v3.22.3 */
+    const file = "Users/spencer/mountain/somehow-sankey/src/Sankey.svelte";
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
@@ -19337,7 +19363,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (53:4) {#each nodes as d}
+    // (57:4) {#each nodes as d}
     function create_each_block_1(ctx) {
     	let div2;
     	let div0;
@@ -19361,11 +19387,11 @@ var app = (function () {
     			t3 = text("m");
     			t4 = space();
     			attr_dev(div0, "class", "label");
-    			add_location(div0, file, 59, 8, 1510);
+    			add_location(div0, file, 63, 8, 1521);
     			attr_dev(div1, "class", "value svelte-sj91yl");
     			set_style(div1, "color", /*colors*/ ctx[6][/*d*/ ctx[12].accent] || /*accent*/ ctx[8]);
-    			toggle_class(div1, "tiny", /*d*/ ctx[12].y > 300);
-    			add_location(div1, file, 60, 8, 1552);
+    			toggle_class(div1, "tiny", /*d*/ ctx[12].dy < 80);
+    			add_location(div1, file, 64, 8, 1563);
     			attr_dev(div2, "class", "node svelte-sj91yl");
     			set_style(div2, "left", /*d*/ ctx[12].x + "px");
     			set_style(div2, "top", /*d*/ ctx[12].y + "px");
@@ -19374,8 +19400,8 @@ var app = (function () {
     			set_style(div2, "height", (/*d*/ ctx[12].dy < 0 ? 0.1 : /*d*/ ctx[12].dy) + "px");
     			set_style(div2, "border-bottom", "4px solid " + (/*colors*/ ctx[6][/*d*/ ctx[12].accent] || /*accent*/ ctx[8]));
     			set_style(div2, "opacity", /*d*/ ctx[12].opacity || 1);
-    			toggle_class(div2, "tiny", /*d*/ ctx[12].y > 300);
-    			add_location(div2, file, 53, 6, 1204);
+    			toggle_class(div2, "tiny", /*d*/ ctx[12].dy < 80);
+    			add_location(div2, file, 57, 6, 1215);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -19396,7 +19422,7 @@ var app = (function () {
     			}
 
     			if (dirty & /*nodes*/ 4) {
-    				toggle_class(div1, "tiny", /*d*/ ctx[12].y > 300);
+    				toggle_class(div1, "tiny", /*d*/ ctx[12].dy < 80);
     			}
 
     			if (dirty & /*nodes*/ 4) {
@@ -19428,7 +19454,7 @@ var app = (function () {
     			}
 
     			if (dirty & /*nodes*/ 4) {
-    				toggle_class(div2, "tiny", /*d*/ ctx[12].y > 300);
+    				toggle_class(div2, "tiny", /*d*/ ctx[12].dy < 80);
     			}
     		},
     		d: function destroy(detaching) {
@@ -19440,14 +19466,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(53:4) {#each nodes as d}",
+    		source: "(57:4) {#each nodes as d}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (74:6) {#each links as d}
+    // (78:6) {#each links as d}
     function create_each_block(ctx) {
     	let path_1;
     	let title;
@@ -19471,13 +19497,13 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = text(" $");
     			t4 = text(t4_value);
-    			add_location(title, file, 81, 10, 2036);
+    			add_location(title, file, 85, 10, 2047);
     			attr_dev(path_1, "class", "link svelte-sj91yl");
     			attr_dev(path_1, "d", path_1_d_value = /*path*/ ctx[4](/*d*/ ctx[12]));
     			attr_dev(path_1, "stroke", "steelblue");
     			attr_dev(path_1, "fill", "none");
     			attr_dev(path_1, "stroke-width", path_1_stroke_width_value = Math.max(1, /*d*/ ctx[12].dy));
-    			add_location(path_1, file, 74, 8, 1861);
+    			add_location(path_1, file, 78, 8, 1872);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, path_1, anchor);
@@ -19510,7 +19536,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(74:6) {#each links as d}",
+    		source: "(78:6) {#each links as d}",
     		ctx
     	});
 
@@ -19567,14 +19593,14 @@ var app = (function () {
     			set_style(div0, "position", "absolute");
     			set_style(div0, "width", /*width*/ ctx[0] + "px");
     			set_style(div0, "height", /*height*/ ctx[1] + "px");
-    			add_location(div0, file, 51, 2, 1106);
-    			add_location(g, file, 72, 4, 1824);
+    			add_location(div0, file, 55, 2, 1117);
+    			add_location(g, file, 76, 4, 1835);
     			attr_dev(svg, "viewBox", svg_viewBox_value = "0,0," + /*width*/ ctx[0] + "," + /*height*/ ctx[1]);
     			attr_dev(svg, "width", /*width*/ ctx[0]);
     			attr_dev(svg, "height", /*height*/ ctx[1]);
-    			add_location(svg, file, 71, 2, 1766);
+    			add_location(svg, file, 75, 2, 1777);
     			set_style(div1, "position", "relative");
-    			add_location(div1, file, 50, 0, 1071);
+    			add_location(div1, file, 54, 0, 1082);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -19708,20 +19734,29 @@ var app = (function () {
     }
 
     function instance($$self, $$props, $$invalidate) {
+    	let $items;
+    	validate_store(items, "items");
+    	component_subscribe($$self, items, $$value => $$invalidate(9, $items = $$value));
     	let colors = spencerColor.colors;
-    	let { data = [] } = $$props;
     	let { width = 800 } = $$props;
     	let { height = 500 } = $$props;
-    	let { nodes, links, path, nodeWidth } = build(data, width, height);
 
-    	items.subscribe(all => {
-    		
-    		$$invalidate(2, { nodes, links, path, nodeWidth } = build(all, width, height), nodes, $$invalidate(3, links), $$invalidate(4, path), $$invalidate(5, nodeWidth));
-    	});
+    	let nodes = [],
+    		links = [],
+    		path = () => {
+    			
+    		},
+    		nodeWidth = 1;
 
     	let color = "steelblue";
     	let accent = "#d98b89";
-    	const writable_props = ["data", "width", "height"];
+
+    	onMount(() => {
+    		
+    		$$invalidate(2, { nodes, links, path, nodeWidth } = build($items, width, height), nodes, $$invalidate(3, links), $$invalidate(4, path), $$invalidate(5, nodeWidth));
+    	});
+
+    	const writable_props = ["width", "height"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Sankey> was created with unknown prop '${key}'`);
@@ -19731,7 +19766,6 @@ var app = (function () {
     	validate_slots("Sankey", $$slots, ['default']);
 
     	$$self.$set = $$props => {
-    		if ("data" in $$props) $$invalidate(9, data = $$props.data);
     		if ("width" in $$props) $$invalidate(0, width = $$props.width);
     		if ("height" in $$props) $$invalidate(1, height = $$props.height);
     		if ("$$scope" in $$props) $$invalidate(10, $$scope = $$props.$$scope);
@@ -19740,9 +19774,9 @@ var app = (function () {
     	$$self.$capture_state = () => ({
     		build,
     		items,
+    		onMount,
     		c: spencerColor,
     		colors,
-    		data,
     		width,
     		height,
     		nodes,
@@ -19750,12 +19784,12 @@ var app = (function () {
     		path,
     		nodeWidth,
     		color,
-    		accent
+    		accent,
+    		$items
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("colors" in $$props) $$invalidate(6, colors = $$props.colors);
-    		if ("data" in $$props) $$invalidate(9, data = $$props.data);
     		if ("width" in $$props) $$invalidate(0, width = $$props.width);
     		if ("height" in $$props) $$invalidate(1, height = $$props.height);
     		if ("nodes" in $$props) $$invalidate(2, nodes = $$props.nodes);
@@ -19780,7 +19814,7 @@ var app = (function () {
     		colors,
     		color,
     		accent,
-    		data,
+    		$items,
     		$$scope,
     		$$slots
     	];
@@ -19789,7 +19823,7 @@ var app = (function () {
     class Sankey extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { data: 9, width: 0, height: 1 });
+    		init(this, options, instance, create_fragment, safe_not_equal, { width: 0, height: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -19797,14 +19831,6 @@ var app = (function () {
     			options,
     			id: create_fragment.name
     		});
-    	}
-
-    	get data() {
-    		throw new Error("<Sankey>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set data(value) {
-    		throw new Error("<Sankey>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get width() {
@@ -19824,7 +19850,7 @@ var app = (function () {
     	}
     }
 
-    /* node_modules/somehow-sankey/src/Node.svelte generated by Svelte v3.22.3 */
+    /* Users/spencer/mountain/somehow-sankey/src/Node.svelte generated by Svelte v3.22.3 */
 
     function create_fragment$1(ctx) {
     	const block = {
@@ -19857,12 +19883,14 @@ var app = (function () {
     	let { color = "steelblue" } = $$props;
     	let { accent = "#d98b89" } = $$props;
     	let { opacity = "1" } = $$props;
+    	let { col = null } = $$props;
 
     	let row = {
     		source: name,
     		target: to,
     		value,
     		color,
+    		col,
     		accent,
     		opacity
     	};
@@ -19872,7 +19900,7 @@ var app = (function () {
     		return arr;
     	});
 
-    	const writable_props = ["value", "name", "to", "color", "accent", "opacity"];
+    	const writable_props = ["value", "name", "to", "color", "accent", "opacity", "col"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Node> was created with unknown prop '${key}'`);
@@ -19888,6 +19916,7 @@ var app = (function () {
     		if ("color" in $$props) $$invalidate(3, color = $$props.color);
     		if ("accent" in $$props) $$invalidate(4, accent = $$props.accent);
     		if ("opacity" in $$props) $$invalidate(5, opacity = $$props.opacity);
+    		if ("col" in $$props) $$invalidate(6, col = $$props.col);
     	};
 
     	$$self.$capture_state = () => ({
@@ -19898,6 +19927,7 @@ var app = (function () {
     		color,
     		accent,
     		opacity,
+    		col,
     		row
     	});
 
@@ -19908,6 +19938,7 @@ var app = (function () {
     		if ("color" in $$props) $$invalidate(3, color = $$props.color);
     		if ("accent" in $$props) $$invalidate(4, accent = $$props.accent);
     		if ("opacity" in $$props) $$invalidate(5, opacity = $$props.opacity);
+    		if ("col" in $$props) $$invalidate(6, col = $$props.col);
     		if ("row" in $$props) row = $$props.row;
     	};
 
@@ -19915,7 +19946,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [value, name, to, color, accent, opacity];
+    	return [value, name, to, color, accent, opacity, col];
     }
 
     class Node$2 extends SvelteComponentDev {
@@ -19928,7 +19959,8 @@ var app = (function () {
     			to: 2,
     			color: 3,
     			accent: 4,
-    			opacity: 5
+    			opacity: 5,
+    			col: 6
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -19984,6 +20016,14 @@ var app = (function () {
     	}
 
     	set opacity(value) {
+    		throw new Error("<Node>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get col() {
+    		throw new Error("<Node>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set col(value) {
     		throw new Error("<Node>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -20304,7 +20344,7 @@ var app = (function () {
     /* drafts/population-of-canada/Post.svelte generated by Svelte v3.22.3 */
     const file$3 = "drafts/population-of-canada/Post.svelte";
 
-    // (89:4) <Sankey height={800}>
+    // (21:4) <Sankey height="800">
     function create_default_slot(ctx) {
     	let t0;
     	let t1;
@@ -20312,71 +20352,155 @@ var app = (function () {
     	let t3;
     	let t4;
     	let t5;
+    	let t6;
+    	let t7;
+    	let t8;
+    	let t9;
+    	let t10;
+    	let t11;
+    	let t12;
     	let current;
 
     	const node0 = new Node$2({
-    			props: {
-    				name: "Toronto",
-    				to: "Canada",
-    				value: "6"
-    			},
+    			props: { name: "Canada", color: "red", col: 2 },
     			$$inline: true
     		});
 
     	const node1 = new Node$2({
     			props: {
-    				name: "Ontario",
-    				to: "Canada",
-    				value: "7.7",
-    				color: "sky"
+    				name: "Toronto",
+    				to: "Ontario",
+    				value: "6",
+    				color: "sky",
+    				col: 0
     			},
     			$$inline: true
     		});
 
     	const node2 = new Node$2({
     			props: {
-    				name: "Montreal",
-    				to: "Canada",
-    				value: "4"
+    				name: "Ottawa",
+    				to: "Ontario",
+    				value: "1",
+    				color: "sky",
+    				col: 0
     			},
     			$$inline: true
     		});
 
     	const node3 = new Node$2({
     			props: {
-    				name: "Quebec",
+    				name: "Ontario",
     				to: "Canada",
-    				value: "2.5"
+    				value: "14",
+    				color: "sky",
+    				col: 1
     			},
     			$$inline: true
     		});
 
     	const node4 = new Node$2({
     			props: {
-    				name: "Vancouver",
-    				to: "Canada",
-    				value: "2.4",
-    				color: "greypurple"
+    				name: "Montreal",
+    				to: "Quebec",
+    				value: "4",
+    				color: "mud",
+    				col: 0
     			},
     			$$inline: true
     		});
 
     	const node5 = new Node$2({
     			props: {
-    				name: "B.C.",
+    				name: "Quebec",
     				to: "Canada",
-    				value: "2.2",
-    				color: "burn"
+    				value: "8",
+    				color: "mud",
+    				col: 1
     			},
     			$$inline: true
     		});
 
     	const node6 = new Node$2({
     			props: {
+    				name: "Vancouver",
+    				to: "B.C.",
+    				value: "2.4",
+    				color: "burn",
+    				col: 0
+    			},
+    			$$inline: true
+    		});
+
+    	const node7 = new Node$2({
+    			props: {
+    				name: "B.C.",
+    				to: "Canada",
+    				value: "5",
+    				color: "burn",
+    				col: 1
+    			},
+    			$$inline: true
+    		});
+
+    	const node8 = new Node$2({
+    			props: {
+    				name: "Calgary",
+    				to: "Alberta",
+    				value: "1.3",
+    				col: 0,
+    				color: "greygreen"
+    			},
+    			$$inline: true
+    		});
+
+    	const node9 = new Node$2({
+    			props: {
+    				name: "Alberta",
+    				to: "Canada",
+    				value: "4",
+    				col: 1,
+    				color: "greygreen"
+    			},
+    			$$inline: true
+    		});
+
+    	const node10 = new Node$2({
+    			props: {
+    				name: "Nova Scota",
+    				to: "Canada",
+    				value: "1",
+    				col: 1
+    			},
+    			$$inline: true
+    		});
+
+    	const node11 = new Node$2({
+    			props: {
+    				name: "Manitoba",
+    				to: "Canada",
+    				value: "1",
+    				col: 1
+    			},
+    			$$inline: true
+    		});
+
+    	const node12 = new Node$2({
+    			props: {
+    				name: "Saskatchewan",
+    				to: "Canada",
+    				value: "1",
+    				col: 1
+    			},
+    			$$inline: true
+    		});
+
+    	const node13 = new Node$2({
+    			props: {
     				name: "rest",
     				to: "Canada",
-    				value: "7.9",
-    				opacity: "0.6"
+    				value: 1,
+    				col: 1
     			},
     			$$inline: true
     		});
@@ -20396,6 +20520,20 @@ var app = (function () {
     			create_component(node5.$$.fragment);
     			t5 = space();
     			create_component(node6.$$.fragment);
+    			t6 = space();
+    			create_component(node7.$$.fragment);
+    			t7 = space();
+    			create_component(node8.$$.fragment);
+    			t8 = space();
+    			create_component(node9.$$.fragment);
+    			t9 = space();
+    			create_component(node10.$$.fragment);
+    			t10 = space();
+    			create_component(node11.$$.fragment);
+    			t11 = space();
+    			create_component(node12.$$.fragment);
+    			t12 = space();
+    			create_component(node13.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(node0, target, anchor);
@@ -20411,6 +20549,20 @@ var app = (function () {
     			mount_component(node5, target, anchor);
     			insert_dev(target, t5, anchor);
     			mount_component(node6, target, anchor);
+    			insert_dev(target, t6, anchor);
+    			mount_component(node7, target, anchor);
+    			insert_dev(target, t7, anchor);
+    			mount_component(node8, target, anchor);
+    			insert_dev(target, t8, anchor);
+    			mount_component(node9, target, anchor);
+    			insert_dev(target, t9, anchor);
+    			mount_component(node10, target, anchor);
+    			insert_dev(target, t10, anchor);
+    			mount_component(node11, target, anchor);
+    			insert_dev(target, t11, anchor);
+    			mount_component(node12, target, anchor);
+    			insert_dev(target, t12, anchor);
+    			mount_component(node13, target, anchor);
     			current = true;
     		},
     		p: noop,
@@ -20423,6 +20575,13 @@ var app = (function () {
     			transition_in(node4.$$.fragment, local);
     			transition_in(node5.$$.fragment, local);
     			transition_in(node6.$$.fragment, local);
+    			transition_in(node7.$$.fragment, local);
+    			transition_in(node8.$$.fragment, local);
+    			transition_in(node9.$$.fragment, local);
+    			transition_in(node10.$$.fragment, local);
+    			transition_in(node11.$$.fragment, local);
+    			transition_in(node12.$$.fragment, local);
+    			transition_in(node13.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -20433,6 +20592,13 @@ var app = (function () {
     			transition_out(node4.$$.fragment, local);
     			transition_out(node5.$$.fragment, local);
     			transition_out(node6.$$.fragment, local);
+    			transition_out(node7.$$.fragment, local);
+    			transition_out(node8.$$.fragment, local);
+    			transition_out(node9.$$.fragment, local);
+    			transition_out(node10.$$.fragment, local);
+    			transition_out(node11.$$.fragment, local);
+    			transition_out(node12.$$.fragment, local);
+    			transition_out(node13.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -20449,6 +20615,20 @@ var app = (function () {
     			destroy_component(node5, detaching);
     			if (detaching) detach_dev(t5);
     			destroy_component(node6, detaching);
+    			if (detaching) detach_dev(t6);
+    			destroy_component(node7, detaching);
+    			if (detaching) detach_dev(t7);
+    			destroy_component(node8, detaching);
+    			if (detaching) detach_dev(t8);
+    			destroy_component(node9, detaching);
+    			if (detaching) detach_dev(t9);
+    			destroy_component(node10, detaching);
+    			if (detaching) detach_dev(t10);
+    			destroy_component(node11, detaching);
+    			if (detaching) detach_dev(t11);
+    			destroy_component(node12, detaching);
+    			if (detaching) detach_dev(t12);
+    			destroy_component(node13, detaching);
     		}
     	};
 
@@ -20456,7 +20636,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(89:4) <Sankey height={800}>",
+    		source: "(21:4) <Sankey height=\\\"800\\\">",
     		ctx
     	});
 
@@ -20471,15 +20651,11 @@ var app = (function () {
     	let div1;
     	let t3;
     	let current;
-
-    	const head = new Head({
-    			props: { title: /*title*/ ctx[0], num: "11" },
-    			$$inline: true
-    		});
+    	const head = new Head({ props: { num: "11" }, $$inline: true });
 
     	const sankey = new Sankey({
     			props: {
-    				height: 800,
+    				height: "800",
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
     			},
@@ -20504,10 +20680,10 @@ var app = (function () {
     			t3 = space();
     			create_component(foot.$$.fragment);
     			attr_dev(div0, "class", "m3 svelte-1o2k1lr");
-    			add_location(div0, file$3, 86, 2, 1467);
+    			add_location(div0, file$3, 17, 2, 398);
     			attr_dev(div1, "class", "m3 svelte-1o2k1lr");
-    			add_location(div1, file$3, 87, 2, 1512);
-    			add_location(div2, file$3, 84, 0, 1431);
+    			add_location(div1, file$3, 18, 2, 443);
+    			add_location(div2, file$3, 15, 0, 370);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -20525,12 +20701,9 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			const head_changes = {};
-    			if (dirty & /*title*/ 1) head_changes.title = /*title*/ ctx[0];
-    			head.$set(head_changes);
     			const sankey_changes = {};
 
-    			if (dirty & /*$$scope*/ 4) {
+    			if (dirty & /*$$scope*/ 2) {
     				sankey_changes.$$scope = { dirty, ctx };
     			}
 
@@ -20573,56 +20746,6 @@ var app = (function () {
 
     function instance$4($$self, $$props, $$invalidate) {
     	let { title = "Population of Canada" } = $$props;
-
-    	//from Wikipedia by Metro area
-    	// https://en.wikipedia.org/wiki/Metropolitan_area
-    	let data = [
-    		{
-    			label: "Toronto",
-    			value: 5.9,
-    			city: true,
-    			color: "#DC788C"
-    		},
-    		{
-    			label: "- Ontario -",
-    			value: 7.7,
-    			dim: true,
-    			color: "#FFE2E8"
-    		},
-    		{
-    			label: "Montreal",
-    			value: 4,
-    			city: true,
-    			color: "#69D99A"
-    		},
-    		{
-    			label: "- Quebec -",
-    			value: 2.5,
-    			dim: true,
-    			color: "#D1F0DF"
-    		},
-    		{
-    			label: "Vancouver",
-    			value: 2.4,
-    			city: true,
-    			color: "#D7BDD9"
-    		},
-    		{
-    			label: "- BC -",
-    			value: 2.2,
-    			dim: true,
-    			color: "#FEEFFF"
-    		},
-    		{
-    			label: "rest of Canada",
-    			dim: true,
-    			color: "#dae6f2",
-    			value: 7.9
-    		}
-    	]; // {
-    	//   label: 'Alberta',
-    	//   value: 4.1,
-
     	const writable_props = ["title"];
 
     	Object.keys($$props).forEach(key => {
@@ -20636,11 +20759,10 @@ var app = (function () {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
     	};
 
-    	$$self.$capture_state = () => ({ Sankey, Node: Node$2, Head, Foot, title, data });
+    	$$self.$capture_state = () => ({ Sankey, Node: Node$2, Head, Foot, title });
 
     	$$self.$inject_state = $$props => {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
-    		if ("data" in $$props) data = $$props.data;
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -20672,22 +20794,16 @@ var app = (function () {
     	}
     }
 
-    let name = '';
     // wire-in query params
     const URLSearchParams = window.URLSearchParams;
     if (typeof URLSearchParams !== undefined) {
       const urlParams = new URLSearchParams(window.location.search);
       const myParam = urlParams.get('name');
-      if (myParam) {
-        name = myParam;
-      }
     }
 
     const app = new Post({
       target: document.body,
-      props: {
-        name: name,
-      },
+      props: {},
     });
 
     return app;
