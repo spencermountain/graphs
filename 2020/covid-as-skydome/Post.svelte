@@ -17,13 +17,15 @@
 <div>
   <Head {title} {sub} num="12" />
   <div class="m3">
-    Covid-deaths as percentage of skydome
-    <div>as of June 8th, 2020</div>
+    Canadian Covid deaths as percentage of skydome
+    <ul>- as of June 8th, 2020</ul>
   </div>
   <div class="m3">
     <img src="./assets/third-covid.jpg" class="shadow " />
-    <div>skydome: 53,000</div>
-    <div>covid deaths: 7,835</div>
+    <ul>
+      <div>skydome: 53,000</div>
+      <div>covid deaths: 7,835</div>
+    </ul>
   </div>
   <Foot {title} />
 </div>

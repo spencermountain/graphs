@@ -634,19 +634,20 @@ var app = (function () {
     const file$2 = "2020/covid-as-skydome/Post.svelte";
 
     function create_fragment$2(ctx) {
-    	let div5;
-    	let t0;
-    	let div1;
-    	let t1;
-    	let div0;
-    	let t3;
     	let div4;
+    	let t0;
+    	let div0;
+    	let t1;
+    	let ul0;
+    	let t3;
+    	let div3;
     	let img;
     	let img_src_value;
     	let t4;
-    	let div2;
+    	let ul1;
+    	let div1;
     	let t6;
-    	let div3;
+    	let div2;
     	let t8;
     	let current;
 
@@ -666,55 +667,58 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div5 = element("div");
+    			div4 = element("div");
     			create_component(head.$$.fragment);
     			t0 = space();
-    			div1 = element("div");
-    			t1 = text("Covid-deaths as percentage of skydome\n    ");
     			div0 = element("div");
-    			div0.textContent = "as of June 8th, 2020";
+    			t1 = text("Canadian Covid deaths as percentage of skydome\n    ");
+    			ul0 = element("ul");
+    			ul0.textContent = "- as of June 8th, 2020";
     			t3 = space();
-    			div4 = element("div");
+    			div3 = element("div");
     			img = element("img");
     			t4 = space();
-    			div2 = element("div");
-    			div2.textContent = "skydome: 53,000";
+    			ul1 = element("ul");
+    			div1 = element("div");
+    			div1.textContent = "skydome: 53,000";
     			t6 = space();
-    			div3 = element("div");
-    			div3.textContent = "covid deaths: 7,835";
+    			div2 = element("div");
+    			div2.textContent = "covid deaths: 7,835";
     			t8 = space();
     			create_component(foot.$$.fragment);
-    			add_location(div0, file$2, 20, 4, 352);
-    			attr_dev(div1, "class", "m3 svelte-1l16ulc");
-    			add_location(div1, file$2, 18, 2, 289);
+    			add_location(ul0, file$2, 20, 4, 361);
+    			attr_dev(div0, "class", "m3 svelte-1l16ulc");
+    			add_location(div0, file$2, 18, 2, 289);
     			if (img.src !== (img_src_value = "./assets/third-covid.jpg")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "class", "shadow  svelte-1l16ulc");
-    			add_location(img, file$2, 23, 4, 416);
-    			add_location(div2, file$2, 24, 4, 475);
-    			add_location(div3, file$2, 25, 4, 506);
-    			attr_dev(div4, "class", "m3 svelte-1l16ulc");
-    			add_location(div4, file$2, 22, 2, 395);
-    			add_location(div5, file$2, 16, 0, 247);
+    			add_location(img, file$2, 23, 4, 425);
+    			add_location(div1, file$2, 25, 6, 495);
+    			add_location(div2, file$2, 26, 6, 528);
+    			add_location(ul1, file$2, 24, 4, 484);
+    			attr_dev(div3, "class", "m3 svelte-1l16ulc");
+    			add_location(div3, file$2, 22, 2, 404);
+    			add_location(div4, file$2, 16, 0, 247);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div5, anchor);
-    			mount_component(head, div5, null);
-    			append_dev(div5, t0);
-    			append_dev(div5, div1);
-    			append_dev(div1, t1);
-    			append_dev(div1, div0);
-    			append_dev(div5, t3);
-    			append_dev(div5, div4);
-    			append_dev(div4, img);
-    			append_dev(div4, t4);
-    			append_dev(div4, div2);
-    			append_dev(div4, t6);
+    			insert_dev(target, div4, anchor);
+    			mount_component(head, div4, null);
+    			append_dev(div4, t0);
+    			append_dev(div4, div0);
+    			append_dev(div0, t1);
+    			append_dev(div0, ul0);
+    			append_dev(div4, t3);
     			append_dev(div4, div3);
-    			append_dev(div5, t8);
-    			mount_component(foot, div5, null);
+    			append_dev(div3, img);
+    			append_dev(div3, t4);
+    			append_dev(div3, ul1);
+    			append_dev(ul1, div1);
+    			append_dev(ul1, t6);
+    			append_dev(ul1, div2);
+    			append_dev(div4, t8);
+    			mount_component(foot, div4, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -738,7 +742,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div5);
+    			if (detaching) detach_dev(div4);
     			destroy_component(head);
     			destroy_component(foot);
     		}
