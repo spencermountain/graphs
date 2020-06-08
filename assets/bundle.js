@@ -158,6 +158,10 @@ module.exports = {
     num: 'population-of-canada',
     title: 'Population of Canada',
     thumb: 'thumb.png'
+  }, {
+    num: 'covid-as-skydome',
+    title: 'Covid as percentage of skydome',
+    thumb: 'thumb.jpg'
   }]
 };
 
