@@ -494,7 +494,7 @@ var app = (function () {
       byCol.forEach((nodes) => {
         nodes.forEach((node, n) => {
           if (node.tos.length === 1 && node.tos[0].top > node.top) {
-            // console.log('moving ' + node.name)
+            console.log('moving ' + node.name);
             node.top = node.tos[0].top;
             // move down stacked-nodes as well
             let already = node.top + node.value;
@@ -529,7 +529,7 @@ var app = (function () {
     // splay-out stacked nodes a bit
     const addMargin = function (byCol) {
       let max = getMax(byCol);
-      let margin = max * 0.02;
+      let margin = max * 0.01;
       byCol.forEach((nodes) => {
         let count = 1;
         nodes.forEach((node) => {
@@ -593,8 +593,6 @@ var app = (function () {
 
     var linear = getCjsExportFromNamespace(scale);
 
-    const nodeWidth = 120;
-
     const getMax$1 = function (byCol) {
       let max = 0;
       byCol.forEach((nodes) => {
@@ -618,11 +616,10 @@ var app = (function () {
       return node
     };
 
-    const makePoints = function (byCol, width, height) {
+    const makePoints = function (byCol, width, height, nodeWidth) {
       let max = getMax$1(byCol);
       let yScale = linear({ minmax: [0, max], world: [0, height] });
       let xScale = linear({ minmax: [0, byCol.length], world: [0, width] });
-      console.log(max, height);
       byCol.forEach((nodes) => {
         nodes.forEach((node) => {
           node.y = yScale(node.top);
@@ -683,14 +680,14 @@ var app = (function () {
       return list
     };
 
-    const layout = function (items, width, height) {
+    const layout = function (items, width, height, nodeWidth) {
       let byCol = fmt(items);
       // add value
       byCol = getValues(byCol);
       // add top
       byCol = _03GetTops(byCol);
       // add x, y, width, height
-      byCol = _04MakePoints(byCol, width, height);
+      byCol = _04MakePoints(byCol, width, height, nodeWidth);
 
       let nodes = toFlat(byCol);
       let paths = _05MakePaths(nodes);
@@ -698,7 +695,7 @@ var app = (function () {
       return {
         nodes: nodes,
         paths: paths,
-        nodeWidth: 50,
+        nodeWidth: nodeWidth,
       }
     };
 
@@ -766,28 +763,27 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[10] = list[i];
+    	child_ctx[12] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[10] = list[i];
+    	child_ctx[12] = list[i];
     	return child_ctx;
     }
 
-    // (54:4) {#each nodes as d}
+    // (65:4) {#each nodes as d}
     function create_each_block_1(ctx) {
     	let div2;
     	let div0;
-    	let t0_value = /*d*/ ctx[10].name + "";
+    	let t0_value = /*d*/ ctx[12].name + "";
     	let t0;
     	let t1;
     	let div1;
-    	let t2_value = Math.ceil(/*d*/ ctx[10].value * 100) / 100 + "";
+    	let t2_value = /*fmt*/ ctx[2](/*d*/ ctx[12].value) + "";
     	let t2;
     	let t3;
-    	let t4;
 
     	const block = {
     		c: function create() {
@@ -797,24 +793,23 @@ var app = (function () {
     			t1 = space();
     			div1 = element("div");
     			t2 = text(t2_value);
-    			t3 = text("m");
-    			t4 = space();
+    			t3 = space();
     			attr_dev(div0, "class", "label");
-    			add_location(div0, file, 60, 8, 1498);
+    			add_location(div0, file, 71, 8, 1780);
     			attr_dev(div1, "class", "value svelte-1v79r3e");
-    			set_style(div1, "color", /*colors*/ ctx[4][/*d*/ ctx[10].accent] || /*accent*/ ctx[6]);
-    			toggle_class(div1, "tiny", /*d*/ ctx[10].height < 80);
-    			add_location(div1, file, 61, 8, 1540);
+    			set_style(div1, "color", /*colors*/ ctx[5][/*d*/ ctx[12].accent] || /*accent*/ ctx[7]);
+    			toggle_class(div1, "tiny", /*d*/ ctx[12].height < 80);
+    			add_location(div1, file, 72, 8, 1822);
     			attr_dev(div2, "class", "node svelte-1v79r3e");
-    			set_style(div2, "left", /*d*/ ctx[10].x + "px");
-    			set_style(div2, "top", /*d*/ ctx[10].y + "px");
-    			set_style(div2, "width", /*d*/ ctx[10].width + "px");
-    			set_style(div2, "background-color", /*colors*/ ctx[4][/*d*/ ctx[10].color] || /*color*/ ctx[5]);
-    			set_style(div2, "height", /*d*/ ctx[10].height + "px");
-    			set_style(div2, "border-bottom", "4px solid " + (/*colors*/ ctx[4][/*d*/ ctx[10].accent] || /*accent*/ ctx[6]));
-    			set_style(div2, "opacity", /*d*/ ctx[10].opacity || 1);
-    			toggle_class(div2, "tiny", /*d*/ ctx[10].height < 80);
-    			add_location(div2, file, 54, 6, 1203);
+    			set_style(div2, "left", /*d*/ ctx[12].x + "px");
+    			set_style(div2, "top", /*d*/ ctx[12].y + "px");
+    			set_style(div2, "width", /*d*/ ctx[12].width + "px");
+    			set_style(div2, "background-color", /*colors*/ ctx[5][/*d*/ ctx[12].color] || /*color*/ ctx[6]);
+    			set_style(div2, "height", /*d*/ ctx[12].height + "px");
+    			set_style(div2, "border-bottom", "4px solid " + (/*colors*/ ctx[5][/*d*/ ctx[12].accent] || /*accent*/ ctx[7]));
+    			set_style(div2, "opacity", /*d*/ ctx[12].opacity || 1);
+    			toggle_class(div2, "tiny", /*d*/ ctx[12].height < 80);
+    			add_location(div2, file, 65, 6, 1485);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -823,51 +818,50 @@ var app = (function () {
     			append_dev(div2, t1);
     			append_dev(div2, div1);
     			append_dev(div1, t2);
-    			append_dev(div1, t3);
-    			append_dev(div2, t4);
+    			append_dev(div2, t3);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*nodes*/ 4 && t0_value !== (t0_value = /*d*/ ctx[10].name + "")) set_data_dev(t0, t0_value);
-    			if (dirty & /*nodes*/ 4 && t2_value !== (t2_value = Math.ceil(/*d*/ ctx[10].value * 100) / 100 + "")) set_data_dev(t2, t2_value);
+    			if (dirty & /*nodes*/ 8 && t0_value !== (t0_value = /*d*/ ctx[12].name + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*fmt, nodes*/ 12 && t2_value !== (t2_value = /*fmt*/ ctx[2](/*d*/ ctx[12].value) + "")) set_data_dev(t2, t2_value);
 
-    			if (dirty & /*nodes*/ 4) {
-    				set_style(div1, "color", /*colors*/ ctx[4][/*d*/ ctx[10].accent] || /*accent*/ ctx[6]);
+    			if (dirty & /*nodes*/ 8) {
+    				set_style(div1, "color", /*colors*/ ctx[5][/*d*/ ctx[12].accent] || /*accent*/ ctx[7]);
     			}
 
-    			if (dirty & /*nodes*/ 4) {
-    				toggle_class(div1, "tiny", /*d*/ ctx[10].height < 80);
+    			if (dirty & /*nodes*/ 8) {
+    				toggle_class(div1, "tiny", /*d*/ ctx[12].height < 80);
     			}
 
-    			if (dirty & /*nodes*/ 4) {
-    				set_style(div2, "left", /*d*/ ctx[10].x + "px");
+    			if (dirty & /*nodes*/ 8) {
+    				set_style(div2, "left", /*d*/ ctx[12].x + "px");
     			}
 
-    			if (dirty & /*nodes*/ 4) {
-    				set_style(div2, "top", /*d*/ ctx[10].y + "px");
+    			if (dirty & /*nodes*/ 8) {
+    				set_style(div2, "top", /*d*/ ctx[12].y + "px");
     			}
 
-    			if (dirty & /*nodes*/ 4) {
-    				set_style(div2, "width", /*d*/ ctx[10].width + "px");
+    			if (dirty & /*nodes*/ 8) {
+    				set_style(div2, "width", /*d*/ ctx[12].width + "px");
     			}
 
-    			if (dirty & /*nodes*/ 4) {
-    				set_style(div2, "background-color", /*colors*/ ctx[4][/*d*/ ctx[10].color] || /*color*/ ctx[5]);
+    			if (dirty & /*nodes*/ 8) {
+    				set_style(div2, "background-color", /*colors*/ ctx[5][/*d*/ ctx[12].color] || /*color*/ ctx[6]);
     			}
 
-    			if (dirty & /*nodes*/ 4) {
-    				set_style(div2, "height", /*d*/ ctx[10].height + "px");
+    			if (dirty & /*nodes*/ 8) {
+    				set_style(div2, "height", /*d*/ ctx[12].height + "px");
     			}
 
-    			if (dirty & /*nodes*/ 4) {
-    				set_style(div2, "border-bottom", "4px solid " + (/*colors*/ ctx[4][/*d*/ ctx[10].accent] || /*accent*/ ctx[6]));
+    			if (dirty & /*nodes*/ 8) {
+    				set_style(div2, "border-bottom", "4px solid " + (/*colors*/ ctx[5][/*d*/ ctx[12].accent] || /*accent*/ ctx[7]));
     			}
 
-    			if (dirty & /*nodes*/ 4) {
-    				set_style(div2, "opacity", /*d*/ ctx[10].opacity || 1);
+    			if (dirty & /*nodes*/ 8) {
+    				set_style(div2, "opacity", /*d*/ ctx[12].opacity || 1);
     			}
 
-    			if (dirty & /*nodes*/ 4) {
-    				toggle_class(div2, "tiny", /*d*/ ctx[10].height < 80);
+    			if (dirty & /*nodes*/ 8) {
+    				toggle_class(div2, "tiny", /*d*/ ctx[12].height < 80);
     			}
     		},
     		d: function destroy(detaching) {
@@ -879,14 +873,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(54:4) {#each nodes as d}",
+    		source: "(65:4) {#each nodes as d}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (74:4) {#each paths as d}
+    // (85:4) {#each paths as d}
     function create_each_block(ctx) {
     	let path;
     	let path_d_value;
@@ -896,17 +890,17 @@ var app = (function () {
     		c: function create() {
     			path = svg_element("path");
     			attr_dev(path, "class", "link svelte-1v79r3e");
-    			attr_dev(path, "d", path_d_value = /*d*/ ctx[10]);
+    			attr_dev(path, "d", path_d_value = /*d*/ ctx[12]);
     			attr_dev(path, "stroke", "none");
     			attr_dev(path, "fill", "lightsteelblue");
     			attr_dev(path, "stroke-width", path_stroke_width_value = 1);
-    			add_location(path, file, 74, 6, 1841);
+    			add_location(path, file, 85, 6, 2104);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, path, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*paths*/ 8 && path_d_value !== (path_d_value = /*d*/ ctx[10])) {
+    			if (dirty & /*paths*/ 16 && path_d_value !== (path_d_value = /*d*/ ctx[12])) {
     				attr_dev(path, "d", path_d_value);
     			}
     		},
@@ -919,7 +913,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(74:4) {#each paths as d}",
+    		source: "(85:4) {#each paths as d}",
     		ctx
     	});
 
@@ -934,7 +928,7 @@ var app = (function () {
     	let svg_viewBox_value;
     	let t1;
     	let current;
-    	let each_value_1 = /*nodes*/ ctx[2];
+    	let each_value_1 = /*nodes*/ ctx[3];
     	validate_each_argument(each_value_1);
     	let each_blocks_1 = [];
 
@@ -942,7 +936,7 @@ var app = (function () {
     		each_blocks_1[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
     	}
 
-    	let each_value = /*paths*/ ctx[3];
+    	let each_value = /*paths*/ ctx[4];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -950,8 +944,8 @@ var app = (function () {
     		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
     	}
 
-    	const default_slot_template = /*$$slots*/ ctx[9].default;
-    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[8], null);
+    	const default_slot_template = /*$$slots*/ ctx[11].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[10], null);
 
     	const block = {
     		c: function create() {
@@ -974,13 +968,13 @@ var app = (function () {
     			set_style(div0, "position", "absolute");
     			set_style(div0, "width", /*width*/ ctx[0] + "px");
     			set_style(div0, "height", /*height*/ ctx[1] + "px");
-    			add_location(div0, file, 52, 2, 1105);
+    			add_location(div0, file, 63, 2, 1387);
     			attr_dev(svg, "viewBox", svg_viewBox_value = "0,0," + /*width*/ ctx[0] + "," + /*height*/ ctx[1]);
     			attr_dev(svg, "width", /*width*/ ctx[0]);
     			attr_dev(svg, "height", /*height*/ ctx[1]);
-    			add_location(svg, file, 72, 2, 1758);
+    			add_location(svg, file, 83, 2, 2021);
     			set_style(div1, "position", "relative");
-    			add_location(div1, file, 51, 0, 1070);
+    			add_location(div1, file, 62, 0, 1352);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1009,8 +1003,8 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*nodes, colors, color, accent, Math*/ 116) {
-    				each_value_1 = /*nodes*/ ctx[2];
+    			if (dirty & /*nodes, colors, color, accent, fmt*/ 236) {
+    				each_value_1 = /*nodes*/ ctx[3];
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -1041,8 +1035,8 @@ var app = (function () {
     				set_style(div0, "height", /*height*/ ctx[1] + "px");
     			}
 
-    			if (dirty & /*paths*/ 8) {
-    				each_value = /*paths*/ ctx[3];
+    			if (dirty & /*paths*/ 16) {
+    				each_value = /*paths*/ ctx[4];
     				validate_each_argument(each_value);
     				let i;
 
@@ -1078,8 +1072,8 @@ var app = (function () {
     			}
 
     			if (default_slot) {
-    				if (default_slot.p && dirty & /*$$scope*/ 256) {
-    					default_slot.p(get_slot_context(default_slot_template, ctx, /*$$scope*/ ctx[8], null), get_slot_changes(default_slot_template, /*$$scope*/ ctx[8], dirty, null));
+    				if (default_slot.p && dirty & /*$$scope*/ 1024) {
+    					default_slot.p(get_slot_context(default_slot_template, ctx, /*$$scope*/ ctx[10], null), get_slot_changes(default_slot_template, /*$$scope*/ ctx[10], dirty, null));
     				}
     			}
     		},
@@ -1115,10 +1109,25 @@ var app = (function () {
     function instance($$self, $$props, $$invalidate) {
     	let $items;
     	validate_store(items, "items");
-    	component_subscribe($$self, items, $$value => $$invalidate(7, $items = $$value));
+    	component_subscribe($$self, items, $$value => $$invalidate(9, $items = $$value));
     	let colors = spencerColor.colors;
     	let { width = 800 } = $$props;
     	let { height = 500 } = $$props;
+    	let { nodeWidth = 120 } = $$props;
+
+    	let { fmt = num => {
+    		if (num >= 1000000) {
+    			num = Math.round(num / 1000000) * 1000000;
+    			return String(num / 1000000) + "m";
+    		}
+
+    		if (num > 1000) {
+    			return String(num / 1000) + "k";
+    		}
+
+    		return String(num);
+    	} } = $$props;
+
     	height = Number(height);
     	width = Number(width);
     	let nodes = [];
@@ -1128,10 +1137,10 @@ var app = (function () {
 
     	onMount(() => {
     		
-    		$$invalidate(2, { nodes, paths } = layout($items, width, height), nodes, $$invalidate(3, paths));
+    		$$invalidate(3, { nodes, paths } = layout($items, width, height, nodeWidth), nodes, $$invalidate(4, paths));
     	}); // console.log(paths)
 
-    	const writable_props = ["width", "height"];
+    	const writable_props = ["width", "height", "nodeWidth", "fmt"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Sankey> was created with unknown prop '${key}'`);
@@ -1143,7 +1152,9 @@ var app = (function () {
     	$$self.$set = $$props => {
     		if ("width" in $$props) $$invalidate(0, width = $$props.width);
     		if ("height" in $$props) $$invalidate(1, height = $$props.height);
-    		if ("$$scope" in $$props) $$invalidate(8, $$scope = $$props.$$scope);
+    		if ("nodeWidth" in $$props) $$invalidate(8, nodeWidth = $$props.nodeWidth);
+    		if ("fmt" in $$props) $$invalidate(2, fmt = $$props.fmt);
+    		if ("$$scope" in $$props) $$invalidate(10, $$scope = $$props.$$scope);
     	};
 
     	$$self.$capture_state = () => ({
@@ -1154,6 +1165,8 @@ var app = (function () {
     		colors,
     		width,
     		height,
+    		nodeWidth,
+    		fmt,
     		nodes,
     		paths,
     		color,
@@ -1162,26 +1175,47 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("colors" in $$props) $$invalidate(4, colors = $$props.colors);
+    		if ("colors" in $$props) $$invalidate(5, colors = $$props.colors);
     		if ("width" in $$props) $$invalidate(0, width = $$props.width);
     		if ("height" in $$props) $$invalidate(1, height = $$props.height);
-    		if ("nodes" in $$props) $$invalidate(2, nodes = $$props.nodes);
-    		if ("paths" in $$props) $$invalidate(3, paths = $$props.paths);
-    		if ("color" in $$props) $$invalidate(5, color = $$props.color);
-    		if ("accent" in $$props) $$invalidate(6, accent = $$props.accent);
+    		if ("nodeWidth" in $$props) $$invalidate(8, nodeWidth = $$props.nodeWidth);
+    		if ("fmt" in $$props) $$invalidate(2, fmt = $$props.fmt);
+    		if ("nodes" in $$props) $$invalidate(3, nodes = $$props.nodes);
+    		if ("paths" in $$props) $$invalidate(4, paths = $$props.paths);
+    		if ("color" in $$props) $$invalidate(6, color = $$props.color);
+    		if ("accent" in $$props) $$invalidate(7, accent = $$props.accent);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [width, height, nodes, paths, colors, color, accent, $items, $$scope, $$slots];
+    	return [
+    		width,
+    		height,
+    		fmt,
+    		nodes,
+    		paths,
+    		colors,
+    		color,
+    		accent,
+    		nodeWidth,
+    		$items,
+    		$$scope,
+    		$$slots
+    	];
     }
 
     class Sankey extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { width: 0, height: 1 });
+
+    		init(this, options, instance, create_fragment, safe_not_equal, {
+    			width: 0,
+    			height: 1,
+    			nodeWidth: 8,
+    			fmt: 2
+    		});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -1204,6 +1238,22 @@ var app = (function () {
     	}
 
     	set height(value) {
+    		throw new Error("<Sankey>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get nodeWidth() {
+    		throw new Error("<Sankey>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set nodeWidth(value) {
+    		throw new Error("<Sankey>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get fmt() {
+    		throw new Error("<Sankey>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set fmt(value) {
     		throw new Error("<Sankey>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -1246,6 +1296,10 @@ var app = (function () {
     	let { dy = "0" } = $$props;
     	let { dx = "0" } = $$props;
     	let { opacity = "1" } = $$props;
+
+    	if (typeof value === "string") {
+    		value = value.replace(/,/g, "");
+    	}
 
     	let row = {
     		name,
@@ -1835,112 +1889,7 @@ var app = (function () {
     /* 2020/population-of-canada/Post.svelte generated by Svelte v3.22.3 */
     const file$4 = "2020/population-of-canada/Post.svelte";
 
-    // (23:6) <Col>
-    function create_default_slot_4(ctx) {
-    	let t0;
-    	let t1;
-    	let t2;
-    	let current;
-
-    	const node0 = new Node({
-    			props: {
-    				name: "Toronto",
-    				to: "Greater Toronto",
-    				value: "3",
-    				color: "sky"
-    			},
-    			$$inline: true
-    		});
-
-    	const node1 = new Node({
-    			props: {
-    				name: "scarburough",
-    				to: "Greater Toronto",
-    				value: "0.6",
-    				color: "sky"
-    			},
-    			$$inline: true
-    		});
-
-    	const node2 = new Node({
-    			props: {
-    				name: "Montreal",
-    				to: "Greater Montreal",
-    				value: "1.7",
-    				color: "mud"
-    			},
-    			$$inline: true
-    		});
-
-    	const node3 = new Node({
-    			props: {
-    				name: "Longueuil",
-    				to: "Greater Montreal",
-    				value: "2.2",
-    				color: "mud"
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(node0.$$.fragment);
-    			t0 = space();
-    			create_component(node1.$$.fragment);
-    			t1 = space();
-    			create_component(node2.$$.fragment);
-    			t2 = space();
-    			create_component(node3.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(node0, target, anchor);
-    			insert_dev(target, t0, anchor);
-    			mount_component(node1, target, anchor);
-    			insert_dev(target, t1, anchor);
-    			mount_component(node2, target, anchor);
-    			insert_dev(target, t2, anchor);
-    			mount_component(node3, target, anchor);
-    			current = true;
-    		},
-    		p: noop,
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(node0.$$.fragment, local);
-    			transition_in(node1.$$.fragment, local);
-    			transition_in(node2.$$.fragment, local);
-    			transition_in(node3.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(node0.$$.fragment, local);
-    			transition_out(node1.$$.fragment, local);
-    			transition_out(node2.$$.fragment, local);
-    			transition_out(node3.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(node0, detaching);
-    			if (detaching) detach_dev(t0);
-    			destroy_component(node1, detaching);
-    			if (detaching) detach_dev(t1);
-    			destroy_component(node2, detaching);
-    			if (detaching) detach_dev(t2);
-    			destroy_component(node3, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_4.name,
-    		type: "slot",
-    		source: "(23:6) <Col>",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (29:6) <Col>
+    // (36:6) <Col>
     function create_default_slot_3(ctx) {
     	let t0;
     	let t1;
@@ -1980,7 +1929,7 @@ var app = (function () {
 
     	const node3 = new Node({
     			props: {
-    				name: "Vancouver",
+    				name: "Greater Vancouver",
     				to: "B.C.",
     				value: "2.4",
     				color: "burn"
@@ -2057,14 +2006,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(29:6) <Col>",
+    		source: "(36:6) <Col>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (36:6) <Col>
+    // (44:6) <Col>
     function create_default_slot_2(ctx) {
     	let t0;
     	let t1;
@@ -2072,7 +2021,6 @@ var app = (function () {
     	let t3;
     	let t4;
     	let t5;
-    	let t6;
     	let current;
 
     	const node0 = new Node({
@@ -2080,7 +2028,8 @@ var app = (function () {
     				name: "Ontario",
     				to: "Canada",
     				value: "14",
-    				color: "sky"
+    				color: "sky",
+    				col: 1
     			},
     			$$inline: true
     		});
@@ -2090,7 +2039,8 @@ var app = (function () {
     				name: "Quebec",
     				to: "Canada",
     				value: "8",
-    				color: "mud"
+    				color: "mud",
+    				col: 1
     			},
     			$$inline: true
     		});
@@ -2100,7 +2050,8 @@ var app = (function () {
     				name: "B.C.",
     				to: "Canada",
     				value: "5",
-    				color: "burn"
+    				color: "burn",
+    				col: 1
     			},
     			$$inline: true
     		});
@@ -2110,6 +2061,7 @@ var app = (function () {
     				name: "Alberta",
     				to: "Canada",
     				value: "4",
+    				col: 1,
     				color: "greygreen"
     			},
     			$$inline: true
@@ -2120,7 +2072,7 @@ var app = (function () {
     				name: "Nova Scota",
     				to: "Canada",
     				value: "1",
-    				color: "red"
+    				col: 1
     			},
     			$$inline: true
     		});
@@ -2129,7 +2081,8 @@ var app = (function () {
     			props: {
     				name: "Manitoba",
     				to: "Canada",
-    				value: "1"
+    				value: "1",
+    				col: 1
     			},
     			$$inline: true
     		});
@@ -2138,13 +2091,9 @@ var app = (function () {
     			props: {
     				name: "Saskatchewan",
     				to: "Canada",
-    				value: "1"
+    				value: "1",
+    				col: 1
     			},
-    			$$inline: true
-    		});
-
-    	const node7 = new Node({
-    			props: { name: "rest", to: "Canada", value: 1 },
     			$$inline: true
     		});
 
@@ -2163,8 +2112,6 @@ var app = (function () {
     			create_component(node5.$$.fragment);
     			t5 = space();
     			create_component(node6.$$.fragment);
-    			t6 = space();
-    			create_component(node7.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(node0, target, anchor);
@@ -2180,8 +2127,6 @@ var app = (function () {
     			mount_component(node5, target, anchor);
     			insert_dev(target, t5, anchor);
     			mount_component(node6, target, anchor);
-    			insert_dev(target, t6, anchor);
-    			mount_component(node7, target, anchor);
     			current = true;
     		},
     		p: noop,
@@ -2194,7 +2139,6 @@ var app = (function () {
     			transition_in(node4.$$.fragment, local);
     			transition_in(node5.$$.fragment, local);
     			transition_in(node6.$$.fragment, local);
-    			transition_in(node7.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -2205,7 +2149,6 @@ var app = (function () {
     			transition_out(node4.$$.fragment, local);
     			transition_out(node5.$$.fragment, local);
     			transition_out(node6.$$.fragment, local);
-    			transition_out(node7.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -2222,8 +2165,6 @@ var app = (function () {
     			destroy_component(node5, detaching);
     			if (detaching) detach_dev(t5);
     			destroy_component(node6, detaching);
-    			if (detaching) detach_dev(t6);
-    			destroy_component(node7, detaching);
     		}
     	};
 
@@ -2231,19 +2172,19 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(36:6) <Col>",
+    		source: "(44:6) <Col>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (47:6) <Col>
+    // (54:6) <Col>
     function create_default_slot_1(ctx) {
     	let current;
 
     	const node = new Node({
-    			props: { name: "Canada", color: "red", dy: "20" },
+    			props: { name: "Canada", color: "red", col: 2 },
     			$$inline: true
     		});
 
@@ -2274,29 +2215,20 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(47:6) <Col>",
+    		source: "(54:6) <Col>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (21:4) <Sankey height="800">
+    // (34:4) <Sankey height="1100" {fmt}>
     function create_default_slot(ctx) {
     	let t0;
     	let t1;
-    	let t2;
     	let current;
 
     	const col0 = new Col({
-    			props: {
-    				$$slots: { default: [create_default_slot_4] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	const col1 = new Col({
     			props: {
     				$$slots: { default: [create_default_slot_3] },
     				$$scope: { ctx }
@@ -2304,7 +2236,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const col2 = new Col({
+    	const col1 = new Col({
     			props: {
     				$$slots: { default: [create_default_slot_2] },
     				$$scope: { ctx }
@@ -2312,7 +2244,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const col3 = new Col({
+    	const col2 = new Col({
     			props: {
     				$$slots: { default: [create_default_slot_1] },
     				$$scope: { ctx }
@@ -2327,8 +2259,6 @@ var app = (function () {
     			create_component(col1.$$.fragment);
     			t1 = space();
     			create_component(col2.$$.fragment);
-    			t2 = space();
-    			create_component(col3.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(col0, target, anchor);
@@ -2336,53 +2266,42 @@ var app = (function () {
     			mount_component(col1, target, anchor);
     			insert_dev(target, t1, anchor);
     			mount_component(col2, target, anchor);
-    			insert_dev(target, t2, anchor);
-    			mount_component(col3, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
     			const col0_changes = {};
 
-    			if (dirty & /*$$scope*/ 2) {
+    			if (dirty & /*$$scope*/ 4) {
     				col0_changes.$$scope = { dirty, ctx };
     			}
 
     			col0.$set(col0_changes);
     			const col1_changes = {};
 
-    			if (dirty & /*$$scope*/ 2) {
+    			if (dirty & /*$$scope*/ 4) {
     				col1_changes.$$scope = { dirty, ctx };
     			}
 
     			col1.$set(col1_changes);
     			const col2_changes = {};
 
-    			if (dirty & /*$$scope*/ 2) {
+    			if (dirty & /*$$scope*/ 4) {
     				col2_changes.$$scope = { dirty, ctx };
     			}
 
     			col2.$set(col2_changes);
-    			const col3_changes = {};
-
-    			if (dirty & /*$$scope*/ 2) {
-    				col3_changes.$$scope = { dirty, ctx };
-    			}
-
-    			col3.$set(col3_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(col0.$$.fragment, local);
     			transition_in(col1.$$.fragment, local);
     			transition_in(col2.$$.fragment, local);
-    			transition_in(col3.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(col0.$$.fragment, local);
     			transition_out(col1.$$.fragment, local);
     			transition_out(col2.$$.fragment, local);
-    			transition_out(col3.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -2391,8 +2310,6 @@ var app = (function () {
     			destroy_component(col1, detaching);
     			if (detaching) detach_dev(t1);
     			destroy_component(col2, detaching);
-    			if (detaching) detach_dev(t2);
-    			destroy_component(col3, detaching);
     		}
     	};
 
@@ -2400,7 +2317,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(21:4) <Sankey height=\\\"800\\\">",
+    		source: "(34:4) <Sankey height=\\\"1100\\\" {fmt}>",
     		ctx
     	});
 
@@ -2419,7 +2336,8 @@ var app = (function () {
 
     	const sankey = new Sankey({
     			props: {
-    				height: "800",
+    				height: "1100",
+    				fmt: /*fmt*/ ctx[1],
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
     			},
@@ -2444,10 +2362,10 @@ var app = (function () {
     			t3 = space();
     			create_component(foot.$$.fragment);
     			attr_dev(div0, "class", "m3 svelte-1o2k1lr");
-    			add_location(div0, file$4, 17, 2, 407);
+    			add_location(div0, file$4, 31, 2, 737);
     			attr_dev(div1, "class", "m3 svelte-1o2k1lr");
-    			add_location(div1, file$4, 18, 2, 452);
-    			add_location(div2, file$4, 15, 0, 379);
+    			add_location(div1, file$4, 32, 2, 782);
+    			add_location(div2, file$4, 29, 0, 709);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2467,7 +2385,7 @@ var app = (function () {
     		p: function update(ctx, [dirty]) {
     			const sankey_changes = {};
 
-    			if (dirty & /*$$scope*/ 2) {
+    			if (dirty & /*$$scope*/ 4) {
     				sankey_changes.$$scope = { dirty, ctx };
     			}
 
@@ -2510,6 +2428,26 @@ var app = (function () {
 
     function instance$5($$self, $$props, $$invalidate) {
     	let { title = "Population of Canada" } = $$props;
+
+    	//from Wikipedia by Metro area
+    	// https://en.wikipedia.org/wiki/Metropolitan_area
+    	let fmt = num => {
+    		num = Number(num) * 1000000;
+
+    		if (num >= 1000000) {
+    			num = Math.round(num / 100000) * 100000;
+    			num = Math.round(num);
+    			return String(num / 1000000) + "m";
+    		}
+
+    		if (num > 1000) {
+    			num = Math.round(num / 10000) * 10000;
+    			return String(num / 1000) + "k";
+    		}
+
+    		return num;
+    	};
+
     	const writable_props = ["title"];
 
     	Object.keys($$props).forEach(key => {
@@ -2523,17 +2461,26 @@ var app = (function () {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
     	};
 
-    	$$self.$capture_state = () => ({ Sankey, Node, Col, Head, Foot, title });
+    	$$self.$capture_state = () => ({
+    		Sankey,
+    		Node,
+    		Col,
+    		Head,
+    		Foot,
+    		title,
+    		fmt
+    	});
 
     	$$self.$inject_state = $$props => {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
+    		if ("fmt" in $$props) $$invalidate(1, fmt = $$props.fmt);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [title];
+    	return [title, fmt];
     }
 
     class Post extends SvelteComponentDev {
