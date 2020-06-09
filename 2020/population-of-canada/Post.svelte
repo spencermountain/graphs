@@ -1,6 +1,6 @@
 <script>
   // import { Sankey, Node } from 'somehow-sankey'
-  import { Sankey, Node } from '/Users/spencer/mountain/somehow-sankey'
+  import { Sankey, Node, Column } from '/Users/spencer/mountain/somehow-sankey'
   import { Head, Foot } from '../../components/'
   export let title = 'Population of Canada'
   //from Wikipedia by Metro area
