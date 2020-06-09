@@ -62,7 +62,7 @@
       <Node name="Kitchener" to="Ontario" value="0.2" color="mud" />
       <Node name="London" to="Ontario" value="0.366" color="mud" />
       <Node name="Oshawa" to="Ontario" value="0.159" color="mud" />
-      <Node name="St. Catharines" to="Ontario" value="0.13" color="mud" />
+      <!-- <Node name="St. Catharines" to="Ontario" value="0.13" color="mud" /> -->
       <Node name="Sudbury" to="Ontario" value="0.161" color="mud" />
       <Node name="Barrie" to="Ontario" value="0.14" color="mud" />
       <Node name="Ottawa" to="Ontario" value="0.9" color="red" />

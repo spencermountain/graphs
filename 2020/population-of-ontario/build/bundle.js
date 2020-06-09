@@ -2174,7 +2174,6 @@ var app = (function () {
     	let t5;
     	let t6;
     	let t7;
-    	let t8;
     	let current;
 
     	const node0 = new Node({
@@ -2229,16 +2228,6 @@ var app = (function () {
 
     	const node5 = new Node({
     			props: {
-    				name: "St. Catharines",
-    				to: "Ontario",
-    				value: "0.13",
-    				color: "mud"
-    			},
-    			$$inline: true
-    		});
-
-    	const node6 = new Node({
-    			props: {
     				name: "Sudbury",
     				to: "Ontario",
     				value: "0.161",
@@ -2247,7 +2236,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const node7 = new Node({
+    	const node6 = new Node({
     			props: {
     				name: "Barrie",
     				to: "Ontario",
@@ -2257,7 +2246,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const node8 = new Node({
+    	const node7 = new Node({
     			props: {
     				name: "Ottawa",
     				to: "Ontario",
@@ -2267,7 +2256,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const node9 = new Node({
+    	const node8 = new Node({
     			props: {
     				name: "Windsor",
     				to: "Ontario",
@@ -2296,8 +2285,6 @@ var app = (function () {
     			create_component(node7.$$.fragment);
     			t7 = space();
     			create_component(node8.$$.fragment);
-    			t8 = space();
-    			create_component(node9.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(node0, target, anchor);
@@ -2317,8 +2304,6 @@ var app = (function () {
     			mount_component(node7, target, anchor);
     			insert_dev(target, t7, anchor);
     			mount_component(node8, target, anchor);
-    			insert_dev(target, t8, anchor);
-    			mount_component(node9, target, anchor);
     			current = true;
     		},
     		p: noop,
@@ -2333,7 +2318,6 @@ var app = (function () {
     			transition_in(node6.$$.fragment, local);
     			transition_in(node7.$$.fragment, local);
     			transition_in(node8.$$.fragment, local);
-    			transition_in(node9.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -2346,7 +2330,6 @@ var app = (function () {
     			transition_out(node6.$$.fragment, local);
     			transition_out(node7.$$.fragment, local);
     			transition_out(node8.$$.fragment, local);
-    			transition_out(node9.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -2367,8 +2350,6 @@ var app = (function () {
     			destroy_component(node7, detaching);
     			if (detaching) detach_dev(t7);
     			destroy_component(node8, detaching);
-    			if (detaching) detach_dev(t8);
-    			destroy_component(node9, detaching);
     		}
     	};
 
