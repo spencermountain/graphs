@@ -11172,7 +11172,57 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (133:14) <Column width="8px">
+    // (125:10) {#if !String(zone.offset).match(/\./)}
+    function create_if_block_1(ctx) {
+    	let current;
+
+    	const widelabel = new WideLabel({
+    			props: {
+    				left: 50 + /*zone*/ ctx[11].already * 18 + "px",
+    				width: "30px",
+    				color: /*zone*/ ctx[11].color,
+    				label: /*zone*/ ctx[11].offset + "h",
+    				opacity: "0.5",
+    				date: "dec 15 " + /*year*/ ctx[2]
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(widelabel.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(widelabel, target, anchor);
+    			current = true;
+    		},
+    		p: noop,
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(widelabel.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(widelabel.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(widelabel, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1.name,
+    		type: "if",
+    		source: "(125:10) {#if !String(zone.offset).match(/\\./)}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (136:14) <Column width="8px">
     function create_default_slot_3(ctx) {
     	let t;
     	let current;
@@ -11217,14 +11267,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(133:14) <Column width=\\\"8px\\\">",
+    		source: "(136:14) <Column width=\\\"8px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (132:12) {#each time.zones as name}
+    // (135:12) {#each time.zones as name}
     function create_each_block_5(ctx) {
     	let current;
 
@@ -11272,14 +11322,14 @@ var app = (function () {
     		block,
     		id: create_each_block_5.name,
     		type: "each",
-    		source: "(132:12) {#each time.zones as name}",
+    		source: "(135:12) {#each time.zones as name}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (131:10) {#each zone.times as time}
+    // (134:10) {#each zone.times as time}
     function create_each_block_4(ctx) {
     	let each_1_anchor;
     	let current;
@@ -11368,7 +11418,7 @@ var app = (function () {
     		block,
     		id: create_each_block_4.name,
     		type: "each",
-    		source: "(131:10) {#each zone.times as time}",
+    		source: "(134:10) {#each zone.times as time}",
     		ctx
     	});
 
@@ -11377,21 +11427,11 @@ var app = (function () {
 
     // (124:8) {#each negatives as zone, i}
     function create_each_block_3(ctx) {
+    	let show_if = !String(/*zone*/ ctx[11].offset).match(/\./);
     	let t;
     	let each_1_anchor;
     	let current;
-
-    	const widelabel = new WideLabel({
-    			props: {
-    				left: 50 + /*zone*/ ctx[11].already * 18 + "px",
-    				width: "30px",
-    				color: /*zone*/ ctx[11].color,
-    				label: /*zone*/ ctx[11].offset + "h",
-    				date: "march 1 " + /*year*/ ctx[2]
-    			},
-    			$$inline: true
-    		});
-
+    	let if_block = show_if && create_if_block_1(ctx);
     	let each_value_4 = /*zone*/ ctx[11].times;
     	validate_each_argument(each_value_4);
     	let each_blocks = [];
@@ -11406,7 +11446,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(widelabel.$$.fragment);
+    			if (if_block) if_block.c();
     			t = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -11416,7 +11456,7 @@ var app = (function () {
     			each_1_anchor = empty();
     		},
     		m: function mount(target, anchor) {
-    			mount_component(widelabel, target, anchor);
+    			if (if_block) if_block.m(target, anchor);
     			insert_dev(target, t, anchor);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -11427,6 +11467,8 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
+    			if (show_if) if_block.p(ctx, dirty);
+
     			if (dirty & /*negatives*/ 128) {
     				each_value_4 = /*zone*/ ctx[11].times;
     				validate_each_argument(each_value_4);
@@ -11457,7 +11499,7 @@ var app = (function () {
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(widelabel.$$.fragment, local);
+    			transition_in(if_block);
 
     			for (let i = 0; i < each_value_4.length; i += 1) {
     				transition_in(each_blocks[i]);
@@ -11466,7 +11508,7 @@ var app = (function () {
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(widelabel.$$.fragment, local);
+    			transition_out(if_block);
     			each_blocks = each_blocks.filter(Boolean);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -11476,7 +11518,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(widelabel, detaching);
+    			if (if_block) if_block.d(detaching);
     			if (detaching) detach_dev(t);
     			destroy_each(each_blocks, detaching);
     			if (detaching) detach_dev(each_1_anchor);
@@ -11518,55 +11560,55 @@ var app = (function () {
 
     	const widelabel0 = new WideLabel({
     			props: {
-    				left: "150px",
-    				width: "160px",
-    				label: "AST",
+    				left: "100px",
+    				width: "150px",
+    				label: "Atlantic",
     				color: "rgb(214, 136, 129)",
-    				date: "Feb 5 " + /*year*/ ctx[2]
+    				date: "march 1 " + /*year*/ ctx[2]
     			},
     			$$inline: true
     		});
 
     	const widelabel1 = new WideLabel({
     			props: {
-    				left: "400px",
-    				width: "200px",
-    				label: "EST",
+    				left: "350px",
+    				width: "250px",
+    				label: "Eastern",
     				color: "rgb(139, 163, 162)",
-    				date: "Feb 5 " + /*year*/ ctx[2]
+    				date: "march 1 " + /*year*/ ctx[2]
     			},
     			$$inline: true
     		});
 
     	const widelabel2 = new WideLabel({
     			props: {
-    				left: "790px",
-    				width: "160px",
-    				label: "CST",
+    				left: "740px",
+    				width: "200px",
+    				label: "Central",
     				color: "rgb(196, 171, 171)",
-    				date: "Feb 5 " + /*year*/ ctx[2]
+    				date: "march 1 " + /*year*/ ctx[2]
     			},
     			$$inline: true
     		});
 
     	const widelabel3 = new WideLabel({
     			props: {
-    				left: "1020px",
-    				width: "160px",
-    				label: "MST",
+    				left: "1000px",
+    				width: "170px",
+    				label: "Mountain",
     				color: "rgb(138, 132, 154)",
-    				date: "Feb 5 " + /*year*/ ctx[2]
+    				date: "march 1 " + /*year*/ ctx[2]
     			},
     			$$inline: true
     		});
 
     	const widelabel4 = new WideLabel({
     			props: {
-    				left: "1250px",
-    				width: "160px",
-    				label: "PST",
+    				left: "1240px",
+    				width: "130px",
+    				label: "Pacific",
     				color: "rgb(181, 176, 191)",
-    				date: "Feb 5 " + /*year*/ ctx[2]
+    				date: "march 1 " + /*year*/ ctx[2]
     			},
     			$$inline: true
     		});
@@ -11630,7 +11672,7 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*negatives, year*/ 132) {
+    			if (dirty & /*negatives, year, String*/ 132) {
     				each_value_3 = /*negatives*/ ctx[7];
     				validate_each_argument(each_value_3);
     				let i;
@@ -11721,7 +11763,7 @@ var app = (function () {
     	return block;
     }
 
-    // (149:10) {#if !String(zone.offset).match(/\./)}
+    // (170:10) {#if !String(zone.offset).match(/\./)}
     function create_if_block$1(ctx) {
     	let current;
 
@@ -11731,7 +11773,7 @@ var app = (function () {
     				width: "30px",
     				color: /*zone*/ ctx[11].color,
     				label: /*zone*/ ctx[11].offset + "h",
-    				date: "march 25 " + /*year*/ ctx[2]
+    				date: "dec 5 " + /*year*/ ctx[2]
     			},
     			$$inline: true
     		});
@@ -11763,14 +11805,14 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(149:10) {#if !String(zone.offset).match(/\\./)}",
+    		source: "(170:10) {#if !String(zone.offset).match(/\\./)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (159:14) <Column width="8px">
+    // (180:14) <Column width="8px">
     function create_default_slot_1(ctx) {
     	let t;
     	let current;
@@ -11815,14 +11857,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(159:14) <Column width=\\\"8px\\\">",
+    		source: "(180:14) <Column width=\\\"8px\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (158:12) {#each time.zones as name}
+    // (179:12) {#each time.zones as name}
     function create_each_block_2(ctx) {
     	let current;
 
@@ -11870,14 +11912,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(158:12) {#each time.zones as name}",
+    		source: "(179:12) {#each time.zones as name}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (157:10) {#each zone.times as time}
+    // (178:10) {#each zone.times as time}
     function create_each_block_1(ctx) {
     	let each_1_anchor;
     	let current;
@@ -11966,14 +12008,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(157:10) {#each zone.times as time}",
+    		source: "(178:10) {#each zone.times as time}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (148:8) {#each positives as zone, i}
+    // (169:8) {#each positives as zone, i}
     function create_each_block$1(ctx) {
     	let show_if = !String(/*zone*/ ctx[11].offset).match(/\./);
     	let t;
@@ -12077,17 +12119,20 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(148:8) {#each positives as zone, i}",
+    		source: "(169:8) {#each positives as zone, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (145:6) <Timeline {start} {end} {height}>
+    // (148:6) <Timeline {start} {end} {height}>
     function create_default_slot(ctx) {
     	let t0;
     	let t1;
+    	let t2;
+    	let t3;
+    	let t4;
     	let each_1_anchor;
     	let current;
 
@@ -12098,6 +12143,39 @@ var app = (function () {
 
     	const now_1 = new Now({
     			props: { label: "today", color: "pink" },
+    			$$inline: true
+    		});
+
+    	const widelabel0 = new WideLabel({
+    			props: {
+    				left: "150px",
+    				width: "160px",
+    				label: "GMT",
+    				color: "rgb(139, 163, 162)",
+    				date: "april 1 " + /*year*/ ctx[2]
+    			},
+    			$$inline: true
+    		});
+
+    	const widelabel1 = new WideLabel({
+    			props: {
+    				left: "450px",
+    				width: "460px",
+    				label: "CET",
+    				color: "rgb(214, 136, 129)",
+    				date: "april 1 " + /*year*/ ctx[2]
+    			},
+    			$$inline: true
+    		});
+
+    	const widelabel2 = new WideLabel({
+    			props: {
+    				left: "1050px",
+    				width: "290px",
+    				label: "EET",
+    				color: "rgb(215, 213, 210)",
+    				date: "april 1 " + /*year*/ ctx[2]
+    			},
     			$$inline: true
     		});
 
@@ -12119,6 +12197,12 @@ var app = (function () {
     			t0 = space();
     			create_component(now_1.$$.fragment);
     			t1 = space();
+    			create_component(widelabel0.$$.fragment);
+    			t2 = space();
+    			create_component(widelabel1.$$.fragment);
+    			t3 = space();
+    			create_component(widelabel2.$$.fragment);
+    			t4 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
@@ -12131,6 +12215,12 @@ var app = (function () {
     			insert_dev(target, t0, anchor);
     			mount_component(now_1, target, anchor);
     			insert_dev(target, t1, anchor);
+    			mount_component(widelabel0, target, anchor);
+    			insert_dev(target, t2, anchor);
+    			mount_component(widelabel1, target, anchor);
+    			insert_dev(target, t3, anchor);
+    			mount_component(widelabel2, target, anchor);
+    			insert_dev(target, t4, anchor);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(target, anchor);
@@ -12172,6 +12262,9 @@ var app = (function () {
     			if (current) return;
     			transition_in(ticks.$$.fragment, local);
     			transition_in(now_1.$$.fragment, local);
+    			transition_in(widelabel0.$$.fragment, local);
+    			transition_in(widelabel1.$$.fragment, local);
+    			transition_in(widelabel2.$$.fragment, local);
 
     			for (let i = 0; i < each_value.length; i += 1) {
     				transition_in(each_blocks[i]);
@@ -12182,6 +12275,9 @@ var app = (function () {
     		o: function outro(local) {
     			transition_out(ticks.$$.fragment, local);
     			transition_out(now_1.$$.fragment, local);
+    			transition_out(widelabel0.$$.fragment, local);
+    			transition_out(widelabel1.$$.fragment, local);
+    			transition_out(widelabel2.$$.fragment, local);
     			each_blocks = each_blocks.filter(Boolean);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -12195,6 +12291,12 @@ var app = (function () {
     			if (detaching) detach_dev(t0);
     			destroy_component(now_1, detaching);
     			if (detaching) detach_dev(t1);
+    			destroy_component(widelabel0, detaching);
+    			if (detaching) detach_dev(t2);
+    			destroy_component(widelabel1, detaching);
+    			if (detaching) detach_dev(t3);
+    			destroy_component(widelabel2, detaching);
+    			if (detaching) detach_dev(t4);
     			destroy_each(each_blocks, detaching);
     			if (detaching) detach_dev(each_1_anchor);
     		}
@@ -12204,7 +12306,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(145:6) <Timeline {start} {end} {height}>",
+    		source: "(148:6) <Timeline {start} {end} {height}>",
     		ctx
     	});
 
@@ -12299,11 +12401,11 @@ var app = (function () {
     			add_location(div1, file$9, 88, 6, 1864);
     			attr_dev(div2, "class", "m3 svelte-1munrgk");
     			add_location(div2, file$9, 86, 4, 1805);
-    			add_location(div3, file$9, 142, 6, 3431);
+    			add_location(div3, file$9, 145, 6, 3567);
     			attr_dev(div4, "class", "grey svelte-1munrgk");
-    			add_location(div4, file$9, 143, 6, 3467);
+    			add_location(div4, file$9, 146, 6, 3603);
     			attr_dev(div5, "class", "m3 svelte-1munrgk");
-    			add_location(div5, file$9, 141, 4, 3408);
+    			add_location(div5, file$9, 144, 4, 3544);
     			attr_dev(div6, "class", "m3 svelte-1munrgk");
     			add_location(div6, file$9, 84, 2, 1772);
     			add_location(div7, file$9, 82, 0, 1730);

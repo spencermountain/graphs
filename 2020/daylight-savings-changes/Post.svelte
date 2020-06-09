@@ -91,43 +91,46 @@
         <Ticks every="month" />
         <Now label="today" color="pink" />
         <WideLabel
-          left={'150px'}
-          width="160px"
-          label={'AST'}
+          left={'100px'}
+          width="150px"
+          label={'Atlantic'}
           color="rgb(214, 136, 129)"
-          date={'Feb 5 ' + year} />
+          date={'march 1 ' + year} />
         <WideLabel
-          left={'400px'}
-          width="200px"
-          label={'EST'}
+          left={'350px'}
+          width="250px"
+          label={'Eastern'}
           color="rgb(139, 163, 162)"
-          date={'Feb 5 ' + year} />
+          date={'march 1 ' + year} />
         <WideLabel
-          left={'790px'}
-          width="160px"
-          label={'CST'}
+          left={'740px'}
+          width="200px"
+          label={'Central'}
           color="rgb(196, 171, 171)"
-          date={'Feb 5 ' + year} />
+          date={'march 1 ' + year} />
         <WideLabel
-          left={'1020px'}
-          width="160px"
-          label={'MST'}
+          left={'1000px'}
+          width="170px"
+          label={'Mountain'}
           color="rgb(138, 132, 154)"
-          date={'Feb 5 ' + year} />
+          date={'march 1 ' + year} />
         <WideLabel
-          left={'1250px'}
-          width="160px"
-          label={'PST'}
+          left={'1240px'}
+          width="130px"
+          label={'Pacific'}
           color="rgb(181, 176, 191)"
-          date={'Feb 5 ' + year} />
+          date={'march 1 ' + year} />
 
         {#each negatives as zone, i}
-          <WideLabel
-            left={50 + zone.already * 18 + 'px'}
-            width="30px"
-            color={zone.color}
-            label={zone.offset + 'h'}
-            date={'march 1 ' + year} />
+          {#if !String(zone.offset).match(/\./)}
+            <WideLabel
+              left={50 + zone.already * 18 + 'px'}
+              width="30px"
+              color={zone.color}
+              label={zone.offset + 'h'}
+              opacity="0.5"
+              date={'dec 15 ' + year} />
+          {/if}
           {#each zone.times as time}
             {#each time.zones as name}
               <Column width="8px">
@@ -145,6 +148,24 @@
       <Timeline {start} {end} {height}>
         <Ticks every="month" />
         <Now label="today" color="pink" />
+        <WideLabel
+          left={'150px'}
+          width="160px"
+          label={'GMT'}
+          color="rgb(139, 163, 162)"
+          date={'april 1 ' + year} />
+        <WideLabel
+          left={'450px'}
+          width="460px"
+          label={'CET'}
+          color="rgb(214, 136, 129)"
+          date={'april 1 ' + year} />
+        <WideLabel
+          left={'1050px'}
+          width="290px"
+          label={'EET'}
+          color="rgb(215, 213, 210)"
+          date={'april 1 ' + year} />
         {#each positives as zone, i}
           {#if !String(zone.offset).match(/\./)}
             <WideLabel
@@ -152,7 +173,7 @@
               width="30px"
               color={zone.color}
               label={zone.offset + 'h'}
-              date={'march 25 ' + year} />
+              date={'dec 5 ' + year} />
           {/if}
           {#each zone.times as time}
             {#each time.zones as name}
