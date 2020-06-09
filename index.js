@@ -7,7 +7,7 @@ let el = document.querySelector('#stage')
 let years = Object.keys(manifest).sort().reverse()
 let result = []
 years.forEach((y) => {
-  let posts = manifest[y].map((o) => {
+  let posts = manifest[y].reverse().map((o) => {
     let path = y + '/' + o.num
     return h`<a href="${path}" class="left mw20 m3" style="cursor:pointer;">
     <div class="">

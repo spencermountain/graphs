@@ -6,7 +6,6 @@ const json = require('@rollup/plugin-json')
 
 const buildPost = function (abs) {
   abs = abs.replace(/\/$/, '')
-  console.log(`${abs}/build/app.js`)
   return rollup
     .rollup({
       input: `${abs}/build/app.js`,

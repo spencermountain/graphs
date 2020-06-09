@@ -144,5 +144,10 @@ module.exports = {
       title: 'Covid as percentage of skydome',
       thumb: 'thumb.jpg',
     },
+    {
+      num: 'population-of-ontario',
+      title: 'Population of Ontario',
+      thumb: 'thumb.jpg',
+    },
   ],
 }

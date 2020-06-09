@@ -33,7 +33,7 @@ var el = document.querySelector('#stage');
 var years = Object.keys(manifest).sort().reverse();
 var result = [];
 years.forEach(function (y) {
-  var posts = manifest[y].map(function (o) {
+  var posts = manifest[y].reverse().map(function (o) {
     var path = y + '/' + o.num;
     return h(_templateObject(), path, o.title, path + '/' + o.thumb);
   });
@@ -161,6 +161,10 @@ module.exports = {
   }, {
     num: 'covid-as-skydome',
     title: 'Covid as percentage of skydome',
+    thumb: 'thumb.jpg'
+  }, {
+    num: 'population-of-ontario',
+    title: 'Population of Ontario',
     thumb: 'thumb.jpg'
   }]
 };
