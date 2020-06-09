@@ -16,7 +16,7 @@
     colors,
   } from '/Users/spencer/mountain/somehow-timeline/src'
   let year = new Date().getFullYear()
-  let start = 'Jan 1 '
+  let start = 'Feb 22 '
   let end = 'Dec 31 '
   let height = 900
   let byTime = {}

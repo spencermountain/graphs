@@ -12396,19 +12396,19 @@ var app = (function () {
     			create_component(timeline1.$$.fragment);
     			t12 = space();
     			create_component(foot.$$.fragment);
-    			add_location(div0, file$9, 87, 6, 1828);
+    			add_location(div0, file$9, 87, 6, 1829);
     			attr_dev(div1, "class", "grey svelte-1munrgk");
-    			add_location(div1, file$9, 88, 6, 1864);
+    			add_location(div1, file$9, 88, 6, 1865);
     			attr_dev(div2, "class", "m3 svelte-1munrgk");
-    			add_location(div2, file$9, 86, 4, 1805);
-    			add_location(div3, file$9, 145, 6, 3567);
+    			add_location(div2, file$9, 86, 4, 1806);
+    			add_location(div3, file$9, 145, 6, 3568);
     			attr_dev(div4, "class", "grey svelte-1munrgk");
-    			add_location(div4, file$9, 146, 6, 3603);
+    			add_location(div4, file$9, 146, 6, 3604);
     			attr_dev(div5, "class", "m3 svelte-1munrgk");
-    			add_location(div5, file$9, 144, 4, 3544);
+    			add_location(div5, file$9, 144, 4, 3545);
     			attr_dev(div6, "class", "m3 svelte-1munrgk");
-    			add_location(div6, file$9, 84, 2, 1772);
-    			add_location(div7, file$9, 82, 0, 1730);
+    			add_location(div6, file$9, 84, 2, 1773);
+    			add_location(div7, file$9, 82, 0, 1731);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12500,7 +12500,7 @@ var app = (function () {
     	let { title = "DST change times, in 2020" } = $$props;
     	let { sub = "'Eastern Standard' time" } = $$props;
     	let year = new Date().getFullYear();
-    	let start = "Jan 1 ";
+    	let start = "Feb 22 ";
     	let end = "Dec 31 ";
     	let height = 900;
     	let byTime = {};
