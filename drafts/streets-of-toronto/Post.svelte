@@ -7,7 +7,7 @@
   export let sub = ''
 
   import paths from './assets/paths'
-  let d = 'M40,70 Q50,150 90,90 T135,130 L160,70 C180,180 280,55 280,140 S400,110 290,100'
+  // let d = 'M40,70 Q50,150 90,90 T135,130 L160,70 C180,180 280,55 280,140 S400,110 290,100'
   // let start = [15, 75]
   // let end = [355, 140]
   // const path = ShapeInfo.path(d)
@@ -35,7 +35,7 @@
 <div>
   <Head {title} {sub} />
   <div class="m3 outline">
-    <svg viewbox="0 0 900 900">
+    <svg viewbox="0 0 1400 1200">
       {#each paths as d}
         <Path {d} />
       {/each}

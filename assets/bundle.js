@@ -166,6 +166,10 @@ module.exports = {
     num: 'population-of-ontario',
     title: 'Population of Ontario',
     thumb: 'thumb.jpg'
+  }, {
+    num: 'toronto-budget',
+    title: 'Toronto City budget',
+    thumb: 'thumb.png'
   }]
 };
 
