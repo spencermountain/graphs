@@ -911,6 +911,25 @@ var app = (function () {
     // })
     // console.log(scale(50))
 
+    var scale = /*#__PURE__*/Object.freeze({
+        __proto__: null,
+        'default': scaleLinear
+    });
+
+    function createCommonjsModule(fn, module) {
+    	return module = { exports: {} }, fn(module, module.exports), module.exports;
+    }
+
+    function getCjsExportFromNamespace (n) {
+    	return n && n['default'] || n;
+    }
+
+    function commonjsRequire () {
+    	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
+    }
+
+    var linear = getCjsExportFromNamespace(scale);
+
     const topRoom = 20;
 
     const getMax$1 = function (byCol) {
@@ -946,8 +965,8 @@ var app = (function () {
 
     const makePoints = function (byCol, width, height, nodeWidth) {
       let max = getMax$1(byCol);
-      let yScale = scaleLinear({ minmax: [0, max], world: [0, height] });
-      let xScale = scaleLinear({ minmax: [0, byCol.length], world: [0, width] });
+      let yScale = linear({ minmax: [0, max], world: [0, height] });
+      let xScale = linear({ minmax: [0, byCol.length], world: [0, width] });
       byCol.forEach((nodes) => {
         nodes.forEach((node) => {
           node.y = yScale(node.top);
@@ -1250,14 +1269,6 @@ var app = (function () {
     const items = writable([]);
     let colCount = writable(0);
 
-    function createCommonjsModule(fn, module) {
-    	return module = { exports: {} }, fn(module, module.exports), module.exports;
-    }
-
-    function commonjsRequire () {
-    	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
-    }
-
     var spencerColor = createCommonjsModule(function (module, exports) {
     !function(e){module.exports=e();}(function(){return function u(i,a,c){function f(r,e){if(!a[r]){if(!i[r]){var o="function"==typeof commonjsRequire&&commonjsRequire;if(!e&&o)return o(r,!0);if(d)return d(r,!0);var n=new Error("Cannot find module '"+r+"'");throw n.code="MODULE_NOT_FOUND",n}var t=a[r]={exports:{}};i[r][0].call(t.exports,function(e){return f(i[r][1][e]||e)},t,t.exports,u,i,a,c);}return a[r].exports}for(var d="function"==typeof commonjsRequire&&commonjsRequire,e=0;e<c.length;e++)f(c[e]);return f}({1:[function(e,r,o){r.exports={blue:"#6699cc",green:"#6accb2",yellow:"#e1e6b3",red:"#cc7066",pink:"#F2C0BB",brown:"#705E5C",orange:"#cc8a66",purple:"#d8b3e6",navy:"#335799",olive:"#7f9c6c",fuscia:"#735873",beige:"#e6d7b3",slate:"#8C8C88",suede:"#9c896c",burnt:"#603a39",sea:"#50617A",sky:"#2D85A8",night:"#303b50",rouge:"#914045",grey:"#838B91",mud:"#C4ABAB",royal:"#275291",cherry:"#cc6966",tulip:"#e6b3bc",rose:"#D68881",fire:"#AB5850",greyblue:"#72697D",greygreen:"#8BA3A2",greypurple:"#978BA3",burn:"#6D5685",slategrey:"#bfb0b3",light:"#a3a5a5",lighter:"#d7d5d2",fudge:"#4d4d4d",lightgrey:"#949a9e",white:"#fbfbfb",dimgrey:"#606c74",softblack:"#463D4F",dark:"#443d3d",black:"#333333"};},{}],2:[function(e,r,o){var n=e("./colors"),t={juno:["blue","mud","navy","slate","pink","burn"],barrow:["rouge","red","orange","burnt","brown","greygreen"],roma:["#8a849a","#b5b0bf","rose","lighter","greygreen","mud"],palmer:["red","navy","olive","pink","suede","sky"],mark:["#848f9a","#9aa4ac","slate","#b0b8bf","mud","grey"],salmon:["sky","sea","fuscia","slate","mud","fudge"],dupont:["green","brown","orange","red","olive","blue"],bloor:["night","navy","beige","rouge","mud","grey"],yukon:["mud","slate","brown","sky","beige","red"],david:["blue","green","yellow","red","pink","light"],neste:["mud","cherry","royal","rouge","greygreen","greypurple"],ken:["red","sky","#c67a53","greygreen","#dfb59f","mud"]};Object.keys(t).forEach(function(e){t[e]=t[e].map(function(e){return n[e]||e});}),r.exports=t;},{"./colors":1}],3:[function(e,r,o){var n=e("./colors"),t=e("./combos"),u={colors:n,list:Object.keys(n).map(function(e){return n[e]}),combos:t};r.exports=u;},{"./colors":1,"./combos":2}]},{},[3])(3)});
     });
@@ -1277,7 +1288,61 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (111:8) {#if d.append}
+    // (100:8) {#if d.full !== 100}
+    function create_if_block_1(ctx) {
+    	let div;
+    	let current;
+
+    	const dots = new Dots({
+    			props: { color: "white" },
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			create_component(dots.$$.fragment);
+    			attr_dev(div, "class", "dots svelte-j4zr01");
+    			set_style(div, "background-color", /*colors*/ ctx[5][/*d*/ ctx[12].color] || /*d*/ ctx[12].color || /*color*/ ctx[6]);
+    			add_location(div, file$3, 100, 10, 2287);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			mount_component(dots, div, null);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			if (!current || dirty & /*nodes*/ 8) {
+    				set_style(div, "background-color", /*colors*/ ctx[5][/*d*/ ctx[12].color] || /*d*/ ctx[12].color || /*color*/ ctx[6]);
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(dots.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(dots.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    			destroy_component(dots);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block_1.name,
+    		type: "if",
+    		source: "(100:8) {#if d.full !== 100}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (114:8) {#if d.append}
     function create_if_block$1(ctx) {
     	let div;
     	let t_value = /*d*/ ctx[12].append + "";
@@ -1287,9 +1352,9 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			t = text(t_value);
-    			attr_dev(div, "class", "append svelte-mrn6py");
+    			attr_dev(div, "class", "append svelte-j4zr01");
     			set_style(div, "color", /*colors*/ ctx[5][/*d*/ ctx[12].color] || /*d*/ ctx[12].color || /*color*/ ctx[6]);
-    			add_location(div, file$3, 111, 10, 2653);
+    			add_location(div, file$3, 114, 10, 2707);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1311,7 +1376,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(111:8) {#if d.append}",
+    		source: "(114:8) {#if d.append}",
     		ctx
     	});
 
@@ -1320,84 +1385,73 @@ var app = (function () {
 
     // (89:4) {#each nodes as d}
     function create_each_block_1(ctx) {
-    	let div4;
+    	let div3;
     	let div0;
     	let t0;
-    	let div1;
     	let t1;
-    	let div2;
+    	let div1;
     	let t2_value = /*d*/ ctx[12].name + "";
     	let t2;
     	let t3;
-    	let div3;
+    	let div2;
     	let t4_value = /*fmt*/ ctx[2](/*d*/ ctx[12].value) + "";
     	let t4;
     	let t5;
     	let t6;
     	let current;
-
-    	const dots = new Dots({
-    			props: { color: "white" },
-    			$$inline: true
-    		});
-
-    	let if_block = /*d*/ ctx[12].append && create_if_block$1(ctx);
+    	let if_block0 = /*d*/ ctx[12].full !== 100 && create_if_block_1(ctx);
+    	let if_block1 = /*d*/ ctx[12].append && create_if_block$1(ctx);
 
     	const block = {
     		c: function create() {
-    			div4 = element("div");
+    			div3 = element("div");
     			div0 = element("div");
     			t0 = space();
-    			div1 = element("div");
-    			create_component(dots.$$.fragment);
+    			if (if_block0) if_block0.c();
     			t1 = space();
-    			div2 = element("div");
+    			div1 = element("div");
     			t2 = text(t2_value);
     			t3 = space();
-    			div3 = element("div");
+    			div2 = element("div");
     			t4 = text(t4_value);
     			t5 = space();
-    			if (if_block) if_block.c();
+    			if (if_block1) if_block1.c();
     			t6 = space();
-    			attr_dev(div0, "class", "drop svelte-mrn6py");
+    			attr_dev(div0, "class", "drop svelte-j4zr01");
     			set_style(div0, "width", "100%");
     			set_style(div0, "height", /*d*/ ctx[12].full + "%");
     			set_style(div0, "background-color", /*colors*/ ctx[5][/*d*/ ctx[12].color] || /*d*/ ctx[12].color || /*color*/ ctx[6]);
     			add_location(div0, file$3, 95, 8, 2112);
-    			attr_dev(div1, "class", "dots svelte-mrn6py");
-    			set_style(div1, "background-color", /*colors*/ ctx[5][/*d*/ ctx[12].color] || /*d*/ ctx[12].color || /*color*/ ctx[6]);
-    			add_location(div1, file$3, 98, 8, 2255);
-    			attr_dev(div2, "class", "label svelte-mrn6py");
-    			add_location(div2, file$3, 103, 8, 2417);
-    			attr_dev(div3, "class", "value svelte-mrn6py");
-    			set_style(div3, "color", /*colors*/ ctx[5][/*d*/ ctx[12].accent] || /*accent*/ ctx[7]);
+    			attr_dev(div1, "class", "label svelte-j4zr01");
+    			add_location(div1, file$3, 106, 8, 2471);
+    			attr_dev(div2, "class", "value svelte-j4zr01");
+    			set_style(div2, "color", /*colors*/ ctx[5][/*d*/ ctx[12].accent] || /*accent*/ ctx[7]);
+    			toggle_class(div2, "tiny", /*d*/ ctx[12].height < 80);
+    			add_location(div2, file$3, 107, 8, 2513);
+    			attr_dev(div3, "class", "node svelte-j4zr01");
+    			set_style(div3, "left", /*d*/ ctx[12].x + "px");
+    			set_style(div3, "top", /*d*/ ctx[12].y + "px");
+    			set_style(div3, "width", /*d*/ ctx[12].width + "px");
+    			set_style(div3, "height", /*d*/ ctx[12].height + "px");
+    			set_style(div3, "border-bottom", "4px solid " + (/*colors*/ ctx[5][/*d*/ ctx[12].accent] || /*d*/ ctx[12].accent || /*accent*/ ctx[7]));
+    			set_style(div3, "opacity", /*d*/ ctx[12].opacity || 1);
     			toggle_class(div3, "tiny", /*d*/ ctx[12].height < 80);
-    			add_location(div3, file$3, 104, 8, 2459);
-    			attr_dev(div4, "class", "node svelte-mrn6py");
-    			set_style(div4, "left", /*d*/ ctx[12].x + "px");
-    			set_style(div4, "top", /*d*/ ctx[12].y + "px");
-    			set_style(div4, "width", /*d*/ ctx[12].width + "px");
-    			set_style(div4, "height", /*d*/ ctx[12].height + "px");
-    			set_style(div4, "border-bottom", "4px solid " + (/*colors*/ ctx[5][/*d*/ ctx[12].accent] || /*d*/ ctx[12].accent || /*accent*/ ctx[7]));
-    			set_style(div4, "opacity", /*d*/ ctx[12].opacity || 1);
-    			toggle_class(div4, "tiny", /*d*/ ctx[12].height < 80);
-    			add_location(div4, file$3, 89, 6, 1850);
+    			add_location(div3, file$3, 89, 6, 1850);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div4, anchor);
-    			append_dev(div4, div0);
-    			append_dev(div4, t0);
-    			append_dev(div4, div1);
-    			mount_component(dots, div1, null);
-    			append_dev(div4, t1);
-    			append_dev(div4, div2);
-    			append_dev(div2, t2);
-    			append_dev(div4, t3);
-    			append_dev(div4, div3);
-    			append_dev(div3, t4);
-    			append_dev(div4, t5);
-    			if (if_block) if_block.m(div4, null);
-    			append_dev(div4, t6);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, div0);
+    			append_dev(div3, t0);
+    			if (if_block0) if_block0.m(div3, null);
+    			append_dev(div3, t1);
+    			append_dev(div3, div1);
+    			append_dev(div1, t2);
+    			append_dev(div3, t3);
+    			append_dev(div3, div2);
+    			append_dev(div2, t4);
+    			append_dev(div3, t5);
+    			if (if_block1) if_block1.m(div3, null);
+    			append_dev(div3, t6);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -1409,75 +1463,94 @@ var app = (function () {
     				set_style(div0, "background-color", /*colors*/ ctx[5][/*d*/ ctx[12].color] || /*d*/ ctx[12].color || /*color*/ ctx[6]);
     			}
 
-    			if (!current || dirty & /*nodes*/ 8) {
-    				set_style(div1, "background-color", /*colors*/ ctx[5][/*d*/ ctx[12].color] || /*d*/ ctx[12].color || /*color*/ ctx[6]);
+    			if (/*d*/ ctx[12].full !== 100) {
+    				if (if_block0) {
+    					if_block0.p(ctx, dirty);
+
+    					if (dirty & /*nodes*/ 8) {
+    						transition_in(if_block0, 1);
+    					}
+    				} else {
+    					if_block0 = create_if_block_1(ctx);
+    					if_block0.c();
+    					transition_in(if_block0, 1);
+    					if_block0.m(div3, t1);
+    				}
+    			} else if (if_block0) {
+    				group_outros();
+
+    				transition_out(if_block0, 1, 1, () => {
+    					if_block0 = null;
+    				});
+
+    				check_outros();
     			}
 
     			if ((!current || dirty & /*nodes*/ 8) && t2_value !== (t2_value = /*d*/ ctx[12].name + "")) set_data_dev(t2, t2_value);
     			if ((!current || dirty & /*fmt, nodes*/ 12) && t4_value !== (t4_value = /*fmt*/ ctx[2](/*d*/ ctx[12].value) + "")) set_data_dev(t4, t4_value);
 
     			if (!current || dirty & /*nodes*/ 8) {
-    				set_style(div3, "color", /*colors*/ ctx[5][/*d*/ ctx[12].accent] || /*accent*/ ctx[7]);
+    				set_style(div2, "color", /*colors*/ ctx[5][/*d*/ ctx[12].accent] || /*accent*/ ctx[7]);
+    			}
+
+    			if (dirty & /*nodes*/ 8) {
+    				toggle_class(div2, "tiny", /*d*/ ctx[12].height < 80);
+    			}
+
+    			if (/*d*/ ctx[12].append) {
+    				if (if_block1) {
+    					if_block1.p(ctx, dirty);
+    				} else {
+    					if_block1 = create_if_block$1(ctx);
+    					if_block1.c();
+    					if_block1.m(div3, t6);
+    				}
+    			} else if (if_block1) {
+    				if_block1.d(1);
+    				if_block1 = null;
+    			}
+
+    			if (!current || dirty & /*nodes*/ 8) {
+    				set_style(div3, "left", /*d*/ ctx[12].x + "px");
+    			}
+
+    			if (!current || dirty & /*nodes*/ 8) {
+    				set_style(div3, "top", /*d*/ ctx[12].y + "px");
+    			}
+
+    			if (!current || dirty & /*nodes*/ 8) {
+    				set_style(div3, "width", /*d*/ ctx[12].width + "px");
+    			}
+
+    			if (!current || dirty & /*nodes*/ 8) {
+    				set_style(div3, "height", /*d*/ ctx[12].height + "px");
+    			}
+
+    			if (!current || dirty & /*nodes*/ 8) {
+    				set_style(div3, "border-bottom", "4px solid " + (/*colors*/ ctx[5][/*d*/ ctx[12].accent] || /*d*/ ctx[12].accent || /*accent*/ ctx[7]));
+    			}
+
+    			if (!current || dirty & /*nodes*/ 8) {
+    				set_style(div3, "opacity", /*d*/ ctx[12].opacity || 1);
     			}
 
     			if (dirty & /*nodes*/ 8) {
     				toggle_class(div3, "tiny", /*d*/ ctx[12].height < 80);
     			}
-
-    			if (/*d*/ ctx[12].append) {
-    				if (if_block) {
-    					if_block.p(ctx, dirty);
-    				} else {
-    					if_block = create_if_block$1(ctx);
-    					if_block.c();
-    					if_block.m(div4, t6);
-    				}
-    			} else if (if_block) {
-    				if_block.d(1);
-    				if_block = null;
-    			}
-
-    			if (!current || dirty & /*nodes*/ 8) {
-    				set_style(div4, "left", /*d*/ ctx[12].x + "px");
-    			}
-
-    			if (!current || dirty & /*nodes*/ 8) {
-    				set_style(div4, "top", /*d*/ ctx[12].y + "px");
-    			}
-
-    			if (!current || dirty & /*nodes*/ 8) {
-    				set_style(div4, "width", /*d*/ ctx[12].width + "px");
-    			}
-
-    			if (!current || dirty & /*nodes*/ 8) {
-    				set_style(div4, "height", /*d*/ ctx[12].height + "px");
-    			}
-
-    			if (!current || dirty & /*nodes*/ 8) {
-    				set_style(div4, "border-bottom", "4px solid " + (/*colors*/ ctx[5][/*d*/ ctx[12].accent] || /*d*/ ctx[12].accent || /*accent*/ ctx[7]));
-    			}
-
-    			if (!current || dirty & /*nodes*/ 8) {
-    				set_style(div4, "opacity", /*d*/ ctx[12].opacity || 1);
-    			}
-
-    			if (dirty & /*nodes*/ 8) {
-    				toggle_class(div4, "tiny", /*d*/ ctx[12].height < 80);
-    			}
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(dots.$$.fragment, local);
+    			transition_in(if_block0);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(dots.$$.fragment, local);
+    			transition_out(if_block0);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div4);
-    			destroy_component(dots);
-    			if (if_block) if_block.d();
+    			if (detaching) detach_dev(div3);
+    			if (if_block0) if_block0.d();
+    			if (if_block1) if_block1.d();
     		}
     	};
 
@@ -1492,7 +1565,7 @@ var app = (function () {
     	return block;
     }
 
-    // (124:4) {#each paths as d}
+    // (127:4) {#each paths as d}
     function create_each_block(ctx) {
     	let path;
     	let path_d_value;
@@ -1501,12 +1574,12 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			path = svg_element("path");
-    			attr_dev(path, "class", "link svelte-mrn6py");
+    			attr_dev(path, "class", "link svelte-j4zr01");
     			attr_dev(path, "d", path_d_value = /*d*/ ctx[12]);
     			attr_dev(path, "stroke", "none");
     			attr_dev(path, "fill", "lightsteelblue");
     			attr_dev(path, "stroke-width", path_stroke_width_value = 1);
-    			add_location(path, file$3, 124, 6, 2925);
+    			add_location(path, file$3, 127, 6, 2979);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, path, anchor);
@@ -1525,7 +1598,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(124:4) {#each paths as d}",
+    		source: "(127:4) {#each paths as d}",
     		ctx
     	});
 
@@ -1588,7 +1661,7 @@ var app = (function () {
     			attr_dev(svg, "viewBox", svg_viewBox_value = "0,0," + /*width*/ ctx[0] + "," + /*height*/ ctx[1]);
     			attr_dev(svg, "width", /*width*/ ctx[0]);
     			attr_dev(svg, "height", /*height*/ ctx[1]);
-    			add_location(svg, file$3, 122, 2, 2842);
+    			add_location(svg, file$3, 125, 2, 2896);
     			set_style(div1, "position", "relative");
     			add_location(div1, file$3, 86, 0, 1717);
     		},
@@ -2523,29 +2596,18 @@ var app = (function () {
     	let t7;
     	let t8;
     	let t9;
+    	let t10;
+    	let t11;
+    	let t12;
+    	let t13;
+    	let t14;
+    	let t15;
+    	let t16;
+    	let t17;
+    	let t18;
     	let current;
 
     	const node0 = new Node({
-    			props: {
-    				name: "Social Programs",
-    				from: "Toronto",
-    				value: "3300",
-    				color: "#6E9588"
-    			},
-    			$$inline: true
-    		});
-
-    	const node1 = new Node({
-    			props: {
-    				name: "TTC",
-    				from: "Toronto",
-    				value: "2100",
-    				color: "red"
-    			},
-    			$$inline: true
-    		});
-
-    	const node2 = new Node({
     			props: {
     				name: "Police",
     				from: "Toronto",
@@ -2555,69 +2617,139 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const node3 = new Node({
+    	const node1 = new Node({
     			props: {
     				name: "Fire",
     				from: "Toronto",
-    				value: "500",
+    				value: "490",
     				color: "#CDADD9"
+    			},
+    			$$inline: true
+    		});
+
+    	const node2 = new Node({
+    			props: {
+    				name: "Ems",
+    				from: "Toronto",
+    				value: "220",
+    				color: "#CDADD9"
+    			},
+    			$$inline: true
+    		});
+
+    	const node3 = new Node({
+    			props: {
+    				name: "Housing",
+    				from: "Toronto",
+    				value: "750",
+    				color: "#8797B7"
     			},
     			$$inline: true
     		});
 
     	const node4 = new Node({
     			props: {
-    				name: "Ems",
+    				name: "Child services",
     				from: "Toronto",
-    				value: "300",
-    				color: "#CDADD9"
+    				value: "630",
+    				color: "#8797B7"
     			},
     			$$inline: true
     		});
 
     	const node5 = new Node({
     			props: {
-    				name: "Financing",
+    				name: "Senior care",
     				from: "Toronto",
-    				value: "1000",
-    				color: "sea"
+    				value: "260",
+    				color: "#8797B7"
     			},
     			$$inline: true
     		});
 
     	const node6 = new Node({
     			props: {
-    				name: "Operations",
+    				name: "TTC",
     				from: "Toronto",
-    				value: "900",
-    				color: "sea"
+    				value: "1900",
+    				color: "red"
     			},
     			$$inline: true
     		});
 
     	const node7 = new Node({
     			props: {
-    				name: "Services",
+    				name: "Wheel-trans",
     				from: "Toronto",
-    				value: "700",
-    				color: "sea"
+    				value: "160",
+    				color: "red"
     			},
     			$$inline: true
     		});
 
     	const node8 = new Node({
     			props: {
-    				name: "Accounts",
+    				name: "Unemployment",
     				from: "Toronto",
-    				value: "700",
-    				color: "sea"
+    				value: "1100",
+    				color: "#8FAEA6"
     			},
     			$$inline: true
     		});
 
     	const node9 = new Node({
     			props: {
-    				name: "Transportation",
+    				name: "Library",
+    				from: "Toronto",
+    				value: "210",
+    				color: "#8FAEA6"
+    			},
+    			$$inline: true
+    		});
+
+    	const node10 = new Node({
+    			props: {
+    				name: "Parks",
+    				from: "Toronto",
+    				value: "450",
+    				color: "#8FAEA6"
+    			},
+    			$$inline: true
+    		});
+
+    	const node11 = new Node({
+    			props: {
+    				name: "Public health",
+    				from: "Toronto",
+    				value: "270",
+    				color: "#8FAEA6"
+    			},
+    			$$inline: true
+    		});
+
+    	const node12 = new Node({
+    			props: {
+    				name: "Water",
+    				from: "Toronto",
+    				value: "1200",
+    				color: "sky"
+    			},
+    			$$inline: true
+    		});
+
+    	const node13 = new Node({
+    			props: {
+    				name: "Roads",
+    				from: "Toronto",
+    				value: "420",
+    				color: "sea"
+    			},
+    			$$inline: true
+    		});
+
+    	const node14 = new Node({
+    			props: {
+    				name: "Garbage",
     				from: "Toronto",
     				value: "400",
     				color: "sea"
@@ -2625,11 +2757,51 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const node10 = new Node({
+    	const node15 = new Node({
     			props: {
-    				name: "Other",
+    				name: "Governace",
     				from: "Toronto",
     				value: "400",
+    				color: "sea"
+    			},
+    			$$inline: true
+    		});
+
+    	const node16 = new Node({
+    			props: {
+    				name: "Parking",
+    				from: "Toronto",
+    				value: "160",
+    				color: "sea"
+    			},
+    			$$inline: true
+    		});
+
+    	const node17 = new Node({
+    			props: {
+    				name: "Debt",
+    				from: "Toronto",
+    				value: "500",
+    				color: "sea"
+    			},
+    			$$inline: true
+    		});
+
+    	const node18 = new Node({
+    			props: {
+    				name: "Financing",
+    				from: "Toronto",
+    				value: "370",
+    				color: "sea"
+    			},
+    			$$inline: true
+    		});
+
+    	const node19 = new Node({
+    			props: {
+    				name: "Misc",
+    				from: "Toronto",
+    				value: "700",
     				color: "sea"
     			},
     			$$inline: true
@@ -2658,6 +2830,24 @@ var app = (function () {
     			create_component(node9.$$.fragment);
     			t9 = space();
     			create_component(node10.$$.fragment);
+    			t10 = space();
+    			create_component(node11.$$.fragment);
+    			t11 = space();
+    			create_component(node12.$$.fragment);
+    			t12 = space();
+    			create_component(node13.$$.fragment);
+    			t13 = space();
+    			create_component(node14.$$.fragment);
+    			t14 = space();
+    			create_component(node15.$$.fragment);
+    			t15 = space();
+    			create_component(node16.$$.fragment);
+    			t16 = space();
+    			create_component(node17.$$.fragment);
+    			t17 = space();
+    			create_component(node18.$$.fragment);
+    			t18 = space();
+    			create_component(node19.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(node0, target, anchor);
@@ -2681,6 +2871,24 @@ var app = (function () {
     			mount_component(node9, target, anchor);
     			insert_dev(target, t9, anchor);
     			mount_component(node10, target, anchor);
+    			insert_dev(target, t10, anchor);
+    			mount_component(node11, target, anchor);
+    			insert_dev(target, t11, anchor);
+    			mount_component(node12, target, anchor);
+    			insert_dev(target, t12, anchor);
+    			mount_component(node13, target, anchor);
+    			insert_dev(target, t13, anchor);
+    			mount_component(node14, target, anchor);
+    			insert_dev(target, t14, anchor);
+    			mount_component(node15, target, anchor);
+    			insert_dev(target, t15, anchor);
+    			mount_component(node16, target, anchor);
+    			insert_dev(target, t16, anchor);
+    			mount_component(node17, target, anchor);
+    			insert_dev(target, t17, anchor);
+    			mount_component(node18, target, anchor);
+    			insert_dev(target, t18, anchor);
+    			mount_component(node19, target, anchor);
     			current = true;
     		},
     		p: noop,
@@ -2697,6 +2905,15 @@ var app = (function () {
     			transition_in(node8.$$.fragment, local);
     			transition_in(node9.$$.fragment, local);
     			transition_in(node10.$$.fragment, local);
+    			transition_in(node11.$$.fragment, local);
+    			transition_in(node12.$$.fragment, local);
+    			transition_in(node13.$$.fragment, local);
+    			transition_in(node14.$$.fragment, local);
+    			transition_in(node15.$$.fragment, local);
+    			transition_in(node16.$$.fragment, local);
+    			transition_in(node17.$$.fragment, local);
+    			transition_in(node18.$$.fragment, local);
+    			transition_in(node19.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -2711,6 +2928,15 @@ var app = (function () {
     			transition_out(node8.$$.fragment, local);
     			transition_out(node9.$$.fragment, local);
     			transition_out(node10.$$.fragment, local);
+    			transition_out(node11.$$.fragment, local);
+    			transition_out(node12.$$.fragment, local);
+    			transition_out(node13.$$.fragment, local);
+    			transition_out(node14.$$.fragment, local);
+    			transition_out(node15.$$.fragment, local);
+    			transition_out(node16.$$.fragment, local);
+    			transition_out(node17.$$.fragment, local);
+    			transition_out(node18.$$.fragment, local);
+    			transition_out(node19.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -2735,6 +2961,24 @@ var app = (function () {
     			destroy_component(node9, detaching);
     			if (detaching) detach_dev(t9);
     			destroy_component(node10, detaching);
+    			if (detaching) detach_dev(t10);
+    			destroy_component(node11, detaching);
+    			if (detaching) detach_dev(t11);
+    			destroy_component(node12, detaching);
+    			if (detaching) detach_dev(t12);
+    			destroy_component(node13, detaching);
+    			if (detaching) detach_dev(t13);
+    			destroy_component(node14, detaching);
+    			if (detaching) detach_dev(t14);
+    			destroy_component(node15, detaching);
+    			if (detaching) detach_dev(t15);
+    			destroy_component(node16, detaching);
+    			if (detaching) detach_dev(t16);
+    			destroy_component(node17, detaching);
+    			if (detaching) detach_dev(t17);
+    			destroy_component(node18, detaching);
+    			if (detaching) detach_dev(t18);
+    			destroy_component(node19, detaching);
     		}
     	};
 
@@ -2749,7 +2993,7 @@ var app = (function () {
     	return block;
     }
 
-    // (39:2) <Sankey height="800" {fmt}>
+    // (39:2) <Sankey height="900" {fmt}>
     function create_default_slot(ctx) {
     	let t0;
     	let t1;
@@ -2844,7 +3088,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(39:2) <Sankey height=\\\"800\\\" {fmt}>",
+    		source: "(39:2) <Sankey height=\\\"900\\\" {fmt}>",
     		ctx
     	});
 
@@ -2866,7 +3110,7 @@ var app = (function () {
 
     	const sankey = new Sankey({
     			props: {
-    				height: "800",
+    				height: "900",
     				fmt: /*fmt*/ ctx[0],
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
