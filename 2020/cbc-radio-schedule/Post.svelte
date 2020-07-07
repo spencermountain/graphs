@@ -42,12 +42,12 @@
     { time: '6:00am', name: 'Fresh Air', color: 'pink', end: '9:00am' },
     { time: '9:00am', name: 'Sunday Edition', color: 'red', end: '10:30am' },
     { time: '10:30am', name: 'What On Earth', color: 'purple', end: '11:00am' },
-    { time: '11:00am', name: 'More', color: 'purple', end: '12:00am' },
+    { time: '11:00am', name: 'More', color: 'purple', end: '12:00pm' },
     { time: '12:00pm', name: 'Vinyl Cafe', color: 'purple', end: '1:00pm' },
     { time: '1:00pm', name: 'Spark', color: 'purple', end: '2:00pm' },
     { time: '2:00pm', name: 'Tapestry', color: 'purple', end: '3:00pm' },
-    { time: '3:00pm', name: 'Writers & Company', color: 'blue', end: '4:00pm' },
-    { time: '4:00pm', name: 'Cross Country Checkup', color: 'purple', end: '6:00pm' },
+    { time: '3:00pm', name: 'Writers & Company', color: 'purple', end: '4:00pm' },
+    { time: '4:00pm', name: 'Cross Country Checkup', color: 'red', end: '6:00pm' },
     { time: '7:00pm', name: 'Unreserved', color: 'red', end: '8:00pm' },
   ]
 </script>
@@ -68,7 +68,7 @@
   <Head {title} {sub} num={'15'} />
   <div class="m3">
     {title}
-    <div class="i light ml1">(ontario)</div>
+    <div class="i light ml1">(toronto)</div>
   </div>
   <div class="m3">
     <Timeline {start} {end} {height}>

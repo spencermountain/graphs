@@ -2,7 +2,7 @@
   import Head from '../../components/Head.svelte'
   import Foot from '../../components/Foot.svelte'
   import spacetime from 'spacetime'
-  export let title = 'DST change times, in 2020'
+  export let title = 'Daylight Savings change dates, in 2020'
   export let sub = "'Eastern Standard' time"
   import data from './data'
   import {
@@ -16,7 +16,7 @@
     colors,
   } from '/Users/spencer/mountain/somehow-timeline/src'
   let year = new Date().getFullYear()
-  let start = 'Feb 22 '
+  let start = 'Jan 1 '
   let end = 'Dec 31 '
   let height = 900
   let byTime = {}
@@ -129,7 +129,7 @@
               color={zone.color}
               label={zone.offset + 'h'}
               opacity="0.5"
-              date={'dec 15 ' + year} />
+              date={'march 10 ' + year} />
           {/if}
           {#each zone.times as time}
             {#each time.zones as name}
@@ -173,7 +173,7 @@
               width="30px"
               color={zone.color}
               label={zone.offset + 'h'}
-              date={'dec 5 ' + year} />
+              date={'april 10 ' + year} />
           {/if}
           {#each zone.times as time}
             {#each time.zones as name}

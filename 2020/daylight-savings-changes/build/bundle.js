@@ -85,10 +85,6 @@ var app = (function () {
     function empty() {
         return text('');
     }
-    function listen(node, event, handler, options) {
-        node.addEventListener(event, handler, options);
-        return () => node.removeEventListener(event, handler, options);
-    }
     function attr(node, attribute, value) {
         if (value == null)
             node.removeAttribute(attribute);
@@ -225,12 +221,6 @@ var app = (function () {
             block.o(local);
         }
     }
-
-    const globals = (typeof window !== 'undefined'
-        ? window
-        : typeof globalThis !== 'undefined'
-            ? globalThis
-            : global);
     function create_component(block) {
         block && block.c();
     }
@@ -362,19 +352,6 @@ var app = (function () {
     function detach_dev(node) {
         dispatch_dev("SvelteDOMRemove", { node });
         detach(node);
-    }
-    function listen_dev(node, event, handler, options, has_prevent_default, has_stop_propagation) {
-        const modifiers = options === true ? ["capture"] : options ? Array.from(Object.keys(options)) : [];
-        if (has_prevent_default)
-            modifiers.push('preventDefault');
-        if (has_stop_propagation)
-            modifiers.push('stopPropagation');
-        dispatch_dev("SvelteDOMAddEventListener", { node, event, handler, modifiers });
-        const dispose = listen(node, event, handler, options);
-        return () => {
-            dispatch_dev("SvelteDOMRemoveEventListener", { node, event, handler, modifiers });
-            dispose();
-        };
     }
     function attr_dev(node, attribute, value) {
         attr(node, attribute, value);
@@ -5169,7 +5146,7 @@ var app = (function () {
       },
     ];
 
-    /* spencermountain/spacetime 6.4.3 Apache 2.0 */
+    /* spencermountain/spacetime 6.6.1 Apache 2.0 */
     function createCommonjsModule$1(fn, module) {
     	return module = { exports: {} }, fn(module, module.exports), module.exports;
     }
@@ -5407,7 +5384,7 @@ var app = (function () {
     	"2|n": "0/blantyre,0/bujumbura,0/cairo,0/khartoum,0/kigali,0/tripoli,8/kaliningrad",
     	"1|s|04/02:01->09/03:03": "0/windhoek",
     	"1|s": "0/kinshasa,0/luanda",
-    	"1|n|04/19:03->05/24:02": "0/casablanca,0/el_aaiun",
+    	"1|n|04/19:03->05/31:02": "0/casablanca,0/el_aaiun",
     	"1|n|03/29:01->10/25:02": "3/canary,3/faeroe,3/faroe,3/madeira,8/belfast,8/dublin,8/guernsey,8/isle_of_man,8/jersey,8/lisbon,8/london",
     	"1|n": "0/algiers,0/bangui,0/brazzaville,0/douala,0/lagos,0/libreville,0/malabo,0/ndjamena,0/niamey,0/porto-novo,0/tunis",
     	"14|n": "11/kiritimati",
@@ -6039,7 +6016,7 @@ var app = (function () {
     30, // November - 30 days
     31 // December - 31 days
     ];
-    var monthLengths_1$1 = monthLengths$1;
+    var monthLengths_1$1 = monthLengths$1; // 28 - feb
 
     var isLeapYear$1 = fns$1.isLeapYear; //given a month, return whether day number exists in it
 
@@ -6074,10 +6051,14 @@ var app = (function () {
 
     var parseYear$1 = function parseYear() {
       var str = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-      //support '18 -> 2018
-      // str = str.replace(/^'([0-9]{2})/, '20$1')
-      // str = str.replace('([0-9]+) ?b\.?c\.?$', '-$1')
-      var year = parseInt(str.trim(), 10);
+      var today = arguments.length > 1 ? arguments[1] : undefined;
+      var year = parseInt(str.trim(), 10); // use a given year from options.today
+
+      if (!year && today) {
+        year = today.year;
+      } // fallback to this year
+
+
       year = year || new Date().getFullYear();
       return year;
     };
@@ -6161,7 +6142,7 @@ var app = (function () {
       reg: /^([0-9]{1,2})[\-\/]([a-z]+)[\-\/]?([0-9]{4})?$/i,
       parse: function parse(s, arr) {
         var month = months$1$1[arr[2].toLowerCase()];
-        var year = parseYear$1(arr[3]);
+        var year = parseYear$1(arr[3], s._today);
         var obj = {
           year: year,
           month: month,
@@ -6183,7 +6164,7 @@ var app = (function () {
       reg: /^([a-z]+) ([0-9]{1,2}(?:st|nd|rd|th)?),?( [0-9]{4})?( ([0-9:]+( ?am| ?pm| ?gmt)?))?$/i,
       parse: function parse(s, arr) {
         var month = months$1$1[arr[1].toLowerCase()];
-        var year = parseYear$1(arr[3]);
+        var year = parseYear$1(arr[3], s._today);
         var obj = {
           year: year,
           month: month,
@@ -6204,11 +6185,11 @@ var app = (function () {
       reg: /^([a-z]+) ([0-9]{4})$/i,
       parse: function parse(s, arr) {
         var month = months$1$1[arr[1].toLowerCase()];
-        var year = parseYear$1(arr[2]);
+        var year = parseYear$1(arr[2], s._today);
         var obj = {
           year: year,
           month: month,
-          date: 1
+          date: s._today.date || 1
         };
 
         if (hasDate_1$1(obj) === false) {
@@ -6230,7 +6211,7 @@ var app = (function () {
           return null;
         }
 
-        var year = parseYear$1(arr[3]);
+        var year = parseYear$1(arr[3], s._today);
         var obj = {
           year: year,
           month: month,
@@ -6300,12 +6281,18 @@ var app = (function () {
       // '1992'
       reg: /^[0-9]{4}( ?a\.?d\.?)?$/i,
       parse: function parse(s, arr) {
-        var year = parseYear$1(arr[0]);
-        var d = new Date();
+        var today = s._today;
+        var year = parseYear$1(arr[0], today);
+        var d = new Date(); // using today's date, but a new month is awkward.
+
+        if (today.month && !today.date) {
+          today.date = 1;
+        }
+
         var obj = {
           year: year,
-          month: d.getMonth(),
-          date: d.getDate()
+          month: today.month || d.getMonth(),
+          date: today.date || d.getDate()
         };
 
         if (hasDate_1$1(obj) === false) {
@@ -6382,11 +6369,11 @@ var app = (function () {
       date: 1
     }; //support [2016, 03, 01] format
 
-    var handleArray$1 = function handleArray(s, arr) {
+    var handleArray$1 = function handleArray(s, arr, today) {
       var order = ['year', 'month', 'date', 'hour', 'minute', 'second', 'millisecond'];
 
       for (var i = 0; i < order.length; i++) {
-        var num = arr[i] || defaults$1[order[i]] || 0;
+        var num = arr[i] || today[order[i]] || defaults$1[order[i]] || 0;
         s = s[order[i]](num);
       }
 
@@ -6394,8 +6381,8 @@ var app = (function () {
     }; //support {year:2016, month:3} format
 
 
-    var handleObject$1 = function handleObject(s, obj) {
-      obj = Object.assign({}, defaults$1, obj);
+    var handleObject$1 = function handleObject(s, obj, today) {
+      obj = Object.assign({}, defaults$1, today, obj);
       var keys = Object.keys(obj);
 
       for (var i = 0; i < keys.length; i++) {
@@ -6410,7 +6397,7 @@ var app = (function () {
           continue;
         }
 
-        var num = obj[unit] || defaults$1[unit] || 0;
+        var num = obj[unit] || today[unit] || defaults$1[unit] || 0;
         s = s[unit](num);
       }
 
@@ -6419,7 +6406,8 @@ var app = (function () {
 
 
     var parseInput$1 = function parseInput(s, input, givenTz) {
-      //if we've been given a epoch number, it's easy
+      var today = s._today || defaults$1; //if we've been given a epoch number, it's easy
+
       if (typeof input === 'number') {
         if (input > 0 && input < minimumEpoch$1 && s.silent === false) {
           console.warn('  - Warning: You are setting the date to January 1970.');
@@ -6445,7 +6433,7 @@ var app = (function () {
 
 
       if (fns$1.isArray(input) === true) {
-        s = handleArray$1(s, input);
+        s = handleArray$1(s, input, today);
         return s;
       } //support {year:2016, month:3} format
 
@@ -6458,7 +6446,7 @@ var app = (function () {
           return s;
         }
 
-        s = handleObject$1(s, input);
+        s = handleObject$1(s, input, today);
         return s;
       } //input as a string..
 
@@ -7743,7 +7731,7 @@ var app = (function () {
     var methods$5 = {
       set: function set(input$1$1, tz) {
         var s = this.clone();
-        s = input$1(s, input$1$1);
+        s = input$1(s, input$1$1, null);
 
         if (tz) {
           this.tz = find$1(tz);
@@ -8691,6 +8679,98 @@ var app = (function () {
 
     var query$1 = addMethods$5;
 
+    var isLeapYear$1$1 = fns$1.isLeapYear;
+
+    var getMonthLength = function getMonthLength(month, year) {
+      if (month === 1 && isLeapYear$1$1(year)) {
+        return 29;
+      }
+
+      return monthLengths_1$1[month];
+    }; //month is the one thing we 'model/compute'
+    //- because ms-shifting can be off by enough
+
+
+    var rollMonth$1 = function rollMonth(want, old) {
+      //increment year
+      if (want.month > 0) {
+        var years = parseInt(want.month / 12, 10);
+        want.year = old.year() + years;
+        want.month = want.month % 12;
+      } else if (want.month < 0) {
+        //decrement year
+        var _years = Math.floor(Math.abs(want.month) / 13, 10);
+
+        _years = Math.abs(_years) + 1;
+        want.year = old.year() - _years; //ignore extras
+
+        want.month = want.month % 12;
+        want.month = want.month + 12;
+
+        if (want.month === 12) {
+          want.month = 0;
+        }
+      }
+
+      return want;
+    }; // briefly support day=-2 (this does not need to be perfect.)
+
+
+    var rollDaysDown = function rollDaysDown(want, old, sum) {
+      want.year = old.year();
+      want.month = old.month();
+      var date = old.date();
+      want.date = date - Math.abs(sum);
+
+      while (want.date < 1) {
+        want.month -= 1;
+
+        if (want.month < 0) {
+          want.month = 11;
+          want.year -= 1;
+        }
+
+        var max = getMonthLength(want.month, want.year);
+        want.date += max;
+      }
+
+      return want;
+    }; // briefly support day=33 (this does not need to be perfect.)
+
+
+    var rollDaysUp = function rollDaysUp(want, old, sum) {
+      var year = old.year();
+      var month = old.month();
+      var max = getMonthLength(month, year);
+
+      while (sum > max) {
+        sum -= max;
+        month += 1;
+
+        if (month >= 12) {
+          month -= 12;
+          year += 1;
+        }
+
+        max = getMonthLength(month, year);
+      }
+
+      want.month = month;
+      want.date = sum;
+      return want;
+    };
+
+    var _model = {
+      months: rollMonth$1,
+      days: rollDaysUp,
+      daysBack: rollDaysDown
+    };
+
+    // but briefly:
+    // millisecond-math, and some post-processing covers most-things
+    // we 'model' the calendar here only a little bit
+    // and that usually works-out...
+
     var order$1$1 = ['millisecond', 'second', 'minute', 'hour', 'date', 'month'];
     var keep$1 = {
       second: order$1$1.slice(0, 1),
@@ -8722,31 +8802,6 @@ var app = (function () {
       quarter: true,
       season: true,
       year: true
-    }; //month is the only thing we 'model/compute'
-    //- because ms-shifting can be off by enough
-
-    var rollMonth$1 = function rollMonth(want, old) {
-      //increment year
-      if (want.month > 0) {
-        var years = parseInt(want.month / 12, 10);
-        want.year = old.year() + years;
-        want.month = want.month % 12;
-      } else if (want.month < 0) {
-        //decrement year
-        var _years = Math.floor(Math.abs(want.month) / 13, 10);
-
-        _years = Math.abs(_years) + 1;
-        want.year = old.year() - _years; //ignore extras
-
-        want.month = want.month % 12;
-        want.month = want.month + 12;
-
-        if (want.month === 12) {
-          want.month = 0;
-        }
-      }
-
-      return want;
     };
 
     var addMethods$1$1 = function addMethods(SpaceTime) {
@@ -8790,7 +8845,7 @@ var app = (function () {
         if (unit === 'month') {
           want.month = old.month() + num; //month is the one unit we 'model' directly
 
-          want = rollMonth$1(want, old);
+          want = _model.months(want, old);
         } //support coercing a week, too
 
 
@@ -8802,15 +8857,20 @@ var app = (function () {
           }
         } //support 25-hour day-changes on dst-changes
         else if (unit === 'date') {
-            //specify a naive date number, if it's easy to do...
-            var _sum = old.date() + num;
+            if (num < 0) {
+              want = _model.daysBack(want, old, num);
+            } else {
+              //specify a naive date number, if it's easy to do...
+              var _sum = old.date() + num; // ok, model this one too
 
-            if (_sum <= 28 && _sum > 1) {
-              want.date = _sum;
-            } //or if we haven't moved at all..
-            else if (num !== 0 && old.isSame(s, 'day')) {
-                want.date = old.date() + num;
-              }
+
+              want = _model.days(want, old, _sum);
+            } //manually punt it if we haven't moved at all..
+
+
+            if (num !== 0 && old.isSame(s, 'day')) {
+              want.date = old.date() + num;
+            }
           } //ensure year has changed (leap-years)
           else if (unit === 'year' && s.year() === old.year()) {
               s.epoch += milliseconds$1.week;
@@ -9007,6 +9067,13 @@ var app = (function () {
 
       if (options.weekStart !== undefined) {
         this._weekStart = options.weekStart;
+      } // the reference today date object, (for testing)
+
+
+      this._today = {};
+
+      if (options.today !== undefined) {
+        this._today = options.today;
       } //add getter/setters
 
 
@@ -9038,10 +9105,8 @@ var app = (function () {
         }
       }); //parse the various formats
 
-      if (input$1$1 !== undefined || input$1$1 === null) {
-        var tmp = input$1(this, input$1$1, tz);
-        this.epoch = tmp.epoch;
-      }
+      var tmp = input$1(this, input$1$1, tz);
+      this.epoch = tmp.epoch;
     }; //(add instance methods to prototype)
 
 
@@ -9052,7 +9117,8 @@ var app = (function () {
     SpaceTime$1.prototype.clone = function () {
       return new SpaceTime$1(this.epoch, this.tz, {
         silent: this.silent,
-        weekStart: this._weekStart
+        weekStart: this._weekStart,
+        today: this._today
       });
     }; //return native date object at the same epoch
 
@@ -9110,29 +9176,43 @@ var app = (function () {
 
     var whereIts_1$1 = whereIts$1;
 
-    var _version$1 = '6.4.3';
+    var _version$1 = '6.6.1';
 
     var main$1$1 = function main(input, tz, options) {
       return new spacetime$1(input, tz, options);
+    }; // set all properties of a given 'today' object
+
+
+    var setToday = function setToday(s) {
+      var today = s._today || {};
+      Object.keys(today).forEach(function (k) {
+        s = s[k](today[k]);
+      });
+      return s;
     }; //some helper functions on the main method
 
 
     main$1$1.now = function (tz, options) {
-      return new spacetime$1(new Date().getTime(), tz, options);
+      var s = new spacetime$1(new Date().getTime(), tz, options);
+      s = setToday(s);
+      return s;
     };
 
     main$1$1.today = function (tz, options) {
       var s = new spacetime$1(new Date().getTime(), tz, options);
+      s = setToday(s);
       return s.startOf('day');
     };
 
     main$1$1.tomorrow = function (tz, options) {
       var s = new spacetime$1(new Date().getTime(), tz, options);
+      s = setToday(s);
       return s.add(1, 'day').startOf('day');
     };
 
     main$1$1.yesterday = function (tz, options) {
       var s = new spacetime$1(new Date().getTime(), tz, options);
+      s = setToday(s);
       return s.subtract(1, 'day').startOf('day');
     };
 
@@ -9418,15 +9498,14 @@ var app = (function () {
     !function(e){module.exports=e();}(function(){return function u(i,a,c){function f(r,e){if(!a[r]){if(!i[r]){var o="function"==typeof commonjsRequire&&commonjsRequire;if(!e&&o)return o(r,!0);if(d)return d(r,!0);var n=new Error("Cannot find module '"+r+"'");throw n.code="MODULE_NOT_FOUND",n}var t=a[r]={exports:{}};i[r][0].call(t.exports,function(e){return f(i[r][1][e]||e)},t,t.exports,u,i,a,c);}return a[r].exports}for(var d="function"==typeof commonjsRequire&&commonjsRequire,e=0;e<c.length;e++)f(c[e]);return f}({1:[function(e,r,o){r.exports={blue:"#6699cc",green:"#6accb2",yellow:"#e1e6b3",red:"#cc7066",pink:"#F2C0BB",brown:"#705E5C",orange:"#cc8a66",purple:"#d8b3e6",navy:"#335799",olive:"#7f9c6c",fuscia:"#735873",beige:"#e6d7b3",slate:"#8C8C88",suede:"#9c896c",burnt:"#603a39",sea:"#50617A",sky:"#2D85A8",night:"#303b50",rouge:"#914045",grey:"#838B91",mud:"#C4ABAB",royal:"#275291",cherry:"#cc6966",tulip:"#e6b3bc",rose:"#D68881",fire:"#AB5850",greyblue:"#72697D",greygreen:"#8BA3A2",greypurple:"#978BA3",burn:"#6D5685",slategrey:"#bfb0b3",light:"#a3a5a5",lighter:"#d7d5d2",fudge:"#4d4d4d",lightgrey:"#949a9e",white:"#fbfbfb",dimgrey:"#606c74",softblack:"#463D4F",dark:"#443d3d",black:"#333333"};},{}],2:[function(e,r,o){var n=e("./colors"),t={juno:["blue","mud","navy","slate","pink","burn"],barrow:["rouge","red","orange","burnt","brown","greygreen"],roma:["#8a849a","#b5b0bf","rose","lighter","greygreen","mud"],palmer:["red","navy","olive","pink","suede","sky"],mark:["#848f9a","#9aa4ac","slate","#b0b8bf","mud","grey"],salmon:["sky","sea","fuscia","slate","mud","fudge"],dupont:["green","brown","orange","red","olive","blue"],bloor:["night","navy","beige","rouge","mud","grey"],yukon:["mud","slate","brown","sky","beige","red"],david:["blue","green","yellow","red","pink","light"],neste:["mud","cherry","royal","rouge","greygreen","greypurple"],ken:["red","sky","#c67a53","greygreen","#dfb59f","mud"]};Object.keys(t).forEach(function(e){t[e]=t[e].map(function(e){return n[e]||e});}),r.exports=t;},{"./colors":1}],3:[function(e,r,o){var n=e("./colors"),t=e("./combos"),u={colors:n,list:Object.keys(n).map(function(e){return n[e]}),combos:t};r.exports=u;},{"./colors":1,"./combos":2}]},{},[3])(3)});
     });
 
-    /* Users/spencer/mountain/somehow-timeline/src/lines/Line.svelte generated by Svelte v3.22.3 */
-    const file$3 = "Users/spencer/mountain/somehow-timeline/src/lines/Line.svelte";
+    /* Users/spencer/mountain/somehow-timeline/src/shapes/Line.svelte generated by Svelte v3.22.3 */
+    const file$3 = "Users/spencer/mountain/somehow-timeline/src/shapes/Line.svelte";
 
     function create_fragment$3(ctx) {
     	let div2;
     	let div0;
     	let t;
     	let div1;
-    	let dispose;
 
     	const block = {
     		c: function create() {
@@ -9434,39 +9513,32 @@ var app = (function () {
     			div0 = element("div");
     			t = space();
     			div1 = element("div");
-    			attr_dev(div0, "class", "line svelte-1191co4");
+    			attr_dev(div0, "class", "line svelte-17nfrv7");
     			set_style(div0, "border-left", /*width*/ ctx[1] + " " + (/*dotted*/ ctx[8] ? "dotted" : "solid") + " " + /*color*/ ctx[0]);
-    			add_location(div0, file$3, 129, 2, 2918);
-    			attr_dev(div1, "class", "label svelte-1191co4");
+    			add_location(div0, file$3, 70, 2, 1579);
+    			attr_dev(div1, "class", "label svelte-17nfrv7");
     			set_style(div1, "top", "20%");
     			set_style(div1, "color", /*color*/ ctx[0]);
     			set_style(div1, "font-size", /*size*/ ctx[5]);
     			toggle_class(div1, "rotate", /*rotate*/ ctx[9]);
-    			add_location(div1, file$3, 130, 2, 3009);
-    			attr_dev(div2, "class", "container svelte-1191co4");
+    			add_location(div1, file$3, 71, 2, 1670);
+    			attr_dev(div2, "class", "container svelte-17nfrv7");
     			set_style(div2, "min-width", /*space*/ ctx[3]);
     			set_style(div2, "opacity", /*opacity*/ ctx[6]);
-    			set_style(div2, "top", /*top*/ ctx[12] + /*margin*/ ctx[4] + "px");
-    			set_style(div2, "height", /*height*/ ctx[13] - /*margin*/ ctx[4] * 2 + "px");
+    			set_style(div2, "top", /*top*/ ctx[10] + /*margin*/ ctx[4] + "px");
+    			set_style(div2, "height", /*height*/ ctx[11] - /*margin*/ ctx[4] * 2 + "px");
     			attr_dev(div2, "title", /*title*/ ctx[2]);
-    			add_location(div2, file$3, 106, 0, 2394);
+    			add_location(div2, file$3, 66, 0, 1438);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
-    		m: function mount(target, anchor, remount) {
+    		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
     			append_dev(div2, div0);
     			append_dev(div2, t);
     			append_dev(div2, div1);
     			div1.innerHTML = /*label*/ ctx[7];
-    			if (remount) run_all(dispose);
-
-    			dispose = [
-    				listen_dev(div2, "mouseenter", /*mouseenter_handler*/ ctx[21], false, false, false),
-    				listen_dev(div2, "mouseleave", /*mouseleave_handler*/ ctx[22], false, false, false),
-    				listen_dev(div2, "click", /*click_handler*/ ctx[23], false, false, false)
-    			];
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*width, dotted, color*/ 259) {
@@ -9495,11 +9567,11 @@ var app = (function () {
     			}
 
     			if (dirty & /*margin*/ 16) {
-    				set_style(div2, "top", /*top*/ ctx[12] + /*margin*/ ctx[4] + "px");
+    				set_style(div2, "top", /*top*/ ctx[10] + /*margin*/ ctx[4] + "px");
     			}
 
     			if (dirty & /*margin*/ 16) {
-    				set_style(div2, "height", /*height*/ ctx[13] - /*margin*/ ctx[4] * 2 + "px");
+    				set_style(div2, "height", /*height*/ ctx[11] - /*margin*/ ctx[4] * 2 + "px");
     			}
 
     			if (dirty & /*title*/ 4) {
@@ -9510,7 +9582,6 @@ var app = (function () {
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div2);
-    			run_all(dispose);
     		}
     	};
 
@@ -9538,18 +9609,11 @@ var app = (function () {
     	let { rotate = false } = $$props;
     	let { duration = "" } = $$props;
     	let { start = getContext("start") } = $$props;
+    	let { date = "" } = $$props;
+    	start = date || start;
     	let { end = getContext("end") } = $$props;
-
-    	// console.log(start, end)
     	start = src$1(start);
 
-    	// console.log(spacetime.version)
-    	// console.log(
-    	//   spacetime('2012-01-01')
-    	//     // .add(7, 'years')
-    	//     .add(12 * 7, 'months')
-    	//     .format()
-    	// )
     	if (!end && duration) {
     		let words = duration.split(" ");
     		end = start.add(words[0], words[1]);
@@ -9563,21 +9627,11 @@ var app = (function () {
     	if (duration) {
     		let split = duration.split(" ");
     		end = src$1(start).add(Number(split[0]), split[1]).epoch;
-    	} // console.log(spacetime(start).format(), split, spacetime(end).format())
+    	}
 
     	let top = scale(start);
     	let bottom = scale(end);
     	let height = bottom - top;
-    	let freeze_label = false;
-
-    	function handleMousemove(e) {
-    		var rect = e.target.getBoundingClientRect();
-    		let y = e.clientY - rect.top;
-
-    		if (y !== -1 && y !== 0) {
-    			tooltipY = y;
-    		}
-    	}
 
     	const writable_props = [
     		"color",
@@ -9592,6 +9646,7 @@ var app = (function () {
     		"rotate",
     		"duration",
     		"start",
+    		"date",
     		"end"
     	];
 
@@ -9601,34 +9656,6 @@ var app = (function () {
 
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("Line", $$slots, []);
-
-    	const mouseenter_handler = () => {
-    		setTimeout(
-    			function () {
-    				$$invalidate(11, show_label = true);
-    			},
-    			100
-    		);
-    	};
-
-    	const mouseleave_handler = () => {
-    		setTimeout(
-    			function () {
-    				$$invalidate(11, show_label = !freeze_label ? false : true);
-    			},
-    			100
-    		);
-    	};
-
-    	const click_handler = () => {
-    		if (!freeze_label) {
-    			$$invalidate(11, show_label = true);
-    			$$invalidate(10, freeze_label = true);
-    		} else {
-    			$$invalidate(11, show_label = false);
-    			$$invalidate(10, freeze_label = false);
-    		}
-    	};
 
     	$$self.$set = $$props => {
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
@@ -9641,9 +9668,10 @@ var app = (function () {
     		if ("label" in $$props) $$invalidate(7, label = $$props.label);
     		if ("dotted" in $$props) $$invalidate(8, dotted = $$props.dotted);
     		if ("rotate" in $$props) $$invalidate(9, rotate = $$props.rotate);
-    		if ("duration" in $$props) $$invalidate(16, duration = $$props.duration);
-    		if ("start" in $$props) $$invalidate(14, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(15, end = $$props.end);
+    		if ("duration" in $$props) $$invalidate(14, duration = $$props.duration);
+    		if ("start" in $$props) $$invalidate(12, start = $$props.start);
+    		if ("date" in $$props) $$invalidate(15, date = $$props.date);
+    		if ("end" in $$props) $$invalidate(13, end = $$props.end);
     	};
 
     	$$self.$capture_state = () => ({
@@ -9662,15 +9690,12 @@ var app = (function () {
     		rotate,
     		duration,
     		start,
+    		date,
     		end,
     		scale,
     		top,
     		bottom,
-    		height,
-    		freeze_label,
-    		handleMousemove,
-    		show_label,
-    		tooltipY
+    		height
     	});
 
     	$$self.$inject_state = $$props => {
@@ -9684,26 +9709,18 @@ var app = (function () {
     		if ("label" in $$props) $$invalidate(7, label = $$props.label);
     		if ("dotted" in $$props) $$invalidate(8, dotted = $$props.dotted);
     		if ("rotate" in $$props) $$invalidate(9, rotate = $$props.rotate);
-    		if ("duration" in $$props) $$invalidate(16, duration = $$props.duration);
-    		if ("start" in $$props) $$invalidate(14, start = $$props.start);
-    		if ("end" in $$props) $$invalidate(15, end = $$props.end);
-    		if ("top" in $$props) $$invalidate(12, top = $$props.top);
+    		if ("duration" in $$props) $$invalidate(14, duration = $$props.duration);
+    		if ("start" in $$props) $$invalidate(12, start = $$props.start);
+    		if ("date" in $$props) $$invalidate(15, date = $$props.date);
+    		if ("end" in $$props) $$invalidate(13, end = $$props.end);
+    		if ("top" in $$props) $$invalidate(10, top = $$props.top);
     		if ("bottom" in $$props) bottom = $$props.bottom;
-    		if ("height" in $$props) $$invalidate(13, height = $$props.height);
-    		if ("freeze_label" in $$props) $$invalidate(10, freeze_label = $$props.freeze_label);
-    		if ("show_label" in $$props) $$invalidate(11, show_label = $$props.show_label);
-    		if ("tooltipY" in $$props) tooltipY = $$props.tooltipY;
+    		if ("height" in $$props) $$invalidate(11, height = $$props.height);
     	};
-
-    	let show_label;
-    	let tooltipY;
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
-
-    	 $$invalidate(11, show_label = false);
-    	 tooltipY = 10;
 
     	return [
     		color,
@@ -9716,20 +9733,12 @@ var app = (function () {
     		label,
     		dotted,
     		rotate,
-    		freeze_label,
-    		show_label,
     		top,
     		height,
     		start,
     		end,
     		duration,
-    		tooltipY,
-    		scale,
-    		bottom,
-    		handleMousemove,
-    		mouseenter_handler,
-    		mouseleave_handler,
-    		click_handler
+    		date
     	];
     }
 
@@ -9748,9 +9757,10 @@ var app = (function () {
     			label: 7,
     			dotted: 8,
     			rotate: 9,
-    			duration: 16,
-    			start: 14,
-    			end: 15
+    			duration: 14,
+    			start: 12,
+    			date: 15,
+    			end: 13
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -9857,6 +9867,14 @@ var app = (function () {
     		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
+    	get date() {
+    		throw new Error("<Line>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set date(value) {
+    		throw new Error("<Line>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
     	get end() {
     		throw new Error("<Line>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
@@ -9866,8 +9884,8 @@ var app = (function () {
     	}
     }
 
-    /* Users/spencer/mountain/somehow-timeline/src/lines/Now.svelte generated by Svelte v3.22.3 */
-    const file$4 = "Users/spencer/mountain/somehow-timeline/src/lines/Now.svelte";
+    /* Users/spencer/mountain/somehow-timeline/src/shapes/Now.svelte generated by Svelte v3.22.3 */
+    const file$4 = "Users/spencer/mountain/somehow-timeline/src/shapes/Now.svelte";
 
     function create_fragment$4(ctx) {
     	let div3;
@@ -10045,8 +10063,8 @@ var app = (function () {
     	}
     }
 
-    /* Users/spencer/mountain/somehow-timeline/src/ticks/Ticks.svelte generated by Svelte v3.22.3 */
-    const file$5 = "Users/spencer/mountain/somehow-timeline/src/ticks/Ticks.svelte";
+    /* Users/spencer/mountain/somehow-timeline/src/shapes/Ticks.svelte generated by Svelte v3.22.3 */
+    const file$5 = "Users/spencer/mountain/somehow-timeline/src/shapes/Ticks.svelte";
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
@@ -10054,7 +10072,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (55:2) {#each ticks as tick}
+    // (56:2) {#each ticks as tick}
     function create_each_block(ctx) {
     	let div;
     	let t_value = /*tick*/ ctx[11].label + "";
@@ -10069,7 +10087,7 @@ var app = (function () {
     			set_style(div, "color", /*color*/ ctx[0]);
     			set_style(div, "font-size", /*size*/ ctx[1]);
     			toggle_class(div, "underline", /*underline*/ ctx[2]);
-    			add_location(div, file$5, 55, 4, 1236);
+    			add_location(div, file$5, 56, 4, 1262);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -10097,7 +10115,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(55:2) {#each ticks as tick}",
+    		source: "(56:2) {#each ticks as tick}",
     		ctx
     	});
 
@@ -10123,7 +10141,7 @@ var app = (function () {
     			}
 
     			attr_dev(div, "class", "container svelte-1oegkdx");
-    			add_location(div, file$5, 53, 0, 1184);
+    			add_location(div, file$5, 54, 0, 1210);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -10188,10 +10206,11 @@ var app = (function () {
     	color = spencerColor.colors[color] || color;
 
     	const formats = {
+    		hour: "{hour}{ampm}",
+    		day: "{month-short} {date}",
+    		week: "{month-short} {date}",
     		month: "{month-short}",
     		year: "year",
-    		week: "{month-short} {date}",
-    		day: "{month-short} {date}",
     		quarter: "{quarter}",
     		decade: "year"
     	};
@@ -10611,37 +10630,189 @@ var app = (function () {
     });
     });
 
-    /* Users/spencer/mountain/somehow-timeline/src/labels/Label.svelte generated by Svelte v3.22.3 */
-    const file$6 = "Users/spencer/mountain/somehow-timeline/src/labels/Label.svelte";
+    /* Users/spencer/mountain/somehow-timeline/src/shapes/Label.svelte generated by Svelte v3.22.3 */
+    const file$6 = "Users/spencer/mountain/somehow-timeline/src/shapes/Label.svelte";
+
+    // (81:2) {:else}
+    function create_else_block$1(ctx) {
+    	let div0;
+    	let t;
+    	let div1;
+
+    	const block = {
+    		c: function create() {
+    			div0 = element("div");
+    			t = space();
+    			div1 = element("div");
+    			attr_dev(div0, "class", "label svelte-1pa4pjr");
+    			set_style(div0, "top", "20%");
+    			set_style(div0, "color", /*color*/ ctx[1]);
+    			set_style(div0, "font-size", /*size*/ ctx[5]);
+    			add_location(div0, file$6, 81, 4, 1774);
+    			attr_dev(div1, "class", "line svelte-1pa4pjr");
+    			set_style(div1, "border-right", /*width*/ ctx[2] + " solid " + /*color*/ ctx[1]);
+    			add_location(div1, file$6, 84, 4, 1879);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div0, anchor);
+    			div0.innerHTML = /*label*/ ctx[0];
+    			insert_dev(target, t, anchor);
+    			insert_dev(target, div1, anchor);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*label*/ 1) div0.innerHTML = /*label*/ ctx[0];
+    			if (dirty & /*color*/ 2) {
+    				set_style(div0, "color", /*color*/ ctx[1]);
+    			}
+
+    			if (dirty & /*size*/ 32) {
+    				set_style(div0, "font-size", /*size*/ ctx[5]);
+    			}
+
+    			if (dirty & /*width, color*/ 6) {
+    				set_style(div1, "border-right", /*width*/ ctx[2] + " solid " + /*color*/ ctx[1]);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div0);
+    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(div1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block$1.name,
+    		type: "else",
+    		source: "(81:2) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (76:2) {#if align === 'left'}
+    function create_if_block$1(ctx) {
+    	let div0;
+    	let t;
+    	let div1;
+
+    	const block = {
+    		c: function create() {
+    			div0 = element("div");
+    			t = space();
+    			div1 = element("div");
+    			attr_dev(div0, "class", "line svelte-1pa4pjr");
+    			set_style(div0, "border-left", /*width*/ ctx[2] + " solid " + /*color*/ ctx[1]);
+    			add_location(div0, file$6, 76, 4, 1590);
+    			attr_dev(div1, "class", "label svelte-1pa4pjr");
+    			set_style(div1, "top", "20%");
+    			set_style(div1, "color", /*color*/ ctx[1]);
+    			set_style(div1, "font-size", /*size*/ ctx[5]);
+    			add_location(div1, file$6, 77, 4, 1659);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div0, anchor);
+    			insert_dev(target, t, anchor);
+    			insert_dev(target, div1, anchor);
+    			div1.innerHTML = /*label*/ ctx[0];
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*width, color*/ 6) {
+    				set_style(div0, "border-left", /*width*/ ctx[2] + " solid " + /*color*/ ctx[1]);
+    			}
+
+    			if (dirty & /*label*/ 1) div1.innerHTML = /*label*/ ctx[0];
+    			if (dirty & /*color*/ 2) {
+    				set_style(div1, "color", /*color*/ ctx[1]);
+    			}
+
+    			if (dirty & /*size*/ 32) {
+    				set_style(div1, "font-size", /*size*/ ctx[5]);
+    			}
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div0);
+    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(div1);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$1.name,
+    		type: "if",
+    		source: "(76:2) {#if align === 'left'}",
+    		ctx
+    	});
+
+    	return block;
+    }
 
     function create_fragment$6(ctx) {
     	let div;
-    	let raw_value = /*obj*/ ctx[4].label + "";
-    	let div_style_value;
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*align*/ ctx[3] === "left") return create_if_block$1;
+    		return create_else_block$1;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			attr_dev(div, "class", "label svelte-j5whdb");
-    			attr_dev(div, "style", div_style_value = "top:" + /*obj*/ ctx[4].value + "px; opacity:" + /*opacity*/ ctx[3] + "; border-" + /*side*/ ctx[2] + ": 4px solid " + /*color*/ ctx[0] + ";\n  color:" + /*color*/ ctx[0] + "; text-align: " + /*align*/ ctx[1] + ";");
-    			add_location(div, file$6, 29, 0, 585);
+    			if_block.c();
+    			attr_dev(div, "class", "container svelte-1pa4pjr");
+    			set_style(div, "width", "100%");
+    			set_style(div, "opacity", /*opacity*/ ctx[6]);
+    			set_style(div, "top", /*top*/ ctx[8] + /*margin*/ ctx[4] + "px");
+    			set_style(div, "height", /*height*/ ctx[9] - /*margin*/ ctx[4] * 2 + "px");
+    			attr_dev(div, "title", /*title*/ ctx[7]);
+    			add_location(div, file$6, 70, 0, 1429);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
-    			div.innerHTML = raw_value;
+    			if_block.m(div, null);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*opacity, side, color, align*/ 15 && div_style_value !== (div_style_value = "top:" + /*obj*/ ctx[4].value + "px; opacity:" + /*opacity*/ ctx[3] + "; border-" + /*side*/ ctx[2] + ": 4px solid " + /*color*/ ctx[0] + ";\n  color:" + /*color*/ ctx[0] + "; text-align: " + /*align*/ ctx[1] + ";")) {
-    				attr_dev(div, "style", div_style_value);
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			}
+
+    			if (dirty & /*opacity*/ 64) {
+    				set_style(div, "opacity", /*opacity*/ ctx[6]);
+    			}
+
+    			if (dirty & /*margin*/ 16) {
+    				set_style(div, "top", /*top*/ ctx[8] + /*margin*/ ctx[4] + "px");
+    			}
+
+    			if (dirty & /*margin*/ 16) {
+    				set_style(div, "height", /*height*/ ctx[9] - /*margin*/ ctx[4] * 2 + "px");
+    			}
+
+    			if (dirty & /*title*/ 128) {
+    				attr_dev(div, "title", /*title*/ ctx[7]);
     			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
+    			if_block.d();
     		}
     	};
 
@@ -10657,21 +10828,59 @@ var app = (function () {
     }
 
     function instance$6($$self, $$props, $$invalidate) {
-    	let { label = "" } = $$props;
+    	let { width = "5px" } = $$props;
+    	let { space = "5px" } = $$props;
     	let { align = "right" } = $$props;
-    	let { side = "right" } = $$props;
-    	let { opacity = "1.0" } = $$props;
-    	let { value = null } = $$props;
-    	let { color = "#AB5850" } = $$props;
+    	let { margin = 0 } = $$props;
+    	let { size = "14px" } = $$props;
+    	let { opacity = "1" } = $$props;
+    	let { title = "" } = $$props; //hover text
+    	let { label = "" } = $$props;
+    	let { text = "" } = $$props;
+    	label = label || text;
+    	let { color = "steelblue" } = $$props;
     	color = spencerColor.colors[color] || color;
+    	let { start = getContext("start") } = $$props;
+    	let { date = "" } = $$props;
+    	start = date || start;
+    	start = src$1(start);
+    	let { end = getContext("end") } = $$props;
+    	let { duration = "" } = $$props;
+
+    	if (!end && duration) {
+    		let words = duration.split(" ");
+    		end = start.add(words[0], words[1]);
+    	}
+
     	const scale = getContext("scale");
+    	start = start.epoch;
+    	end = src$1(end).epoch;
 
-    	let obj = {
-    		label,
-    		value: scale(src$1(value).epoch)
-    	};
+    	if (duration) {
+    		let split = duration.split(" ");
+    		end = src$1(start).add(Number(split[0]), split[1]).epoch;
+    	}
 
-    	const writable_props = ["label", "align", "side", "opacity", "value", "color"];
+    	let top = scale(start);
+    	let bottom = scale(end);
+    	let height = bottom - top;
+
+    	const writable_props = [
+    		"width",
+    		"space",
+    		"align",
+    		"margin",
+    		"size",
+    		"opacity",
+    		"title",
+    		"label",
+    		"text",
+    		"color",
+    		"start",
+    		"date",
+    		"end",
+    		"duration"
+    	];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Label> was created with unknown prop '${key}'`);
@@ -10681,43 +10890,88 @@ var app = (function () {
     	validate_slots("Label", $$slots, []);
 
     	$$self.$set = $$props => {
-    		if ("label" in $$props) $$invalidate(5, label = $$props.label);
-    		if ("align" in $$props) $$invalidate(1, align = $$props.align);
-    		if ("side" in $$props) $$invalidate(2, side = $$props.side);
-    		if ("opacity" in $$props) $$invalidate(3, opacity = $$props.opacity);
-    		if ("value" in $$props) $$invalidate(6, value = $$props.value);
-    		if ("color" in $$props) $$invalidate(0, color = $$props.color);
+    		if ("width" in $$props) $$invalidate(2, width = $$props.width);
+    		if ("space" in $$props) $$invalidate(12, space = $$props.space);
+    		if ("align" in $$props) $$invalidate(3, align = $$props.align);
+    		if ("margin" in $$props) $$invalidate(4, margin = $$props.margin);
+    		if ("size" in $$props) $$invalidate(5, size = $$props.size);
+    		if ("opacity" in $$props) $$invalidate(6, opacity = $$props.opacity);
+    		if ("title" in $$props) $$invalidate(7, title = $$props.title);
+    		if ("label" in $$props) $$invalidate(0, label = $$props.label);
+    		if ("text" in $$props) $$invalidate(13, text = $$props.text);
+    		if ("color" in $$props) $$invalidate(1, color = $$props.color);
+    		if ("start" in $$props) $$invalidate(10, start = $$props.start);
+    		if ("date" in $$props) $$invalidate(14, date = $$props.date);
+    		if ("end" in $$props) $$invalidate(11, end = $$props.end);
+    		if ("duration" in $$props) $$invalidate(15, duration = $$props.duration);
     	};
 
     	$$self.$capture_state = () => ({
-    		getContext,
     		spacetime: src$1,
+    		getContext,
     		c: spencerColor,
-    		label,
+    		width,
+    		space,
     		align,
-    		side,
+    		margin,
+    		size,
     		opacity,
-    		value,
+    		title,
+    		label,
+    		text,
     		color,
+    		start,
+    		date,
+    		end,
+    		duration,
     		scale,
-    		obj
+    		top,
+    		bottom,
+    		height
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("label" in $$props) $$invalidate(5, label = $$props.label);
-    		if ("align" in $$props) $$invalidate(1, align = $$props.align);
-    		if ("side" in $$props) $$invalidate(2, side = $$props.side);
-    		if ("opacity" in $$props) $$invalidate(3, opacity = $$props.opacity);
-    		if ("value" in $$props) $$invalidate(6, value = $$props.value);
-    		if ("color" in $$props) $$invalidate(0, color = $$props.color);
-    		if ("obj" in $$props) $$invalidate(4, obj = $$props.obj);
+    		if ("width" in $$props) $$invalidate(2, width = $$props.width);
+    		if ("space" in $$props) $$invalidate(12, space = $$props.space);
+    		if ("align" in $$props) $$invalidate(3, align = $$props.align);
+    		if ("margin" in $$props) $$invalidate(4, margin = $$props.margin);
+    		if ("size" in $$props) $$invalidate(5, size = $$props.size);
+    		if ("opacity" in $$props) $$invalidate(6, opacity = $$props.opacity);
+    		if ("title" in $$props) $$invalidate(7, title = $$props.title);
+    		if ("label" in $$props) $$invalidate(0, label = $$props.label);
+    		if ("text" in $$props) $$invalidate(13, text = $$props.text);
+    		if ("color" in $$props) $$invalidate(1, color = $$props.color);
+    		if ("start" in $$props) $$invalidate(10, start = $$props.start);
+    		if ("date" in $$props) $$invalidate(14, date = $$props.date);
+    		if ("end" in $$props) $$invalidate(11, end = $$props.end);
+    		if ("duration" in $$props) $$invalidate(15, duration = $$props.duration);
+    		if ("top" in $$props) $$invalidate(8, top = $$props.top);
+    		if ("bottom" in $$props) bottom = $$props.bottom;
+    		if ("height" in $$props) $$invalidate(9, height = $$props.height);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [color, align, side, opacity, obj, label, value];
+    	return [
+    		label,
+    		color,
+    		width,
+    		align,
+    		margin,
+    		size,
+    		opacity,
+    		title,
+    		top,
+    		height,
+    		start,
+    		end,
+    		space,
+    		text,
+    		date,
+    		duration
+    	];
     }
 
     class Label extends SvelteComponentDev {
@@ -10725,12 +10979,20 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$6, create_fragment$6, safe_not_equal, {
-    			label: 5,
-    			align: 1,
-    			side: 2,
-    			opacity: 3,
-    			value: 6,
-    			color: 0
+    			width: 2,
+    			space: 12,
+    			align: 3,
+    			margin: 4,
+    			size: 5,
+    			opacity: 6,
+    			title: 7,
+    			label: 0,
+    			text: 13,
+    			color: 1,
+    			start: 10,
+    			date: 14,
+    			end: 11,
+    			duration: 15
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -10741,11 +11003,19 @@ var app = (function () {
     		});
     	}
 
-    	get label() {
+    	get width() {
     		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set label(value) {
+    	set width(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get space() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set space(value) {
     		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -10757,11 +11027,19 @@ var app = (function () {
     		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get side() {
+    	get margin() {
     		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set side(value) {
+    	set margin(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get size() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set size(value) {
     		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -10773,11 +11051,27 @@ var app = (function () {
     		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get value() {
+    	get title() {
     		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set value(value) {
+    	set title(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get label() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set label(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get text() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set text(value) {
     		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -10788,11 +11082,43 @@ var app = (function () {
     	set color(value) {
     		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get start() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set start(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get date() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set date(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get end() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set end(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get duration() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set duration(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
 
-    /* Users/spencer/mountain/somehow-timeline/src/Column.svelte generated by Svelte v3.22.3 */
+    /* Users/spencer/mountain/somehow-timeline/src/shapes/Column.svelte generated by Svelte v3.22.3 */
 
-    const file$7 = "Users/spencer/mountain/somehow-timeline/src/Column.svelte";
+    const file$7 = "Users/spencer/mountain/somehow-timeline/src/shapes/Column.svelte";
 
     function create_fragment$7(ctx) {
     	let div1;
@@ -10800,21 +11126,21 @@ var app = (function () {
     	let t0;
     	let t1;
     	let current;
-    	const default_slot_template = /*$$slots*/ ctx[3].default;
-    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[2], null);
+    	const default_slot_template = /*$$slots*/ ctx[4].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[3], null);
 
     	const block = {
     		c: function create() {
     			div1 = element("div");
     			div0 = element("div");
-    			t0 = text(/*label*/ ctx[1]);
+    			t0 = text(/*label*/ ctx[0]);
     			t1 = space();
     			if (default_slot) default_slot.c();
-    			attr_dev(div0, "class", "label svelte-n200n5");
-    			add_location(div0, file$7, 21, 2, 387);
-    			attr_dev(div1, "class", "part column svelte-n200n5");
-    			set_style(div1, "width", /*width*/ ctx[0]);
-    			add_location(div1, file$7, 20, 0, 336);
+    			attr_dev(div0, "class", "label svelte-zuei5e");
+    			add_location(div0, file$7, 24, 2, 460);
+    			attr_dev(div1, "class", "part column svelte-zuei5e");
+    			set_style(div1, "width", /*width*/ ctx[1]);
+    			add_location(div1, file$7, 23, 0, 409);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -10832,16 +11158,16 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			if (!current || dirty & /*label*/ 2) set_data_dev(t0, /*label*/ ctx[1]);
+    			if (!current || dirty & /*label*/ 1) set_data_dev(t0, /*label*/ ctx[0]);
 
     			if (default_slot) {
-    				if (default_slot.p && dirty & /*$$scope*/ 4) {
-    					default_slot.p(get_slot_context(default_slot_template, ctx, /*$$scope*/ ctx[2], null), get_slot_changes(default_slot_template, /*$$scope*/ ctx[2], dirty, null));
+    				if (default_slot.p && dirty & /*$$scope*/ 8) {
+    					default_slot.p(get_slot_context(default_slot_template, ctx, /*$$scope*/ ctx[3], null), get_slot_changes(default_slot_template, /*$$scope*/ ctx[3], dirty, null));
     				}
     			}
 
-    			if (!current || dirty & /*width*/ 1) {
-    				set_style(div1, "width", /*width*/ ctx[0]);
+    			if (!current || dirty & /*width*/ 2) {
+    				set_style(div1, "width", /*width*/ ctx[1]);
     			}
     		},
     		i: function intro(local) {
@@ -10873,7 +11199,9 @@ var app = (function () {
     function instance$7($$self, $$props, $$invalidate) {
     	let { width = "30px" } = $$props;
     	let { label = "" } = $$props;
-    	const writable_props = ["width", "label"];
+    	let { title = "" } = $$props;
+    	label = label || title;
+    	const writable_props = ["width", "label", "title"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Column> was created with unknown prop '${key}'`);
@@ -10883,29 +11211,31 @@ var app = (function () {
     	validate_slots("Column", $$slots, ['default']);
 
     	$$self.$set = $$props => {
-    		if ("width" in $$props) $$invalidate(0, width = $$props.width);
-    		if ("label" in $$props) $$invalidate(1, label = $$props.label);
-    		if ("$$scope" in $$props) $$invalidate(2, $$scope = $$props.$$scope);
+    		if ("width" in $$props) $$invalidate(1, width = $$props.width);
+    		if ("label" in $$props) $$invalidate(0, label = $$props.label);
+    		if ("title" in $$props) $$invalidate(2, title = $$props.title);
+    		if ("$$scope" in $$props) $$invalidate(3, $$scope = $$props.$$scope);
     	};
 
-    	$$self.$capture_state = () => ({ width, label });
+    	$$self.$capture_state = () => ({ width, label, title });
 
     	$$self.$inject_state = $$props => {
-    		if ("width" in $$props) $$invalidate(0, width = $$props.width);
-    		if ("label" in $$props) $$invalidate(1, label = $$props.label);
+    		if ("width" in $$props) $$invalidate(1, width = $$props.width);
+    		if ("label" in $$props) $$invalidate(0, label = $$props.label);
+    		if ("title" in $$props) $$invalidate(2, title = $$props.title);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [width, label, $$scope, $$slots];
+    	return [label, width, title, $$scope, $$slots];
     }
 
     class Column extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { width: 0, label: 1 });
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, { width: 1, label: 0, title: 2 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -10930,12 +11260,18 @@ var app = (function () {
     	set label(value) {
     		throw new Error("<Column>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get title() {
+    		throw new Error("<Column>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set title(value) {
+    		throw new Error("<Column>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
 
-    /* Users/spencer/mountain/somehow-timeline/src/labels/WideLabel.svelte generated by Svelte v3.22.3 */
-
-    const { console: console_1 } = globals;
-    const file$8 = "Users/spencer/mountain/somehow-timeline/src/labels/WideLabel.svelte";
+    /* Users/spencer/mountain/somehow-timeline/src/shapes/WideLabel.svelte generated by Svelte v3.22.3 */
+    const file$8 = "Users/spencer/mountain/somehow-timeline/src/shapes/WideLabel.svelte";
 
     function create_fragment$8(ctx) {
     	let div;
@@ -10952,7 +11288,7 @@ var app = (function () {
     			set_style(div, "text-align", /*align*/ ctx[3]);
     			set_style(div, "color", /*color*/ ctx[4]);
     			set_style(div, "border-bottom", "1px solid " + /*color*/ ctx[4]);
-    			add_location(div, file$8, 22, 0, 447);
+    			add_location(div, file$8, 21, 0, 427);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -11011,11 +11347,10 @@ var app = (function () {
     	let { color = "black" } = $$props;
     	const scale = getContext("scale");
     	let y = scale(src$1(date).epoch);
-    	console.log(left);
     	const writable_props = ["date", "label", "width", "left", "align", "color"];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<WideLabel> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<WideLabel> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
@@ -11183,7 +11518,7 @@ var app = (function () {
     				color: /*zone*/ ctx[11].color,
     				label: /*zone*/ ctx[11].offset + "h",
     				opacity: "0.5",
-    				date: "dec 15 " + /*year*/ ctx[2]
+    				date: "march 10 " + /*year*/ ctx[2]
     			},
     			$$inline: true
     		});
@@ -11764,7 +12099,7 @@ var app = (function () {
     }
 
     // (170:10) {#if !String(zone.offset).match(/\./)}
-    function create_if_block$1(ctx) {
+    function create_if_block$2(ctx) {
     	let current;
 
     	const widelabel = new WideLabel({
@@ -11773,7 +12108,7 @@ var app = (function () {
     				width: "30px",
     				color: /*zone*/ ctx[11].color,
     				label: /*zone*/ ctx[11].offset + "h",
-    				date: "dec 5 " + /*year*/ ctx[2]
+    				date: "april 10 " + /*year*/ ctx[2]
     			},
     			$$inline: true
     		});
@@ -11803,7 +12138,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$1.name,
+    		id: create_if_block$2.name,
     		type: "if",
     		source: "(170:10) {#if !String(zone.offset).match(/\\./)}",
     		ctx
@@ -12021,7 +12356,7 @@ var app = (function () {
     	let t;
     	let each_1_anchor;
     	let current;
-    	let if_block = show_if && create_if_block$1(ctx);
+    	let if_block = show_if && create_if_block$2(ctx);
     	let each_value_1 = /*zone*/ ctx[11].times;
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
@@ -12396,19 +12731,19 @@ var app = (function () {
     			create_component(timeline1.$$.fragment);
     			t12 = space();
     			create_component(foot.$$.fragment);
-    			add_location(div0, file$9, 87, 6, 1829);
+    			add_location(div0, file$9, 87, 6, 1841);
     			attr_dev(div1, "class", "grey svelte-1munrgk");
-    			add_location(div1, file$9, 88, 6, 1865);
+    			add_location(div1, file$9, 88, 6, 1877);
     			attr_dev(div2, "class", "m3 svelte-1munrgk");
-    			add_location(div2, file$9, 86, 4, 1806);
-    			add_location(div3, file$9, 145, 6, 3568);
+    			add_location(div2, file$9, 86, 4, 1818);
+    			add_location(div3, file$9, 145, 6, 3582);
     			attr_dev(div4, "class", "grey svelte-1munrgk");
-    			add_location(div4, file$9, 146, 6, 3604);
+    			add_location(div4, file$9, 146, 6, 3618);
     			attr_dev(div5, "class", "m3 svelte-1munrgk");
-    			add_location(div5, file$9, 144, 4, 3545);
+    			add_location(div5, file$9, 144, 4, 3559);
     			attr_dev(div6, "class", "m3 svelte-1munrgk");
-    			add_location(div6, file$9, 84, 2, 1773);
-    			add_location(div7, file$9, 82, 0, 1731);
+    			add_location(div6, file$9, 84, 2, 1785);
+    			add_location(div7, file$9, 82, 0, 1743);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -12497,10 +12832,10 @@ var app = (function () {
     }
 
     function instance$9($$self, $$props, $$invalidate) {
-    	let { title = "DST change times, in 2020" } = $$props;
+    	let { title = "Daylight Savings change dates, in 2020" } = $$props;
     	let { sub = "'Eastern Standard' time" } = $$props;
     	let year = new Date().getFullYear();
-    	let start = "Feb 22 ";
+    	let start = "Jan 1 ";
     	let end = "Dec 31 ";
     	let height = 900;
     	let byTime = {};
