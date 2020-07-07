@@ -170,6 +170,10 @@ module.exports = {
     num: 'toronto-budget',
     title: 'Toronto City budget',
     thumb: 'thumb.png'
+  }, {
+    num: 'cbc-radio-schedule',
+    title: 'CBC Radio 1 Schedule',
+    thumb: 'thumb.png'
   }]
 };
 

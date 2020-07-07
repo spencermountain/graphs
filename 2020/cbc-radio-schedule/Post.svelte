@@ -1,7 +1,13 @@
 <script>
   import Head from '../../components/Head.svelte'
   import Foot from '../../components/Foot.svelte'
-  import { Timeline, Column, Line, Ticks, Bar } from '/Users/spencer/mountain/somehow-timeline/src'
+  import {
+    Timeline,
+    Column,
+    Line,
+    Ticks,
+    WideLabel,
+  } from '/Users/spencer/mountain/somehow-timeline/src'
   export let title = 'CBC radio 1 schedule'
   export let sub = ''
   let start = 'Jan 1 2020 5:00am'
@@ -103,7 +109,7 @@
 
         </Column>
       {/each}
-
+      <WideLabel date={'Jan 1 2020 12:00pm'} color="#e4e4e4" />
     </Timeline>
   </div>
   <Foot {title} />
