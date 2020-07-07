@@ -911,25 +911,6 @@ var app = (function () {
     // })
     // console.log(scale(50))
 
-    var scale = /*#__PURE__*/Object.freeze({
-        __proto__: null,
-        'default': scaleLinear
-    });
-
-    function createCommonjsModule(fn, module) {
-    	return module = { exports: {} }, fn(module, module.exports), module.exports;
-    }
-
-    function getCjsExportFromNamespace (n) {
-    	return n && n['default'] || n;
-    }
-
-    function commonjsRequire () {
-    	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
-    }
-
-    var linear = getCjsExportFromNamespace(scale);
-
     const topRoom = 20;
 
     const getMax$1 = function (byCol) {
@@ -965,8 +946,8 @@ var app = (function () {
 
     const makePoints = function (byCol, width, height, nodeWidth) {
       let max = getMax$1(byCol);
-      let yScale = linear({ minmax: [0, max], world: [0, height] });
-      let xScale = linear({ minmax: [0, byCol.length], world: [0, width] });
+      let yScale = scaleLinear({ minmax: [0, max], world: [0, height] });
+      let xScale = scaleLinear({ minmax: [0, byCol.length], world: [0, width] });
       byCol.forEach((nodes) => {
         nodes.forEach((node) => {
           node.y = yScale(node.top);
@@ -1268,6 +1249,14 @@ var app = (function () {
 
     const items = writable([]);
     let colCount = writable(0);
+
+    function createCommonjsModule(fn, module) {
+    	return module = { exports: {} }, fn(module, module.exports), module.exports;
+    }
+
+    function commonjsRequire () {
+    	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
+    }
 
     var spencerColor = createCommonjsModule(function (module, exports) {
     !function(e){module.exports=e();}(function(){return function u(i,a,c){function f(r,e){if(!a[r]){if(!i[r]){var o="function"==typeof commonjsRequire&&commonjsRequire;if(!e&&o)return o(r,!0);if(d)return d(r,!0);var n=new Error("Cannot find module '"+r+"'");throw n.code="MODULE_NOT_FOUND",n}var t=a[r]={exports:{}};i[r][0].call(t.exports,function(e){return f(i[r][1][e]||e)},t,t.exports,u,i,a,c);}return a[r].exports}for(var d="function"==typeof commonjsRequire&&commonjsRequire,e=0;e<c.length;e++)f(c[e]);return f}({1:[function(e,r,o){r.exports={blue:"#6699cc",green:"#6accb2",yellow:"#e1e6b3",red:"#cc7066",pink:"#F2C0BB",brown:"#705E5C",orange:"#cc8a66",purple:"#d8b3e6",navy:"#335799",olive:"#7f9c6c",fuscia:"#735873",beige:"#e6d7b3",slate:"#8C8C88",suede:"#9c896c",burnt:"#603a39",sea:"#50617A",sky:"#2D85A8",night:"#303b50",rouge:"#914045",grey:"#838B91",mud:"#C4ABAB",royal:"#275291",cherry:"#cc6966",tulip:"#e6b3bc",rose:"#D68881",fire:"#AB5850",greyblue:"#72697D",greygreen:"#8BA3A2",greypurple:"#978BA3",burn:"#6D5685",slategrey:"#bfb0b3",light:"#a3a5a5",lighter:"#d7d5d2",fudge:"#4d4d4d",lightgrey:"#949a9e",white:"#fbfbfb",dimgrey:"#606c74",softblack:"#463D4F",dark:"#443d3d",black:"#333333"};},{}],2:[function(e,r,o){var n=e("./colors"),t={juno:["blue","mud","navy","slate","pink","burn"],barrow:["rouge","red","orange","burnt","brown","greygreen"],roma:["#8a849a","#b5b0bf","rose","lighter","greygreen","mud"],palmer:["red","navy","olive","pink","suede","sky"],mark:["#848f9a","#9aa4ac","slate","#b0b8bf","mud","grey"],salmon:["sky","sea","fuscia","slate","mud","fudge"],dupont:["green","brown","orange","red","olive","blue"],bloor:["night","navy","beige","rouge","mud","grey"],yukon:["mud","slate","brown","sky","beige","red"],david:["blue","green","yellow","red","pink","light"],neste:["mud","cherry","royal","rouge","greygreen","greypurple"],ken:["red","sky","#c67a53","greygreen","#dfb59f","mud"]};Object.keys(t).forEach(function(e){t[e]=t[e].map(function(e){return n[e]||e});}),r.exports=t;},{"./colors":1}],3:[function(e,r,o){var n=e("./colors"),t=e("./combos"),u={colors:n,list:Object.keys(n).map(function(e){return n[e]}),combos:t};r.exports=u;},{"./colors":1,"./combos":2}]},{},[3])(3)});
@@ -2532,6 +2521,8 @@ var app = (function () {
     	let t5;
     	let t6;
     	let t7;
+    	let t8;
+    	let t9;
     	let current;
 
     	const node0 = new Node({
@@ -2556,15 +2547,35 @@ var app = (function () {
 
     	const node2 = new Node({
     			props: {
-    				name: "Ems",
+    				name: "Police",
     				from: "Toronto",
-    				value: "2000",
+    				value: "1200",
     				color: "#CDADD9"
     			},
     			$$inline: true
     		});
 
     	const node3 = new Node({
+    			props: {
+    				name: "Fire",
+    				from: "Toronto",
+    				value: "500",
+    				color: "#CDADD9"
+    			},
+    			$$inline: true
+    		});
+
+    	const node4 = new Node({
+    			props: {
+    				name: "Ems",
+    				from: "Toronto",
+    				value: "300",
+    				color: "#CDADD9"
+    			},
+    			$$inline: true
+    		});
+
+    	const node5 = new Node({
     			props: {
     				name: "Financing",
     				from: "Toronto",
@@ -2574,7 +2585,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const node4 = new Node({
+    	const node6 = new Node({
     			props: {
     				name: "Operations",
     				from: "Toronto",
@@ -2584,7 +2595,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const node5 = new Node({
+    	const node7 = new Node({
     			props: {
     				name: "Services",
     				from: "Toronto",
@@ -2594,7 +2605,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const node6 = new Node({
+    	const node8 = new Node({
     			props: {
     				name: "Accounts",
     				from: "Toronto",
@@ -2604,7 +2615,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const node7 = new Node({
+    	const node9 = new Node({
     			props: {
     				name: "Transportation",
     				from: "Toronto",
@@ -2614,7 +2625,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const node8 = new Node({
+    	const node10 = new Node({
     			props: {
     				name: "Other",
     				from: "Toronto",
@@ -2643,6 +2654,10 @@ var app = (function () {
     			create_component(node7.$$.fragment);
     			t7 = space();
     			create_component(node8.$$.fragment);
+    			t8 = space();
+    			create_component(node9.$$.fragment);
+    			t9 = space();
+    			create_component(node10.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(node0, target, anchor);
@@ -2662,6 +2677,10 @@ var app = (function () {
     			mount_component(node7, target, anchor);
     			insert_dev(target, t7, anchor);
     			mount_component(node8, target, anchor);
+    			insert_dev(target, t8, anchor);
+    			mount_component(node9, target, anchor);
+    			insert_dev(target, t9, anchor);
+    			mount_component(node10, target, anchor);
     			current = true;
     		},
     		p: noop,
@@ -2676,6 +2695,8 @@ var app = (function () {
     			transition_in(node6.$$.fragment, local);
     			transition_in(node7.$$.fragment, local);
     			transition_in(node8.$$.fragment, local);
+    			transition_in(node9.$$.fragment, local);
+    			transition_in(node10.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -2688,6 +2709,8 @@ var app = (function () {
     			transition_out(node6.$$.fragment, local);
     			transition_out(node7.$$.fragment, local);
     			transition_out(node8.$$.fragment, local);
+    			transition_out(node9.$$.fragment, local);
+    			transition_out(node10.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -2708,6 +2731,10 @@ var app = (function () {
     			destroy_component(node7, detaching);
     			if (detaching) detach_dev(t7);
     			destroy_component(node8, detaching);
+    			if (detaching) detach_dev(t8);
+    			destroy_component(node9, detaching);
+    			if (detaching) detach_dev(t9);
+    			destroy_component(node10, detaching);
     		}
     	};
 

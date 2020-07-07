@@ -60,7 +60,9 @@
     <Col>
       <Node name="Social Programs" from="Toronto" value="3300" color="#6E9588" />
       <Node name="TTC" from="Toronto" value="2100" color="red" />
-      <Node name="Ems" from="Toronto" value="2000" color="#CDADD9" />
+      <Node name="Police" from="Toronto" value="1200" color="#CDADD9" />
+      <Node name="Fire" from="Toronto" value="500" color="#CDADD9" />
+      <Node name="Ems" from="Toronto" value="300" color="#CDADD9" />
       <Node name="Financing" from="Toronto" value="1000" color="sea" />
       <Node name="Operations" from="Toronto" value="900" color="sea" />
       <Node name="Services" from="Toronto" value="700" color="sea" />
