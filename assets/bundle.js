@@ -174,6 +174,10 @@ module.exports = {
     num: 'cbc-radio-schedule',
     title: 'CBC Radio 1 Schedule',
     thumb: 'thumb.png'
+  }, {
+    num: 'earth-as-pie',
+    title: 'Earth as a pie-chart',
+    thumb: 'thumb.png'
   }]
 };
 
