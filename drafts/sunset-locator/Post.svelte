@@ -4,10 +4,17 @@
   import spacetime from 'spacetime'
   import sunlight from 'spacetime-daylight'
   import { Round, Arc, Line, Label, Circle } from '/Users/spencer/mountain/somehow-circle/src'
-  import { Globe, Graticule, Latitude, Countries } from '/Users/spencer/mountain/somehow-geo/src'
+  // import { Globe, Graticule, Latitude, Countries } from '/Users/spencer/mountain/somehow-maps/src'
+  // import { Latitude } from '/Users/spencer/mountain/somehow-slider/src/'
+  import { Latitude } from 'somehow-slider'
   export let title = ''
   export let sub = ''
-
+  let latitude = 37
+  const fmt = function(v) {
+    v -= 90
+    v *= -1
+    return v
+  }
   spacetime.extend(sunlight)
 
   // let s = spacetime.today('Canada/Eastern')
@@ -26,21 +33,18 @@
 </style>
 
 <div>
-  <Head {title} {sub} />
+  <Head {title} {sub} num={16} />
   <div class="m3">Sunrise + Sunset movement over a year</div>
-  <div class="main col">
+  <div class="m3 col">
     <div class="right " style="width:300px;">
-      <Globe tilt={-10} rotate="30">
-        <Graticule />
-        <Countries color="lightgrey" />
-        <Latitude at={40} width="8" />
-      </Globe>
+      <Latitude bind:value={latitude} />
     </div>
 
     <div class="col" style="max-width:800px;">
-      <div class="right f2" style="margin-bottom:-50px;">{40}°</div>
+      <div class="right f2" style="margin-bottom:-50px;">{fmt(latitude)}°</div>
       <Round rotate="0" margin="10">
-        <Arc from={90} to={180} color="blue" width="5" radius="60" />
+        <Arc from={-45} to={45} color="blue" width="5" radius="60" />
+        <Arc from={135} to={225} color="blue" width="5" radius="60" />
       </Round>
     </div>
   </div>
