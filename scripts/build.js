@@ -1,6 +1,6 @@
 const rollup = require('rollup')
 const svelte = require('rollup-plugin-svelte')
-const resolve = require('@rollup/plugin-node-resolve')
+const nodeResolve = require('@rollup/plugin-node-resolve')
 const commonjs = require('@rollup/plugin-commonjs')
 const json = require('@rollup/plugin-json')
 
@@ -17,10 +17,7 @@ const buildPost = function (abs) {
             css.write(`${abs}/build/bundle.css`, false)
           },
         }),
-        resolve({
-          browser: true,
-          dedupe: ['svelte'],
-        }),
+        nodeResolve(),
         commonjs(),
       ],
     })
