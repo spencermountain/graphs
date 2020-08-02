@@ -174,5 +174,10 @@ module.exports = {
       title: "CERB and Canada's population",
       thumb: 'thumb.png',
     },
+    {
+      num: 'covid-income',
+      title: "Canada's income during COVID",
+      thumb: 'thumb.png',
+    },
   ],
 }

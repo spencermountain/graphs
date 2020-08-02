@@ -988,13 +988,6 @@ var app = (function () {
         else
             dispatch_dev$1("SvelteDOMSetAttribute", { node, attribute, value });
     }
-    function set_data_dev$1(text, data) {
-        data = '' + data;
-        if (text.data === data)
-            return;
-        dispatch_dev$1("SvelteDOMSetData", { node: text, data });
-        text.data = data;
-    }
     function validate_each_argument(arg) {
         if (typeof arg !== 'string' && !(arg && typeof arg === 'object' && 'length' in arg)) {
             let msg = '{#each} only iterates over array-like objects.';
@@ -1888,8 +1881,7 @@ var app = (function () {
     // (49:6) {#if o.type === 'label'}
     function create_if_block$1(ctx) {
     	let text_1;
-    	let t_value = /*o*/ ctx[12].text + "";
-    	let t;
+    	let raw_value = /*o*/ ctx[12].text + "";
     	let text_1_x_value;
     	let text_1_y_value;
     	let text_1_transform_value;
@@ -1900,7 +1892,6 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			text_1 = svg_element("text");
-    			t = text$1(t_value);
     			attr_dev$1(text_1, "x", text_1_x_value = /*o*/ ctx[12].x);
     			attr_dev$1(text_1, "y", text_1_y_value = /*o*/ ctx[12].y);
     			attr_dev$1(text_1, "transform", text_1_transform_value = "rotate(" + /*o*/ ctx[12].angle + "," + /*o*/ ctx[12].x + "," + /*o*/ ctx[12].y + ")");
@@ -1911,11 +1902,10 @@ var app = (function () {
     		},
     		m: function mount(target, anchor) {
     			insert_dev$1(target, text_1, anchor);
-    			append_dev$1(text_1, t);
+    			text_1.innerHTML = raw_value;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*shapes*/ 1 && t_value !== (t_value = /*o*/ ctx[12].text + "")) set_data_dev$1(t, t_value);
-
+    			if (dirty & /*shapes*/ 1 && raw_value !== (raw_value = /*o*/ ctx[12].text + "")) text_1.innerHTML = raw_value;
     			if (dirty & /*shapes*/ 1 && text_1_x_value !== (text_1_x_value = /*o*/ ctx[12].x)) {
     				attr_dev$1(text_1, "x", text_1_x_value);
     			}
@@ -2848,7 +2838,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			div = element$1("div");
-    			add_location$1(div, file$6, 25, 0, 488);
+    			add_location$1(div, file$6, 29, 0, 579);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2877,7 +2867,10 @@ var app = (function () {
 
     function instance$6($$self, $$props, $$invalidate) {
     	let { angle = 0 } = $$props;
+    	let { at = 0 } = $$props;
+    	angle = angle || at;
     	let { radius = 0 } = $$props;
+    	let { rotate = true } = $$props;
     	let { size = 1.5 } = $$props;
     	let { align = "left" } = $$props;
     	let { text = "" } = $$props;
@@ -2891,13 +2884,14 @@ var app = (function () {
     			align,
     			angle: Number(angle),
     			radius: Number(radius),
-    			size: Number(size)
+    			size: Number(size),
+    			rotate
     		});
 
     		return arr;
     	});
 
-    	const writable_props = ["angle", "radius", "size", "align", "text", "color"];
+    	const writable_props = ["angle", "at", "radius", "rotate", "size", "align", "text", "color"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Label> was created with unknown prop '${key}'`);
@@ -2907,19 +2901,23 @@ var app = (function () {
     	validate_slots$1("Label", $$slots, []);
 
     	$$self.$set = $$props => {
-    		if ("angle" in $$props) $$invalidate(1, angle = $$props.angle);
-    		if ("radius" in $$props) $$invalidate(2, radius = $$props.radius);
-    		if ("size" in $$props) $$invalidate(3, size = $$props.size);
-    		if ("align" in $$props) $$invalidate(4, align = $$props.align);
-    		if ("text" in $$props) $$invalidate(5, text = $$props.text);
-    		if ("color" in $$props) $$invalidate(0, color = $$props.color);
+    		if ("angle" in $$props) $$invalidate(0, angle = $$props.angle);
+    		if ("at" in $$props) $$invalidate(2, at = $$props.at);
+    		if ("radius" in $$props) $$invalidate(3, radius = $$props.radius);
+    		if ("rotate" in $$props) $$invalidate(4, rotate = $$props.rotate);
+    		if ("size" in $$props) $$invalidate(5, size = $$props.size);
+    		if ("align" in $$props) $$invalidate(6, align = $$props.align);
+    		if ("text" in $$props) $$invalidate(7, text = $$props.text);
+    		if ("color" in $$props) $$invalidate(1, color = $$props.color);
     	};
 
     	$$self.$capture_state = () => ({
     		labels,
     		colors,
     		angle,
+    		at,
     		radius,
+    		rotate,
     		size,
     		align,
     		text,
@@ -2927,19 +2925,21 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("angle" in $$props) $$invalidate(1, angle = $$props.angle);
-    		if ("radius" in $$props) $$invalidate(2, radius = $$props.radius);
-    		if ("size" in $$props) $$invalidate(3, size = $$props.size);
-    		if ("align" in $$props) $$invalidate(4, align = $$props.align);
-    		if ("text" in $$props) $$invalidate(5, text = $$props.text);
-    		if ("color" in $$props) $$invalidate(0, color = $$props.color);
+    		if ("angle" in $$props) $$invalidate(0, angle = $$props.angle);
+    		if ("at" in $$props) $$invalidate(2, at = $$props.at);
+    		if ("radius" in $$props) $$invalidate(3, radius = $$props.radius);
+    		if ("rotate" in $$props) $$invalidate(4, rotate = $$props.rotate);
+    		if ("size" in $$props) $$invalidate(5, size = $$props.size);
+    		if ("align" in $$props) $$invalidate(6, align = $$props.align);
+    		if ("text" in $$props) $$invalidate(7, text = $$props.text);
+    		if ("color" in $$props) $$invalidate(1, color = $$props.color);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [color, angle, radius, size, align, text];
+    	return [angle, color, at, radius, rotate, size, align, text];
     }
 
     class Label extends SvelteComponentDev$1 {
@@ -2947,12 +2947,14 @@ var app = (function () {
     		super(options);
 
     		init$1(this, options, instance$6, create_fragment$6, safe_not_equal$1, {
-    			angle: 1,
-    			radius: 2,
-    			size: 3,
-    			align: 4,
-    			text: 5,
-    			color: 0
+    			angle: 0,
+    			at: 2,
+    			radius: 3,
+    			rotate: 4,
+    			size: 5,
+    			align: 6,
+    			text: 7,
+    			color: 1
     		});
 
     		dispatch_dev$1("SvelteRegisterComponent", {
@@ -2971,11 +2973,27 @@ var app = (function () {
     		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
+    	get at() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set at(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
     	get radius() {
     		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set radius(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get rotate() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set rotate(value) {
     		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -3012,9 +3030,9 @@ var app = (function () {
     	}
     }
 
-    /* drafts/canada-income/Post.svelte generated by Svelte v3.22.3 */
+    /* 2020/covid-income/Post.svelte generated by Svelte v3.22.3 */
 
-    const file$7 = "drafts/canada-income/Post.svelte";
+    const file$7 = "2020/covid-income/Post.svelte";
 
     // (27:4) <Round rotate="0" margin="10">
     function create_default_slot(ctx) {
@@ -3022,6 +3040,37 @@ var app = (function () {
     	let t1;
     	let t2;
     	let t3;
+    	let t4;
+    	let t5;
+    	let t6;
+    	let t7;
+    	let t8;
+    	let t9;
+    	let t10;
+    	let t11;
+    	let t12;
+    	let t13;
+    	let t14;
+    	let t15;
+    	let t16;
+    	let t17;
+    	let t18;
+    	let t19;
+    	let t20;
+    	let t21;
+    	let t22;
+    	let t23;
+    	let t24;
+    	let t25;
+    	let t26;
+    	let t27;
+    	let t28;
+    	let t29;
+    	let t30;
+    	let t31;
+    	let t32;
+    	let t33;
+    	let t34;
     	let current;
 
     	const arc0 = new Arc({
@@ -3029,10 +3078,21 @@ var app = (function () {
     				from: 90,
     				to: 181,
     				color: "blue",
-    				width: "12",
-    				label: "child benefit",
-    				radius: "10",
+    				width: "8",
+    				radius: "5",
     				opacity: "0.6"
+    			},
+    			$$inline: true
+    		});
+
+    	const label0 = new Label({
+    			props: {
+    				text: "Child Benefit",
+    				radius: "14",
+    				align: "middle",
+    				at: "150",
+    				color: "blue",
+    				size: "1.5"
     			},
     			$$inline: true
     		});
@@ -3042,9 +3102,21 @@ var app = (function () {
     				from: 181,
     				to: 270,
     				color: "red",
-    				width: "3",
+    				width: "18",
     				label: "CERB",
-    				radius: "24"
+    				radius: "5"
+    			},
+    			$$inline: true
+    		});
+
+    	const label1 = new Label({
+    			props: {
+    				text: "CERB",
+    				radius: "28",
+    				align: "middle",
+    				at: "220",
+    				color: "red",
+    				size: "2.5"
     			},
     			$$inline: true
     		});
@@ -3054,30 +3126,348 @@ var app = (function () {
     				from: 18,
     				to: 90,
     				color: "purple",
-    				width: "11",
-    				label: "CPP/OAS",
-    				radius: "14"
+    				width: "23",
+    				radius: "2"
     			},
     			$$inline: true
     		});
 
-    	const label = new Label({
+    	const label2 = new Label({
+    			props: {
+    				text: "CPP/",
+    				radius: "36",
+    				align: "left",
+    				at: "50",
+    				color: "purple",
+    				size: "2"
+    			},
+    			$$inline: true
+    		});
+
+    	const label3 = new Label({
+    			props: {
+    				text: "OAS",
+    				radius: "36",
+    				align: "left",
+    				at: "42.5",
+    				color: "purple",
+    				size: "2"
+    			},
+    			$$inline: true
+    		});
+
+    	const label4 = new Label({
     			props: {
     				text: "poverty line",
-    				radius: "16",
+    				radius: "22",
+    				align: "right",
+    				at: "5",
     				color: "green"
     			},
     			$$inline: true
     		});
 
-    	const circle = new Circle({
+    	const arc3 = new Arc({
     			props: {
+    				from: "180",
+    				to: "450",
     				radius: "20",
     				color: "green",
     				fill: "green",
-    				width: "0.5",
-    				dotted: true,
-    				label: "poverty-line"
+    				width: "0.5"
+    			},
+    			$$inline: true
+    		});
+
+    	const circle0 = new Circle({
+    			props: {
+    				radius: "50",
+    				color: "pink",
+    				width: "0.2"
+    			},
+    			$$inline: true
+    		});
+
+    	const label5 = new Label({
+    			props: {
+    				text: "mean",
+    				radius: "51.5",
+    				align: "right",
+    				at: "142",
+    				color: "pink"
+    			},
+    			$$inline: true
+    		});
+
+    	const label6 = new Label({
+    			props: {
+    				text: "salary",
+    				radius: "51.5",
+    				align: "right",
+    				at: "145",
+    				color: "pink"
+    			},
+    			$$inline: true
+    		});
+
+    	const label7 = new Label({
+    			props: {
+    				text: "50k",
+    				radius: "51.5",
+    				align: "right",
+    				at: "148",
+    				size: "1.6",
+    				color: "pink"
+    			},
+    			$$inline: true
+    		});
+
+    	const circle1 = new Circle({
+    			props: {
+    				radius: "0",
+    				color: "lighter",
+    				width: "0.1",
+    				dotted: true
+    			},
+    			$$inline: true
+    		});
+
+    	const circle2 = new Circle({
+    			props: {
+    				radius: "10",
+    				color: "lighter",
+    				width: "0.1",
+    				dotted: true
+    			},
+    			$$inline: true
+    		});
+
+    	const circle3 = new Circle({
+    			props: {
+    				radius: "20",
+    				color: "lighter",
+    				width: "0.1",
+    				dotted: true
+    			},
+    			$$inline: true
+    		});
+
+    	const circle4 = new Circle({
+    			props: {
+    				radius: "30",
+    				color: "lighter",
+    				width: "0.1",
+    				dotted: true
+    			},
+    			$$inline: true
+    		});
+
+    	const label8 = new Label({
+    			props: {
+    				text: "30k",
+    				radius: "35.5",
+    				at: "135",
+    				color: "lighter"
+    			},
+    			$$inline: true
+    		});
+
+    	const circle5 = new Circle({
+    			props: {
+    				radius: "40",
+    				color: "lighter",
+    				width: "0.1",
+    				dotted: true
+    			},
+    			$$inline: true
+    		});
+
+    	const label9 = new Label({
+    			props: {
+    				text: "40k",
+    				radius: "45.5",
+    				at: "135",
+    				color: "lighter"
+    			},
+    			$$inline: true
+    		});
+
+    	const circle6 = new Circle({
+    			props: {
+    				radius: "60",
+    				color: "lighter",
+    				width: "0.1",
+    				dotted: true
+    			},
+    			$$inline: true
+    		});
+
+    	const label10 = new Label({
+    			props: {
+    				text: "60k",
+    				radius: "65.5",
+    				at: "135",
+    				color: "lighter"
+    			},
+    			$$inline: true
+    		});
+
+    	const circle7 = new Circle({
+    			props: {
+    				radius: "70",
+    				color: "lighter",
+    				width: "0.1",
+    				dotted: true
+    			},
+    			$$inline: true
+    		});
+
+    	const label11 = new Label({
+    			props: {
+    				text: "70k",
+    				radius: "75.5",
+    				at: "135",
+    				color: "lighter"
+    			},
+    			$$inline: true
+    		});
+
+    	const circle8 = new Circle({
+    			props: {
+    				radius: "80",
+    				color: "lighter",
+    				width: "0.1",
+    				dotted: true
+    			},
+    			$$inline: true
+    		});
+
+    	const label12 = new Label({
+    			props: {
+    				text: "80k",
+    				radius: "85.5",
+    				at: "135",
+    				color: "lighter"
+    			},
+    			$$inline: true
+    		});
+
+    	const arc4 = new Arc({
+    			props: {
+    				from: 270,
+    				to: 280,
+    				color: "sky",
+    				width: "1",
+    				radius: "20",
+    				opacity: "0.6"
+    			},
+    			$$inline: true
+    		});
+
+    	const arc5 = new Arc({
+    			props: {
+    				from: 280,
+    				to: 290,
+    				color: "sky",
+    				width: "1",
+    				radius: "30",
+    				opacity: "0.6"
+    			},
+    			$$inline: true
+    		});
+
+    	const arc6 = new Arc({
+    			props: {
+    				from: 290,
+    				to: 300,
+    				color: "sky",
+    				width: "1",
+    				radius: "40",
+    				opacity: "0.6"
+    			},
+    			$$inline: true
+    		});
+
+    	const arc7 = new Arc({
+    			props: {
+    				from: 300,
+    				to: 310,
+    				color: "sky",
+    				width: "1",
+    				radius: "50",
+    				opacity: "0.6"
+    			},
+    			$$inline: true
+    		});
+
+    	const arc8 = new Arc({
+    			props: {
+    				from: 310,
+    				to: 320,
+    				color: "sky",
+    				width: "1",
+    				radius: "50",
+    				opacity: "0.6"
+    			},
+    			$$inline: true
+    		});
+
+    	const arc9 = new Arc({
+    			props: {
+    				from: 320,
+    				to: 330,
+    				color: "sky",
+    				width: "1",
+    				radius: "50",
+    				opacity: "0.6"
+    			},
+    			$$inline: true
+    		});
+
+    	const arc10 = new Arc({
+    			props: {
+    				from: 330,
+    				to: 340,
+    				color: "sky",
+    				width: "1",
+    				radius: "50",
+    				opacity: "0.6"
+    			},
+    			$$inline: true
+    		});
+
+    	const arc11 = new Arc({
+    			props: {
+    				from: 340,
+    				to: 350,
+    				color: "sky",
+    				width: "1",
+    				radius: "60",
+    				opacity: "0.6"
+    			},
+    			$$inline: true
+    		});
+
+    	const arc12 = new Arc({
+    			props: {
+    				from: 350,
+    				to: 360,
+    				color: "sky",
+    				width: "1",
+    				radius: "70",
+    				opacity: "0.6"
+    			},
+    			$$inline: true
+    		});
+
+    	const arc13 = new Arc({
+    			props: {
+    				from: 360,
+    				to: 370,
+    				color: "sky",
+    				width: "1",
+    				radius: "80",
+    				opacity: "0.6"
     			},
     			$$inline: true
     		});
@@ -3086,54 +3476,302 @@ var app = (function () {
     		c: function create() {
     			create_component(arc0.$$.fragment);
     			t0 = space();
-    			create_component(arc1.$$.fragment);
+    			create_component(label0.$$.fragment);
     			t1 = space();
-    			create_component(arc2.$$.fragment);
+    			create_component(arc1.$$.fragment);
     			t2 = space();
-    			create_component(label.$$.fragment);
+    			create_component(label1.$$.fragment);
     			t3 = space();
-    			create_component(circle.$$.fragment);
+    			create_component(arc2.$$.fragment);
+    			t4 = space();
+    			create_component(label2.$$.fragment);
+    			t5 = space();
+    			create_component(label3.$$.fragment);
+    			t6 = space();
+    			create_component(label4.$$.fragment);
+    			t7 = space();
+    			create_component(arc3.$$.fragment);
+    			t8 = space();
+    			create_component(circle0.$$.fragment);
+    			t9 = space();
+    			create_component(label5.$$.fragment);
+    			t10 = space();
+    			create_component(label6.$$.fragment);
+    			t11 = space();
+    			create_component(label7.$$.fragment);
+    			t12 = space();
+    			create_component(circle1.$$.fragment);
+    			t13 = space();
+    			create_component(circle2.$$.fragment);
+    			t14 = space();
+    			create_component(circle3.$$.fragment);
+    			t15 = space();
+    			create_component(circle4.$$.fragment);
+    			t16 = space();
+    			create_component(label8.$$.fragment);
+    			t17 = space();
+    			create_component(circle5.$$.fragment);
+    			t18 = space();
+    			create_component(label9.$$.fragment);
+    			t19 = space();
+    			create_component(circle6.$$.fragment);
+    			t20 = space();
+    			create_component(label10.$$.fragment);
+    			t21 = space();
+    			create_component(circle7.$$.fragment);
+    			t22 = space();
+    			create_component(label11.$$.fragment);
+    			t23 = space();
+    			create_component(circle8.$$.fragment);
+    			t24 = space();
+    			create_component(label12.$$.fragment);
+    			t25 = space();
+    			create_component(arc4.$$.fragment);
+    			t26 = space();
+    			create_component(arc5.$$.fragment);
+    			t27 = space();
+    			create_component(arc6.$$.fragment);
+    			t28 = space();
+    			create_component(arc7.$$.fragment);
+    			t29 = space();
+    			create_component(arc8.$$.fragment);
+    			t30 = space();
+    			create_component(arc9.$$.fragment);
+    			t31 = space();
+    			create_component(arc10.$$.fragment);
+    			t32 = space();
+    			create_component(arc11.$$.fragment);
+    			t33 = space();
+    			create_component(arc12.$$.fragment);
+    			t34 = space();
+    			create_component(arc13.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(arc0, target, anchor);
     			insert_dev(target, t0, anchor);
-    			mount_component(arc1, target, anchor);
+    			mount_component(label0, target, anchor);
     			insert_dev(target, t1, anchor);
-    			mount_component(arc2, target, anchor);
+    			mount_component(arc1, target, anchor);
     			insert_dev(target, t2, anchor);
-    			mount_component(label, target, anchor);
+    			mount_component(label1, target, anchor);
     			insert_dev(target, t3, anchor);
-    			mount_component(circle, target, anchor);
+    			mount_component(arc2, target, anchor);
+    			insert_dev(target, t4, anchor);
+    			mount_component(label2, target, anchor);
+    			insert_dev(target, t5, anchor);
+    			mount_component(label3, target, anchor);
+    			insert_dev(target, t6, anchor);
+    			mount_component(label4, target, anchor);
+    			insert_dev(target, t7, anchor);
+    			mount_component(arc3, target, anchor);
+    			insert_dev(target, t8, anchor);
+    			mount_component(circle0, target, anchor);
+    			insert_dev(target, t9, anchor);
+    			mount_component(label5, target, anchor);
+    			insert_dev(target, t10, anchor);
+    			mount_component(label6, target, anchor);
+    			insert_dev(target, t11, anchor);
+    			mount_component(label7, target, anchor);
+    			insert_dev(target, t12, anchor);
+    			mount_component(circle1, target, anchor);
+    			insert_dev(target, t13, anchor);
+    			mount_component(circle2, target, anchor);
+    			insert_dev(target, t14, anchor);
+    			mount_component(circle3, target, anchor);
+    			insert_dev(target, t15, anchor);
+    			mount_component(circle4, target, anchor);
+    			insert_dev(target, t16, anchor);
+    			mount_component(label8, target, anchor);
+    			insert_dev(target, t17, anchor);
+    			mount_component(circle5, target, anchor);
+    			insert_dev(target, t18, anchor);
+    			mount_component(label9, target, anchor);
+    			insert_dev(target, t19, anchor);
+    			mount_component(circle6, target, anchor);
+    			insert_dev(target, t20, anchor);
+    			mount_component(label10, target, anchor);
+    			insert_dev(target, t21, anchor);
+    			mount_component(circle7, target, anchor);
+    			insert_dev(target, t22, anchor);
+    			mount_component(label11, target, anchor);
+    			insert_dev(target, t23, anchor);
+    			mount_component(circle8, target, anchor);
+    			insert_dev(target, t24, anchor);
+    			mount_component(label12, target, anchor);
+    			insert_dev(target, t25, anchor);
+    			mount_component(arc4, target, anchor);
+    			insert_dev(target, t26, anchor);
+    			mount_component(arc5, target, anchor);
+    			insert_dev(target, t27, anchor);
+    			mount_component(arc6, target, anchor);
+    			insert_dev(target, t28, anchor);
+    			mount_component(arc7, target, anchor);
+    			insert_dev(target, t29, anchor);
+    			mount_component(arc8, target, anchor);
+    			insert_dev(target, t30, anchor);
+    			mount_component(arc9, target, anchor);
+    			insert_dev(target, t31, anchor);
+    			mount_component(arc10, target, anchor);
+    			insert_dev(target, t32, anchor);
+    			mount_component(arc11, target, anchor);
+    			insert_dev(target, t33, anchor);
+    			mount_component(arc12, target, anchor);
+    			insert_dev(target, t34, anchor);
+    			mount_component(arc13, target, anchor);
     			current = true;
     		},
     		p: noop,
     		i: function intro(local) {
     			if (current) return;
     			transition_in(arc0.$$.fragment, local);
+    			transition_in(label0.$$.fragment, local);
     			transition_in(arc1.$$.fragment, local);
+    			transition_in(label1.$$.fragment, local);
     			transition_in(arc2.$$.fragment, local);
-    			transition_in(label.$$.fragment, local);
-    			transition_in(circle.$$.fragment, local);
+    			transition_in(label2.$$.fragment, local);
+    			transition_in(label3.$$.fragment, local);
+    			transition_in(label4.$$.fragment, local);
+    			transition_in(arc3.$$.fragment, local);
+    			transition_in(circle0.$$.fragment, local);
+    			transition_in(label5.$$.fragment, local);
+    			transition_in(label6.$$.fragment, local);
+    			transition_in(label7.$$.fragment, local);
+    			transition_in(circle1.$$.fragment, local);
+    			transition_in(circle2.$$.fragment, local);
+    			transition_in(circle3.$$.fragment, local);
+    			transition_in(circle4.$$.fragment, local);
+    			transition_in(label8.$$.fragment, local);
+    			transition_in(circle5.$$.fragment, local);
+    			transition_in(label9.$$.fragment, local);
+    			transition_in(circle6.$$.fragment, local);
+    			transition_in(label10.$$.fragment, local);
+    			transition_in(circle7.$$.fragment, local);
+    			transition_in(label11.$$.fragment, local);
+    			transition_in(circle8.$$.fragment, local);
+    			transition_in(label12.$$.fragment, local);
+    			transition_in(arc4.$$.fragment, local);
+    			transition_in(arc5.$$.fragment, local);
+    			transition_in(arc6.$$.fragment, local);
+    			transition_in(arc7.$$.fragment, local);
+    			transition_in(arc8.$$.fragment, local);
+    			transition_in(arc9.$$.fragment, local);
+    			transition_in(arc10.$$.fragment, local);
+    			transition_in(arc11.$$.fragment, local);
+    			transition_in(arc12.$$.fragment, local);
+    			transition_in(arc13.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(arc0.$$.fragment, local);
+    			transition_out(label0.$$.fragment, local);
     			transition_out(arc1.$$.fragment, local);
+    			transition_out(label1.$$.fragment, local);
     			transition_out(arc2.$$.fragment, local);
-    			transition_out(label.$$.fragment, local);
-    			transition_out(circle.$$.fragment, local);
+    			transition_out(label2.$$.fragment, local);
+    			transition_out(label3.$$.fragment, local);
+    			transition_out(label4.$$.fragment, local);
+    			transition_out(arc3.$$.fragment, local);
+    			transition_out(circle0.$$.fragment, local);
+    			transition_out(label5.$$.fragment, local);
+    			transition_out(label6.$$.fragment, local);
+    			transition_out(label7.$$.fragment, local);
+    			transition_out(circle1.$$.fragment, local);
+    			transition_out(circle2.$$.fragment, local);
+    			transition_out(circle3.$$.fragment, local);
+    			transition_out(circle4.$$.fragment, local);
+    			transition_out(label8.$$.fragment, local);
+    			transition_out(circle5.$$.fragment, local);
+    			transition_out(label9.$$.fragment, local);
+    			transition_out(circle6.$$.fragment, local);
+    			transition_out(label10.$$.fragment, local);
+    			transition_out(circle7.$$.fragment, local);
+    			transition_out(label11.$$.fragment, local);
+    			transition_out(circle8.$$.fragment, local);
+    			transition_out(label12.$$.fragment, local);
+    			transition_out(arc4.$$.fragment, local);
+    			transition_out(arc5.$$.fragment, local);
+    			transition_out(arc6.$$.fragment, local);
+    			transition_out(arc7.$$.fragment, local);
+    			transition_out(arc8.$$.fragment, local);
+    			transition_out(arc9.$$.fragment, local);
+    			transition_out(arc10.$$.fragment, local);
+    			transition_out(arc11.$$.fragment, local);
+    			transition_out(arc12.$$.fragment, local);
+    			transition_out(arc13.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			destroy_component(arc0, detaching);
     			if (detaching) detach_dev(t0);
-    			destroy_component(arc1, detaching);
+    			destroy_component(label0, detaching);
     			if (detaching) detach_dev(t1);
-    			destroy_component(arc2, detaching);
+    			destroy_component(arc1, detaching);
     			if (detaching) detach_dev(t2);
-    			destroy_component(label, detaching);
+    			destroy_component(label1, detaching);
     			if (detaching) detach_dev(t3);
-    			destroy_component(circle, detaching);
+    			destroy_component(arc2, detaching);
+    			if (detaching) detach_dev(t4);
+    			destroy_component(label2, detaching);
+    			if (detaching) detach_dev(t5);
+    			destroy_component(label3, detaching);
+    			if (detaching) detach_dev(t6);
+    			destroy_component(label4, detaching);
+    			if (detaching) detach_dev(t7);
+    			destroy_component(arc3, detaching);
+    			if (detaching) detach_dev(t8);
+    			destroy_component(circle0, detaching);
+    			if (detaching) detach_dev(t9);
+    			destroy_component(label5, detaching);
+    			if (detaching) detach_dev(t10);
+    			destroy_component(label6, detaching);
+    			if (detaching) detach_dev(t11);
+    			destroy_component(label7, detaching);
+    			if (detaching) detach_dev(t12);
+    			destroy_component(circle1, detaching);
+    			if (detaching) detach_dev(t13);
+    			destroy_component(circle2, detaching);
+    			if (detaching) detach_dev(t14);
+    			destroy_component(circle3, detaching);
+    			if (detaching) detach_dev(t15);
+    			destroy_component(circle4, detaching);
+    			if (detaching) detach_dev(t16);
+    			destroy_component(label8, detaching);
+    			if (detaching) detach_dev(t17);
+    			destroy_component(circle5, detaching);
+    			if (detaching) detach_dev(t18);
+    			destroy_component(label9, detaching);
+    			if (detaching) detach_dev(t19);
+    			destroy_component(circle6, detaching);
+    			if (detaching) detach_dev(t20);
+    			destroy_component(label10, detaching);
+    			if (detaching) detach_dev(t21);
+    			destroy_component(circle7, detaching);
+    			if (detaching) detach_dev(t22);
+    			destroy_component(label11, detaching);
+    			if (detaching) detach_dev(t23);
+    			destroy_component(circle8, detaching);
+    			if (detaching) detach_dev(t24);
+    			destroy_component(label12, detaching);
+    			if (detaching) detach_dev(t25);
+    			destroy_component(arc4, detaching);
+    			if (detaching) detach_dev(t26);
+    			destroy_component(arc5, detaching);
+    			if (detaching) detach_dev(t27);
+    			destroy_component(arc6, detaching);
+    			if (detaching) detach_dev(t28);
+    			destroy_component(arc7, detaching);
+    			if (detaching) detach_dev(t29);
+    			destroy_component(arc8, detaching);
+    			if (detaching) detach_dev(t30);
+    			destroy_component(arc9, detaching);
+    			if (detaching) detach_dev(t31);
+    			destroy_component(arc10, detaching);
+    			if (detaching) detach_dev(t32);
+    			destroy_component(arc11, detaching);
+    			if (detaching) detach_dev(t33);
+    			destroy_component(arc12, detaching);
+    			if (detaching) detach_dev(t34);
+    			destroy_component(arc13, detaching);
     		}
     	};
 

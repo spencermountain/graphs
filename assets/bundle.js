@@ -178,6 +178,18 @@ module.exports = {
     num: 'earth-as-pie',
     title: 'Earth as a pie-chart',
     thumb: 'thumb.png'
+  }, {
+    num: 'cerb-budget',
+    title: "CERB and Canada's budget",
+    thumb: 'thumb.png'
+  }, {
+    num: 'cerb-population',
+    title: "CERB and Canada's population",
+    thumb: 'thumb.png'
+  }, {
+    num: 'covid-income',
+    title: "Canada's income during COVID",
+    thumb: 'thumb.png'
   }]
 };
 
