@@ -169,5 +169,10 @@ module.exports = {
       title: "CERB and Canada's budget",
       thumb: 'thumb.png',
     },
+    {
+      num: 'cerb-population',
+      title: "CERB and Canada's population",
+      thumb: 'thumb.png',
+    },
   ],
 }

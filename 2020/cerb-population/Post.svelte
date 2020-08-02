@@ -47,29 +47,16 @@
   <div class="main m3 row">
     <Sankey height="750" {fmt}>
       <Col>
-        <Node name="Income Tax" to="Canada" value="164" color="sea" />
-        <Node name="Corporate Tax" to="Canada" value="45" color="sea" />
-        <Node name="GST" to="Canada" value="37" color="sea" />
-        <Node name="EI" to="Canada" value="23" color="sea" />
-        <Node name="Crown" to="Canada" value="12" color="sea" />
-        <Node name="Customs" to="Canada" value="5" color="sea" />
-
+        <Node name="CERB" to="Working Age" value="8.5" color="red" />
+        <Node name="CPP/OAS" to="Retired" value="6.5" color="blue" />
       </Col>
       <Col>
-        <Node name="Canada" value="30" color="orange" />
+        <Node name="Young" to="Canada" value="8" color="blue" />
+        <Node name="Working Age" to="Canada" value="22" color="sky" />
+        <Node name="Retired" to="Canada" value="6.5" color="blue" />
       </Col>
       <Col>
-
-        <Node name="CERB" from="Canada" value="62.75" color="red" />
-
-        <Node name="Seniors" from="Canada" value="57" color="blue" />
-        <Node name="Child services" from="Canada" value="22" color="blue" />
-        <Node name="Defence" from="Canada" value="25" color="blue" />
-        <Node name="EI" from="Canada" value="20.7" color="blue" />
-        <Node name="Equalization" from="Canada" value="19" color="green" />
-        <Node name="Health Transfer" from="Canada" value="39" color="green" />
-        <Node name="Social Transfer" from="Canada" value="14" color="green" />
-
+        <Node name="Canada" value="30" color="orange" accent="red" />
       </Col>
 
     </Sankey>
