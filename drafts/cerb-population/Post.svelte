@@ -3,7 +3,7 @@
   import Foot from '../../components/Foot.svelte'
   import { Sankey, Node, Col } from '/Users/spencer/mountain/somehow-sankey/src'
   let fmt = num => {
-    num = Number(num) * 1000000000
+    num = Number(num) * 1000000
     if (num >= 1000000000) {
       num = Math.round(num / 100000000) * 100000000
       num = Math.round(num)
@@ -38,14 +38,14 @@
 </style>
 
 <div>
-  <Head num="17" />
+  <Head num="18" />
   <div class="m3">
-    <b>Canada's Budget with CERB benefit</b>
+    <b>Canada's Population on CERB benefit</b>
     <br />
     in 2020
   </div>
   <div class="main m3 row">
-    <Sankey height="800" {fmt}>
+    <Sankey height="750" {fmt}>
       <Col>
         <Node name="Income Tax" to="Canada" value="164" color="sea" />
         <Node name="Corporate Tax" to="Canada" value="45" color="sea" />
@@ -56,20 +56,19 @@
 
       </Col>
       <Col>
-        <Node name="Canada" value="319" color="orange" accent="red" />
+        <Node name="Canada" value="30" color="orange" />
       </Col>
       <Col>
 
-        <Node name="CERB" from="Canada" value="62" color="red" />
+        <Node name="CERB" from="Canada" value="62.75" color="red" />
 
         <Node name="Seniors" from="Canada" value="57" color="blue" />
         <Node name="Child services" from="Canada" value="22" color="blue" />
         <Node name="Defence" from="Canada" value="25" color="blue" />
-        <Node name="EI" from="Canada" value="20" color="blue" />
+        <Node name="EI" from="Canada" value="20.7" color="blue" />
         <Node name="Equalization" from="Canada" value="19" color="green" />
         <Node name="Health Transfer" from="Canada" value="39" color="green" />
         <Node name="Social Transfer" from="Canada" value="14" color="green" />
-        <Node name="CEBA" from="Canada" value="26" color="orange" opacity="0.5" accent="lighter" />
 
       </Col>
 

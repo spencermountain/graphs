@@ -2802,7 +2802,8 @@ var app = (function () {
     			props: {
     				name: "Canada",
     				value: "319",
-    				color: "orange"
+    				color: "orange",
+    				accent: "red"
     			},
     			$$inline: true
     		});
@@ -2850,13 +2851,14 @@ var app = (function () {
     	let t4;
     	let t5;
     	let t6;
+    	let t7;
     	let current;
 
     	const node0 = new Node({
     			props: {
     				name: "CERB",
     				from: "Canada",
-    				value: "62.75",
+    				value: "62",
     				color: "red"
     			},
     			$$inline: true
@@ -2896,7 +2898,7 @@ var app = (function () {
     			props: {
     				name: "EI",
     				from: "Canada",
-    				value: "20.7",
+    				value: "20",
     				color: "blue"
     			},
     			$$inline: true
@@ -2932,6 +2934,18 @@ var app = (function () {
     			$$inline: true
     		});
 
+    	const node8 = new Node({
+    			props: {
+    				name: "CEBA",
+    				from: "Canada",
+    				value: "26",
+    				color: "orange",
+    				opacity: "0.5",
+    				accent: "lighter"
+    			},
+    			$$inline: true
+    		});
+
     	const block = {
     		c: function create() {
     			create_component(node0.$$.fragment);
@@ -2949,6 +2963,8 @@ var app = (function () {
     			create_component(node6.$$.fragment);
     			t6 = space();
     			create_component(node7.$$.fragment);
+    			t7 = space();
+    			create_component(node8.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(node0, target, anchor);
@@ -2966,6 +2982,8 @@ var app = (function () {
     			mount_component(node6, target, anchor);
     			insert_dev(target, t6, anchor);
     			mount_component(node7, target, anchor);
+    			insert_dev(target, t7, anchor);
+    			mount_component(node8, target, anchor);
     			current = true;
     		},
     		p: noop,
@@ -2979,6 +2997,7 @@ var app = (function () {
     			transition_in(node5.$$.fragment, local);
     			transition_in(node6.$$.fragment, local);
     			transition_in(node7.$$.fragment, local);
+    			transition_in(node8.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -2990,6 +3009,7 @@ var app = (function () {
     			transition_out(node5.$$.fragment, local);
     			transition_out(node6.$$.fragment, local);
     			transition_out(node7.$$.fragment, local);
+    			transition_out(node8.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -3008,6 +3028,8 @@ var app = (function () {
     			destroy_component(node6, detaching);
     			if (detaching) detach_dev(t6);
     			destroy_component(node7, detaching);
+    			if (detaching) detach_dev(t7);
+    			destroy_component(node8, detaching);
     		}
     	};
 
@@ -3022,7 +3044,7 @@ var app = (function () {
     	return block;
     }
 
-    // (48:4) <Sankey height="750" {fmt}>
+    // (48:4) <Sankey height="800" {fmt}>
     function create_default_slot(ctx) {
     	let t0;
     	let t1;
@@ -3117,7 +3139,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(48:4) <Sankey height=\\\"750\\\" {fmt}>",
+    		source: "(48:4) <Sankey height=\\\"800\\\" {fmt}>",
     		ctx
     	});
 
@@ -3140,7 +3162,7 @@ var app = (function () {
 
     	const sankey = new Sankey({
     			props: {
-    				height: "750",
+    				height: "800",
     				fmt: /*fmt*/ ctx[0],
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
@@ -3166,13 +3188,13 @@ var app = (function () {
     			create_component(sankey.$$.fragment);
     			t5 = space();
     			create_component(foot.$$.fragment);
-    			add_location(b, file$5, 42, 4, 973);
-    			add_location(br, file$5, 43, 4, 1018);
+    			add_location(b, file$5, 42, 4, 976);
+    			add_location(br, file$5, 43, 4, 1021);
     			attr_dev(div0, "class", "m3 svelte-156y5lo");
-    			add_location(div0, file$5, 41, 2, 952);
+    			add_location(div0, file$5, 41, 2, 955);
     			attr_dev(div1, "class", "main m3 row svelte-156y5lo");
-    			add_location(div1, file$5, 46, 2, 1048);
-    			add_location(div2, file$5, 39, 0, 924);
+    			add_location(div1, file$5, 46, 2, 1051);
+    			add_location(div2, file$5, 39, 0, 927);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3236,7 +3258,7 @@ var app = (function () {
 
     function instance$6($$self, $$props, $$invalidate) {
     	let fmt = num => {
-    		num = Number(num) * 1000000;
+    		num = Number(num) * 1000000000;
 
     		if (num >= 1000000000) {
     			num = Math.round(num / 100000000) * 100000000;
