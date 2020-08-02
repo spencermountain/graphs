@@ -164,5 +164,10 @@ module.exports = {
       title: 'Earth as a pie-chart',
       thumb: 'thumb.png',
     },
+    {
+      num: 'cerb-budget',
+      title: "CERB and Canada's budget",
+      thumb: 'thumb.png',
+    },
   ],
 }

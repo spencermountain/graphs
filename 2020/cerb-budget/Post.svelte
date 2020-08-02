@@ -63,7 +63,7 @@
         <Node name="CERB" from="Canada" value="62.75" color="red" />
 
         <Node name="Seniors" from="Canada" value="57" color="blue" />
-        <Node name="Children" from="Canada" value="22" color="blue" />
+        <Node name="Child services" from="Canada" value="22" color="blue" />
         <Node name="Defence" from="Canada" value="25" color="blue" />
         <Node name="EI" from="Canada" value="20.7" color="blue" />
         <Node name="Equalization" from="Canada" value="19" color="green" />
