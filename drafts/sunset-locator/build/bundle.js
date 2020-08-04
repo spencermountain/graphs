@@ -22,6 +22,21 @@ var app = (function () {
     function safe_not_equal(a, b) {
         return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
     }
+    function validate_store(store, name) {
+        if (store != null && typeof store.subscribe !== 'function') {
+            throw new Error(`'${name}' is not a store with a 'subscribe' method`);
+        }
+    }
+    function subscribe(store, ...callbacks) {
+        if (store == null) {
+            return noop;
+        }
+        const unsub = store.subscribe(...callbacks);
+        return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
+    }
+    function component_subscribe(component, store, callback) {
+        component.$$.on_destroy.push(subscribe(store, callback));
+    }
 
     function append(target, node) {
         target.appendChild(node);
@@ -4795,25 +4810,6 @@ var app = (function () {
     main$1.plugin = main$1.extend;
     var src = main$1;
 
-    //a very-tiny linear scale
-    const scaleLinear = function (obj) {
-      let world = obj.world || [];
-      let minmax = obj.minmax || obj.minMax || [];
-      const calc = (num) => {
-        let range = minmax[1] - minmax[0];
-        let percent = (num - minmax[0]) / range;
-        let size = world[1] - world[0];
-        return parseInt(size * percent, 10)
-      };
-
-      return calc
-    };
-
-    // let scale = scaleLinear({
-    //   world: [0, 300],
-    //   minmax: [0, 100]
-    // })
-
     function createCommonjsModule$1(fn, module) {
     	return module = { exports: {} }, fn(module, module.exports), module.exports;
     }
@@ -6534,20 +6530,20 @@ var app = (function () {
     function safe_not_equal$1(a, b) {
         return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
     }
-    function validate_store(store, name) {
+    function validate_store$1(store, name) {
         if (store != null && typeof store.subscribe !== 'function') {
             throw new Error(`'${name}' is not a store with a 'subscribe' method`);
         }
     }
-    function subscribe(store, ...callbacks) {
+    function subscribe$1(store, ...callbacks) {
         if (store == null) {
             return noop$1;
         }
         const unsub = store.subscribe(...callbacks);
         return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
     }
-    function component_subscribe(component, store, callback) {
-        component.$$.on_destroy.push(subscribe(store, callback));
+    function component_subscribe$1(component, store, callback) {
+        component.$$.on_destroy.push(subscribe$1(store, callback));
     }
     function create_slot(definition, ctx, $$scope, fn) {
         if (definition) {
@@ -6896,7 +6892,7 @@ var app = (function () {
     }
 
     //a very-tiny version of d3-scale's scaleLinear
-    const scaleLinear$1 = function (obj) {
+    const scaleLinear = function (obj) {
       let world = obj.world || [];
       let minmax = obj.minmax || obj.minMax || [];
       const calc = (num) => {
@@ -7612,13 +7608,13 @@ var app = (function () {
     };
 
     const layout = function (arcs, lines, labels, ticks, world) {
-      let xScale = scaleLinear$1({ minmax: [world.from, world.to], world: trig });
+      let xScale = scaleLinear({ minmax: [world.from, world.to], world: trig });
       let rotate = toRadian(world.rotate);
       // console.log(world.rotate)
 
       let maxR = maxRadius(arcs, lines);
       maxR = maxR + world.margin;
-      let rScale = scaleLinear$1({ minmax: [0, maxR], world: [0, 50] });
+      let rScale = scaleLinear({ minmax: [0, maxR], world: [0, 50] });
 
       // draw arcs
       let shapes = drawArcs(arcs, xScale, rScale, q, rotate);
@@ -8161,14 +8157,14 @@ var app = (function () {
     	let $lines;
     	let $labels;
     	let $ticks;
-    	validate_store(arcs, "arcs");
-    	component_subscribe($$self, arcs, $$value => $$invalidate(6, $arcs = $$value));
-    	validate_store(lines, "lines");
-    	component_subscribe($$self, lines, $$value => $$invalidate(7, $lines = $$value));
-    	validate_store(labels, "labels");
-    	component_subscribe($$self, labels, $$value => $$invalidate(8, $labels = $$value));
-    	validate_store(ticks, "ticks");
-    	component_subscribe($$self, ticks, $$value => $$invalidate(9, $ticks = $$value));
+    	validate_store$1(arcs, "arcs");
+    	component_subscribe$1($$self, arcs, $$value => $$invalidate(6, $arcs = $$value));
+    	validate_store$1(lines, "lines");
+    	component_subscribe$1($$self, lines, $$value => $$invalidate(7, $lines = $$value));
+    	validate_store$1(labels, "labels");
+    	component_subscribe$1($$self, labels, $$value => $$invalidate(8, $labels = $$value));
+    	validate_store$1(ticks, "ticks");
+    	component_subscribe$1($$self, ticks, $$value => $$invalidate(9, $ticks = $$value));
     	let { radius = 500 } = $$props;
     	let { rotate = 0 } = $$props;
     	let { from = 0 } = $$props;
@@ -9068,7 +9064,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			div = element$1("div");
-    			add_location$1(div, file$7, 29, 0, 582);
+    			add_location$1(div, file$7, 29, 0, 605);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -9100,9 +9096,9 @@ var app = (function () {
     	let { at = 0 } = $$props;
     	angle = angle || at;
     	let { radius = 0 } = $$props;
-    	let { rotate = 0 } = $$props;
+    	let { rotate = 90 } = $$props;
     	let { size = 1.5 } = $$props;
-    	let { align = "left" } = $$props;
+    	let { align = angle < 0 ? "left" : "right" } = $$props;
     	let { text = "" } = $$props;
     	let { color = "grey" } = $$props;
     	color = colors[color] || color;
@@ -9260,7 +9256,7 @@ var app = (function () {
     	}
     }
 
-    const scaleLinear$2 = function (obj) {
+    const scaleLinear$1 = function (obj) {
       let world = obj.world || [];
       let minmax = obj.minmax || [];
       const calc = (num) => {
@@ -70549,7 +70545,7 @@ var app = (function () {
     	value *= -1; //sorry
     	let { max = 180 } = $$props;
     	let { min = 0 } = $$props;
-    	let scale = scaleLinear$2({ world: [0, 100], minmax: [min, max] });
+    	let scale = scaleLinear$1({ world: [0, 100], minmax: [min, max] });
     	let percent = scale(value);
 
     	function startClick(e) {
@@ -70601,7 +70597,7 @@ var app = (function () {
     		Latitude,
     		Countries,
     		onFirstClick: dragHandler,
-    		scaleLinear: scaleLinear$2,
+    		scaleLinear: scaleLinear$1,
     		value,
     		max,
     		min,
@@ -70665,41 +70661,207 @@ var app = (function () {
     	}
     }
 
+    const subscriber_queue$1 = [];
+    /**
+     * Creates a `Readable` store that allows reading by subscription.
+     * @param value initial value
+     * @param {StartStopNotifier}start start and stop notifications for subscriptions
+     */
+    function readable(value, start) {
+        return {
+            subscribe: writable$1(value, start).subscribe,
+        };
+    }
+    /**
+     * Create a `Writable` store that allows both updating and reading by subscription.
+     * @param {*=}value initial value
+     * @param {StartStopNotifier=}start start and stop notifications for subscriptions
+     */
+    function writable$1(value, start = noop) {
+        let stop;
+        const subscribers = [];
+        function set(new_value) {
+            if (safe_not_equal(value, new_value)) {
+                value = new_value;
+                if (stop) { // store is ready
+                    const run_queue = !subscriber_queue$1.length;
+                    for (let i = 0; i < subscribers.length; i += 1) {
+                        const s = subscribers[i];
+                        s[1]();
+                        subscriber_queue$1.push(s, value);
+                    }
+                    if (run_queue) {
+                        for (let i = 0; i < subscriber_queue$1.length; i += 2) {
+                            subscriber_queue$1[i][0](subscriber_queue$1[i + 1]);
+                        }
+                        subscriber_queue$1.length = 0;
+                    }
+                }
+            }
+        }
+        function update(fn) {
+            set(fn(value));
+        }
+        function subscribe(run, invalidate = noop) {
+            const subscriber = [run, invalidate];
+            subscribers.push(subscriber);
+            if (subscribers.length === 1) {
+                stop = start(set) || noop;
+            }
+            run(value);
+            return () => {
+                const index = subscribers.indexOf(subscriber);
+                if (index !== -1) {
+                    subscribers.splice(index, 1);
+                }
+                if (subscribers.length === 0) {
+                    stop();
+                    stop = null;
+                }
+            };
+        }
+        return { set, update, subscribe };
+    }
+    function derived(stores, fn, initial_value) {
+        const single = !Array.isArray(stores);
+        const stores_array = single
+            ? [stores]
+            : stores;
+        const auto = fn.length < 2;
+        return readable(initial_value, (set) => {
+            let inited = false;
+            const values = [];
+            let pending = 0;
+            let cleanup = noop;
+            const sync = () => {
+                if (pending) {
+                    return;
+                }
+                cleanup();
+                const result = fn(single ? values[0] : values, set);
+                if (auto) {
+                    set(result);
+                }
+                else {
+                    cleanup = is_function(result) ? result : noop;
+                }
+            };
+            const unsubscribers = stores_array.map((store, i) => subscribe(store, (value) => {
+                values[i] = value;
+                pending &= ~(1 << i);
+                if (inited) {
+                    sync();
+                }
+            }, () => {
+                pending |= (1 << i);
+            }));
+            inited = true;
+            sync();
+            return function stop() {
+                run_all(unsubscribers);
+                cleanup();
+            };
+        });
+    }
+
+    const getSunSet = function (d, lat) {
+      d = d.time('3pm');
+      // find sunset time
+      for (let i = 0; i < 100; i += 1) {
+        d = d.add(5, 'minute');
+        d = d.in([lat, 0]);
+        if (d.sunPosition().altitude < 0) {
+          break
+        }
+      }
+      return d
+    };
+
+    const getSunRise = function (d, lat) {
+      d = d.time('3am');
+      // find sunset time
+      for (let i = 0; i < 100; i += 1) {
+        d = d.add(5, 'minute');
+        d = d.in([lat, 0]);
+        if (d.sunPosition().altitude > 0) {
+          break
+        }
+      }
+      return d
+    };
+
+    const calcYear = function (lat) {
+      let s = src();
+      let weeks = [];
+      s = s.startOf('year');
+      let hours = s.every('week', s.endOf('year'));
+      hours.forEach((d) => {
+        d = d.in([lat, 0]);
+        let set = getSunSet(d, lat);
+        let rise = getSunRise(d, lat);
+        // set = set.in([lat, 0])
+
+        weeks.push({
+          date: set.format('{month-short} {date}'),
+          time: set.time(),
+          sunset: set.sunPosition().azimuth,
+          sunrise: rise.sunPosition().azimuth,
+        });
+      });
+      console.log(weeks);
+      return weeks
+    };
+
+    src.extend(src$1);
+
+    // const fmt = function (v) {
+    //   v -= 90
+    //   v *= -1
+    //   return v
+    // }
+
+    let lat = writable$1(17);
+
+    let ticks$1 = derived(lat, ($lat) => {
+      // let l = fmt($lat)
+      // console.log(l)
+      let weeks = calcYear($lat);
+      return weeks
+    });
+
     /* drafts/sunset-locator/Post.svelte generated by Svelte v3.22.3 */
     const file$d = "drafts/sunset-locator/Post.svelte";
 
     function get_each_context$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[14] = list[i];
-    	child_ctx[16] = i;
+    	child_ctx[7] = list[i];
+    	child_ctx[9] = i;
     	return child_ctx;
     }
 
-    // (124:10) {#if i === 50 || i === 24 || i === 10}
+    // (66:10) {#if i === 50 || i === 24 || i === 10}
     function create_if_block$2(ctx) {
     	let t;
     	let current;
 
     	const tick0 = new Tick({
     			props: {
-    				at: /*week*/ ctx[14].sunset,
+    				at: /*week*/ ctx[7].sunset,
     				color: "light",
-    				text: /*week*/ ctx[14].date,
+    				text: /*week*/ ctx[7].date,
     				radius: "62",
-    				rotate: "90",
-    				align: /*i*/ ctx[16] === 24 ? "left" : "right"
+    				align: /*i*/ ctx[9] === 24 ? "left" : "right"
     			},
     			$$inline: true
     		});
 
     	const tick1 = new Tick({
     			props: {
-    				at: /*week*/ ctx[14].sunrise,
+    				at: /*week*/ ctx[7].sunrise,
     				color: "light",
-    				text: /*week*/ ctx[14].date,
+    				text: /*week*/ ctx[7].date,
     				radius: "69",
-    				rotate: "90",
-    				align: /*i*/ ctx[16] === 24 ? "left" : "right"
+    				align: /*i*/ ctx[9] === 24 ? "left" : "right"
     			},
     			$$inline: true
     		});
@@ -70718,12 +70880,12 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const tick0_changes = {};
-    			if (dirty & /*weeks*/ 8) tick0_changes.at = /*week*/ ctx[14].sunset;
-    			if (dirty & /*weeks*/ 8) tick0_changes.text = /*week*/ ctx[14].date;
+    			if (dirty & /*$ticks*/ 4) tick0_changes.at = /*week*/ ctx[7].sunset;
+    			if (dirty & /*$ticks*/ 4) tick0_changes.text = /*week*/ ctx[7].date;
     			tick0.$set(tick0_changes);
     			const tick1_changes = {};
-    			if (dirty & /*weeks*/ 8) tick1_changes.at = /*week*/ ctx[14].sunrise;
-    			if (dirty & /*weeks*/ 8) tick1_changes.text = /*week*/ ctx[14].date;
+    			if (dirty & /*$ticks*/ 4) tick1_changes.at = /*week*/ ctx[7].sunrise;
+    			if (dirty & /*$ticks*/ 4) tick1_changes.text = /*week*/ ctx[7].date;
     			tick1.$set(tick1_changes);
     		},
     		i: function intro(local) {
@@ -70748,14 +70910,14 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(124:10) {#if i === 50 || i === 24 || i === 10}",
+    		source: "(66:10) {#if i === 50 || i === 24 || i === 10}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (121:8) {#each weeks as week, i}
+    // (63:8) {#each $ticks as week, i}
     function create_each_block$2(ctx) {
     	let t0;
     	let t1;
@@ -70764,8 +70926,8 @@ var app = (function () {
 
     	const arc0 = new Arc({
     			props: {
-    				from: /*week*/ ctx[14].sunset,
-    				to: /*week*/ ctx[14].sunset + 0.5,
+    				from: /*week*/ ctx[7].sunset,
+    				to: /*week*/ ctx[7].sunset + 0.5,
     				color: "pink",
     				width: "8",
     				radius: "52"
@@ -70775,8 +70937,8 @@ var app = (function () {
 
     	const arc1 = new Arc({
     			props: {
-    				from: /*week*/ ctx[14].sunrise,
-    				to: /*week*/ ctx[14].sunrise + 0.5,
+    				from: /*week*/ ctx[7].sunrise,
+    				to: /*week*/ ctx[7].sunrise + 0.5,
     				color: "yellow",
     				width: "8",
     				radius: "52"
@@ -70784,7 +70946,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	let if_block = (/*i*/ ctx[16] === 50 || /*i*/ ctx[16] === 24 || /*i*/ ctx[16] === 10) && create_if_block$2(ctx);
+    	let if_block = (/*i*/ ctx[9] === 50 || /*i*/ ctx[9] === 24 || /*i*/ ctx[9] === 10) && create_if_block$2(ctx);
 
     	const block = {
     		c: function create() {
@@ -70806,14 +70968,14 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const arc0_changes = {};
-    			if (dirty & /*weeks*/ 8) arc0_changes.from = /*week*/ ctx[14].sunset;
-    			if (dirty & /*weeks*/ 8) arc0_changes.to = /*week*/ ctx[14].sunset + 0.5;
+    			if (dirty & /*$ticks*/ 4) arc0_changes.from = /*week*/ ctx[7].sunset;
+    			if (dirty & /*$ticks*/ 4) arc0_changes.to = /*week*/ ctx[7].sunset + 0.5;
     			arc0.$set(arc0_changes);
     			const arc1_changes = {};
-    			if (dirty & /*weeks*/ 8) arc1_changes.from = /*week*/ ctx[14].sunrise;
-    			if (dirty & /*weeks*/ 8) arc1_changes.to = /*week*/ ctx[14].sunrise + 0.5;
+    			if (dirty & /*$ticks*/ 4) arc1_changes.from = /*week*/ ctx[7].sunrise;
+    			if (dirty & /*$ticks*/ 4) arc1_changes.to = /*week*/ ctx[7].sunrise + 0.5;
     			arc1.$set(arc1_changes);
-    			if (/*i*/ ctx[16] === 50 || /*i*/ ctx[16] === 24 || /*i*/ ctx[16] === 10) if_block.p(ctx, dirty);
+    			if (/*i*/ ctx[9] === 50 || /*i*/ ctx[9] === 24 || /*i*/ ctx[9] === 10) if_block.p(ctx, dirty);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -70842,14 +71004,14 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(121:8) {#each weeks as week, i}",
+    		source: "(63:8) {#each $ticks as week, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (113:6) <Round width="500" height="500" rotate="-90" margin="10">
+    // (57:6) <Round width="500" height="500" rotate="-90" margin="10">
     function create_default_slot$1(ctx) {
     	let t0;
     	let t1;
@@ -70858,6 +71020,7 @@ var app = (function () {
     	let t4;
     	let t5;
     	let t6;
+    	let t7;
     	let current;
 
     	const tick0 = new Tick({
@@ -70866,7 +71029,8 @@ var app = (function () {
     				angle: "180",
     				radius: "45",
     				size: "2.6",
-    				color: "lightblue"
+    				color: "lightblue",
+    				rotate: "0"
     			},
     			$$inline: true
     		});
@@ -70877,7 +71041,8 @@ var app = (function () {
     				angle: "0",
     				radius: "45",
     				size: "2.6",
-    				color: "lightblue"
+    				color: "lightblue",
+    				rotate: "0"
     			},
     			$$inline: true
     		});
@@ -70888,8 +71053,7 @@ var app = (function () {
     				angle: "90",
     				radius: "45",
     				size: "2.6",
-    				color: "lightblue",
-    				rotate: "90"
+    				color: "lightblue"
     			},
     			$$inline: true
     		});
@@ -70900,13 +71064,12 @@ var app = (function () {
     				angle: "270",
     				radius: "45",
     				size: "2.6",
-    				color: "lightblue",
-    				rotate: "90"
+    				color: "lightblue"
     			},
     			$$inline: true
     		});
 
-    	let each_value = /*weeks*/ ctx[3];
+    	let each_value = /*$ticks*/ ctx[2];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -70920,9 +71083,9 @@ var app = (function () {
 
     	const line0 = new Line({
     			props: {
-    				radius: "10",
+    				radius: "5",
     				length: "40",
-    				angle: /*currentSet*/ ctx[5],
+    				angle: /*currentSet*/ ctx[4],
     				color: "lightblue",
     				width: "0.2"
     			},
@@ -70931,9 +71094,9 @@ var app = (function () {
 
     	const line1 = new Line({
     			props: {
-    				radius: "10",
+    				radius: "5",
     				length: "40",
-    				angle: /*currentRise*/ ctx[6],
+    				angle: /*currentRise*/ ctx[5],
     				color: "lightblue",
     				width: "0.2"
     			},
@@ -70942,12 +71105,24 @@ var app = (function () {
 
     	const arc = new Arc({
     			props: {
-    				radius: "10",
+    				radius: "5",
     				length: "40",
-    				from: /*currentRise*/ ctx[6],
-    				to: /*currentSet*/ ctx[5],
+    				from: /*currentRise*/ ctx[5],
+    				to: /*currentSet*/ ctx[4],
     				color: "lightblue",
+    				opacity: "0.7",
     				width: "22"
+    			},
+    			$$inline: true
+    		});
+
+    	const label = new Label({
+    			props: {
+    				text: /*now*/ ctx[0].format("{month-short} {date}"),
+    				radius: "10",
+    				angle: "180",
+    				align: "middle",
+    				color: "lightblue"
     			},
     			$$inline: true
     		});
@@ -70973,6 +71148,8 @@ var app = (function () {
     			create_component(line1.$$.fragment);
     			t6 = space();
     			create_component(arc.$$.fragment);
+    			t7 = space();
+    			create_component(label.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(tick0, target, anchor);
@@ -70994,11 +71171,13 @@ var app = (function () {
     			mount_component(line1, target, anchor);
     			insert_dev(target, t6, anchor);
     			mount_component(arc, target, anchor);
+    			insert_dev(target, t7, anchor);
+    			mount_component(label, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*weeks*/ 8) {
-    				each_value = /*weeks*/ ctx[3];
+    			if (dirty & /*$ticks*/ 4) {
+    				each_value = /*$ticks*/ ctx[2];
     				validate_each_argument(each_value);
     				let i;
 
@@ -71024,6 +71203,10 @@ var app = (function () {
 
     				check_outros();
     			}
+
+    			const label_changes = {};
+    			if (dirty & /*now*/ 1) label_changes.text = /*now*/ ctx[0].format("{month-short} {date}");
+    			label.$set(label_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -71039,6 +71222,7 @@ var app = (function () {
     			transition_in(line0.$$.fragment, local);
     			transition_in(line1.$$.fragment, local);
     			transition_in(arc.$$.fragment, local);
+    			transition_in(label.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -71055,6 +71239,7 @@ var app = (function () {
     			transition_out(line0.$$.fragment, local);
     			transition_out(line1.$$.fragment, local);
     			transition_out(arc.$$.fragment, local);
+    			transition_out(label.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -71073,6 +71258,8 @@ var app = (function () {
     			destroy_component(line1, detaching);
     			if (detaching) detach_dev(t6);
     			destroy_component(arc, detaching);
+    			if (detaching) detach_dev(t7);
+    			destroy_component(label, detaching);
     		}
     	};
 
@@ -71080,7 +71267,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$1.name,
     		type: "slot",
-    		source: "(113:6) <Round width=\\\"500\\\" height=\\\"500\\\" rotate=\\\"-90\\\" margin=\\\"10\\\">",
+    		source: "(57:6) <Round width=\\\"500\\\" height=\\\"500\\\" rotate=\\\"-90\\\" margin=\\\"10\\\">",
     		ctx
     	});
 
@@ -71098,34 +71285,26 @@ var app = (function () {
     	let t3;
     	let div3;
     	let div2;
-    	let t4_value = /*fmt*/ ctx[4](/*latitude*/ ctx[2]) + "";
+    	let t4_value = /*fmt*/ ctx[3](/*$lat*/ ctx[1]) + "";
     	let t4;
     	let t5;
     	let t6;
     	let t7;
     	let current;
+    	const head = new Head({ props: { num: 19 }, $$inline: true });
 
-    	const head = new Head({
-    			props: {
-    				title: /*title*/ ctx[0],
-    				sub: /*sub*/ ctx[1],
-    				num: 16
-    			},
-    			$$inline: true
-    		});
-
-    	function latitude_1_value_binding(value) {
-    		/*latitude_1_value_binding*/ ctx[13].call(null, value);
+    	function latitude_value_binding(value) {
+    		/*latitude_value_binding*/ ctx[6].call(null, value);
     	}
 
-    	let latitude_1_props = {};
+    	let latitude_props = {};
 
-    	if (/*latitude*/ ctx[2] !== void 0) {
-    		latitude_1_props.value = /*latitude*/ ctx[2];
+    	if (/*$lat*/ ctx[1] !== void 0) {
+    		latitude_props.value = /*$lat*/ ctx[1];
     	}
 
-    	const latitude_1 = new Latitude_1({ props: latitude_1_props, $$inline: true });
-    	binding_callbacks.push(() => bind(latitude_1, "value", latitude_1_value_binding));
+    	const latitude = new Latitude_1({ props: latitude_props, $$inline: true });
+    	binding_callbacks.push(() => bind(latitude, "value", latitude_value_binding));
 
     	const round = new Round({
     			props: {
@@ -71139,10 +71318,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const foot = new Foot({
-    			props: { title: /*title*/ ctx[0] },
-    			$$inline: true
-    		});
+    	const foot = new Foot({ $$inline: true });
 
     	const block = {
     		c: function create() {
@@ -71150,11 +71326,11 @@ var app = (function () {
     			create_component(head.$$.fragment);
     			t0 = space();
     			div0 = element("div");
-    			div0.textContent = "Sunrise + Sunset movement over a year";
+    			div0.textContent = "Sunrise + Sunset direction";
     			t2 = space();
     			div4 = element("div");
     			div1 = element("div");
-    			create_component(latitude_1.$$.fragment);
+    			create_component(latitude.$$.fragment);
     			t3 = space();
     			div3 = element("div");
     			div2 = element("div");
@@ -71165,17 +71341,17 @@ var app = (function () {
     			t7 = space();
     			create_component(foot.$$.fragment);
     			attr_dev(div0, "class", "m3 svelte-17p9en2");
-    			add_location(div0, file$d, 104, 2, 2380);
+    			add_location(div0, file$d, 47, 2, 1173);
     			set_style(div1, "width", "300px");
-    			add_location(div1, file$d, 106, 4, 2467);
+    			add_location(div1, file$d, 50, 4, 1301);
     			attr_dev(div2, "class", "right f2 mt4 svelte-17p9en2");
     			set_style(div2, "margin-bottom", "-50px");
-    			add_location(div2, file$d, 111, 6, 2589);
+    			add_location(div2, file$d, 55, 6, 1419);
     			set_style(div3, "max-width", "1000px");
-    			add_location(div3, file$d, 110, 4, 2551);
+    			add_location(div3, file$d, 54, 4, 1381);
     			attr_dev(div4, "class", "m3 col svelte-17p9en2");
-    			add_location(div4, file$d, 105, 2, 2442);
-    			add_location(div5, file$d, 102, 0, 2338);
+    			add_location(div4, file$d, 48, 2, 1224);
+    			add_location(div5, file$d, 45, 0, 1145);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -71188,7 +71364,7 @@ var app = (function () {
     			append_dev(div5, t2);
     			append_dev(div5, div4);
     			append_dev(div4, div1);
-    			mount_component(latitude_1, div1, null);
+    			mount_component(latitude, div1, null);
     			append_dev(div4, t3);
     			append_dev(div4, div3);
     			append_dev(div3, div2);
@@ -71201,42 +71377,35 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			const head_changes = {};
-    			if (dirty & /*title*/ 1) head_changes.title = /*title*/ ctx[0];
-    			if (dirty & /*sub*/ 2) head_changes.sub = /*sub*/ ctx[1];
-    			head.$set(head_changes);
-    			const latitude_1_changes = {};
+    			const latitude_changes = {};
 
-    			if (!updating_value && dirty & /*latitude*/ 4) {
+    			if (!updating_value && dirty & /*$lat*/ 2) {
     				updating_value = true;
-    				latitude_1_changes.value = /*latitude*/ ctx[2];
+    				latitude_changes.value = /*$lat*/ ctx[1];
     				add_flush_callback(() => updating_value = false);
     			}
 
-    			latitude_1.$set(latitude_1_changes);
-    			if ((!current || dirty & /*latitude*/ 4) && t4_value !== (t4_value = /*fmt*/ ctx[4](/*latitude*/ ctx[2]) + "")) set_data_dev(t4, t4_value);
+    			latitude.$set(latitude_changes);
+    			if ((!current || dirty & /*$lat*/ 2) && t4_value !== (t4_value = /*fmt*/ ctx[3](/*$lat*/ ctx[1]) + "")) set_data_dev(t4, t4_value);
     			const round_changes = {};
 
-    			if (dirty & /*$$scope, weeks*/ 131080) {
+    			if (dirty & /*$$scope, now, $ticks*/ 1029) {
     				round_changes.$$scope = { dirty, ctx };
     			}
 
     			round.$set(round_changes);
-    			const foot_changes = {};
-    			if (dirty & /*title*/ 1) foot_changes.title = /*title*/ ctx[0];
-    			foot.$set(foot_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(head.$$.fragment, local);
-    			transition_in(latitude_1.$$.fragment, local);
+    			transition_in(latitude.$$.fragment, local);
     			transition_in(round.$$.fragment, local);
     			transition_in(foot.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(head.$$.fragment, local);
-    			transition_out(latitude_1.$$.fragment, local);
+    			transition_out(latitude.$$.fragment, local);
     			transition_out(round.$$.fragment, local);
     			transition_out(foot.$$.fragment, local);
     			current = false;
@@ -71244,7 +71413,7 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div5);
     			destroy_component(head);
-    			destroy_component(latitude_1);
+    			destroy_component(latitude);
     			destroy_component(round);
     			destroy_component(foot);
     		}
@@ -71262,9 +71431,13 @@ var app = (function () {
     }
 
     function instance$e($$self, $$props, $$invalidate) {
-    	let { title = "" } = $$props;
-    	let { sub = "" } = $$props;
-    	let latitude = 37;
+    	let $lat;
+    	let $ticks;
+    	validate_store(lat, "lat");
+    	component_subscribe($$self, lat, $$value => $$invalidate(1, $lat = $$value));
+    	validate_store(ticks$1, "ticks");
+    	component_subscribe($$self, ticks$1, $$value => $$invalidate(2, $ticks = $$value));
+    	src.extend(src$1);
 
     	const fmt = function (v) {
     		v -= 90;
@@ -71272,78 +71445,16 @@ var app = (function () {
     		return v;
     	};
 
-    	src.extend(src$1);
-
-    	// spacetime.extend(geo)
-    	let scale = scaleLinear({
-    		// world: [-45, 45],
-    		world: [0, 90],
-    		minmax: [0, 1]
-    	});
-
-    	const findSunset = function (d) {
-    		d = d.time("3pm");
-
-    		// find sunset time
-    		for (let i = 0; i < 100; i += 1) {
-    			d = d.add(5, "minute");
-
-    			if (d.sunPosition().altitude < 0) {
-    				break;
-    			}
-    		}
-
-    		return d;
-    	};
-
-    	const findSunRise = function (d) {
-    		d = d.time("3am");
-
-    		// find sunset time
-    		for (let i = 0; i < 100; i += 1) {
-    			d = d.add(5, "minute");
-
-    			if (d.sunPosition().altitude > 0) {
-    				break;
-    			}
-    		}
-
-    		return d;
-    	};
-
-    	const calcYear = function (s) {
-    		let weeks = [];
-    		s = s.startOf("year");
-    		let hours = s.every("week", s.endOf("year"));
-
-    		hours.forEach(d => {
-    			let set = findSunset(d);
-    			let rise = findSunRise(d);
-
-    			weeks.push({
-    				date: set.format("{month-short} {date}"),
-    				time: set.time(),
-    				sunset: set.sunPosition().azimuth,
-    				sunrise: rise.sunPosition().azimuth
-    			});
-    		});
-
-    		return weeks;
-    	};
-
-    	// console.log(weeks)
-    	// $weeks.subscribe(val => {
-    	//   console.log('change')
-    	//   return val
-    	// })
+    	// let s = spacetime().in([fmt($lat), 0])
+    	// let weeks = calcYear(s)
     	// get current sunset azimout
     	let now = src.today("Canada/Eastern");
 
-    	now = findSunset(now);
+    	now = getSunSet(now, $lat);
     	let currentSet = now.sunPosition().azimuth;
-    	now = findSunRise(now);
+    	now = getSunRise(now, $lat);
     	let currentRise = now.sunPosition().azimuth;
-    	const writable_props = ["title", "sub"];
+    	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Post> was created with unknown prop '${key}'`);
@@ -71352,21 +71463,15 @@ var app = (function () {
     	let { $$slots = {}, $$scope } = $$props;
     	validate_slots("Post", $$slots, []);
 
-    	function latitude_1_value_binding(value) {
-    		latitude = value;
-    		$$invalidate(2, latitude);
+    	function latitude_value_binding(value) {
+    		$lat = value;
+    		lat.set($lat);
     	}
-
-    	$$self.$set = $$props => {
-    		if ("title" in $$props) $$invalidate(0, title = $$props.title);
-    		if ("sub" in $$props) $$invalidate(1, sub = $$props.sub);
-    	};
 
     	$$self.$capture_state = () => ({
     		Head,
     		Foot,
     		spacetime: src,
-    		linear: scaleLinear,
     		sunlight: src$1,
     		Round,
     		Arc,
@@ -71375,74 +71480,36 @@ var app = (function () {
     		Circle,
     		Tick,
     		Latitude: Latitude_1,
-    		title,
-    		sub,
-    		latitude,
-    		fmt,
-    		scale,
-    		findSunset,
-    		findSunRise,
+    		lat,
+    		ticks: ticks$1,
+    		getSunSet,
+    		getSunRise,
     		calcYear,
+    		fmt,
     		now,
     		currentSet,
     		currentRise,
-    		s,
-    		weeks
+    		$lat,
+    		$ticks
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("title" in $$props) $$invalidate(0, title = $$props.title);
-    		if ("sub" in $$props) $$invalidate(1, sub = $$props.sub);
-    		if ("latitude" in $$props) $$invalidate(2, latitude = $$props.latitude);
-    		if ("scale" in $$props) scale = $$props.scale;
-    		if ("now" in $$props) now = $$props.now;
-    		if ("currentSet" in $$props) $$invalidate(5, currentSet = $$props.currentSet);
-    		if ("currentRise" in $$props) $$invalidate(6, currentRise = $$props.currentRise);
-    		if ("s" in $$props) $$invalidate(8, s = $$props.s);
-    		if ("weeks" in $$props) $$invalidate(3, weeks = $$props.weeks);
+    		if ("now" in $$props) $$invalidate(0, now = $$props.now);
+    		if ("currentSet" in $$props) $$invalidate(4, currentSet = $$props.currentSet);
+    		if ("currentRise" in $$props) $$invalidate(5, currentRise = $$props.currentRise);
     	};
-
-    	let s;
-    	let weeks;
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*latitude*/ 4) {
-    			// let s = spacetime.today('Canada/Eastern')
-    			 $$invalidate(8, s = src().in([fmt(latitude), 0]));
-    		}
-
-    		if ($$self.$$.dirty & /*s*/ 256) {
-    			// let weeks = []
-    			 $$invalidate(3, weeks = calcYear(s));
-    		}
-    	};
-
-    	return [
-    		title,
-    		sub,
-    		latitude,
-    		weeks,
-    		fmt,
-    		currentSet,
-    		currentRise,
-    		now,
-    		s,
-    		scale,
-    		findSunset,
-    		findSunRise,
-    		calcYear,
-    		latitude_1_value_binding
-    	];
+    	return [now, $lat, $ticks, fmt, currentSet, currentRise, latitude_value_binding];
     }
 
     class Post extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$e, create_fragment$e, safe_not_equal, { title: 0, sub: 1 });
+    		init(this, options, instance$e, create_fragment$e, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -71450,22 +71517,6 @@ var app = (function () {
     			options,
     			id: create_fragment$e.name
     		});
-    	}
-
-    	get title() {
-    		throw new Error("<Post>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set title(value) {
-    		throw new Error("<Post>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get sub() {
-    		throw new Error("<Post>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set sub(value) {
-    		throw new Error("<Post>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
