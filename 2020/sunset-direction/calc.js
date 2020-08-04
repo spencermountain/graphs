@@ -31,19 +31,19 @@ export const calcYear = function (lat) {
   let weeks = []
   s = s.startOf('year')
   let hours = s.every('week', s.endOf('year'))
-  hours.forEach((d) => {
+  hours.forEach((d, i) => {
     d = d.in([lat, 0])
     let set = getSunSet(d, lat)
     let rise = getSunRise(d, lat)
-    // set = set.in([lat, 0])
+    set = set.in([lat, 0])
 
     weeks.push({
+      id: i,
       date: set.format('{month-short} {date}'),
       time: set.time(),
       sunset: set.sunPosition().azimuth,
       sunrise: rise.sunPosition().azimuth,
     })
   })
-  console.log(weeks)
   return weeks
 }

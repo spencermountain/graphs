@@ -190,6 +190,10 @@ module.exports = {
     num: 'covid-income',
     title: "Canada's income during COVID",
     thumb: 'thumb.png'
+  }, {
+    num: 'sunset-direction',
+    title: 'Sunset direction by year',
+    thumb: 'thumb.png'
   }]
 };
 

@@ -47,12 +47,6 @@ var app = (function () {
     function detach(node) {
         node.parentNode.removeChild(node);
     }
-    function destroy_each(iterations, detaching) {
-        for (let i = 0; i < iterations.length; i += 1) {
-            if (iterations[i])
-                iterations[i].d(detaching);
-        }
-    }
     function element(name) {
         return document.createElement(name);
     }
@@ -192,6 +186,96 @@ var app = (function () {
                 }
             });
             block.o(local);
+        }
+    }
+    function outro_and_destroy_block(block, lookup) {
+        transition_out(block, 1, 1, () => {
+            lookup.delete(block.key);
+        });
+    }
+    function update_keyed_each(old_blocks, dirty, get_key, dynamic, ctx, list, lookup, node, destroy, create_each_block, next, get_context) {
+        let o = old_blocks.length;
+        let n = list.length;
+        let i = o;
+        const old_indexes = {};
+        while (i--)
+            old_indexes[old_blocks[i].key] = i;
+        const new_blocks = [];
+        const new_lookup = new Map();
+        const deltas = new Map();
+        i = n;
+        while (i--) {
+            const child_ctx = get_context(ctx, list, i);
+            const key = get_key(child_ctx);
+            let block = lookup.get(key);
+            if (!block) {
+                block = create_each_block(key, child_ctx);
+                block.c();
+            }
+            else if (dynamic) {
+                block.p(child_ctx, dirty);
+            }
+            new_lookup.set(key, new_blocks[i] = block);
+            if (key in old_indexes)
+                deltas.set(key, Math.abs(i - old_indexes[key]));
+        }
+        const will_move = new Set();
+        const did_move = new Set();
+        function insert(block) {
+            transition_in(block, 1);
+            block.m(node, next, lookup.has(block.key));
+            lookup.set(block.key, block);
+            next = block.first;
+            n--;
+        }
+        while (o && n) {
+            const new_block = new_blocks[n - 1];
+            const old_block = old_blocks[o - 1];
+            const new_key = new_block.key;
+            const old_key = old_block.key;
+            if (new_block === old_block) {
+                // do nothing
+                next = new_block.first;
+                o--;
+                n--;
+            }
+            else if (!new_lookup.has(old_key)) {
+                // remove old block
+                destroy(old_block, lookup);
+                o--;
+            }
+            else if (!lookup.has(new_key) || will_move.has(new_key)) {
+                insert(new_block);
+            }
+            else if (did_move.has(old_key)) {
+                o--;
+            }
+            else if (deltas.get(new_key) > deltas.get(old_key)) {
+                did_move.add(new_key);
+                insert(new_block);
+            }
+            else {
+                will_move.add(old_key);
+                o--;
+            }
+        }
+        while (o--) {
+            const old_block = old_blocks[o];
+            if (!new_lookup.has(old_block.key))
+                destroy(old_block, lookup);
+        }
+        while (n)
+            insert(new_blocks[n - 1]);
+        return new_blocks;
+    }
+    function validate_each_keys(ctx, list, get_context, get_key) {
+        const keys = new Set();
+        for (let i = 0; i < list.length; i++) {
+            const key = get_key(get_context(ctx, list, i));
+            if (keys.has(key)) {
+                throw new Error(`Cannot have duplicate keys in a keyed each`);
+            }
+            keys.add(key);
         }
     }
 
@@ -6584,7 +6668,7 @@ var app = (function () {
     function detach$1(node) {
         node.parentNode.removeChild(node);
     }
-    function destroy_each$1(iterations, detaching) {
+    function destroy_each(iterations, detaching) {
         for (let i = 0; i < iterations.length; i += 1) {
             if (iterations[i])
                 iterations[i].d(detaching);
@@ -8135,7 +8219,7 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev$1(div);
-    			destroy_each$1(each_blocks, detaching);
+    			destroy_each(each_blocks, detaching);
     			if (detaching) detach_dev$1(t);
     			if (default_slot) default_slot.d(detaching);
     		}
@@ -9428,7 +9512,7 @@ var app = (function () {
     function detach$2(node) {
         node.parentNode.removeChild(node);
     }
-    function destroy_each$2(iterations, detaching) {
+    function destroy_each$1(iterations, detaching) {
         for (let i = 0; i < iterations.length; i += 1) {
             if (iterations[i])
                 iterations[i].d(detaching);
@@ -67754,7 +67838,7 @@ var app = (function () {
     		o: noop$2,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev$2(g);
-    			destroy_each$2(each_blocks, detaching);
+    			destroy_each$1(each_blocks, detaching);
     		}
     	};
 
@@ -70795,37 +70879,37 @@ var app = (function () {
       let weeks = [];
       s = s.startOf('year');
       let hours = s.every('week', s.endOf('year'));
-      hours.forEach((d) => {
+      hours.forEach((d, i) => {
         d = d.in([lat, 0]);
         let set = getSunSet(d, lat);
         let rise = getSunRise(d, lat);
-        // set = set.in([lat, 0])
+        set = set.in([lat, 0]);
 
         weeks.push({
+          id: i,
           date: set.format('{month-short} {date}'),
           time: set.time(),
           sunset: set.sunPosition().azimuth,
           sunrise: rise.sunPosition().azimuth,
         });
       });
-      console.log(weeks);
       return weeks
     };
 
     src.extend(src$1);
 
-    // const fmt = function (v) {
-    //   v -= 90
-    //   v *= -1
-    //   return v
-    // }
+    const fmt = function (v) {
+      v -= 90;
+      v *= -1;
+      return v
+    };
 
-    let lat = writable$1(17);
+    let lat = writable$1(37);
 
     let ticks$1 = derived(lat, ($lat) => {
-      // let l = fmt($lat)
+      let l = fmt($lat);
       // console.log(l)
-      let weeks = calcYear($lat);
+      let weeks = calcYear(l);
       return weeks
     });
 
@@ -70839,7 +70923,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (66:10) {#if i === 50 || i === 24 || i === 10}
+    // (75:10) {#if i === 50 || i === 24 || i === 10}
     function create_if_block$2(ctx) {
     	let t;
     	let current;
@@ -70880,12 +70964,14 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const tick0_changes = {};
-    			if (dirty & /*$ticks*/ 4) tick0_changes.at = /*week*/ ctx[7].sunset;
-    			if (dirty & /*$ticks*/ 4) tick0_changes.text = /*week*/ ctx[7].date;
+    			if (dirty & /*$ticks*/ 2) tick0_changes.at = /*week*/ ctx[7].sunset;
+    			if (dirty & /*$ticks*/ 2) tick0_changes.text = /*week*/ ctx[7].date;
+    			if (dirty & /*$ticks*/ 2) tick0_changes.align = /*i*/ ctx[9] === 24 ? "left" : "right";
     			tick0.$set(tick0_changes);
     			const tick1_changes = {};
-    			if (dirty & /*$ticks*/ 4) tick1_changes.at = /*week*/ ctx[7].sunrise;
-    			if (dirty & /*$ticks*/ 4) tick1_changes.text = /*week*/ ctx[7].date;
+    			if (dirty & /*$ticks*/ 2) tick1_changes.at = /*week*/ ctx[7].sunrise;
+    			if (dirty & /*$ticks*/ 2) tick1_changes.text = /*week*/ ctx[7].date;
+    			if (dirty & /*$ticks*/ 2) tick1_changes.align = /*i*/ ctx[9] === 24 ? "left" : "right";
     			tick1.$set(tick1_changes);
     		},
     		i: function intro(local) {
@@ -70910,15 +70996,16 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(66:10) {#if i === 50 || i === 24 || i === 10}",
+    		source: "(75:10) {#if i === 50 || i === 24 || i === 10}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (63:8) {#each $ticks as week, i}
-    function create_each_block$2(ctx) {
+    // (72:8) {#each $ticks as week, i (week.id)}
+    function create_each_block$2(key_1, ctx) {
+    	let first;
     	let t0;
     	let t1;
     	let if_block_anchor;
@@ -70949,15 +71036,20 @@ var app = (function () {
     	let if_block = (/*i*/ ctx[9] === 50 || /*i*/ ctx[9] === 24 || /*i*/ ctx[9] === 10) && create_if_block$2(ctx);
 
     	const block = {
+    		key: key_1,
+    		first: null,
     		c: function create() {
+    			first = empty();
     			create_component(arc0.$$.fragment);
     			t0 = space();
     			create_component(arc1.$$.fragment);
     			t1 = space();
     			if (if_block) if_block.c();
     			if_block_anchor = empty();
+    			this.first = first;
     		},
     		m: function mount(target, anchor) {
+    			insert_dev(target, first, anchor);
     			mount_component(arc0, target, anchor);
     			insert_dev(target, t0, anchor);
     			mount_component(arc1, target, anchor);
@@ -70968,14 +71060,36 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const arc0_changes = {};
-    			if (dirty & /*$ticks*/ 4) arc0_changes.from = /*week*/ ctx[7].sunset;
-    			if (dirty & /*$ticks*/ 4) arc0_changes.to = /*week*/ ctx[7].sunset + 0.5;
+    			if (dirty & /*$ticks*/ 2) arc0_changes.from = /*week*/ ctx[7].sunset;
+    			if (dirty & /*$ticks*/ 2) arc0_changes.to = /*week*/ ctx[7].sunset + 0.5;
     			arc0.$set(arc0_changes);
     			const arc1_changes = {};
-    			if (dirty & /*$ticks*/ 4) arc1_changes.from = /*week*/ ctx[7].sunrise;
-    			if (dirty & /*$ticks*/ 4) arc1_changes.to = /*week*/ ctx[7].sunrise + 0.5;
+    			if (dirty & /*$ticks*/ 2) arc1_changes.from = /*week*/ ctx[7].sunrise;
+    			if (dirty & /*$ticks*/ 2) arc1_changes.to = /*week*/ ctx[7].sunrise + 0.5;
     			arc1.$set(arc1_changes);
-    			if (/*i*/ ctx[9] === 50 || /*i*/ ctx[9] === 24 || /*i*/ ctx[9] === 10) if_block.p(ctx, dirty);
+
+    			if (/*i*/ ctx[9] === 50 || /*i*/ ctx[9] === 24 || /*i*/ ctx[9] === 10) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty & /*$ticks*/ 2) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block$2(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -70991,6 +71105,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
+    			if (detaching) detach_dev(first);
     			destroy_component(arc0, detaching);
     			if (detaching) detach_dev(t0);
     			destroy_component(arc1, detaching);
@@ -71004,23 +71119,24 @@ var app = (function () {
     		block,
     		id: create_each_block$2.name,
     		type: "each",
-    		source: "(63:8) {#each $ticks as week, i}",
+    		source: "(72:8) {#each $ticks as week, i (week.id)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (57:6) <Round width="500" height="500" rotate="-90" margin="10">
+    // (66:6) <Round width="500" height="500" rotate="-90" margin="10">
     function create_default_slot$1(ctx) {
     	let t0;
     	let t1;
     	let t2;
     	let t3;
+    	let each_blocks = [];
+    	let each_1_lookup = new Map();
     	let t4;
     	let t5;
     	let t6;
-    	let t7;
     	let current;
 
     	const tick0 = new Tick({
@@ -71069,23 +71185,22 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	let each_value = /*$ticks*/ ctx[2];
+    	let each_value = /*$ticks*/ ctx[1];
     	validate_each_argument(each_value);
-    	let each_blocks = [];
+    	const get_key = ctx => /*week*/ ctx[7].id;
+    	validate_each_keys(ctx, each_value, get_each_context$2, get_key);
 
     	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block$2(get_each_context$2(ctx, each_value, i));
+    		let child_ctx = get_each_context$2(ctx, each_value, i);
+    		let key = get_key(child_ctx);
+    		each_1_lookup.set(key, each_blocks[i] = create_each_block$2(key, child_ctx));
     	}
-
-    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
-    		each_blocks[i] = null;
-    	});
 
     	const line0 = new Line({
     			props: {
     				radius: "5",
     				length: "40",
-    				angle: /*currentSet*/ ctx[4],
+    				angle: /*currentSet*/ ctx[2],
     				color: "lightblue",
     				width: "0.2"
     			},
@@ -71096,7 +71211,7 @@ var app = (function () {
     			props: {
     				radius: "5",
     				length: "40",
-    				angle: /*currentRise*/ ctx[5],
+    				angle: /*currentRise*/ ctx[3],
     				color: "lightblue",
     				width: "0.2"
     			},
@@ -71105,24 +71220,13 @@ var app = (function () {
 
     	const arc = new Arc({
     			props: {
-    				radius: "5",
+    				radius: "15",
     				length: "40",
-    				from: /*currentRise*/ ctx[5],
-    				to: /*currentSet*/ ctx[4],
+    				from: /*currentRise*/ ctx[3],
+    				to: /*currentSet*/ ctx[2],
     				color: "lightblue",
     				opacity: "0.7",
-    				width: "22"
-    			},
-    			$$inline: true
-    		});
-
-    	const label = new Label({
-    			props: {
-    				text: /*now*/ ctx[0].format("{month-short} {date}"),
-    				radius: "10",
-    				angle: "180",
-    				align: "middle",
-    				color: "lightblue"
+    				width: "6"
     			},
     			$$inline: true
     		});
@@ -71148,8 +71252,6 @@ var app = (function () {
     			create_component(line1.$$.fragment);
     			t6 = space();
     			create_component(arc.$$.fragment);
-    			t7 = space();
-    			create_component(label.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(tick0, target, anchor);
@@ -71171,42 +71273,17 @@ var app = (function () {
     			mount_component(line1, target, anchor);
     			insert_dev(target, t6, anchor);
     			mount_component(arc, target, anchor);
-    			insert_dev(target, t7, anchor);
-    			mount_component(label, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*$ticks*/ 4) {
-    				each_value = /*$ticks*/ ctx[2];
+    			if (dirty & /*$ticks*/ 2) {
+    				const each_value = /*$ticks*/ ctx[1];
     				validate_each_argument(each_value);
-    				let i;
-
-    				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context$2(ctx, each_value, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    						transition_in(each_blocks[i], 1);
-    					} else {
-    						each_blocks[i] = create_each_block$2(child_ctx);
-    						each_blocks[i].c();
-    						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(t4.parentNode, t4);
-    					}
-    				}
-
     				group_outros();
-
-    				for (i = each_value.length; i < each_blocks.length; i += 1) {
-    					out(i);
-    				}
-
+    				validate_each_keys(ctx, each_value, get_each_context$2, get_key);
+    				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, t4.parentNode, outro_and_destroy_block, create_each_block$2, t4, get_each_context$2);
     				check_outros();
     			}
-
-    			const label_changes = {};
-    			if (dirty & /*now*/ 1) label_changes.text = /*now*/ ctx[0].format("{month-short} {date}");
-    			label.$set(label_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -71222,7 +71299,6 @@ var app = (function () {
     			transition_in(line0.$$.fragment, local);
     			transition_in(line1.$$.fragment, local);
     			transition_in(arc.$$.fragment, local);
-    			transition_in(label.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
@@ -71230,7 +71306,6 @@ var app = (function () {
     			transition_out(tick1.$$.fragment, local);
     			transition_out(tick2.$$.fragment, local);
     			transition_out(tick3.$$.fragment, local);
-    			each_blocks = each_blocks.filter(Boolean);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				transition_out(each_blocks[i]);
@@ -71239,7 +71314,6 @@ var app = (function () {
     			transition_out(line0.$$.fragment, local);
     			transition_out(line1.$$.fragment, local);
     			transition_out(arc.$$.fragment, local);
-    			transition_out(label.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -71251,15 +71325,17 @@ var app = (function () {
     			if (detaching) detach_dev(t2);
     			destroy_component(tick3, detaching);
     			if (detaching) detach_dev(t3);
-    			destroy_each(each_blocks, detaching);
+
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].d(detaching);
+    			}
+
     			if (detaching) detach_dev(t4);
     			destroy_component(line0, detaching);
     			if (detaching) detach_dev(t5);
     			destroy_component(line1, detaching);
     			if (detaching) detach_dev(t6);
     			destroy_component(arc, detaching);
-    			if (detaching) detach_dev(t7);
-    			destroy_component(label, detaching);
     		}
     	};
 
@@ -71267,7 +71343,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$1.name,
     		type: "slot",
-    		source: "(57:6) <Round width=\\\"500\\\" height=\\\"500\\\" rotate=\\\"-90\\\" margin=\\\"10\\\">",
+    		source: "(66:6) <Round width=\\\"500\\\" height=\\\"500\\\" rotate=\\\"-90\\\" margin=\\\"10\\\">",
     		ctx
     	});
 
@@ -71275,21 +71351,16 @@ var app = (function () {
     }
 
     function create_fragment$e(ctx) {
-    	let div5;
+    	let div4;
     	let t0;
     	let div0;
     	let t2;
-    	let div4;
+    	let div3;
     	let div1;
     	let updating_value;
     	let t3;
-    	let div3;
     	let div2;
-    	let t4_value = /*fmt*/ ctx[3](/*$lat*/ ctx[1]) + "";
     	let t4;
-    	let t5;
-    	let t6;
-    	let t7;
     	let current;
     	const head = new Head({ props: { num: 19 }, $$inline: true });
 
@@ -71299,8 +71370,8 @@ var app = (function () {
 
     	let latitude_props = {};
 
-    	if (/*$lat*/ ctx[1] !== void 0) {
-    		latitude_props.value = /*$lat*/ ctx[1];
+    	if (/*$lat*/ ctx[0] !== void 0) {
+    		latitude_props.value = /*$lat*/ ctx[0];
     	}
 
     	const latitude = new Latitude_1({ props: latitude_props, $$inline: true });
@@ -71322,74 +71393,62 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div5 = element("div");
+    			div4 = element("div");
     			create_component(head.$$.fragment);
     			t0 = space();
     			div0 = element("div");
     			div0.textContent = "Sunrise + Sunset direction";
     			t2 = space();
-    			div4 = element("div");
+    			div3 = element("div");
     			div1 = element("div");
     			create_component(latitude.$$.fragment);
     			t3 = space();
-    			div3 = element("div");
     			div2 = element("div");
-    			t4 = text(t4_value);
-    			t5 = text("°");
-    			t6 = space();
     			create_component(round.$$.fragment);
-    			t7 = space();
+    			t4 = space();
     			create_component(foot.$$.fragment);
     			attr_dev(div0, "class", "m3 svelte-17p9en2");
-    			add_location(div0, file$d, 47, 2, 1173);
+    			add_location(div0, file$d, 53, 2, 1289);
     			set_style(div1, "width", "300px");
-    			add_location(div1, file$d, 50, 4, 1301);
-    			attr_dev(div2, "class", "right f2 mt4 svelte-17p9en2");
-    			set_style(div2, "margin-bottom", "-50px");
-    			add_location(div2, file$d, 55, 6, 1419);
-    			set_style(div3, "max-width", "1000px");
-    			add_location(div3, file$d, 54, 4, 1381);
-    			attr_dev(div4, "class", "m3 col svelte-17p9en2");
-    			add_location(div4, file$d, 48, 2, 1224);
-    			add_location(div5, file$d, 45, 0, 1145);
+    			add_location(div1, file$d, 59, 4, 1509);
+    			set_style(div2, "max-width", "1000px");
+    			add_location(div2, file$d, 63, 4, 1589);
+    			attr_dev(div3, "class", "m3 col svelte-17p9en2");
+    			add_location(div3, file$d, 54, 2, 1340);
+    			add_location(div4, file$d, 51, 0, 1261);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div5, anchor);
-    			mount_component(head, div5, null);
-    			append_dev(div5, t0);
-    			append_dev(div5, div0);
-    			append_dev(div5, t2);
-    			append_dev(div5, div4);
-    			append_dev(div4, div1);
-    			mount_component(latitude, div1, null);
-    			append_dev(div4, t3);
+    			insert_dev(target, div4, anchor);
+    			mount_component(head, div4, null);
+    			append_dev(div4, t0);
+    			append_dev(div4, div0);
+    			append_dev(div4, t2);
     			append_dev(div4, div3);
+    			append_dev(div3, div1);
+    			mount_component(latitude, div1, null);
+    			append_dev(div3, t3);
     			append_dev(div3, div2);
-    			append_dev(div2, t4);
-    			append_dev(div2, t5);
-    			append_dev(div3, t6);
-    			mount_component(round, div3, null);
-    			append_dev(div5, t7);
-    			mount_component(foot, div5, null);
+    			mount_component(round, div2, null);
+    			append_dev(div4, t4);
+    			mount_component(foot, div4, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
     			const latitude_changes = {};
 
-    			if (!updating_value && dirty & /*$lat*/ 2) {
+    			if (!updating_value && dirty & /*$lat*/ 1) {
     				updating_value = true;
-    				latitude_changes.value = /*$lat*/ ctx[1];
+    				latitude_changes.value = /*$lat*/ ctx[0];
     				add_flush_callback(() => updating_value = false);
     			}
 
     			latitude.$set(latitude_changes);
-    			if ((!current || dirty & /*$lat*/ 2) && t4_value !== (t4_value = /*fmt*/ ctx[3](/*$lat*/ ctx[1]) + "")) set_data_dev(t4, t4_value);
     			const round_changes = {};
 
-    			if (dirty & /*$$scope, now, $ticks*/ 1029) {
+    			if (dirty & /*$$scope, $ticks*/ 1026) {
     				round_changes.$$scope = { dirty, ctx };
     			}
 
@@ -71411,7 +71470,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div5);
+    			if (detaching) detach_dev(div4);
     			destroy_component(head);
     			destroy_component(latitude);
     			destroy_component(round);
@@ -71434,9 +71493,9 @@ var app = (function () {
     	let $lat;
     	let $ticks;
     	validate_store(lat, "lat");
-    	component_subscribe($$self, lat, $$value => $$invalidate(1, $lat = $$value));
+    	component_subscribe($$self, lat, $$value => $$invalidate(0, $lat = $$value));
     	validate_store(ticks$1, "ticks");
-    	component_subscribe($$self, ticks$1, $$value => $$invalidate(2, $ticks = $$value));
+    	component_subscribe($$self, ticks$1, $$value => $$invalidate(1, $ticks = $$value));
     	src.extend(src$1);
 
     	const fmt = function (v) {
@@ -71445,14 +71504,19 @@ var app = (function () {
     		return v;
     	};
 
+    	// ticks.subscribe(el => {
+    	//   console.log('updated')
+    	//   console.log()
+    	//   return el
+    	// })
     	// let s = spacetime().in([fmt($lat), 0])
     	// let weeks = calcYear(s)
     	// get current sunset azimout
     	let now = src.today("Canada/Eastern");
 
-    	now = getSunSet(now, $lat);
+    	now = getSunSet(now, fmt($lat));
     	let currentSet = now.sunPosition().azimuth;
-    	now = getSunRise(now, $lat);
+    	now = getSunRise(now, fmt($lat));
     	let currentRise = now.sunPosition().azimuth;
     	const writable_props = [];
 
@@ -71494,16 +71558,16 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("now" in $$props) $$invalidate(0, now = $$props.now);
-    		if ("currentSet" in $$props) $$invalidate(4, currentSet = $$props.currentSet);
-    		if ("currentRise" in $$props) $$invalidate(5, currentRise = $$props.currentRise);
+    		if ("now" in $$props) now = $$props.now;
+    		if ("currentSet" in $$props) $$invalidate(2, currentSet = $$props.currentSet);
+    		if ("currentRise" in $$props) $$invalidate(3, currentRise = $$props.currentRise);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [now, $lat, $ticks, fmt, currentSet, currentRise, latitude_value_binding];
+    	return [$lat, $ticks, currentSet, currentRise, now, fmt, latitude_value_binding];
     }
 
     class Post extends SvelteComponentDev {
