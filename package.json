@@ -39,6 +39,7 @@
     "got": "11.5.1",
     "htm": "^3.0.4",
     "kld-intersections": "^0.7.0",
+    "semver": "^7.3.2",
     "slow": "^1.1.0",
     "somehow-maps": "^1.0.0",
     "somehow-sankey": "1.2.0",
