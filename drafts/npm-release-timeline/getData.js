@@ -20,7 +20,7 @@ const format = function (data) {
   return keys.map((sem) => {
     let d = spacetime(times[sem])
     return {
-      date: d,
+      date: d.format('iso-short'),
       type: parseRelease(sem),
       version: sem,
     }
@@ -31,8 +31,6 @@ const getData = async function (repo) {
   let url = `https://registry.npmjs.cf/${repo}`
   let res = await fetch(url, { mode: 'cors' })
   let data = await res.json()
-  let end = format(data)
-  // console.log(end)
-  return end
+  return format(data)
 }
 export default getData
