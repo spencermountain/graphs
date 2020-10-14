@@ -34,31 +34,30 @@
         <Ticks every="month" />
       </Column>
       <Now label="today" />
-      <Column width="35px" />
       <!-- hockey -->
-      <Column width="30px">
-        <Line start="Jan 1 {year}" end="April 6 {year}" color="navy" label="Leafs" />
-        <Line start="October 3 {year}" end="Dec 31 {year}" color="navy" label="(Leafs)" />
+      <Column width="60px">
+        <Label start="Jan 1 {year}" end="April 6 {year}" color="navy" label="Leafs" />
+        <Label start="October 3 {year}" end="Dec 31 {year}" color="navy" label="Leafs" />
       </Column>
       <!-- baseball -->
-      <Column width="30px" title="">
-        <Line start="March 29 {year}" end="Oct 1 {year}" color="lightblue" label="Blue Jays" />
+      <Column width="60px">
+        <Label start="March 29 {year}" end="Oct 1 {year}" color="lightblue" label="Blue Jays" />
       </Column>
       <!-- basketball -->
-      <Column width="35px">
-        <Line start="Jan 1 {year}" end="April 10 {year}" color="red" label="Raptors" />
-        <Line start="October 16 {year}" end="Dec 31 {year}" color="red" label="" />
+      <Column width="80px">
+        <Label start="Jan 1 {year}" end="April 10 {year}" color="red" label="Raptors" />
+        <Label start="October 16 {year}" end="Dec 31 {year}" color="red" label="Raptors" />
       </Column>
       <!-- mls -->
-      <Column width="150px">
-        <Line start="March 3 {year}" end="Dec 1 {year}" color="tulip" label="TFC" />
+      <Column width="60px">
+        <Label start="March 3 {year}" end="Dec 1 {year}" color="tulip" label="TFC" />
       </Column>
-      <Column width="20px">
-        <Line
+      <Column width="80px">
+        <Label
           start="April 20 {year}"
           end="Sept 10 {year}"
           label="Patios"
-          color="green"
+          color="slate"
           side="left"
           align="left"
           opacity="0.7" />
@@ -118,6 +117,7 @@
         label="rain"
         opacity="0.4" /> -->
         <Line start="May 5 {year}" end="Oct 1 {year}" color="green" label="Leaves" />
+        <Line start="Oct 5 {year}" end="Oct 25 {year}" color="beige" label="Fall" />
         <!-- <Line
         
         start="oct 2 {year}"
