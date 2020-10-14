@@ -209,5 +209,10 @@ module.exports = {
       title: 'Climates in Canada',
       thumb: 'thumb.png',
     },
+    {
+      num: 'snowfall-in-canada',
+      title: 'Snowfall in Canada',
+      thumb: 'thumb.png',
+    },
   ],
 }
