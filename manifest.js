@@ -199,5 +199,10 @@ module.exports = {
       title: 'Public Transit in Canada',
       thumb: 'thumb.png',
     },
+    {
+      num: 'stanley-cups-in-canada',
+      title: 'Stanley Cups in Canada',
+      thumb: 'thumb.png',
+    },
   ],
 }

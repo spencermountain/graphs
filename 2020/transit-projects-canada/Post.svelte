@@ -25,7 +25,7 @@
 </style>
 
 <div>
-  <Head {title} {sub} num="16" />
+  <Head {title} {sub} num="22" />
   <div class="m3">
     <Timeline start="1940" end="today" height="700">
       <Axis />
