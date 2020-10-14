@@ -8,15 +8,16 @@
     Ticks,
     Line,
     Era,
+    Text,
   } from '/Users/spencer/mountain/somehow-timeline/src'
-  import { Text } from '/Users/spencer/mountain/somehow-input/src'
+  // import { Text } from '/Users/spencer/mountain/somehow-input/src'
   import getData from './getData'
   import spacetime from 'spacetime'
   import { writable } from 'svelte/store'
-  let height = 1500
-  let text = writable('wtf_wikipedia')
-  let start = 'June 2001'
-  let end = 'August 2020'
+  let height = 600
+  let text = writable('compromise')
+  $: start = 'Jan 2014'
+  $: end = 'August 2020'
   let arr = []
   // setTimeout(() => {
   //   arr = [{}, {}]
@@ -40,17 +41,17 @@
       date: start,
     })
     height = height
-    // arr.forEach((obj, i) => {
-    //   if (obj.type === 'major') {
-    //     let next = arr.slice(i + 1, arr.length).find(o => o.type === 'major') || {}
-    //     obj.end = next.date
-    //   }
-    //   if (obj.type === 'minor') {
-    //     let next = arr.slice(i + 1, arr.length).find(o => o.type === 'minor') || {}
-    //     obj.end = next.date
-    //   }
-    // })
-    start = spacetime(start).minus(3, 'weeks')
+    arr.forEach((obj, i) => {
+      if (obj.type === 'major') {
+        let next = arr.slice(i + 1, arr.length).find(o => o.type === 'major') || {}
+        obj.end = next.date
+      }
+      if (obj.type === 'minor') {
+        let next = arr.slice(i + 1, arr.length).find(o => o.type === 'minor') || {}
+        obj.end = next.date
+      }
+    })
+    start = spacetime(start) //.minus(3, 'weeks')
     arr = arr
     console.log(arr)
   }
@@ -65,7 +66,7 @@
     margin: 3rem;
   }
   .container {
-    max-width: 600px;
+    max-width: 400px;
   }
 </style>
 
@@ -73,20 +74,34 @@
   <Head num="20" />
   <div class="m3">npm release timeline</div>
   <div class="m3 container">
-    <Text bind:text={$text} width="400" delay={1200} />
-
+    <!-- <pre>{JSON.stringify(arr)}</pre> -->
+    <!-- <Text bind:text={$text} width="400" delay={1200} /> -->
     <Timeline {start} {end} {height}>
       <Column width="20px">
         <Ticks every="year" />
       </Column>
-      <Column width="20px">
+      <!-- <Column width="20px">
         <Ticks every="month" size="8px" color="lightgrey" underline={false} />
-      </Column>
+      </Column> -->
+
+      <!-- <Column width="30px" label="">
+        {#each arr as release, i}
+          {#if release.type === 'major'}
+            <Text
+              start={release.date}
+              end={release.end}
+              label={release.version}
+              opacity="0.7"
+              color="blue"
+              size="0.7rem" />
+          {/if}
+        {/each}
+      </Column> -->
 
       <Column width="50px" label="Major">
         {#each arr as release, i}
           {#if release.type === 'major'}
-            <Era start={release.date} end={release.end} label={release.version} opacity="0.5" />
+            <Line start={release.date} end={release.end} label={''} opacity="0.5" />
           {/if}
         {/each}
       </Column>
@@ -94,7 +109,7 @@
       <Column width="100px" label="Minor" color="purple">
         {#each arr as release}
           {#if release.type === 'minor'}
-            <Era start={release.date} end={release.end} opacity="0.4" color="purple" />
+            <Line start={release.date} end={release.end} opacity="0.4" color="purple" />
           {/if}
         {/each}
       </Column>

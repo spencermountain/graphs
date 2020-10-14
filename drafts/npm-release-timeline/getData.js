@@ -1,5 +1,6 @@
 import semver from 'semver'
 import spacetime from 'spacetime'
+import mock from './compromise.js'
 
 const parseRelease = function (str) {
   let obj = semver.parse(str) || {}
@@ -12,13 +13,14 @@ const parseRelease = function (str) {
   return 'patch'
 }
 
-const format = function (data) {
-  let times = data.time || {}
-  let keys = Object.keys(times).filter((k) => {
+const format = function () {
+  // let times = data.time || {}
+  let keys = Object.keys(mock).filter((k) => {
     return semver.valid(k)
   })
   return keys.map((sem) => {
-    let d = spacetime(times[sem])
+    let d = spacetime(mock[sem])
+    // console.log(times[sem])
     return {
       date: d.format('iso-short'),
       type: parseRelease(sem),
