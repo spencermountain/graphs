@@ -204,5 +204,10 @@ module.exports = {
       title: 'Stanley Cups in Canada',
       thumb: 'thumb.png',
     },
+    {
+      num: 'climates-canada',
+      title: 'Climates in Canada',
+      thumb: 'thumb.png',
+    },
   ],
 }

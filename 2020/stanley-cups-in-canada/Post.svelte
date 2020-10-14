@@ -34,15 +34,15 @@
 
       </Column>
       <Column>
-        <Text color="cherry" label="Calgary" date="1960" underline={true} />
+        <Text color="#d48481" label="Calgary" date="1960" underline={true} />
         {#each byTeam.calgary as year}
-          <Dash date={'jan 1 ' + year} color="cherry" height="10px" />
+          <Dash date={'jan 1 ' + year} color="#d48481" height="10px" title={year} />
         {/each}
       </Column>
       <Column>
         <Text color="silver" label="Edmonton" date="1960" underline={true} />
         {#each byTeam.edmonton as year}
-          <Dash date={'jan 1 ' + year} color="silver" height="10px" />
+          <Dash date={'jan 1 ' + year} color="silver" height="10px" title={year} />
         {/each}
       </Column>
       <Column>
@@ -54,7 +54,7 @@
       <Column>
         <Text color="blue" label="Toronto" date="1960" underline={true} />
         {#each byTeam.toronto as year}
-          <Dash date={'jan 1 ' + year} color="blue" height="10px" />
+          <Dash date={'jan 1 ' + year} color="blue" height="10px" title={year} />
         {/each}
       </Column>
       <Column>
@@ -66,10 +66,15 @@
       <Column>
         <Text color="red" label="Montreal" date="1960" underline={true} />
         {#each byTeam.montreal as year}
-          <Dash date={'jan 1 ' + year} color="red" height="10px" />
+          <Dash date={'jan 1 ' + year} color="red" height="10px" title={year} />
         {/each}
       </Column>
-
+      <Column>
+        <Text color="#7dd1d1" label="Quebec" date="1960" underline={true} />
+        <!-- {#each byTeam.ottawa as year}
+          <Dash date={'jan 1 ' + year} color="orange" height="10px" />
+        {/each} -->
+      </Column>
     </Timeline>
   </div>
   <Foot {title} />

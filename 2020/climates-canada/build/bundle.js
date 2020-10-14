@@ -789,218 +789,16 @@ var app = (function () {
     	}
     }
 
-    var data = [
-      // { year: 1927, str: 'Ottawa Senators (C) (5, 4–1)', team: 'ottawa' },
-      // { year: 1928, str: 'New York Rangers (A) (1, 1–0)', team: null },
-      // { year: 1929, str: 'Boston Bruins (A) (2, 1–1)', team: null },
-      // {
-      //   year: 1930,
-      //   str: 'Montreal Canadiens (C) (6, 3–2)',
-      //   team: 'montreal'
-      // },
-      // {
-      //   year: 1931,
-      //   str: 'Montreal Canadiens (C) (7, 4–2)',
-      //   team: 'montreal'
-      // },
-      // {
-      //   year: 1932,
-      //   str: 'Toronto Maple Leafs (C) (3, 3–0)',
-      //   team: 'toronto'
-      // },
-      // { year: 1933, str: 'New York Rangers (A) (4, 2–2)', team: null },
-      // { year: 1934, str: 'Chicago Black Hawks (A) (2, 1–1)', team: null },
-      // {
-      //   year: 1935,
-      //   str: 'Montreal Maroons (C) (2, 2–1)',
-      //   team: 'montreal'
-      // },
-      // { year: 1936, str: 'Detroit Red Wings (A) (2, 1–1)', team: null },
-      // { year: 1937, str: 'Detroit Red Wings (A) (3, 2–1)', team: null },
-      // { year: 1938, str: 'Chicago Black Hawks (A) (3, 2–1)', team: null },
-      // { year: 1939, str: 'Boston Bruins (4, 2–2)', team: null },
-      // { year: 1940, str: 'New York Rangers (6, 3–3)', team: null },
-      // { year: 1941, str: 'Boston Bruins (5, 3–2)', team: null },
-      // { year: 1942, str: 'Toronto Maple Leafs (10, 4–6)', team: 'toronto' },
-      // { year: 1943, str: 'Detroit Red Wings (6, 3–3)', team: null },
-      // { year: 1944, str: 'Montreal Canadiens (8, 5–2)', team: 'montreal' },
-      // { year: 1945, str: 'Toronto Maple Leafs (11, 5–6)', team: 'toronto' },
-      // { year: 1946, str: 'Montreal Canadiens (9, 6–2)', team: 'montreal' },
-      // { year: 1947, str: 'Toronto Maple Leafs (12, 6–6)', team: 'toronto' },
-      // { year: 1948, str: 'Toronto Maple Leafs (13, 7–6)', team: 'toronto' },
-      // { year: 1949, str: 'Toronto Maple Leafs (14, 8–6)', team: 'toronto' },
-      // { year: 1950, str: 'Detroit Red Wings (10, 4–6)', team: null },
-      // { year: 1951, str: 'Toronto Maple Leafs (15, 9–6)', team: 'toronto' },
-      // { year: 1952, str: 'Detroit Red Wings (11, 5–6)', team: null },
-      // { year: 1953, str: 'Montreal Canadiens (13, 7–5)', team: 'montreal' },
-      // { year: 1954, str: 'Detroit Red Wings (12, 6–6)', team: null },
-      // { year: 1955, str: 'Detroit Red Wings (13, 7–6)', team: null },
-      // { year: 1956, str: 'Montreal Canadiens (16, 8–7)', team: 'montreal' },
-      // { year: 1957, str: 'Montreal Canadiens (17, 9–7)', team: 'montreal' },
-      // {
-      //   year: 1958,
-      //   str: 'Montreal Canadiens (18, 10–7)',
-      //   team: 'montreal'
-      // },
-      // {
-      //   year: 1959,
-      //   str: 'Montreal Canadiens (19, 11–7)',
-      //   team: 'montreal'
-      // },
-      // {
-      //   year: 1960,
-      //   str: 'Montreal Canadiens (20, 12–7)',
-      //   team: 'montreal'
-      // },
-      // { year: 1961, str: 'Chicago Black Hawks (5, 3–2)', team: null },
-      // {
-      //   year: 1962,
-      //   str: 'Toronto Maple Leafs (18, 10–8)',
-      //   team: 'toronto'
-      // },
-      // {
-      //   year: 1963,
-      //   str: 'Toronto Maple Leafs (19, 11–8)',
-      //   team: 'toronto'
-      // },
-      // {
-      //   year: 1964,
-      //   str: 'Toronto Maple Leafs (20, 12–8)',
-      //   team: 'toronto'
-      // },
-      // {
-      //   year: 1965,
-      //   str: 'Montreal Canadiens (21, 13–7)',
-      //   team: 'montreal'
-      // },
-      // {
-      //   year: 1966,
-      //   str: 'Montreal Canadiens (22, 14–7)',
-      //   team: 'montreal'
-      // },
-      {
-        year: 1967,
-        str: 'Toronto Maple Leafs (21, 13–8)',
-        team: 'toronto',
-      },
-      {
-        year: 1968,
-        str: 'Montreal Canadiens (E) (24, 15–8)',
-        team: 'montreal',
-      },
-      {
-        year: 1969,
-        str: 'Montreal Canadiens (E) (25, 16–8)',
-        team: 'montreal',
-      },
-      { year: 1970, str: 'Boston Bruins (E) (11, 4–7)', team: null },
-      {
-        year: 1971,
-        str: 'Montreal Canadiens (E) (26, 17–8)',
-        team: 'montreal',
-      },
-      { year: 1972, str: 'Boston Bruins (E) (12, 5–7)', team: null },
-      {
-        year: 1973,
-        str: 'Montreal Canadiens (E) (27, 18–8)',
-        team: 'montreal',
-      },
-      { year: 1974, str: 'Philadelphia Flyers (W) (1, 1–0)', team: null },
-      { year: 1975, str: 'Philadelphia Flyers (CC) (2, 2–0)', team: null },
-      {
-        year: 1976,
-        str: 'Montreal Canadiens (PW) (28, 19–8)',
-        team: 'montreal',
-      },
-      {
-        year: 1977,
-        str: 'Montreal Canadiens (PW) (29, 20–8)',
-        team: 'montreal',
-      },
-      {
-        year: 1978,
-        str: 'Montreal Canadiens (PW) (30, 21–8)',
-        team: 'montreal',
-      },
-      {
-        year: 1979,
-        str: 'Montreal Canadiens (PW) (31, 22–8)',
-        team: 'montreal',
-      },
-      { year: 1980, str: 'New York Islanders (CC) (1, 1–0)', team: null },
-      { year: 1981, str: 'New York Islanders (CC) (2, 2–0)', team: null },
-      { year: 1982, str: 'New York Islanders (PW) (3, 3–0)', team: null },
-      { year: 1983, str: 'New York Islanders (PW) (4, 4–0)', team: null },
-      {
-        year: 1984,
-        str: 'Edmonton Oilers (CC) (2, 1–1)',
-        team: 'edmonton',
-      },
-      {
-        year: 1985,
-        str: 'Edmonton Oilers (CC) (3, 2–1)',
-        team: 'edmonton',
-      },
-      {
-        year: 1986,
-        str: 'Montreal Canadiens (PW) (32, 23–8)',
-        team: 'montreal',
-      },
-      {
-        year: 1987,
-        str: 'Edmonton Oilers (CC) (4, 3–1)',
-        team: 'edmonton',
-      },
-      {
-        year: 1988,
-        str: 'Edmonton Oilers (CC) (5, 4–1)',
-        team: 'edmonton',
-      },
-      { year: 1989, str: 'Calgary Flames (CC) (2, 1–1)', team: 'calgary' },
-      {
-        year: 1990,
-        str: 'Edmonton Oilers (CC) (6, 5–1)',
-        team: 'edmonton',
-      },
-      { year: 1991, str: 'Pittsburgh Penguins (PW) (1, 1–0)', team: null },
-      { year: 1992, str: 'Pittsburgh Penguins (PW) (2, 2–0)', team: null },
-      {
-        year: 1993,
-        str: 'Montreal Canadiens (PW) (34, 24–9)',
-        team: 'montreal',
-      },
-      { year: 1994, str: 'New York Rangers (EC) (10, 4–6)', team: null },
-      { year: 1995, str: 'New Jersey Devils (EC) (1, 1–0)', team: null },
-      { year: 1996, str: 'Colorado Avalanche (WC) (1, 1–0)', team: null },
-      { year: 1997, str: 'Detroit Red Wings (WC) (20, 8–12)', team: null },
-      { year: 1998, str: 'Detroit Red Wings (WC) (21, 9–12)', team: null },
-      { year: 1999, str: 'Dallas Stars (WC) (3, 1–2)', team: null },
-      { year: 2000, str: 'New Jersey Devils (EC) (2, 2–0)', team: null },
-      { year: 2001, str: 'Colorado Avalanche (WC) (2, 2–0)', team: null },
-      { year: 2002, str: 'Detroit Red Wings (WC) (22, 10–12)', team: null },
-      { year: 2003, str: 'New Jersey Devils (EC) (4, 3–1)', team: null },
-      { year: 2004, str: 'Tampa Bay Lightning (EC) (1, 1–0)', team: null },
-      {
-        year: 2005,
-        str: 'Season cancelled due to the 2004–05 NHL lockout',
-        team: null,
-      },
-      { year: 2006, str: 'Carolina Hurricanes (EC) (2, 1–1)', team: null },
-      { year: 2007, str: 'Anaheim Ducks (WC) (2, 1–1)', team: null },
-      { year: 2008, str: 'Detroit Red Wings (WC) (23, 11–12)', team: null },
-      { year: 2009, str: 'Pittsburgh Penguins (EC) (4, 3–1)', team: null },
-      { year: 2010, str: 'Chicago Blackhawks (WC) (11, 4–7)', team: null },
-      { year: 2011, str: 'Boston Bruins (EC) (18, 6–12)', team: null },
-      { year: 2012, str: 'Los Angeles Kings (WC) (2, 1–1)', team: null },
-      { year: 2013, str: 'Chicago Blackhawks (WC) (12, 5–7)', team: null },
-      { year: 2014, str: 'Los Angeles Kings (WC) (3, 2–1)', team: null },
-      { year: 2015, str: 'Chicago Blackhawks (WC) (13, 6–7)', team: null },
-      { year: 2016, str: 'Pittsburgh Penguins (EC) (5, 4–1)', team: null },
-      { year: 2017, str: 'Pittsburgh Penguins (EC) (6, 5–1)', team: null },
-      { year: 2018, str: 'Washington Capitals (EC) (2, 1–1)', team: null },
-      { year: 2019, str: 'St. Louis Blues (WC) (4, 1–3)', team: null },
-      { year: 2020, str: 'Tampa Bay Lightning (EC) (3, 2–1)', team: null },
-    ];
+    var data = {
+      vancouver: [4.1, 4.9, 6.9, 9.4, 12.8, 15.7, 18, 18, 14.9, 10.3, 6.3, 3.6],
+      edmonton: [-10.4, -7.6, -2.5, 5.4, 11.5, 15.5, 17.7, 16.9, 11.4, 5.1, -4.1, -8.8],
+      calgary: [-7.1, -5.4, -1.6, 4.6, 9.7, 13.7, 16.5, 15.8, 11, 5.2, -2.4, -6.8],
+      winnipeg: [-16.4, -13.2, -5.8, 4.4, 11.6, 17, 19.7, 18.8, 12.7, 5, -4.9, -13.2],
+      toronto: [-3.7, -2.6, 1.4, 7.9, 14.1, 19.4, 22.3, 21.5, 17.2, 10.7, 4.9, -0.5],
+      ottawa: [-10.2, -7.9, -2.2, 6.5, 13.5, 18.7, 21.2, 19.9, 15.3, 8.4, 2, -5.6],
+      montreal: [-9.7, -7.7, -2, 6.4, 13.4, 18.6, 21.2, 20.1, 15.5, 8.5, 2.1, -5.4],
+      halifax: [-4.1, -3.6, -0.2, 4.9, 10.1, 15.2, 18.8, 19.1, 15.5, 9.9, 4.8, -0.8],
+    };
 
     function noop$1() { }
     function assign(tar, src) {
@@ -6701,7 +6499,7 @@ var app = (function () {
     function add_css$5() {
     	var style = element$1("style");
     	style.id = "svelte-b1q74g-style";
-    	style.textContent = ".container.svelte-b1q74g{position:absolute;border-radius:2px;width:100%}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGFzaC5zdmVsdGUiLCJzb3VyY2VzIjpbIkRhc2guc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCBzcGFjZXRpbWUgZnJvbSAnc3BhY2V0aW1lJ1xuICBpbXBvcnQgeyBnZXRDb250ZXh0IH0gZnJvbSAnc3ZlbHRlJ1xuICBsZXQgbXlTY2FsZSA9IGdldENvbnRleHQoJ3NjYWxlJylcbiAgaW1wb3J0IGMgZnJvbSAnc3BlbmNlci1jb2xvcidcbiAgZXhwb3J0IGxldCB3aWR0aCA9ICcyNXB4J1xuICBleHBvcnQgbGV0IGhlaWdodCA9ICczcHgnXG4gIGV4cG9ydCBsZXQgb3BhY2l0eSA9ICcxJ1xuICBleHBvcnQgbGV0IHRpdGxlID0gJydcbiAgZXhwb3J0IGxldCBzdGFydCA9IG51bGwgLy9nZXRDb250ZXh0KCdzdGFydCcpXG4gIGV4cG9ydCBsZXQgZGF0ZSA9IHN0YXJ0XG5cbiAgZXhwb3J0IGxldCBjb2xvciA9ICdzdGVlbGJsdWUnXG4gIGNvbG9yID0gYy5jb2xvcnNbY29sb3JdIHx8IGNvbG9yXG5cbiAgJDogZCA9IHNwYWNldGltZShkYXRlKVxuICAkOiB0b3AgPSBteVNjYWxlKGQuZXBvY2gpXG48L3NjcmlwdD5cblxuPHN0eWxlPlxuICAuY29udGFpbmVyIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgYm9yZGVyLXJhZGl1czogMnB4O1xuICAgIHdpZHRoOiAxMDAlO1xuICB9XG48L3N0eWxlPlxuXG48ZGl2XG4gIGNsYXNzPVwiY29udGFpbmVyXCJcbiAge3RpdGxlfVxuICBzdHlsZT1cIm1pbi13aWR0aDp7d2lkdGh9OyBvcGFjaXR5OntvcGFjaXR5fTsgdG9wOnt0b3B9cHg7IGhlaWdodDp7aGVpZ2h0fTsgYmFja2dyb3VuZC1jb2xvcjp7Y29sb3J9O1wiIC8+XG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBb0JFLFVBQVUsY0FBQyxDQUFDLEFBQ1YsUUFBUSxDQUFFLFFBQVEsQ0FDbEIsYUFBYSxDQUFFLEdBQUcsQ0FDbEIsS0FBSyxDQUFFLElBQUksQUFDYixDQUFDIn0= */";
+    	style.textContent = ".container.svelte-b1q74g{position:absolute;border-radius:2px;width:100%}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGFzaC5zdmVsdGUiLCJzb3VyY2VzIjpbIkRhc2guc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCBzcGFjZXRpbWUgZnJvbSAnc3BhY2V0aW1lJ1xuICBpbXBvcnQgeyBnZXRDb250ZXh0IH0gZnJvbSAnc3ZlbHRlJ1xuICBsZXQgbXlTY2FsZSA9IGdldENvbnRleHQoJ3NjYWxlJylcbiAgaW1wb3J0IGMgZnJvbSAnc3BlbmNlci1jb2xvcidcbiAgZXhwb3J0IGxldCB3aWR0aCA9ICcyNXB4J1xuICBleHBvcnQgbGV0IGhlaWdodCA9ICczcHgnXG4gIGV4cG9ydCBsZXQgb3BhY2l0eSA9ICcxJ1xuICBleHBvcnQgbGV0IHN0YXJ0ID0gbnVsbCAvL2dldENvbnRleHQoJ3N0YXJ0JylcbiAgZXhwb3J0IGxldCBkYXRlID0gc3RhcnRcblxuICBleHBvcnQgbGV0IGNvbG9yID0gJ3N0ZWVsYmx1ZSdcbiAgY29sb3IgPSBjLmNvbG9yc1tjb2xvcl0gfHwgY29sb3JcblxuICAkOiBkID0gc3BhY2V0aW1lKGRhdGUpXG4gICQ6IHRvcCA9IG15U2NhbGUoZC5lcG9jaClcbjwvc2NyaXB0PlxuXG48c3R5bGU+XG4gIC5jb250YWluZXIge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBib3JkZXItcmFkaXVzOiAycHg7XG4gICAgd2lkdGg6IDEwMCU7XG4gIH1cbjwvc3R5bGU+XG5cbjxkaXZcbiAgY2xhc3M9XCJjb250YWluZXJcIlxuICBzdHlsZT1cIm1pbi13aWR0aDp7d2lkdGh9OyBvcGFjaXR5OntvcGFjaXR5fTsgdG9wOnt0b3B9cHg7IGhlaWdodDp7aGVpZ2h0fTsgYmFja2dyb3VuZC1jb2xvcjp7Y29sb3J9O1wiIC8+XG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBbUJFLFVBQVUsY0FBQyxDQUFDLEFBQ1YsUUFBUSxDQUFFLFFBQVEsQ0FDbEIsYUFBYSxDQUFFLEdBQUcsQ0FDbEIsS0FBSyxDQUFFLElBQUksQUFDYixDQUFDIn0= */";
     	append_dev$1(document.head, style);
     }
 
@@ -6712,13 +6510,12 @@ var app = (function () {
     		c: function create() {
     			div = element$1("div");
     			attr_dev$1(div, "class", "container svelte-b1q74g");
-    			attr_dev$1(div, "title", /*title*/ ctx[4]);
     			set_style(div, "min-width", /*width*/ ctx[1]);
     			set_style(div, "opacity", /*opacity*/ ctx[3]);
-    			set_style(div, "top", /*top*/ ctx[5] + "px");
+    			set_style(div, "top", /*top*/ ctx[4] + "px");
     			set_style(div, "height", /*height*/ ctx[2]);
     			set_style(div, "background-color", /*color*/ ctx[0]);
-    			add_location$1(div, file$5, 27, 0, 568);
+    			add_location$1(div, file$5, 26, 0, 544);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6727,10 +6524,6 @@ var app = (function () {
     			insert_dev$1(target, div, anchor);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*title*/ 16) {
-    				attr_dev$1(div, "title", /*title*/ ctx[4]);
-    			}
-
     			if (dirty & /*width*/ 2) {
     				set_style(div, "min-width", /*width*/ ctx[1]);
     			}
@@ -6739,8 +6532,8 @@ var app = (function () {
     				set_style(div, "opacity", /*opacity*/ ctx[3]);
     			}
 
-    			if (dirty & /*top*/ 32) {
-    				set_style(div, "top", /*top*/ ctx[5] + "px");
+    			if (dirty & /*top*/ 16) {
+    				set_style(div, "top", /*top*/ ctx[4] + "px");
     			}
 
     			if (dirty & /*height*/ 4) {
@@ -6776,12 +6569,11 @@ var app = (function () {
     	let { width = "25px" } = $$props;
     	let { height = "3px" } = $$props;
     	let { opacity = "1" } = $$props;
-    	let { title = "" } = $$props;
     	let { start = null } = $$props; //getContext('start')
     	let { date = start } = $$props;
     	let { color = "steelblue" } = $$props;
     	color = spencerColor.colors[color] || color;
-    	const writable_props = ["width", "height", "opacity", "title", "start", "date", "color"];
+    	const writable_props = ["width", "height", "opacity", "start", "date", "color"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Dash> was created with unknown prop '${key}'`);
@@ -6791,9 +6583,8 @@ var app = (function () {
     		if ("width" in $$props) $$invalidate(1, width = $$props.width);
     		if ("height" in $$props) $$invalidate(2, height = $$props.height);
     		if ("opacity" in $$props) $$invalidate(3, opacity = $$props.opacity);
-    		if ("title" in $$props) $$invalidate(4, title = $$props.title);
-    		if ("start" in $$props) $$invalidate(6, start = $$props.start);
-    		if ("date" in $$props) $$invalidate(7, date = $$props.date);
+    		if ("start" in $$props) $$invalidate(5, start = $$props.start);
+    		if ("date" in $$props) $$invalidate(6, date = $$props.date);
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     	};
 
@@ -6805,7 +6596,6 @@ var app = (function () {
     		width,
     		height,
     		opacity,
-    		title,
     		start,
     		date,
     		color,
@@ -6814,16 +6604,15 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("myScale" in $$props) $$invalidate(9, myScale = $$props.myScale);
+    		if ("myScale" in $$props) $$invalidate(8, myScale = $$props.myScale);
     		if ("width" in $$props) $$invalidate(1, width = $$props.width);
     		if ("height" in $$props) $$invalidate(2, height = $$props.height);
     		if ("opacity" in $$props) $$invalidate(3, opacity = $$props.opacity);
-    		if ("title" in $$props) $$invalidate(4, title = $$props.title);
-    		if ("start" in $$props) $$invalidate(6, start = $$props.start);
-    		if ("date" in $$props) $$invalidate(7, date = $$props.date);
+    		if ("start" in $$props) $$invalidate(5, start = $$props.start);
+    		if ("date" in $$props) $$invalidate(6, date = $$props.date);
     		if ("color" in $$props) $$invalidate(0, color = $$props.color);
-    		if ("d" in $$props) $$invalidate(8, d = $$props.d);
-    		if ("top" in $$props) $$invalidate(5, top = $$props.top);
+    		if ("d" in $$props) $$invalidate(7, d = $$props.d);
+    		if ("top" in $$props) $$invalidate(4, top = $$props.top);
     	};
 
     	let d;
@@ -6834,16 +6623,16 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*date*/ 128) {
-    			 $$invalidate(8, d = src(date));
+    		if ($$self.$$.dirty & /*date*/ 64) {
+    			 $$invalidate(7, d = src(date));
     		}
 
-    		if ($$self.$$.dirty & /*d*/ 256) {
-    			 $$invalidate(5, top = myScale(d.epoch));
+    		if ($$self.$$.dirty & /*d*/ 128) {
+    			 $$invalidate(4, top = myScale(d.epoch));
     		}
     	};
 
-    	return [color, width, height, opacity, title, top, start, date];
+    	return [color, width, height, opacity, top, start, date];
     }
 
     class Dash extends SvelteComponentDev$1 {
@@ -6855,9 +6644,8 @@ var app = (function () {
     			width: 1,
     			height: 2,
     			opacity: 3,
-    			title: 4,
-    			start: 6,
-    			date: 7,
+    			start: 5,
+    			date: 6,
     			color: 0
     		});
 
@@ -6890,14 +6678,6 @@ var app = (function () {
     	}
 
     	set opacity(value) {
-    		throw new Error("<Dash>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get title() {
-    		throw new Error("<Dash>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set title(value) {
     		throw new Error("<Dash>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -7175,498 +6955,42 @@ var app = (function () {
     	}
     }
 
-    /* 2020/stanley-cups-in-canada/Post.svelte generated by Svelte v3.29.0 */
+    /* drafts/canada-climates/Post.svelte generated by Svelte v3.29.0 */
 
-    const { console: console_1$1 } = globals;
+    const { Object: Object_1 } = globals;
 
-    const file$7 = "2020/stanley-cups-in-canada/Post.svelte";
+    const file$7 = "drafts/canada-climates/Post.svelte";
 
     function add_css$7() {
     	var style = element("style");
     	style.id = "svelte-1o2k1lr-style";
-    	style.textContent = ".m3.svelte-1o2k1lr{margin:3rem}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUG9zdC5zdmVsdGUiLCJzb3VyY2VzIjpbIlBvc3Quc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCBIZWFkIGZyb20gJy4uLy4uL2NvbXBvbmVudHMvSGVhZC5zdmVsdGUnXG4gIGltcG9ydCBGb290IGZyb20gJy4uLy4uL2NvbXBvbmVudHMvRm9vdC5zdmVsdGUnXG4gIGltcG9ydCBkYXRhIGZyb20gJy4vZGF0YSdcbiAgaW1wb3J0IHsgVGltZWxpbmUsIEF4aXMsIENvbHVtbiwgRGFzaCwgVGV4dCB9IGZyb20gJy9Vc2Vycy9zcGVuY2VyL21vdW50YWluL3NvbWVob3ctdGltZWxpbmUvc3JjJ1xuICBleHBvcnQgbGV0IHRpdGxlID0gJ1N0YW5sZXkgQ3VwIHdpbnMgaW4gQ2FuYWRhJ1xuICBleHBvcnQgbGV0IHN1YiA9ICcnXG4gIGxldCBieVRlYW0gPSB7fVxuICBkYXRhLmZvckVhY2gocm93ID0+IHtcbiAgICBpZiAocm93LnRlYW0pIHtcbiAgICAgIGJ5VGVhbVtyb3cudGVhbV0gPSBieVRlYW1bcm93LnRlYW1dIHx8IFtdXG4gICAgICBieVRlYW1bcm93LnRlYW1dLnB1c2gocm93LnllYXIpXG4gICAgfVxuICB9KVxuICBjb25zb2xlLmxvZyhieVRlYW0pXG48L3NjcmlwdD5cblxuPHN0eWxlPlxuICAubTMge1xuICAgIG1hcmdpbjogM3JlbTtcbiAgfVxuPC9zdHlsZT5cblxuPGRpdj5cbiAgPEhlYWQge3RpdGxlfSB7c3VifSBudW09XCIyM1wiIC8+XG4gIDxkaXYgY2xhc3M9XCJtM1wiPlxuICAgIDxUaW1lbGluZSBzdGFydD1cIjE5NjBcIiBlbmQ9XCJ0b2RheVwiIGhlaWdodD1cIjcwMFwiPlxuICAgICAgPEF4aXMgLz5cbiAgICAgIDxDb2x1bW4+XG4gICAgICAgIDxUZXh0IGNvbG9yPVwic2t5XCIgbGFiZWw9XCJWYW5jb3V2ZXJcIiBkYXRlPVwiMTk2MFwiIHVuZGVybGluZT17dHJ1ZX0gLz5cbiAgICAgICAgPCEtLSB7I2VhY2ggYnlUZWFtLnZhbmNvdXZlciBhcyB5ZWFyfVxuICAgICAgICAgIDxEYXNoIGRhdGU9eydqYW4gMSAnICsgeWVhcn0gY29sb3I9XCJza3lcIiBoZWlnaHQ9XCIxMHB4XCIgLz5cbiAgICAgICAgey9lYWNofSAtLT5cblxuICAgICAgPC9Db2x1bW4+XG4gICAgICA8Q29sdW1uPlxuICAgICAgICA8VGV4dCBjb2xvcj1cIiNkNDg0ODFcIiBsYWJlbD1cIkNhbGdhcnlcIiBkYXRlPVwiMTk2MFwiIHVuZGVybGluZT17dHJ1ZX0gLz5cbiAgICAgICAgeyNlYWNoIGJ5VGVhbS5jYWxnYXJ5IGFzIHllYXJ9XG4gICAgICAgICAgPERhc2ggZGF0ZT17J2phbiAxICcgKyB5ZWFyfSBjb2xvcj1cIiNkNDg0ODFcIiBoZWlnaHQ9XCIxMHB4XCIgdGl0bGU9e3llYXJ9IC8+XG4gICAgICAgIHsvZWFjaH1cbiAgICAgIDwvQ29sdW1uPlxuICAgICAgPENvbHVtbj5cbiAgICAgICAgPFRleHQgY29sb3I9XCJzaWx2ZXJcIiBsYWJlbD1cIkVkbW9udG9uXCIgZGF0ZT1cIjE5NjBcIiB1bmRlcmxpbmU9e3RydWV9IC8+XG4gICAgICAgIHsjZWFjaCBieVRlYW0uZWRtb250b24gYXMgeWVhcn1cbiAgICAgICAgICA8RGFzaCBkYXRlPXsnamFuIDEgJyArIHllYXJ9IGNvbG9yPVwic2lsdmVyXCIgaGVpZ2h0PVwiMTBweFwiIHRpdGxlPXt5ZWFyfSAvPlxuICAgICAgICB7L2VhY2h9XG4gICAgICA8L0NvbHVtbj5cbiAgICAgIDxDb2x1bW4+XG4gICAgICAgIDxUZXh0IGNvbG9yPVwiZ3JleVwiIGxhYmVsPVwiV2lubmlwZWdcIiBkYXRlPVwiMTk2MFwiIHVuZGVybGluZT17dHJ1ZX0gLz5cbiAgICAgICAgPCEtLSB7I2VhY2ggYnlUZWFtLndpbm5pcGVnIGFzIHllYXJ9XG4gICAgICAgICAgPERhc2ggZGF0ZT17J2phbiAxICcgKyB5ZWFyfSBjb2xvcj1cImdyZXlcIiBoZWlnaHQ9XCIxMHB4XCIgLz5cbiAgICAgICAgey9lYWNofSAtLT5cbiAgICAgIDwvQ29sdW1uPlxuICAgICAgPENvbHVtbj5cbiAgICAgICAgPFRleHQgY29sb3I9XCJibHVlXCIgbGFiZWw9XCJUb3JvbnRvXCIgZGF0ZT1cIjE5NjBcIiB1bmRlcmxpbmU9e3RydWV9IC8+XG4gICAgICAgIHsjZWFjaCBieVRlYW0udG9yb250byBhcyB5ZWFyfVxuICAgICAgICAgIDxEYXNoIGRhdGU9eydqYW4gMSAnICsgeWVhcn0gY29sb3I9XCJibHVlXCIgaGVpZ2h0PVwiMTBweFwiIHRpdGxlPXt5ZWFyfSAvPlxuICAgICAgICB7L2VhY2h9XG4gICAgICA8L0NvbHVtbj5cbiAgICAgIDxDb2x1bW4+XG4gICAgICAgIDxUZXh0IGNvbG9yPVwib3JhbmdlXCIgbGFiZWw9XCJPdHRhd2FcIiBkYXRlPVwiMTk2MFwiIHVuZGVybGluZT17dHJ1ZX0gLz5cbiAgICAgICAgPCEtLSB7I2VhY2ggYnlUZWFtLm90dGF3YSBhcyB5ZWFyfVxuICAgICAgICAgIDxEYXNoIGRhdGU9eydqYW4gMSAnICsgeWVhcn0gY29sb3I9XCJvcmFuZ2VcIiBoZWlnaHQ9XCIxMHB4XCIgLz5cbiAgICAgICAgey9lYWNofSAtLT5cbiAgICAgIDwvQ29sdW1uPlxuICAgICAgPENvbHVtbj5cbiAgICAgICAgPFRleHQgY29sb3I9XCJyZWRcIiBsYWJlbD1cIk1vbnRyZWFsXCIgZGF0ZT1cIjE5NjBcIiB1bmRlcmxpbmU9e3RydWV9IC8+XG4gICAgICAgIHsjZWFjaCBieVRlYW0ubW9udHJlYWwgYXMgeWVhcn1cbiAgICAgICAgICA8RGFzaCBkYXRlPXsnamFuIDEgJyArIHllYXJ9IGNvbG9yPVwicmVkXCIgaGVpZ2h0PVwiMTBweFwiIHRpdGxlPXt5ZWFyfSAvPlxuICAgICAgICB7L2VhY2h9XG4gICAgICA8L0NvbHVtbj5cbiAgICAgIDxDb2x1bW4+XG4gICAgICAgIDxUZXh0IGNvbG9yPVwiIzdkZDFkMVwiIGxhYmVsPVwiUXVlYmVjXCIgZGF0ZT1cIjE5NjBcIiB1bmRlcmxpbmU9e3RydWV9IC8+XG4gICAgICAgIDwhLS0geyNlYWNoIGJ5VGVhbS5vdHRhd2EgYXMgeWVhcn1cbiAgICAgICAgICA8RGFzaCBkYXRlPXsnamFuIDEgJyArIHllYXJ9IGNvbG9yPVwib3JhbmdlXCIgaGVpZ2h0PVwiMTBweFwiIC8+XG4gICAgICAgIHsvZWFjaH0gLS0+XG4gICAgICA8L0NvbHVtbj5cbiAgICA8L1RpbWVsaW5lPlxuICA8L2Rpdj5cbiAgPEZvb3Qge3RpdGxlfSAvPlxuPC9kaXY+XG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBa0JFLEdBQUcsZUFBQyxDQUFDLEFBQ0gsTUFBTSxDQUFFLElBQUksQUFDZCxDQUFDIn0= */";
+    	style.textContent = ".m3.svelte-1o2k1lr{margin:3rem}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUG9zdC5zdmVsdGUiLCJzb3VyY2VzIjpbIlBvc3Quc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCBIZWFkIGZyb20gJy4uLy4uL2NvbXBvbmVudHMvSGVhZC5zdmVsdGUnXG4gIGltcG9ydCBGb290IGZyb20gJy4uLy4uL2NvbXBvbmVudHMvRm9vdC5zdmVsdGUnXG4gIGltcG9ydCBkYXRhIGZyb20gJy4vZGF0YSdcbiAgaW1wb3J0IHsgVGltZWxpbmUsIEF4aXMsIENvbHVtbiwgRGFzaCwgVGV4dCB9IGZyb20gJy9Vc2Vycy9zcGVuY2VyL21vdW50YWluL3NvbWVob3ctdGltZWxpbmUvc3JjJ1xuICBleHBvcnQgbGV0IHRpdGxlID0gJ0NsaW1hdGVzIG9mIENhbmFkaWFuIGNpdGllcydcbiAgZXhwb3J0IGxldCBzdWIgPSAnJ1xuICBsZXQgbW9udGhzID0gWydqYW4nLCAnZmViJywgJ21hcicsICdhcHInLCAnbWF5JywgJ2p1bicsICdqdWwnLCAnYXVnJywgJ3NlcCcsICdvY3QnLCAnbm92JywgJ2RlYyddXG4gIGNvbnN0IGdldENvbG9yID0gZnVuY3Rpb24obnVtKSB7XG4gICAgLy8gaWYgKG51bSA+IDE4KSB7XG4gICAgLy8gICByZXR1cm4gJ3JlZCdcbiAgICAvLyB9XG4gICAgaWYgKG51bSA+IDE1KSB7XG4gICAgICByZXR1cm4gJ29yYW5nZSdcbiAgICB9XG4gICAgaWYgKG51bSA8IDApIHtcbiAgICAgIHJldHVybiAnc2lsdmVyJ1xuICAgIH1cbiAgICBpZiAobnVtIDwgMTApIHtcbiAgICAgIHJldHVybiAnc2t5J1xuICAgIH1cbiAgICByZXR1cm4gJ2JsdWUnXG4gIH1cbiAgbGV0IHBsYWNlcyA9IE9iamVjdC5rZXlzKGRhdGEpXG5cbiAgY29uc3QgdGl0bGVDYXNlID0gZnVuY3Rpb24oc3RyKSB7XG4gICAgcmV0dXJuIHN0ci5yZXBsYWNlKC9cXHdcXFMqL2csIGZ1bmN0aW9uKHR4dCkge1xuICAgICAgcmV0dXJuIHR4dC5jaGFyQXQoMCkudG9VcHBlckNhc2UoKSArIHR4dC5zdWJzdHIoMSkudG9Mb3dlckNhc2UoKVxuICAgIH0pXG4gIH1cbjwvc2NyaXB0PlxuXG48c3R5bGU+XG4gIC5tMyB7XG4gICAgbWFyZ2luOiAzcmVtO1xuICB9XG48L3N0eWxlPlxuXG48ZGl2PlxuICA8SGVhZCB7dGl0bGV9IHtzdWJ9IG51bT1cIjIzXCIgLz5cbiAgPGRpdiBjbGFzcz1cIm0zXCI+XG4gICAgPFRpbWVsaW5lIHN0YXJ0PVwiRGVjIDEwIDIwMTlcIiBlbmQ9XCJEZWMgMzAgMjAyMFwiIGhlaWdodD1cIjcwMFwiPlxuICAgICAgPEF4aXMgLz5cbiAgICAgIHsjZWFjaCBwbGFjZXMgYXMgcGxhY2V9XG4gICAgICAgIDxDb2x1bW4+XG4gICAgICAgICAgPFRleHQgY29sb3I9XCJibHVlXCIgbGFiZWw9e3RpdGxlQ2FzZShwbGFjZSl9IGRhdGU9XCJkZWMgMTAgMjAxOVwiIHVuZGVybGluZT17dHJ1ZX0gLz5cbiAgICAgICAgICB7I2VhY2ggZGF0YVtwbGFjZV0gYXMgdGVtcCwgaX1cbiAgICAgICAgICAgIDxEYXNoIGRhdGU9e21vbnRoc1tpXSArICcgMjAyMCd9IGNvbG9yPXtnZXRDb2xvcih0ZW1wKX0gaGVpZ2h0PVwiMjBweFwiIC8+XG4gICAgICAgICAgey9lYWNofVxuICAgICAgICA8L0NvbHVtbj5cbiAgICAgIHsvZWFjaH1cblxuICAgIDwvVGltZWxpbmU+XG4gIDwvZGl2PlxuICA8Rm9vdCB7dGl0bGV9IC8+XG48L2Rpdj5cbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFpQ0UsR0FBRyxlQUFDLENBQUMsQUFDSCxNQUFNLENBQUUsSUFBSSxBQUNkLENBQUMifQ== */";
     	append_dev(document.head, style);
-    }
-
-    function get_each_context$1(ctx, list, i) {
-    	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
-    	return child_ctx;
     }
 
     function get_each_context_1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
+    	child_ctx[9] = list[i];
+    	child_ctx[11] = i;
     	return child_ctx;
     }
 
-    function get_each_context_2(ctx, list, i) {
+    function get_each_context$1(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
+    	child_ctx[6] = list[i];
     	return child_ctx;
     }
 
-    function get_each_context_3(ctx, list, i) {
-    	const child_ctx = ctx.slice();
-    	child_ctx[3] = list[i];
-    	return child_ctx;
-    }
-
-    // (29:6) <Column>
-    function create_default_slot_8(ctx) {
-    	let text_1;
-    	let current;
-
-    	text_1 = new Text({
-    			props: {
-    				color: "sky",
-    				label: "Vancouver",
-    				date: "1960",
-    				underline: true
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(text_1.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(text_1, target, anchor);
-    			current = true;
-    		},
-    		p: noop,
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(text_1.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(text_1.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(text_1, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_8.name,
-    		type: "slot",
-    		source: "(29:6) <Column>",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (38:8) {#each byTeam.calgary as year}
-    function create_each_block_3(ctx) {
-    	let dash;
-    	let current;
-
-    	dash = new Dash({
-    			props: {
-    				date: "jan 1 " + /*year*/ ctx[3],
-    				color: "#d48481",
-    				height: "10px",
-    				title: /*year*/ ctx[3]
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(dash.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(dash, target, anchor);
-    			current = true;
-    		},
-    		p: function update(ctx, dirty) {
-    			const dash_changes = {};
-    			if (dirty & /*byTeam*/ 4) dash_changes.date = "jan 1 " + /*year*/ ctx[3];
-    			if (dirty & /*byTeam*/ 4) dash_changes.title = /*year*/ ctx[3];
-    			dash.$set(dash_changes);
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(dash.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(dash.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(dash, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_each_block_3.name,
-    		type: "each",
-    		source: "(38:8) {#each byTeam.calgary as year}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (36:6) <Column>
-    function create_default_slot_7(ctx) {
-    	let text_1;
-    	let t;
-    	let each_1_anchor;
-    	let current;
-
-    	text_1 = new Text({
-    			props: {
-    				color: "#d48481",
-    				label: "Calgary",
-    				date: "1960",
-    				underline: true
-    			},
-    			$$inline: true
-    		});
-
-    	let each_value_3 = /*byTeam*/ ctx[2].calgary;
-    	validate_each_argument(each_value_3);
-    	let each_blocks = [];
-
-    	for (let i = 0; i < each_value_3.length; i += 1) {
-    		each_blocks[i] = create_each_block_3(get_each_context_3(ctx, each_value_3, i));
-    	}
-
-    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
-    		each_blocks[i] = null;
-    	});
-
-    	const block = {
-    		c: function create() {
-    			create_component(text_1.$$.fragment);
-    			t = space();
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
-    			each_1_anchor = empty();
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(text_1, target, anchor);
-    			insert_dev(target, t, anchor);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(target, anchor);
-    			}
-
-    			insert_dev(target, each_1_anchor, anchor);
-    			current = true;
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*byTeam*/ 4) {
-    				each_value_3 = /*byTeam*/ ctx[2].calgary;
-    				validate_each_argument(each_value_3);
-    				let i;
-
-    				for (i = 0; i < each_value_3.length; i += 1) {
-    					const child_ctx = get_each_context_3(ctx, each_value_3, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    						transition_in(each_blocks[i], 1);
-    					} else {
-    						each_blocks[i] = create_each_block_3(child_ctx);
-    						each_blocks[i].c();
-    						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-    					}
-    				}
-
-    				group_outros();
-
-    				for (i = each_value_3.length; i < each_blocks.length; i += 1) {
-    					out(i);
-    				}
-
-    				check_outros();
-    			}
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(text_1.$$.fragment, local);
-
-    			for (let i = 0; i < each_value_3.length; i += 1) {
-    				transition_in(each_blocks[i]);
-    			}
-
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(text_1.$$.fragment, local);
-    			each_blocks = each_blocks.filter(Boolean);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				transition_out(each_blocks[i]);
-    			}
-
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(text_1, detaching);
-    			if (detaching) detach_dev(t);
-    			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(each_1_anchor);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_7.name,
-    		type: "slot",
-    		source: "(36:6) <Column>",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (44:8) {#each byTeam.edmonton as year}
-    function create_each_block_2(ctx) {
-    	let dash;
-    	let current;
-
-    	dash = new Dash({
-    			props: {
-    				date: "jan 1 " + /*year*/ ctx[3],
-    				color: "silver",
-    				height: "10px",
-    				title: /*year*/ ctx[3]
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(dash.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(dash, target, anchor);
-    			current = true;
-    		},
-    		p: function update(ctx, dirty) {
-    			const dash_changes = {};
-    			if (dirty & /*byTeam*/ 4) dash_changes.date = "jan 1 " + /*year*/ ctx[3];
-    			if (dirty & /*byTeam*/ 4) dash_changes.title = /*year*/ ctx[3];
-    			dash.$set(dash_changes);
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(dash.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(dash.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(dash, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_each_block_2.name,
-    		type: "each",
-    		source: "(44:8) {#each byTeam.edmonton as year}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (42:6) <Column>
-    function create_default_slot_6(ctx) {
-    	let text_1;
-    	let t;
-    	let each_1_anchor;
-    	let current;
-
-    	text_1 = new Text({
-    			props: {
-    				color: "silver",
-    				label: "Edmonton",
-    				date: "1960",
-    				underline: true
-    			},
-    			$$inline: true
-    		});
-
-    	let each_value_2 = /*byTeam*/ ctx[2].edmonton;
-    	validate_each_argument(each_value_2);
-    	let each_blocks = [];
-
-    	for (let i = 0; i < each_value_2.length; i += 1) {
-    		each_blocks[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
-    	}
-
-    	const out = i => transition_out(each_blocks[i], 1, 1, () => {
-    		each_blocks[i] = null;
-    	});
-
-    	const block = {
-    		c: function create() {
-    			create_component(text_1.$$.fragment);
-    			t = space();
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
-    			each_1_anchor = empty();
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(text_1, target, anchor);
-    			insert_dev(target, t, anchor);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(target, anchor);
-    			}
-
-    			insert_dev(target, each_1_anchor, anchor);
-    			current = true;
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*byTeam*/ 4) {
-    				each_value_2 = /*byTeam*/ ctx[2].edmonton;
-    				validate_each_argument(each_value_2);
-    				let i;
-
-    				for (i = 0; i < each_value_2.length; i += 1) {
-    					const child_ctx = get_each_context_2(ctx, each_value_2, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    						transition_in(each_blocks[i], 1);
-    					} else {
-    						each_blocks[i] = create_each_block_2(child_ctx);
-    						each_blocks[i].c();
-    						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
-    					}
-    				}
-
-    				group_outros();
-
-    				for (i = each_value_2.length; i < each_blocks.length; i += 1) {
-    					out(i);
-    				}
-
-    				check_outros();
-    			}
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(text_1.$$.fragment, local);
-
-    			for (let i = 0; i < each_value_2.length; i += 1) {
-    				transition_in(each_blocks[i]);
-    			}
-
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(text_1.$$.fragment, local);
-    			each_blocks = each_blocks.filter(Boolean);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				transition_out(each_blocks[i]);
-    			}
-
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(text_1, detaching);
-    			if (detaching) detach_dev(t);
-    			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(each_1_anchor);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_6.name,
-    		type: "slot",
-    		source: "(42:6) <Column>",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (48:6) <Column>
-    function create_default_slot_5(ctx) {
-    	let text_1;
-    	let current;
-
-    	text_1 = new Text({
-    			props: {
-    				color: "grey",
-    				label: "Winnipeg",
-    				date: "1960",
-    				underline: true
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(text_1.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(text_1, target, anchor);
-    			current = true;
-    		},
-    		p: noop,
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(text_1.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(text_1.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(text_1, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_5.name,
-    		type: "slot",
-    		source: "(48:6) <Column>",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (56:8) {#each byTeam.toronto as year}
+    // (47:10) {#each data[place] as temp, i}
     function create_each_block_1(ctx) {
     	let dash;
     	let current;
 
     	dash = new Dash({
     			props: {
-    				date: "jan 1 " + /*year*/ ctx[3],
-    				color: "blue",
-    				height: "10px",
-    				title: /*year*/ ctx[3]
+    				date: /*months*/ ctx[2][/*i*/ ctx[11]] + " 2020",
+    				color: /*getColor*/ ctx[3](/*temp*/ ctx[9]),
+    				height: "20px"
     			},
     			$$inline: true
     		});
@@ -7679,12 +7003,7 @@ var app = (function () {
     			mount_component(dash, target, anchor);
     			current = true;
     		},
-    		p: function update(ctx, dirty) {
-    			const dash_changes = {};
-    			if (dirty & /*byTeam*/ 4) dash_changes.date = "jan 1 " + /*year*/ ctx[3];
-    			if (dirty & /*byTeam*/ 4) dash_changes.title = /*year*/ ctx[3];
-    			dash.$set(dash_changes);
-    		},
+    		p: noop,
     		i: function intro(local) {
     			if (current) return;
     			transition_in(dash.$$.fragment, local);
@@ -7703,31 +7022,31 @@ var app = (function () {
     		block,
     		id: create_each_block_1.name,
     		type: "each",
-    		source: "(56:8) {#each byTeam.toronto as year}",
+    		source: "(47:10) {#each data[place] as temp, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (54:6) <Column>
-    function create_default_slot_4(ctx) {
+    // (45:8) <Column>
+    function create_default_slot_1(ctx) {
     	let text_1;
-    	let t;
-    	let each_1_anchor;
+    	let t0;
+    	let t1;
     	let current;
 
     	text_1 = new Text({
     			props: {
     				color: "blue",
-    				label: "Toronto",
-    				date: "1960",
+    				label: /*titleCase*/ ctx[5](/*place*/ ctx[6]),
+    				date: "dec 10 2019",
     				underline: true
     			},
     			$$inline: true
     		});
 
-    	let each_value_1 = /*byTeam*/ ctx[2].toronto;
+    	let each_value_1 = data[/*place*/ ctx[6]];
     	validate_each_argument(each_value_1);
     	let each_blocks = [];
 
@@ -7742,28 +7061,28 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			create_component(text_1.$$.fragment);
-    			t = space();
+    			t0 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			each_1_anchor = empty();
+    			t1 = space();
     		},
     		m: function mount(target, anchor) {
     			mount_component(text_1, target, anchor);
-    			insert_dev(target, t, anchor);
+    			insert_dev(target, t0, anchor);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(target, anchor);
     			}
 
-    			insert_dev(target, each_1_anchor, anchor);
+    			insert_dev(target, t1, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*byTeam*/ 4) {
-    				each_value_1 = /*byTeam*/ ctx[2].toronto;
+    			if (dirty & /*months, getColor, data, places*/ 28) {
+    				each_value_1 = data[/*place*/ ctx[6]];
     				validate_each_argument(each_value_1);
     				let i;
 
@@ -7777,7 +7096,7 @@ var app = (function () {
     						each_blocks[i] = create_each_block_1(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    						each_blocks[i].m(t1.parentNode, t1);
     					}
     				}
 
@@ -7812,112 +7131,64 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			destroy_component(text_1, detaching);
-    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(t0);
     			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(each_1_anchor);
+    			if (detaching) detach_dev(t1);
     		}
     	};
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_4.name,
+    		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(54:6) <Column>",
+    		source: "(45:8) <Column>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (60:6) <Column>
-    function create_default_slot_3(ctx) {
-    	let text_1;
-    	let current;
-
-    	text_1 = new Text({
-    			props: {
-    				color: "orange",
-    				label: "Ottawa",
-    				date: "1960",
-    				underline: true
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(text_1.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(text_1, target, anchor);
-    			current = true;
-    		},
-    		p: noop,
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(text_1.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(text_1.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(text_1, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_3.name,
-    		type: "slot",
-    		source: "(60:6) <Column>",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (68:8) {#each byTeam.montreal as year}
+    // (44:6) {#each places as place}
     function create_each_block$1(ctx) {
-    	let dash;
+    	let column;
     	let current;
 
-    	dash = new Dash({
+    	column = new Column({
     			props: {
-    				date: "jan 1 " + /*year*/ ctx[3],
-    				color: "red",
-    				height: "10px",
-    				title: /*year*/ ctx[3]
+    				$$slots: { default: [create_default_slot_1] },
+    				$$scope: { ctx }
     			},
     			$$inline: true
     		});
 
     	const block = {
     		c: function create() {
-    			create_component(dash.$$.fragment);
+    			create_component(column.$$.fragment);
     		},
     		m: function mount(target, anchor) {
-    			mount_component(dash, target, anchor);
+    			mount_component(column, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			const dash_changes = {};
-    			if (dirty & /*byTeam*/ 4) dash_changes.date = "jan 1 " + /*year*/ ctx[3];
-    			if (dirty & /*byTeam*/ 4) dash_changes.title = /*year*/ ctx[3];
-    			dash.$set(dash_changes);
+    			const column_changes = {};
+
+    			if (dirty & /*$$scope*/ 4096) {
+    				column_changes.$$scope = { dirty, ctx };
+    			}
+
+    			column.$set(column_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(dash.$$.fragment, local);
+    			transition_in(column.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(dash.$$.fragment, local);
+    			transition_out(column.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(dash, detaching);
+    			destroy_component(column, detaching);
     		}
     	};
 
@@ -7925,31 +7196,21 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(68:8) {#each byTeam.montreal as year}",
+    		source: "(44:6) {#each places as place}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (66:6) <Column>
-    function create_default_slot_2(ctx) {
-    	let text_1;
+    // (42:4) <Timeline start="Dec 10 2019" end="Dec 30 2020" height="700">
+    function create_default_slot(ctx) {
+    	let axis;
     	let t;
     	let each_1_anchor;
     	let current;
-
-    	text_1 = new Text({
-    			props: {
-    				color: "red",
-    				label: "Montreal",
-    				date: "1960",
-    				underline: true
-    			},
-    			$$inline: true
-    		});
-
-    	let each_value = /*byTeam*/ ctx[2].montreal;
+    	axis = new Axis({ $$inline: true });
+    	let each_value = /*places*/ ctx[4];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -7963,7 +7224,7 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			create_component(text_1.$$.fragment);
+    			create_component(axis.$$.fragment);
     			t = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -7973,7 +7234,7 @@ var app = (function () {
     			each_1_anchor = empty();
     		},
     		m: function mount(target, anchor) {
-    			mount_component(text_1, target, anchor);
+    			mount_component(axis, target, anchor);
     			insert_dev(target, t, anchor);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -7984,8 +7245,8 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*byTeam*/ 4) {
-    				each_value = /*byTeam*/ ctx[2].montreal;
+    			if (dirty & /*data, places, months, getColor, titleCase*/ 60) {
+    				each_value = /*places*/ ctx[4];
     				validate_each_argument(each_value);
     				let i;
 
@@ -8014,7 +7275,7 @@ var app = (function () {
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(text_1.$$.fragment, local);
+    			transition_in(axis.$$.fragment, local);
 
     			for (let i = 0; i < each_value.length; i += 1) {
     				transition_in(each_blocks[i]);
@@ -8023,7 +7284,7 @@ var app = (function () {
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(text_1.$$.fragment, local);
+    			transition_out(axis.$$.fragment, local);
     			each_blocks = each_blocks.filter(Boolean);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
@@ -8033,7 +7294,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			destroy_component(text_1, detaching);
+    			destroy_component(axis, detaching);
     			if (detaching) detach_dev(t);
     			destroy_each(each_blocks, detaching);
     			if (detaching) detach_dev(each_1_anchor);
@@ -8042,299 +7303,9 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2.name,
-    		type: "slot",
-    		source: "(66:6) <Column>",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (72:6) <Column>
-    function create_default_slot_1(ctx) {
-    	let text_1;
-    	let current;
-
-    	text_1 = new Text({
-    			props: {
-    				color: "#7dd1d1",
-    				label: "Quebec",
-    				date: "1960",
-    				underline: true
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(text_1.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(text_1, target, anchor);
-    			current = true;
-    		},
-    		p: noop,
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(text_1.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(text_1.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(text_1, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_default_slot_1.name,
-    		type: "slot",
-    		source: "(72:6) <Column>",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (27:4) <Timeline start="1960" end="today" height="700">
-    function create_default_slot(ctx) {
-    	let axis;
-    	let t0;
-    	let column0;
-    	let t1;
-    	let column1;
-    	let t2;
-    	let column2;
-    	let t3;
-    	let column3;
-    	let t4;
-    	let column4;
-    	let t5;
-    	let column5;
-    	let t6;
-    	let column6;
-    	let t7;
-    	let column7;
-    	let current;
-    	axis = new Axis({ $$inline: true });
-
-    	column0 = new Column({
-    			props: {
-    				$$slots: { default: [create_default_slot_8] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	column1 = new Column({
-    			props: {
-    				$$slots: { default: [create_default_slot_7] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	column2 = new Column({
-    			props: {
-    				$$slots: { default: [create_default_slot_6] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	column3 = new Column({
-    			props: {
-    				$$slots: { default: [create_default_slot_5] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	column4 = new Column({
-    			props: {
-    				$$slots: { default: [create_default_slot_4] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	column5 = new Column({
-    			props: {
-    				$$slots: { default: [create_default_slot_3] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	column6 = new Column({
-    			props: {
-    				$$slots: { default: [create_default_slot_2] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	column7 = new Column({
-    			props: {
-    				$$slots: { default: [create_default_slot_1] },
-    				$$scope: { ctx }
-    			},
-    			$$inline: true
-    		});
-
-    	const block = {
-    		c: function create() {
-    			create_component(axis.$$.fragment);
-    			t0 = space();
-    			create_component(column0.$$.fragment);
-    			t1 = space();
-    			create_component(column1.$$.fragment);
-    			t2 = space();
-    			create_component(column2.$$.fragment);
-    			t3 = space();
-    			create_component(column3.$$.fragment);
-    			t4 = space();
-    			create_component(column4.$$.fragment);
-    			t5 = space();
-    			create_component(column5.$$.fragment);
-    			t6 = space();
-    			create_component(column6.$$.fragment);
-    			t7 = space();
-    			create_component(column7.$$.fragment);
-    		},
-    		m: function mount(target, anchor) {
-    			mount_component(axis, target, anchor);
-    			insert_dev(target, t0, anchor);
-    			mount_component(column0, target, anchor);
-    			insert_dev(target, t1, anchor);
-    			mount_component(column1, target, anchor);
-    			insert_dev(target, t2, anchor);
-    			mount_component(column2, target, anchor);
-    			insert_dev(target, t3, anchor);
-    			mount_component(column3, target, anchor);
-    			insert_dev(target, t4, anchor);
-    			mount_component(column4, target, anchor);
-    			insert_dev(target, t5, anchor);
-    			mount_component(column5, target, anchor);
-    			insert_dev(target, t6, anchor);
-    			mount_component(column6, target, anchor);
-    			insert_dev(target, t7, anchor);
-    			mount_component(column7, target, anchor);
-    			current = true;
-    		},
-    		p: function update(ctx, dirty) {
-    			const column0_changes = {};
-
-    			if (dirty & /*$$scope*/ 4096) {
-    				column0_changes.$$scope = { dirty, ctx };
-    			}
-
-    			column0.$set(column0_changes);
-    			const column1_changes = {};
-
-    			if (dirty & /*$$scope, byTeam*/ 4100) {
-    				column1_changes.$$scope = { dirty, ctx };
-    			}
-
-    			column1.$set(column1_changes);
-    			const column2_changes = {};
-
-    			if (dirty & /*$$scope, byTeam*/ 4100) {
-    				column2_changes.$$scope = { dirty, ctx };
-    			}
-
-    			column2.$set(column2_changes);
-    			const column3_changes = {};
-
-    			if (dirty & /*$$scope*/ 4096) {
-    				column3_changes.$$scope = { dirty, ctx };
-    			}
-
-    			column3.$set(column3_changes);
-    			const column4_changes = {};
-
-    			if (dirty & /*$$scope, byTeam*/ 4100) {
-    				column4_changes.$$scope = { dirty, ctx };
-    			}
-
-    			column4.$set(column4_changes);
-    			const column5_changes = {};
-
-    			if (dirty & /*$$scope*/ 4096) {
-    				column5_changes.$$scope = { dirty, ctx };
-    			}
-
-    			column5.$set(column5_changes);
-    			const column6_changes = {};
-
-    			if (dirty & /*$$scope, byTeam*/ 4100) {
-    				column6_changes.$$scope = { dirty, ctx };
-    			}
-
-    			column6.$set(column6_changes);
-    			const column7_changes = {};
-
-    			if (dirty & /*$$scope*/ 4096) {
-    				column7_changes.$$scope = { dirty, ctx };
-    			}
-
-    			column7.$set(column7_changes);
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(axis.$$.fragment, local);
-    			transition_in(column0.$$.fragment, local);
-    			transition_in(column1.$$.fragment, local);
-    			transition_in(column2.$$.fragment, local);
-    			transition_in(column3.$$.fragment, local);
-    			transition_in(column4.$$.fragment, local);
-    			transition_in(column5.$$.fragment, local);
-    			transition_in(column6.$$.fragment, local);
-    			transition_in(column7.$$.fragment, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out(axis.$$.fragment, local);
-    			transition_out(column0.$$.fragment, local);
-    			transition_out(column1.$$.fragment, local);
-    			transition_out(column2.$$.fragment, local);
-    			transition_out(column3.$$.fragment, local);
-    			transition_out(column4.$$.fragment, local);
-    			transition_out(column5.$$.fragment, local);
-    			transition_out(column6.$$.fragment, local);
-    			transition_out(column7.$$.fragment, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			destroy_component(axis, detaching);
-    			if (detaching) detach_dev(t0);
-    			destroy_component(column0, detaching);
-    			if (detaching) detach_dev(t1);
-    			destroy_component(column1, detaching);
-    			if (detaching) detach_dev(t2);
-    			destroy_component(column2, detaching);
-    			if (detaching) detach_dev(t3);
-    			destroy_component(column3, detaching);
-    			if (detaching) detach_dev(t4);
-    			destroy_component(column4, detaching);
-    			if (detaching) detach_dev(t5);
-    			destroy_component(column5, detaching);
-    			if (detaching) detach_dev(t6);
-    			destroy_component(column6, detaching);
-    			if (detaching) detach_dev(t7);
-    			destroy_component(column7, detaching);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(27:4) <Timeline start=\\\"1960\\\" end=\\\"today\\\" height=\\\"700\\\">",
+    		source: "(42:4) <Timeline start=\\\"Dec 10 2019\\\" end=\\\"Dec 30 2020\\\" height=\\\"700\\\">",
     		ctx
     	});
 
@@ -8362,8 +7333,8 @@ var app = (function () {
 
     	timeline = new Timeline({
     			props: {
-    				start: "1960",
-    				end: "today",
+    				start: "Dec 10 2019",
+    				end: "Dec 30 2020",
     				height: "700",
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
@@ -8386,8 +7357,8 @@ var app = (function () {
     			t1 = space();
     			create_component(foot.$$.fragment);
     			attr_dev(div0, "class", "m3 svelte-1o2k1lr");
-    			add_location(div0, file$7, 25, 2, 591);
-    			add_location(div1, file$7, 23, 0, 549);
+    			add_location(div0, file$7, 40, 2, 963);
+    			add_location(div1, file$7, 38, 0, 921);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8409,7 +7380,7 @@ var app = (function () {
     			head.$set(head_changes);
     			const timeline_changes = {};
 
-    			if (dirty & /*$$scope, byTeam*/ 4100) {
+    			if (dirty & /*$$scope*/ 4096) {
     				timeline_changes.$$scope = { dirty, ctx };
     			}
 
@@ -8453,22 +7424,55 @@ var app = (function () {
     function instance$7($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Post", slots, []);
-    	let { title = "Stanley Cup wins in Canada" } = $$props;
+    	let { title = "Climates of Canadian cities" } = $$props;
     	let { sub = "" } = $$props;
-    	let byTeam = {};
 
-    	data.forEach(row => {
-    		if (row.team) {
-    			$$invalidate(2, byTeam[row.team] = byTeam[row.team] || [], byTeam);
-    			byTeam[row.team].push(row.year);
+    	let months = [
+    		"jan",
+    		"feb",
+    		"mar",
+    		"apr",
+    		"may",
+    		"jun",
+    		"jul",
+    		"aug",
+    		"sep",
+    		"oct",
+    		"nov",
+    		"dec"
+    	];
+
+    	const getColor = function (num) {
+    		// if (num > 18) {
+    		//   return 'red'
+    		// }
+    		if (num > 15) {
+    			return "orange";
     		}
-    	});
 
-    	console.log(byTeam);
+    		if (num < 0) {
+    			return "silver";
+    		}
+
+    		if (num < 10) {
+    			return "sky";
+    		}
+
+    		return "blue";
+    	};
+
+    	let places = Object.keys(data);
+
+    	const titleCase = function (str) {
+    		return str.replace(/\w\S*/g, function (txt) {
+    			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    		});
+    	};
+
     	const writable_props = ["title", "sub"];
 
-    	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$1.warn(`<Post> was created with unknown prop '${key}'`);
+    	Object_1.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Post> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$$set = $$props => {
@@ -8487,20 +7491,24 @@ var app = (function () {
     		Text,
     		title,
     		sub,
-    		byTeam
+    		months,
+    		getColor,
+    		places,
+    		titleCase
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
     		if ("sub" in $$props) $$invalidate(1, sub = $$props.sub);
-    		if ("byTeam" in $$props) $$invalidate(2, byTeam = $$props.byTeam);
+    		if ("months" in $$props) $$invalidate(2, months = $$props.months);
+    		if ("places" in $$props) $$invalidate(4, places = $$props.places);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [title, sub, byTeam];
+    	return [title, sub, months, getColor, places, titleCase];
     }
 
     class Post extends SvelteComponentDev {
