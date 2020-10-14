@@ -189,5 +189,15 @@ module.exports = {
       title: 'Computer programming timeline',
       thumb: 'thumb.png',
     },
+    {
+      num: 'governments-of-canada',
+      title: 'Governments of Canada',
+      thumb: 'thumb.png',
+    },
+    {
+      num: 'transit-projects-canada',
+      title: 'Public Transit in Canada',
+      thumb: 'thumb.png',
+    },
   ],
 }

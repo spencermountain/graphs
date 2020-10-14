@@ -1,0 +1,73 @@
+html {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px auto;
+  margin-top: 1.2rem;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: #4d4d4d;
+  background-color: #fbfbfb;
+  font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
+  font-size: 16px;
+  line-height: 150%;
+}
+/* latin */
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Merriweather Regular'), local('Merriweather-Regular'), url(./merriweather.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+stage {
+  margin: 0 auto;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column !important;
+  justify-content: space-around;
+  align-items: flex-start;
+  text-align: left;
+  flex-wrap: wrap;
+  flex: 1;
+  color: #333;
+}
+@media (min-width: 640px) {
+  .main main {
+    max-width: none;
+  }
+}
+.left {
+  align-self: flex-start;
+}
+.right {
+  align-self: flex-end;
+}
+.center {
+  align-self: center;
+}
+img {
+  margin: 1.2rem;
+  max-width: 100%;
+  border-radius: 3px;
+  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
+  align-self: center;
+}
+h2 {
+  padding-left: 0.25rem;
+  line-height: 80%;
+  padding-right: 0.25rem;
+  display: inline;
+  color: #4d4d4d;
+  font-size: 2.4em;
+  font-weight: 100;
+  border-bottom: 1px solid #f2c0bb;
+}
+footer {
+  height: 10rem;
+}
