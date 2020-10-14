@@ -46,7 +46,7 @@ el.innerHTML = result.join(' ');
 "use strict";
 
 module.exports = {
-  '2018': [{
+  2018: [{
     num: 'sports-by-city',
     title: 'Sports seasons by city',
     thumb: 'thumb.png'
@@ -68,7 +68,7 @@ module.exports = {
     title: '2018 baseball season',
     thumb: 'thumb.png'
   }],
-  '2019': [{
+  2019: [{
     num: 'nhl-team-performance',
     title: 'NHL performance by team',
     thumb: 'thumb.png'
@@ -114,7 +114,7 @@ module.exports = {
     title: 'Ontario Line Map',
     thumb: 'thumb.png'
   }],
-  '2020': [{
+  2020: [{
     num: 'ontario-covid',
     title: 'Causes of death in Ontario',
     thumb: 'thumb.png'
@@ -193,6 +193,10 @@ module.exports = {
   }, {
     num: 'sunset-direction',
     title: 'Sunset direction by year',
+    thumb: 'thumb.png'
+  }, {
+    num: 'computer-history',
+    title: 'Computer programming timeline',
     thumb: 'thumb.png'
   }]
 };

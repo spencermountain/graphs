@@ -1,8 +1,8 @@
 <script>
   let year = new Date().getFullYear()
   export let num = '01'
-  // export let title = ''
-  // export let sub = ''
+  export let title = ''
+  export let sub = ''
 </script>
 
 <style>
@@ -14,6 +14,11 @@
   }
   .f1 {
     font-size: 0.8rem;
+  }
+  .m3 {
+    margin-left: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
   a {
     color: #69c;
@@ -33,6 +38,10 @@
 <!-- title -->
 <div class="blue ml1 goleft left">
   <a class="link f1 blue" href="../../">〱 ./{year}/ {num}</a>
-  <!-- <span class="ml2 grey">{title}</span> -->
-  <!-- <div class="brown ml1">{sub}</div> -->
 </div>
+{#if title}
+  <div class="m3">
+    <span class="ml2 grey">{title}</span>
+    <div class="brown ml1">{sub}</div>
+  </div>
+{/if}

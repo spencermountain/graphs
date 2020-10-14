@@ -1,5 +1,5 @@
 module.exports = {
-  '2018': [
+  2018: [
     {
       num: 'sports-by-city',
       title: 'Sports seasons by city',
@@ -26,7 +26,7 @@ module.exports = {
       thumb: 'thumb.png',
     },
   ],
-  '2019': [
+  2019: [
     {
       num: 'nhl-team-performance',
       title: 'NHL performance by team',
@@ -83,7 +83,7 @@ module.exports = {
       thumb: 'thumb.png',
     },
   ],
-  '2020': [
+  2020: [
     {
       num: 'ontario-covid',
       title: 'Causes of death in Ontario',
@@ -182,6 +182,11 @@ module.exports = {
     {
       num: 'sunset-direction',
       title: 'Sunset direction by year',
+      thumb: 'thumb.png',
+    },
+    {
+      num: 'computer-history',
+      title: 'Computer programming timeline',
       thumb: 'thumb.png',
     },
   ],
