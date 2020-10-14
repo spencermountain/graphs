@@ -2,7 +2,7 @@
 "use strict";
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["<h3 class=\"\">", "</h3>"]);
+  var data = _taggedTemplateLiteral(["<h3 style=\"margin-left:1rem;\">", "</h3>"]);
 
   _templateObject2 = function _templateObject2() {
     return data;

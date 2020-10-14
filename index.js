@@ -19,7 +19,7 @@ years.forEach((y) => {
     </a>
     `
   })
-  result.push(h`<h3 class="">${y}</h3>`)
+  result.push(h`<h3 style="margin-left:1rem;">${y}</h3>`)
   result = result.concat(posts)
 })
 
