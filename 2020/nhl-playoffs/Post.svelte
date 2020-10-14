@@ -33,15 +33,6 @@
   .ml4 {
     margin-left: 4rem;
   }
-  .bar {
-    height: 3px;
-    background-color: steelblue;
-  }
-  .year {
-    color: grey;
-    margin-right: 25px;
-    width: 50px;
-  }
   .row {
     display: flex;
     flex-direction: row;
@@ -67,7 +58,7 @@
 </style>
 
 <div>
-  <Head {title} num="8" />
+  <Head {title} {sub} num="8" />
   <div class="m3">
 
     <div class="row">
@@ -77,7 +68,6 @@
           <option value={t}>{t}</option>
         {/each}
       </select>
-      <!-- <div class="f2 ml4">{team}</div> -->
     </div>
     <Timeline {start} {end} {height}>
       <Ticks every="decade" />
@@ -113,13 +103,7 @@
         {/each}
       </Column>
     </Timeline>
-    <!-- {#each years as year}
-      <div class="row">
-        <div class="year">{year}</div>
-        <div class="bar" style="width:{75 * (playoffs[year][team] || 0)}px;" />
-      </div>
-    {/each}
-    <div class="line" style="left:130px;" /> -->
+
   </div>
   <Foot {title} />
 </div>
