@@ -13,7 +13,7 @@
     Label,
     Horizontal,
   } from '/Users/spencer/mountain/somehow-timeline/src'
-  export let title = 'Timline of computer programming'
+  export let title = 'Timeline of computer programming'
   export let sub = ''
 </script>
 
@@ -40,8 +40,8 @@
         label="Engelbart demo"
         color="pink"
         align="right"
-        width="50%"
-        left="15%" />
+        width="40%"
+        left="25%" />
 
       <!-- <Horizontal
         date="June 2001"
@@ -51,7 +51,7 @@
         width="80px"
         hide={true} /> -->
 
-      <Column>
+      <Column width="100px">
         <Label
           start="1939"
           end="1945"
@@ -121,7 +121,7 @@
       </Column>
 
       <!-- languages -->
-      <Column width="200px">
+      <Column width="150px">
         <Label start="1972" end="today" color="orange" topLabel="C" width="8px" />
         <Label start="1990" end="today" color="purple" topLabel="Python" width="8px" dodge="20px" />
         <Label
@@ -141,25 +141,25 @@
       </Column>
 
       <!-- companies -->
-      <Column width="100px">
+      <Column width="65px">
         <Label start="April 4, 1975" end="today" color="blue" topLabel="Microsoft" />
         <Point start="August 12, 1981" label="DOS" color="blue" font="12px" size="10" />
         <!-- <Point start="December 15, 1999" label="2k" color="blue" font="12px" /> -->
         <Point start="October 25, 2001" label="xp" color="blue" font="12px" size="10" />
         <Point start="November 30, 2006" label="vista" color="blue" font="12px" size="10" />
       </Column>
-      <Column width="100px">
+      <Column width="65px">
         <Label start="April 1, 1976" end="today" color="silver" topLabel="Apple" />
         <Point start="January 24, 1984" label="Mac" color="silver" font="11px" size="10" />
         <Point start="October 23, 2001" label="iPod" color="silver" font="11px" size="10" />
         <Point start="January 2007" label="iPhone" color="silver" font="11px" size="10" />
       </Column>
-      <Column width="100px">
+      <Column width="65px">
         <Label start="September 4, 1998" end="today" color="orange" topLabel="Google" />
         <Point start="April 1, 2004" label="gmail" color="orange" font="11px" size="10" />
         <Point start="April 2005" label="maps" color="orange" font="11px" size="10" />
       </Column>
-      <Column width="100px">
+      <Column width="65px">
         <Label start="February 4, 2004" end="today" color="navy" topLabel="Facebook" />
         <Point start="September 26, 2018" label="oculus" color="navy" font="11px" size="10" />
       </Column>

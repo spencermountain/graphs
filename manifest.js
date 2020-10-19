@@ -214,5 +214,10 @@ module.exports = {
       title: 'Snowfall in Canada',
       thumb: 'thumb.png',
     },
+    {
+      num: 'computers-and-typewriters',
+      title: 'Computers and Typewriters',
+      thumb: 'thumb.png',
+    },
   ],
 }
