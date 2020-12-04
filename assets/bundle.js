@@ -222,6 +222,10 @@ module.exports = {
     num: 'computers-and-typewriters',
     title: 'Computers and Typewriters',
     thumb: 'thumb.png'
+  }, {
+    num: 'weeks-of-the-year',
+    title: 'Weeks of the Year',
+    thumb: 'thumb.png'
   }]
 };
 
