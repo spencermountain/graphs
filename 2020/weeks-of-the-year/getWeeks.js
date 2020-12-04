@@ -45,8 +45,9 @@ spacetime.extend(plugin)
 
 const byWeek = function (year) {
   let start = spacetime('jan 1 ' + year)
-  let end = start.add(1, 'year')
-  let arr = start.minus(1, 'hour').every('week', end)
+  let end = start.add(1, 'year').minus(1, 'hour')
+  start = getFirstWeek(start)
+  let arr = start.minus(1, 'minute').every('week', end)
   let weeks = []
   let last = null
   arr.forEach((s, i) => {
@@ -54,9 +55,18 @@ const byWeek = function (year) {
     if (last && last !== res.month) {
       weeks.push({ gap: true })
     }
-    weeks.push({ title: s.format('{month-short} {date} {year}'), num: res.num, month: res.month })
+    weeks.push({
+      i: i,
+      title: `#${i + 1} ${s.format('{month-short} {date} {year}')}`,
+      num: res.num,
+      month: res.month,
+      year: year,
+    })
     last = res.month
   })
+  if (weeks[weeks.length - 1].month !== 'december') {
+    weeks.pop()
+  }
   return weeks
 }
 

@@ -12,7 +12,7 @@
     year += 1
     byYear.push({ year: year, weeks: getWeeks(year) })
   }
-  console.log(byYear)
+  console.log(byYear[2].weeks)
   // console.log(getWeeks(year))
   // console.log(getWeeks(year + 1))
 
@@ -35,6 +35,7 @@
 <style>
   .m3 {
     margin: 3rem;
+    min-width: 700px;
   }
   .row {
     display: flex;
@@ -53,6 +54,7 @@
     text-align: center;
     flex-wrap: nowrap;
     align-self: stretch;
+    flex: 1;
   }
   .week {
     font-size: 10px;
@@ -61,7 +63,7 @@
     height: 12px;
     background-color: steelblue;
     box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
-    width: 50px;
+    width: 94%;
   }
   .gap {
     height: 8px;
@@ -72,6 +74,11 @@
   }
   .link {
     text-decoration: none;
+  }
+  @media only screen and (max-width: 1100px) {
+    .year {
+      font-size: 8px;
+    }
   }
 </style>
 
@@ -87,7 +94,7 @@
     {#each byYear as year}
       <div class="col">
         <div class="year">{year.year}</div>
-        {#each year.weeks as wk}
+        {#each year.weeks as wk, i}
           {#if wk.gap === true}
             <div class="gap" />
           {:else}
