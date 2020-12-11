@@ -12,10 +12,13 @@
     year += 1
     byYear.push({ year: year, weeks: getWeeks(year) })
   }
-  console.log(byYear[2].weeks)
+  // console.log(byYear[2].weeks)
   // console.log(getWeeks(year))
   // console.log(getWeeks(year + 1))
-
+  byYear.forEach(obj => {
+    let count = obj.weeks.filter(w => w.num === 5)
+    console.log(obj.year, count)
+  })
   const colors = {
     january: '#cc7066',
     febuary: '#2D85A8',
