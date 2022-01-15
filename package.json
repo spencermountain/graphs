@@ -63,7 +63,7 @@
     "rollup-plugin-terser": "7.0.2",
     "serve": "11.3.2",
     "serve-static": "^1.14.1",
-    "shelljs": "0.8.4",
+    "shelljs": "0.8.5",
     "spencer-color": "0.1.0",
     "svelte": "3.29.0"
   }
