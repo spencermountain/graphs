@@ -226,6 +226,11 @@ module.exports = {
     num: 'weeks-of-the-year',
     title: 'Weeks of the Year',
     thumb: 'thumb.png'
+  }],
+  2022: [{
+    num: 'toronto-construction',
+    title: 'Toronto construction',
+    thumb: 'thumb.jpg'
   }]
 };
 

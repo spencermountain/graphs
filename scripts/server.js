@@ -1,7 +1,7 @@
 var connect = require('connect')
 var statc = require('serve-static')
 var server = connect()
-const port = 5000
+const port = 5050
 
 const startServer = function (abs) {
   console.log('running server')
