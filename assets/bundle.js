@@ -171,10 +171,6 @@ module.exports = {
     title: 'Toronto City budget',
     thumb: 'thumb.png'
   }, {
-    num: 'cbc-radio-schedule',
-    title: 'CBC Radio 1 Schedule',
-    thumb: 'thumb.png'
-  }, {
     num: 'earth-as-pie',
     title: 'Earth as a pie-chart',
     thumb: 'thumb.png'
@@ -219,17 +215,26 @@ module.exports = {
     title: 'Snowfall in Canada',
     thumb: 'thumb.png'
   }, {
+    num: 'weeks-of-the-year',
+    title: 'Weeks of the Year',
+    thumb: 'thumb.png'
+  }],
+  2021: [{
     num: 'computers-and-typewriters',
     title: 'Computers and Typewriters',
     thumb: 'thumb.png'
   }, {
-    num: 'weeks-of-the-year',
-    title: 'Weeks of the Year',
+    num: 'cbc-radio-schedule',
+    title: 'CBC Radio 1 Schedule',
     thumb: 'thumb.png'
   }],
   2022: [{
     num: 'toronto-construction',
     title: 'Toronto construction',
+    thumb: 'thumb.jpg'
+  }, {
+    num: 'bluejays-calendar',
+    title: 'Blue Jays 2022 schedule',
     thumb: 'thumb.jpg'
   }]
 };
