@@ -36,7 +36,7 @@
     "browserify": "^16.5.1",
     "cheerio": "^1.0.0-rc.3",
     "derequire": "2.1.1",
-    "got": "11.7.0",
+    "got": "11.8.5",
     "htm": "^3.0.4",
     "kld-intersections": "^0.7.0",
     "semver": "^7.3.2",
