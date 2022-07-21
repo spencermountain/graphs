@@ -22,6 +22,6 @@
     "babelify": "10.0.0",
     "budo": "11.6.3",
     "derequire": "2.0.6",
-    "terser": "4.3.9"
+    "terser": "4.8.1"
   }
 }
