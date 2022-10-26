@@ -5,24 +5,35 @@
   import data from './data.js'
   import counts from './counts.js'
 
-  export let title = 'Longest-serving Toronto councilors'
+  export let title = 'Long-serving Toronto city councilors'
   export let sub = ''
   let minTerms = 2
+  let colorByCount = [
+    null,
+    'lightgrey', //1
+    '#C4ABAB', //2
+    '#978BA3', //3
+    '#D68881', //4
+    '#e6b3bc', //5
+    '#cc6966', //6
+    '#AB5850', //7
+    '#914045', //8
+  ]
 </script>
 
 <div>
   <Head {title} {sub} />
   <div class="container">
-    <div class="term">
+    <!-- <div class="term">
       <div class="year" style="text-align:left; text-decoration:underline;">(megacity)</div>
       <div style="flex-grow:1" />
-    </div>
+    </div> -->
     {#each Object.keys(data) as year}
       {#if year === '2018'}
-        <div style="margin-top:30px;" />
+        <div style="margin-top:20px;" />
       {/if}
       {#if year === '2000'}
-        <div style="margin-top:40px;" />
+        <div style="margin-top:20px;" />
       {/if}
       <div class="term">
         <div class="year">{year}</div>
@@ -30,7 +41,7 @@
           {#if counts[str] >= minTerms}
             <div
               class="person highlight"
-              style="border-left:4px solid {byColor[str]};"
+              style="border-left:7px solid {byColor[str]};"
               title={str}
             />
           {:else}
@@ -55,22 +66,26 @@
     flex: 1;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    /* justify-content: flex-start; */
+    justify-content: space-between;
     align-items: center;
     text-align: center;
     flex-wrap: wrap;
     align-self: stretch;
-    box-sizing: content-box;
+    box-sizing: border-box;
   }
   .person {
-    margin-bottom: 20px;
+    margin-top: 20px;
     min-height: 100px;
     height: 100%;
-    border-left: 4px solid lightgrey;
-    box-sizing: content-box;
+    border-left: 7px solid lightgrey;
+    /* opacity: 0.5; */
+    box-sizing: border-box;
+    margin-left: 10px;
   }
   .highlight {
-    margin-bottom: 0px !important;
+    opacity: 1;
+    margin-top: 0px !important;
     min-height: 120px;
     /* box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2); */
   }
@@ -81,12 +96,15 @@
     font-size: 12px;
   }
   .year {
-    min-width: 60px;
-    max-width: 60px;
+    min-width: 45px;
+    max-width: 45px;
     color: grey;
     font-size: 12px;
     text-align: left;
     align-self: flex-start;
+    border-right: 1px solid lightsteelblue;
+    min-height: 110px;
+    /* margin-right: 10px; */
     /* text-decoration: underline; */
   }
   .container {
