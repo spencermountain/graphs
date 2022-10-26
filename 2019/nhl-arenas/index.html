@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      id="testViewport"
-      name="viewport"
-      content="initial-scale=1,width=800"
-    />
-    <title></title>
-    <link href="./assets/spencer.min.css" rel="stylesheet" />
-  </head>
 
-  <body class="body m1">
-    <!-- title -->
-    <div class="blue ml1 goleft left">
-      <a class="link f1 grey " href="../../">〱 ./2019/</a>
-      <div class="brown ml1">NHL arenas</div>
-    </div>
-    <!-- stage -->
-    <div class="left">by capacity</div>
-    <div id="capacity" class="col m2"></div>
-    <div class="left mt6">oldest arenas</div>
-    <div id="history" class="col m2"></div>
-    <!-- footer -->
-    <div
-      class="m2 grey flex f1"
-      style="flex-shrink:1; width:90vw; height:30px; justify-content:flex-end;"
-    >
-      <a
-        class="m2 "
-        style="color:#949a9e;flex-shrink:1;"
-        href="https://github.com/spencermountain/thensome"
-        >source</a
-      >
-      <a class="" href="http://twitter.com/spencermountain/"
-        >@spencermountain</a
-      >
-    </div>
-    <!-- script -->
-    <script src="./assets/bundle.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta id="testViewport" name="viewport" content="initial-scale=1,width=800" />
+  <title></title>
+  <link href="./assets/spencer.min.css" rel="stylesheet" />
+  <script>
+    function resizeIFrameToFitContent(iFrame) {
+      console.log(iFrame.contentWindow.document.body.scrollHeight)
+      iFrame.width = iFrame.contentWindow.document.body.scrollWidth;
+      iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+    }
+
+    window.addEventListener('DOMContentLoaded', function (e) {
+      console.log('domloaded')
+      var iFrame = document.getElementById('stage');
+      resizeIFrameToFitContent(iFrame);
+      // or, to resize all iframes:
+      var iframes = document.querySelectorAll("iframe");
+      for (var i = 0; i < iframes.length; i++) {
+        resizeIFrameToFitContent(iframes[i]);
+      }
+    });
+
+  </script>
+</head>
+
+<body class="body m1">
+  <!-- title -->
+  <div class="blue ml1 goleft left">
+    <a class="link f1 grey " href="../../">〱 ./2019/</a>
+    <div class="brown ml1">NHL arenas</div>
+  </div>
+
+  <!-- stage -->
+  <iframe id="stage" style="width: 100%; min-height:900px;" src="./post.html" title="graph" loading="lazy"
+    scrolling="no" frameborder="0" />
+
+  <!-- footer -->
+  <div class="m2 grey flex f1" style="flex-shrink:1; width:90vw; height:30px; justify-content:flex-end;">
+    <a class="m2 " style="color:#949a9e;flex-shrink:1;" href="https://github.com/spencermountain/thensome">source</a>
+    <a class="" href="http://twitter.com/spencermountain/">@spencermountain</a>
+  </div>
+  <!-- script -->
+</body>
+
 </html>
