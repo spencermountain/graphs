@@ -6,30 +6,26 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>•</title>
   <link rel="stylesheet" href="./build/main.css" />
-  <link rel="stylesheet" href="./build/bundle.css" />
   <script>
-    function resizeIframe(obj) {
-      obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
-    }
+    window.resizeIframe = (obj) => obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
   </script>
 </head>
 
 <body>
-  <!-- title -->
-  <div class="blue ml1 goleft left">
-    <a class="link f1 grey " href="../../">〱 ./2022/</a>
-    <div class="brown ml1">2022 Blue Jays Schedule</div>
-  </div>
+  <div class="page">
+    <div class="header">
+      <a class="link" href="../../">〱 ./2022/</a>
+      <div class="title">2022 Blue Jays Schedule</div>
+    </div>
 
-  <!-- stage -->
-  <iframe style="width: 100%; border:1px sold red;" src="./index.html" title="graph" loading="lazy" scrolling="no"
-    frameborder="0" onload="resizeIframe(this)"></iframe>
-  <!-- footer -->
-  <div class="m2 grey flex f1" style="flex-shrink:1; width:90vw; height:30px; justify-content:flex-end;">
-    <a class="m2 " style="color:#949a9e;flex-shrink:1;" href="https://github.com/spencermountain/thensome">source</a>
-    <a class="" href="http://twitter.com/spencermountain/">@spencermountain</a>
-  </div>
+    <iframe style="width:100%;" src="./index.html" loading="lazy" scrolling="no" frameborder="0"
+      onload="resizeIframe(this)"></iframe>
 
+    <div class="footer">
+      <a class="source" href="https://github.com/spencermountain/thensome">source</a>
+      <a class="twit" href="http://twitter.com/spencermountain/">@spencermountain</a>
+    </div>
+  </div>
 </body>
 
 </html>
