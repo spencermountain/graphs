@@ -1,7 +1,7 @@
 const somehow = require('somehow')
 const arenas = require('./data/arenas')
 const colors = require('./data/colors')
-require('./capacity')
+// require('./capacity')
 
 let w = somehow({
   height: 900,

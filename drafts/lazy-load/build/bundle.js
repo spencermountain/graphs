@@ -3310,6 +3310,207 @@ var app = (function () {
     	}
     }
 
+    var posts = [
+      {
+        src: '/2018/sports-by-city',
+        title: 'Sports seasons by city',
+      },
+      {
+        src: '/2018/weather-by-latitude',
+        title: 'Weather by latitude',
+      },
+      {
+        src: '/2018/lunar-astronauts',
+        title: 'Lunar astronauts by age',
+      },
+      // {
+      //   src: '04',
+      //   title: 'Toronto and montreal',
+      // },
+      {
+        src: '/2018/baseball-season',
+        title: '2018 baseball season',
+      },
+
+      {
+        src: '/2019/nhl-team-performance',
+        title: 'NHL performance by team',
+      },
+      {
+        src: '/2019/nhl-history',
+        title: 'History of the NHL',
+      },
+      {
+        src: '/2019/rain-in-toronto',
+        title: 'Rain in Toronto',
+      },
+      {
+        src: '/2019/break-up-the-year',
+        title: 'Break-up the year',
+      },
+      // {
+      //   src: '05',
+      //   title: 'Reading all of wikipedia',
+      // },
+      {
+        src: '/2019/nhl-arenas',
+        title: 'NHL arenas',
+      },
+      {
+        src: '/2019/baseball-schedule',
+        title: 'Baseball schedule',
+      },
+      {
+        src: '/2019/generations-of-people',
+        title: 'Generations of people',
+      },
+      {
+        src: '/2019/daylight-by-latitude',
+        title: 'Daylight by latitude',
+      },
+      {
+        src: '/2019/ontario-landfills',
+        title: 'Ontario Landfills',
+      },
+      {
+        src: '/2019/ontario-line',
+        title: 'Ontario Line Map',
+      },
+
+      {
+        src: '/2020/ontario-covid',
+        title: 'Causes of death in Ontario',
+      },
+      {
+        src: '/2020/daylight-savings-changes',
+        title: 'Daylight Savings times',
+      },
+      {
+        src: '/2020/year-in-toronto',
+        title: 'The Year in Toronto',
+      },
+      {
+        src: '/2020/skydome-roof-by-year',
+        title: 'Skydome roof',
+      },
+      {
+        src: '/2020/toronto-streets',
+        title: 'Toronto street-map',
+      },
+      {
+        src: '/2020/mayors-of-toronto',
+        title: 'Mayors of Toronto',
+      },
+      {
+        src: '/2020/rocket-launches',
+        title: 'Rocket Launches',
+      },
+      {
+        src: '/2020/nhl-playoffs',
+        title: 'NHL playoffs by year',
+      },
+      {
+        src: '/2020/leafs-roster',
+        title: 'Toronto Maple leafs roster',
+      },
+      {
+        src: '/2020/leafs-budget',
+        title: 'Toronto Maple leafs budget',
+      },
+      {
+        src: '/2020/population-of-canada',
+        title: 'Population of Canada',
+      },
+      {
+        src: '/2020/covid-as-skydome',
+        title: 'Covid as percentage of skydome',
+      },
+      {
+        src: '/2020/population-of-ontario',
+        title: 'Population of Ontario',
+      },
+      {
+        src: '/2020/toronto-budget',
+        title: 'Toronto City budget',
+      },
+      {
+        src: '/2020/earth-as-pie',
+        title: 'Earth as a pie-chart',
+      },
+      {
+        src: '/2020/cerb-budget',
+        title: "CERB and Canada's budget",
+      },
+      {
+        src: '/2020/cerb-population',
+        title: "CERB and Canada's population",
+      },
+      {
+        src: '/2020/covid-income',
+        title: "Canada's income during COVID",
+      },
+      {
+        src: '/2020/sunset-direction',
+        title: 'Sunset direction by year',
+      },
+      {
+        src: '/2020/computer-history',
+        title: 'Computer programming timeline',
+      },
+      {
+        src: '/2020/governments-of-canada',
+        title: 'Governments of Canada',
+      },
+      {
+        src: '/2020/transit-projects-canada',
+        title: 'Public Transit in Canada',
+      },
+      {
+        src: '/2020/stanley-cups-in-canada',
+        title: 'Stanley Cups in Canada',
+      },
+      {
+        src: '/2020/climates-canada',
+        title: 'Climates in Canada',
+      },
+      {
+        src: '/2020/snowfall-in-canada',
+        title: 'Snowfall in Canada',
+      },
+      {
+        src: '/2020/weeks-of-the-year',
+        title: 'Weeks of the Year',
+      },
+
+      {
+        src: '/2021/computers-and-typewriters',
+        title: 'Computers and Typewriters',
+      },
+      {
+        src: '/2021/cbc-radio-schedule',
+        title: 'CBC Radio 1 Schedule',
+      },
+
+      {
+        src: '/2022/toronto-construction',
+        title: 'Toronto construction',
+      },
+      {
+        src: '/2022/bluejays-calendar',
+        title: 'Blue Jays 2022 schedule',
+      },
+      { src: '/2022/transit-map', title: 'Toronto transit by ward' },
+      { src: '/2022/toronto-council', title: 'Toronto Council' },
+      { src: '/2022/toronto-construction', title: 'Toronto construction applications' },
+      { src: '/2022/riding-sankey', title: 'Toronto housing by ward' },
+      { src: '/2022/population-growth', title: 'population-growth' },
+      { src: '/2022/pipeline', title: 'Toronto housing pipeline' },
+      { src: '/2022/missing-middle', title: "Toronto's missing middle" },
+      { src: '/2022/construction-map', title: 'Toronto construction-map' },
+      { src: '/2022/bluejays-calendar', title: 'Bluejays Calendar' },
+      { src: '/2022/accumulated-units', title: 'Accumulated-housing in Toronto' },
+    ].reverse();
+
     /* drafts/lazy-load/Post.svelte generated by Svelte v3.29.0 */
 
     const { console: console_1$1 } = globals;
@@ -3317,35 +3518,68 @@ var app = (function () {
 
     function add_css$3() {
     	var style = element("style");
-    	style.id = "svelte-vz3ejw-style";
-    	style.textContent = ".item.svelte-vz3ejw{min-height:100px;width:100px;border:1px solid grey}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUG9zdC5zdmVsdGUiLCJzb3VyY2VzIjpbIlBvc3Quc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCBWaXJ0dWFsTGlzdCBmcm9tICdzdmVsdGUtdGlueS12aXJ0dWFsLWxpc3QnXG4gIGltcG9ydCBJbmZpbml0ZUxvYWRpbmcgZnJvbSAnc3ZlbHRlLWluZmluaXRlLWxvYWRpbmcnXG5cbiAgbGV0IGRhdGEgPSBbJ0EnLCAnQicsICdDJywgJ0QnLCAnRScsICdGJyAvKiAuLi4gKi9dXG5cbiAgZnVuY3Rpb24gaW5maW5pdGVIYW5kbGVyKHsgZGV0YWlsOiB7IGxvYWRlZCwgY29tcGxldGUsIGVycm9yIH0gfSkge1xuICAgIHRyeSB7XG4gICAgICAvLyBOb3JtYWxseSB5b3UnZCBtYWtlIGFuIGh0dHAgcmVxdWVzdCBoZXJlLi4uXG5cbiAgICAgIC8vIGNvbnN0IG5ld0RhdGEgPSBbJ0cnLCAnSCcsICdJJywgJ0onLCAnSycsICdMJyAvKiAuLi4gKi9dXG4gICAgICBkYXRhLnB1c2goTWF0aC5yYW5kb20oKSAqIDEwMClcbiAgICAgIGRhdGEgPSBkYXRhXG4gICAgICAvLyBkYXRhID0gWy4uLmRhdGEsIC4uLm5ld0RhdGFdXG4gICAgICAvLyBjb21wbGV0ZSgpXG4gICAgICBsb2FkZWQoKVxuICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgIGNvbnNvbGUubG9nKGUpXG4gICAgICBlcnJvcigpXG4gICAgfVxuICB9XG48L3NjcmlwdD5cblxuPFZpcnR1YWxMaXN0IHdpZHRoPVwiMTAwJVwiIGhlaWdodD17MjAwfSBpdGVtQ291bnQ9e2RhdGEubGVuZ3RofSBpdGVtU2l6ZT17NTB9PlxuICA8ZGl2IHNsb3Q9XCJpdGVtXCIgY2xhc3M9XCJpdGVtXCIgbGV0OmluZGV4IGxldDpzdHlsZSB7c3R5bGV9PlxuICAgIHtkYXRhW2luZGV4XX1cbiAgPC9kaXY+XG5cbiAgPGRpdiBzbG90PVwiZm9vdGVyXCI+XG4gICAgPEluZmluaXRlTG9hZGluZyBvbjppbmZpbml0ZT17aW5maW5pdGVIYW5kbGVyfSAvPlxuICA8L2Rpdj5cbjwvVmlydHVhbExpc3Q+XG5cbjxzdHlsZT5cbiAgLml0ZW0ge1xuICAgIG1pbi1oZWlnaHQ6IDEwMHB4O1xuICAgIHdpZHRoOiAxMDBweDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBncmV5O1xuICB9XG48L3N0eWxlPlxuIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQWtDRSxLQUFLLGNBQUMsQ0FBQyxBQUNMLFVBQVUsQ0FBRSxLQUFLLENBQ2pCLEtBQUssQ0FBRSxLQUFLLENBQ1osTUFBTSxDQUFFLEdBQUcsQ0FBQyxLQUFLLENBQUMsSUFBSSxBQUN4QixDQUFDIn0= */";
+    	style.id = "svelte-f5522p-style";
+    	style.textContent = ".item.svelte-f5522p{min-height:100px;width:100px;border:1px solid grey}.frame.svelte-f5522p{width:100%;min-height:800px;border:1px solid grey}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUG9zdC5zdmVsdGUiLCJzb3VyY2VzIjpbIlBvc3Quc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCBWaXJ0dWFsTGlzdCBmcm9tICdzdmVsdGUtdGlueS12aXJ0dWFsLWxpc3QnXG4gIGltcG9ydCBJbmZpbml0ZUxvYWRpbmcgZnJvbSAnc3ZlbHRlLWluZmluaXRlLWxvYWRpbmcnXG4gIGltcG9ydCBwb3N0cyBmcm9tICcuL3Bvc3RzLmpzJ1xuXG4gIC8vIGxldCBwb3N0cyA9IFtcbiAgLy8gICB7IHNyYzogJy8yMDIyL2FjY3VtdWxhdGVkLXVuaXRzJywgdGl0bGU6ICdBY2N1bXVsYXRlZC1ob3VzaW5nIGluIFRvcm9udG8nIH0sXG4gIC8vICAgeyBzcmM6ICcvMjAyMi9ibHVlamF5cy1jYWxlbmRhcicsIHRpdGxlOiAnQmx1ZWpheXMgQ2FsZW5kYXInIH0sXG4gIC8vICAgeyBzcmM6ICcvMjAyMi9jb25zdHJ1Y3Rpb24tbWFwJywgdGl0bGU6ICdUb3JvbnRvIGNvbnN0cnVjdGlvbi1tYXAnIH0sXG4gIC8vICAgeyBzcmM6ICcvMjAyMi9taXNzaW5nLW1pZGRsZScsIHRpdGxlOiBcIlRvcm9udG8ncyBtaXNzaW5nIG1pZGRsZVwiIH0sXG4gIC8vICAgeyBzcmM6ICcvMjAyMi9waXBlbGluZScsIHRpdGxlOiAnVG9yb250byBob3VzaW5nIHBpcGVsaW5lJyB9LFxuICAvLyAgIHsgc3JjOiAnLzIwMjIvcG9wdWxhdGlvbi1ncm93dGgnLCB0aXRsZTogJ3BvcHVsYXRpb24tZ3Jvd3RoJyB9LFxuICAvLyAgIHsgc3JjOiAnLzIwMjIvcmlkaW5nLXNhbmtleScsIHRpdGxlOiAnVG9yb250byBob3VzaW5nIGJ5IHdhcmQnIH0sXG4gIC8vICAgeyBzcmM6ICcvMjAyMi90b3JvbnRvLWNvbnN0cnVjdGlvbicsIHRpdGxlOiAnVG9yb250byBjb25zdHJ1Y3Rpb24gYXBwbGljYXRpb25zJyB9LFxuICAvLyAgIHsgc3JjOiAnLzIwMjIvdG9yb250by1jb3VuY2lsJywgdGl0bGU6ICdUb3JvbnRvIENvdW5jaWwnIH0sXG4gIC8vICAgeyBzcmM6ICcvMjAyMi90cmFuc2l0LW1hcCcsIHRpdGxlOiAnVG9yb250byB0cmFuc2l0IGJ5IHdhcmQnIH0sXG4gIC8vIF1cblxuICBsZXQgbiA9IDNcbiAgbGV0IGRhdGEgPSBwb3N0cy5zbGljZSgwLCAzKVxuXG4gIGZ1bmN0aW9uIGluZmluaXRlSGFuZGxlcih7IGRldGFpbDogeyBsb2FkZWQsIGNvbXBsZXRlLCBlcnJvciB9IH0pIHtcbiAgICB0cnkge1xuICAgICAgLy8gTm9ybWFsbHkgeW91J2QgbWFrZSBhbiBodHRwIHJlcXVlc3QgaGVyZS4uLlxuXG4gICAgICAvLyBjb25zdCBuZXdEYXRhID0gWydHJywgJ0gnLCAnSScsICdKJywgJ0snLCAnTCcgLyogLi4uICovXVxuICAgICAgbiArPSAxXG4gICAgICBpZiAocG9zdHNbbl0pIHtcbiAgICAgICAgZGF0YS5wdXNoKHBvc3RzW25dKVxuICAgICAgICBjb25zb2xlLmxvZygnbW9yZTonLCBwb3N0c1tuXS50aXRsZSlcbiAgICAgICAgZGF0YSA9IGRhdGFcbiAgICAgICAgbG9hZGVkKClcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIGNvbnNvbGUubG9nKCdkb25lIScpXG4gICAgICAgIGNvbXBsZXRlKClcbiAgICAgIH1cbiAgICB9IGNhdGNoIChlKSB7XG4gICAgICBjb25zb2xlLmxvZyhlKVxuICAgICAgZXJyb3IoKVxuICAgIH1cbiAgfVxuICBsZXQgaGVpZ2h0ID0gd2luZG93LmlubmVySGVpZ2h0XG48L3NjcmlwdD5cblxuPFZpcnR1YWxMaXN0IHdpZHRoPVwiMTAwJVwiIHtoZWlnaHR9IGl0ZW1Db3VudD17ZGF0YS5sZW5ndGh9IGl0ZW1TaXplPXs4NTB9PlxuICA8ZGl2IHNsb3Q9XCJpdGVtXCIgY2xhc3M9XCJpdGVtXCIgbGV0OmluZGV4IGxldDpzdHlsZSB7c3R5bGV9PlxuICAgIDxhIGhyZWY9e2RhdGFbaW5kZXhdLnNyY30+e2RhdGFbaW5kZXhdLnRpdGxlfTwvYT5cbiAgICA8aWZyYW1lXG4gICAgICBjbGFzcz1cImZyYW1lXCJcbiAgICAgIHNyYz17ZGF0YVtpbmRleF0uc3JjfVxuICAgICAgdGl0bGU9e2RhdGFbaW5kZXhdLnRpdGxlfVxuICAgICAgbG9hZGluZz1cImxhenlcIlxuICAgICAgc2Nyb2xsaW5nPVwibm9cIlxuICAgICAgZnJhbWVib3JkZXI9XCIwXCJcbiAgICAvPlxuICA8L2Rpdj5cblxuICA8ZGl2IHNsb3Q9XCJmb290ZXJcIj5cbiAgICA8SW5maW5pdGVMb2FkaW5nIG9uOmluZmluaXRlPXtpbmZpbml0ZUhhbmRsZXJ9IG5vTW9yZT1cIi1cIj5cbiAgICAgIDxzcGFuIHNsb3Q9XCJub01vcmVcIiAvPlxuICAgIDwvSW5maW5pdGVMb2FkaW5nPlxuICA8L2Rpdj5cbjwvVmlydHVhbExpc3Q+XG5cbjxzdHlsZT5cbiAgLml0ZW0ge1xuICAgIG1pbi1oZWlnaHQ6IDEwMHB4O1xuICAgIHdpZHRoOiAxMDBweDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBncmV5O1xuICB9XG4gIC5mcmFtZSB7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgbWluLWhlaWdodDogODAwcHg7XG4gICAgYm9yZGVyOiAxcHggc29saWQgZ3JleTtcbiAgfVxuPC9zdHlsZT5cbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFpRUUsS0FBSyxjQUFDLENBQUMsQUFDTCxVQUFVLENBQUUsS0FBSyxDQUNqQixLQUFLLENBQUUsS0FBSyxDQUNaLE1BQU0sQ0FBRSxHQUFHLENBQUMsS0FBSyxDQUFDLElBQUksQUFDeEIsQ0FBQyxBQUNELE1BQU0sY0FBQyxDQUFDLEFBQ04sS0FBSyxDQUFFLElBQUksQ0FDWCxVQUFVLENBQUUsS0FBSyxDQUNqQixNQUFNLENBQUUsR0FBRyxDQUFDLEtBQUssQ0FBQyxJQUFJLEFBQ3hCLENBQUMifQ== */";
     	append_dev(document.head, style);
     }
 
-    // (25:2) <div slot="item" class="item" let:index let:style {style}>
+    // (46:2) <div slot="item" class="item" let:index let:style {style}>
     function create_item_slot(ctx) {
     	let div;
-    	let t_value = /*data*/ ctx[0][/*index*/ ctx[2]] + "";
-    	let t;
+    	let a;
+    	let t0_value = /*data*/ ctx[0][/*index*/ ctx[4]].title + "";
+    	let t0;
+    	let a_href_value;
+    	let t1;
+    	let iframe;
+    	let iframe_src_value;
+    	let iframe_title_value;
     	let div_style_value;
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			t = text(t_value);
+    			a = element("a");
+    			t0 = text(t0_value);
+    			t1 = space();
+    			iframe = element("iframe");
+    			attr_dev(a, "href", a_href_value = /*data*/ ctx[0][/*index*/ ctx[4]].src);
+    			add_location(a, file$3, 46, 4, 1635);
+    			attr_dev(iframe, "class", "frame svelte-f5522p");
+    			if (iframe.src !== (iframe_src_value = /*data*/ ctx[0][/*index*/ ctx[4]].src)) attr_dev(iframe, "src", iframe_src_value);
+    			attr_dev(iframe, "title", iframe_title_value = /*data*/ ctx[0][/*index*/ ctx[4]].title);
+    			attr_dev(iframe, "loading", "lazy");
+    			attr_dev(iframe, "scrolling", "no");
+    			attr_dev(iframe, "frameborder", "0");
+    			add_location(iframe, file$3, 47, 4, 1689);
     			attr_dev(div, "slot", "item");
-    			attr_dev(div, "class", "item svelte-vz3ejw");
-    			attr_dev(div, "style", div_style_value = /*style*/ ctx[3]);
-    			add_location(div, file$3, 24, 2, 656);
+    			attr_dev(div, "class", "item svelte-f5522p");
+    			attr_dev(div, "style", div_style_value = /*style*/ ctx[5]);
+    			add_location(div, file$3, 45, 2, 1572);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
-    			append_dev(div, t);
+    			append_dev(div, a);
+    			append_dev(a, t0);
+    			append_dev(div, t1);
+    			append_dev(div, iframe);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*data, index*/ 5 && t_value !== (t_value = /*data*/ ctx[0][/*index*/ ctx[2]] + "")) set_data_dev(t, t_value);
+    			if (dirty & /*data, index*/ 17 && t0_value !== (t0_value = /*data*/ ctx[0][/*index*/ ctx[4]].title + "")) set_data_dev(t0, t0_value);
 
-    			if (dirty & /*style*/ 8 && div_style_value !== (div_style_value = /*style*/ ctx[3])) {
+    			if (dirty & /*data, index*/ 17 && a_href_value !== (a_href_value = /*data*/ ctx[0][/*index*/ ctx[4]].src)) {
+    				attr_dev(a, "href", a_href_value);
+    			}
+
+    			if (dirty & /*data, index*/ 17 && iframe.src !== (iframe_src_value = /*data*/ ctx[0][/*index*/ ctx[4]].src)) {
+    				attr_dev(iframe, "src", iframe_src_value);
+    			}
+
+    			if (dirty & /*data, index*/ 17 && iframe_title_value !== (iframe_title_value = /*data*/ ctx[0][/*index*/ ctx[4]].title)) {
+    				attr_dev(iframe, "title", iframe_title_value);
+    			}
+
+    			if (dirty & /*style*/ 32 && div_style_value !== (div_style_value = /*style*/ ctx[5])) {
     				attr_dev(div, "style", div_style_value);
     			}
     		},
@@ -3358,19 +3592,57 @@ var app = (function () {
     		block,
     		id: create_item_slot.name,
     		type: "slot",
-    		source: "(25:2) <div slot=\\\"item\\\" class=\\\"item\\\" let:index let:style {style}>",
+    		source: "(46:2) <div slot=\\\"item\\\" class=\\\"item\\\" let:index let:style {style}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (29:2) <div slot="footer">
+    // (60:6) <span slot="noMore" />
+    function create_noMore_slot(ctx) {
+    	let span;
+
+    	const block = {
+    		c: function create() {
+    			span = element("span");
+    			attr_dev(span, "slot", "noMore");
+    			add_location(span, file$3, 59, 6, 1949);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, span, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(span);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_noMore_slot.name,
+    		type: "slot",
+    		source: "(60:6) <span slot=\\\"noMore\\\" />",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (58:2) <div slot="footer">
     function create_footer_slot(ctx) {
     	let div;
     	let infiniteloading;
     	let current;
-    	infiniteloading = new InfiniteLoading({ $$inline: true });
+
+    	infiniteloading = new InfiniteLoading({
+    			props: {
+    				noMore: "-",
+    				$$slots: { noMore: [create_noMore_slot] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
     	infiniteloading.$on("infinite", /*infiniteHandler*/ ctx[1]);
 
     	const block = {
@@ -3378,14 +3650,22 @@ var app = (function () {
     			div = element("div");
     			create_component(infiniteloading.$$.fragment);
     			attr_dev(div, "slot", "footer");
-    			add_location(div, file$3, 28, 2, 745);
+    			add_location(div, file$3, 57, 2, 1860);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
     			mount_component(infiniteloading, div, null);
     			current = true;
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			const infiniteloading_changes = {};
+
+    			if (dirty & /*$$scope*/ 64) {
+    				infiniteloading_changes.$$scope = { dirty, ctx };
+    			}
+
+    			infiniteloading.$set(infiniteloading_changes);
+    		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(infiniteloading.$$.fragment, local);
@@ -3405,14 +3685,14 @@ var app = (function () {
     		block,
     		id: create_footer_slot.name,
     		type: "slot",
-    		source: "(29:2) <div slot=\\\"footer\\\">",
+    		source: "(58:2) <div slot=\\\"footer\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (24:0) <VirtualList width="100%" height={200} itemCount={data.length} itemSize={50}>
+    // (45:0) <VirtualList width="100%" {height} itemCount={data.length} itemSize={850}>
     function create_default_slot(ctx) {
     	let t;
 
@@ -3435,7 +3715,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(24:0) <VirtualList width=\\\"100%\\\" height={200} itemCount={data.length} itemSize={50}>",
+    		source: "(45:0) <VirtualList width=\\\"100%\\\" {height} itemCount={data.length} itemSize={850}>",
     		ctx
     	});
 
@@ -3449,16 +3729,16 @@ var app = (function () {
     	virtuallist = new VirtualList({
     			props: {
     				width: "100%",
-    				height: 200,
+    				height: /*height*/ ctx[2],
     				itemCount: /*data*/ ctx[0].length,
-    				itemSize: 50,
+    				itemSize: 850,
     				$$slots: {
     					default: [create_default_slot],
     					footer: [create_footer_slot],
     					item: [
     						create_item_slot,
-    						({ index, style }) => ({ 2: index, 3: style }),
-    						({ index, style }) => (index ? 4 : 0) | (style ? 8 : 0)
+    						({ index, style }) => ({ 4: index, 5: style }),
+    						({ index, style }) => (index ? 16 : 0) | (style ? 32 : 0)
     					]
     				},
     				$$scope: { ctx }
@@ -3481,7 +3761,7 @@ var app = (function () {
     			const virtuallist_changes = {};
     			if (dirty & /*data*/ 1) virtuallist_changes.itemCount = /*data*/ ctx[0].length;
 
-    			if (dirty & /*$$scope, data, style, index*/ 29) {
+    			if (dirty & /*$$scope, data, style, index*/ 113) {
     				virtuallist_changes.$$scope = { dirty, ctx };
     			}
 
@@ -3515,25 +3795,31 @@ var app = (function () {
     function instance$3($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Post", slots, []);
-    	let data = ["A", "B", "C", "D", "E", "F"]; /* ... */
+    	let n = 3;
+    	let data = posts.slice(0, 3);
 
     	function infiniteHandler({ detail: { loaded, complete, error } }) {
     		try {
     			// Normally you'd make an http request here...
     			// const newData = ['G', 'H', 'I', 'J', 'K', 'L' /* ... */]
-    			data.push(Math.random() * 100);
+    			n += 1;
 
-    			$$invalidate(0, data);
-
-    			// data = [...data, ...newData]
-    			// complete()
-    			loaded();
+    			if (posts[n]) {
+    				data.push(posts[n]);
+    				console.log("more:", posts[n].title);
+    				$$invalidate(0, data);
+    				loaded();
+    			} else {
+    				console.log("done!");
+    				complete();
+    			}
     		} catch(e) {
     			console.log(e);
     			error();
     		}
     	}
 
+    	let height = window.innerHeight;
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
@@ -3543,25 +3829,30 @@ var app = (function () {
     	$$self.$capture_state = () => ({
     		VirtualList,
     		InfiniteLoading,
+    		posts,
+    		n,
     		data,
-    		infiniteHandler
+    		infiniteHandler,
+    		height
     	});
 
     	$$self.$inject_state = $$props => {
+    		if ("n" in $$props) n = $$props.n;
     		if ("data" in $$props) $$invalidate(0, data = $$props.data);
+    		if ("height" in $$props) $$invalidate(2, height = $$props.height);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [data, infiniteHandler];
+    	return [data, infiniteHandler, height];
     }
 
     class Post extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		if (!document.getElementById("svelte-vz3ejw-style")) add_css$3();
+    		if (!document.getElementById("svelte-f5522p-style")) add_css$3();
     		init(this, options, instance$3, create_fragment$3, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
