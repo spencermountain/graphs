@@ -30,22 +30,33 @@ html {
   box-shadow: 3px 12px 36px 1px rgba(0, 0, 0, 0.2);
   margin-left: 55px;
   margin-right: 55px;
-  margin-bottom: 140px;
+  margin-top: 1.2rem;
+  margin-bottom: 2rem;
   padding: 1rem;
   overflow: hidden;
   border-radius: 7px;
 }
 
-/* phones */
-@media (max-width: 900px) {
-  .page {
-    margin: 15px;
-  }
+
+.header {
+  font-size: 1rem;
+}
+
+.back {
+  font-size: 2rem;
+  color: grey;
+  text-decoration: none;
+  position: absolute;
 }
 
 .footer {
   text-align: right;
-  margin-top: 2rem;
+  margin-top: 4rem;
+  font-size: 10px;
+}
+
+.below {
+  height: 1rem;
 }
 
 .source {
@@ -54,6 +65,18 @@ html {
 }
 
 .twit {
-  color: steelblue;
+  color: #6699cc;
   text-decoration: none;
+}
+
+/* phones */
+@media (max-width: 900px) {
+  .page {
+    margin: 15px;
+  }
+
+  .back {
+    font-size: 1rem;
+    margin-top: -1.5rem;
+  }
 }

@@ -5,8 +5,8 @@
     return h
   }, 0)
 
-  import { Sankey, Node, Col } from '/Users/spencer/mountain/somehow-sankey/src/index.mjs'
-  let fmt = num => {
+  import { Sankey, Node, Col, Label } from '/Users/spencer/mountain/somehow-sankey/src/index.mjs'
+  let fmt = (num) => {
     // num = Number(num) * 1000000
     // if (num >= 1000000000) {
     //   num = Math.round(num / 100000000) * 100000000
@@ -35,19 +35,34 @@
         <Node name="Proposed Units" value={sum} color="sea" />
       </Col>
       <Col>
-        {#each counts as o, i}
+        <Node
+          name={counts[0].name}
+          from="Proposed Units"
+          value={counts[0].total}
+          color="steelblue"
+        />
+        <Node name={counts[1].name} from="Proposed Units" value={counts[1].total} color="#c4abab" />
+        <Node
+          name={counts[2].name}
+          from="Proposed Units"
+          value={counts[2].total}
+          color="steelblue"
+        />
+        <!-- {#each counts as o, i}
           <Node name={o.name} from="Proposed Units" value={o.total} color="steelblue" />
-        {/each}
+        {/each} -->
       </Col>
-      <Col>
+      <!-- <Col>
         {#each counts as o, i}
           <Node name="Pending" from={o.name} value={o.pending} color="#c4abab" />
           <Node name="Issued" from={o.name} value={o.issued} color="blue" />
         {/each}
-      </Col>
+      </Col> -->
     </Sankey>
     <div class="source">
-      filtered <a href="https://open.toronto.ca/dataset/building-permits-active-permits/">Active building permits</a>
+      filtered <a href="https://open.toronto.ca/dataset/building-permits-active-permits/"
+        >Active building permits</a
+      >
       - toronto.ca, Sep 2022
     </div>
   </div>
