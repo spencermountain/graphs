@@ -22,8 +22,13 @@
 </script>
 
 <div>
-  <Head {title} {sub} />
+  <Head {title} {sub} num="04" />
   <div class="container">
+    <div class="legend">
+      <div class="label" style="left:45%; color:#978BA3;">John Filion</div>
+      <div class="label" style="left:40%; color:#F2C0BB;">Joe Mihevc</div>
+      <div class="label" style="left:67%; color:#335799;">Denzil Minnan-Wong</div>
+    </div>
     <!-- <div class="term">
       <div class="year" style="text-align:left; text-decoration:underline;">(megacity)</div>
       <div style="flex-grow:1" />
@@ -57,11 +62,37 @@
         </div>
       </div>
     {/each}
+    <div class="legend" style="margin-top: 2rem;">
+      <div class="label" style="left:20%; color:#6699cc;">Frances Nunziata</div>
+      <div class="label" style="left:58%; color:#d8b3e6;">Paula Fletcher</div>
+      <div class="label" style="left:71%; color:#7f9c6c;">Michael Thompson</div>
+      <div class="label" style="left:27%; color:#cc6966;">Gord Perks</div>
+      <div class="label" style="left:82%; color:#275291;">Paul Ainslie</div>
+    </div>
   </div>
   <Foot {title} />
 </div>
 
 <style>
+  .label {
+    flex: 1;
+    flex-wrap: nowrap;
+    position: absolute;
+    transform: rotate(-90deg);
+    width: 100px;
+    height: 20px;
+    text-align: left;
+    /* border: 1px solid blue; */
+    font-size: 12px;
+    line-height: 1rem;
+  }
+  .legend {
+    position: relative;
+    width: 100%;
+
+    min-height: 60px;
+    margin-bottom: 17px;
+  }
   .term {
     flex: 1;
     display: flex;
@@ -70,9 +101,10 @@
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-self: stretch;
     box-sizing: border-box;
+    min-width: 700px;
   }
   .person {
     margin-top: 20px;

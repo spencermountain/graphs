@@ -236,6 +236,38 @@ module.exports = {
     num: 'bluejays-calendar',
     title: 'Blue Jays 2022 schedule',
     thumb: 'thumb.jpg'
+  }, {
+    num: 'accumulated-units',
+    title: 'Housing units by Toronto mayor',
+    thumb: 'thumb.jpg'
+  }, {
+    num: 'construction-map',
+    title: 'Active Toronto Multiplex permits',
+    thumb: 'thumb.jpg'
+  }, {
+    num: 'missing-middle',
+    title: 'Toronto construction permits by building size',
+    thumb: 'thumb.jpg'
+  }, {
+    num: 'pipeline',
+    title: 'Timeline of Completed Toronto condos',
+    thumb: 'thumb.jpg'
+  }, {
+    num: 'population-growth',
+    title: 'Population growth of Toronto',
+    thumb: 'thumb.jpg'
+  }, {
+    num: 'riding-sankey',
+    title: 'Toronto growth by ward',
+    thumb: 'thumb.jpg'
+  }, {
+    num: 'toronto-council',
+    title: 'Longest-serving Toronto City Councilors',
+    thumb: 'thumb.jpg'
+  }, {
+    num: 'transit-map',
+    title: 'Transit stations by ward',
+    thumb: 'thumb.jpg'
   }]
 };
 
