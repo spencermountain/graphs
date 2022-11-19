@@ -26,18 +26,25 @@ const addMask = function (map) {
 
 
   map.addLayer({
-    'id': 'ground',
-    'type': 'fill', //extr
-    'source': 'ground',
-    'paint': {
-      'fill-color': ['get', 'color'],
-      'fill-opacity': 0.1
-      // 'fill-extrusion-color': ['get', 'color'],
-      // 'fill-extrusion-height': 450,
-      // 'fill-extrusion-base': 50,
-      // 'fill-extrusion-opacity': 0.9
-    }
+    id: 'background',
+    type: 'background',
+    paint: {
+      'background-color': '#fbfbfb',
+    },
   })
+  // map.addLayer({
+  //   'id': 'ground',
+  //   'type': 'fill', //extr
+  //   'source': 'ground',
+  //   'paint': {
+  //     'fill-color': ['get', 'color'],
+  //     'fill-opacity': 0.1,
+  //     // 'fill-extrusion-color': ['get', 'color'],
+  //     // 'fill-extrusion-height': 450,
+  //     // 'fill-extrusion-base': 50,
+  //     // 'fill-extrusion-opacity': 0.9
+  //   }
+  // })
 
 }
 export default addMask

@@ -1,12 +1,16 @@
 <script>
+  import Head from '../../components/Head.svelte'
+  import Foot from '../../components/Foot.svelte'
   import { onMount } from 'svelte'
   import addWards from './layers/addWards.js'
   import addDots from './layers/addBuildings.js'
   import addMask from './layers/addMask.js'
-  // import addTTC from './layers/addTTC.js'
   import addGround from './layers/addGround.js'
   import mapboxgl from 'mapbox-gl'
-  mapboxgl.accessToken = 'pk.eyJ1Ijoic3BlbmNlcm1vdW50YWluIiwiYSI6Inp5UVZEY3cifQ.dh-_SvkPgv9YOQZLG5ZHKg'
+  mapboxgl.accessToken =
+    'pk.eyJ1Ijoic3BlbmNlcm1vdW50YWluIiwiYSI6Inp5UVZEY3cifQ.dh-_SvkPgv9YOQZLG5ZHKg'
+
+  let title = 'Active building permits in Toronto'
   onMount(async () => {
     const map = new mapboxgl.Map({
       container: 'map', // container ID
@@ -14,7 +18,7 @@
       center: [-79.43, 43.65],
       pitch: 55,
       bearing: 5,
-      zoom: 12,
+      zoom: 11.1,
       projection: 'globe',
       maxBounds: [
         -79.68507,
@@ -33,9 +37,11 @@
   })
 </script>
 
+<Head {title} num="03" sub="Oct 2022" />
 <div class="container">
   <div id="map" />
 </div>
+<Foot {title} />
 
 <style>
   .container {
@@ -43,9 +49,14 @@
     /* width: 100vw; */
     /* min-height: 800px; */
     border: 1px solid grey;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
+    margin: 5%;
+    padding: 0px;
+    overflow: hidden;
   }
   #map {
-    min-width: 100vw;
-    min-height: 100vh;
+    min-width: 100%;
+    min-height: 700px;
   }
 </style>

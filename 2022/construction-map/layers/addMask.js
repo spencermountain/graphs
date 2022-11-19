@@ -13,7 +13,7 @@ const addMask = function (map) {
     source: 'mask-source', // reference the data source
     layout: {},
     paint: {
-      'fill-color': '#fff', // blue color fill
+      'fill-color': '#fbfbfb', // blue color fill
       'fill-opacity': 1,
     },
   })

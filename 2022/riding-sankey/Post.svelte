@@ -1,4 +1,6 @@
 <script>
+  import Head from '../../components/Head.svelte'
+  import Foot from '../../components/Foot.svelte'
   import { Sankey, Node, Col, Label } from '/Users/spencer/mountain/somehow-sankey/src/index.mjs'
   import counts from './counts.js'
   let sum = counts.reduce((h, a) => {
@@ -6,10 +8,6 @@
     return h
   }, 0)
 
-  // #D68881
-  // #6699cc
-  // #cc6966
-  // #2D85A8
   const colors = {
     'Spadina-Fort York': '#D68881',
     'Toronto Centre': '#6699cc',
@@ -40,28 +38,17 @@
   }
 
   let fmt = (num) => {
-    // num = Number(num) * 1000000
-    // if (num >= 1000000000) {
-    //   num = Math.round(num / 100000000) * 100000000
-    //   num = Math.round(num)
-    //   return String(num / 1000000000) + 'b'
-    // }
-    // if (num >= 1000000) {
-    //   num = Math.round(num / 100000) * 100000
-    //   num = Math.round(num)
-    //   return String(num / 1000000) + 'm'
-    // }
     if (num > 1000) {
       num = Math.round(num / 1000) * 1000
       return String(num / 1000) + 'k'
     }
     return num
   }
-  // points = data
+  let title = 'Active housing applications by Toronto ward'
 </script>
 
+<Head {title} num="06" />
 <div class="center col">
-  <div class="m3" style="color: grey;">Active housing applications by Ward</div>
   <div class="container">
     <Sankey height="700" {fmt}>
       <Col>
@@ -117,6 +104,7 @@
     </div>
   </div>
 </div>
+<Foot {title} />
 
 <style>
   .col {

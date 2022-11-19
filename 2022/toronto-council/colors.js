@@ -2,16 +2,16 @@ export default {
   'Frances Nunziata': '#6699cc',//blue
   'John Filion': '#978BA3', //red
   'Denzil Minnan-Wong': '#335799',//navy
-  // 'Maria Augimeri': '#D68881', //red
+  'Maria Augimeri': '#D68881', //red
   'Joe Mihevc': '#F2C0BB',
-  // 'David Shiner': '#2D85A8',
+  'David Shiner': '#2D85A8',//
   'Paula Fletcher': '#d8b3e6',
   'Michael Thompson': '#7f9c6c',
-  // 'Gloria Lindsay Luby': '#735873',
-  // 'Raymond Cho': '#e6d7b3',
-  // 'Frank Di Giorgio': '#9c896c',
-  'Mark Grimes': '#2D85A8',
-  // 'Anthony Perruzza': '#303b50',
+  'Gloria Lindsay Luby': '#735873',
+  'Raymond Cho': '#e6d7b3', //
+  // 'Frank Di Giorgio': '#9c896c', //middle
+  // 'Mark Grimes': '#2D85A8',
+  'Anthony Perruzza': '#2e7794',
   'Gord Perks': '#cc6966',
   'Paul Ainslie': '#275291',
   // 'Doug Holyday': '#cc6966',

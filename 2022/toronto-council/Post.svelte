@@ -8,31 +8,24 @@
   export let title = 'Long-serving Toronto city councilors'
   export let sub = ''
   let minTerms = 2
-  let colorByCount = [
-    null,
-    'lightgrey', //1
-    '#C4ABAB', //2
-    '#978BA3', //3
-    '#D68881', //4
-    '#e6b3bc', //5
-    '#cc6966', //6
-    '#AB5850', //7
-    '#914045', //8
-  ]
 </script>
 
 <div>
-  <Head {title} {sub} num="04" />
+  <Head {title} {sub} num="08" />
   <div class="container">
-    <div class="legend">
-      <div class="label" style="left:45%; color:#978BA3;">John Filion</div>
-      <div class="label" style="left:40%; color:#F2C0BB;">Joe Mihevc</div>
-      <div class="label" style="left:67%; color:#335799;">Denzil Minnan-Wong</div>
+    <div class="term legend" style="margin-bottom:5px; ">
+      <div class="year" style="border:none;" />
+      <div class="rel">
+        <div class="label" style="left:3%; color:#735873;">Gloria Lindsay Luby</div>
+        <div class="label" style="left:15.5%; color:#D68881;">Maria Augimeri</div>
+        <div class="label" style="left:45%; color:#978BA3;">John Filion</div>
+        <div class="label" style="left:49%; color:#2D85A8;">David Shiner</div>
+        <div class="label" style="left:40%; color:#F2C0BB;">Joe Mihevc</div>
+        <div class="label" style="left:69%; color:#335799;">Denzil Minnan-Wong</div>
+        <div class="label" style="left:88%; color:#e6d7b3;">Raymond Cho</div>
+      </div>
+      <div class="aside" />
     </div>
-    <!-- <div class="term">
-      <div class="year" style="text-align:left; text-decoration:underline;">(megacity)</div>
-      <div style="flex-grow:1" />
-    </div> -->
     {#each Object.keys(data) as year}
       {#if year === '2018'}
         <div style="margin-top:20px;" />
@@ -62,23 +55,32 @@
         </div>
       </div>
     {/each}
-    <div class="legend" style="margin-top: 2rem;">
-      <div class="label" style="left:20%; color:#6699cc;">Frances Nunziata</div>
-      <div class="label" style="left:58%; color:#d8b3e6;">Paula Fletcher</div>
-      <div class="label" style="left:71%; color:#7f9c6c;">Michael Thompson</div>
-      <div class="label" style="left:27%; color:#cc6966;">Gord Perks</div>
-      <div class="label" style="left:82%; color:#275291;">Paul Ainslie</div>
+    <div class="term legend" style="margin-top: 1rem; align-items: flex-end;max-height: 40px">
+      <div class="year" style="border:none;" />
+      <div class="rel">
+        <div class="label right" style="left:10%; color:#2D85A8;">Anthony Perruzza</div>
+        <div class="label right" style="left:18%; color:#6699cc;">Frances Nunziata</div>
+        <div class="label right" style="left:27%; color:#cc6966;">Gord Perks</div>
+        <div class="label right" style="left:60%; color:#d8b3e6;">Paula Fletcher</div>
+        <div class="label right" style="left:76%; color:#7f9c6c;">Michael Thompson</div>
+        <div class="label right" style="left:88%; color:#275291;">Paul Ainslie</div>
+      </div>
+      <div class="aside" />
     </div>
   </div>
   <Foot {title} />
 </div>
 
 <style>
+  .right {
+    text-align: right !important;
+    width: 70px !important;
+  }
   .label {
     flex: 1;
     flex-wrap: nowrap;
     position: absolute;
-    transform: rotate(-90deg);
+    transform: rotate(-90deg) translateX(10px);
     width: 100px;
     height: 20px;
     text-align: left;
@@ -86,12 +88,28 @@
     font-size: 12px;
     line-height: 1rem;
   }
-  .legend {
+  .rel {
     position: relative;
     width: 100%;
-
-    min-height: 60px;
+    flex: 1;
+  }
+  .legend {
+    position: relative;
+    /* min-width: 700px; */
+    /* border: 1px solid grey; */
+    /* min-height: 60px;
     margin-bottom: 17px;
+    display: flex;
+    margin-left: 40px;
+    padding-right: 100px;
+    flex-direction: row; */
+    /* justify-content: flex-start; */
+    /* justify-content: space-between; */
+    /* align-items: flex-start; */
+    /* text-align: left; */
+    /* flex-wrap: nowrap;
+    align-self: stretch; */
+    /* box-sizing: border-box; */
   }
   .term {
     flex: 1;
@@ -113,7 +131,8 @@
     border-left: 7px solid lightgrey;
     /* opacity: 0.5; */
     box-sizing: border-box;
-    margin-left: 10px;
+    margin-left: 0px;
+    margin-top: 0px !important;
   }
   .highlight {
     opacity: 1;
@@ -122,8 +141,7 @@
     /* box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2); */
   }
   .aside {
-    min-width: 100px;
-    max-width: 100px;
+    width: 100px;
     color: grey;
     font-size: 12px;
   }
@@ -144,7 +162,7 @@
     padding: 3rem;
     /* border: 1px solid grey; */
     min-height: 800px;
-
+    max-width: 1200px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

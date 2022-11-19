@@ -5,6 +5,17 @@
   export let sub = ''
 </script>
 
+<!-- title -->
+<div class="blue ml1 goleft left">
+  <a class="link f1 blue" href="../../">〱 ./{year}/ {num}</a>
+</div>
+{#if title}
+  <div class="m3">
+    <span class="ml2 grey">{title}</span>
+    <div class="brown ml1 sub">{sub}</div>
+  </div>
+{/if}
+
 <style>
   .blue {
     color: #69c;
@@ -33,15 +44,7 @@
     /* border-bottom: 1px solid#cc7066; */
     border-bottom: 1px solid #23415a;
   }
+  .sub {
+    font-size: 0.7rem;
+  }
 </style>
-
-<!-- title -->
-<div class="blue ml1 goleft left">
-  <a class="link f1 blue" href="../../">〱 ./{year}/ {num}</a>
-</div>
-{#if title}
-  <div class="m3">
-    <span class="ml2 grey">{title}</span>
-    <div class="brown ml1">{sub}</div>
-  </div>
-{/if}
