@@ -37,27 +37,34 @@
   })
 </script>
 
-<Head {title} num="04" />
-<div style="position:relative;">
-  <div class="container">
-    <div id="map" />
+<div class="m1">
+  <Head {title} num="10" />
+  <div style="position:relative;">
+    <div class="container">
+      <div id="map" />
+    </div>
+    <!-- <div class="label">transit stations by ward, Oct 2022</div> -->
   </div>
-  <div class="label">transit stations by ward, Oct 2022</div>
+  <Foot {title} />
 </div>
-<Foot {title} />
 
 <style>
-  .label {
-    position: absolute;
+  .m1 {
+    margin: 1rem;
   }
   .container {
     /* margin: 3rem; */
     /* width: 100vw; */
     /* min-height: 800px; */
     border: 1px solid grey;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
+    margin: 5%;
+    padding: 0px;
+    overflow: hidden;
   }
   #map {
-    min-width: 100vw;
-    min-height: 100vh;
+    min-width: 100%;
+    min-height: 750px;
   }
 </style>

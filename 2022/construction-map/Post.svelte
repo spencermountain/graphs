@@ -57,6 +57,6 @@
   }
   #map {
     min-width: 100%;
-    min-height: 750px;
+    min-height: 700px;
   }
 </style>
