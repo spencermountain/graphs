@@ -1,37 +1,20 @@
 <script>
+  import Head from '../../components/Head.svelte'
+  import Foot from '../../components/Foot.svelte'
   import data from './data.js'
   import spacetime from 'spacetime'
   import scale from './scale.js'
 
+  let title = 'Toronto housing pipeline'
   let start = spacetime('2006-11-13')
   let end = spacetime('2023-01-01')
-  let xScale = str => scale({ world: [0, 100], minmax: [start.epoch, end.epoch] }, spacetime(String(str)).epoch)
+  let xScale = (str) =>
+    scale({ world: [0, 100], minmax: [start.epoch, end.epoch] }, spacetime(String(str)).epoch)
 
-  let colors = {
-    miller: '#C4ABAB',
-    ford: '#D68881',
-    tory1: '#8BA3A2',
-    tory2: '#9c896c',
-  }
-  const getTerm = str => {
-    if (str.match(/(200)/) && !str.match(/2009-(11|12)/)) {
-      return colors.miller
-    } else if (str.match(/(2010|2011|2012|2013)/) && !str.match(/2013-(11|12)/)) {
-      return colors.miller
-    } else if (str.match(/(2014|2015|2016|2017)/) && !str.match(/2017-(11|12)/)) {
-      return colors.ford
-    } else if (str.match(/(2018|2019|2020|2021|2022)/) && !str.match(/2017-(11|12)/)) {
-      return colors.tory1
-    }
-    return colors.tory2
-  }
-
-  let rows = data.map(o => {
+  let rows = data.map((o) => {
     let start = xScale(o.start)
     let issued = xScale(o.issued)
     let done = xScale(o.completed)
-    let approved_term = getTerm(o.start || '')
-    let issued_term = getTerm(o.issued || '')
 
     return {
       yellow_start: start,
@@ -46,7 +29,7 @@
       done,
     }
   })
-  rows = rows.filter(o => o.units > 4)
+  rows = rows.filter((o) => o.units > 4)
   rows = rows.sort((a, b) => {
     if (a.done > b.done) {
       return -1
@@ -57,13 +40,17 @@
   })
 </script>
 
+<Head {title} num="05" />
 <div>
   <div class="above">
     <!-- <div style="margin-top:5rem; margin-left:4rem; margin-bottom:2rem;">Timeline of development:</div> -->
     <div class="row" style="justify-content:center; margin-left:3rem; margin-bottom:3rem;">
       <div class="col" style="width:12px;">
         <div class="label">&nbsp;</div>
-        <div class="legend approve" style="width:12px; border-radius:2px 0px 0px 2px;background-color:#8BA3A2;" />
+        <div
+          class="legend approve"
+          style="width:12px; border-radius:2px 0px 0px 2px;background-color:#8BA3A2;"
+        />
       </div>
       <div class="col">
         <div class="label">Application Process</div>
@@ -72,7 +59,10 @@
       </div>
       <div class="col" style="width:12px;">
         <div class="label">&nbsp;</div>
-        <div class="legend approve" style="width:12px;border-radius:0px; background-color:#D68881;" />
+        <div
+          class="legend approve"
+          style="width:12px;border-radius:0px; background-color:#D68881;"
+        />
         <div class="label sublabel">issued</div>
       </div>
       <div class="col">
@@ -89,9 +79,19 @@
     {#each rows as o, i}
       <div class="row lines">
         <div class="bar wait" style="left:{o.yellow_start}%; width:{o.yellow_width}%;" />
-        <div class="bar approve" style="left:{o.yellow_start}%; width:{0.65}%; background-color:{o.issued_term};" />
-        <div class="bar build" style="left:{o.blue_start}%; width:{o.blue_width}%;" title={o.address + o.completed} />
-        <div class="bar approve" style="left:{o.blue_start}%; width:{0.5}%; background-color:{o.approved_term};" />
+        <div
+          class="bar approve"
+          style="left:{o.yellow_start}%; width:{0.65}%; background-color:{o.issued_term};"
+        />
+        <div
+          class="bar build"
+          style="left:{o.blue_start}%; width:{o.blue_width}%;"
+          title={o.address + o.completed}
+        />
+        <div
+          class="bar approve"
+          style="left:{o.blue_start}%; width:{0.5}%; background-color:{o.approved_term};"
+        />
       </div>
     {/each}
     <div class="line" style="left:{xScale('2018-10-22')}%" />
@@ -106,12 +106,14 @@
     <div class="term col" style="border-top:3px solid lightgrey;">Tory #1</div>
     <div class="term col" style="border-top:3px solid lightgrey;">Tory #2</div>
   </div>
+  <Foot {title} />
 </div>
 
 <style>
   .down {
     margin: 15%;
     margin-left: 14%;
+    margin-bottom: 100px;
     /* border: 1px solid grey; */
     /* margin-left: 22px; */
   }

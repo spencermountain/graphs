@@ -1,15 +1,12 @@
 <script>
+  import Head from '../../components/Head.svelte'
+  import Foot from '../../components/Foot.svelte'
   import scale from './lib/scale.js'
   import spacetime from 'spacetime'
   import XAxis from './xAxis.svelte'
   import YAxis from './yAxis.svelte'
-  import Area from './shapes/Area.svelte'
-  import Line from './shapes/Line.svelte'
   import Triangle from './shapes/Triangle.svelte'
-  import points from './data/population.js'
-  // import terms from './data/by-election.js'
   import terms from './data/by-mayor.js'
-  // import future from './data/future.js'
   import combos from './lib/combos.js'
 
   let combo = combos.yukon
@@ -25,18 +22,16 @@
   //+1,042,895 people
   // 16k people /year
 
-  // console.log(start.diff(end, 'years'))
-  let xScale = str => scale({ world: [0, 100], minmax: [start.epoch, end.epoch] }, spacetime(String(str)).epoch)
-  let yScale = n => scale({ world: [0, 100], minmax: [max, min] }, n) // reversed
+  let xScale = (str) =>
+    scale({ world: [0, 100], minmax: [start.epoch, end.epoch] }, spacetime(String(str)).epoch)
+  let yScale = (n) => scale({ world: [0, 100], minmax: [max, min] }, n) // reversed
 
   let todayX = xScale('October 24, 2022')
-  // points = data
+  let title = 'Toronto Population growth'
 </script>
 
+<Head {title} num="04" />
 <div class="col all">
-  <div style="height:50px; text-align: left;  margin-left:4rem;margin-top:3rem; color:grey;">
-    Population growth by Mayor
-  </div>
   <div class="container">
     <div class="top-stat">3 million<br />by 2031<br />*</div>
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" width="100%" height="100%">
@@ -44,7 +39,13 @@
       <!-- <Area {future} {xScale} {yScale} fill="lightgrey" /> -->
 
       {#each terms as term, i}
-        <Triangle points={term.points} {xScale} {yScale} fill={term.color || 'lightgrey'} isFuture={term.future} />
+        <Triangle
+          points={term.points}
+          {xScale}
+          {yScale}
+          fill={term.color || 'lightgrey'}
+          isFuture={term.future}
+        />
       {/each}
       <line
         x1={xScale(2000000)}
@@ -75,6 +76,7 @@
     {/each}
   </div>
 </div>
+<Foot {title} />
 
 <style>
   .top-stat {

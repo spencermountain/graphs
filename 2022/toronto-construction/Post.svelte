@@ -7,18 +7,16 @@
     Line,
     Ticks,
     Label,
-    WideLabel,
   } from '/Users/spencer/mountain/somehow-timeline/src'
-  let year = new Date().getFullYear()
   let start = 'Jan 1 1910'
   let end = 'Dec 31 2022'
   let height = 1500
   export let title = 'Toronto Construction '
 </script>
 
-<div>
-  <Head {title} num="01" />
-  <div class="m3">
+<div class="m1">
+  <Head {title} num="07" />
+  <div class="container">
     <Timeline {start} {end} {height} {title}>
       <Line
         space="15px"
@@ -43,7 +41,7 @@
       <Column width="30px">
         <Ticks every="decade" />
       </Column>
-      <Column width="50px" />
+      <Column />
 
       <Column>
         <!-- <Label
@@ -109,7 +107,7 @@
         />
       </Column>
 
-      <Column width="100px">
+      <Column>
         <Label
           start="October 3, 1945"
           end="March 30, 1954"
@@ -129,7 +127,7 @@
           align="left"
         />
       </Column>
-      <Column width="100px">
+      <Column>
         <Label
           start="November 1 1959"
           end="February 26, 1966"
@@ -207,7 +205,16 @@
 </div>
 
 <style>
-  .m3 {
-    margin: 3rem;
+  .m1 {
+    margin: 1rem;
+  }
+  .container {
+    padding: 1rem;
+    margin: 5rem;
+    overflow: hidden;
+    min-width: 500px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
   }
 </style>
