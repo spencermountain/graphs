@@ -1,38 +1,107 @@
 <script>
-  let posts = [
-    { src: '/2022/accumulated-units', title: 'Accumulated-housing in Toronto' },
-    { src: '/2022/bluejays-calendar', title: 'Bluejays Calendar' },
-    { src: '/2022/construction-map', title: 'Toronto construction-map' },
-    { src: '/2022/missing-middle', title: "Toronto's missing middle" },
-    { src: '/2022/pipeline', title: 'Toronto housing pipeline' },
-    { src: '/2022/population-growth', title: 'population-growth' },
-    { src: '/2022/riding-sankey', title: 'Toronto housing by ward' },
-    { src: '/2022/toronto-construction', title: 'Toronto construction applications' },
-    { src: '/2022/toronto-council', title: 'Toronto Council' },
-    { src: '/2022/transit-map', title: 'Toronto transit by ward' },
-  ]
+  import byYear from '../../manifest.js'
 </script>
 
 <div>
-  <div class="goleft m1" style="top:10px; left:10px; font-size:12px;">
-    graphs by <a href="http://twitter.com/spencermountain/">@spencermountain</a>
+  <div class="" style="font-size:10px; color:grey;">
+    graphs by <a class="link" style="font-size:10px;" href="http://twitter.com/spencermountain/"
+      >@spencermountain</a
+    >
   </div>
-  <div>
-    <a href={posts[0].src}>{posts[0].title}</a>
-    <iframe
-      class="frame"
-      src={posts[0].src}
-      title={posts[0].title}
-      loading="lazy"
-      frameborder="0"
-    />
+  <div class="container ">
+    {#each Object.keys(byYear).sort().reverse() as year}
+      <div class="year col">
+        <div class="which">
+          <div class="num">{year}</div>
+        </div>
+        <div class="posts">
+          {#each byYear[year] as o}
+            <div class="post col">
+              <a href="/{year}/{o.num}" class="target">
+                <div>
+                  <a href="/{year}/{o.num}" class="link">{o.title}</a>
+                </div>
+                <div>
+                  <img alt="" style="width:150px;" src="/{year}/{o.num}/{o.thumb}" />
+                </div>
+              </a>
+            </div>
+          {/each}
+        </div>
+      </div>
+    {/each}
   </div>
 </div>
 
 <!-- <svelte:component this={ChatBox} /> -->
 <style>
-  .frame {
+  .target:hover {
+    border: 1px solid lightgrey;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
+  }
+  .target {
+    border: 1px solid #fbfbfb;
+    padding: 2rem;
+  }
+  .link {
+    color: steelblue;
+    text-decoration: none;
+  }
+  .container {
+    margin: 3rem;
+  }
+  .which {
+    width: 800px;
+    text-align: left;
+    /* align-self: flex-start;
+    margin-left: 150px; */
+    margin-bottom: 2rem;
+    margin-top: 50px;
+  }
+  .num {
+    display: inline;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border-bottom: 3px solid steelblue;
+  }
+  .posts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+    /* height: fit-content; */
+  }
+  @media only screen and (max-width: 800px) {
+    .posts {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    .which {
+      width: 400px;
+    }
+  }
+
+  .link {
+    font-size: 0.9rem;
+  }
+  .col {
+    display: flex;
     width: 100%;
-    min-height: 800px;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    flex-wrap: nowrap;
+    align-self: stretch;
+  }
+  .year {
+    margin-top: 2rem;
+  }
+  .post {
+    /* border: 1px solid grey; */
+    overflow: hidden;
+    width: 400px;
+    min-height: 260px;
+    font-size: 1.2rem;
   }
 </style>
