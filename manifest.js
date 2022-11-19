@@ -30,7 +30,7 @@ module.exports = {
     {
       num: 'nhl-team-performance',
       title: 'NHL performance by team',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'nhl-history',
@@ -80,64 +80,64 @@ module.exports = {
     {
       num: 'ontario-line',
       title: 'Ontario Line Map',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
   ],
   2020: [
     {
       num: 'ontario-covid',
       title: 'Causes of death in Ontario',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'daylight-savings-changes',
       title: 'Daylight Savings times',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'year-in-toronto',
       title: 'The Year in Toronto',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'skydome-roof-by-year',
       title: 'Skydome roof',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'toronto-streets',
       title: 'Toronto street-map',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'mayors-of-toronto',
       title: 'Mayors of Toronto',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'rocket-launches',
       title: 'Rocket Launches',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'nhl-playoffs',
       title: 'NHL playoffs by year',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'leafs-roster',
       title: 'Toronto Maple leafs roster',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'leafs-budget',
       title: 'Toronto Maple leafs budget',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'population-of-canada',
       title: 'Population of Canada',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'covid-as-skydome',
@@ -152,79 +152,79 @@ module.exports = {
     {
       num: 'toronto-budget',
       title: 'Toronto City budget',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'earth-as-pie',
       title: 'Earth as a pie-chart',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'cerb-budget',
       title: "CERB and Canada's budget",
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'cerb-population',
       title: "CERB and Canada's population",
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'covid-income',
       title: "Canada's income during COVID",
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'sunset-direction',
       title: 'Sunset direction by year',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'computer-history',
       title: 'Computer programming timeline',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'governments-of-canada',
       title: 'Governments of Canada',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'transit-projects-canada',
       title: 'Public Transit in Canada',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'stanley-cups-in-canada',
       title: 'Stanley Cups in Canada',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'climates-canada',
       title: 'Climates in Canada',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'snowfall-in-canada',
       title: 'Snowfall in Canada',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'weeks-of-the-year',
       title: 'Weeks of the Year',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
   ],
   2021: [
     {
       num: 'computers-and-typewriters',
       title: 'Computers and Typewriters',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     },
     {
       num: 'cbc-radio-schedule',
       title: 'CBC Radio 1 Schedule',
-      thumb: 'thumb.png',
+      thumb: 'thumb.jpg',
     }
   ],
   2022: [

@@ -1,0 +1,11 @@
+node_modules/
+coverage/
+.DS_Store
+.env
+.nyc_output/
+.vscode
+.clinic
+coverage.lcov
+codecov.yml
+plugins/phrases/data/
+learn/giga/result/
