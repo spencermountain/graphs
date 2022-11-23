@@ -9,7 +9,7 @@
     "bake": "node ./scripts/bake.js",
     "watch": "node ./scripts/watch.js",
     "start": "budo index.js:assets/bundle.js --live",
-    "build": "browserify index.js -t [ babelify --presets [ @babel/preset-env ] ] | derequire > ./assets/bundle.js"
+    "build": "npm run watch drafts/home"
   },
   "repository": {
     "type": "git",
