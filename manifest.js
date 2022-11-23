@@ -278,5 +278,10 @@ module.exports = {
       title: 'Transit stations by ward',
       thumb: 'thumb.jpg',
     },
+    {
+      num: 'toronto-elections',
+      title: 'Toronto elections',
+      thumb: 'thumb.jpg',
+    },
   ]
 }

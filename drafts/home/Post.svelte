@@ -15,10 +15,10 @@
           <div class="num">{year}</div>
         </div>
         <div class="posts">
-          {#each byYear[year] as o}
+          {#each byYear[year].reverse() as o}
             <div class="post col">
               <a href="/{year}/{o.num}" class="target">
-                <div>
+                <div class="title">
                   <a href="/{year}/{o.num}" class="link">{o.title}</a>
                 </div>
                 <div>
@@ -35,13 +35,17 @@
 
 <!-- <svelte:component this={ChatBox} /> -->
 <style>
+  .title {
+    padding-bottom: 10px;
+  }
   .target:hover {
     border: 1px solid lightgrey;
     box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
   }
   .target {
     border: 1px solid #fbfbfb;
-    padding: 2rem;
+    padding: 1.5rem;
+    margin: 1rem;
   }
   .link {
     color: steelblue;
@@ -49,6 +53,7 @@
   }
   .container {
     margin: 3rem;
+    background-color: #fbfbfb;
   }
   .which {
     width: 800px;
@@ -69,6 +74,7 @@
     grid-template-columns: repeat(2, 1fr);
     box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
     margin-bottom: 2rem;
+    padding-bottom: 1rem;
     /* height: fit-content; */
   }
   @media only screen and (max-width: 800px) {
