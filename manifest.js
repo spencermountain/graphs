@@ -283,5 +283,10 @@ module.exports = {
       title: 'Toronto elections',
       thumb: 'thumb.jpg',
     },
+    {
+      num: 'aspect-ratios',
+      title: 'Aspect ratios',
+      thumb: 'thumb.jpg',
+    },
   ]
 }

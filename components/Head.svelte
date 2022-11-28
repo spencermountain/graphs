@@ -1,50 +1,44 @@
 <script>
-  let year = new Date().getFullYear()
-  export let num = '01'
+  export let href = '#'
+  export let color = '#303b50'
+  export let label = ''
   export let title = ''
-  export let sub = ''
+  let hover = false
 </script>
 
-<!-- title -->
-<div class="blue ml1 goleft left">
-  <a class="link f1 blue" href="../../">〱 ./{year}/ {num}</a>
-</div>
-{#if title}
-  <div class="m3">
-    <span class="ml2 grey">{title}</span>
-    <div class="brown ml1 sub">{sub}</div>
-  </div>
-{/if}
+<a {href} class="container">
+  <svg width="15px" height="30px" viewBox="0 0 90 170">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+      <path
+        d="M81.5,6 C69.8240666,23.5139001 45.8240666,49.9277635 9.5,85.2415902
+        C45.7984814,120.80686 69.7984814,147.22633 81.5,164.5"
+        stroke={color}
+        stroke-width="20"
+        fill-rule="nonzero"
+      />
+    </g>
+  </svg>
+  {#if hover}
+    <div class="name">{label}</div>
+  {/if}
+</a>
 
 <style>
-  .blue {
-    color: #69c;
-  }
   .goleft {
+  }
+  .container {
     align-self: flex-start;
+    margin: 1rem;
+    padding: 1rem;
+    height: 20px;
+    transition: margin-left 250ms;
   }
-  .f1 {
-    font-size: 0.8rem;
+  .name {
+    font-size: 0.5rem;
+    color: grey;
   }
-  .m3 {
-    margin-left: 3rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-  a {
-    color: #69c;
-    cursor: pointer;
-    padding: 1px;
-    text-decoration: none;
-    border-bottom: 1px solid #69c;
-  }
-  .link:hover {
-    text-decoration-color: #cc7066;
-    font-weight: 500;
-    /* border-bottom: 1px solid#cc7066; */
-    border-bottom: 1px solid #23415a;
-  }
-  .sub {
-    font-size: 0.7rem;
+
+  .container:hover {
+    margin-left: 0.8rem;
   }
 </style>
