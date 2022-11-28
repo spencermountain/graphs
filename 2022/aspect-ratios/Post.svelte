@@ -50,7 +50,7 @@
   ]
 </script>
 
-<Page {title} {sub}>
+<Page {title} {sub} height="800" width="700">
   {#each ratios as o}
     <div class="ratio col">
       <div class="row">

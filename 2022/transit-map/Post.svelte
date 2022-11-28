@@ -9,7 +9,7 @@
   import mapboxgl from 'mapbox-gl'
   let title = 'Toronto transit stops by ward'
   mapboxgl.accessToken =
-    'pk.eyJ1Ijoic3BlbmNlcm1vdW50YWluIiwiYSI6Inp5UVZEY3cifQ.dh-_SvkPgv9YOQZLG5ZHKg'
+    'pk.eyJ1Ijoic3BlbmNlcm1vdW50' + 'YWluIiwiYSI6Inp5UVZEY3cifQ.dh-_SvkPgv9YOQZLG5ZHKg'
   onMount(async () => {
     const map = new mapboxgl.Map({
       container: 'map', // container ID
@@ -41,20 +41,6 @@
 </Page>
 
 <style>
-  .m1 {
-    margin: 1rem;
-  }
-  .container {
-    /* margin: 3rem; */
-    /* width: 100vw; */
-    /* min-height: 800px; */
-    border: 1px solid grey;
-    border-radius: 5px;
-    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
-    margin: 5%;
-    padding: 0px;
-    overflow: hidden;
-  }
   #map {
     min-width: 100%;
     min-height: 750px;

@@ -1,10 +1,7 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Page } from '../../components/index.mjs'
   import {
     Timeline,
-    Axis,
-    Line,
     Column,
     Ticks,
     Label,
@@ -16,28 +13,10 @@
   export let sub = ''
 </script>
 
-<style>
-  .m3 {
-    margin: 3rem;
-  }
-  .row {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    flex-wrap: wrap;
-    align-self: stretch;
-  }
-</style>
-
-<div>
-  <Head {title} {sub} num={25} />
+<Page {title} {sub} height="800">
   <div class="row">
     <div class="m3" style="width:600px;">
       <Timeline start="1900" end="Dec 30 1970" height="400">
-
         <Column>
           <Text date="1900" color="sky" label="Typewriters" underline={true} />
           <Label
@@ -47,7 +26,8 @@
             label="Standard"
             dodge="40px"
             width="8px"
-            opacity="0.4" />
+            opacity="0.4"
+          />
           <Label
             start="1917"
             end="1929"
@@ -55,7 +35,8 @@
             label="Portable"
             dodge="40px"
             width="8px"
-            opacity="0.4" />
+            opacity="0.4"
+          />
           <Label
             start="1929"
             end="1933"
@@ -63,7 +44,8 @@
             label="Varityper"
             dodge="40px"
             width="8px"
-            opacity="0.4" />
+            opacity="0.4"
+          />
           <Label
             start="1933"
             end="1939"
@@ -71,7 +53,8 @@
             label="Electromatic"
             dodge="40px"
             width="8px"
-            opacity="0.4" />
+            opacity="0.4"
+          />
           <Label
             start="1939"
             end="1960"
@@ -79,7 +62,8 @@
             label="Automatic"
             dodge="40px"
             width="8px"
-            opacity="0.4" />
+            opacity="0.4"
+          />
           <Label
             start="1960"
             end="1964"
@@ -87,7 +71,8 @@
             label="Selectric"
             dodge="40px"
             width="8px"
-            opacity="0.4" />
+            opacity="0.4"
+          />
           <Label
             start="1964"
             end="1968"
@@ -95,8 +80,8 @@
             label="MG/ST"
             dodge="40px"
             width="8px"
-            opacity="0.4" />
-
+            opacity="0.4"
+          />
         </Column>
 
         <Column>
@@ -114,7 +99,8 @@
             dodge="40px"
             color="pink"
             width="8px"
-            hide={false} />
+            hide={false}
+          />
           <Label
             start="1943"
             end="1947"
@@ -123,7 +109,8 @@
             dodge="40px"
             color="lightblue"
             width="8px"
-            hide={false} />
+            hide={false}
+          />
           <Label
             start="1947"
             end="1951"
@@ -132,7 +119,8 @@
             dodge="40px"
             color="pink"
             width="8px"
-            hide={false} />
+            hide={false}
+          />
           <Label
             start="1951"
             end="1955"
@@ -141,7 +129,8 @@
             dodge="40px"
             color="lightblue"
             width="8px"
-            hide={false} />
+            hide={false}
+          />
           <Label
             start="1956"
             end="1962"
@@ -150,7 +139,8 @@
             dodge="40px"
             color="pink"
             width="8px"
-            hide={false} />
+            hide={false}
+          />
           <Label
             start="1962"
             end="1968"
@@ -159,7 +149,8 @@
             dodge="40px"
             color="lightblue"
             width="8px"
-            hide={false} />
+            hide={false}
+          />
           <Label
             start="April 4, 1975"
             end="today"
@@ -167,7 +158,8 @@
             topLabel="Microsoft"
             dodge="40px"
             size="9px"
-            opacity="0.4" />
+            opacity="0.4"
+          />
           <!-- <Label
             start="September 4, 1998"
             end="today"
@@ -183,15 +175,31 @@
             topLabel="Apple"
             dodge="0px"
             size="9px"
-            opacity="0.4" />
+            opacity="0.4"
+          />
         </Column>
 
         <!-- horizontal-span -->
         <Horizontal date="December 1968" color="red" align="right" width="50%" left="15%" />
         <Region start="1936" end="December 1967" color="sky" width="6.5%" left="36.5%" />
       </Timeline>
-
     </div>
+    <!-- <Foot {title} /> -->
   </div>
-  <!-- <Foot {title} /> -->
-</div>
+</Page>
+
+<style>
+  .m3 {
+    margin: 3rem;
+  }
+  .row {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    align-self: stretch;
+  }
+</style>

@@ -1,15 +1,8 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
-  import {
-    Timeline,
-    Column,
-    Line,
-    Ticks,
-    WideLabel,
-  } from '/Users/spencer/mountain/somehow-timeline/src'
+  import { Page } from '../../components/index.mjs'
+  import { Timeline, Column, Line, WideLabel } from '/Users/spencer/mountain/somehow-timeline/src'
   export let title = 'CBC radio 1 schedule'
-  export let sub = ''
+  export let sub = '(toronto)'
   let start = 'Jan 1 2020 5:00am'
   let end = 'Jan 1 2020 10:00pm'
   let height = '800'
@@ -52,27 +45,10 @@
   ]
 </script>
 
-<style>
-  .m3 {
-    margin: 3rem;
-  }
-  .light {
-    color: grey;
-  }
-  .ml1 {
-    margin-left: 2rem;
-  }
-</style>
-
-<div>
-  <Head {title} {sub} num={'15'} />
-  <div class="m3">
-    {title}
-    <div class="i light ml1">(toronto)</div>
-  </div>
-  <div class="m3">
+<Page {title} {sub} width="1200" {height}>
+  <div style="max-width:800px;">
     <Timeline {start} {end} {height}>
-      <Ticks every="hour" />
+      <!-- <Ticks every="hour" /> -->
       {#each days as day, i}
         <Column width="150px" title={day}>
           {#if i === 5}
@@ -83,7 +59,8 @@
                 label={p.name}
                 margin={5}
                 opacity="0.5"
-                color={p.color} />
+                color={p.color}
+              />
             {/each}
           {:else if i === 6}
             {#each sunday as p}
@@ -93,7 +70,8 @@
                 label={p.name}
                 margin={5}
                 opacity="0.5"
-                color={p.color} />
+                color={p.color}
+              />
             {/each}
           {:else}
             {#each weekdays as p}
@@ -103,14 +81,16 @@
                 label={p.name}
                 margin={5}
                 opacity="0.5"
-                color={p.color} />
+                color={p.color}
+              />
             {/each}
           {/if}
-
         </Column>
       {/each}
       <WideLabel date={'Jan 1 2020 12:00pm'} color="#e4e4e4" />
     </Timeline>
   </div>
-  <Foot {title} />
-</div>
+</Page>
+
+<style>
+</style>
