@@ -1,6 +1,5 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Head, Foot } from '../../components/index.mjs'
   import scale from './lib/scale.js'
   import spacetime from 'spacetime'
   import XAxis from './xAxis.svelte'

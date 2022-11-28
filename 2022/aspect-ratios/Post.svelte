@@ -1,6 +1,5 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Page } from '../../components/index.mjs'
   export let title = 'Aspect Ratios'
   export let sub = ''
   let x = 200
@@ -51,31 +50,24 @@
   ]
 </script>
 
-<div>
-  <div class="all">
-    <Head {title} {sub} num="12" />
-    <div class="container">
-      {#each ratios as o}
-        <div class="ratio col">
-          <div class="row">
-            <div class="name" class:tinier={true}>{o.name}</div>
-            <div class="bars">
-              <div class="one" style="height:50px;  width:{x}px;" />
-              <div class="plus" style="height:50px; width:{x * o.ratio}px;" />
-              <div class="desc" style="left:{x * o.ratio}px;">{o.desc}</div>
-              <div class="below" style="left:{x}px; margin-left:15px; color: #946da5;">
-                <span style="font-size:10px;">x</span>
-                <span style="">{o.ratio}</span>
-              </div>
-            </div>
+<Page {title} {sub}>
+  {#each ratios as o}
+    <div class="ratio col">
+      <div class="row">
+        <div class="name" class:tinier={true}>{o.name}</div>
+        <div class="bars">
+          <div class="one" style="height:50px;  width:{x}px;" />
+          <div class="plus" style="height:50px; width:{x * o.ratio}px;" />
+          <div class="desc" style="left:{x * o.ratio}px;">{o.desc}</div>
+          <div class="below" style="left:{x}px; margin-left:15px; color: #946da5;">
+            <span style="font-size:10px;">x</span>
+            <span style="">{o.ratio}</span>
           </div>
         </div>
-      {/each}
-      <div style="margin-top:3rem;" />
+      </div>
     </div>
-  </div>
-  <Foot {title} />
-</div>
+  {/each}
+</Page>
 
 <style>
   .tinier {

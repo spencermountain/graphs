@@ -1,6 +1,5 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Head, Foot } from '../../components/index.mjs'
   import { Sankey, Node, Col, Label } from '/Users/spencer/mountain/somehow-sankey/src/index.mjs'
   import counts from './counts.js'
   let sum = counts.reduce((h, a) => {

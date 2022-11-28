@@ -25,58 +25,51 @@ html {
     U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* everything */
 .page {
-  min-height: 800px;
-  box-shadow: 3px 12px 36px 1px rgba(0, 0, 0, 0.2);
-  margin-left: 55px;
-  margin-right: 55px;
-  margin-top: 1.2rem;
-  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+/* middle-column */
+.mid {
+  margin: 1rem;
   padding: 1rem;
-  overflow: hidden;
-  border-radius: 7px;
+  margin-top: 0rem;
+  max-width: 800px;
+  min-width: 400px;
+  flex-grow: 1;
 }
 
-
-.header {
-  font-size: 1rem;
+.shadow {
+  padding: 2rem;
+  min-height: 600px;
+  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
 }
 
-.back {
-  font-size: 2rem;
-  color: grey;
-  text-decoration: none;
-  position: absolute;
+.m3 {
+  margin: 3rem;
 }
 
-.footer {
-  text-align: right;
-  margin-top: 4rem;
-  font-size: 10px;
+.m2 {
+  margin: 2rem;
 }
 
-.below {
-  height: 1rem;
+.m1 {
+  margin: 1rem;
 }
 
-.source {
-  color: grey;
-  margin-right: 2rem;
+img {
+  margin: 1.2rem;
+  max-width: 100%;
+  border-radius: 3px;
+  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
+  align-self: center;
 }
 
-.twit {
-  color: #6699cc;
-  text-decoration: none;
-}
-
-/* phones */
-@media (max-width: 900px) {
-  .page {
-    margin: 15px;
-  }
-
-  .back {
-    font-size: 1rem;
-    margin-top: -1.5rem;
-  }
+footer {
+  height: 10rem;
 }

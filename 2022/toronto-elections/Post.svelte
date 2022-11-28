@@ -1,6 +1,5 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Head, Foot } from '../../components/index.mjs'
   import names from './colors.js'
 
   import data from './data.js'

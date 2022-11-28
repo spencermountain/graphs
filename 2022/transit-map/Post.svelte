@@ -1,6 +1,5 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Head, Foot } from '../../components/index.mjs'
   import { onMount } from 'svelte'
   import addWards from './layers/addWards.js'
   import addMask from './layers/addMask.js'
@@ -14,7 +13,6 @@
   onMount(async () => {
     const map = new mapboxgl.Map({
       container: 'map', // container ID
-      // style: 'mapbox://styles/spencermountain/cl8ysxlkb000m15q9o3lud9yk',
       center: [-79.43, 43.65],
       pitch: 55,
       bearing: 5,

@@ -1,6 +1,5 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Page } from '../../components/index.mjs'
   import counts from './counts.js'
   let title = "Toronto's missing middle"
   let sum = counts.reduce((h, a) => {
@@ -18,12 +17,11 @@
   }
 </script>
 
-<Head {title} num="05" sub="Building applications, by number of units" />
-<div class="center">
-  <div class="container">
+<Page {title} sub="Building applications, by number of units" height="780" width="700">
+  <div class="rel">
     <div class="label">
       ← Missing middle
-      <div style="font-size:12px;">2-12 units</div>
+      <div style="font-size:12px;">2-12 unit buildings</div>
     </div>
     <Sankey height="700" {fmt}>
       <Col>
@@ -54,44 +52,24 @@
         {/each}
       </Col> -->
     </Sankey>
-    <div class="source">
-      filtered <a href="https://open.toronto.ca/dataset/building-permits-active-permits/"
-        >Active building permits</a
-      >
-      - toronto.ca, Sep 2022
-    </div>
   </div>
-</div>
-<Foot {title} />
+</Page>
 
+<!-- <div class="source">
+  filtered <a href="https://open.toronto.ca/dataset/building-permits-active-permits/"
+    >Active building permits</a
+  >
+  - toronto.ca, Sep 2022
+</div> -->
 <style>
-  .center {
-    text-align: center;
-    margin: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    flex-wrap: nowrap;
-    align-self: stretch;
-  }
-  .container {
+  .rel {
     position: relative;
-    max-width: 800px;
-    min-width: 400px;
-    margin-top: 3rem;
-  }
-  .source {
-    margin: 3rem;
-    font-size: 12px;
-    color: grey;
-    text-align: right;
+    margin-top: 2rem;
   }
   .label {
     position: absolute;
     min-width: 200px;
-    top: 73%;
+    top: 88%;
     left: 460px;
     color: #c4abab;
   }
