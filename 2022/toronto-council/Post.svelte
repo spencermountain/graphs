@@ -1,74 +1,65 @@
 <script>
-  import { Head, Foot } from '../../components/index.mjs'
+  import { Page } from '../../components/index.mjs'
   import byColor from './colors.js'
   import data from './data.js'
   import counts from './counts.js'
-
   export let title = 'Long-serving Toronto city councilors'
   export let sub = ''
   let minTerms = 2
 </script>
 
-<div>
-  <Head {title} {sub} num="08" />
-  <div class="container">
-    <div class="term legend" style="margin-bottom:5px; ">
-      <div class="year" style="border:none;" />
-      <div class="rel">
-        <div class="label" style="left:3%; color:#735873;">Gloria Lindsay Luby</div>
-        <div class="label" style="left:15.5%; color:#D68881;">Maria Augimeri</div>
-        <div class="label" style="left:45%; color:#978BA3;">John Filion</div>
-        <div class="label" style="left:49%; color:#2D85A8;">David Shiner</div>
-        <div class="label" style="left:40%; color:#F2C0BB;">Joe Mihevc</div>
-        <div class="label" style="left:69%; color:#335799;">Denzil Minnan-Wong</div>
-        <div class="label" style="left:88%; color:#e6d7b3;">Raymond Cho</div>
-      </div>
-      <div class="aside" />
+<Page {title} {sub} height="1300" width="730">
+  <div class="term legend" style="margin-bottom:5px; ">
+    <div class="year" style="border:none;" />
+    <div class="rel">
+      <div class="label" style="left:3%; color:#735873;">Gloria Lindsay Luby</div>
+      <div class="label" style="left:15.5%; color:#D68881;">Maria Augimeri</div>
+      <div class="label" style="left:45%; color:#978BA3;">John Filion</div>
+      <div class="label" style="left:49%; color:#2D85A8;">David Shiner</div>
+      <div class="label" style="left:40%; color:#F2C0BB;">Joe Mihevc</div>
+      <div class="label" style="left:69%; color:#335799;">Denzil Minnan-Wong</div>
+      <div class="label" style="left:88%; color:#e6d7b3;">Raymond Cho</div>
     </div>
-    {#each Object.keys(data) as year}
-      {#if year === '2018'}
-        <div style="margin-top:20px;" />
-      {/if}
-      {#if year === '2000'}
-        <div style="margin-top:20px;" />
-      {/if}
-      <div class="term">
-        <div class="year">{year}</div>
-        {#each data[String(year)] as str}
-          {#if counts[str] >= minTerms}
-            <div
-              class="person highlight"
-              style="border-left:7px solid {byColor[str]};"
-              title={str}
-            />
-          {:else}
-            <div class="person" title={str} />
-          {/if}
-        {/each}
-        <div class="aside">
-          {#if year === '1997' || year === '2000' || year === '2018'}
-            {data[String(year)].length} seats
-            <br />
-            ↓
-          {/if}
-        </div>
-      </div>
-    {/each}
-    <div class="term legend" style="margin-top: 1rem; align-items: flex-end;max-height: 40px">
-      <div class="year" style="border:none;" />
-      <div class="rel">
-        <div class="label right" style="left:10%; color:#2D85A8;">Anthony Perruzza</div>
-        <div class="label right" style="left:18%; color:#6699cc;">Frances Nunziata</div>
-        <div class="label right" style="left:27%; color:#cc6966;">Gord Perks</div>
-        <div class="label right" style="left:60%; color:#d8b3e6;">Paula Fletcher</div>
-        <div class="label right" style="left:76%; color:#7f9c6c;">Michael Thompson</div>
-        <div class="label right" style="left:88%; color:#275291;">Paul Ainslie</div>
-      </div>
-      <div class="aside" />
-    </div>
+    <div class="aside" />
   </div>
-  <Foot {title} />
-</div>
+  {#each Object.keys(data) as year}
+    {#if year === '2018'}
+      <div style="margin-top:20px;" />
+    {/if}
+    {#if year === '2000'}
+      <div style="margin-top:20px;" />
+    {/if}
+    <div class="term">
+      <div class="year">{year}</div>
+      {#each data[String(year)] as str}
+        {#if counts[str] >= minTerms}
+          <div class="person highlight" style="border-left:7px solid {byColor[str]};" title={str} />
+        {:else}
+          <div class="person" title={str} />
+        {/if}
+      {/each}
+      <div class="aside">
+        {#if year === '1997' || year === '2000' || year === '2018'}
+          {data[String(year)].length} seats
+          <br />
+          ↓
+        {/if}
+      </div>
+    </div>
+  {/each}
+  <div class="term legend" style="margin-top: 1rem; align-items: flex-end;max-height: 40px">
+    <div class="year" style="border:none;" />
+    <div class="rel">
+      <div class="label right" style="left:10%; color:#2D85A8;">Anthony Perruzza</div>
+      <div class="label right" style="left:18%; color:#6699cc;">Frances Nunziata</div>
+      <div class="label right" style="left:27%; color:#cc6966;">Gord Perks</div>
+      <div class="label right" style="left:60%; color:#d8b3e6;">Paula Fletcher</div>
+      <div class="label right" style="left:76%; color:#7f9c6c;">Michael Thompson</div>
+      <div class="label right" style="left:88%; color:#275291;">Paul Ainslie</div>
+    </div>
+    <div class="aside" />
+  </div>
+</Page>
 
 <style>
   .right {
@@ -155,19 +146,5 @@
     min-height: 110px;
     /* margin-right: 10px; */
     /* text-decoration: underline; */
-  }
-  .container {
-    margin: 3rem;
-    padding: 3rem;
-    /* border: 1px solid grey; */
-    min-height: 800px;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    flex-wrap: nowrap;
-    align-self: stretch;
   }
 </style>

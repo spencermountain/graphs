@@ -1,5 +1,5 @@
 <script>
-  import { Head, Foot } from '../../components/index.mjs'
+  import { Page } from '../../components/index.mjs'
   import data from './data.js'
   import spacetime from 'spacetime'
   import scale from './scale.js'
@@ -39,74 +39,74 @@
   })
 </script>
 
-<Head {title} num="05" />
-<div>
-  <div class="above">
-    <!-- <div style="margin-top:5rem; margin-left:4rem; margin-bottom:2rem;">Timeline of development:</div> -->
-    <div class="row" style="justify-content:center; margin-left:3rem; margin-bottom:3rem;">
-      <div class="col" style="width:12px;">
-        <div class="label">&nbsp;</div>
-        <div
-          class="legend approve"
-          style="width:12px; border-radius:2px 0px 0px 2px;background-color:#8BA3A2;"
-        />
-      </div>
-      <div class="col">
-        <div class="label">Application Process</div>
-        <div class="legend wait" style="" />
-        <div class="label sublabel" style="left:37%;">submitted</div>
-      </div>
-      <div class="col" style="width:12px;">
-        <div class="label">&nbsp;</div>
-        <div
-          class="legend approve"
-          style="width:12px;border-radius:0px; background-color:#D68881;"
-        />
-        <div class="label sublabel">issued</div>
-      </div>
-      <div class="col">
-        <div class="label">Building</div>
-        <div class="legend build" style="border-radius:0px 2px 2px 0px;" />
+<Page {title} height="1300" width="900">
+  <div>
+    <div class="above">
+      <!-- <div style="margin-top:5rem; margin-left:4rem; margin-bottom:2rem;">Timeline of development:</div> -->
+      <div class="row" style="justify-content:center; margin-left:3rem; margin-bottom:3rem;">
+        <div class="col" style="width:12px;">
+          <div class="label">&nbsp;</div>
+          <div
+            class="legend approve"
+            style="width:12px; border-radius:2px 0px 0px 2px;background-color:#8BA3A2;"
+          />
+        </div>
+        <div class="col">
+          <div class="label">Application Process</div>
+          <div class="legend wait" style="" />
+          <div class="label sublabel" style="left:37%;">submitted</div>
+        </div>
+        <div class="col" style="width:12px;">
+          <div class="label">&nbsp;</div>
+          <div
+            class="legend approve"
+            style="width:12px;border-radius:0px; background-color:#D68881;"
+          />
+          <div class="label sublabel">issued</div>
+        </div>
+        <div class="col">
+          <div class="label">Building</div>
+          <div class="legend build" style="border-radius:0px 2px 2px 0px;" />
+        </div>
       </div>
     </div>
-  </div>
-  <div class="container col">
-    <div class="row" style="justify-content: flex-end; margin-right:20px; top:20px; color:grey;">
-      <h4>Multiplexes completed<br /> during this term ↓</h4>
-    </div>
-    <div style="margin:0.75rem;" />
-    {#each rows as o, i}
-      <div class="row lines">
-        <div class="bar wait" style="left:{o.yellow_start}%; width:{o.yellow_width}%;" />
-        <div
-          class="bar approve"
-          style="left:{o.yellow_start}%; width:{0.65}%; background-color:{o.issued_term};"
-        />
-        <div
-          class="bar build"
-          style="left:{o.blue_start}%; width:{o.blue_width}%;"
-          title={o.address + o.completed}
-        />
-        <div
-          class="bar approve"
-          style="left:{o.blue_start}%; width:{0.5}%; background-color:{o.approved_term};"
-        />
+    <div class="container col">
+      <div class="row" style="justify-content: flex-end; margin-right:20px; top:20px; color:grey;">
+        <h4>Multiplexes completed<br /> during this term ↓</h4>
       </div>
-    {/each}
-    <div class="line" style="left:{xScale('2018-10-22')}%" />
-    <div class="line" style="left:{xScale('2014-10-27')}%" />
-    <div class="line" style="left:{xScale('2010-10-25')}%" />
-    <div style="margin:0.75rem;" />
-    <!-- <div class="line" style="left:{xScale('2006-11-13')}%" /> -->
+      <div style="margin:0.75rem;" />
+      {#each rows as o, i}
+        <div class="row lines">
+          <div class="bar wait" style="left:{o.yellow_start}%; width:{o.yellow_width}%;" />
+          <div
+            class="bar approve"
+            style="left:{o.yellow_start}%; width:{0.65}%; background-color:{o.issued_term};"
+          />
+          <div
+            class="bar build"
+            style="left:{o.blue_start}%; width:{o.blue_width}%;"
+            title={o.address + o.completed}
+          />
+          <div
+            class="bar approve"
+            style="left:{o.blue_start}%; width:{0.5}%; background-color:{o.approved_term};"
+          />
+        </div>
+      {/each}
+      <div class="line" style="left:{xScale('2018-10-22')}%" />
+      <div class="line" style="left:{xScale('2014-10-27')}%" />
+      <div class="line" style="left:{xScale('2010-10-25')}%" />
+      <div style="margin:0.75rem;" />
+      <!-- <div class="line" style="left:{xScale('2006-11-13')}%" /> -->
+    </div>
+    <div class="row down bars">
+      <div class="term col" style="border-top:3px solid lightgrey;">Miller #2</div>
+      <div class="term col" style="border-top:3px solid lightgrey;">Ford</div>
+      <div class="term col" style="border-top:3px solid lightgrey;">Tory #1</div>
+      <div class="term col" style="border-top:3px solid lightgrey;">Tory #2</div>
+    </div>
   </div>
-  <div class="row down bars">
-    <div class="term col" style="border-top:3px solid lightgrey;">Miller #2</div>
-    <div class="term col" style="border-top:3px solid lightgrey;">Ford</div>
-    <div class="term col" style="border-top:3px solid lightgrey;">Tory #1</div>
-    <div class="term col" style="border-top:3px solid lightgrey;">Tory #2</div>
-  </div>
-  <Foot {title} />
-</div>
+</Page>
 
 <style>
   .down {

@@ -1,5 +1,5 @@
 <script>
-  import { Head, Foot } from '../../components/index.mjs'
+  import { Page } from '../../components/index.mjs'
   import { onMount } from 'svelte'
   import addWards from './layers/addWards.js'
   import addMask from './layers/addMask.js'
@@ -35,16 +35,10 @@
   })
 </script>
 
-<div class="m1">
-  <Head {title} num="10" />
-  <div style="position:relative;">
-    <div class="container">
-      <div id="map" />
-    </div>
-    <!-- <div class="label">transit stations by ward, Oct 2022</div> -->
-  </div>
-  <Foot {title} />
-</div>
+<Page {title} width="980" padding={0} height="750">
+  <div id="map" />
+  <!-- <div class="label">transit stations by ward, Oct 2022</div> -->
+</Page>
 
 <style>
   .m1 {
