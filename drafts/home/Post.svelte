@@ -47,10 +47,6 @@
     padding: 1.5rem;
     margin: 1rem;
   }
-  .link {
-    color: steelblue;
-    text-decoration: none;
-  }
   .container {
     margin: 3rem;
     background-color: #fbfbfb;
@@ -87,7 +83,9 @@
   }
 
   .link {
-    font-size: 0.9rem;
+    font-size: 1rem;
+    text-decoration: none;
+    color: steelblue;
   }
   .col {
     display: flex;

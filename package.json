@@ -8,8 +8,8 @@
     "new": "node ./scripts/new.js",
     "bake": "node ./scripts/bake.js",
     "watch": "node ./scripts/watch.js",
-    "start": "budo index.js:assets/bundle.js --live",
-    "build": "npm run watch drafts/home"
+    "build": "node ./scripts/build.js",
+    "home": "npm run watch drafts/home"
   },
   "repository": {
     "type": "git",

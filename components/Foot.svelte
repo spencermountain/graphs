@@ -1,7 +1,17 @@
 <script>
-  export let num = ''
+  export let title = ''
   export let year = ''
+  let url = 'https://github.com/spencermountain/thensome'
+  if (title && year) {
+    url += `/tree/gh-pages/${year}/${title}`
+  }
 </script>
+
+<!-- footer -->
+<div class="footer">
+  <a class="link m2" href={url}>source</a>
+  <a class="link name" href="http://twitter.com/spencermountain/">@spencermountain</a>
+</div>
 
 <style>
   .footer {
@@ -11,34 +21,22 @@
     justify-content: flex-end;
     align-content: flex-end;
     align-items: center;
-    padding-top: 5rem;
+    padding-top: 1rem;
     width: 100%;
     font-size: 0.8rem;
   }
   .m2 {
     margin: 1.5rem;
   }
-  a {
-    color: #69c;
+  .link {
+    color: #769bb5;
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
   }
   a:hover {
     text-decoration-color: #cc7066;
   }
   .name {
-    margin-right: 4rem;
+    margin-right: 2rem;
   }
 </style>
-
-<!-- footer -->
-<div class="footer">
-  {#if num && year}
-    <a class="m2" href="https://github.com/spencermountain/thensome/tree/gh-pages/{year}/{num}">
-      source
-    </a>
-  {:else}
-    <a class="m2" href="https://github.com/spencermountain/thensome">source</a>
-  {/if}
-  <a class="name" href="http://twitter.com/spencermountain/">@spencermountain</a>
-</div>

@@ -1,12 +1,11 @@
 <script>
   export let href = '#'
-  export let color = '#303b50'
-  export let label = ''
   export let title = ''
-  let hover = false
+  export let sub = ''
+  export let color = '#769bb5'
 </script>
 
-<a {href} class="container">
+<div {href} class="goleft">
   <svg width="15px" height="30px" viewBox="0 0 90 170">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
       <path
@@ -18,27 +17,33 @@
       />
     </g>
   </svg>
-  {#if hover}
-    <div class="name">{label}</div>
-  {/if}
-</a>
+</div>
+<div class="titlebox">
+  <div class="title">{title}</div>
+  <div class="sub">{sub}</div>
+</div>
 
 <style>
   .goleft {
-  }
-  .container {
     align-self: flex-start;
-    margin: 1rem;
-    padding: 1rem;
-    height: 20px;
     transition: margin-left 250ms;
+    padding: 2rem;
+    padding-top: 1rem;
+    cursor: pointer;
   }
-  .name {
-    font-size: 0.5rem;
-    color: grey;
-  }
-
-  .container:hover {
+  .goleft:hover {
     margin-left: 0.8rem;
+  }
+  .title {
+    font-size: 18px;
+  }
+  .sub {
+    margin-left: 3rem;
+    color: grey;
+    text-align: right;
+    margin-top: 5px;
+  }
+  .titlebox {
+    width: 400px;
   }
 </style>
