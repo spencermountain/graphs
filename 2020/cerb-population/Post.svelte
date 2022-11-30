@@ -1,8 +1,7 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Page } from '../../components/index.mjs'
   import { Sankey, Node, Col } from '/Users/spencer/mountain/somehow-sankey/src'
-  let fmt = num => {
+  let fmt = (num) => {
     num = Number(num) * 1000000
     if (num >= 1000000000) {
       num = Math.round(num / 100000000) * 100000000
@@ -20,7 +19,33 @@
     }
     return num
   }
+  let title = `Canada's Population on CERB benefit`
+  let sub = `in 2020`
 </script>
+
+<Page {title} {sub}>
+  <!-- <div class="m3">
+    <b>Canada's Population on CERB benefit</b>
+    <br />
+    in 2020
+  </div> -->
+  <div class="main m3 row">
+    <Sankey height="750" {fmt}>
+      <Col>
+        <Node name="CERB" to="Working Age" value="8.5" color="red" />
+        <Node name="CPP/OAS" to="Retired" value="6.5" color="blue" />
+      </Col>
+      <Col>
+        <Node name="Young" to="Canada" value="8" color="blue" />
+        <Node name="Working Age" to="Canada" value="22" color="sky" />
+        <Node name="Retired" to="Canada" value="6.5" color="blue" />
+      </Col>
+      <Col>
+        <Node name="Canada" value="30" color="orange" accent="red" />
+      </Col>
+    </Sankey>
+  </div>
+</Page>
 
 <style>
   .m3 {
@@ -36,31 +61,3 @@
     align-self: stretch;
   }
 </style>
-
-<div>
-  <Head num="18" />
-  <div class="m3">
-    <b>Canada's Population on CERB benefit</b>
-    <br />
-    in 2020
-  </div>
-  <div class="main m3 row">
-    <Sankey height="750" {fmt}>
-      <Col>
-        <Node name="CERB" to="Working Age" value="8.5" color="red" />
-        <Node name="CPP/OAS" to="Retired" value="6.5" color="blue" />
-      </Col>
-      <Col>
-        <Node name="Young" to="Canada" value="8" color="blue" />
-        <Node name="Working Age" to="Canada" value="22" color="sky" />
-        <Node name="Retired" to="Canada" value="6.5" color="blue" />
-      </Col>
-      <Col>
-        <Node name="Canada" value="30" color="orange" accent="red" />
-      </Col>
-
-    </Sankey>
-  </div>
-
-  <Foot />
-</div>
