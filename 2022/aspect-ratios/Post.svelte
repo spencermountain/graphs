@@ -3,6 +3,8 @@
   export let title = 'Aspect Ratios'
   export let sub = ''
   let x = 200
+  let window = 800
+  $: x = window > 600 ? 200 : 150
   // aspect ratios as %s:
   let ratios = [
     {
@@ -50,23 +52,26 @@
   ]
 </script>
 
-<Page {title} {sub} height="800" width="700">
-  {#each ratios as o}
-    <div class="ratio col">
-      <div class="row">
-        <div class="name" class:tinier={true}>{o.name}</div>
-        <div class="bars">
-          <div class="one" style="height:50px;  width:{x}px;" />
-          <div class="plus" style="height:50px; width:{x * o.ratio}px;" />
-          <div class="desc" style="left:{x * o.ratio}px;">{o.desc}</div>
-          <div class="below" style="left:{x}px; margin-left:15px; color: #946da5;">
-            <span style="font-size:10px;">x</span>
-            <span style="">{o.ratio}</span>
+<svelte:window bind:innerWidth={window} />
+<Page {title} {sub}>
+  <div style="position:relative; margin-bottom:2rem;">
+    {#each ratios as o}
+      <div class="ratio col">
+        <div class="row">
+          <div class="name" class:tinier={true}>{o.name}</div>
+          <div class="bars" style=" min-width:{x * ratios[ratios.length - 1].ratio}px; ">
+            <div class="one" style="height:50px;  width:{x}px;" />
+            <div class="plus" style="height:50px; width:{x * o.ratio}px;" />
+            <div class="desc" style="width:100px; left:{x * o.ratio}px;">{o.desc}</div>
+            <div class="below" style="left:{x}px; margin-left:15px; color: #946da5;">
+              <span style="font-size:10px;">x</span>
+              <span style="">{o.ratio}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  {/each}
+    {/each}
+  </div>
 </Page>
 
 <style>
@@ -78,24 +83,6 @@
     bottom: -30px;
     color: grey;
     font-size: 18px;
-  }
-  .all {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    flex-wrap: nowrap;
-    align-self: stretch;
-  }
-  .container {
-    margin: 3rem;
-    padding: 2rem;
-    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
-    max-width: 750px;
-    min-width: 450px;
-    min-height: 500px;
-    width: 65%;
   }
 
   .row {
@@ -115,6 +102,7 @@
     flex-wrap: nowrap;
     width: 100%;
     margin-top: 5px;
+    margin-right: 100px;
   }
 
   .desc {
@@ -124,12 +112,9 @@
     top: 10px;
     color: grey;
     font-style: italic;
+    white-space: nowrap;
   }
   @media only screen and (max-width: 850px) {
-    .container {
-      margin: 1rem;
-      padding: 1rem;
-    }
     .desc {
       top: -30px;
       left: 100px !important;
@@ -140,11 +125,13 @@
     }
     .bars {
       margin-top: 10px;
+      margin-right: 10px;
     }
   }
 
   .ratio {
-    margin-top: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
   }
   .name {
     font-size: 20px;

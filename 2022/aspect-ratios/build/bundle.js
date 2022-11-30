@@ -95,8 +95,9 @@ var app = (function () {
     function space() {
         return text(' ');
     }
-    function empty() {
-        return text('');
+    function listen(node, event, handler, options) {
+        node.addEventListener(event, handler, options);
+        return () => node.removeEventListener(event, handler, options);
     }
     function attr(node, attribute, value) {
         if (value == null)
@@ -211,6 +212,12 @@ var app = (function () {
             block.o(local);
         }
     }
+
+    const globals = (typeof window !== 'undefined'
+        ? window
+        : typeof globalThis !== 'undefined'
+            ? globalThis
+            : global);
     function create_component(block) {
         block && block.c();
     }
@@ -348,6 +355,19 @@ var app = (function () {
         dispatch_dev("SvelteDOMRemove", { node });
         detach(node);
     }
+    function listen_dev(node, event, handler, options, has_prevent_default, has_stop_propagation) {
+        const modifiers = options === true ? ["capture"] : options ? Array.from(Object.keys(options)) : [];
+        if (has_prevent_default)
+            modifiers.push('preventDefault');
+        if (has_stop_propagation)
+            modifiers.push('stopPropagation');
+        dispatch_dev("SvelteDOMAddEventListener", { node, event, handler, modifiers });
+        const dispose = listen(node, event, handler, options);
+        return () => {
+            dispatch_dev("SvelteDOMRemoveEventListener", { node, event, handler, modifiers });
+            dispose();
+        };
+    }
     function attr_dev(node, attribute, value) {
         attr(node, attribute, value);
         if (value == null)
@@ -402,7 +422,7 @@ var app = (function () {
     function add_css() {
     	var style = element("style");
     	style.id = "svelte-18y8cud-style";
-    	style.textContent = ".goleft.svelte-18y8cud{align-self:flex-start;transition:margin-left 250ms;padding:2rem;padding-top:1rem;cursor:pointer}.goleft.svelte-18y8cud:hover{margin-left:0.8rem}.title.svelte-18y8cud{font-size:18px}.sub.svelte-18y8cud{margin-left:3rem;color:grey;text-align:right;margin-top:5px}.titlebox.svelte-18y8cud{width:400px}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSGVhZC5zdmVsdGUiLCJzb3VyY2VzIjpbIkhlYWQuc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGV4cG9ydCBsZXQgaHJlZiA9ICcjJ1xuICBleHBvcnQgbGV0IHRpdGxlID0gJydcbiAgZXhwb3J0IGxldCBzdWIgPSAnJ1xuICBleHBvcnQgbGV0IGNvbG9yID0gJyM3NjliYjUnXG48L3NjcmlwdD5cblxuPGRpdiB7aHJlZn0gY2xhc3M9XCJnb2xlZnRcIj5cbiAgPHN2ZyB3aWR0aD1cIjE1cHhcIiBoZWlnaHQ9XCIzMHB4XCIgdmlld0JveD1cIjAgMCA5MCAxNzBcIj5cbiAgICA8ZyBzdHJva2U9XCJub25lXCIgc3Ryb2tlLXdpZHRoPVwiMVwiIGZpbGw9XCJub25lXCIgZmlsbC1ydWxlPVwiZXZlbm9kZFwiIHN0cm9rZS1saW5lam9pbj1cInJvdW5kXCI+XG4gICAgICA8cGF0aFxuICAgICAgICBkPVwiTTgxLjUsNiBDNjkuODI0MDY2NiwyMy41MTM5MDAxIDQ1LjgyNDA2NjYsNDkuOTI3NzYzNSA5LjUsODUuMjQxNTkwMlxuICAgICAgICBDNDUuNzk4NDgxNCwxMjAuODA2ODYgNjkuNzk4NDgxNCwxNDcuMjI2MzMgODEuNSwxNjQuNVwiXG4gICAgICAgIHN0cm9rZT17Y29sb3J9XG4gICAgICAgIHN0cm9rZS13aWR0aD1cIjIwXCJcbiAgICAgICAgZmlsbC1ydWxlPVwibm9uemVyb1wiXG4gICAgICAvPlxuICAgIDwvZz5cbiAgPC9zdmc+XG48L2Rpdj5cbjxkaXYgY2xhc3M9XCJ0aXRsZWJveFwiPlxuICA8ZGl2IGNsYXNzPVwidGl0bGVcIj57dGl0bGV9PC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJzdWJcIj57c3VifTwvZGl2PlxuPC9kaXY+XG5cbjxzdHlsZT5cbiAgLmdvbGVmdCB7XG4gICAgYWxpZ24tc2VsZjogZmxleC1zdGFydDtcbiAgICB0cmFuc2l0aW9uOiBtYXJnaW4tbGVmdCAyNTBtcztcbiAgICBwYWRkaW5nOiAycmVtO1xuICAgIHBhZGRpbmctdG9wOiAxcmVtO1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgfVxuICAuZ29sZWZ0OmhvdmVyIHtcbiAgICBtYXJnaW4tbGVmdDogMC44cmVtO1xuICB9XG4gIC50aXRsZSB7XG4gICAgZm9udC1zaXplOiAxOHB4O1xuICB9XG4gIC5zdWIge1xuICAgIG1hcmdpbi1sZWZ0OiAzcmVtO1xuICAgIGNvbG9yOiBncmV5O1xuICAgIHRleHQtYWxpZ246IHJpZ2h0O1xuICAgIG1hcmdpbi10b3A6IDVweDtcbiAgfVxuICAudGl0bGVib3gge1xuICAgIHdpZHRoOiA0MDBweDtcbiAgfVxuPC9zdHlsZT5cbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUEwQkUsT0FBTyxlQUFDLENBQUMsQUFDUCxVQUFVLENBQUUsVUFBVSxDQUN0QixVQUFVLENBQUUsV0FBVyxDQUFDLEtBQUssQ0FDN0IsT0FBTyxDQUFFLElBQUksQ0FDYixXQUFXLENBQUUsSUFBSSxDQUNqQixNQUFNLENBQUUsT0FBTyxBQUNqQixDQUFDLEFBQ0Qsc0JBQU8sTUFBTSxBQUFDLENBQUMsQUFDYixXQUFXLENBQUUsTUFBTSxBQUNyQixDQUFDLEFBQ0QsTUFBTSxlQUFDLENBQUMsQUFDTixTQUFTLENBQUUsSUFBSSxBQUNqQixDQUFDLEFBQ0QsSUFBSSxlQUFDLENBQUMsQUFDSixXQUFXLENBQUUsSUFBSSxDQUNqQixLQUFLLENBQUUsSUFBSSxDQUNYLFVBQVUsQ0FBRSxLQUFLLENBQ2pCLFVBQVUsQ0FBRSxHQUFHLEFBQ2pCLENBQUMsQUFDRCxTQUFTLGVBQUMsQ0FBQyxBQUNULEtBQUssQ0FBRSxLQUFLLEFBQ2QsQ0FBQyJ9 */";
+    	style.textContent = ".goleft.svelte-18y8cud{align-self:flex-start;transition:margin-left 250ms;padding:2rem;padding-top:1rem;cursor:pointer}.goleft.svelte-18y8cud:hover{margin-left:0.8rem}.title.svelte-18y8cud{font-size:18px}.sub.svelte-18y8cud{margin-left:3rem;color:grey;text-align:right;margin-top:5px}.titlebox.svelte-18y8cud{width:400px}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSGVhZC5zdmVsdGUiLCJzb3VyY2VzIjpbIkhlYWQuc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGV4cG9ydCBsZXQgaHJlZiA9ICcjJ1xuICBleHBvcnQgbGV0IHRpdGxlID0gJydcbiAgZXhwb3J0IGxldCBzdWIgPSAnJ1xuICBleHBvcnQgbGV0IGNvbG9yID0gJyM3NjliYjUnXG48L3NjcmlwdD5cblxuPGRpdiB7aHJlZn0gY2xhc3M9XCJnb2xlZnRcIj5cbiAgPHN2ZyB3aWR0aD1cIjE1cHhcIiBoZWlnaHQ9XCIzMHB4XCIgdmlld0JveD1cIjAgMCA5MCAxNzBcIj5cbiAgICA8ZyBzdHJva2U9XCJub25lXCIgc3Ryb2tlLXdpZHRoPVwiMVwiIGZpbGw9XCJub25lXCIgZmlsbC1ydWxlPVwiZXZlbm9kZFwiIHN0cm9rZS1saW5lam9pbj1cInJvdW5kXCI+XG4gICAgICA8cGF0aFxuICAgICAgICBkPVwiTTgxLjUsNiBDNjkuODI0MDY2NiwyMy41MTM5MDAxIDQ1LjgyNDA2NjYsNDkuOTI3NzYzNSA5LjUsODUuMjQxNTkwMlxuICAgICAgICBDNDUuNzk4NDgxNCwxMjAuODA2ODYgNjkuNzk4NDgxNCwxNDcuMjI2MzMgODEuNSwxNjQuNVwiXG4gICAgICAgIHN0cm9rZT17Y29sb3J9XG4gICAgICAgIHN0cm9rZS13aWR0aD1cIjIwXCJcbiAgICAgICAgZmlsbC1ydWxlPVwibm9uemVyb1wiXG4gICAgICAvPlxuICAgIDwvZz5cbiAgPC9zdmc+XG48L2Rpdj5cbjxkaXYgY2xhc3M9XCJ0aXRsZWJveFwiPlxuICA8ZGl2IGNsYXNzPVwidGl0bGVcIj57QGh0bWwgdGl0bGV9PC9kaXY+XG4gIDxkaXYgY2xhc3M9XCJzdWJcIj57c3VifTwvZGl2PlxuPC9kaXY+XG5cbjxzdHlsZT5cbiAgLmdvbGVmdCB7XG4gICAgYWxpZ24tc2VsZjogZmxleC1zdGFydDtcbiAgICB0cmFuc2l0aW9uOiBtYXJnaW4tbGVmdCAyNTBtcztcbiAgICBwYWRkaW5nOiAycmVtO1xuICAgIHBhZGRpbmctdG9wOiAxcmVtO1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgfVxuICAuZ29sZWZ0OmhvdmVyIHtcbiAgICBtYXJnaW4tbGVmdDogMC44cmVtO1xuICB9XG4gIC50aXRsZSB7XG4gICAgZm9udC1zaXplOiAxOHB4O1xuICB9XG4gIC5zdWIge1xuICAgIG1hcmdpbi1sZWZ0OiAzcmVtO1xuICAgIGNvbG9yOiBncmV5O1xuICAgIHRleHQtYWxpZ246IHJpZ2h0O1xuICAgIG1hcmdpbi10b3A6IDVweDtcbiAgfVxuICAudGl0bGVib3gge1xuICAgIHdpZHRoOiA0MDBweDtcbiAgfVxuPC9zdHlsZT5cbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUEwQkUsT0FBTyxlQUFDLENBQUMsQUFDUCxVQUFVLENBQUUsVUFBVSxDQUN0QixVQUFVLENBQUUsV0FBVyxDQUFDLEtBQUssQ0FDN0IsT0FBTyxDQUFFLElBQUksQ0FDYixXQUFXLENBQUUsSUFBSSxDQUNqQixNQUFNLENBQUUsT0FBTyxBQUNqQixDQUFDLEFBQ0Qsc0JBQU8sTUFBTSxBQUFDLENBQUMsQUFDYixXQUFXLENBQUUsTUFBTSxBQUNyQixDQUFDLEFBQ0QsTUFBTSxlQUFDLENBQUMsQUFDTixTQUFTLENBQUUsSUFBSSxBQUNqQixDQUFDLEFBQ0QsSUFBSSxlQUFDLENBQUMsQUFDSixXQUFXLENBQUUsSUFBSSxDQUNqQixLQUFLLENBQUUsSUFBSSxDQUNYLFVBQVUsQ0FBRSxLQUFLLENBQ2pCLFVBQVUsQ0FBRSxHQUFHLEFBQ2pCLENBQUMsQUFDRCxTQUFTLGVBQUMsQ0FBQyxBQUNULEtBQUssQ0FBRSxLQUFLLEFBQ2QsQ0FBQyJ9 */";
     	append_dev(document.head, style);
     }
 
@@ -415,9 +435,8 @@ var app = (function () {
     	let div3;
     	let div1;
     	let t1;
-    	let t2;
     	let div2;
-    	let t3;
+    	let t2;
 
     	const block = {
     		c: function create() {
@@ -428,10 +447,9 @@ var app = (function () {
     			t0 = space();
     			div3 = element("div");
     			div1 = element("div");
-    			t1 = text(/*title*/ ctx[1]);
-    			t2 = space();
+    			t1 = space();
     			div2 = element("div");
-    			t3 = text(/*sub*/ ctx[2]);
+    			t2 = text(/*sub*/ ctx[2]);
     			attr_dev(path, "d", "M81.5,6 C69.8240666,23.5139001 45.8240666,49.9277635 9.5,85.2415902\n        C45.7984814,120.80686 69.7984814,147.22633 81.5,164.5");
     			attr_dev(path, "stroke", /*color*/ ctx[3]);
     			attr_dev(path, "stroke-width", "20");
@@ -453,7 +471,7 @@ var app = (function () {
     			attr_dev(div1, "class", "title svelte-18y8cud");
     			add_location(div1, file, 21, 2, 590);
     			attr_dev(div2, "class", "sub svelte-18y8cud");
-    			add_location(div2, file, 22, 2, 625);
+    			add_location(div2, file, 22, 2, 631);
     			attr_dev(div3, "class", "titlebox svelte-18y8cud");
     			add_location(div3, file, 20, 0, 565);
     		},
@@ -468,10 +486,10 @@ var app = (function () {
     			insert_dev(target, t0, anchor);
     			insert_dev(target, div3, anchor);
     			append_dev(div3, div1);
-    			append_dev(div1, t1);
-    			append_dev(div3, t2);
+    			div1.innerHTML = /*title*/ ctx[1];
+    			append_dev(div3, t1);
     			append_dev(div3, div2);
-    			append_dev(div2, t3);
+    			append_dev(div2, t2);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*color*/ 8) {
@@ -482,8 +500,7 @@ var app = (function () {
     				attr_dev(div0, "href", /*href*/ ctx[0]);
     			}
 
-    			if (dirty & /*title*/ 2) set_data_dev(t1, /*title*/ ctx[1]);
-    			if (dirty & /*sub*/ 4) set_data_dev(t3, /*sub*/ ctx[2]);
+    			if (dirty & /*title*/ 2) div1.innerHTML = /*title*/ ctx[1];			if (dirty & /*sub*/ 4) set_data_dev(t2, /*sub*/ ctx[2]);
     		},
     		i: noop,
     		o: noop,
@@ -729,8 +746,8 @@ var app = (function () {
 
     function add_css$2() {
     	var style = element("style");
-    	style.id = "svelte-jzwvf5-style";
-    	style.textContent = ".page.svelte-jzwvf5{display:flex;flex-direction:column;justify-content:space-around;align-items:center;text-align:center}.mid.svelte-jzwvf5{margin:1rem;padding:1rem;margin-top:0rem;max-width:800px;min-width:400px;flex-grow:1}.shadow.svelte-jzwvf5{padding:2rem;min-height:600px;box-shadow:2px 2px 8px 0px rgba(0, 0, 0, 0.2)}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUGFnZS5zdmVsdGUiLCJzb3VyY2VzIjpbIlBhZ2Uuc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCBIZWFkIGZyb20gJy4vSGVhZC5zdmVsdGUnXG4gIGltcG9ydCBGb290IGZyb20gJy4vRm9vdC5zdmVsdGUnXG4gIGV4cG9ydCBsZXQgdGl0bGUgPSAnJ1xuICBleHBvcnQgbGV0IHN1YiA9ICcnXG4gIGV4cG9ydCBsZXQgcGFkZGluZyA9IDE2XG4gIGV4cG9ydCBsZXQgd2lkdGggPSA2MDBcbiAgZXhwb3J0IGxldCBoZWlnaHQgPSA0MDBcbiAgZXhwb3J0IGxldCB5ZWFyID0gU3RyaW5nKG5ldyBEYXRlKCkuZ2V0RnVsbFllYXIoKSlcbjwvc2NyaXB0PlxuXG48ZGl2IGNsYXNzPVwicGFnZVwiPlxuICA8SGVhZCB7dGl0bGV9IHtzdWJ9IC8+XG4gIDxkaXYgY2xhc3M9XCJtaWRcIiBzdHlsZT1cIndpZHRoOnt3aWR0aH1weDsgXCI+XG4gICAgPGRpdiBjbGFzcz1cInNoYWRvd1wiIHN0eWxlPVwicGFkZGluZzp7cGFkZGluZ31weDsgaGVpZ2h0OntoZWlnaHR9cHg7XCI+XG4gICAgICA8c2xvdCAvPlxuICAgIDwvZGl2PlxuICAgIDxGb290IHt0aXRsZX0ge3llYXJ9IC8+XG4gIDwvZGl2PlxuPC9kaXY+XG5cbjxzdHlsZT5cbiAgLyogZXZlcnl0aGluZyAqL1xuICAucGFnZSB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICB9XG5cbiAgLyogaW52aXNpYmxlLW1pZGRsZS1jb2x1bW4gKi9cbiAgLm1pZCB7XG4gICAgbWFyZ2luOiAxcmVtO1xuICAgIHBhZGRpbmc6IDFyZW07XG4gICAgbWFyZ2luLXRvcDogMHJlbTtcbiAgICBtYXgtd2lkdGg6IDgwMHB4O1xuICAgIG1pbi13aWR0aDogNDAwcHg7XG4gICAgZmxleC1ncm93OiAxO1xuICB9XG5cbiAgLyogdmlzaWJsZSBtaWRkbGUtY29sdW1uICovXG4gIC5zaGFkb3cge1xuICAgIHBhZGRpbmc6IDJyZW07XG4gICAgbWluLWhlaWdodDogNjAwcHg7XG4gICAgYm94LXNoYWRvdzogMnB4IDJweCA4cHggMHB4IHJnYmEoMCwgMCwgMCwgMC4yKTtcbiAgfVxuPC9zdHlsZT5cbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF1QkUsS0FBSyxjQUFDLENBQUMsQUFDTCxPQUFPLENBQUUsSUFBSSxDQUNiLGNBQWMsQ0FBRSxNQUFNLENBQ3RCLGVBQWUsQ0FBRSxZQUFZLENBQzdCLFdBQVcsQ0FBRSxNQUFNLENBQ25CLFVBQVUsQ0FBRSxNQUFNLEFBQ3BCLENBQUMsQUFHRCxJQUFJLGNBQUMsQ0FBQyxBQUNKLE1BQU0sQ0FBRSxJQUFJLENBQ1osT0FBTyxDQUFFLElBQUksQ0FDYixVQUFVLENBQUUsSUFBSSxDQUNoQixTQUFTLENBQUUsS0FBSyxDQUNoQixTQUFTLENBQUUsS0FBSyxDQUNoQixTQUFTLENBQUUsQ0FBQyxBQUNkLENBQUMsQUFHRCxPQUFPLGNBQUMsQ0FBQyxBQUNQLE9BQU8sQ0FBRSxJQUFJLENBQ2IsVUFBVSxDQUFFLEtBQUssQ0FDakIsVUFBVSxDQUFFLEdBQUcsQ0FBQyxHQUFHLENBQUMsR0FBRyxDQUFDLEdBQUcsQ0FBQyxLQUFLLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxBQUNoRCxDQUFDIn0= */";
+    	style.id = "svelte-1b15liy-style";
+    	style.textContent = ".page.svelte-1b15liy{display:flex;flex-direction:column;justify-content:space-around;align-items:center;text-align:center}.mid.svelte-1b15liy{margin:1rem;padding:1rem;margin-top:0rem;min-width:300px;flex-grow:1}.shadow.svelte-1b15liy{padding:2rem;min-height:600px;box-shadow:2px 2px 8px 0px rgba(0, 0, 0, 0.2)}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUGFnZS5zdmVsdGUiLCJzb3VyY2VzIjpbIlBhZ2Uuc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCBIZWFkIGZyb20gJy4vSGVhZC5zdmVsdGUnXG4gIGltcG9ydCBGb290IGZyb20gJy4vRm9vdC5zdmVsdGUnXG4gIGV4cG9ydCBsZXQgdGl0bGUgPSAnJ1xuICBleHBvcnQgbGV0IHN1YiA9ICcnXG4gIGV4cG9ydCBsZXQgcGFkZGluZyA9IDE2XG4gIGV4cG9ydCBsZXQgeWVhciA9IFN0cmluZyhuZXcgRGF0ZSgpLmdldEZ1bGxZZWFyKCkpXG48L3NjcmlwdD5cblxuPGRpdiBjbGFzcz1cInBhZ2VcIj5cbiAgPEhlYWQge3RpdGxlfSB7c3VifSAvPlxuICA8ZGl2IGNsYXNzPVwibWlkXCIgc3R5bGU9XCJcIj5cbiAgICA8ZGl2IGNsYXNzPVwic2hhZG93XCIgc3R5bGU9XCJwYWRkaW5nOntwYWRkaW5nfXB4O1wiPlxuICAgICAgPHNsb3QgLz5cbiAgICA8L2Rpdj5cbiAgICA8Rm9vdCB7dGl0bGV9IHt5ZWFyfSAvPlxuICA8L2Rpdj5cbjwvZGl2PlxuXG48c3R5bGU+XG4gIC8qIGV2ZXJ5dGhpbmcgKi9cbiAgLnBhZ2Uge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWFyb3VuZDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgfVxuXG4gIC8qIGludmlzaWJsZS1taWRkbGUtY29sdW1uICovXG4gIC5taWQge1xuICAgIG1hcmdpbjogMXJlbTtcbiAgICBwYWRkaW5nOiAxcmVtO1xuICAgIG1hcmdpbi10b3A6IDByZW07XG4gICAgbWluLXdpZHRoOiAzMDBweDtcbiAgICBmbGV4LWdyb3c6IDE7XG4gIH1cblxuICAvKiB2aXNpYmxlIG1pZGRsZS1jb2x1bW4gKi9cbiAgLnNoYWRvdyB7XG4gICAgcGFkZGluZzogMnJlbTtcbiAgICBtaW4taGVpZ2h0OiA2MDBweDtcbiAgICBib3gtc2hhZG93OiAycHggMnB4IDhweCAwcHggcmdiYSgwLCAwLCAwLCAwLjIpO1xuICB9XG48L3N0eWxlPlxuIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXFCRSxLQUFLLGVBQUMsQ0FBQyxBQUNMLE9BQU8sQ0FBRSxJQUFJLENBQ2IsY0FBYyxDQUFFLE1BQU0sQ0FDdEIsZUFBZSxDQUFFLFlBQVksQ0FDN0IsV0FBVyxDQUFFLE1BQU0sQ0FDbkIsVUFBVSxDQUFFLE1BQU0sQUFDcEIsQ0FBQyxBQUdELElBQUksZUFBQyxDQUFDLEFBQ0osTUFBTSxDQUFFLElBQUksQ0FDWixPQUFPLENBQUUsSUFBSSxDQUNiLFVBQVUsQ0FBRSxJQUFJLENBQ2hCLFNBQVMsQ0FBRSxLQUFLLENBQ2hCLFNBQVMsQ0FBRSxDQUFDLEFBQ2QsQ0FBQyxBQUdELE9BQU8sZUFBQyxDQUFDLEFBQ1AsT0FBTyxDQUFFLElBQUksQ0FDYixVQUFVLENBQUUsS0FBSyxDQUNqQixVQUFVLENBQUUsR0FBRyxDQUFDLEdBQUcsQ0FBQyxHQUFHLENBQUMsR0FBRyxDQUFDLEtBQUssQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLEFBQ2hELENBQUMifQ== */";
     	append_dev(document.head, style);
     }
 
@@ -752,13 +769,13 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	const default_slot_template = /*#slots*/ ctx[7].default;
-    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[6], null);
+    	const default_slot_template = /*#slots*/ ctx[5].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[4], null);
 
     	foot = new Foot({
     			props: {
     				title: /*title*/ ctx[0],
-    				year: /*year*/ ctx[5]
+    				year: /*year*/ ctx[3]
     			},
     			$$inline: true
     		});
@@ -773,15 +790,13 @@ var app = (function () {
     			if (default_slot) default_slot.c();
     			t1 = space();
     			create_component(foot.$$.fragment);
-    			attr_dev(div0, "class", "shadow svelte-jzwvf5");
+    			attr_dev(div0, "class", "shadow svelte-1b15liy");
     			set_style(div0, "padding", /*padding*/ ctx[2] + "px");
-    			set_style(div0, "height", /*height*/ ctx[4] + "px");
-    			add_location(div0, file$2, 14, 4, 360);
-    			attr_dev(div1, "class", "mid svelte-jzwvf5");
-    			set_style(div1, "width", /*width*/ ctx[3] + "px");
-    			add_location(div1, file$2, 13, 2, 312);
-    			attr_dev(div2, "class", "page svelte-jzwvf5");
-    			add_location(div2, file$2, 11, 0, 266);
+    			add_location(div0, file$2, 12, 4, 292);
+    			attr_dev(div1, "class", "mid svelte-1b15liy");
+    			add_location(div1, file$2, 11, 2, 261);
+    			attr_dev(div2, "class", "page svelte-1b15liy");
+    			add_location(div2, file$2, 9, 0, 215);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -808,8 +823,8 @@ var app = (function () {
     			head.$set(head_changes);
 
     			if (default_slot) {
-    				if (default_slot.p && dirty & /*$$scope*/ 64) {
-    					update_slot(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[6], dirty, null, null);
+    				if (default_slot.p && dirty & /*$$scope*/ 16) {
+    					update_slot(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[4], dirty, null, null);
     				}
     			}
 
@@ -817,18 +832,10 @@ var app = (function () {
     				set_style(div0, "padding", /*padding*/ ctx[2] + "px");
     			}
 
-    			if (!current || dirty & /*height*/ 16) {
-    				set_style(div0, "height", /*height*/ ctx[4] + "px");
-    			}
-
     			const foot_changes = {};
     			if (dirty & /*title*/ 1) foot_changes.title = /*title*/ ctx[0];
-    			if (dirty & /*year*/ 32) foot_changes.year = /*year*/ ctx[5];
+    			if (dirty & /*year*/ 8) foot_changes.year = /*year*/ ctx[3];
     			foot.$set(foot_changes);
-
-    			if (!current || dirty & /*width*/ 8) {
-    				set_style(div1, "width", /*width*/ ctx[3] + "px");
-    			}
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -868,10 +875,8 @@ var app = (function () {
     	let { title = "" } = $$props;
     	let { sub = "" } = $$props;
     	let { padding = 16 } = $$props;
-    	let { width = 600 } = $$props;
-    	let { height = 400 } = $$props;
     	let { year = String(new Date().getFullYear()) } = $$props;
-    	const writable_props = ["title", "sub", "padding", "width", "height", "year"];
+    	const writable_props = ["title", "sub", "padding", "year"];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Page> was created with unknown prop '${key}'`);
@@ -881,52 +886,31 @@ var app = (function () {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
     		if ("sub" in $$props) $$invalidate(1, sub = $$props.sub);
     		if ("padding" in $$props) $$invalidate(2, padding = $$props.padding);
-    		if ("width" in $$props) $$invalidate(3, width = $$props.width);
-    		if ("height" in $$props) $$invalidate(4, height = $$props.height);
-    		if ("year" in $$props) $$invalidate(5, year = $$props.year);
-    		if ("$$scope" in $$props) $$invalidate(6, $$scope = $$props.$$scope);
+    		if ("year" in $$props) $$invalidate(3, year = $$props.year);
+    		if ("$$scope" in $$props) $$invalidate(4, $$scope = $$props.$$scope);
     	};
 
-    	$$self.$capture_state = () => ({
-    		Head,
-    		Foot,
-    		title,
-    		sub,
-    		padding,
-    		width,
-    		height,
-    		year
-    	});
+    	$$self.$capture_state = () => ({ Head, Foot, title, sub, padding, year });
 
     	$$self.$inject_state = $$props => {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
     		if ("sub" in $$props) $$invalidate(1, sub = $$props.sub);
     		if ("padding" in $$props) $$invalidate(2, padding = $$props.padding);
-    		if ("width" in $$props) $$invalidate(3, width = $$props.width);
-    		if ("height" in $$props) $$invalidate(4, height = $$props.height);
-    		if ("year" in $$props) $$invalidate(5, year = $$props.year);
+    		if ("year" in $$props) $$invalidate(3, year = $$props.year);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [title, sub, padding, width, height, year, $$scope, slots];
+    	return [title, sub, padding, year, $$scope, slots];
     }
 
     class Page extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		if (!document.getElementById("svelte-jzwvf5-style")) add_css$2();
-
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, {
-    			title: 0,
-    			sub: 1,
-    			padding: 2,
-    			width: 3,
-    			height: 4,
-    			year: 5
-    		});
+    		if (!document.getElementById("svelte-1b15liy-style")) add_css$2();
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, { title: 0, sub: 1, padding: 2, year: 3 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -960,22 +944,6 @@ var app = (function () {
     		throw new Error("<Page>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get width() {
-    		throw new Error("<Page>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set width(value) {
-    		throw new Error("<Page>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get height() {
-    		throw new Error("<Page>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set height(value) {
-    		throw new Error("<Page>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
     	get year() {
     		throw new Error("<Page>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
@@ -986,27 +954,29 @@ var app = (function () {
     }
 
     /* 2022/aspect-ratios/Post.svelte generated by Svelte v3.29.0 */
+
+    const { window: window_1 } = globals;
     const file$3 = "2022/aspect-ratios/Post.svelte";
 
     function add_css$3() {
     	var style = element("style");
-    	style.id = "svelte-y1lpe-style";
-    	style.textContent = ".tinier.svelte-y1lpe{font-size:16px !important}.below.svelte-y1lpe{position:absolute;bottom:-30px;color:grey;font-size:18px}.row.svelte-y1lpe{display:flex;flex-direction:row;justify-content:flex-start;text-align:left;flex-wrap:nowrap;align-items:center}.bars.svelte-y1lpe{position:relative;display:flex;flex-direction:row;justify-content:flex-start;flex-wrap:nowrap;width:100%;margin-top:5px}.desc.svelte-y1lpe{position:absolute;font-size:14px;margin-left:20px;top:10px;color:grey;font-style:italic}@media only screen and (max-width: 850px){.desc.svelte-y1lpe{top:-30px;left:100px !important}.row.svelte-y1lpe{flex-wrap:wrap}.bars.svelte-y1lpe{margin-top:10px}}.ratio.svelte-y1lpe{margin-top:3rem}.name.svelte-y1lpe{font-size:20px;font-weight:bold;margin-left:2rem;margin-right:0.2rem;width:80px;color:grey}.col.svelte-y1lpe{display:flex;flex-direction:column;justify-content:flex-start}.one.svelte-y1lpe{background-color:#6d87a5;z-index:3;border-radius:5px 0px 0px 5px}.plus.svelte-y1lpe{background-color:#946da5;border-radius:5px 5px 5px 5px;position:absolute;left:0px;z-index:1}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUG9zdC5zdmVsdGUiLCJzb3VyY2VzIjpbIlBvc3Quc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCB7IFBhZ2UgfSBmcm9tICcuLi8uLi9jb21wb25lbnRzL2luZGV4Lm1qcydcbiAgZXhwb3J0IGxldCB0aXRsZSA9ICdBc3BlY3QgUmF0aW9zJ1xuICBleHBvcnQgbGV0IHN1YiA9ICcnXG4gIGxldCB4ID0gMjAwXG4gIC8vIGFzcGVjdCByYXRpb3MgYXMgJXM6XG4gIGxldCByYXRpb3MgPSBbXG4gICAge1xuICAgICAgbmFtZTogJzU6NCcsXG4gICAgICBkZXNjOiAnbW9uaXRvcnMnLFxuICAgICAgY3NzOiAnNSAvIDQgJyxcbiAgICAgIHJhdGlvOiAxLjI1LFxuICAgIH0sXG4gICAge1xuICAgICAgbmFtZTogJzQ6MycsXG4gICAgICBkZXNjOiAnaXBhZHMsIHBob3RvcycsXG4gICAgICBjc3M6ICc0IC8gMycsXG4gICAgICByYXRpbzogMS4zLFxuICAgIH0sXG4gICAge1xuICAgICAgbmFtZTogJzE64oiaMicsXG4gICAgICBkZXNjOiAnQTQgcGFwZXInLFxuICAgICAgY3NzOiAnMS40MTQyIC8gMScsXG4gICAgICByYXRpbzogMS40MSxcbiAgICB9LFxuICAgIHtcbiAgICAgIG5hbWU6ICczOjInLFxuICAgICAgZGVzYzogJzM1bW0gZmlsbScsXG4gICAgICBjc3M6ICczIC8gMicsXG4gICAgICByYXRpbzogMS41LFxuICAgIH0sXG4gICAge1xuICAgICAgbmFtZTogJ2dvbGRlbicsXG4gICAgICBkZXNjOiAnIHNuYWlscywgZXRjLicsXG4gICAgICBjc3M6ICcxLjYxOCAvIDEnLFxuICAgICAgcmF0aW86IDEuNjE4LFxuICAgIH0sXG4gICAge1xuICAgICAgbmFtZTogJzE2OjknLFxuICAgICAgZGVzYzogXCIxMDgwcCwgJ3dpZGVzY3JlZW4nXCIsXG4gICAgICBjc3M6ICcxNiAvIDknLFxuICAgICAgcmF0aW86IDEuNzcsXG4gICAgfSxcbiAgICB7XG4gICAgICBuYW1lOiAnMTkuNTo5JyxcbiAgICAgIGRlc2M6ICdyZWNlbnQgaXBob25lcycsXG4gICAgICBjc3M6ICcxOS41IC8gOScsXG4gICAgICByYXRpbzogMi4xNixcbiAgICB9LFxuICBdXG48L3NjcmlwdD5cblxuPFBhZ2Uge3RpdGxlfSB7c3VifSBoZWlnaHQ9XCI4MDBcIiB3aWR0aD1cIjcwMFwiPlxuICB7I2VhY2ggcmF0aW9zIGFzIG99XG4gICAgPGRpdiBjbGFzcz1cInJhdGlvIGNvbFwiPlxuICAgICAgPGRpdiBjbGFzcz1cInJvd1wiPlxuICAgICAgICA8ZGl2IGNsYXNzPVwibmFtZVwiIGNsYXNzOnRpbmllcj17dHJ1ZX0+e28ubmFtZX08L2Rpdj5cbiAgICAgICAgPGRpdiBjbGFzcz1cImJhcnNcIj5cbiAgICAgICAgICA8ZGl2IGNsYXNzPVwib25lXCIgc3R5bGU9XCJoZWlnaHQ6NTBweDsgIHdpZHRoOnt4fXB4O1wiIC8+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cInBsdXNcIiBzdHlsZT1cImhlaWdodDo1MHB4OyB3aWR0aDp7eCAqIG8ucmF0aW99cHg7XCIgLz5cbiAgICAgICAgICA8ZGl2IGNsYXNzPVwiZGVzY1wiIHN0eWxlPVwibGVmdDp7eCAqIG8ucmF0aW99cHg7XCI+e28uZGVzY308L2Rpdj5cbiAgICAgICAgICA8ZGl2IGNsYXNzPVwiYmVsb3dcIiBzdHlsZT1cImxlZnQ6e3h9cHg7IG1hcmdpbi1sZWZ0OjE1cHg7IGNvbG9yOiAjOTQ2ZGE1O1wiPlxuICAgICAgICAgICAgPHNwYW4gc3R5bGU9XCJmb250LXNpemU6MTBweDtcIj54PC9zcGFuPlxuICAgICAgICAgICAgPHNwYW4gc3R5bGU9XCJcIj57by5yYXRpb308L3NwYW4+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG4gICAgPC9kaXY+XG4gIHsvZWFjaH1cbjwvUGFnZT5cblxuPHN0eWxlPlxuICAudGluaWVyIHtcbiAgICBmb250LXNpemU6IDE2cHggIWltcG9ydGFudDtcbiAgfVxuICAuYmVsb3cge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBib3R0b206IC0zMHB4O1xuICAgIGNvbG9yOiBncmV5O1xuICAgIGZvbnQtc2l6ZTogMThweDtcbiAgfVxuICAuYWxsIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1hcm91bmQ7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgZmxleC13cmFwOiBub3dyYXA7XG4gICAgYWxpZ24tc2VsZjogc3RyZXRjaDtcbiAgfVxuICAuY29udGFpbmVyIHtcbiAgICBtYXJnaW46IDNyZW07XG4gICAgcGFkZGluZzogMnJlbTtcbiAgICBib3gtc2hhZG93OiAycHggMnB4IDhweCAwcHggcmdiYSgwLCAwLCAwLCAwLjIpO1xuICAgIG1heC13aWR0aDogNzUwcHg7XG4gICAgbWluLXdpZHRoOiA0NTBweDtcbiAgICBtaW4taGVpZ2h0OiA1MDBweDtcbiAgICB3aWR0aDogNjUlO1xuICB9XG5cbiAgLnJvdyB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICAgIGp1c3RpZnktY29udGVudDogZmxleC1zdGFydDtcbiAgICB0ZXh0LWFsaWduOiBsZWZ0O1xuICAgIGZsZXgtd3JhcDogbm93cmFwO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIH1cblxuICAuYmFycyB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XG4gICAgZmxleC13cmFwOiBub3dyYXA7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgbWFyZ2luLXRvcDogNXB4O1xuICB9XG5cbiAgLmRlc2Mge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBmb250LXNpemU6IDE0cHg7XG4gICAgbWFyZ2luLWxlZnQ6IDIwcHg7XG4gICAgdG9wOiAxMHB4O1xuICAgIGNvbG9yOiBncmV5O1xuICAgIGZvbnQtc3R5bGU6IGl0YWxpYztcbiAgfVxuICBAbWVkaWEgb25seSBzY3JlZW4gYW5kIChtYXgtd2lkdGg6IDg1MHB4KSB7XG4gICAgLmNvbnRhaW5lciB7XG4gICAgICBtYXJnaW46IDFyZW07XG4gICAgICBwYWRkaW5nOiAxcmVtO1xuICAgIH1cbiAgICAuZGVzYyB7XG4gICAgICB0b3A6IC0zMHB4O1xuICAgICAgbGVmdDogMTAwcHggIWltcG9ydGFudDtcbiAgICAgIC8qIGRpc3BsYXk6IG5vbmU7ICovXG4gICAgfVxuICAgIC5yb3cge1xuICAgICAgZmxleC13cmFwOiB3cmFwO1xuICAgIH1cbiAgICAuYmFycyB7XG4gICAgICBtYXJnaW4tdG9wOiAxMHB4O1xuICAgIH1cbiAgfVxuXG4gIC5yYXRpbyB7XG4gICAgbWFyZ2luLXRvcDogM3JlbTtcbiAgfVxuICAubmFtZSB7XG4gICAgZm9udC1zaXplOiAyMHB4O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIG1hcmdpbi1sZWZ0OiAycmVtO1xuICAgIG1hcmdpbi1yaWdodDogMC4ycmVtO1xuICAgIHdpZHRoOiA4MHB4O1xuICAgIGNvbG9yOiBncmV5O1xuICB9XG4gIC5jb2wge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XG4gIH1cbiAgLm9uZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzZkODdhNTtcbiAgICB6LWluZGV4OiAzO1xuICAgIGJvcmRlci1yYWRpdXM6IDVweCAwcHggMHB4IDVweDtcbiAgfVxuICAucGx1cyB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzk0NmRhNTtcbiAgICBib3JkZXItcmFkaXVzOiA1cHggNXB4IDVweCA1cHg7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGxlZnQ6IDBweDtcbiAgICB6LWluZGV4OiAxO1xuICB9XG48L3N0eWxlPlxuIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXdFRSxPQUFPLGFBQUMsQ0FBQyxBQUNQLFNBQVMsQ0FBRSxJQUFJLENBQUMsVUFBVSxBQUM1QixDQUFDLEFBQ0QsTUFBTSxhQUFDLENBQUMsQUFDTixRQUFRLENBQUUsUUFBUSxDQUNsQixNQUFNLENBQUUsS0FBSyxDQUNiLEtBQUssQ0FBRSxJQUFJLENBQ1gsU0FBUyxDQUFFLElBQUksQUFDakIsQ0FBQyxBQW9CRCxJQUFJLGFBQUMsQ0FBQyxBQUNKLE9BQU8sQ0FBRSxJQUFJLENBQ2IsY0FBYyxDQUFFLEdBQUcsQ0FDbkIsZUFBZSxDQUFFLFVBQVUsQ0FDM0IsVUFBVSxDQUFFLElBQUksQ0FDaEIsU0FBUyxDQUFFLE1BQU0sQ0FDakIsV0FBVyxDQUFFLE1BQU0sQUFDckIsQ0FBQyxBQUVELEtBQUssYUFBQyxDQUFDLEFBQ0wsUUFBUSxDQUFFLFFBQVEsQ0FDbEIsT0FBTyxDQUFFLElBQUksQ0FDYixjQUFjLENBQUUsR0FBRyxDQUNuQixlQUFlLENBQUUsVUFBVSxDQUMzQixTQUFTLENBQUUsTUFBTSxDQUNqQixLQUFLLENBQUUsSUFBSSxDQUNYLFVBQVUsQ0FBRSxHQUFHLEFBQ2pCLENBQUMsQUFFRCxLQUFLLGFBQUMsQ0FBQyxBQUNMLFFBQVEsQ0FBRSxRQUFRLENBQ2xCLFNBQVMsQ0FBRSxJQUFJLENBQ2YsV0FBVyxDQUFFLElBQUksQ0FDakIsR0FBRyxDQUFFLElBQUksQ0FDVCxLQUFLLENBQUUsSUFBSSxDQUNYLFVBQVUsQ0FBRSxNQUFNLEFBQ3BCLENBQUMsQUFDRCxPQUFPLElBQUksQ0FBQyxNQUFNLENBQUMsR0FBRyxDQUFDLFlBQVksS0FBSyxDQUFDLEFBQUMsQ0FBQyxBQUt6QyxLQUFLLGFBQUMsQ0FBQyxBQUNMLEdBQUcsQ0FBRSxLQUFLLENBQ1YsSUFBSSxDQUFFLEtBQUssQ0FBQyxVQUFVLEFBRXhCLENBQUMsQUFDRCxJQUFJLGFBQUMsQ0FBQyxBQUNKLFNBQVMsQ0FBRSxJQUFJLEFBQ2pCLENBQUMsQUFDRCxLQUFLLGFBQUMsQ0FBQyxBQUNMLFVBQVUsQ0FBRSxJQUFJLEFBQ2xCLENBQUMsQUFDSCxDQUFDLEFBRUQsTUFBTSxhQUFDLENBQUMsQUFDTixVQUFVLENBQUUsSUFBSSxBQUNsQixDQUFDLEFBQ0QsS0FBSyxhQUFDLENBQUMsQUFDTCxTQUFTLENBQUUsSUFBSSxDQUNmLFdBQVcsQ0FBRSxJQUFJLENBQ2pCLFdBQVcsQ0FBRSxJQUFJLENBQ2pCLFlBQVksQ0FBRSxNQUFNLENBQ3BCLEtBQUssQ0FBRSxJQUFJLENBQ1gsS0FBSyxDQUFFLElBQUksQUFDYixDQUFDLEFBQ0QsSUFBSSxhQUFDLENBQUMsQUFDSixPQUFPLENBQUUsSUFBSSxDQUNiLGNBQWMsQ0FBRSxNQUFNLENBQ3RCLGVBQWUsQ0FBRSxVQUFVLEFBQzdCLENBQUMsQUFDRCxJQUFJLGFBQUMsQ0FBQyxBQUNKLGdCQUFnQixDQUFFLE9BQU8sQ0FDekIsT0FBTyxDQUFFLENBQUMsQ0FDVixhQUFhLENBQUUsR0FBRyxDQUFDLEdBQUcsQ0FBQyxHQUFHLENBQUMsR0FBRyxBQUNoQyxDQUFDLEFBQ0QsS0FBSyxhQUFDLENBQUMsQUFDTCxnQkFBZ0IsQ0FBRSxPQUFPLENBQ3pCLGFBQWEsQ0FBRSxHQUFHLENBQUMsR0FBRyxDQUFDLEdBQUcsQ0FBQyxHQUFHLENBQzlCLFFBQVEsQ0FBRSxRQUFRLENBQ2xCLElBQUksQ0FBRSxHQUFHLENBQ1QsT0FBTyxDQUFFLENBQUMsQUFDWixDQUFDIn0= */";
+    	style.id = "svelte-10u6fcq-style";
+    	style.textContent = ".tinier.svelte-10u6fcq{font-size:16px !important}.below.svelte-10u6fcq{position:absolute;bottom:-30px;color:grey;font-size:18px}.row.svelte-10u6fcq{display:flex;flex-direction:row;justify-content:flex-start;text-align:left;flex-wrap:nowrap;align-items:center}.bars.svelte-10u6fcq{position:relative;display:flex;flex-direction:row;justify-content:flex-start;flex-wrap:nowrap;width:100%;margin-top:5px;margin-right:100px}.desc.svelte-10u6fcq{position:absolute;font-size:14px;margin-left:20px;top:10px;color:grey;font-style:italic;white-space:nowrap}@media only screen and (max-width: 850px){.desc.svelte-10u6fcq{top:-30px;left:100px !important}.row.svelte-10u6fcq{flex-wrap:wrap}.bars.svelte-10u6fcq{margin-top:10px;margin-right:10px}}.ratio.svelte-10u6fcq{margin-top:1rem;margin-bottom:3rem}.name.svelte-10u6fcq{font-size:20px;font-weight:bold;margin-left:2rem;margin-right:0.2rem;width:80px;color:grey}.col.svelte-10u6fcq{display:flex;flex-direction:column;justify-content:flex-start}.one.svelte-10u6fcq{background-color:#6d87a5;z-index:3;border-radius:5px 0px 0px 5px}.plus.svelte-10u6fcq{background-color:#946da5;border-radius:5px 5px 5px 5px;position:absolute;left:0px;z-index:1}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUG9zdC5zdmVsdGUiLCJzb3VyY2VzIjpbIlBvc3Quc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCB7IFBhZ2UgfSBmcm9tICcuLi8uLi9jb21wb25lbnRzL2luZGV4Lm1qcydcbiAgZXhwb3J0IGxldCB0aXRsZSA9ICdBc3BlY3QgUmF0aW9zJ1xuICBleHBvcnQgbGV0IHN1YiA9ICcnXG4gIGxldCB4ID0gMjAwXG4gIGxldCB3aW5kb3cgPSA4MDBcbiAgJDogeCA9IHdpbmRvdyA+IDYwMCA/IDIwMCA6IDE1MFxuICAvLyBhc3BlY3QgcmF0aW9zIGFzICVzOlxuICBsZXQgcmF0aW9zID0gW1xuICAgIHtcbiAgICAgIG5hbWU6ICc1OjQnLFxuICAgICAgZGVzYzogJ21vbml0b3JzJyxcbiAgICAgIGNzczogJzUgLyA0ICcsXG4gICAgICByYXRpbzogMS4yNSxcbiAgICB9LFxuICAgIHtcbiAgICAgIG5hbWU6ICc0OjMnLFxuICAgICAgZGVzYzogJ2lwYWRzLCBwaG90b3MnLFxuICAgICAgY3NzOiAnNCAvIDMnLFxuICAgICAgcmF0aW86IDEuMyxcbiAgICB9LFxuICAgIHtcbiAgICAgIG5hbWU6ICcxOuKImjInLFxuICAgICAgZGVzYzogJ0E0IHBhcGVyJyxcbiAgICAgIGNzczogJzEuNDE0MiAvIDEnLFxuICAgICAgcmF0aW86IDEuNDEsXG4gICAgfSxcbiAgICB7XG4gICAgICBuYW1lOiAnMzoyJyxcbiAgICAgIGRlc2M6ICczNW1tIGZpbG0nLFxuICAgICAgY3NzOiAnMyAvIDInLFxuICAgICAgcmF0aW86IDEuNSxcbiAgICB9LFxuICAgIHtcbiAgICAgIG5hbWU6ICdnb2xkZW4nLFxuICAgICAgZGVzYzogJyBzbmFpbHMsIGV0Yy4nLFxuICAgICAgY3NzOiAnMS42MTggLyAxJyxcbiAgICAgIHJhdGlvOiAxLjYxOCxcbiAgICB9LFxuICAgIHtcbiAgICAgIG5hbWU6ICcxNjo5JyxcbiAgICAgIGRlc2M6IFwiMTA4MHAsICd3aWRlc2NyZWVuJ1wiLFxuICAgICAgY3NzOiAnMTYgLyA5JyxcbiAgICAgIHJhdGlvOiAxLjc3LFxuICAgIH0sXG4gICAge1xuICAgICAgbmFtZTogJzE5LjU6OScsXG4gICAgICBkZXNjOiAncmVjZW50IGlwaG9uZXMnLFxuICAgICAgY3NzOiAnMTkuNSAvIDknLFxuICAgICAgcmF0aW86IDIuMTYsXG4gICAgfSxcbiAgXVxuPC9zY3JpcHQ+XG5cbjxzdmVsdGU6d2luZG93IGJpbmQ6aW5uZXJXaWR0aD17d2luZG93fSAvPlxuPFBhZ2Uge3RpdGxlfSB7c3VifT5cbiAgPGRpdiBzdHlsZT1cInBvc2l0aW9uOnJlbGF0aXZlOyBtYXJnaW4tYm90dG9tOjJyZW07XCI+XG4gICAgeyNlYWNoIHJhdGlvcyBhcyBvfVxuICAgICAgPGRpdiBjbGFzcz1cInJhdGlvIGNvbFwiPlxuICAgICAgICA8ZGl2IGNsYXNzPVwicm93XCI+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cIm5hbWVcIiBjbGFzczp0aW5pZXI9e3RydWV9PntvLm5hbWV9PC9kaXY+XG4gICAgICAgICAgPGRpdiBjbGFzcz1cImJhcnNcIiBzdHlsZT1cIiBtaW4td2lkdGg6e3ggKiByYXRpb3NbcmF0aW9zLmxlbmd0aCAtIDFdLnJhdGlvfXB4OyBcIj5cbiAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJvbmVcIiBzdHlsZT1cImhlaWdodDo1MHB4OyAgd2lkdGg6e3h9cHg7XCIgLz5cbiAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJwbHVzXCIgc3R5bGU9XCJoZWlnaHQ6NTBweDsgd2lkdGg6e3ggKiBvLnJhdGlvfXB4O1wiIC8+XG4gICAgICAgICAgICA8ZGl2IGNsYXNzPVwiZGVzY1wiIHN0eWxlPVwid2lkdGg6MTAwcHg7IGxlZnQ6e3ggKiBvLnJhdGlvfXB4O1wiPntvLmRlc2N9PC9kaXY+XG4gICAgICAgICAgICA8ZGl2IGNsYXNzPVwiYmVsb3dcIiBzdHlsZT1cImxlZnQ6e3h9cHg7IG1hcmdpbi1sZWZ0OjE1cHg7IGNvbG9yOiAjOTQ2ZGE1O1wiPlxuICAgICAgICAgICAgICA8c3BhbiBzdHlsZT1cImZvbnQtc2l6ZToxMHB4O1wiPng8L3NwYW4+XG4gICAgICAgICAgICAgIDxzcGFuIHN0eWxlPVwiXCI+e28ucmF0aW99PC9zcGFuPlxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvZGl2PlxuICAgICAgPC9kaXY+XG4gICAgey9lYWNofVxuICA8L2Rpdj5cbjwvUGFnZT5cblxuPHN0eWxlPlxuICAudGluaWVyIHtcbiAgICBmb250LXNpemU6IDE2cHggIWltcG9ydGFudDtcbiAgfVxuICAuYmVsb3cge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBib3R0b206IC0zMHB4O1xuICAgIGNvbG9yOiBncmV5O1xuICAgIGZvbnQtc2l6ZTogMThweDtcbiAgfVxuXG4gIC5yb3cge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XG4gICAgdGV4dC1hbGlnbjogbGVmdDtcbiAgICBmbGV4LXdyYXA6IG5vd3JhcDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICB9XG5cbiAgLmJhcnMge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xuICAgIGZsZXgtd3JhcDogbm93cmFwO1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIG1hcmdpbi10b3A6IDVweDtcbiAgICBtYXJnaW4tcmlnaHQ6IDEwMHB4O1xuICB9XG5cbiAgLmRlc2Mge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBmb250LXNpemU6IDE0cHg7XG4gICAgbWFyZ2luLWxlZnQ6IDIwcHg7XG4gICAgdG9wOiAxMHB4O1xuICAgIGNvbG9yOiBncmV5O1xuICAgIGZvbnQtc3R5bGU6IGl0YWxpYztcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuICB9XG4gIEBtZWRpYSBvbmx5IHNjcmVlbiBhbmQgKG1heC13aWR0aDogODUwcHgpIHtcbiAgICAuZGVzYyB7XG4gICAgICB0b3A6IC0zMHB4O1xuICAgICAgbGVmdDogMTAwcHggIWltcG9ydGFudDtcbiAgICAgIC8qIGRpc3BsYXk6IG5vbmU7ICovXG4gICAgfVxuICAgIC5yb3cge1xuICAgICAgZmxleC13cmFwOiB3cmFwO1xuICAgIH1cbiAgICAuYmFycyB7XG4gICAgICBtYXJnaW4tdG9wOiAxMHB4O1xuICAgICAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xuICAgIH1cbiAgfVxuXG4gIC5yYXRpbyB7XG4gICAgbWFyZ2luLXRvcDogMXJlbTtcbiAgICBtYXJnaW4tYm90dG9tOiAzcmVtO1xuICB9XG4gIC5uYW1lIHtcbiAgICBmb250LXNpemU6IDIwcHg7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgbWFyZ2luLWxlZnQ6IDJyZW07XG4gICAgbWFyZ2luLXJpZ2h0OiAwLjJyZW07XG4gICAgd2lkdGg6IDgwcHg7XG4gICAgY29sb3I6IGdyZXk7XG4gIH1cbiAgLmNvbCB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGp1c3RpZnktY29udGVudDogZmxleC1zdGFydDtcbiAgfVxuICAub25lIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNmQ4N2E1O1xuICAgIHotaW5kZXg6IDM7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4IDBweCAwcHggNXB4O1xuICB9XG4gIC5wbHVzIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjOTQ2ZGE1O1xuICAgIGJvcmRlci1yYWRpdXM6IDVweCA1cHggNXB4IDVweDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgbGVmdDogMHB4O1xuICAgIHotaW5kZXg6IDE7XG4gIH1cbjwvc3R5bGU+XG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBNkVFLE9B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 */";
     	append_dev(document.head, style);
     }
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[4] = list[i];
+    	child_ctx[6] = list[i];
     	return child_ctx;
     }
 
-    // (54:2) {#each ratios as o}
+    // (58:4) {#each ratios as o}
     function create_each_block(ctx) {
     	let div7;
     	let div6;
     	let div0;
-    	let t0_value = /*o*/ ctx[4].name + "";
+    	let t0_value = /*o*/ ctx[6].name + "";
     	let t0;
     	let t1;
     	let div5;
@@ -1015,14 +985,14 @@ var app = (function () {
     	let div2;
     	let t3;
     	let div3;
-    	let t4_value = /*o*/ ctx[4].desc + "";
+    	let t4_value = /*o*/ ctx[6].desc + "";
     	let t4;
     	let t5;
     	let div4;
     	let span0;
     	let t7;
     	let span1;
-    	let t8_value = /*o*/ ctx[4].ratio + "";
+    	let t8_value = /*o*/ ctx[6].ratio + "";
     	let t8;
     	let t9;
 
@@ -1048,34 +1018,36 @@ var app = (function () {
     			span1 = element("span");
     			t8 = text(t8_value);
     			t9 = space();
-    			attr_dev(div0, "class", "name svelte-y1lpe");
+    			attr_dev(div0, "class", "name svelte-10u6fcq");
     			toggle_class(div0, "tinier", true);
-    			add_location(div0, file$3, 56, 8, 1034);
-    			attr_dev(div1, "class", "one svelte-y1lpe");
+    			add_location(div0, file$3, 60, 10, 1168);
+    			attr_dev(div1, "class", "one svelte-10u6fcq");
     			set_style(div1, "height", "50px");
     			set_style(div1, "width", /*x*/ ctx[2] + "px");
-    			add_location(div1, file$3, 58, 10, 1124);
-    			attr_dev(div2, "class", "plus svelte-y1lpe");
+    			add_location(div1, file$3, 62, 12, 1323);
+    			attr_dev(div2, "class", "plus svelte-10u6fcq");
     			set_style(div2, "height", "50px");
-    			set_style(div2, "width", /*x*/ ctx[2] * /*o*/ ctx[4].ratio + "px");
-    			add_location(div2, file$3, 59, 10, 1189);
-    			attr_dev(div3, "class", "desc svelte-y1lpe");
-    			set_style(div3, "left", /*x*/ ctx[2] * /*o*/ ctx[4].ratio + "px");
-    			add_location(div3, file$3, 60, 10, 1264);
+    			set_style(div2, "width", /*x*/ ctx[2] * /*o*/ ctx[6].ratio + "px");
+    			add_location(div2, file$3, 63, 12, 1390);
+    			attr_dev(div3, "class", "desc svelte-10u6fcq");
+    			set_style(div3, "width", "100px");
+    			set_style(div3, "left", /*x*/ ctx[2] * /*o*/ ctx[6].ratio + "px");
+    			add_location(div3, file$3, 64, 12, 1467);
     			set_style(span0, "font-size", "10px");
-    			add_location(span0, file$3, 62, 12, 1423);
-    			add_location(span1, file$3, 63, 12, 1474);
-    			attr_dev(div4, "class", "below svelte-y1lpe");
+    			add_location(span0, file$3, 66, 14, 1643);
+    			add_location(span1, file$3, 67, 14, 1696);
+    			attr_dev(div4, "class", "below svelte-10u6fcq");
     			set_style(div4, "left", /*x*/ ctx[2] + "px");
     			set_style(div4, "margin-left", "15px");
     			set_style(div4, "color", "#946da5");
-    			add_location(div4, file$3, 61, 10, 1337);
-    			attr_dev(div5, "class", "bars svelte-y1lpe");
-    			add_location(div5, file$3, 57, 8, 1095);
-    			attr_dev(div6, "class", "row svelte-y1lpe");
-    			add_location(div6, file$3, 55, 6, 1008);
-    			attr_dev(div7, "class", "ratio col svelte-y1lpe");
-    			add_location(div7, file$3, 54, 4, 978);
+    			add_location(div4, file$3, 65, 12, 1555);
+    			attr_dev(div5, "class", "bars svelte-10u6fcq");
+    			set_style(div5, "min-width", /*x*/ ctx[2] * /*ratios*/ ctx[4][/*ratios*/ ctx[4].length - 1].ratio + "px");
+    			add_location(div5, file$3, 61, 10, 1231);
+    			attr_dev(div6, "class", "row svelte-10u6fcq");
+    			add_location(div6, file$3, 59, 8, 1140);
+    			attr_dev(div7, "class", "ratio col svelte-10u6fcq");
+    			add_location(div7, file$3, 58, 6, 1108);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div7, anchor);
@@ -1098,7 +1070,27 @@ var app = (function () {
     			append_dev(span1, t8);
     			append_dev(div7, t9);
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*x*/ 4) {
+    				set_style(div1, "width", /*x*/ ctx[2] + "px");
+    			}
+
+    			if (dirty & /*x*/ 4) {
+    				set_style(div2, "width", /*x*/ ctx[2] * /*o*/ ctx[6].ratio + "px");
+    			}
+
+    			if (dirty & /*x*/ 4) {
+    				set_style(div3, "left", /*x*/ ctx[2] * /*o*/ ctx[6].ratio + "px");
+    			}
+
+    			if (dirty & /*x*/ 4) {
+    				set_style(div4, "left", /*x*/ ctx[2] + "px");
+    			}
+
+    			if (dirty & /*x*/ 4) {
+    				set_style(div5, "min-width", /*x*/ ctx[2] * /*ratios*/ ctx[4][/*ratios*/ ctx[4].length - 1].ratio + "px");
+    			}
+    		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div7);
     		}
@@ -1108,17 +1100,17 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(54:2) {#each ratios as o}",
+    		source: "(58:4) {#each ratios as o}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (53:0) <Page {title} {sub} height="800" width="700">
+    // (56:0) <Page {title} {sub}>
     function create_default_slot(ctx) {
-    	let each_1_anchor;
-    	let each_value = /*ratios*/ ctx[3];
+    	let div;
+    	let each_value = /*ratios*/ ctx[4];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -1128,22 +1120,26 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			div = element("div");
+
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			each_1_anchor = empty();
+    			set_style(div, "position", "relative");
+    			set_style(div, "margin-bottom", "2rem");
+    			add_location(div, file$3, 56, 2, 1025);
     		},
     		m: function mount(target, anchor) {
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(target, anchor);
-    			}
+    			insert_dev(target, div, anchor);
 
-    			insert_dev(target, each_1_anchor, anchor);
+    			for (let i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div, null);
+    			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*x, ratios*/ 12) {
-    				each_value = /*ratios*/ ctx[3];
+    			if (dirty & /*x, ratios*/ 20) {
+    				each_value = /*ratios*/ ctx[4];
     				validate_each_argument(each_value);
     				let i;
 
@@ -1155,7 +1151,7 @@ var app = (function () {
     					} else {
     						each_blocks[i] = create_each_block(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(each_1_anchor.parentNode, each_1_anchor);
+    						each_blocks[i].m(div, null);
     					}
     				}
 
@@ -1167,8 +1163,8 @@ var app = (function () {
     			}
     		},
     		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
     			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(each_1_anchor);
     		}
     	};
 
@@ -1176,7 +1172,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(53:0) <Page {title} {sub} height=\\\"800\\\" width=\\\"700\\\">",
+    		source: "(56:0) <Page {title} {sub}>",
     		ctx
     	});
 
@@ -1186,13 +1182,14 @@ var app = (function () {
     function create_fragment$3(ctx) {
     	let page;
     	let current;
+    	let mounted;
+    	let dispose;
+    	add_render_callback(/*onwindowresize*/ ctx[5]);
 
     	page = new Page({
     			props: {
     				title: /*title*/ ctx[0],
     				sub: /*sub*/ ctx[1],
-    				height: "800",
-    				width: "700",
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
     			},
@@ -1209,13 +1206,18 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			mount_component(page, target, anchor);
     			current = true;
+
+    			if (!mounted) {
+    				dispose = listen_dev(window_1, "resize", /*onwindowresize*/ ctx[5]);
+    				mounted = true;
+    			}
     		},
     		p: function update(ctx, [dirty]) {
     			const page_changes = {};
     			if (dirty & /*title*/ 1) page_changes.title = /*title*/ ctx[0];
     			if (dirty & /*sub*/ 2) page_changes.sub = /*sub*/ ctx[1];
 
-    			if (dirty & /*$$scope*/ 128) {
+    			if (dirty & /*$$scope, x*/ 516) {
     				page_changes.$$scope = { dirty, ctx };
     			}
 
@@ -1232,6 +1234,8 @@ var app = (function () {
     		},
     		d: function destroy(detaching) {
     			destroy_component(page, detaching);
+    			mounted = false;
+    			dispose();
     		}
     	};
 
@@ -1252,6 +1256,7 @@ var app = (function () {
     	let { title = "Aspect Ratios" } = $$props;
     	let { sub = "" } = $$props;
     	let x = 200;
+    	let window = 800;
 
     	// aspect ratios as %s:
     	let ratios = [
@@ -1305,31 +1310,42 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Post> was created with unknown prop '${key}'`);
     	});
 
+    	function onwindowresize() {
+    		$$invalidate(3, window = window_1.innerWidth);
+    	}
+
     	$$self.$$set = $$props => {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
     		if ("sub" in $$props) $$invalidate(1, sub = $$props.sub);
     	};
 
-    	$$self.$capture_state = () => ({ Page, title, sub, x, ratios });
+    	$$self.$capture_state = () => ({ Page, title, sub, x, window, ratios });
 
     	$$self.$inject_state = $$props => {
     		if ("title" in $$props) $$invalidate(0, title = $$props.title);
     		if ("sub" in $$props) $$invalidate(1, sub = $$props.sub);
     		if ("x" in $$props) $$invalidate(2, x = $$props.x);
-    		if ("ratios" in $$props) $$invalidate(3, ratios = $$props.ratios);
+    		if ("window" in $$props) $$invalidate(3, window = $$props.window);
+    		if ("ratios" in $$props) $$invalidate(4, ratios = $$props.ratios);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [title, sub, x, ratios];
+    	$$self.$$.update = () => {
+    		if ($$self.$$.dirty & /*window*/ 8) {
+    			 $$invalidate(2, x = window > 600 ? 200 : 150);
+    		}
+    	};
+
+    	return [title, sub, x, window, ratios, onwindowresize];
     }
 
     class Post extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		if (!document.getElementById("svelte-y1lpe-style")) add_css$3();
+    		if (!document.getElementById("svelte-10u6fcq-style")) add_css$3();
     		init(this, options, instance$3, create_fragment$3, safe_not_equal, { title: 0, sub: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {

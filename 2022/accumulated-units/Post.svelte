@@ -46,7 +46,7 @@
       <div class="label" style="color:lightsteelblue; left:27px; top:-10px;">approved</div>
     </div> 
   </div>-->
-  <div class="center" style="width:900px; min-width:900px;">
+  <div class="center" style=" min-width:900px;">
     <div class="container row">
       {#each data as o, i}
         <div class="group" style=" height:100%;">
