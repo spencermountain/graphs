@@ -5,13 +5,14 @@
   export let sub = ''
   export let grow = false
   export let max = 1500
+  export let min = 0
   export let padding = 16
   export let year = String(new Date().getFullYear())
 </script>
 
 <div class="page">
   <Head {title} {sub} />
-  <div class="mid" class:grow style="max-width:{max}px;">
+  <div class="mid" class:grow style="max-width:{max}px; min-width:{min}px;">
     <div class="shadow" style="padding:{padding}px;">
       <slot />
     </div>

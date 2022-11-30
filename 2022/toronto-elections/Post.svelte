@@ -64,7 +64,7 @@
   })
 </script>
 
-<Page {title} height="3000">
+<Page {title}>
   {#each data as o, i}
     <!-- <div class="row" style="height:{o.years * 40}px;"> -->
     <div class="row year">

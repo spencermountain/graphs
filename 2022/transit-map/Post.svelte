@@ -35,7 +35,7 @@
   })
 </script>
 
-<Page {title} width="980" padding={0} height="750">
+<Page {title} grow={true} padding={0}>
   <div id="map" />
   <!-- <div class="label">transit stations by ward, Oct 2022</div> -->
 </Page>
