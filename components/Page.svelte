@@ -4,7 +4,7 @@
   export let title = ''
   export let sub = ''
   export let grow = false
-  export let max = 2000
+  export let max = 1500
   export let padding = 16
   export let year = String(new Date().getFullYear())
 </script>
@@ -44,7 +44,7 @@
   /* visible middle-column */
   .shadow {
     padding: 2rem;
-    min-height: 600px;
+    min-height: 300px;
     box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
   }
 </style>

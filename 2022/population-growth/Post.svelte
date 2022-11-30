@@ -29,7 +29,7 @@
   let title = 'Toronto Population growth'
 </script>
 
-<Page {title} width="900">
+<Page {title} grow={true}>
   <div class="col all">
     <div class="container">
       <div class="top-stat">3 million<br />by 2031<br />*</div>
@@ -103,7 +103,7 @@
     position: relative;
     /* border: 1px solid grey; */
     /* margin: 3rem; */
-    min-width: 600px;
+    /* min-width: 600px; */
     /* padding-left: 40px; */
     aspect-ratio: 1.618/1; /* golden */
   }
@@ -119,5 +119,14 @@
   }
   .all {
     margin: 4rem;
+  }
+  @media only screen and (max-width: 700px) {
+    .mayor {
+      font-size: 11px;
+    }
+    .all {
+      margin: 2rem;
+      margin-top: 3rem;
+    }
   }
 </style>

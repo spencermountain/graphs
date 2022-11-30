@@ -46,7 +46,7 @@
   let title = 'Active housing applications by Toronto ward'
 </script>
 
-<Page {title} height="900" width="600">
+<Page {title}>
   <div class="center col">
     <div class="container">
       <Sankey height="700" {fmt}>
@@ -100,8 +100,6 @@
     margin: 3rem;
   }
   .container {
-    max-width: 800px;
-    min-width: 650px;
     flex-grow: 1;
     margin-top: 3rem;
   }

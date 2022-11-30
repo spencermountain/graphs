@@ -8,12 +8,12 @@
     Label,
   } from '/Users/spencer/mountain/somehow-timeline/src'
   let start = 'Jan 1 1910'
-  let end = 'Dec 31 2022'
-  let height = 1500
+  let end = 'Dec 31 2024'
+  let height = 1600
   export let title = 'Toronto Construction Timeline'
 </script>
 
-<Page {title} height="1600" width="750">
+<Page {title}>
   <Timeline {start} {end} {height} {title}>
     <Line
       space="15px"
@@ -40,7 +40,7 @@
     </Column>
     <Column />
 
-    <Column>
+    <Column width="80px">
       <!-- <Label
           space="15px"
           start="1889"
@@ -56,14 +56,6 @@
         color="blue"
         opacity="0.5"
         label="Royal York Hotel"
-      />
-      <Label
-        space="15px"
-        start="May 30, 1931"
-        end="November 12, 1931"
-        color="blue"
-        opacity="0.5"
-        label="Maple Leaf Gardens"
       />
 
       <Label
@@ -104,12 +96,12 @@
       />
     </Column>
 
-    <Column>
+    <Column width="80px">
       <Label
         start="October 3, 1945"
         end="March 30, 1954"
         label="Line 1"
-        color="yellow"
+        color="#d3d593"
         opacity="0.7"
         side="left"
         align="left"
@@ -124,7 +116,15 @@
         align="left"
       />
     </Column>
-    <Column>
+    <Column width="80px">
+      <Label
+        space="15px"
+        start="May 30, 1931"
+        end="November 12, 1931"
+        color="blue"
+        opacity="0.5"
+        label="Maple Leaf Gardens"
+      />
       <Label
         start="November 1 1959"
         end="February 26, 1966"
@@ -144,7 +144,16 @@
         align="left"
       />
     </Column>
-    <Column width="100px">
+    <Column width="80px">
+      <Label
+        start="September 2017"
+        end="jan 1 2023"
+        label="Finch West"
+        color="purple"
+        opacity="0.7"
+        side="left"
+        align="left"
+      />
       <Label
         start="jan 1 1955"
         end="jan 1 1963"
@@ -155,7 +164,7 @@
         align="left"
       />
     </Column>
-    <Column>
+    <Column width="80px">
       <Label
         start="sept 1 1955"
         end="March 1, 1967"
@@ -167,7 +176,7 @@
       />
     </Column>
 
-    <Column>
+    <Column width="80px">
       <Label
         start="October 3, 1957"
         end="February 28, 1964"
