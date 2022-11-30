@@ -45,51 +45,49 @@
   ]
 </script>
 
-<Page {title} {sub} width="1200" {height}>
-  <div style="max-width:800px;">
-    <Timeline {start} {end} {height}>
-      <!-- <Ticks every="hour" /> -->
-      {#each days as day, i}
-        <Column width="150px" title={day}>
-          {#if i === 5}
-            {#each saturday as p}
-              <Line
-                start={'Jan 1 2020 ' + p.time}
-                end={'Jan 1 2020 ' + p.end}
-                label={p.name}
-                margin={5}
-                opacity="0.5"
-                color={p.color}
-              />
-            {/each}
-          {:else if i === 6}
-            {#each sunday as p}
-              <Line
-                start={'Jan 1 2020 ' + p.time}
-                end={'Jan 1 2020 ' + p.end}
-                label={p.name}
-                margin={5}
-                opacity="0.5"
-                color={p.color}
-              />
-            {/each}
-          {:else}
-            {#each weekdays as p}
-              <Line
-                start={'Jan 1 2020 ' + p.time}
-                end={'Jan 1 2020 ' + p.end}
-                label={p.name}
-                margin={5}
-                opacity="0.5"
-                color={p.color}
-              />
-            {/each}
-          {/if}
-        </Column>
-      {/each}
-      <WideLabel date={'Jan 1 2020 12:00pm'} color="#e4e4e4" />
-    </Timeline>
-  </div>
+<Page {title} {sub} grow={true}>
+  <Timeline {start} {end} {height}>
+    <!-- <Ticks every="hour" /> -->
+    {#each days as day, i}
+      <Column title={day}>
+        {#if i === 5}
+          {#each saturday as p}
+            <Line
+              start={'Jan 1 2020 ' + p.time}
+              end={'Jan 1 2020 ' + p.end}
+              label={p.name}
+              margin={5}
+              opacity="0.5"
+              color={p.color}
+            />
+          {/each}
+        {:else if i === 6}
+          {#each sunday as p}
+            <Line
+              start={'Jan 1 2020 ' + p.time}
+              end={'Jan 1 2020 ' + p.end}
+              label={p.name}
+              margin={5}
+              opacity="0.5"
+              color={p.color}
+            />
+          {/each}
+        {:else}
+          {#each weekdays as p}
+            <Line
+              start={'Jan 1 2020 ' + p.time}
+              end={'Jan 1 2020 ' + p.end}
+              label={p.name}
+              margin={5}
+              opacity="0.5"
+              color={p.color}
+            />
+          {/each}
+        {/if}
+      </Column>
+    {/each}
+    <WideLabel date={'Jan 1 2020 12:00pm'} color="#e4e4e4" />
+  </Timeline>
 </Page>
 
 <style>
