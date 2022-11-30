@@ -288,5 +288,10 @@ module.exports = {
       title: 'Aspect ratios',
       thumb: 'thumb.jpg',
     },
+    {
+      num: 'one-of',
+      title: 'One of 1,000',
+      thumb: 'thumb.jpg',
+    },
   ]
 }

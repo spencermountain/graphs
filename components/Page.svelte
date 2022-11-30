@@ -4,15 +4,13 @@
   export let title = ''
   export let sub = ''
   export let padding = 16
-  export let width = 600
-  export let height = 400
   export let year = String(new Date().getFullYear())
 </script>
 
 <div class="page">
   <Head {title} {sub} />
-  <div class="mid" style="width:{width}px; ">
-    <div class="shadow" style="padding:{padding}px; height:{height}px;">
+  <div class="mid" style="">
+    <div class="shadow" style="padding:{padding}px;">
       <slot />
     </div>
     <Foot {title} {year} />
@@ -34,8 +32,7 @@
     margin: 1rem;
     padding: 1rem;
     margin-top: 0rem;
-    max-width: 800px;
-    min-width: 400px;
+    min-width: 300px;
     flex-grow: 1;
   }
 

@@ -19,7 +19,7 @@
   </svg>
 </div>
 <div class="titlebox">
-  <div class="title">{title}</div>
+  <div class="title">{@html title}</div>
   <div class="sub">{sub}</div>
 </div>
 
