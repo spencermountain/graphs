@@ -25,31 +25,6 @@ html {
     U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* everything */
-.page {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-}
-
-/* middle-column */
-.mid {
-  margin: 1rem;
-  padding: 1rem;
-  margin-top: 0rem;
-  max-width: 800px;
-  min-width: 400px;
-  flex-grow: 1;
-}
-
-.shadow {
-  padding: 2rem;
-  min-height: 600px;
-  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
-}
-
 .m3 {
   margin: 3rem;
 }

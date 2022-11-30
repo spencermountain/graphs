@@ -1,5 +1,5 @@
 <script>
-  import byYear from '../../manifest.js'
+  import byYear from '../manifest.js'
 </script>
 
 <div>

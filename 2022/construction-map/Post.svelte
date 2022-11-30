@@ -36,7 +36,7 @@
   })
 </script>
 
-<Page {title} width={900} padding={0}>
+<Page {title} max={1200} padding={0} grow={true}>
   <div id="map" />
 </Page>
 

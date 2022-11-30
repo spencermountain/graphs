@@ -39,37 +39,41 @@
   })
 </script>
 
-<Page {title} height="1300" width="900">
+<Page {title} grow={true} max="1600">
   <div>
     <div class="above">
-      <!-- <div style="margin-top:5rem; margin-left:4rem; margin-bottom:2rem;">Timeline of development:</div> -->
-      <div class="row" style="justify-content:center; margin-left:3rem; margin-bottom:3rem;">
-        <div class="col" style="width:12px;">
+      <!-- legend -->
+      <div
+        class="row wholeLegend"
+        style="justify-content:center; margin-left:3rem; margin-bottom:3rem;"
+      >
+        <div class="col" style="width:12px;align-self: flex-end;">
           <div class="label">&nbsp;</div>
           <div
             class="legend approve"
-            style="width:12px; border-radius:2px 0px 0px 2px;background-color:#8BA3A2;"
+            style="width:12px; border-radius:2px 0px 0px 2px;background-color:#8BA3A2; align-self: flex-end;"
           />
         </div>
         <div class="col">
           <div class="label">Application Process</div>
           <div class="legend wait" style="" />
-          <div class="label sublabel" style="left:37%;">submitted</div>
+          <div class="label sublabel" style="margin-left:-150px;">submitted</div>
         </div>
-        <div class="col" style="width:12px;">
+        <div class="col" style="width:12px; align-self: flex-end;">
           <div class="label">&nbsp;</div>
           <div
             class="legend approve"
-            style="width:12px;border-radius:0px; background-color:#D68881;"
+            style="width:12px;border-radius:0px; background-color:#D68881; align-self: flex-end;"
           />
           <div class="label sublabel">issued</div>
         </div>
-        <div class="col">
+        <div class="col" style="align-self: flex-end;">
           <div class="label">Building</div>
           <div class="legend build" style="border-radius:0px 2px 2px 0px;" />
         </div>
       </div>
     </div>
+    <!-- graph -->
     <div class="container col">
       <div class="row" style="justify-content: flex-end; margin-right:20px; top:20px; color:grey;">
         <h4>Multiplexes completed<br /> during this term ↓</h4>
@@ -110,8 +114,9 @@
 
 <style>
   .down {
-    margin: 15%;
-    margin-left: 14%;
+    /* margin: 15%; */
+    margin-left: 5%;
+    margin-right: 5%;
     margin-bottom: 100px;
     /* border: 1px solid grey; */
     /* margin-left: 22px; */
@@ -124,16 +129,19 @@
     line-height: 15px;
     font-weight: 100;
     flex: 1;
-    margin: 2px;
+    margin: 5px;
     height: 20px;
     display: inline-block;
+    padding-top: 1rem;
+    margin-top: 1rem;
   }
   .above {
     margin-top: 3rem;
     margin-bottom: 0rem;
   }
   .legend {
-    width: 14rem;
+    width: 100%;
+    min-width: 10px;
     height: 8px;
   }
   .line {
@@ -158,12 +166,22 @@
     /* border-radius: 3px 0px 0px 3px; */
   }
   .container {
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
     position: relative;
     /* border-bottom: 1px solid grey; */
     overflow: clip;
   }
+  @media only screen and (max-width: 600px) {
+    .container {
+      margin-left: 2.5%;
+      margin-right: 2.5%;
+    }
+    .wholeLegend {
+      margin-left: 0px;
+    }
+  }
+
   .row {
     position: relative;
     min-height: 4px;

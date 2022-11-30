@@ -17,11 +17,11 @@
   }
 </script>
 
-<Page {title} sub="Building applications, by number of units" height="780" width="700">
+<Page {title} sub="Building applications, by number of units">
   <div class="rel">
     <div class="label">
-      ← Missing middle
-      <div style="font-size:12px;">2-12 unit buildings</div>
+      ← Middle-sized
+      <div style="font-size:12px;">2-12 units</div>
     </div>
     <Sankey height="700" {fmt}>
       <Col>
@@ -65,6 +65,7 @@
   .rel {
     position: relative;
     margin-top: 2rem;
+    min-width: 650px;
   }
   .label {
     position: absolute;

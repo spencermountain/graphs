@@ -19,8 +19,8 @@
   })
 </script>
 
-<Page {title}>
-  <div style="max-width:1200px;">
+<Page {title} grow={true} max={1000}>
+  <div style="flex-grow:1; width:100%;">
     <Quarter date={'2022-04-01'} {tops} {bottoms} {isHome} showToday={false} />
     <Quarter date={'2022-07-01'} {tops} {bottoms} {isHome} showToday={false} />
     <Quarter date={'2022-10-01'} {tops} {bottoms} {isHome} showToday={false} />

@@ -3,13 +3,15 @@
   import Foot from './Foot.svelte'
   export let title = ''
   export let sub = ''
+  export let grow = false
+  export let max = 2000
   export let padding = 16
   export let year = String(new Date().getFullYear())
 </script>
 
 <div class="page">
   <Head {title} {sub} />
-  <div class="mid" style="">
+  <div class="mid" class:grow style="max-width:{max}px;">
     <div class="shadow" style="padding:{padding}px;">
       <slot />
     </div>
@@ -25,6 +27,9 @@
     justify-content: space-around;
     align-items: center;
     text-align: center;
+  }
+  .grow {
+    width: 90%;
   }
 
   /* invisible-middle-column */
