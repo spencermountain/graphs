@@ -29,13 +29,13 @@ const fetchGame = async function (id) {
   // })
   // return games
 }
-;(async () => {
-  for (let i = 0; i < games.length; i += 1) {
-    await fetchGame(games[i])
-  }
-  // await fetchGame(games[200])
-  console.log(JSON.stringify(results, null, 2))
-})()
+  ; (async () => {
+    for (let i = 0; i < games.length; i += 1) {
+      await fetchGame(games[i])
+    }
+    // await fetchGame(games[200])
+    console.log(JSON.stringify(results, null, 2))
+  })()
 // ;(async () => {
 //   try {
 //     await fetchGame('https://www.baseball-reference.com/boxes/TOR/TOR201906050.shtml')

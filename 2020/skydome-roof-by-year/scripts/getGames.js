@@ -25,4 +25,4 @@ const fetchGames = async function (year) {
 //   arr.push(els[i].querySelector('a').href)
 // }
 
-console.log(fetchGames(2010))
+console.log(fetchGames(2021))
