@@ -33,6 +33,7 @@ export default [
     died: null,
     start: 'jan 1 1838',
     end: 'dec 30 1841',
+    show: true
   },
   {
     name: 'George Monro',
@@ -54,6 +55,7 @@ export default [
     died: '1874-02-15',
     start: 'jan 1 1845',
     end: 'dec 30 1848',
+    show: true
   },
   {
     name: 'George Gurnett',
@@ -61,6 +63,7 @@ export default [
     died: '1861-11-17',
     start: 'jan 1 1848',
     end: 'dec 30 1851',
+    show: true
   },
   {
     name: 'John George Bowes',
@@ -68,6 +71,7 @@ export default [
     died: '1864-05-20',
     start: 'jan 1 1851',
     end: 'dec 30 1854',
+    show: true
   },
   {
     name: 'Joshua George Beard',
@@ -124,6 +128,7 @@ export default [
     died: '1864-05-20',
     start: 'jan 1 1861',
     end: 'dec 26 1864',
+    show: true
   },
   {
     name: 'Francis Henry Medcalf',
@@ -131,6 +136,7 @@ export default [
     died: '1880-03-26',
     start: 'jan 1 1864',
     end: 'dec 30 1867',
+    show: true
   },
   {
     name: 'James Edward Smith',
@@ -173,6 +179,7 @@ export default [
     died: null,
     start: 'jan 1 1876',
     end: 'dec 30 1878',
+    show: true
   },
   {
     name: 'James Beaty',
@@ -215,6 +222,7 @@ export default [
     died: '1905-03-03',
     start: 'jan 1 1888',
     end: 'dec 30 1891',
+    show: true
   },
   {
     name: 'Robert John Fleming',
@@ -222,6 +230,7 @@ export default [
     died: '1984-07-14',
     start: 'jan 1 1892',
     end: 'dec 30 1893',
+    show: true
   },
   {
     name: 'Warring Kennedy',
@@ -243,6 +252,8 @@ export default [
     died: null,
     start: 'jan 1 1897',
     end: 'dec 30 1899',
+    show: true
+
   },
   {
     name: 'Ernest A. Macdonald',
@@ -264,6 +275,7 @@ export default [
     died: '1660-01-01',
     start: 'jan 1 1903',
     end: 'dec 30 1905',
+    show: true
   },
   {
     name: 'Emerson Coatsworth',
@@ -292,6 +304,7 @@ export default [
     died: '1937-02-18',
     start: 'jan 1 1912',
     end: 'dec 30 1914',
+    show: true
   },
   {
     name: 'Thomas Langton Church',
@@ -299,6 +312,7 @@ export default [
     died: '1950-02-07',
     start: 'jan 1 1915',
     end: 'dec 30 1921',
+    show: true,
   },
   {
     name: 'Charles A. Maguire',
@@ -320,6 +334,7 @@ export default [
     died: null,
     start: 'jan 1 1925',
     end: 'dec 30 1927',
+    show: true
   },
   {
     name: 'Sam McBride',
@@ -341,6 +356,7 @@ export default [
     died: '1969-09-18',
     start: 'jan 1 1931',
     end: 'dec 30 1934',
+    show: true
   },
   {
     name: 'James Simpson',
@@ -369,6 +385,7 @@ export default [
     died: '1976-05-21',
     start: 'jan 1 1938',
     end: 'dec 30 1940',
+    show: true
   },
   {
     name: 'Frederick J. Conboy',
@@ -376,6 +393,7 @@ export default [
     died: '1949-03-29',
     start: 'jan 1 1941',
     end: 'dec 30 1944',
+    show: true
   },
   {
     name: 'Robert Hood Saunders',
@@ -383,6 +401,7 @@ export default [
     died: '1955-01-16',
     start: 'jan 1 1945',
     end: 'dec 30 1948',
+    show: true
   },
   {
     name: 'Hiram E. McCallum',
@@ -390,6 +409,7 @@ export default [
     died: '1989-01-13',
     start: 'jan 1 1948',
     end: 'dec 30 1951',
+    show: true
   },
   {
     name: 'Allan Lamport',
@@ -397,6 +417,7 @@ export default [
     died: '1999-11-18',
     start: 'January 1, 1952',
     end: 'June 28, 1954',
+    show: true
   },
   {
     name: 'Leslie Howard Saunders',
@@ -411,6 +432,7 @@ export default [
     died: null,
     start: 'January 1, 1955',
     end: 'December 31, 1962',
+    show: true,
   },
   {
     name: 'Donald Dean Summerville',
@@ -425,6 +447,7 @@ export default [
     died: '1995-11-30',
     start: 'November 19, 1963',
     end: 'December 31, 1966',
+    show: true,
   },
   {
     name: 'William Dennison',
@@ -432,6 +455,7 @@ export default [
     died: null,
     start: 'January 1, 1967',
     end: 'December 31, 1972',
+    show: true,
   },
   {
     name: 'David Crombie',
@@ -439,6 +463,7 @@ export default [
     died: null,
     start: 'January 1, 1973',
     end: 'August 31, 1978',
+    show: true,
   },
   {
     name: 'Fred Beavis',
@@ -453,6 +478,7 @@ export default [
     died: null,
     start: 'December 1, 1978',
     end: 'November 30, 1980',
+    // show: true,
   },
   {
     name: 'Art Eggleton',
@@ -460,6 +486,7 @@ export default [
     died: null,
     start: 'December 1, 1980',
     end: 'November 30, 1991',
+    show: true,
   },
   {
     name: 'June Rowlands',
@@ -467,6 +494,7 @@ export default [
     died: '2017-12-21',
     start: 'December 1, 1991',
     end: 'November 30, 1994',
+    show: true,
   },
   {
     name: 'Barbara Hall',
@@ -474,6 +502,7 @@ export default [
     died: null,
     start: 'December 1, 1994',
     end: 'December 31, 1997',
+    show: true,
   },
   {
     name: 'Mel Lastman',
@@ -481,6 +510,7 @@ export default [
     died: null,
     start: 'January 1, 1998',
     end: 'November 30, 2003',
+    show: true,
   },
   {
     name: 'David Miller',
@@ -488,6 +518,7 @@ export default [
     died: null,
     start: 'December 1, 2003',
     end: 'November 30, 2010',
+    show: true,
   },
   {
     name: 'Rob Ford',
@@ -495,12 +526,14 @@ export default [
     died: '2016-03-22',
     start: 'December 1, 2010',
     end: 'November 30, 2014',
+    show: true,
   },
   {
     name: 'John Tory',
     born: '1954-05-28',
     died: null,
+    show: true,
     start: 'December 1, 2014',
-    end: 'November 30 2022',
+    end: 'November 30 2026',
   },
 ]
