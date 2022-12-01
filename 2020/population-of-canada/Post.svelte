@@ -1,12 +1,11 @@
 <script>
-  // import { Sankey, Node } from 'somehow-sankey'
+  import { Page } from '../../components/index.mjs'
   import { Sankey, Node, Col } from '/Users/spencer/mountain/somehow-sankey/src'
-  import { Head, Foot } from '../../components/'
   export let title = 'Population of Canada'
   //from Wikipedia by Metro area
   // https://en.wikipedia.org/wiki/Metropolitan_area
 
-  let fmt = num => {
+  let fmt = (num) => {
     num = Number(num) * 1000000
     if (num >= 1000000) {
       num = Math.round(num / 100000) * 100000
@@ -21,18 +20,9 @@
   }
 </script>
 
-<style>
-  .m3 {
-    margin: 3rem;
-  }
-</style>
-
-<div>
-  <Head num="11" />
-  <div class="m3">Population of Canada</div>
+<Page {title}>
   <div class="m3">
     <Sankey height="1100" {fmt}>
-
       <Col>
         <Node name="Greater Toronto" to="Ontario" value="6" color="sky" />
         <Node name="Ottawa" to="Ontario" value="1" color="sky" />
@@ -54,10 +44,13 @@
       <Col>
         <Node name="Canada" color="red" col={2} />
       </Col>
-
     </Sankey>
-
   </div>
+</Page>
 
-  <Foot {title} />
-</div>
+<style>
+  .m3 {
+    margin-top: 2rem;
+    margin-right: 4rem;
+  }
+</style>
