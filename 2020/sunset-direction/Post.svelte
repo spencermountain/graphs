@@ -10,7 +10,7 @@
   let title = `Sunrise + Sunset direction`
   spacetime.extend(daylight)
 
-  let lat = 70
+  let lat = 37
 
   const fmt = function (v) {
     v -= 90
