@@ -6908,11 +6908,6 @@ var app = (function () {
     function is_empty$1(obj) {
         return Object.keys(obj).length === 0;
     }
-    function validate_store(store, name) {
-        if (store != null && typeof store.subscribe !== 'function') {
-            throw new Error(`'${name}' is not a store with a 'subscribe' method`);
-        }
-    }
     function subscribe(store, ...callbacks) {
         if (store == null) {
             return noop$1;
@@ -6920,8 +6915,10 @@ var app = (function () {
         const unsub = store.subscribe(...callbacks);
         return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
     }
-    function component_subscribe(component, store, callback) {
-        component.$$.on_destroy.push(subscribe(store, callback));
+    function get_store_value(store) {
+        let value;
+        subscribe(store, _ => value = _)();
+        return value;
     }
     function create_slot$1(definition, ctx, $$scope, fn) {
         if (definition) {
@@ -6969,26 +6966,11 @@ var app = (function () {
     function detach$1(node) {
         node.parentNode.removeChild(node);
     }
-    function destroy_each(iterations, detaching) {
-        for (let i = 0; i < iterations.length; i += 1) {
-            if (iterations[i])
-                iterations[i].d(detaching);
-        }
-    }
     function element$1(name) {
         return document.createElement(name);
     }
     function svg_element$1(name) {
         return document.createElementNS('http://www.w3.org/2000/svg', name);
-    }
-    function text$1(data) {
-        return document.createTextNode(data);
-    }
-    function space$1() {
-        return text$1(' ');
-    }
-    function empty$1() {
-        return text$1('');
     }
     function attr$1(node, attribute, value) {
         if (value == null)
@@ -7014,11 +6996,8 @@ var app = (function () {
             throw new Error(`Function called outside component initialization`);
         return current_component$1;
     }
-    function onMount(fn) {
-        get_current_component().$$.on_mount.push(fn);
-    }
-    function getContext(key) {
-        return get_current_component().$$.context.get(key);
+    function afterUpdate(fn) {
+        get_current_component().$$.after_update.push(fn);
     }
 
     const dirty_components$1 = [];
@@ -7107,12 +7086,6 @@ var app = (function () {
             block.o(local);
         }
     }
-
-    const globals$1 = (typeof window !== 'undefined'
-        ? window
-        : typeof globalThis !== 'undefined'
-            ? globalThis
-            : global);
     function mount_component$1(component, target, anchor) {
         const { fragment, on_mount, on_destroy, after_update } = component.$$;
         fragment && fragment.m(target, anchor);
@@ -7254,15 +7227,6 @@ var app = (function () {
         else
             dispatch_dev$1("SvelteDOMSetAttribute", { node, attribute, value });
     }
-    function validate_each_argument$1(arg) {
-        if (typeof arg !== 'string' && !(arg && typeof arg === 'object' && 'length' in arg)) {
-            let msg = '{#each} only iterates over array-like objects.';
-            if (typeof Symbol === 'function' && arg && Symbol.iterator in arg) {
-                msg += ' You can use a spread to convert this iterable into an array.';
-            }
-            throw new Error(msg);
-        }
-    }
     function validate_slots$1(name, slot, keys) {
         for (const slot_key of Object.keys(slot)) {
             if (!~keys.indexOf(slot_key)) {
@@ -7287,6 +7251,307 @@ var app = (function () {
         $inject_state() { }
     }
 
+    const subscriber_queue = [];
+    /**
+     * Create a `Writable` store that allows both updating and reading by subscription.
+     * @param {*=}value initial value
+     * @param {StartStopNotifier=}start start and stop notifications for subscriptions
+     */
+    function writable(value, start = noop$1) {
+        let stop;
+        const subscribers = [];
+        function set(new_value) {
+            if (safe_not_equal$1(value, new_value)) {
+                value = new_value;
+                if (stop) { // store is ready
+                    const run_queue = !subscriber_queue.length;
+                    for (let i = 0; i < subscribers.length; i += 1) {
+                        const s = subscribers[i];
+                        s[1]();
+                        subscriber_queue.push(s, value);
+                    }
+                    if (run_queue) {
+                        for (let i = 0; i < subscriber_queue.length; i += 2) {
+                            subscriber_queue[i][0](subscriber_queue[i + 1]);
+                        }
+                        subscriber_queue.length = 0;
+                    }
+                }
+            }
+        }
+        function update(fn) {
+            set(fn(value));
+        }
+        function subscribe(run, invalidate = noop$1) {
+            const subscriber = [run, invalidate];
+            subscribers.push(subscriber);
+            if (subscribers.length === 1) {
+                stop = start(set) || noop$1;
+            }
+            run(value);
+            return () => {
+                const index = subscribers.indexOf(subscriber);
+                if (index !== -1) {
+                    subscribers.splice(index, 1);
+                }
+                if (subscribers.length === 0) {
+                    stop();
+                    stop = null;
+                }
+            };
+        }
+        return { set, update, subscribe };
+    }
+
+    var world = writable({
+      maxR: 0,
+      rotate: 0,
+      world: {
+        radius: 0,
+        rotate: 0,
+        from: 0,
+        to: 0,
+        margin: 0,
+      },
+      q: Math.PI / 2,
+    });
+    // export default world
+
+    /* Users/spencer/mountain/somehow-circle/src/Round.svelte generated by Svelte v3.29.0 */
+    const file$3 = "Users/spencer/mountain/somehow-circle/src/Round.svelte";
+
+    function add_css$3() {
+    	var style = element$1("style");
+    	style.id = "svelte-1lnhtnf-style";
+    	style.textContent = "path.svelte-1lnhtnf{pointer-events:all}path.svelte-1lnhtnf:hover{filter:drop-shadow(0px 1px 1px steelblue)}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUm91bmQuc3ZlbHRlIiwic291cmNlcyI6WyJSb3VuZC5zdmVsdGUiXSwic291cmNlc0NvbnRlbnQiOlsiPHNjcmlwdD5cbiAgaW1wb3J0IHsgYWZ0ZXJVcGRhdGUgfSBmcm9tICdzdmVsdGUnXG4gIGltcG9ydCB3b3JsZCBmcm9tICcuL3dvcmxkLmpzJ1xuICBleHBvcnQgbGV0IHJhZGl1cyA9IDUwMFxuICBleHBvcnQgbGV0IHJvdGF0ZSA9IDBcbiAgZXhwb3J0IGxldCBmcm9tID0gMFxuICBleHBvcnQgbGV0IHRvID0gMzYwXG4gIGV4cG9ydCBsZXQgbWFyZ2luID0gMFxuICByYWRpdXMgPSBOdW1iZXIocmFkaXVzKVxuXG4gIGZ1bmN0aW9uIHRvUmFkaWFuKGRlZykge1xuICAgIHZhciBwaSA9IE1hdGguUElcbiAgICByZXR1cm4gZGVnICogKHBpIC8gMTgwKVxuICB9XG4gIGNvbnN0IGNoYW5nZSA9ICgpID0+IHtcbiAgICB3b3JsZC51cGRhdGUoKG9iaikgPT4ge1xuICAgICAgb2JqLnJhZGl1cyA9IHJhZGl1c1xuICAgICAgb2JqLnJvdGF0ZSA9IHRvUmFkaWFuKE51bWJlcihyb3RhdGUpKVxuICAgICAgb2JqLmZyb20gPSBOdW1iZXIoZnJvbSlcbiAgICAgIG9iai50byA9IE51bWJlcih0bylcbiAgICAgIG9iai5tYXJnaW4gPSBOdW1iZXIobWFyZ2luKVxuICAgICAgcmV0dXJuIG9ialxuICAgIH0pXG4gIH1cbiAgYWZ0ZXJVcGRhdGUoKCkgPT4ge1xuICAgIGNoYW5nZSgpXG4gIH0pXG4gIGNoYW5nZSgpXG48L3NjcmlwdD5cblxuPGRpdiBjbGFzcz1cImNvbnRhaW5lclwiPlxuICA8c3ZnIHZpZXdCb3g9XCItNTAsLTUwLDEwMCwxMDBcIiBzaGFwZS1yZW5kZXJpbmc9XCJnZW9tZXRyaWNQcmVjaXNpb25cIiB3aWR0aD1cIjEwMCVcIiBoZWlnaHQ9XCIxMDAlXCI+XG4gICAgPCEtLSBhcnJvdy1oZWFkIC0tPlxuICAgIDxkZWZzPlxuICAgICAgPG1hcmtlclxuICAgICAgICBpZD1cInRyaWFuZ2xlXCJcbiAgICAgICAgdmlld0JveD1cIjAgMCAxMCAxMFwiXG4gICAgICAgIHJlZlg9XCI0XCJcbiAgICAgICAgcmVmWT1cIjZcIlxuICAgICAgICBtYXJrZXJVbml0cz1cInN0cm9rZVdpZHRoXCJcbiAgICAgICAgbWFya2VyV2lkdGg9XCI5XCJcbiAgICAgICAgbWFya2VySGVpZ2h0PVwiOVwiXG4gICAgICAgIG9yaWVudD1cImF1dG9cIlxuICAgICAgPlxuICAgICAgICA8cGF0aCBkPVwiTSAwIDAgTCAxMCA0IEwgMCAxMCB6XCIgZmlsbD1cIiNENjg4ODFcIiB0cmFuc2Zvcm09XCJyb3RhdGUoMjMpXCIgLz5cbiAgICAgIDwvbWFya2VyPlxuICAgIDwvZGVmcz5cblxuICAgIDxzbG90IC8+XG4gIDwvc3ZnPlxuPC9kaXY+XG5cbjxzdHlsZT5cbiAgcGF0aCB7XG4gICAgcG9pbnRlci1ldmVudHM6IGFsbDtcbiAgfVxuICBwYXRoOmhvdmVyIHtcbiAgICBmaWx0ZXI6IGRyb3Atc2hhZG93KDBweCAxcHggMXB4IHN0ZWVsYmx1ZSk7XG4gIH1cbjwvc3R5bGU+XG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBcURFLElBQUksZUFBQyxDQUFDLEFBQ0osY0FBYyxDQUFFLEdBQUcsQUFDckIsQ0FBQyxBQUNELG1CQUFJLE1BQU0sQUFBQyxDQUFDLEFBQ1YsTUFBTSxDQUFFLFlBQVksR0FBRyxDQUFDLEdBQUcsQ0FBQyxHQUFHLENBQUMsU0FBUyxDQUFDLEFBQzVDLENBQUMifQ== */";
+    	append_dev$1(document.head, style);
+    }
+
+    function create_fragment$3(ctx) {
+    	let div;
+    	let svg;
+    	let defs;
+    	let marker;
+    	let path;
+    	let current;
+    	const default_slot_template = /*#slots*/ ctx[6].default;
+    	const default_slot = create_slot$1(default_slot_template, ctx, /*$$scope*/ ctx[5], null);
+
+    	const block = {
+    		c: function create() {
+    			div = element$1("div");
+    			svg = svg_element$1("svg");
+    			defs = svg_element$1("defs");
+    			marker = svg_element$1("marker");
+    			path = svg_element$1("path");
+    			if (default_slot) default_slot.c();
+    			attr_dev$1(path, "d", "M 0 0 L 10 4 L 0 10 z");
+    			attr_dev$1(path, "fill", "#D68881");
+    			attr_dev$1(path, "transform", "rotate(23)");
+    			attr_dev$1(path, "class", "svelte-1lnhtnf");
+    			add_location$1(path, file$3, 44, 8, 985);
+    			attr_dev$1(marker, "id", "triangle");
+    			attr_dev$1(marker, "viewBox", "0 0 10 10");
+    			attr_dev$1(marker, "refX", "4");
+    			attr_dev$1(marker, "refY", "6");
+    			attr_dev$1(marker, "markerUnits", "strokeWidth");
+    			attr_dev$1(marker, "markerWidth", "9");
+    			attr_dev$1(marker, "markerHeight", "9");
+    			attr_dev$1(marker, "orient", "auto");
+    			add_location$1(marker, file$3, 34, 6, 772);
+    			add_location$1(defs, file$3, 33, 4, 759);
+    			attr_dev$1(svg, "viewBox", "-50,-50,100,100");
+    			attr_dev$1(svg, "shape-rendering", "geometricPrecision");
+    			attr_dev$1(svg, "width", "100%");
+    			attr_dev$1(svg, "height", "100%");
+    			add_location$1(svg, file$3, 31, 2, 635);
+    			attr_dev$1(div, "class", "container");
+    			add_location$1(div, file$3, 30, 0, 609);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev$1(target, div, anchor);
+    			append_dev$1(div, svg);
+    			append_dev$1(svg, defs);
+    			append_dev$1(defs, marker);
+    			append_dev$1(marker, path);
+
+    			if (default_slot) {
+    				default_slot.m(svg, null);
+    			}
+
+    			current = true;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (default_slot) {
+    				if (default_slot.p && dirty & /*$$scope*/ 32) {
+    					update_slot$1(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[5], dirty, null, null);
+    				}
+    			}
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in$1(default_slot, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out$1(default_slot, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev$1(div);
+    			if (default_slot) default_slot.d(detaching);
+    		}
+    	};
+
+    	dispatch_dev$1("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$3.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function toRadian(deg) {
+    	var pi = Math.PI;
+    	return deg * (pi / 180);
+    }
+
+    function instance$3($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots$1("Round", slots, ['default']);
+    	let { radius = 500 } = $$props;
+    	let { rotate = 0 } = $$props;
+    	let { from = 0 } = $$props;
+    	let { to = 360 } = $$props;
+    	let { margin = 0 } = $$props;
+    	radius = Number(radius);
+
+    	const change = () => {
+    		world.update(obj => {
+    			obj.radius = radius;
+    			obj.rotate = toRadian(Number(rotate));
+    			obj.from = Number(from);
+    			obj.to = Number(to);
+    			obj.margin = Number(margin);
+    			return obj;
+    		});
+    	};
+
+    	afterUpdate(() => {
+    		change();
+    	});
+
+    	change();
+    	const writable_props = ["radius", "rotate", "from", "to", "margin"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Round> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("radius" in $$props) $$invalidate(0, radius = $$props.radius);
+    		if ("rotate" in $$props) $$invalidate(1, rotate = $$props.rotate);
+    		if ("from" in $$props) $$invalidate(2, from = $$props.from);
+    		if ("to" in $$props) $$invalidate(3, to = $$props.to);
+    		if ("margin" in $$props) $$invalidate(4, margin = $$props.margin);
+    		if ("$$scope" in $$props) $$invalidate(5, $$scope = $$props.$$scope);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		afterUpdate,
+    		world,
+    		radius,
+    		rotate,
+    		from,
+    		to,
+    		margin,
+    		toRadian,
+    		change
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("radius" in $$props) $$invalidate(0, radius = $$props.radius);
+    		if ("rotate" in $$props) $$invalidate(1, rotate = $$props.rotate);
+    		if ("from" in $$props) $$invalidate(2, from = $$props.from);
+    		if ("to" in $$props) $$invalidate(3, to = $$props.to);
+    		if ("margin" in $$props) $$invalidate(4, margin = $$props.margin);
+    	};
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	return [radius, rotate, from, to, margin, $$scope, slots];
+    }
+
+    class Round extends SvelteComponentDev$1 {
+    	constructor(options) {
+    		super(options);
+    		if (!document.getElementById("svelte-1lnhtnf-style")) add_css$3();
+
+    		init$1(this, options, instance$3, create_fragment$3, safe_not_equal$1, {
+    			radius: 0,
+    			rotate: 1,
+    			from: 2,
+    			to: 3,
+    			margin: 4
+    		});
+
+    		dispatch_dev$1("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Round",
+    			options,
+    			id: create_fragment$3.name
+    		});
+    	}
+
+    	get radius() {
+    		throw new Error("<Round>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set radius(value) {
+    		throw new Error("<Round>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get rotate() {
+    		throw new Error("<Round>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set rotate(value) {
+    		throw new Error("<Round>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get from() {
+    		throw new Error("<Round>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set from(value) {
+    		throw new Error("<Round>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get to() {
+    		throw new Error("<Round>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set to(value) {
+    		throw new Error("<Round>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get margin() {
+    		throw new Error("<Round>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set margin(value) {
+    		throw new Error("<Round>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
     //a very-tiny version of d3-scale's scaleLinear
     const scaleLinear = function (obj) {
       let world = obj.world || [];
@@ -7306,6 +7571,33 @@ var app = (function () {
     //   minmax: [0, 100]
     // })
     // console.log(scale(50))
+
+    const trig = [-Math.PI, Math.PI];
+
+    const maxRadius = function (o) {
+      let max = 0;
+      let r = o.radius + o.width;
+      if (r > max) {
+        max = r;
+      }
+      return max
+    };
+
+    const makeScales = function (o) {
+      let world$1 = get_store_value(world);
+      let xScale = scaleLinear({ minmax: [world$1.from, world$1.to], world: trig });
+
+      let max = maxRadius(o);
+      max = max + world$1.margin;
+      if (max > world$1.maxR) {
+        world.update((wo) => {
+          wo.maxR = max;
+          return wo
+        });
+      }
+      let rScale = scaleLinear({ minmax: [0, world$1.maxR], world: [0, 50] });
+      return { xScale, rScale }
+    };
 
     const pi = Math.PI,
         tau = 2 * pi,
@@ -7871,965 +8163,18 @@ var app = (function () {
       return lineRadial(line().curve(curveRadialLinear));
     }
 
-    const drawArcs = function (arcs, xScale, rScale, q, rotate) {
-      return arcs.map((obj) => {
-        let r = rScale(obj.radius);
-        let attrs = {
-          startAngle: xScale(obj.to) - q + rotate,
-          endAngle: xScale(obj.from) - q + rotate,
-          innerRadius: r,
-          outerRadius: r + rScale(obj.width)
-        };
-        let path = arc()(attrs);
-        return {
-          type: 'arc',
-          path: path,
-          color: obj.color
-        }
-      })
+    const drawArcs = function (obj, xScale, rScale) {
+      let { q, rotate } = get_store_value(world);
+      let r = rScale(obj.radius);
+      let attrs = {
+        startAngle: xScale(obj.to) - q + rotate,
+        endAngle: xScale(obj.from) - q + rotate,
+        innerRadius: r,
+        outerRadius: r + rScale(obj.width)
+      };
+      let path = arc()(attrs);
+      return { path }
     };
-
-    const drawArcs$1 = function (arcs, xScale, rScale, q, rotate) {
-      return arcs.map((obj) => {
-        let r = rScale(obj.radius);
-        let attrs = {
-          startAngle: xScale(obj.to) - q + rotate,
-          endAngle: xScale(obj.from) - q + rotate,
-          innerRadius: r,
-          outerRadius: r + rScale(obj.width)
-        };
-        let path = arc()(attrs);
-        let clockwise = attrs.endAngle < attrs.startAngle;
-        let arrow = {};
-        return {
-          type: 'arrow',
-          clockwise: clockwise,
-          path: path,
-          color: obj.color,
-          arrow: arrow
-        }
-      })
-    };
-
-    const drawLines = function (lines, xScale, rScale, q, rotate) {
-      // draw lines
-      return lines.map((obj) => {
-        let data = [
-          { angle: obj.angle, radius: obj.radius },
-          { angle: obj.angle, radius: obj.length + obj.radius }
-        ];
-        let path = lineRadial$1()
-          .angle((d) => xScale(d.angle) - q + rotate)
-          .radius((d) => rScale(d.radius));
-        return {
-          type: 'line',
-          path: path(data),
-          color: obj.color,
-          width: obj.width
-        }
-      })
-    };
-
-    const findPoint = function (angle, r) {
-      return {
-        x: r * Math.sin(angle),
-        y: -r * Math.cos(angle)
-      }
-    };
-
-    const drawLabels = function (labels, xScale, rScale, q, rotate) {
-      return labels.map((obj) => {
-        let point = findPoint(xScale(obj.angle) - q + rotate, rScale(obj.radius));
-        let angle = obj.angle;
-        // don't go upside-down
-        if (angle > 90) {
-          angle -= 180;
-          obj.align = obj.align === 'left' ? 'right' : 'left';
-        } else if (angle < -90) {
-          angle += 180;
-          obj.align = obj.align === 'left' ? 'right' : 'left';
-        }
-        // console.log(obj.rotate)
-        if (angle > 0) {
-          angle -= obj.rotate;
-        } else {
-          angle += obj.rotate;
-        }
-        return {
-          type: 'label',
-          x: point.x,
-          y: point.y,
-          angle: angle,
-          align: obj.align === 'left' ? 'start' : 'end',
-          size: obj.size,
-          text: obj.text,
-          color: obj.color
-        }
-      })
-    };
-
-    const findPoint$1 = function (angle, r) {
-      return {
-        x: r * Math.sin(angle),
-        y: -r * Math.cos(angle)
-      }
-    };
-
-    const drawLabels$1 = function (labels, xScale, rScale, q, rotate) {
-      return labels.map((obj) => {
-        let point = findPoint$1(xScale(obj.angle) - q + rotate, rScale(obj.radius));
-        let angle = obj.angle;
-        // don't go upside-down
-        if (angle > 90) {
-          angle -= 180;
-          obj.align = obj.align === 'left' ? 'right' : 'left';
-        } else if (angle < -90) {
-          angle += 180;
-          obj.align = obj.align === 'left' ? 'right' : 'left';
-        }
-        // console.log(obj.rotate)
-        if (angle > 0) {
-          angle -= obj.rotate;
-        } else {
-          angle += obj.rotate;
-        }
-        return {
-          type: 'tick',
-          x: point.x,
-          y: point.y,
-          angle: angle,
-          align: obj.align === 'left' ? 'start' : 'end',
-          size: obj.size,
-          text: obj.text,
-          color: obj.color
-        }
-      })
-    };
-
-    //export let name = ''
-
-    let q = Math.PI / 2;
-    const trig = [-Math.PI, Math.PI];
-
-    function toRadian(deg) {
-      var pi = Math.PI;
-      return deg * (pi / 180)
-    }
-
-    const maxRadius = function (shapes) {
-      let max = 0;
-      shapes.forEach((o) => {
-        let r = o.radius + o.width;
-        if (r > max) {
-          max = r;
-        }
-      });
-      return max
-    };
-
-    const layout = function (arcs, lines, labels, ticks, arrows, world) {
-      let xScale = scaleLinear({ minmax: [world.from, world.to], world: trig });
-      let rotate = toRadian(world.rotate);
-      // console.log(world.rotate)
-
-      let arr = arcs.concat(lines, labels, arrows);
-      let maxR = maxRadius(arr);
-      maxR = maxR + world.margin;
-      let rScale = scaleLinear({ minmax: [0, maxR], world: [0, 50] });
-
-      // draw arcs
-      let shapes = drawArcs(arcs, xScale, rScale, q, rotate);
-      // draw lines
-      shapes = shapes.concat(drawLines(lines, xScale, rScale, q, rotate));
-      // draw kabeks
-      shapes = shapes.concat(drawLabels(labels, xScale, rScale, q, rotate));
-      // draw ticks
-      shapes = shapes.concat(drawLabels$1(ticks, xScale, rScale, q, rotate));
-      // draw arrows
-      shapes = shapes.concat(drawArcs$1(arrows, xScale, rScale, q, rotate));
-      return shapes
-    };
-
-    const subscriber_queue = [];
-    /**
-     * Create a `Writable` store that allows both updating and reading by subscription.
-     * @param {*=}value initial value
-     * @param {StartStopNotifier=}start start and stop notifications for subscriptions
-     */
-    function writable(value, start = noop$1) {
-        let stop;
-        const subscribers = [];
-        function set(new_value) {
-            if (safe_not_equal$1(value, new_value)) {
-                value = new_value;
-                if (stop) { // store is ready
-                    const run_queue = !subscriber_queue.length;
-                    for (let i = 0; i < subscribers.length; i += 1) {
-                        const s = subscribers[i];
-                        s[1]();
-                        subscriber_queue.push(s, value);
-                    }
-                    if (run_queue) {
-                        for (let i = 0; i < subscriber_queue.length; i += 2) {
-                            subscriber_queue[i][0](subscriber_queue[i + 1]);
-                        }
-                        subscriber_queue.length = 0;
-                    }
-                }
-            }
-        }
-        function update(fn) {
-            set(fn(value));
-        }
-        function subscribe(run, invalidate = noop$1) {
-            const subscriber = [run, invalidate];
-            subscribers.push(subscriber);
-            if (subscribers.length === 1) {
-                stop = start(set) || noop$1;
-            }
-            run(value);
-            return () => {
-                const index = subscribers.indexOf(subscriber);
-                if (index !== -1) {
-                    subscribers.splice(index, 1);
-                }
-                if (subscribers.length === 0) {
-                    stop();
-                    stop = null;
-                }
-            };
-        }
-        return { set, update, subscribe };
-    }
-
-    const arcs = writable([]);
-    const lines = writable([]);
-    const labels = writable([]);
-    const ticks = writable([]);
-    const arrows = writable([]);
-    //
-    // export const _rotate = 0
-
-    /* Users/spencer/mountain/somehow-circle/src/Round.svelte generated by Svelte v3.29.0 */
-
-    const { console: console_1 } = globals$1;
-    const file$3 = "Users/spencer/mountain/somehow-circle/src/Round.svelte";
-
-    function add_css$3() {
-    	var style = element$1("style");
-    	style.id = "svelte-1lnhtnf-style";
-    	style.textContent = "path.svelte-1lnhtnf{pointer-events:all}path.svelte-1lnhtnf:hover{filter:drop-shadow(0px 1px 1px steelblue)}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUm91bmQuc3ZlbHRlIiwic291cmNlcyI6WyJSb3VuZC5zdmVsdGUiXSwic291cmNlc0NvbnRlbnQiOlsiPHNjcmlwdD5cbiAgaW1wb3J0IHsgb25Nb3VudCB9IGZyb20gJ3N2ZWx0ZSdcbiAgaW1wb3J0IGxheW91dCBmcm9tICcuL2xheW91dCdcbiAgaW1wb3J0IHsgYXJjcywgbGluZXMsIGxhYmVscywgdGlja3MsIGFycm93cyB9IGZyb20gJy4vc3RvcmVzLmpzJ1xuXG4gIGV4cG9ydCBsZXQgcmFkaXVzID0gNTAwXG4gIGV4cG9ydCBsZXQgcm90YXRlID0gMFxuICBleHBvcnQgbGV0IGZyb20gPSAwXG4gIGV4cG9ydCBsZXQgdG8gPSAzNjBcbiAgZXhwb3J0IGxldCBtYXJnaW4gPSAwXG4gIHJhZGl1cyA9IE51bWJlcihyYWRpdXMpXG5cbiAgbGV0IHdvcmxkID0ge1xuICAgIHJhZGl1czogcmFkaXVzLFxuICAgIHJvdGF0ZTogTnVtYmVyKHJvdGF0ZSksXG4gICAgZnJvbTogTnVtYmVyKGZyb20pLFxuICAgIHRvOiBOdW1iZXIodG8pLFxuICAgIG1hcmdpbjogTnVtYmVyKG1hcmdpbilcbiAgfVxuICBsZXQgc2hhcGVzID0gW11cbiAgb25Nb3VudCgoKSA9PiB7XG4gICAgc2hhcGVzID0gbGF5b3V0KCRhcmNzLCAkbGluZXMsICRsYWJlbHMsICR0aWNrcywgJGFycm93cywgd29ybGQpXG4gICAgY29uc29sZS5sb2coc2hhcGVzKVxuICB9KVxuPC9zY3JpcHQ+XG5cbjxzdHlsZT5cbiAgcGF0aCB7XG4gICAgcG9pbnRlci1ldmVudHM6IGFsbDtcbiAgfVxuICBwYXRoOmhvdmVyIHtcbiAgICBmaWx0ZXI6IGRyb3Atc2hhZG93KDBweCAxcHggMXB4IHN0ZWVsYmx1ZSk7XG4gIH1cbjwvc3R5bGU+XG5cbjxkaXYgY2xhc3M9XCJjb250YWluZXJcIj5cbiAgPHN2ZyB2aWV3Qm94PVwiLTUwLC01MCwxMDAsMTAwXCIgc2hhcGUtcmVuZGVyaW5nPVwiZ2VvbWV0cmljUHJlY2lzaW9uXCIgd2lkdGg9XCIxMDAlXCIgaGVpZ2h0PVwiMTAwJVwiPlxuXG4gICAgPCEtLSBhcnJvdy1oZWFkIC0tPlxuICAgIDxkZWZzPlxuICAgICAgPG1hcmtlclxuICAgICAgICBpZD1cInRyaWFuZ2xlXCJcbiAgICAgICAgdmlld0JveD1cIjAgMCAxMCAxMFwiXG4gICAgICAgIHJlZlg9XCI0XCJcbiAgICAgICAgcmVmWT1cIjZcIlxuICAgICAgICBtYXJrZXJVbml0cz1cInN0cm9rZVdpZHRoXCJcbiAgICAgICAgbWFya2VyV2lkdGg9XCI5XCJcbiAgICAgICAgbWFya2VySGVpZ2h0PVwiOVwiXG4gICAgICAgIG9yaWVudD1cImF1dG9cIj5cbiAgICAgICAgPHBhdGggZD1cIk0gMCAwIEwgMTAgNCBMIDAgMTAgelwiIGZpbGw9XCIjRDY4ODgxXCIgdHJhbnNmb3JtPVwicm90YXRlKDIzKVwiIC8+XG4gICAgICA8L21hcmtlcj5cbiAgICA8L2RlZnM+XG5cbiAgICB7I2VhY2ggc2hhcGVzIGFzIG99XG4gICAgICB7I2lmIG8udHlwZSA9PT0gJ2FyYyd9XG4gICAgICAgIDxwYXRoIGNsYXNzPVwibGlua1wiIGQ9e28ucGF0aH0gc3Ryb2tlPVwibm9uZVwiIGZpbGw9e28uY29sb3J9IHN0eWxlPVwiXCIgc3Ryb2tlLXdpZHRoPXsxfSAvPlxuICAgICAgey9pZn1cbiAgICAgIHsjaWYgby50eXBlID09PSAnbGluZSd9XG4gICAgICAgIDxwYXRoXG4gICAgICAgICAgY2xhc3M9XCJsaW5rXCJcbiAgICAgICAgICBkPXtvLnBhdGh9XG4gICAgICAgICAgc3Ryb2tlPXtvLmNvbG9yfVxuICAgICAgICAgIGZpbGw9e28uY29sb3J9XG4gICAgICAgICAgc3R5bGU9XCJcIlxuICAgICAgICAgIHN0cm9rZS13aWR0aD17by53aWR0aH0gLz5cbiAgICAgIHsvaWZ9XG4gICAgICB7I2lmIG8udHlwZSA9PT0gJ2xhYmVsJ31cbiAgICAgICAgPHRleHRcbiAgICAgICAgICB4PXtvLnh9XG4gICAgICAgICAgeT17by55fVxuICAgICAgICAgIHRyYW5zZm9ybT1cInJvdGF0ZSh7by5hbmdsZX0se28ueH0se28ueX0pXCJcbiAgICAgICAgICBmb250LXNpemU9e28uc2l6ZX1cbiAgICAgICAgICB0ZXh0LWFuY2hvcj17by5hbGlnbn1cbiAgICAgICAgICBmaWxsPXtvLmNvbG9yfT5cbiAgICAgICAgICB7QGh0bWwgby50ZXh0fVxuICAgICAgICA8L3RleHQ+XG4gICAgICB7L2lmfVxuICAgICAgeyNpZiBvLnR5cGUgPT09ICd0aWNrJ31cbiAgICAgICAgPHRleHRcbiAgICAgICAgICB4PXtvLnh9XG4gICAgICAgICAgeT17by55fVxuICAgICAgICAgIHRyYW5zZm9ybT1cInJvdGF0ZSh7by5hbmdsZX0se28ueH0se28ueX0pXCJcbiAgICAgICAgICBmb250LXNpemU9e28uc2l6ZX1cbiAgICAgICAgICB0ZXh0LWFuY2hvcj17by5hbGlnbn1cbiAgICAgICAgICBmaWxsPXtvLmNvbG9yfT5cbiAgICAgICAgICB7QGh0bWwgby50ZXh0fVxuICAgICAgICA8L3RleHQ+XG4gICAgICB7L2lmfVxuICAgICAgeyNpZiBvLnR5cGUgPT09ICdhcnJvdyd9XG4gICAgICAgIDxwYXRoXG4gICAgICAgICAgY2xhc3M9XCJsaW5rXCJcbiAgICAgICAgICBkPXtvLnBhdGh9XG4gICAgICAgICAgc3Ryb2tlPVwibm9uZVwiXG4gICAgICAgICAgZmlsbD17by5jb2xvcn1cbiAgICAgICAgICBzdHlsZT1cIlwiXG4gICAgICAgICAgc3Ryb2tlLXdpZHRoPXsxfVxuICAgICAgICAgIG1hcmtlci1lbmQ9XCJ1cmwoI3RyaWFuZ2xlKVwiIC8+XG4gICAgICB7L2lmfVxuICAgIHsvZWFjaH1cbiAgPC9zdmc+XG5cbjwvZGl2PlxuPHNsb3QgLz5cbiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUEyQkUsSUFBSSxlQUFDLENBQUMsQUFDSixjQUFjLENBQUUsR0FBRyxBQUNyQixDQUFDLEFBQ0QsbUJBQUksTUFBTSxBQUFDLENBQUMsQUFDVixNQUFNLENBQUUsWUFBWSxHQUFHLENBQUMsR0FBRyxDQUFDLEdBQUcsQ0FBQyxTQUFTLENBQUMsQUFDNUMsQ0FBQyJ9 */";
-    	append_dev$1(document.head, style);
-    }
-
-    function get_each_context(ctx, list, i) {
-    	const child_ctx = ctx.slice();
-    	child_ctx[14] = list[i];
-    	return child_ctx;
-    }
-
-    // (55:6) {#if o.type === 'arc'}
-    function create_if_block_4(ctx) {
-    	let path;
-    	let path_d_value;
-    	let path_fill_value;
-    	let path_stroke_width_value;
-
-    	const block = {
-    		c: function create() {
-    			path = svg_element$1("path");
-    			attr_dev$1(path, "class", "link svelte-1lnhtnf");
-    			attr_dev$1(path, "d", path_d_value = /*o*/ ctx[14].path);
-    			attr_dev$1(path, "stroke", "none");
-    			attr_dev$1(path, "fill", path_fill_value = /*o*/ ctx[14].color);
-    			attr_dev$1(path, "stroke-width", path_stroke_width_value = 1);
-    			add_location$1(path, file$3, 55, 8, 1228);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev$1(target, path, anchor);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*shapes*/ 1 && path_d_value !== (path_d_value = /*o*/ ctx[14].path)) {
-    				attr_dev$1(path, "d", path_d_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && path_fill_value !== (path_fill_value = /*o*/ ctx[14].color)) {
-    				attr_dev$1(path, "fill", path_fill_value);
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev$1(path);
-    		}
-    	};
-
-    	dispatch_dev$1("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block_4.name,
-    		type: "if",
-    		source: "(55:6) {#if o.type === 'arc'}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (58:6) {#if o.type === 'line'}
-    function create_if_block_3(ctx) {
-    	let path;
-    	let path_d_value;
-    	let path_stroke_value;
-    	let path_fill_value;
-    	let path_stroke_width_value;
-
-    	const block = {
-    		c: function create() {
-    			path = svg_element$1("path");
-    			attr_dev$1(path, "class", "link svelte-1lnhtnf");
-    			attr_dev$1(path, "d", path_d_value = /*o*/ ctx[14].path);
-    			attr_dev$1(path, "stroke", path_stroke_value = /*o*/ ctx[14].color);
-    			attr_dev$1(path, "fill", path_fill_value = /*o*/ ctx[14].color);
-    			attr_dev$1(path, "stroke-width", path_stroke_width_value = /*o*/ ctx[14].width);
-    			add_location$1(path, file$3, 58, 8, 1366);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev$1(target, path, anchor);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*shapes*/ 1 && path_d_value !== (path_d_value = /*o*/ ctx[14].path)) {
-    				attr_dev$1(path, "d", path_d_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && path_stroke_value !== (path_stroke_value = /*o*/ ctx[14].color)) {
-    				attr_dev$1(path, "stroke", path_stroke_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && path_fill_value !== (path_fill_value = /*o*/ ctx[14].color)) {
-    				attr_dev$1(path, "fill", path_fill_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && path_stroke_width_value !== (path_stroke_width_value = /*o*/ ctx[14].width)) {
-    				attr_dev$1(path, "stroke-width", path_stroke_width_value);
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev$1(path);
-    		}
-    	};
-
-    	dispatch_dev$1("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block_3.name,
-    		type: "if",
-    		source: "(58:6) {#if o.type === 'line'}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (67:6) {#if o.type === 'label'}
-    function create_if_block_2(ctx) {
-    	let text_1;
-    	let raw_value = /*o*/ ctx[14].text + "";
-    	let text_1_x_value;
-    	let text_1_y_value;
-    	let text_1_transform_value;
-    	let text_1_font_size_value;
-    	let text_1_text_anchor_value;
-    	let text_1_fill_value;
-
-    	const block = {
-    		c: function create() {
-    			text_1 = svg_element$1("text");
-    			attr_dev$1(text_1, "x", text_1_x_value = /*o*/ ctx[14].x);
-    			attr_dev$1(text_1, "y", text_1_y_value = /*o*/ ctx[14].y);
-    			attr_dev$1(text_1, "transform", text_1_transform_value = "rotate(" + /*o*/ ctx[14].angle + "," + /*o*/ ctx[14].x + "," + /*o*/ ctx[14].y + ")");
-    			attr_dev$1(text_1, "font-size", text_1_font_size_value = /*o*/ ctx[14].size);
-    			attr_dev$1(text_1, "text-anchor", text_1_text_anchor_value = /*o*/ ctx[14].align);
-    			attr_dev$1(text_1, "fill", text_1_fill_value = /*o*/ ctx[14].color);
-    			add_location$1(text_1, file$3, 67, 8, 1574);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev$1(target, text_1, anchor);
-    			text_1.innerHTML = raw_value;
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*shapes*/ 1 && raw_value !== (raw_value = /*o*/ ctx[14].text + "")) text_1.innerHTML = raw_value;
-    			if (dirty & /*shapes*/ 1 && text_1_x_value !== (text_1_x_value = /*o*/ ctx[14].x)) {
-    				attr_dev$1(text_1, "x", text_1_x_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && text_1_y_value !== (text_1_y_value = /*o*/ ctx[14].y)) {
-    				attr_dev$1(text_1, "y", text_1_y_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && text_1_transform_value !== (text_1_transform_value = "rotate(" + /*o*/ ctx[14].angle + "," + /*o*/ ctx[14].x + "," + /*o*/ ctx[14].y + ")")) {
-    				attr_dev$1(text_1, "transform", text_1_transform_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && text_1_font_size_value !== (text_1_font_size_value = /*o*/ ctx[14].size)) {
-    				attr_dev$1(text_1, "font-size", text_1_font_size_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && text_1_text_anchor_value !== (text_1_text_anchor_value = /*o*/ ctx[14].align)) {
-    				attr_dev$1(text_1, "text-anchor", text_1_text_anchor_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && text_1_fill_value !== (text_1_fill_value = /*o*/ ctx[14].color)) {
-    				attr_dev$1(text_1, "fill", text_1_fill_value);
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev$1(text_1);
-    		}
-    	};
-
-    	dispatch_dev$1("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block_2.name,
-    		type: "if",
-    		source: "(67:6) {#if o.type === 'label'}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (78:6) {#if o.type === 'tick'}
-    function create_if_block_1(ctx) {
-    	let text_1;
-    	let raw_value = /*o*/ ctx[14].text + "";
-    	let text_1_x_value;
-    	let text_1_y_value;
-    	let text_1_transform_value;
-    	let text_1_font_size_value;
-    	let text_1_text_anchor_value;
-    	let text_1_fill_value;
-
-    	const block = {
-    		c: function create() {
-    			text_1 = svg_element$1("text");
-    			attr_dev$1(text_1, "x", text_1_x_value = /*o*/ ctx[14].x);
-    			attr_dev$1(text_1, "y", text_1_y_value = /*o*/ ctx[14].y);
-    			attr_dev$1(text_1, "transform", text_1_transform_value = "rotate(" + /*o*/ ctx[14].angle + "," + /*o*/ ctx[14].x + "," + /*o*/ ctx[14].y + ")");
-    			attr_dev$1(text_1, "font-size", text_1_font_size_value = /*o*/ ctx[14].size);
-    			attr_dev$1(text_1, "text-anchor", text_1_text_anchor_value = /*o*/ ctx[14].align);
-    			attr_dev$1(text_1, "fill", text_1_fill_value = /*o*/ ctx[14].color);
-    			add_location$1(text_1, file$3, 78, 8, 1846);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev$1(target, text_1, anchor);
-    			text_1.innerHTML = raw_value;
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*shapes*/ 1 && raw_value !== (raw_value = /*o*/ ctx[14].text + "")) text_1.innerHTML = raw_value;
-    			if (dirty & /*shapes*/ 1 && text_1_x_value !== (text_1_x_value = /*o*/ ctx[14].x)) {
-    				attr_dev$1(text_1, "x", text_1_x_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && text_1_y_value !== (text_1_y_value = /*o*/ ctx[14].y)) {
-    				attr_dev$1(text_1, "y", text_1_y_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && text_1_transform_value !== (text_1_transform_value = "rotate(" + /*o*/ ctx[14].angle + "," + /*o*/ ctx[14].x + "," + /*o*/ ctx[14].y + ")")) {
-    				attr_dev$1(text_1, "transform", text_1_transform_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && text_1_font_size_value !== (text_1_font_size_value = /*o*/ ctx[14].size)) {
-    				attr_dev$1(text_1, "font-size", text_1_font_size_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && text_1_text_anchor_value !== (text_1_text_anchor_value = /*o*/ ctx[14].align)) {
-    				attr_dev$1(text_1, "text-anchor", text_1_text_anchor_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && text_1_fill_value !== (text_1_fill_value = /*o*/ ctx[14].color)) {
-    				attr_dev$1(text_1, "fill", text_1_fill_value);
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev$1(text_1);
-    		}
-    	};
-
-    	dispatch_dev$1("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block_1.name,
-    		type: "if",
-    		source: "(78:6) {#if o.type === 'tick'}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (89:6) {#if o.type === 'arrow'}
-    function create_if_block(ctx) {
-    	let path;
-    	let path_d_value;
-    	let path_fill_value;
-    	let path_stroke_width_value;
-
-    	const block = {
-    		c: function create() {
-    			path = svg_element$1("path");
-    			attr_dev$1(path, "class", "link svelte-1lnhtnf");
-    			attr_dev$1(path, "d", path_d_value = /*o*/ ctx[14].path);
-    			attr_dev$1(path, "stroke", "none");
-    			attr_dev$1(path, "fill", path_fill_value = /*o*/ ctx[14].color);
-    			attr_dev$1(path, "stroke-width", path_stroke_width_value = 1);
-    			attr_dev$1(path, "marker-end", "url(#triangle)");
-    			add_location$1(path, file$3, 89, 8, 2119);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev$1(target, path, anchor);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*shapes*/ 1 && path_d_value !== (path_d_value = /*o*/ ctx[14].path)) {
-    				attr_dev$1(path, "d", path_d_value);
-    			}
-
-    			if (dirty & /*shapes*/ 1 && path_fill_value !== (path_fill_value = /*o*/ ctx[14].color)) {
-    				attr_dev$1(path, "fill", path_fill_value);
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev$1(path);
-    		}
-    	};
-
-    	dispatch_dev$1("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block.name,
-    		type: "if",
-    		source: "(89:6) {#if o.type === 'arrow'}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    // (54:4) {#each shapes as o}
-    function create_each_block(ctx) {
-    	let if_block0_anchor;
-    	let if_block1_anchor;
-    	let if_block2_anchor;
-    	let if_block3_anchor;
-    	let if_block4_anchor;
-    	let if_block0 = /*o*/ ctx[14].type === "arc" && create_if_block_4(ctx);
-    	let if_block1 = /*o*/ ctx[14].type === "line" && create_if_block_3(ctx);
-    	let if_block2 = /*o*/ ctx[14].type === "label" && create_if_block_2(ctx);
-    	let if_block3 = /*o*/ ctx[14].type === "tick" && create_if_block_1(ctx);
-    	let if_block4 = /*o*/ ctx[14].type === "arrow" && create_if_block(ctx);
-
-    	const block = {
-    		c: function create() {
-    			if (if_block0) if_block0.c();
-    			if_block0_anchor = empty$1();
-    			if (if_block1) if_block1.c();
-    			if_block1_anchor = empty$1();
-    			if (if_block2) if_block2.c();
-    			if_block2_anchor = empty$1();
-    			if (if_block3) if_block3.c();
-    			if_block3_anchor = empty$1();
-    			if (if_block4) if_block4.c();
-    			if_block4_anchor = empty$1();
-    		},
-    		m: function mount(target, anchor) {
-    			if (if_block0) if_block0.m(target, anchor);
-    			insert_dev$1(target, if_block0_anchor, anchor);
-    			if (if_block1) if_block1.m(target, anchor);
-    			insert_dev$1(target, if_block1_anchor, anchor);
-    			if (if_block2) if_block2.m(target, anchor);
-    			insert_dev$1(target, if_block2_anchor, anchor);
-    			if (if_block3) if_block3.m(target, anchor);
-    			insert_dev$1(target, if_block3_anchor, anchor);
-    			if (if_block4) if_block4.m(target, anchor);
-    			insert_dev$1(target, if_block4_anchor, anchor);
-    		},
-    		p: function update(ctx, dirty) {
-    			if (/*o*/ ctx[14].type === "arc") {
-    				if (if_block0) {
-    					if_block0.p(ctx, dirty);
-    				} else {
-    					if_block0 = create_if_block_4(ctx);
-    					if_block0.c();
-    					if_block0.m(if_block0_anchor.parentNode, if_block0_anchor);
-    				}
-    			} else if (if_block0) {
-    				if_block0.d(1);
-    				if_block0 = null;
-    			}
-
-    			if (/*o*/ ctx[14].type === "line") {
-    				if (if_block1) {
-    					if_block1.p(ctx, dirty);
-    				} else {
-    					if_block1 = create_if_block_3(ctx);
-    					if_block1.c();
-    					if_block1.m(if_block1_anchor.parentNode, if_block1_anchor);
-    				}
-    			} else if (if_block1) {
-    				if_block1.d(1);
-    				if_block1 = null;
-    			}
-
-    			if (/*o*/ ctx[14].type === "label") {
-    				if (if_block2) {
-    					if_block2.p(ctx, dirty);
-    				} else {
-    					if_block2 = create_if_block_2(ctx);
-    					if_block2.c();
-    					if_block2.m(if_block2_anchor.parentNode, if_block2_anchor);
-    				}
-    			} else if (if_block2) {
-    				if_block2.d(1);
-    				if_block2 = null;
-    			}
-
-    			if (/*o*/ ctx[14].type === "tick") {
-    				if (if_block3) {
-    					if_block3.p(ctx, dirty);
-    				} else {
-    					if_block3 = create_if_block_1(ctx);
-    					if_block3.c();
-    					if_block3.m(if_block3_anchor.parentNode, if_block3_anchor);
-    				}
-    			} else if (if_block3) {
-    				if_block3.d(1);
-    				if_block3 = null;
-    			}
-
-    			if (/*o*/ ctx[14].type === "arrow") {
-    				if (if_block4) {
-    					if_block4.p(ctx, dirty);
-    				} else {
-    					if_block4 = create_if_block(ctx);
-    					if_block4.c();
-    					if_block4.m(if_block4_anchor.parentNode, if_block4_anchor);
-    				}
-    			} else if (if_block4) {
-    				if_block4.d(1);
-    				if_block4 = null;
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (if_block0) if_block0.d(detaching);
-    			if (detaching) detach_dev$1(if_block0_anchor);
-    			if (if_block1) if_block1.d(detaching);
-    			if (detaching) detach_dev$1(if_block1_anchor);
-    			if (if_block2) if_block2.d(detaching);
-    			if (detaching) detach_dev$1(if_block2_anchor);
-    			if (if_block3) if_block3.d(detaching);
-    			if (detaching) detach_dev$1(if_block3_anchor);
-    			if (if_block4) if_block4.d(detaching);
-    			if (detaching) detach_dev$1(if_block4_anchor);
-    		}
-    	};
-
-    	dispatch_dev$1("SvelteRegisterBlock", {
-    		block,
-    		id: create_each_block.name,
-    		type: "each",
-    		source: "(54:4) {#each shapes as o}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    function create_fragment$3(ctx) {
-    	let div;
-    	let svg;
-    	let defs;
-    	let marker;
-    	let path;
-    	let t;
-    	let current;
-    	let each_value = /*shapes*/ ctx[0];
-    	validate_each_argument$1(each_value);
-    	let each_blocks = [];
-
-    	for (let i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
-    	}
-
-    	const default_slot_template = /*#slots*/ ctx[7].default;
-    	const default_slot = create_slot$1(default_slot_template, ctx, /*$$scope*/ ctx[6], null);
-
-    	const block = {
-    		c: function create() {
-    			div = element$1("div");
-    			svg = svg_element$1("svg");
-    			defs = svg_element$1("defs");
-    			marker = svg_element$1("marker");
-    			path = svg_element$1("path");
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].c();
-    			}
-
-    			t = space$1();
-    			if (default_slot) default_slot.c();
-    			attr_dev$1(path, "d", "M 0 0 L 10 4 L 0 10 z");
-    			attr_dev$1(path, "fill", "#D68881");
-    			attr_dev$1(path, "transform", "rotate(23)");
-    			attr_dev$1(path, "class", "svelte-1lnhtnf");
-    			add_location$1(path, file$3, 49, 8, 1065);
-    			attr_dev$1(marker, "id", "triangle");
-    			attr_dev$1(marker, "viewBox", "0 0 10 10");
-    			attr_dev$1(marker, "refX", "4");
-    			attr_dev$1(marker, "refY", "6");
-    			attr_dev$1(marker, "markerUnits", "strokeWidth");
-    			attr_dev$1(marker, "markerWidth", "9");
-    			attr_dev$1(marker, "markerHeight", "9");
-    			attr_dev$1(marker, "orient", "auto");
-    			add_location$1(marker, file$3, 40, 6, 859);
-    			add_location$1(defs, file$3, 39, 4, 846);
-    			attr_dev$1(svg, "viewBox", "-50,-50,100,100");
-    			attr_dev$1(svg, "shape-rendering", "geometricPrecision");
-    			attr_dev$1(svg, "width", "100%");
-    			attr_dev$1(svg, "height", "100%");
-    			add_location$1(svg, file$3, 36, 2, 721);
-    			attr_dev$1(div, "class", "container");
-    			add_location$1(div, file$3, 35, 0, 695);
-    		},
-    		l: function claim(nodes) {
-    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev$1(target, div, anchor);
-    			append_dev$1(div, svg);
-    			append_dev$1(svg, defs);
-    			append_dev$1(defs, marker);
-    			append_dev$1(marker, path);
-
-    			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(svg, null);
-    			}
-
-    			insert_dev$1(target, t, anchor);
-
-    			if (default_slot) {
-    				default_slot.m(target, anchor);
-    			}
-
-    			current = true;
-    		},
-    		p: function update(ctx, [dirty]) {
-    			if (dirty & /*shapes*/ 1) {
-    				each_value = /*shapes*/ ctx[0];
-    				validate_each_argument$1(each_value);
-    				let i;
-
-    				for (i = 0; i < each_value.length; i += 1) {
-    					const child_ctx = get_each_context(ctx, each_value, i);
-
-    					if (each_blocks[i]) {
-    						each_blocks[i].p(child_ctx, dirty);
-    					} else {
-    						each_blocks[i] = create_each_block(child_ctx);
-    						each_blocks[i].c();
-    						each_blocks[i].m(svg, null);
-    					}
-    				}
-
-    				for (; i < each_blocks.length; i += 1) {
-    					each_blocks[i].d(1);
-    				}
-
-    				each_blocks.length = each_value.length;
-    			}
-
-    			if (default_slot) {
-    				if (default_slot.p && dirty & /*$$scope*/ 64) {
-    					update_slot$1(default_slot, default_slot_template, ctx, /*$$scope*/ ctx[6], dirty, null, null);
-    				}
-    			}
-    		},
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in$1(default_slot, local);
-    			current = true;
-    		},
-    		o: function outro(local) {
-    			transition_out$1(default_slot, local);
-    			current = false;
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev$1(div);
-    			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev$1(t);
-    			if (default_slot) default_slot.d(detaching);
-    		}
-    	};
-
-    	dispatch_dev$1("SvelteRegisterBlock", {
-    		block,
-    		id: create_fragment$3.name,
-    		type: "component",
-    		source: "",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    function instance$3($$self, $$props, $$invalidate) {
-    	let $arcs;
-    	let $lines;
-    	let $labels;
-    	let $ticks;
-    	let $arrows;
-    	validate_store(arcs, "arcs");
-    	component_subscribe($$self, arcs, $$value => $$invalidate(8, $arcs = $$value));
-    	validate_store(lines, "lines");
-    	component_subscribe($$self, lines, $$value => $$invalidate(9, $lines = $$value));
-    	validate_store(labels, "labels");
-    	component_subscribe($$self, labels, $$value => $$invalidate(10, $labels = $$value));
-    	validate_store(ticks, "ticks");
-    	component_subscribe($$self, ticks, $$value => $$invalidate(11, $ticks = $$value));
-    	validate_store(arrows, "arrows");
-    	component_subscribe($$self, arrows, $$value => $$invalidate(12, $arrows = $$value));
-    	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots$1("Round", slots, ['default']);
-    	let { radius = 500 } = $$props;
-    	let { rotate = 0 } = $$props;
-    	let { from = 0 } = $$props;
-    	let { to = 360 } = $$props;
-    	let { margin = 0 } = $$props;
-    	radius = Number(radius);
-
-    	let world = {
-    		radius,
-    		rotate: Number(rotate),
-    		from: Number(from),
-    		to: Number(to),
-    		margin: Number(margin)
-    	};
-
-    	let shapes = [];
-
-    	onMount(() => {
-    		$$invalidate(0, shapes = layout($arcs, $lines, $labels, $ticks, $arrows, world));
-    		console.log(shapes);
-    	});
-
-    	const writable_props = ["radius", "rotate", "from", "to", "margin"];
-
-    	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<Round> was created with unknown prop '${key}'`);
-    	});
-
-    	$$self.$$set = $$props => {
-    		if ("radius" in $$props) $$invalidate(1, radius = $$props.radius);
-    		if ("rotate" in $$props) $$invalidate(2, rotate = $$props.rotate);
-    		if ("from" in $$props) $$invalidate(3, from = $$props.from);
-    		if ("to" in $$props) $$invalidate(4, to = $$props.to);
-    		if ("margin" in $$props) $$invalidate(5, margin = $$props.margin);
-    		if ("$$scope" in $$props) $$invalidate(6, $$scope = $$props.$$scope);
-    	};
-
-    	$$self.$capture_state = () => ({
-    		onMount,
-    		layout,
-    		arcs,
-    		lines,
-    		labels,
-    		ticks,
-    		arrows,
-    		radius,
-    		rotate,
-    		from,
-    		to,
-    		margin,
-    		world,
-    		shapes,
-    		$arcs,
-    		$lines,
-    		$labels,
-    		$ticks,
-    		$arrows
-    	});
-
-    	$$self.$inject_state = $$props => {
-    		if ("radius" in $$props) $$invalidate(1, radius = $$props.radius);
-    		if ("rotate" in $$props) $$invalidate(2, rotate = $$props.rotate);
-    		if ("from" in $$props) $$invalidate(3, from = $$props.from);
-    		if ("to" in $$props) $$invalidate(4, to = $$props.to);
-    		if ("margin" in $$props) $$invalidate(5, margin = $$props.margin);
-    		if ("world" in $$props) world = $$props.world;
-    		if ("shapes" in $$props) $$invalidate(0, shapes = $$props.shapes);
-    	};
-
-    	if ($$props && "$$inject" in $$props) {
-    		$$self.$inject_state($$props.$$inject);
-    	}
-
-    	return [shapes, radius, rotate, from, to, margin, $$scope, slots];
-    }
-
-    class Round extends SvelteComponentDev$1 {
-    	constructor(options) {
-    		super(options);
-    		if (!document.getElementById("svelte-1lnhtnf-style")) add_css$3();
-
-    		init$1(this, options, instance$3, create_fragment$3, safe_not_equal$1, {
-    			radius: 1,
-    			rotate: 2,
-    			from: 3,
-    			to: 4,
-    			margin: 5
-    		});
-
-    		dispatch_dev$1("SvelteRegisterComponent", {
-    			component: this,
-    			tagName: "Round",
-    			options,
-    			id: create_fragment$3.name
-    		});
-    	}
-
-    	get radius() {
-    		throw new Error("<Round>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set radius(value) {
-    		throw new Error("<Round>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get rotate() {
-    		throw new Error("<Round>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set rotate(value) {
-    		throw new Error("<Round>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get from() {
-    		throw new Error("<Round>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set from(value) {
-    		throw new Error("<Round>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get to() {
-    		throw new Error("<Round>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set to(value) {
-    		throw new Error("<Round>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get margin() {
-    		throw new Error("<Round>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set margin(value) {
-    		throw new Error("<Round>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-    }
 
     var colors = {
       blue: '#6699cc',
@@ -8886,24 +8231,39 @@ var app = (function () {
     const file$4 = "Users/spencer/mountain/somehow-circle/src/Arc.svelte";
 
     function create_fragment$4(ctx) {
-    	let div;
+    	let path;
+    	let path_d_value;
+    	let path_stroke_width_value;
 
     	const block = {
     		c: function create() {
-    			div = element$1("div");
-    			add_location$1(div, file$4, 28, 0, 536);
+    			path = svg_element$1("path");
+    			attr_dev$1(path, "class", "link");
+    			attr_dev$1(path, "d", path_d_value = /*res*/ ctx[1].path);
+    			attr_dev$1(path, "stroke", "none");
+    			attr_dev$1(path, "fill", /*color*/ ctx[0]);
+    			attr_dev$1(path, "stroke-width", path_stroke_width_value = 1);
+    			add_location$1(path, file$4, 27, 0, 611);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev$1(target, div, anchor);
+    			insert_dev$1(target, path, anchor);
     		},
-    		p: noop$1,
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*res*/ 2 && path_d_value !== (path_d_value = /*res*/ ctx[1].path)) {
+    				attr_dev$1(path, "d", path_d_value);
+    			}
+
+    			if (dirty & /*color*/ 1) {
+    				attr_dev$1(path, "fill", /*color*/ ctx[0]);
+    			}
+    		},
     		i: noop$1,
     		o: noop$1,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev$1(div);
+    			if (detaching) detach_dev$1(path);
     		}
     	};
 
@@ -8925,16 +8285,20 @@ var app = (function () {
     	let { from = 0 } = $$props;
     	let { radius = 80 } = $$props;
     	let { width = 20 } = $$props;
-    	to = Number(to);
-    	from = Number(from);
-    	radius = Number(radius);
-    	width = Number(width);
     	let { color = "blue" } = $$props;
     	color = colors[color] || color;
 
-    	arcs.update(arr => {
-    		arr.push({ color, to, from, radius, width });
-    		return arr;
+    	afterUpdate(() => {
+    		let obj = {
+    			color,
+    			to: Number(to),
+    			from: Number(from),
+    			radius: Number(radius),
+    			width: Number(width)
+    		};
+
+    		let { xScale, rScale } = makeScales(obj);
+    		$$invalidate(1, res = drawArcs(obj, xScale, rScale));
     	});
 
     	const writable_props = ["to", "from", "radius", "width", "color"];
@@ -8944,37 +8308,43 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("to" in $$props) $$invalidate(0, to = $$props.to);
-    		if ("from" in $$props) $$invalidate(1, from = $$props.from);
-    		if ("radius" in $$props) $$invalidate(2, radius = $$props.radius);
-    		if ("width" in $$props) $$invalidate(3, width = $$props.width);
-    		if ("color" in $$props) $$invalidate(4, color = $$props.color);
+    		if ("to" in $$props) $$invalidate(2, to = $$props.to);
+    		if ("from" in $$props) $$invalidate(3, from = $$props.from);
+    		if ("radius" in $$props) $$invalidate(4, radius = $$props.radius);
+    		if ("width" in $$props) $$invalidate(5, width = $$props.width);
+    		if ("color" in $$props) $$invalidate(0, color = $$props.color);
     	};
 
     	$$self.$capture_state = () => ({
-    		getContext,
-    		arcs,
+    		getScales: makeScales,
+    		drawArc: drawArcs,
     		colors,
+    		afterUpdate,
     		to,
     		from,
     		radius,
     		width,
-    		color
+    		color,
+    		res
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("to" in $$props) $$invalidate(0, to = $$props.to);
-    		if ("from" in $$props) $$invalidate(1, from = $$props.from);
-    		if ("radius" in $$props) $$invalidate(2, radius = $$props.radius);
-    		if ("width" in $$props) $$invalidate(3, width = $$props.width);
-    		if ("color" in $$props) $$invalidate(4, color = $$props.color);
+    		if ("to" in $$props) $$invalidate(2, to = $$props.to);
+    		if ("from" in $$props) $$invalidate(3, from = $$props.from);
+    		if ("radius" in $$props) $$invalidate(4, radius = $$props.radius);
+    		if ("width" in $$props) $$invalidate(5, width = $$props.width);
+    		if ("color" in $$props) $$invalidate(0, color = $$props.color);
+    		if ("res" in $$props) $$invalidate(1, res = $$props.res);
     	};
+
+    	let res;
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [to, from, radius, width, color];
+    	 $$invalidate(1, res = {});
+    	return [color, res, to, from, radius, width];
     }
 
     class Arc extends SvelteComponentDev$1 {
@@ -8982,11 +8352,11 @@ var app = (function () {
     		super(options);
 
     		init$1(this, options, instance$4, create_fragment$4, safe_not_equal$1, {
-    			to: 0,
-    			from: 1,
-    			radius: 2,
-    			width: 3,
-    			color: 4
+    			to: 2,
+    			from: 3,
+    			radius: 4,
+    			width: 5,
+    			color: 0
     		});
 
     		dispatch_dev$1("SvelteRegisterComponent", {
@@ -9038,28 +8408,71 @@ var app = (function () {
     	}
     }
 
+    const drawLines = function (obj, xScale, rScale) {
+      let { q, rotate } = get_store_value(world);
+      // draw lines
+      let data = [
+        { angle: obj.angle, radius: obj.radius },
+        { angle: obj.angle, radius: obj.length + obj.radius }
+      ];
+      let path = lineRadial$1()
+        .angle((d) => xScale(d.angle) - q + rotate)
+        .radius((d) => rScale(d.radius));
+      return {
+        type: 'line',
+        path: path(data),
+        color: obj.color,
+        width: obj.width
+      }
+    };
+
     /* Users/spencer/mountain/somehow-circle/src/Line.svelte generated by Svelte v3.29.0 */
     const file$5 = "Users/spencer/mountain/somehow-circle/src/Line.svelte";
 
     function create_fragment$5(ctx) {
-    	let div;
+    	let path;
+    	let path_d_value;
+    	let path_stroke_value;
+    	let path_fill_value;
+    	let path_stroke_width_value;
 
     	const block = {
     		c: function create() {
-    			div = element$1("div");
-    			add_location$1(div, file$5, 25, 0, 497);
+    			path = svg_element$1("path");
+    			attr_dev$1(path, "class", "link");
+    			attr_dev$1(path, "d", path_d_value = /*res*/ ctx[0].path);
+    			attr_dev$1(path, "stroke", path_stroke_value = /*res*/ ctx[0].color);
+    			attr_dev$1(path, "fill", path_fill_value = /*res*/ ctx[0].color);
+    			attr_dev$1(path, "stroke-width", path_stroke_width_value = /*res*/ ctx[0].width);
+    			add_location$1(path, file$5, 29, 0, 671);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev$1(target, div, anchor);
+    			insert_dev$1(target, path, anchor);
     		},
-    		p: noop$1,
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*res*/ 1 && path_d_value !== (path_d_value = /*res*/ ctx[0].path)) {
+    				attr_dev$1(path, "d", path_d_value);
+    			}
+
+    			if (dirty & /*res*/ 1 && path_stroke_value !== (path_stroke_value = /*res*/ ctx[0].color)) {
+    				attr_dev$1(path, "stroke", path_stroke_value);
+    			}
+
+    			if (dirty & /*res*/ 1 && path_fill_value !== (path_fill_value = /*res*/ ctx[0].color)) {
+    				attr_dev$1(path, "fill", path_fill_value);
+    			}
+
+    			if (dirty & /*res*/ 1 && path_stroke_width_value !== (path_stroke_width_value = /*res*/ ctx[0].width)) {
+    				attr_dev$1(path, "stroke-width", path_stroke_width_value);
+    			}
+    		},
     		i: noop$1,
     		o: noop$1,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev$1(div);
+    			if (detaching) detach_dev$1(path);
     		}
     	};
 
@@ -9083,19 +8496,20 @@ var app = (function () {
     	let { length = 40 } = $$props;
     	let { radius = 0 } = $$props;
     	let { width = 0.1 } = $$props;
-    	let { color = "grey" } = $$props;
+    	let { color = "blue" } = $$props;
     	color = colors[color] || color;
 
-    	lines.update(arr => {
-    		arr.push({
+    	afterUpdate(() => {
+    		let obj = {
     			color,
     			angle: Number(angle),
     			radius: Number(radius),
     			length: Number(length),
     			width: Number(width)
-    		});
+    		};
 
-    		return arr;
+    		let { xScale, rScale } = makeScales(obj);
+    		$$invalidate(0, res = drawLines(obj, xScale, rScale));
     	});
 
     	const writable_props = ["angle", "at", "length", "radius", "width", "color"];
@@ -9105,39 +8519,46 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("angle" in $$props) $$invalidate(0, angle = $$props.angle);
-    		if ("at" in $$props) $$invalidate(2, at = $$props.at);
-    		if ("length" in $$props) $$invalidate(3, length = $$props.length);
-    		if ("radius" in $$props) $$invalidate(4, radius = $$props.radius);
-    		if ("width" in $$props) $$invalidate(5, width = $$props.width);
-    		if ("color" in $$props) $$invalidate(1, color = $$props.color);
+    		if ("angle" in $$props) $$invalidate(1, angle = $$props.angle);
+    		if ("at" in $$props) $$invalidate(3, at = $$props.at);
+    		if ("length" in $$props) $$invalidate(4, length = $$props.length);
+    		if ("radius" in $$props) $$invalidate(5, radius = $$props.radius);
+    		if ("width" in $$props) $$invalidate(6, width = $$props.width);
+    		if ("color" in $$props) $$invalidate(2, color = $$props.color);
     	};
 
     	$$self.$capture_state = () => ({
-    		lines,
+    		getScales: makeScales,
     		colors,
+    		drawLine: drawLines,
+    		afterUpdate,
     		angle,
     		at,
     		length,
     		radius,
     		width,
-    		color
+    		color,
+    		res
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("angle" in $$props) $$invalidate(0, angle = $$props.angle);
-    		if ("at" in $$props) $$invalidate(2, at = $$props.at);
-    		if ("length" in $$props) $$invalidate(3, length = $$props.length);
-    		if ("radius" in $$props) $$invalidate(4, radius = $$props.radius);
-    		if ("width" in $$props) $$invalidate(5, width = $$props.width);
-    		if ("color" in $$props) $$invalidate(1, color = $$props.color);
+    		if ("angle" in $$props) $$invalidate(1, angle = $$props.angle);
+    		if ("at" in $$props) $$invalidate(3, at = $$props.at);
+    		if ("length" in $$props) $$invalidate(4, length = $$props.length);
+    		if ("radius" in $$props) $$invalidate(5, radius = $$props.radius);
+    		if ("width" in $$props) $$invalidate(6, width = $$props.width);
+    		if ("color" in $$props) $$invalidate(2, color = $$props.color);
+    		if ("res" in $$props) $$invalidate(0, res = $$props.res);
     	};
+
+    	let res;
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [angle, color, at, length, radius, width];
+    	 $$invalidate(0, res = {});
+    	return [res, angle, color, at, length, radius, width];
     }
 
     class Line extends SvelteComponentDev$1 {
@@ -9145,12 +8566,12 @@ var app = (function () {
     		super(options);
 
     		init$1(this, options, instance$5, create_fragment$5, safe_not_equal$1, {
-    			angle: 0,
-    			at: 2,
-    			length: 3,
-    			radius: 4,
-    			width: 5,
-    			color: 1
+    			angle: 1,
+    			at: 3,
+    			length: 4,
+    			radius: 5,
+    			width: 6,
+    			color: 2
     		});
 
     		dispatch_dev$1("SvelteRegisterComponent", {
@@ -9210,28 +8631,104 @@ var app = (function () {
     	}
     }
 
-    /* Users/spencer/mountain/somehow-circle/src/Tick.svelte generated by Svelte v3.29.0 */
-    const file$6 = "Users/spencer/mountain/somehow-circle/src/Tick.svelte";
+    const findPoint = function (angle, r) {
+      return {
+        x: r * Math.sin(angle),
+        y: -r * Math.cos(angle)
+      }
+    };
+
+    const drawLabels = function (obj, xScale, rScale) {
+      let { q, rotate } = get_store_value(world);
+      let point = findPoint(xScale(obj.angle) - q + rotate, rScale(obj.radius));
+      let angle = obj.angle;
+      // don't go upside-down
+      if (angle > 90) {
+        angle -= 180;
+        obj.align = obj.align === 'left' ? 'right' : 'left';
+      } else if (angle < -90) {
+        angle += 180;
+        obj.align = obj.align === 'left' ? 'right' : 'left';
+      }
+      // console.log(obj.rotate)
+      if (angle > 0) {
+        angle -= obj.rotate;
+      } else {
+        angle += obj.rotate;
+      }
+      return {
+        type: 'label',
+        x: point.x,
+        y: point.y,
+        angle: angle,
+        align: obj.align === 'left' ? 'start' : 'end',
+        size: obj.size,
+        text: obj.text,
+        color: obj.color
+      }
+    };
+
+    /* Users/spencer/mountain/somehow-circle/src/Label.svelte generated by Svelte v3.29.0 */
+    const file$6 = "Users/spencer/mountain/somehow-circle/src/Label.svelte";
 
     function create_fragment$6(ctx) {
-    	let div;
+    	let text_1;
+    	let raw_value = /*res*/ ctx[0].text + "";
+    	let text_1_x_value;
+    	let text_1_y_value;
+    	let text_1_transform_value;
+    	let text_1_font_size_value;
+    	let text_1_text_anchor_value;
+    	let text_1_fill_value;
 
     	const block = {
     		c: function create() {
-    			div = element$1("div");
-    			add_location$1(div, file$6, 29, 0, 605);
+    			text_1 = svg_element$1("text");
+    			attr_dev$1(text_1, "x", text_1_x_value = /*res*/ ctx[0].x);
+    			attr_dev$1(text_1, "y", text_1_y_value = /*res*/ ctx[0].y);
+    			attr_dev$1(text_1, "transform", text_1_transform_value = "rotate(" + (/*res*/ ctx[0].angle || 0) + "," + (/*res*/ ctx[0].x || 0) + "," + (/*res*/ ctx[0].y || 0) + ")");
+    			attr_dev$1(text_1, "font-size", text_1_font_size_value = /*res*/ ctx[0].size);
+    			attr_dev$1(text_1, "text-anchor", text_1_text_anchor_value = /*res*/ ctx[0].align);
+    			attr_dev$1(text_1, "fill", text_1_fill_value = /*res*/ ctx[0].color);
+    			add_location$1(text_1, file$6, 32, 0, 758);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev$1(target, div, anchor);
+    			insert_dev$1(target, text_1, anchor);
+    			text_1.innerHTML = raw_value;
     		},
-    		p: noop$1,
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*res*/ 1 && raw_value !== (raw_value = /*res*/ ctx[0].text + "")) text_1.innerHTML = raw_value;
+    			if (dirty & /*res*/ 1 && text_1_x_value !== (text_1_x_value = /*res*/ ctx[0].x)) {
+    				attr_dev$1(text_1, "x", text_1_x_value);
+    			}
+
+    			if (dirty & /*res*/ 1 && text_1_y_value !== (text_1_y_value = /*res*/ ctx[0].y)) {
+    				attr_dev$1(text_1, "y", text_1_y_value);
+    			}
+
+    			if (dirty & /*res*/ 1 && text_1_transform_value !== (text_1_transform_value = "rotate(" + (/*res*/ ctx[0].angle || 0) + "," + (/*res*/ ctx[0].x || 0) + "," + (/*res*/ ctx[0].y || 0) + ")")) {
+    				attr_dev$1(text_1, "transform", text_1_transform_value);
+    			}
+
+    			if (dirty & /*res*/ 1 && text_1_font_size_value !== (text_1_font_size_value = /*res*/ ctx[0].size)) {
+    				attr_dev$1(text_1, "font-size", text_1_font_size_value);
+    			}
+
+    			if (dirty & /*res*/ 1 && text_1_text_anchor_value !== (text_1_text_anchor_value = /*res*/ ctx[0].align)) {
+    				attr_dev$1(text_1, "text-anchor", text_1_text_anchor_value);
+    			}
+
+    			if (dirty & /*res*/ 1 && text_1_fill_value !== (text_1_fill_value = /*res*/ ctx[0].color)) {
+    				attr_dev$1(text_1, "fill", text_1_fill_value);
+    			}
+    		},
     		i: noop$1,
     		o: noop$1,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev$1(div);
+    			if (detaching) detach_dev$1(text_1);
     		}
     	};
 
@@ -9248,6 +8745,290 @@ var app = (function () {
 
     function instance$6($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots$1("Label", slots, []);
+    	let { angle = 0 } = $$props;
+    	let { at = 0 } = $$props;
+    	angle = angle || at;
+    	let { radius = 0 } = $$props;
+    	let { rotate = 0 } = $$props;
+    	let { size = 1.5 } = $$props;
+    	let { align = "left" } = $$props;
+    	let { text = "" } = $$props;
+    	let { color = "grey" } = $$props;
+    	color = colors[color] || color;
+
+    	afterUpdate(() => {
+    		let obj = {
+    			text,
+    			color,
+    			align,
+    			angle: Number(angle),
+    			radius: Number(radius),
+    			size: Number(size),
+    			rotate: Number(rotate)
+    		};
+
+    		let { xScale, rScale } = makeScales(obj);
+    		$$invalidate(0, res = drawLabels(obj, xScale, rScale));
+    	});
+
+    	const writable_props = ["angle", "at", "radius", "rotate", "size", "align", "text", "color"];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Label> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$$set = $$props => {
+    		if ("angle" in $$props) $$invalidate(1, angle = $$props.angle);
+    		if ("at" in $$props) $$invalidate(3, at = $$props.at);
+    		if ("radius" in $$props) $$invalidate(4, radius = $$props.radius);
+    		if ("rotate" in $$props) $$invalidate(5, rotate = $$props.rotate);
+    		if ("size" in $$props) $$invalidate(6, size = $$props.size);
+    		if ("align" in $$props) $$invalidate(7, align = $$props.align);
+    		if ("text" in $$props) $$invalidate(8, text = $$props.text);
+    		if ("color" in $$props) $$invalidate(2, color = $$props.color);
+    	};
+
+    	$$self.$capture_state = () => ({
+    		getScales: makeScales,
+    		colors,
+    		afterUpdate,
+    		drawLabel: drawLabels,
+    		angle,
+    		at,
+    		radius,
+    		rotate,
+    		size,
+    		align,
+    		text,
+    		color,
+    		res
+    	});
+
+    	$$self.$inject_state = $$props => {
+    		if ("angle" in $$props) $$invalidate(1, angle = $$props.angle);
+    		if ("at" in $$props) $$invalidate(3, at = $$props.at);
+    		if ("radius" in $$props) $$invalidate(4, radius = $$props.radius);
+    		if ("rotate" in $$props) $$invalidate(5, rotate = $$props.rotate);
+    		if ("size" in $$props) $$invalidate(6, size = $$props.size);
+    		if ("align" in $$props) $$invalidate(7, align = $$props.align);
+    		if ("text" in $$props) $$invalidate(8, text = $$props.text);
+    		if ("color" in $$props) $$invalidate(2, color = $$props.color);
+    		if ("res" in $$props) $$invalidate(0, res = $$props.res);
+    	};
+
+    	let res;
+
+    	if ($$props && "$$inject" in $$props) {
+    		$$self.$inject_state($$props.$$inject);
+    	}
+
+    	 $$invalidate(0, res = {});
+    	return [res, angle, color, at, radius, rotate, size, align, text];
+    }
+
+    class Label extends SvelteComponentDev$1 {
+    	constructor(options) {
+    		super(options);
+
+    		init$1(this, options, instance$6, create_fragment$6, safe_not_equal$1, {
+    			angle: 1,
+    			at: 3,
+    			radius: 4,
+    			rotate: 5,
+    			size: 6,
+    			align: 7,
+    			text: 8,
+    			color: 2
+    		});
+
+    		dispatch_dev$1("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "Label",
+    			options,
+    			id: create_fragment$6.name
+    		});
+    	}
+
+    	get angle() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set angle(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get at() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set at(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get radius() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set radius(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get rotate() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set rotate(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get size() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set size(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get align() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set align(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get text() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set text(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get color() {
+    		throw new Error("<Label>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set color(value) {
+    		throw new Error("<Label>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    const findPoint$1 = function (angle, r) {
+      return {
+        x: r * Math.sin(angle),
+        y: -r * Math.cos(angle)
+      }
+    };
+
+    const drawLabels$1 = function (obj, xScale, rScale) {
+      let { q, rotate } = get_store_value(world);
+      let point = findPoint$1(xScale(obj.angle) - q + rotate, rScale(obj.radius));
+      let angle = obj.angle;
+      // don't go upside-down
+      if (angle > 90) {
+        angle -= 180;
+        obj.align = obj.align === 'left' ? 'right' : 'left';
+      } else if (angle < -90) {
+        angle += 180;
+        obj.align = obj.align === 'left' ? 'right' : 'left';
+      }
+      // console.log(obj.rotate)
+      if (angle > 0) {
+        angle -= obj.rotate;
+      } else {
+        angle += obj.rotate;
+      }
+      return {
+        type: 'tick',
+        x: point.x,
+        y: point.y,
+        angle: angle,
+        align: obj.align === 'left' ? 'start' : 'end',
+        size: obj.size,
+        text: obj.text,
+        color: obj.color
+      }
+    };
+
+    /* Users/spencer/mountain/somehow-circle/src/Tick.svelte generated by Svelte v3.29.0 */
+    const file$7 = "Users/spencer/mountain/somehow-circle/src/Tick.svelte";
+
+    function create_fragment$7(ctx) {
+    	let text_1;
+    	let raw_value = /*res*/ ctx[0].text + "";
+    	let text_1_x_value;
+    	let text_1_y_value;
+    	let text_1_transform_value;
+    	let text_1_font_size_value;
+    	let text_1_text_anchor_value;
+    	let text_1_fill_value;
+
+    	const block = {
+    		c: function create() {
+    			text_1 = svg_element$1("text");
+    			attr_dev$1(text_1, "x", text_1_x_value = /*res*/ ctx[0].x);
+    			attr_dev$1(text_1, "y", text_1_y_value = /*res*/ ctx[0].y);
+    			attr_dev$1(text_1, "transform", text_1_transform_value = "rotate(" + (/*res*/ ctx[0].angle || 0) + "," + (/*res*/ ctx[0].x || 0) + "," + (/*res*/ ctx[0].y || 0) + ")");
+    			attr_dev$1(text_1, "font-size", text_1_font_size_value = /*res*/ ctx[0].size);
+    			attr_dev$1(text_1, "text-anchor", text_1_text_anchor_value = /*res*/ ctx[0].align);
+    			attr_dev$1(text_1, "fill", text_1_fill_value = /*res*/ ctx[0].color);
+    			add_location$1(text_1, file$7, 33, 0, 781);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev$1(target, text_1, anchor);
+    			text_1.innerHTML = raw_value;
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*res*/ 1 && raw_value !== (raw_value = /*res*/ ctx[0].text + "")) text_1.innerHTML = raw_value;
+    			if (dirty & /*res*/ 1 && text_1_x_value !== (text_1_x_value = /*res*/ ctx[0].x)) {
+    				attr_dev$1(text_1, "x", text_1_x_value);
+    			}
+
+    			if (dirty & /*res*/ 1 && text_1_y_value !== (text_1_y_value = /*res*/ ctx[0].y)) {
+    				attr_dev$1(text_1, "y", text_1_y_value);
+    			}
+
+    			if (dirty & /*res*/ 1 && text_1_transform_value !== (text_1_transform_value = "rotate(" + (/*res*/ ctx[0].angle || 0) + "," + (/*res*/ ctx[0].x || 0) + "," + (/*res*/ ctx[0].y || 0) + ")")) {
+    				attr_dev$1(text_1, "transform", text_1_transform_value);
+    			}
+
+    			if (dirty & /*res*/ 1 && text_1_font_size_value !== (text_1_font_size_value = /*res*/ ctx[0].size)) {
+    				attr_dev$1(text_1, "font-size", text_1_font_size_value);
+    			}
+
+    			if (dirty & /*res*/ 1 && text_1_text_anchor_value !== (text_1_text_anchor_value = /*res*/ ctx[0].align)) {
+    				attr_dev$1(text_1, "text-anchor", text_1_text_anchor_value);
+    			}
+
+    			if (dirty & /*res*/ 1 && text_1_fill_value !== (text_1_fill_value = /*res*/ ctx[0].color)) {
+    				attr_dev$1(text_1, "fill", text_1_fill_value);
+    			}
+    		},
+    		i: noop$1,
+    		o: noop$1,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev$1(text_1);
+    		}
+    	};
+
+    	dispatch_dev$1("SvelteRegisterBlock", {
+    		block,
+    		id: create_fragment$7.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$7($$self, $$props, $$invalidate) {
+    	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots$1("Tick", slots, []);
     	let { angle = 0 } = $$props;
     	let { at = 0 } = $$props;
@@ -9257,11 +9038,11 @@ var app = (function () {
     	let { size = 1.5 } = $$props;
     	let { align = angle < 0 ? "left" : "right" } = $$props;
     	let { text = "" } = $$props;
-    	let { color = "grey" } = $$props;
+    	let { color = "blue" } = $$props;
     	color = colors[color] || color;
 
-    	ticks.update(arr => {
-    		arr.push({
+    	afterUpdate(() => {
+    		let obj = {
     			text,
     			color,
     			align,
@@ -9269,9 +9050,10 @@ var app = (function () {
     			radius: Number(radius),
     			size: Number(size),
     			rotate: Number(rotate)
-    		});
+    		};
 
-    		return arr;
+    		let { xScale, rScale } = makeScales(obj);
+    		$$invalidate(0, res = drawLabels$1(obj, xScale, rScale));
     	});
 
     	const writable_props = ["angle", "at", "radius", "rotate", "size", "align", "text", "color"];
@@ -9281,19 +9063,21 @@ var app = (function () {
     	});
 
     	$$self.$$set = $$props => {
-    		if ("angle" in $$props) $$invalidate(0, angle = $$props.angle);
-    		if ("at" in $$props) $$invalidate(2, at = $$props.at);
-    		if ("radius" in $$props) $$invalidate(3, radius = $$props.radius);
-    		if ("rotate" in $$props) $$invalidate(4, rotate = $$props.rotate);
-    		if ("size" in $$props) $$invalidate(5, size = $$props.size);
-    		if ("align" in $$props) $$invalidate(6, align = $$props.align);
-    		if ("text" in $$props) $$invalidate(7, text = $$props.text);
-    		if ("color" in $$props) $$invalidate(1, color = $$props.color);
+    		if ("angle" in $$props) $$invalidate(1, angle = $$props.angle);
+    		if ("at" in $$props) $$invalidate(3, at = $$props.at);
+    		if ("radius" in $$props) $$invalidate(4, radius = $$props.radius);
+    		if ("rotate" in $$props) $$invalidate(5, rotate = $$props.rotate);
+    		if ("size" in $$props) $$invalidate(6, size = $$props.size);
+    		if ("align" in $$props) $$invalidate(7, align = $$props.align);
+    		if ("text" in $$props) $$invalidate(8, text = $$props.text);
+    		if ("color" in $$props) $$invalidate(2, color = $$props.color);
     	};
 
     	$$self.$capture_state = () => ({
-    		ticks,
+    		getScales: makeScales,
+    		drawTicks: drawLabels$1,
     		colors,
+    		afterUpdate,
     		angle,
     		at,
     		radius,
@@ -9301,47 +9085,52 @@ var app = (function () {
     		size,
     		align,
     		text,
-    		color
+    		color,
+    		res
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("angle" in $$props) $$invalidate(0, angle = $$props.angle);
-    		if ("at" in $$props) $$invalidate(2, at = $$props.at);
-    		if ("radius" in $$props) $$invalidate(3, radius = $$props.radius);
-    		if ("rotate" in $$props) $$invalidate(4, rotate = $$props.rotate);
-    		if ("size" in $$props) $$invalidate(5, size = $$props.size);
-    		if ("align" in $$props) $$invalidate(6, align = $$props.align);
-    		if ("text" in $$props) $$invalidate(7, text = $$props.text);
-    		if ("color" in $$props) $$invalidate(1, color = $$props.color);
+    		if ("angle" in $$props) $$invalidate(1, angle = $$props.angle);
+    		if ("at" in $$props) $$invalidate(3, at = $$props.at);
+    		if ("radius" in $$props) $$invalidate(4, radius = $$props.radius);
+    		if ("rotate" in $$props) $$invalidate(5, rotate = $$props.rotate);
+    		if ("size" in $$props) $$invalidate(6, size = $$props.size);
+    		if ("align" in $$props) $$invalidate(7, align = $$props.align);
+    		if ("text" in $$props) $$invalidate(8, text = $$props.text);
+    		if ("color" in $$props) $$invalidate(2, color = $$props.color);
+    		if ("res" in $$props) $$invalidate(0, res = $$props.res);
     	};
+
+    	let res;
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [angle, color, at, radius, rotate, size, align, text];
+    	 $$invalidate(0, res = {});
+    	return [res, angle, color, at, radius, rotate, size, align, text];
     }
 
     class Tick extends SvelteComponentDev$1 {
     	constructor(options) {
     		super(options);
 
-    		init$1(this, options, instance$6, create_fragment$6, safe_not_equal$1, {
-    			angle: 0,
-    			at: 2,
-    			radius: 3,
-    			rotate: 4,
-    			size: 5,
-    			align: 6,
-    			text: 7,
-    			color: 1
+    		init$1(this, options, instance$7, create_fragment$7, safe_not_equal$1, {
+    			angle: 1,
+    			at: 3,
+    			radius: 4,
+    			rotate: 5,
+    			size: 6,
+    			align: 7,
+    			text: 8,
+    			color: 2
     		});
 
     		dispatch_dev$1("SvelteRegisterComponent", {
     			component: this,
     			tagName: "Tick",
     			options,
-    			id: create_fragment$6.name
+    			id: create_fragment$7.name
     		});
     	}
 
@@ -9412,26 +9201,26 @@ var app = (function () {
 
     /* 2020/sunset-direction/Post.svelte generated by Svelte v3.29.0 */
 
-    const { console: console_1$1 } = globals;
+    const { console: console_1 } = globals;
 
-    const file$7 = "2020/sunset-direction/Post.svelte";
+    const file$8 = "2020/sunset-direction/Post.svelte";
 
     function add_css$4() {
     	var style = element("style");
-    	style.id = "svelte-17p9en2-style";
-    	style.textContent = "\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUG9zdC5zdmVsdGUiLCJzb3VyY2VzIjpbIlBvc3Quc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCB7IFBhZ2UgfSBmcm9tICcuLi8uLi9jb21wb25lbnRzL2luZGV4Lm1qcydcbiAgaW1wb3J0IHNwYWNldGltZSBmcm9tICdzcGFjZXRpbWUnXG4gIGltcG9ydCB7IGNhbGNZZWFyIH0gZnJvbSAnLi9jYWxjJ1xuICBpbXBvcnQgZGF5bGlnaHQgZnJvbSAnc3BhY2V0aW1lLWRheWxpZ2h0J1xuICBpbXBvcnQgeyBSb3VuZCwgQXJjLCBMaW5lLCBUaWNrIH0gZnJvbSAnL1VzZXJzL3NwZW5jZXIvbW91bnRhaW4vc29tZWhvdy1jaXJjbGUvc3JjJ1xuICAvLyBpbXBvcnQgeyBMYXRpdHVkZSB9IGZyb20gJ3NvbWVob3ctc2xpZGVyJ1xuICAvLyBpbXBvcnQgeyBsYXQsIHRpY2tzIH0gZnJvbSAnLi9zdG9yZSdcbiAgaW1wb3J0IHsgZ2V0U3VuU2V0LCBnZXRTdW5SaXNlIH0gZnJvbSAnLi9jYWxjJ1xuICBsZXQgdGl0bGUgPSBgU3VucmlzZSArIFN1bnNldCBkaXJlY3Rpb25gXG4gIHNwYWNldGltZS5leHRlbmQoZGF5bGlnaHQpXG5cbiAgbGV0IGxhdCA9IDM3XG5cbiAgY29uc3QgZm10ID0gZnVuY3Rpb24gKHYpIHtcbiAgICB2IC09IDkwXG4gICAgdiAqPSAtMVxuICAgIHJldHVybiB2XG4gIH1cbiAgLy8gZ2V0IGN1cnJlbnQgc3Vuc2V0IGF6aW1vdXRcbiAgbGV0IG5vdyA9IHNwYWNldGltZS50b2RheSgnQ2FuYWRhL0Vhc3Rlcm4nKVxuICBub3cgPSBnZXRTdW5TZXQobm93LCBmbXQobGF0KSlcbiAgbGV0IGN1cnJlbnRTZXQgPSBub3cuc3VuUG9zaXRpb24oKS5hemltdXRoXG4gIG5vdyA9IGdldFN1blJpc2Uobm93LCBmbXQobGF0KSlcbiAgbGV0IGN1cnJlbnRSaXNlID0gbm93LnN1blBvc2l0aW9uKCkuYXppbXV0aFxuXG4gIGNvbnN0IGNoYW5nZSA9IGZ1bmN0aW9uICgpIHtcbiAgICBjb25zb2xlLmxvZygnY2FsYycsIGxhdClcbiAgICBub3cgPSBnZXRTdW5TZXQobm93LCBmbXQobGF0KSlcbiAgICBjdXJyZW50U2V0ID0gbm93LnN1blBvc2l0aW9uKCkuYXppbXV0aFxuICAgIG5vdyA9IGdldFN1blJpc2Uobm93LCBmbXQobGF0KSlcbiAgICBjdXJyZW50UmlzZSA9IG5vdy5zdW5Qb3NpdGlvbigpLmF6aW11dGhcbiAgICBjb25zb2xlLmxvZyhjdXJyZW50UmlzZSlcbiAgfVxuICBsZXQgdGlja3MgPSBjYWxjWWVhcihsYXQpXG4gIGNoYW5nZSgpXG48L3NjcmlwdD5cblxuPFBhZ2Uge3RpdGxlfSBncm93PXt0cnVlfSBtYXg9ezExMDB9IHN1Yj1cImF0IHtsYXR9wrBcIj5cbiAgPGlucHV0IHR5cGU9XCJyYW5nZVwiIGJpbmQ6dmFsdWU9e2xhdH0gbWluPVwiMFwiIG1heD1cIjkwXCIgb246Y2hhbmdlPXtjaGFuZ2V9IC8+XG4gIDwhLS0gPGRpdj57Y3VycmVudFNldH08L2Rpdj4gLS0+XG4gIDwhLS0gPGRpdiBjbGFzcz1cInJpZ2h0IGYyIG10NFwiIHN0eWxlPVwibWFyZ2luLWJvdHRvbTotNTBweDtcIj57Zm10KCRsYXQpfcKwPC9kaXY+IC0tPlxuICA8Um91bmQgd2lkdGg9XCI1MDBcIiBoZWlnaHQ9XCI1MDBcIiByb3RhdGU9XCItOTBcIiBtYXJnaW49XCIxMFwiPlxuICAgIDxUaWNrIHRleHQ9XCJOXCIgYW5nbGU9XCIxODBcIiByYWRpdXM9XCI0NVwiIHNpemU9XCIyLjZcIiBjb2xvcj1cImxpZ2h0Ymx1ZVwiIHJvdGF0ZT1cIjBcIiAvPlxuICAgIDxUaWNrIHRleHQ9XCJTXCIgYW5nbGU9XCIwXCIgcmFkaXVzPVwiNDVcIiBzaXplPVwiMi42XCIgY29sb3I9XCJsaWdodGJsdWVcIiByb3RhdGU9XCIwXCIgLz5cbiAgICA8VGljayB0ZXh0PVwiRVwiIGFuZ2xlPVwiOTBcIiByYWRpdXM9XCI0NVwiIHNpemU9XCIyLjZcIiBjb2xvcj1cImxpZ2h0Ymx1ZVwiIC8+XG4gICAgPFRpY2sgdGV4dD1cIldcIiBhbmdsZT1cIjI3MFwiIHJhZGl1cz1cIjQ1XCIgc2l6ZT1cIjIuNlwiIGNvbG9yPVwibGlnaHRibHVlXCIgLz5cbiAgICA8IS0tIHN1bnJpc2Uvc3Vuc2V0IHRpY2tzIC0tPlxuICAgIHsjZWFjaCB0aWNrcyBhcyB3ZWVrLCBpICh3ZWVrLmlkKX1cbiAgICAgIDxBcmMgZnJvbT17d2Vlay5zdW5zZXR9IHRvPXt3ZWVrLnN1bnNldCArIDAuNX0gY29sb3I9XCJwaW5rXCIgd2lkdGg9XCI4XCIgcmFkaXVzPVwiNTJcIiAvPlxuICAgICAgPEFyYyBmcm9tPXt3ZWVrLnN1bnJpc2V9IHRvPXt3ZWVrLnN1bnJpc2UgKyAwLjV9IGNvbG9yPVwieWVsbG93XCIgd2lkdGg9XCI4XCIgcmFkaXVzPVwiNTJcIiAvPlxuICAgICAgeyNpZiBpID09PSA1MCB8fCBpID09PSAyNCB8fCBpID09PSAxMH1cbiAgICAgICAgPFRpY2tcbiAgICAgICAgICBhdD17d2Vlay5zdW5zZXR9XG4gICAgICAgICAgY29sb3I9XCJsaWdodFwiXG4gICAgICAgICAgdGV4dD17d2Vlay5kYXRlfVxuICAgICAgICAgIHJhZGl1cz1cIjYyXCJcbiAgICAgICAgICBhbGlnbj17aSA9PT0gMjQgPyAnbGVmdCcgOiAncmlnaHQnfVxuICAgICAgICAvPlxuICAgICAgICA8VGlja1xuICAgICAgICAgIGF0PXt3ZWVrLnN1bnJpc2V9XG4gICAgICAgICAgY29sb3I9XCJsaWdodFwiXG4gICAgICAgICAgdGV4dD17d2Vlay5kYXRlfVxuICAgICAgICAgIHJhZGl1cz1cIjY5XCJcbiAgICAgICAgICBhbGlnbj17aSA9PT0gMjQgPyAnbGVmdCcgOiAncmlnaHQnfVxuICAgICAgICAvPlxuICAgICAgey9pZn1cbiAgICB7L2VhY2h9XG5cbiAgICA8IS0tIGRyYXcgaW5zaWRlIGFyY3MgLS0+XG4gICAgPExpbmUgcmFkaXVzPVwiNVwiIGxlbmd0aD1cIjQwXCIgYW5nbGU9e2N1cnJlbnRTZXR9IGNvbG9yPVwibGlnaHRibHVlXCIgd2lkdGg9XCIwLjJcIiAvPlxuICAgIDxMaW5lIHJhZGl1cz1cIjVcIiBsZW5ndGg9XCI0MFwiIGFuZ2xlPXtjdXJyZW50UmlzZX0gY29sb3I9XCJsaWdodGJsdWVcIiB3aWR0aD1cIjAuMlwiIC8+XG4gICAgPEFyY1xuICAgICAgcmFkaXVzPVwiMTVcIlxuICAgICAgbGVuZ3RoPVwiNDBcIlxuICAgICAgZnJvbT17Y3VycmVudFJpc2V9XG4gICAgICB0bz17Y3VycmVudFNldH1cbiAgICAgIGNvbG9yPVwibGlnaHRibHVlXCJcbiAgICAgIG9wYWNpdHk9XCIwLjdcIlxuICAgICAgd2lkdGg9XCI2XCJcbiAgICAvPlxuICAgIDwhLS0gPExhYmVsXG4gICAgICAgICAgdGV4dD17bm93LmZvcm1hdCgne21vbnRoLXNob3J0fSB7ZGF0ZX0nKX1cbiAgICAgICAgICByYWRpdXM9XCIxMFwiXG4gICAgICAgICAgYW5nbGU9XCIxODBcIlxuICAgICAgICAgIGFsaWduPVwibWlkZGxlXCJcbiAgICAgICAgICBjb2xvcj1cImxpZ2h0Ymx1ZVwiIC8+IC0tPlxuICA8L1JvdW5kPlxuPC9QYWdlPlxuXG48c3R5bGU+XG4gIC5tMyB7XG4gICAgbWFyZ2luOiAzcmVtO1xuICB9XG4gIC5tdDQge1xuICAgIG1hcmdpbi10b3A6IDRyZW07XG4gIH1cbiAgLmNvbCB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGZsZXgtd3JhcDogd3JhcDtcbiAgICBhbGlnbi1zZWxmOiBzdHJldGNoO1xuICB9XG48L3N0eWxlPlxuIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiIifQ== */";
+    	style.id = "svelte-13wxeui-style";
+    	style.textContent = ".all.svelte-13wxeui{position:relative}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUG9zdC5zdmVsdGUiLCJzb3VyY2VzIjpbIlBvc3Quc3ZlbHRlIl0sInNvdXJjZXNDb250ZW50IjpbIjxzY3JpcHQ+XG4gIGltcG9ydCB7IFBhZ2UgfSBmcm9tICcuLi8uLi9jb21wb25lbnRzL2luZGV4Lm1qcydcbiAgaW1wb3J0IHNwYWNldGltZSBmcm9tICdzcGFjZXRpbWUnXG4gIGltcG9ydCB7IGNhbGNZZWFyIH0gZnJvbSAnLi9jYWxjJ1xuICBpbXBvcnQgZGF5bGlnaHQgZnJvbSAnc3BhY2V0aW1lLWRheWxpZ2h0J1xuICBpbXBvcnQgeyBSb3VuZCwgQXJjLCBMaW5lLCBUaWNrLCBMYWJlbCB9IGZyb20gJy9Vc2Vycy9zcGVuY2VyL21vdW50YWluL3NvbWVob3ctY2lyY2xlL3NyYydcbiAgLy8gaW1wb3J0IHsgTGF0aXR1ZGUgfSBmcm9tICdzb21laG93LXNsaWRlcidcbiAgLy8gaW1wb3J0IHsgbGF0LCB0aWNrcyB9IGZyb20gJy4vc3RvcmUnXG4gIGltcG9ydCB7IGdldFN1blNldCwgZ2V0U3VuUmlzZSB9IGZyb20gJy4vY2FsYydcbiAgbGV0IHRpdGxlID0gYFN1bnJpc2UgKyBTdW5zZXQgZGlyZWN0aW9uYFxuICBzcGFjZXRpbWUuZXh0ZW5kKGRheWxpZ2h0KVxuICBsZXQgZGF5ID0gc3BhY2V0aW1lLm5vdygpLmZvcm1hdCgnaXNvLXNob3J0JylcblxuICBsZXQgbGF0ID0gMzdcblxuICBjb25zdCBmbXQgPSBmdW5jdGlvbiAodikge1xuICAgIHYgLT0gOTBcbiAgICB2ICo9IC0xXG4gICAgcmV0dXJuIHZcbiAgfVxuICAvLyBnZXQgY3VycmVudCBzdW5zZXQgYXppbW91dFxuICBsZXQgbm93ID0gc3BhY2V0aW1lKGRheSlcbiAgbGV0IGN1cnJlbnRTZXQgPSAwXG4gIGxldCBjdXJyZW50UmlzZSA9IDBcbiAgbGV0IHRpY2tzID0gW11cbiAgY29uc3QgY2hhbmdlID0gZnVuY3Rpb24gKCkge1xuICAgIG5vdyA9IHNwYWNldGltZShkYXkpXG4gICAgY29uc29sZS5sb2coJ2NhbGMnLCBsYXQsIGRheSlcbiAgICBub3cgPSBnZXRTdW5TZXQobm93LCBmbXQobGF0KSlcbiAgICBjdXJyZW50U2V0ID0gbm93LnN1blBvc2l0aW9uKCkuYXppbXV0aFxuICAgIG5vdyA9IGdldFN1blJpc2Uobm93LCBmbXQobGF0KSlcbiAgICBjdXJyZW50UmlzZSA9IG5vdy5zdW5Qb3NpdGlvbigpLmF6aW11dGhcbiAgICBjb25zb2xlLmxvZyhjdXJyZW50UmlzZSlcbiAgICB0aWNrcyA9IGNhbGNZZWFyKGxhdClcbiAgfVxuICBjaGFuZ2UoKVxuPC9zY3JpcHQ+XG5cbjxQYWdlIHt0aXRsZX0gZ3Jvdz17dHJ1ZX0gbWF4PXsxMTAwfSBzdWI9XCJhdCB7bGF0fcKwXCI+XG4gIDxkaXYgY2xhc3M9XCJhbGxcIj5cbiAgICA8aW5wdXQgdHlwZT1cInJhbmdlXCIgYmluZDp2YWx1ZT17bGF0fSBtaW49XCI0XCIgbWF4PVwiNzRcIiBvbjpjaGFuZ2U9e2NoYW5nZX0gLz5cbiAgICA8aW5wdXQgdHlwZT1cImRhdGVcIiBiaW5kOnZhbHVlPXtkYXl9IG9uOmNoYW5nZT17Y2hhbmdlfSAvPlxuICAgIDwhLS0gPGRpdj57Y3VycmVudFNldH08L2Rpdj4gLS0+XG4gICAgPCEtLSA8ZGl2IGNsYXNzPVwicmlnaHQgZjIgbXQ0XCIgc3R5bGU9XCJtYXJnaW4tYm90dG9tOi01MHB4O1wiPntmbXQoJGxhdCl9wrA8L2Rpdj4gLS0+XG4gICAgPFJvdW5kIHdpZHRoPVwiNTAwXCIgaGVpZ2h0PVwiNTAwXCIgcm90YXRlPVwiLTkwXCIgbWFyZ2luPVwiMTBcIj5cbiAgICAgIDxUaWNrIHRleHQ9XCJOXCIgYW5nbGU9XCIxODBcIiByYWRpdXM9XCI0NVwiIHNpemU9XCIyLjZcIiBjb2xvcj1cImxpZ2h0Ymx1ZVwiIHJvdGF0ZT1cIjBcIiAvPlxuICAgICAgPFRpY2sgdGV4dD1cIlNcIiBhbmdsZT1cIjBcIiByYWRpdXM9XCI0NVwiIHNpemU9XCIyLjZcIiBjb2xvcj1cImxpZ2h0Ymx1ZVwiIHJvdGF0ZT1cIjBcIiAvPlxuICAgICAgPFRpY2sgdGV4dD1cIkVcIiBhbmdsZT1cIjkwXCIgcmFkaXVzPVwiNDVcIiBzaXplPVwiMi42XCIgY29sb3I9XCJsaWdodGJsdWVcIiAvPlxuICAgICAgPFRpY2sgdGV4dD1cIldcIiBhbmdsZT1cIjI3MFwiIHJhZGl1cz1cIjQ1XCIgc2l6ZT1cIjIuNlwiIGNvbG9yPVwibGlnaHRibHVlXCIgLz5cbiAgICAgIDwhLS0gc3VucmlzZS9zdW5zZXQgdGlja3MgLS0+XG4gICAgICB7I2VhY2ggdGlja3MgYXMgd2VlaywgaSAod2Vlay5pZCl9XG4gICAgICAgIDxBcmMgZnJvbT17d2Vlay5zdW5zZXR9IHRvPXt3ZWVrLnN1bnNldCArIDAuNX0gY29sb3I9XCJwaW5rXCIgd2lkdGg9XCI4XCIgcmFkaXVzPVwiNTJcIiAvPlxuICAgICAgICA8QXJjIGZyb209e3dlZWsuc3VucmlzZX0gdG89e3dlZWsuc3VucmlzZSArIDAuNX0gY29sb3I9XCJ5ZWxsb3dcIiB3aWR0aD1cIjhcIiByYWRpdXM9XCI1MlwiIC8+XG4gICAgICAgIHsjaWYgaSA9PT0gNTAgfHwgaSA9PT0gMjQgfHwgaSA9PT0gMTB9XG4gICAgICAgICAgPFRpY2tcbiAgICAgICAgICAgIGF0PXt3ZWVrLnN1bnNldH1cbiAgICAgICAgICAgIGNvbG9yPVwibGlnaHRcIlxuICAgICAgICAgICAgdGV4dD17d2Vlay5kYXRlfVxuICAgICAgICAgICAgcmFkaXVzPVwiNjJcIlxuICAgICAgICAgICAgYWxpZ249e2kgPT09IDI0ID8gJ2xlZnQnIDogJ3JpZ2h0J31cbiAgICAgICAgICAvPlxuICAgICAgICAgIDxUaWNrXG4gICAgICAgICAgICBhdD17d2Vlay5zdW5yaXNlfVxuICAgICAgICAgICAgY29sb3I9XCJsaWdodFwiXG4gICAgICAgICAgICB0ZXh0PXt3ZWVrLmRhdGV9XG4gICAgICAgICAgICByYWRpdXM9XCI2OVwiXG4gICAgICAgICAgICBhbGlnbj17aSA9PT0gMjQgPyAnbGVmdCcgOiAncmlnaHQnfVxuICAgICAgICAgIC8+XG4gICAgICAgIHsvaWZ9XG4gICAgICB7L2VhY2h9XG5cbiAgICAgIDwhLS0gZHJhdyBpbnNpZGUgYXJjcyAtLT5cbiAgICAgIDxMaW5lIHJhZGl1cz1cIjVcIiBsZW5ndGg9XCI0MFwiIGFuZ2xlPXtjdXJyZW50U2V0fSBjb2xvcj1cImxpZ2h0Ymx1ZVwiIHdpZHRoPVwiMC4yXCIgLz5cbiAgICAgIDxMaW5lIHJhZGl1cz1cIjVcIiBsZW5ndGg9XCI0MFwiIGFuZ2xlPXtjdXJyZW50UmlzZX0gY29sb3I9XCJsaWdodGJsdWVcIiB3aWR0aD1cIjAuMlwiIC8+XG4gICAgICA8QXJjXG4gICAgICAgIHJhZGl1cz1cIjE1XCJcbiAgICAgICAgbGVuZ3RoPVwiNDBcIlxuICAgICAgICBmcm9tPXtjdXJyZW50UmlzZX1cbiAgICAgICAgdG89e2N1cnJlbnRTZXR9XG4gICAgICAgIGNvbG9yPVwibGlnaHRibHVlXCJcbiAgICAgICAgb3BhY2l0eT1cIjAuN1wiXG4gICAgICAgIHdpZHRoPVwiNlwiXG4gICAgICAvPlxuICAgICAgPCEtLSA8TGFiZWxcbiAgICAgIHRleHQ9e25vdy5mb3JtYXQoJ3ttb250aC1zaG9ydH0ge2RheS1vcmRpbmFsfScpfVxuICAgICAgc2l6ZT1cIjJcIlxuICAgICAgcmFkaXVzPVwiMFwiXG4gICAgICBhbmdsZT1cIjBcIlxuICAgICAgYWxpZ249XCJjZW50ZXJcIlxuICAgICAgY29sb3I9XCJncmV5XCJcbiAgICAvPiAtLT5cbiAgICA8L1JvdW5kPlxuICAgIDxkaXYgc3R5bGU9XCJjb2xvcjpncmV5O1wiPlxuICAgICAge25vdy5mb3JtYXQoJ3ttb250aC1zaG9ydH0ge2RheS1vcmRpbmFsfScpfVxuICAgIDwvZGl2PlxuICA8L2Rpdj5cbjwvUGFnZT5cblxuPHN0eWxlPlxuICAuYWxsIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIH1cbjwvc3R5bGU+XG4iXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBbUdFLElBQUksZUFBQyxDQUFDLEFBQ0osUUFBUSxDQUFFLFFBQVEsQUFDcEIsQ0FBQyJ9 */";
     	append_dev(document.head, style);
     }
 
-    function get_each_context$1(ctx, list, i) {
+    function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[9] = list[i];
-    	child_ctx[11] = i;
+    	child_ctx[11] = list[i];
+    	child_ctx[13] = i;
     	return child_ctx;
     }
 
-    // (52:6) {#if i === 50 || i === 24 || i === 10}
-    function create_if_block$1(ctx) {
+    // (54:8) {#if i === 50 || i === 24 || i === 10}
+    function create_if_block(ctx) {
     	let tick0;
     	let t;
     	let tick1;
@@ -9439,22 +9228,22 @@ var app = (function () {
 
     	tick0 = new Tick({
     			props: {
-    				at: /*week*/ ctx[9].sunset,
+    				at: /*week*/ ctx[11].sunset,
     				color: "light",
-    				text: /*week*/ ctx[9].date,
+    				text: /*week*/ ctx[11].date,
     				radius: "62",
-    				align: /*i*/ ctx[11] === 24 ? "left" : "right"
+    				align: /*i*/ ctx[13] === 24 ? "left" : "right"
     			},
     			$$inline: true
     		});
 
     	tick1 = new Tick({
     			props: {
-    				at: /*week*/ ctx[9].sunrise,
+    				at: /*week*/ ctx[11].sunrise,
     				color: "light",
-    				text: /*week*/ ctx[9].date,
+    				text: /*week*/ ctx[11].date,
     				radius: "69",
-    				align: /*i*/ ctx[11] === 24 ? "left" : "right"
+    				align: /*i*/ ctx[13] === 24 ? "left" : "right"
     			},
     			$$inline: true
     		});
@@ -9471,7 +9260,18 @@ var app = (function () {
     			mount_component(tick1, target, anchor);
     			current = true;
     		},
-    		p: noop,
+    		p: function update(ctx, dirty) {
+    			const tick0_changes = {};
+    			if (dirty & /*ticks*/ 32) tick0_changes.at = /*week*/ ctx[11].sunset;
+    			if (dirty & /*ticks*/ 32) tick0_changes.text = /*week*/ ctx[11].date;
+    			if (dirty & /*ticks*/ 32) tick0_changes.align = /*i*/ ctx[13] === 24 ? "left" : "right";
+    			tick0.$set(tick0_changes);
+    			const tick1_changes = {};
+    			if (dirty & /*ticks*/ 32) tick1_changes.at = /*week*/ ctx[11].sunrise;
+    			if (dirty & /*ticks*/ 32) tick1_changes.text = /*week*/ ctx[11].date;
+    			if (dirty & /*ticks*/ 32) tick1_changes.align = /*i*/ ctx[13] === 24 ? "left" : "right";
+    			tick1.$set(tick1_changes);
+    		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(tick0.$$.fragment, local);
@@ -9492,17 +9292,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$1.name,
+    		id: create_if_block.name,
     		type: "if",
-    		source: "(52:6) {#if i === 50 || i === 24 || i === 10}",
+    		source: "(54:8) {#if i === 50 || i === 24 || i === 10}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (49:4) {#each ticks as week, i (week.id)}
-    function create_each_block$1(key_1, ctx) {
+    // (51:6) {#each ticks as week, i (week.id)}
+    function create_each_block(key_1, ctx) {
     	let first;
     	let arc0;
     	let t0;
@@ -9513,8 +9313,8 @@ var app = (function () {
 
     	arc0 = new Arc({
     			props: {
-    				from: /*week*/ ctx[9].sunset,
-    				to: /*week*/ ctx[9].sunset + 0.5,
+    				from: /*week*/ ctx[11].sunset,
+    				to: /*week*/ ctx[11].sunset + 0.5,
     				color: "pink",
     				width: "8",
     				radius: "52"
@@ -9524,8 +9324,8 @@ var app = (function () {
 
     	arc1 = new Arc({
     			props: {
-    				from: /*week*/ ctx[9].sunrise,
-    				to: /*week*/ ctx[9].sunrise + 0.5,
+    				from: /*week*/ ctx[11].sunrise,
+    				to: /*week*/ ctx[11].sunrise + 0.5,
     				color: "yellow",
     				width: "8",
     				radius: "52"
@@ -9533,7 +9333,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	let if_block = (/*i*/ ctx[11] === 50 || /*i*/ ctx[11] === 24 || /*i*/ ctx[11] === 10) && create_if_block$1(ctx);
+    	let if_block = (/*i*/ ctx[13] === 50 || /*i*/ ctx[13] === 24 || /*i*/ ctx[13] === 10) && create_if_block(ctx);
 
     	const block = {
     		key: key_1,
@@ -9559,7 +9359,37 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (/*i*/ ctx[11] === 50 || /*i*/ ctx[11] === 24 || /*i*/ ctx[11] === 10) if_block.p(ctx, dirty);
+    			const arc0_changes = {};
+    			if (dirty & /*ticks*/ 32) arc0_changes.from = /*week*/ ctx[11].sunset;
+    			if (dirty & /*ticks*/ 32) arc0_changes.to = /*week*/ ctx[11].sunset + 0.5;
+    			arc0.$set(arc0_changes);
+    			const arc1_changes = {};
+    			if (dirty & /*ticks*/ 32) arc1_changes.from = /*week*/ ctx[11].sunrise;
+    			if (dirty & /*ticks*/ 32) arc1_changes.to = /*week*/ ctx[11].sunrise + 0.5;
+    			arc1.$set(arc1_changes);
+
+    			if (/*i*/ ctx[13] === 50 || /*i*/ ctx[13] === 24 || /*i*/ ctx[13] === 10) {
+    				if (if_block) {
+    					if_block.p(ctx, dirty);
+
+    					if (dirty & /*ticks*/ 32) {
+    						transition_in(if_block, 1);
+    					}
+    				} else {
+    					if_block = create_if_block(ctx);
+    					if_block.c();
+    					transition_in(if_block, 1);
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			} else if (if_block) {
+    				group_outros();
+
+    				transition_out(if_block, 1, 1, () => {
+    					if_block = null;
+    				});
+
+    				check_outros();
+    			}
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -9587,16 +9417,16 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_each_block$1.name,
+    		id: create_each_block.name,
     		type: "each",
-    		source: "(49:4) {#each ticks as week, i (week.id)}",
+    		source: "(51:6) {#each ticks as week, i (week.id)}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (43:2) <Round width="500" height="500" rotate="-90" margin="10">
+    // (45:4) <Round width="500" height="500" rotate="-90" margin="10">
     function create_default_slot_1(ctx) {
     	let tick0;
     	let t0;
@@ -9664,20 +9494,20 @@ var app = (function () {
 
     	let each_value = /*ticks*/ ctx[5];
     	validate_each_argument(each_value);
-    	const get_key = ctx => /*week*/ ctx[9].id;
-    	validate_each_keys(ctx, each_value, get_each_context$1, get_key);
+    	const get_key = ctx => /*week*/ ctx[11].id;
+    	validate_each_keys(ctx, each_value, get_each_context, get_key);
 
     	for (let i = 0; i < each_value.length; i += 1) {
-    		let child_ctx = get_each_context$1(ctx, each_value, i);
+    		let child_ctx = get_each_context(ctx, each_value, i);
     		let key = get_key(child_ctx);
-    		each_1_lookup.set(key, each_blocks[i] = create_each_block$1(key, child_ctx));
+    		each_1_lookup.set(key, each_blocks[i] = create_each_block(key, child_ctx));
     	}
 
     	line0 = new Line({
     			props: {
     				radius: "5",
     				length: "40",
-    				angle: /*currentSet*/ ctx[1],
+    				angle: /*currentSet*/ ctx[3],
     				color: "lightblue",
     				width: "0.2"
     			},
@@ -9688,7 +9518,7 @@ var app = (function () {
     			props: {
     				radius: "5",
     				length: "40",
-    				angle: /*currentRise*/ ctx[2],
+    				angle: /*currentRise*/ ctx[4],
     				color: "lightblue",
     				width: "0.2"
     			},
@@ -9699,8 +9529,8 @@ var app = (function () {
     			props: {
     				radius: "15",
     				length: "40",
-    				from: /*currentRise*/ ctx[2],
-    				to: /*currentSet*/ ctx[1],
+    				from: /*currentRise*/ ctx[4],
+    				to: /*currentSet*/ ctx[3],
     				color: "lightblue",
     				opacity: "0.7",
     				width: "6"
@@ -9757,20 +9587,20 @@ var app = (function () {
     				const each_value = /*ticks*/ ctx[5];
     				validate_each_argument(each_value);
     				group_outros();
-    				validate_each_keys(ctx, each_value, get_each_context$1, get_key);
-    				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, t4.parentNode, outro_and_destroy_block, create_each_block$1, t4, get_each_context$1);
+    				validate_each_keys(ctx, each_value, get_each_context, get_key);
+    				each_blocks = update_keyed_each(each_blocks, dirty, get_key, 1, ctx, each_value, each_1_lookup, t4.parentNode, outro_and_destroy_block, create_each_block, t4, get_each_context);
     				check_outros();
     			}
 
     			const line0_changes = {};
-    			if (dirty & /*currentSet*/ 2) line0_changes.angle = /*currentSet*/ ctx[1];
+    			if (dirty & /*currentSet*/ 8) line0_changes.angle = /*currentSet*/ ctx[3];
     			line0.$set(line0_changes);
     			const line1_changes = {};
-    			if (dirty & /*currentRise*/ 4) line1_changes.angle = /*currentRise*/ ctx[2];
+    			if (dirty & /*currentRise*/ 16) line1_changes.angle = /*currentRise*/ ctx[4];
     			line1.$set(line1_changes);
     			const arc_changes = {};
-    			if (dirty & /*currentRise*/ 4) arc_changes.from = /*currentRise*/ ctx[2];
-    			if (dirty & /*currentSet*/ 2) arc_changes.to = /*currentSet*/ ctx[1];
+    			if (dirty & /*currentRise*/ 16) arc_changes.from = /*currentRise*/ ctx[4];
+    			if (dirty & /*currentSet*/ 8) arc_changes.to = /*currentSet*/ ctx[3];
     			arc.$set(arc_changes);
     		},
     		i: function intro(local) {
@@ -9831,7 +9661,7 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(43:2) <Round width=\\\"500\\\" height=\\\"500\\\" rotate=\\\"-90\\\" margin=\\\"10\\\">",
+    		source: "(45:4) <Round width=\\\"500\\\" height=\\\"500\\\" rotate=\\\"-90\\\" margin=\\\"10\\\">",
     		ctx
     	});
 
@@ -9840,9 +9670,16 @@ var app = (function () {
 
     // (39:0) <Page {title} grow={true} max={1100} sub="at {lat}°">
     function create_default_slot(ctx) {
-    	let input;
-    	let t;
+    	let div1;
+    	let input0;
+    	let t0;
+    	let input1;
+    	let t1;
     	let round;
+    	let t2;
+    	let div0;
+    	let t3_value = /*now*/ ctx[2].format("{month-short} {day-ordinal}") + "";
+    	let t3;
     	let current;
     	let mounted;
     	let dispose;
@@ -9861,43 +9698,69 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			input = element("input");
-    			t = space();
+    			div1 = element("div");
+    			input0 = element("input");
+    			t0 = space();
+    			input1 = element("input");
+    			t1 = space();
     			create_component(round.$$.fragment);
-    			attr_dev(input, "type", "range");
-    			attr_dev(input, "min", "0");
-    			attr_dev(input, "max", "90");
-    			add_location(input, file$7, 39, 2, 1154);
+    			t2 = space();
+    			div0 = element("div");
+    			t3 = text(t3_value);
+    			attr_dev(input0, "type", "range");
+    			attr_dev(input0, "min", "4");
+    			attr_dev(input0, "max", "74");
+    			add_location(input0, file$8, 40, 4, 1141);
+    			attr_dev(input1, "type", "date");
+    			add_location(input1, file$8, 41, 4, 1221);
+    			set_style(div0, "color", "grey");
+    			add_location(div0, file$8, 92, 4, 3079);
+    			attr_dev(div1, "class", "all svelte-13wxeui");
+    			add_location(div1, file$8, 39, 2, 1119);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, input, anchor);
-    			set_input_value(input, /*lat*/ ctx[0]);
-    			insert_dev(target, t, anchor);
-    			mount_component(round, target, anchor);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, input0);
+    			set_input_value(input0, /*lat*/ ctx[1]);
+    			append_dev(div1, t0);
+    			append_dev(div1, input1);
+    			set_input_value(input1, /*day*/ ctx[0]);
+    			append_dev(div1, t1);
+    			mount_component(round, div1, null);
+    			append_dev(div1, t2);
+    			append_dev(div1, div0);
+    			append_dev(div0, t3);
     			current = true;
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input, "change", /*input_change_input_handler*/ ctx[6]),
-    					listen_dev(input, "input", /*input_change_input_handler*/ ctx[6]),
-    					listen_dev(input, "change", /*change*/ ctx[4], false, false, false)
+    					listen_dev(input0, "change", /*input0_change_input_handler*/ ctx[8]),
+    					listen_dev(input0, "input", /*input0_change_input_handler*/ ctx[8]),
+    					listen_dev(input0, "change", /*change*/ ctx[7], false, false, false),
+    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[9]),
+    					listen_dev(input1, "change", /*change*/ ctx[7], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*lat*/ 1) {
-    				set_input_value(input, /*lat*/ ctx[0]);
+    			if (dirty & /*lat*/ 2) {
+    				set_input_value(input0, /*lat*/ ctx[1]);
+    			}
+
+    			if (dirty & /*day*/ 1) {
+    				set_input_value(input1, /*day*/ ctx[0]);
     			}
 
     			const round_changes = {};
 
-    			if (dirty & /*$$scope, currentRise, currentSet*/ 4102) {
+    			if (dirty & /*$$scope, currentRise, currentSet, ticks*/ 16440) {
     				round_changes.$$scope = { dirty, ctx };
     			}
 
     			round.$set(round_changes);
+    			if ((!current || dirty & /*now*/ 4) && t3_value !== (t3_value = /*now*/ ctx[2].format("{month-short} {day-ordinal}") + "")) set_data_dev(t3, t3_value);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -9909,9 +9772,8 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(input);
-    			if (detaching) detach_dev(t);
-    			destroy_component(round, detaching);
+    			if (detaching) detach_dev(div1);
+    			destroy_component(round);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -9928,16 +9790,16 @@ var app = (function () {
     	return block;
     }
 
-    function create_fragment$7(ctx) {
+    function create_fragment$8(ctx) {
     	let page;
     	let current;
 
     	page = new Page({
     			props: {
-    				title: /*title*/ ctx[3],
+    				title: /*title*/ ctx[6],
     				grow: true,
     				max: 1100,
-    				sub: "at " + /*lat*/ ctx[0] + "°",
+    				sub: "at " + /*lat*/ ctx[1] + "°",
     				$$slots: { default: [create_default_slot] },
     				$$scope: { ctx }
     			},
@@ -9957,9 +9819,9 @@ var app = (function () {
     		},
     		p: function update(ctx, [dirty]) {
     			const page_changes = {};
-    			if (dirty & /*lat*/ 1) page_changes.sub = "at " + /*lat*/ ctx[0] + "°";
+    			if (dirty & /*lat*/ 2) page_changes.sub = "at " + /*lat*/ ctx[1] + "°";
 
-    			if (dirty & /*$$scope, currentRise, currentSet, lat*/ 4103) {
+    			if (dirty & /*$$scope, now, currentRise, currentSet, ticks, day, lat*/ 16447) {
     				page_changes.$$scope = { dirty, ctx };
     			}
 
@@ -9981,7 +9843,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_fragment$7.name,
+    		id: create_fragment$8.name,
     		type: "component",
     		source: "",
     		ctx
@@ -9990,11 +9852,12 @@ var app = (function () {
     	return block;
     }
 
-    function instance$7($$self, $$props, $$invalidate) {
+    function instance$8($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots("Post", slots, []);
     	let title = `Sunrise + Sunset direction`;
     	main$1.extend(index);
+    	let day = main$1.now().format("iso-short");
     	let lat = 37;
 
     	const fmt = function (v) {
@@ -10004,33 +9867,38 @@ var app = (function () {
     	};
 
     	// get current sunset azimout
-    	let now = main$1.today("Canada/Eastern");
+    	let now = main$1(day);
 
-    	now = getSunSet(now, fmt(lat));
-    	let currentSet = now.sunPosition().azimuth;
-    	now = getSunRise(now, fmt(lat));
-    	let currentRise = now.sunPosition().azimuth;
+    	let currentSet = 0;
+    	let currentRise = 0;
+    	let ticks = [];
 
     	const change = function () {
-    		console.log("calc", lat);
-    		now = getSunSet(now, fmt(lat));
-    		$$invalidate(1, currentSet = now.sunPosition().azimuth);
-    		now = getSunRise(now, fmt(lat));
-    		$$invalidate(2, currentRise = now.sunPosition().azimuth);
+    		$$invalidate(2, now = main$1(day));
+    		console.log("calc", lat, day);
+    		$$invalidate(2, now = getSunSet(now, fmt(lat)));
+    		$$invalidate(3, currentSet = now.sunPosition().azimuth);
+    		$$invalidate(2, now = getSunRise(now, fmt(lat)));
+    		$$invalidate(4, currentRise = now.sunPosition().azimuth);
     		console.log(currentRise);
+    		$$invalidate(5, ticks = calcYear(lat));
     	};
 
-    	let ticks = calcYear(lat);
     	change();
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1$1.warn(`<Post> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<Post> was created with unknown prop '${key}'`);
     	});
 
-    	function input_change_input_handler() {
+    	function input0_change_input_handler() {
     		lat = to_number(this.value);
-    		$$invalidate(0, lat);
+    		$$invalidate(1, lat);
+    	}
+
+    	function input1_input_handler() {
+    		day = this.value;
+    		$$invalidate(0, day);
     	}
 
     	$$self.$capture_state = () => ({
@@ -10042,24 +9910,27 @@ var app = (function () {
     		Arc,
     		Line,
     		Tick,
+    		Label,
     		getSunSet,
     		getSunRise,
     		title,
+    		day,
     		lat,
     		fmt,
     		now,
     		currentSet,
     		currentRise,
-    		change,
-    		ticks
+    		ticks,
+    		change
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("title" in $$props) $$invalidate(3, title = $$props.title);
-    		if ("lat" in $$props) $$invalidate(0, lat = $$props.lat);
-    		if ("now" in $$props) now = $$props.now;
-    		if ("currentSet" in $$props) $$invalidate(1, currentSet = $$props.currentSet);
-    		if ("currentRise" in $$props) $$invalidate(2, currentRise = $$props.currentRise);
+    		if ("title" in $$props) $$invalidate(6, title = $$props.title);
+    		if ("day" in $$props) $$invalidate(0, day = $$props.day);
+    		if ("lat" in $$props) $$invalidate(1, lat = $$props.lat);
+    		if ("now" in $$props) $$invalidate(2, now = $$props.now);
+    		if ("currentSet" in $$props) $$invalidate(3, currentSet = $$props.currentSet);
+    		if ("currentRise" in $$props) $$invalidate(4, currentRise = $$props.currentRise);
     		if ("ticks" in $$props) $$invalidate(5, ticks = $$props.ticks);
     	};
 
@@ -10067,20 +9938,31 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [lat, currentSet, currentRise, title, change, ticks, input_change_input_handler];
+    	return [
+    		day,
+    		lat,
+    		now,
+    		currentSet,
+    		currentRise,
+    		ticks,
+    		title,
+    		change,
+    		input0_change_input_handler,
+    		input1_input_handler
+    	];
     }
 
     class Post extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		if (!document.getElementById("svelte-17p9en2-style")) add_css$4();
-    		init(this, options, instance$7, create_fragment$7, safe_not_equal, {});
+    		if (!document.getElementById("svelte-13wxeui-style")) add_css$4();
+    		init(this, options, instance$8, create_fragment$8, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
     			tagName: "Post",
     			options,
-    			id: create_fragment$7.name
+    			id: create_fragment$8.name
     		});
     	}
     }
