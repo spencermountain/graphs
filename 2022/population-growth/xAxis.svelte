@@ -28,4 +28,9 @@
     font-size: 14px;
     /* margin-left: -8px; */
   }
+  @media only screen and (max-width: 400px) {
+    .tick {
+      display: none;
+    }
+  }
 </style>

@@ -1,18 +1,15 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Page } from '../../components/index.mjs'
   import byColor from './colors.js'
   import data from './data.js'
   import counts from './counts.js'
-
   export let title = 'Long-serving Toronto city councilors'
   export let sub = ''
   let minTerms = 2
 </script>
 
-<div>
-  <Head {title} {sub} num="08" />
-  <div class="container">
+<Page {title} {sub} grow={true} min={500}>
+  <div class="all">
     <div class="term legend" style="margin-bottom:5px; ">
       <div class="year" style="border:none;" />
       <div class="rel">
@@ -55,7 +52,10 @@
         </div>
       </div>
     {/each}
-    <div class="term legend" style="margin-top: 1rem; align-items: flex-end;max-height: 40px">
+    <div
+      class="term legend"
+      style="margin-top: 1rem; align-items: flex-end; max-height: 40px; margin-bottom: 3rem;"
+    >
       <div class="year" style="border:none;" />
       <div class="rel">
         <div class="label right" style="left:10%; color:#2D85A8;">Anthony Perruzza</div>
@@ -68,8 +68,7 @@
       <div class="aside" />
     </div>
   </div>
-  <Foot {title} />
-</div>
+</Page>
 
 <style>
   .right {
@@ -122,7 +121,7 @@
     flex-wrap: nowrap;
     align-self: stretch;
     box-sizing: border-box;
-    min-width: 700px;
+    min-width: 300px;
   }
   .person {
     margin-top: 20px;
@@ -157,18 +156,12 @@
     /* margin-right: 10px; */
     /* text-decoration: underline; */
   }
-  .container {
-    margin: 3rem;
-    padding: 3rem;
-    /* border: 1px solid grey; */
-    min-height: 800px;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    flex-wrap: nowrap;
-    align-self: stretch;
+  @media only screen and (max-width: 700px) {
+    .aside {
+      display: none;
+    }
+    .person {
+      border-left: 5px solid lightgrey;
+    }
   }
 </style>

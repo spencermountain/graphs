@@ -104,11 +104,11 @@ module.exports = {
       title: 'Skydome roof',
       thumb: 'thumb.jpg',
     },
-    {
-      num: 'toronto-streets',
-      title: 'Toronto street-map',
-      thumb: 'thumb.jpg',
-    },
+    // {
+    //   num: 'toronto-streets',
+    //   title: 'Toronto street-map',
+    //   thumb: 'thumb.jpg',
+    // },
     {
       num: 'mayors-of-toronto',
       title: 'Mayors of Toronto',
@@ -281,6 +281,16 @@ module.exports = {
     {
       num: 'toronto-elections',
       title: 'Toronto elections',
+      thumb: 'thumb.jpg',
+    },
+    {
+      num: 'aspect-ratios',
+      title: 'Aspect ratios',
+      thumb: 'thumb.jpg',
+    },
+    {
+      num: 'one-of',
+      title: 'One of 1,000',
       thumb: 'thumb.jpg',
     },
   ]

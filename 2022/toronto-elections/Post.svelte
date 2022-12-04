@@ -1,6 +1,5 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Page } from '../../components/index.mjs'
   import names from './colors.js'
 
   import data from './data.js'
@@ -65,39 +64,27 @@
   })
 </script>
 
-<div class="all">
-  <Head {title} num="11" />
-  <div class="container col">
-    {#each data as o, i}
-      <!-- <div class="row" style="height:{o.years * 40}px;"> -->
-      <div class="row year">
-        <div class="digit">{o.year}</div>
-        <div class="people">
-          {#each o.people as p, i}
-            <div
-              class="person"
-              style="width:{p.percent}; background-color:{colors[p.name] || 'steelblue'};"
-            >
-              <!-- {p.name} -->
-            </div>
-          {/each}
-          <div class="person other" style="width:{o.other}%; " />
-        </div>
+<Page {title}>
+  {#each data as o, i}
+    <!-- <div class="row" style="height:{o.years * 40}px;"> -->
+    <div class="row year">
+      <div class="digit">{o.year}</div>
+      <div class="people">
+        {#each o.people as p, i}
+          <div
+            class="person"
+            style="width:{p.percent}; background-color:{colors[p.name] || 'steelblue'};"
+          >
+            <!-- {p.name} -->
+          </div>
+        {/each}
+        <div class="person other" style="width:{o.other}%; " />
       </div>
-    {/each}
-  </div>
-  <Foot {title} />
-</div>
+    </div>
+  {/each}
+</Page>
 
 <style>
-  .container {
-    margin: 3rem;
-    max-width: 800px;
-    padding-right: 2rem;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
-  }
   .year {
     min-height: 90px;
   }
@@ -141,22 +128,5 @@
     text-align: left;
     flex-wrap: nowrap;
     align-self: stretch;
-  }
-  .all {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    flex-wrap: wrap;
-    align-self: stretch;
-  }
-  .col {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    flex-wrap: wrap;
   }
 </style>

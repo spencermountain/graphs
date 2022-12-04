@@ -8,8 +8,8 @@
     "new": "node ./scripts/new.js",
     "bake": "node ./scripts/bake.js",
     "watch": "node ./scripts/watch.js",
-    "start": "budo index.js:assets/bundle.js --live",
-    "build": "npm run watch drafts/home"
+    "build": "node ./scripts/build.js",
+    "home": "npm run watch drafts/home"
   },
   "repository": {
     "type": "git",
@@ -47,7 +47,7 @@
     "somehow-slider": "1.2.0",
     "somehow-timeline": "0.1.2",
     "spacetime": "7.1.2",
-    "spacetime-daylight": "1.4.0",
+    "spacetime-daylight": "^1.4.0",
     "svelte-infinite-loading": "^1.3.8",
     "svelte-tiny-virtual-list": "^2.0.5",
     "vhtml": "^2.2.0",

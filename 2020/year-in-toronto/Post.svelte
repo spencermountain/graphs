@@ -1,6 +1,5 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Page } from '../../components/index.mjs'
   export let title = 'The Year in Toronto'
   // export let sub = ''
 
@@ -20,14 +19,7 @@
   let height = 900
 </script>
 
-<style>
-  .m3 {
-    margin: 3rem;
-  }
-</style>
-
-<div>
-  <Head {title} num={'03'} />
+<Page {title} num={'03'}>
   <div class="m3">
     <Timeline {start} {end} {height} {title}>
       <Column width="65px">
@@ -60,10 +52,11 @@
           color="slate"
           side="left"
           align="left"
-          opacity="0.7" />
+          opacity="0.7"
+        />
       </Column>
 
-      <Column width="185px" title="">
+      <Column width="125px" title="">
         <Line
           start="June 14 {year}"
           duration="7 days"
@@ -71,7 +64,8 @@
           color="rose"
           side="left"
           align="left"
-          opacity="0.7" />
+          opacity="0.7"
+        />
         <Line
           start="July 14 {year}"
           duration="7 days"
@@ -79,7 +73,8 @@
           color="rose"
           side="left"
           align="left"
-          opacity="0.7" />
+          opacity="0.7"
+        />
         <Line
           start="August 20 {year}"
           duration="7 days"
@@ -87,7 +82,8 @@
           color="rose"
           side="left"
           align="left"
-          opacity="0.7" />
+          opacity="0.7"
+        />
         <Line
           start="Sept 14 {year}"
           duration="7 days"
@@ -95,7 +91,8 @@
           color="rose"
           side="left"
           align="left"
-          opacity="0.7" />
+          opacity="0.7"
+        />
         <Line
           start="Oct 14 {year}"
           duration="2 days"
@@ -103,7 +100,8 @@
           color="orange"
           side="left"
           align="left"
-          opacity="0.7" />
+          opacity="0.7"
+        />
       </Column>
 
       <Column width="60px" label="">
@@ -133,6 +131,10 @@
       </Column>
     </Timeline>
   </div>
+</Page>
 
-  <Foot {title} />
-</div>
+<style>
+  .m3 {
+    margin: 3rem;
+  }
+</style>

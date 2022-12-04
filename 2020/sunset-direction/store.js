@@ -1,8 +1,8 @@
 import { writable, derived } from 'svelte/store'
 import { calcYear } from './calc'
 import spacetime from 'spacetime'
-import sunlight from '/Users/spencer/mountain/spacetime-daylight/src'
-spacetime.extend(sunlight)
+import daylight from 'spacetime-daylight'
+spacetime.extend(daylight)
 
 const fmt = function (v) {
   v -= 90

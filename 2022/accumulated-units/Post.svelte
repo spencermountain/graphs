@@ -1,12 +1,12 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Page } from '../../components/index.mjs'
   import scale from './lib/scale.js'
   import spacetime from 'spacetime'
-  import XAxis from './xAxis.svelte'
-  import YAxis from './yAxis.svelte'
+  import XAxis from './lib/xAxis.svelte'
+  import YAxis from './lib/yAxis.svelte'
   import data from './data.js'
-  let title = 'Accumulated housing units in Toronto'
+  let title = 'Accumulated growth in Toronto'
+  let sub = 'housing units added each term'
 
   let max = 158382 + 10458 - 35000
   // let max = 261730 + 9828
@@ -34,11 +34,9 @@
   let yTicks = [t1, t1 + t2, t1 + t2 + t3, t1 + t2 + t3 + t4]
 </script>
 
-<Head {title} num="01" />
-<div class="center">
-  <div class="row" style="align-items:flex-end; justify-content: center;">
-    <div class="" style="margin-top:20px; height:0px;color:grey;">Housing units added by term</div>
-    <div
+<Page {title} {sub}>
+  <!-- <div class="row" style="align-items:flex-end; justify-content: center;">
+     <div
       class="group"
       style="margin-left:3rem; height:80px; max-width:3rem;min-width:3rem;margin-bottom:-1rem "
     >
@@ -46,50 +44,50 @@
       <div class="bar" style="height:80%; bottom:0%; left:50%;" />
       <div class="label" style="color:steelblue; top:19px; left:-4px">built</div>
       <div class="label" style="color:lightsteelblue; left:27px; top:-10px;">approved</div>
-    </div>
-  </div>
+    </div> 
+  </div>-->
+  <div class="center" style=" min-width:900px;">
+    <div class="container row">
+      {#each data as o, i}
+        <div class="group" style=" height:100%;">
+          <div class="bar red" style="height:{yScale(o.total)}%; bottom:{yScale(o.already)}%; " />
+          <div
+            class="bar"
+            style="height:{yScale(o.approvals)}%; bottom:{yScale(o.already)}%; left:50%;"
+          />
+        </div>
+      {/each}
+      <!-- <div class="today" style="left:{xScale('13 November 2006')}%;" /> -->
+      <div class="today" style="margin-left:17px; left:{xScale('October 25, 2010')}%;" />
+      <div class="today" style="margin-left:17px; left:{xScale('October 27, 2014')}%;" />
+      <div class="today" style="margin-left:17px; left:{xScale('October 22, 2018')}%;" />
+      <!-- <div class="today" style="margin-left:17px; left:{xScale('October 22, 2022')}%;" /> -->
 
-  <div class="container row">
-    {#each data as o, i}
-      <div class="group" style=" height:100%;">
-        <div class="bar red" style="height:{yScale(o.total)}%; bottom:{yScale(o.already)}%; " />
-        <div
-          class="bar"
-          style="height:{yScale(o.approvals)}%; bottom:{yScale(o.already)}%; left:50%;"
-        />
+      <div class="total" style="width:{xScale('October 25, 2010') - 5}%; bottom:{yScale(t1)}%;" />
+      <div
+        class="total"
+        style="width:{xScale('October 27, 2014') - 5}%; bottom:{yScale(t1 + t2) - 0.5}%;"
+      />
+      <div
+        class="total"
+        style="width:{xScale('October 22, 2018') - 5}%; bottom:{yScale(t1 + t2 + t3) - 0.9}%;"
+      />
+      <div
+        class="total"
+        style="width:{xScale('October 22, 2022') - 5}%; bottom:{yScale(t1 + t2 + t3 + t4) - 1.5}%;"
+      />
+      <XAxis {xScale} />
+      <YAxis {yScale} ticks={yTicks} />
+
+      <div class="row bars">
+        <div class="term col" style="border-top:2px solid lightgrey;">Miller #2</div>
+        <div class="term col" style="border-top:2px solid lightgrey;">Ford</div>
+        <div class="term col" style="border-top:2px solid lightgrey;">Tory #1</div>
+        <div class="term col" style="border-top:2px solid lightgrey;">Tory #2</div>
       </div>
-    {/each}
-    <!-- <div class="today" style="left:{xScale('13 November 2006')}%;" /> -->
-    <div class="today" style="margin-left:17px; left:{xScale('October 25, 2010')}%;" />
-    <div class="today" style="margin-left:17px; left:{xScale('October 27, 2014')}%;" />
-    <div class="today" style="margin-left:17px; left:{xScale('October 22, 2018')}%;" />
-    <!-- <div class="today" style="margin-left:17px; left:{xScale('October 22, 2022')}%;" /> -->
-
-    <div class="total" style="width:{xScale('October 25, 2010') - 5}%; bottom:{yScale(t1)}%;" />
-    <div
-      class="total"
-      style="width:{xScale('October 27, 2014') - 5}%; bottom:{yScale(t1 + t2) - 0.5}%;"
-    />
-    <div
-      class="total"
-      style="width:{xScale('October 22, 2018') - 5}%; bottom:{yScale(t1 + t2 + t3) - 0.9}%;"
-    />
-    <div
-      class="total"
-      style="width:{xScale('October 22, 2022') - 5}%; bottom:{yScale(t1 + t2 + t3 + t4) - 1.5}%;"
-    />
-    <XAxis {xScale} />
-    <YAxis {yScale} ticks={yTicks} />
-
-    <div class="row bars">
-      <div class="term col" style="border-top:2px solid lightgrey;">Miller #2</div>
-      <div class="term col" style="border-top:2px solid lightgrey;">Ford</div>
-      <div class="term col" style="border-top:2px solid lightgrey;">Tory #1</div>
-      <div class="term col" style="border-top:2px solid lightgrey;">Tory #2</div>
     </div>
   </div>
-</div>
-<Foot {title} />
+</Page>
 
 <style>
   .bars {
@@ -114,10 +112,10 @@
     display: inline-block;
     opacity: 0.8;
   }
-  .label {
+  /* .label {
     position: absolute;
     font-size: 12px;
-  }
+  } */
   .today {
     height: 80%;
     position: absolute;
@@ -160,7 +158,6 @@
   }
   .center {
     text-align: center;
-    margin: 3rem;
   }
   .container {
     position: relative;

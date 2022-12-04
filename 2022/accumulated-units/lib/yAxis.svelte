@@ -1,7 +1,7 @@
 <script>
   export let yScale = () => {}
   export let ticks = []
-  import fmt from './lib/fmt.js'
+  import fmt from './fmt.js'
 </script>
 
 <div class="left">

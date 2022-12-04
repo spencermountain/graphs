@@ -1,6 +1,5 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Page } from '../../components/index.mjs'
   import scale from './lib/scale.js'
   import spacetime from 'spacetime'
   import XAxis from './xAxis.svelte'
@@ -30,41 +29,44 @@
   let title = 'Toronto Population growth'
 </script>
 
-<Head {title} num="04" />
-<div class="col all">
-  <div class="container">
-    <div class="top-stat">3 million<br />by 2031<br />*</div>
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" width="100%" height="100%">
-      <!-- <Line {points} {xScale} {yScale} /> -->
-      <!-- <Area {future} {xScale} {yScale} fill="lightgrey" /> -->
+<Page {title} grow={true}>
+  <div class="col all">
+    <div class="container">
+      <div class="top-stat">3 million<br />by 2031<br />*</div>
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" width="100%" height="100%">
+        <!-- <Line {points} {xScale} {yScale} /> -->
+        <!-- <Area {future} {xScale} {yScale} fill="lightgrey" /> -->
 
-      {#each terms as term, i}
-        <Triangle
-          points={term.points}
-          {xScale}
-          {yScale}
-          fill={term.color || 'lightgrey'}
-          isFuture={term.future}
+        {#each terms as term, i}
+          <Triangle
+            points={term.points}
+            {xScale}
+            {yScale}
+            fill={term.color || 'lightgrey'}
+            isFuture={term.future}
+          />
+        {/each}
+        <line
+          x1={xScale(2000000)}
+          y1={yScale(terms[0].points[0].y)}
+          x2={xScale('2030')}
+          y2={yScale(3000000)}
+          stroke-width="0.5%"
+          stroke="grey"
+          stroke-dasharray="1"
         />
-      {/each}
-      <line
-        x1={xScale(2000000)}
-        y1={yScale(terms[0].points[0].y)}
-        x2={xScale('2030')}
-        y2={yScale(3000000)}
-        stroke-width="0.5%"
-        stroke="grey"
-        stroke-dasharray="1"
-      />
-    </svg>
-    <XAxis {xScale} />
-    <YAxis {yScale} />
-    <div class="today" style="left:{xScale('October 24, 2022') + 0.3}%;" />
-    {#each terms as term, i}
-      <div class="mayor" style="color:{term.color};  left:{todayX + 2}%; top:{yScale(term.mid)}%;">
-        {term.mayor}
-      </div>
-      <!-- {#if !term.future && i > 0}
+      </svg>
+      <XAxis {xScale} />
+      <YAxis {yScale} />
+      <div class="today" style="left:{xScale('October 24, 2022') + 0.3}%;" />
+      {#each terms as term, i}
+        <div
+          class="mayor"
+          style="color:{term.color};  left:{todayX + 2}%; top:{yScale(term.mid)}%;"
+        >
+          {term.mayor}
+        </div>
+        <!-- {#if !term.future && i > 0}
         <div
           class="bottom-line"
           style="background-color:{term.color}; margin-left:-15px;
@@ -72,11 +74,11 @@
           left:{xScale(term.points[0].x)}%;"
         />
       {/if} -->
-      <!-- <div class="today" style="left:{xScale(term.points[0].x)}%;" /> -->
-    {/each}
+        <!-- <div class="today" style="left:{xScale(term.points[0].x)}%;" /> -->
+      {/each}
+    </div>
   </div>
-</div>
-<Foot {title} />
+</Page>
 
 <style>
   .top-stat {
@@ -101,7 +103,7 @@
     position: relative;
     /* border: 1px solid grey; */
     /* margin: 3rem; */
-    min-width: 600px;
+    /* min-width: 600px; */
     /* padding-left: 40px; */
     aspect-ratio: 1.618/1; /* golden */
   }
@@ -117,5 +119,14 @@
   }
   .all {
     margin: 4rem;
+  }
+  @media only screen and (max-width: 700px) {
+    .mayor {
+      font-size: 11px;
+    }
+    .all {
+      margin: 2rem;
+      margin-top: 3rem;
+    }
   }
 </style>

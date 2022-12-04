@@ -10,9 +10,10 @@ html {
   color: #4d4d4d;
   background-color: #fbfbfb;
   font-family: 'Merriweather', Georgia, 'Times New Roman', Times, serif;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 150%;
 }
+
 /* latin */
 @font-face {
   font-family: 'Merriweather';
@@ -23,45 +24,20 @@ html {
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
     U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* for demos */
-.lib{
-  font-family: monospace, monospace;
-  border-bottom:1px solid grey;
-  display:inline;
-  margin-left:1rem;
-  padding-left:0.2rem;
-  padding-right:0.2rem;
-}
-.plugin{
-  font-family: monospace, monospace;
-  color:#cc8a66;
-  margin-top:1rem;
-  margin-left:5rem;
-}
-.desc{
-  margin-bottom:6rem;
-  opacity:0.9;
-}
 
 
-a {
-  text-decoration: none;
-  color: #2d85a8;
+.m3 {
+  margin: 3rem;
 }
 
-a:hover {
-  text-decoration: underline;
+.m2 {
+  margin: 2rem;
 }
 
-.left {
-  align-self: flex-start;
+.m1 {
+  margin: 1rem;
 }
-.right {
-  align-self: flex-end;
-}
-.center {
-  align-self: center;
-}
+
 img {
   margin: 1.2rem;
   max-width: 100%;
@@ -69,168 +45,7 @@ img {
   box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
   align-self: center;
 }
-h2 {
-  padding-left: 0.25rem;
-  line-height: 80%;
-  padding-right: 0.25rem;
-  display: inline;
-  color: #4d4d4d;
-  font-size: 2.4em;
-  font-weight: 100;
-  border-bottom: 1px solid #f2c0bb;
-}
-.row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-  flex-wrap: nowrap;
-  align-self: stretch;
-}
-.f09 {
-  font-size: 0.9rem;
-}
-.f2 {
-  font-size: 2rem;
-  line-height: 2.4rem;
-}
-.tab {
-  margin-left: 4rem;
-}
-.down {
-  margin-top: 2rem;
-}
-.i {
-  font-style: italic;
-}
-.b {
-  font-weight: bold;
-}
+
 footer {
   height: 10rem;
-}
-.link {
-  text-decoration: none;
-  color: steelblue;
-}
-.blue {
-  color: #6699cc;
-}
-.green {
-  color: #6accb2;
-}
-.yellow {
-  color: #e1e6b3;
-}
-.red {
-  color: #cc7066;
-}
-.pink {
-  color: #f2c0bb;
-}
-.brown {
-  color: #705e5c;
-}
-.orange {
-  color: #cc8a66;
-}
-.purple {
-  color: #d8b3e6;
-}
-.navy {
-  color: #335799;
-}
-.olive {
-  color: #7f9c6c;
-}
-.fuscia {
-  color: #735873;
-}
-.beige {
-  color: #e6d7b3;
-}
-.slate {
-  color: #8c8c88;
-}
-.suede {
-  color: #9c896c;
-}
-.burnt {
-  color: #603a39;
-}
-.sea {
-  color: #50617a;
-}
-.sky {
-  color: #2d85a8;
-}
-.night {
-  color: #303b50;
-}
-.rouge {
-  color: #914045;
-}
-.grey {
-  color: #838b91;
-}
-.mud {
-  color: #c4abab;
-}
-.royal {
-  color: #275291;
-}
-.cherry {
-  color: #cc6966;
-}
-.tulip {
-  color: #e6b3bc;
-}
-.rose {
-  color: #d68881;
-}
-.fire {
-  color: #ab5850;
-}
-.greyblue {
-  color: #72697d;
-}
-.greygreen {
-  color: #8ba3a2;
-}
-.greypurple {
-  color: #978ba3;
-}
-.burn {
-  color: #6d5685;
-}
-.slategrey {
-  color: #bfb0b3;
-}
-.light {
-  color: #a3a5a5;
-}
-.lighter {
-  color: #d7d5d2;
-}
-.fudge {
-  color: #4d4d4d;
-}
-.lightgrey {
-  color: #949a9e;
-}
-.white {
-  color: #fbfbfb;
-}
-.dimgrey {
-  color: #606c74;
-}
-.softblack {
-  color: #463d4f;
-}
-.dark {
-  color: #443d3d;
-}
-.black {
-  color: #333333;
 }

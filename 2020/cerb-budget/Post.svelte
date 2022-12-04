@@ -1,8 +1,7 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Page } from '../../components/index.mjs'
   import { Sankey, Node, Col } from '/Users/spencer/mountain/somehow-sankey/src'
-  let fmt = num => {
+  let fmt = (num) => {
     num = Number(num) * 1000000000
     if (num >= 1000000000) {
       num = Math.round(num / 100000000) * 100000000
@@ -20,31 +19,17 @@
     }
     return num
   }
+  let title = `Canada's Budget with CERB benefit`
+  let sub = 'in 2020'
 </script>
 
-<style>
-  .m3 {
-    margin: 3rem;
-  }
-  .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    flex-wrap: wrap;
-    align-self: stretch;
-  }
-</style>
-
-<div>
-  <Head num="17" />
-  <div class="m3">
+<Page {title} {sub}>
+  <!-- <div class="m3">
     <b>Canada's Budget with CERB benefit</b>
     <br />
     in 2020
-  </div>
-  <div class="main m3 row">
+  </div> -->
+  <div class="m3">
     <Sankey height="800" {fmt}>
       <Col>
         <Node name="Income Tax" to="Canada" value="164" color="sea" />
@@ -53,13 +38,11 @@
         <Node name="EI" to="Canada" value="23" color="sea" />
         <Node name="Crown" to="Canada" value="12" color="sea" />
         <Node name="Customs" to="Canada" value="5" color="sea" />
-
       </Col>
       <Col>
         <Node name="Canada" value="319" color="orange" accent="red" />
       </Col>
       <Col>
-
         <Node name="CERB" from="Canada" value="62" color="red" />
 
         <Node name="Seniors" from="Canada" value="57" color="blue" />
@@ -70,11 +53,15 @@
         <Node name="Health Transfer" from="Canada" value="39" color="green" />
         <Node name="Social Transfer" from="Canada" value="14" color="green" />
         <Node name="CEBA" from="Canada" value="26" color="orange" opacity="0.5" accent="lighter" />
-
       </Col>
-
     </Sankey>
   </div>
+</Page>
 
-  <Foot />
-</div>
+<style>
+  .m3 {
+    margin-right: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+</style>

@@ -1,6 +1,5 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Page } from '../../components/index.mjs'
   import { onMount } from 'svelte'
   import addWards from './layers/addWards.js'
   import addDots from './layers/addBuildings.js'
@@ -37,24 +36,11 @@
   })
 </script>
 
-<Head {title} num="03" sub="Oct 2022" />
-<div class="container">
+<Page {title} max={1200} padding={0} grow={true}>
   <div id="map" />
-</div>
-<Foot {title} />
+</Page>
 
 <style>
-  .container {
-    /* margin: 3rem; */
-    /* width: 100vw; */
-    /* min-height: 800px; */
-    border: 1px solid grey;
-    border-radius: 5px;
-    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
-    margin: 5%;
-    padding: 0px;
-    overflow: hidden;
-  }
   #map {
     min-width: 100%;
     min-height: 700px;

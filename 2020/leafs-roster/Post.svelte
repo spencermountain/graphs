@@ -1,12 +1,11 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Page } from '../../components/index.mjs'
   import byCol from './data/byCol2.json'
-  import { Timeline, Column, Line, Ticks, Bar } from '/Users/spencer/mountain/somehow-timeline/src'
+  import { Timeline, Column, Line, Ticks } from '/Users/spencer/mountain/somehow-timeline/src'
   export let title = 'Toronto Maple Leafs roster changes'
   export let sub = ''
   let start = 'nov 1 2008'
-  let end = 'dec 31 2019'
+  let end = 'dec 31 2022'
   let height = '1500'
   // let cols = colors.combos.yukon.concat(colors.combos.bloor).concat(colors.combos.roma)
   // let cols = [].concat(colors.combos.yukon, colors.combos.yukon, colors.combos.yukon)
@@ -24,6 +23,10 @@
     2017: 'blue',
     2018: 'red',
     2019: 'fuscia',
+    2020: 'navy',
+    2021: 'blue',
+    2022: 'red',
+    2023: 'fuscia',
     // 2011: 'green',
     // 2012: 'suede',
     // 2013: 'pink',
@@ -41,54 +44,20 @@
     // '#e6d7b3',
     // '#cc7066',
   }
+
+  // navy  #6accb2
+  // light #cc7066
+  // red #cc7066
+  // purple #F2C0BB
 </script>
 
-<style>
-  .m3 {
-    margin: 3rem;
-  }
-  .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    flex-wrap: nowrap;
-    align-self: stretch;
-  }
-  .player {
-    font-size: 14px;
-    min-height: 175px;
-    max-height: 175px;
-    min-width: 50px;
-    max-width: 50px;
-    border-right: 3px solid steelblue;
-    text-align: left;
-    position: relative;
-  }
-  .name {
-    position: absolute;
-    bottom: 60px;
-    width: 130px;
-    height: 12px;
-    transform: rotate(-90deg);
-    white-space: nowrap;
-    left: 0px;
-  }
-  .year {
-    width: 50px;
-  }
-</style>
-
-<div>
-  <Head {title} {sub} num={'09'} />
-  <div class="m3">{title}</div>
-  <div class="m3">
+<Page {title} {sub} num={'09'}>
+  <div style="overflow-y:hidden">
     <Timeline {start} {end} {height}>
-      <Ticks every="decade" />
-      <Ticks every="year" size="8px" color="lightgrey" underline={false} />
+      <Ticks every="decade" {start} {end} />
+      <Ticks every="year" {start} {end} size="8px" color="lightgrey" underline={false} />
       {#each byCol as list, i}
-        <Column width="50px">
+        <Column width="25px">
           {#each list as player, i}
             <Line
               start={'jan 1 ' + player.start}
@@ -98,11 +67,14 @@
               rotate={true}
               margin={5}
               opacity="0.5"
-              color={colors[player.start] || 'blue'} />
+              color={colors[player.start] || 'blue'}
+            />
           {/each}
         </Column>
       {/each}
     </Timeline>
   </div>
-  <Foot {title} />
-</div>
+</Page>
+
+<style>
+</style>

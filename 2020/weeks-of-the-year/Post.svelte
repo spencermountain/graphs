@@ -1,6 +1,5 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
+  import { Page } from '../../components/index.mjs'
   export let title = ''
   export let sub = ''
   export let num = '26'
@@ -15,10 +14,10 @@
   // console.log(byYear[2].weeks)
   // console.log(getWeeks(year))
   // console.log(getWeeks(year + 1))
-  byYear.forEach(obj => {
-    let count = obj.weeks.filter(w => w.num === 5)
-    console.log(obj.year, count)
-  })
+  // byYear.forEach((obj) => {
+  //   let count = obj.weeks.filter((w) => w.num === 5)
+  //   console.log(obj.year, count)
+  // })
   const colors = {
     january: '#cc7066',
     febuary: '#2D85A8',
@@ -35,10 +34,37 @@
   }
 </script>
 
+<Page {title} {sub} {num} grow={true} max={1500} min={800}>
+  <div class="all">
+    Weeks of the year, by their month
+    <a class="link" href="https://en.wikipedia.org/wiki/ISO_week_date">
+      <sup>[1]</sup>
+    </a>
+  </div>
+  <div class="row all">
+    {#each byYear as year}
+      <div class="col">
+        <div class="year">{year.year}</div>
+        {#each year.weeks as wk, i}
+          {#if wk.gap === true}
+            <div class="gap" />
+          {:else}
+            <div style="background-color:{colors[wk.month]}" class="week" title={wk.title} />
+          {/if}
+        {/each}
+      </div>
+    {/each}
+  </div>
+</Page>
+
 <style>
-  .m3 {
-    margin: 3rem;
+  .all {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    margin-right: 3rem;
+    margin-left: 3rem;
     min-width: 700px;
+    /* min-width: 800px; */
   }
   .row {
     display: flex;
@@ -78,34 +104,13 @@
   .link {
     text-decoration: none;
   }
-  @media only screen and (max-width: 1100px) {
+  @media only screen and (max-width: 1350px) {
     .year {
       font-size: 8px;
     }
+    .all {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
   }
 </style>
-
-<div>
-  <Head {title} {sub} {num} />
-  <div class="m3">
-    Weeks of the year, by their month
-    <a class="link" href="https://en.wikipedia.org/wiki/ISO_week_date">
-      <sup>[1]</sup>
-    </a>
-  </div>
-  <div class="row m3">
-    {#each byYear as year}
-      <div class="col">
-        <div class="year">{year.year}</div>
-        {#each year.weeks as wk, i}
-          {#if wk.gap === true}
-            <div class="gap" />
-          {:else}
-            <div style="background-color:{colors[wk.month]}" class="week" title={wk.title} />
-          {/if}
-        {/each}
-      </div>
-    {/each}
-  </div>
-  <Foot {title} />
-</div>

@@ -1,17 +1,6 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
-
-  import {
-    Timeline,
-    Column,
-    Line,
-    colors,
-    Ticks,
-    Dash,
-  } from '/Users/spencer/mountain/somehow-timeline/src'
-
-  let year = new Date().getFullYear()
+  import { Page } from '../../components/index.mjs'
+  import { Timeline, Column, Ticks, Dash } from '/Users/spencer/mountain/somehow-timeline/src'
   let start = 'Jan 1 1956'
   let end = 'Dec 31 2021'
   let height = 3500
@@ -31,85 +20,87 @@
   console.log(soyuz.length)
 </script>
 
-<style>
-  .m3 {
-    margin: 3rem;
-  }
-</style>
-
-<div>
-  <Head {title} num="07" />
+<Page {title} num="07">
   <div class="m3">
     <Timeline {start} {end} {height} {title}>
-      <Ticks every="decade" />
-      <Ticks every="year" size="8px" color="lightgrey" underline={false} />
+      <Column width="15px">
+        <Ticks every="decade" />
+      </Column>
+      <Column width="15px">
+        <Ticks every="year" size="8px" color="lightgrey" underline={false} />
+      </Column>
 
-      <Column width="75px" label="Saturn 5">
+      <Column width="40px" label="Saturn 5">
         {#each saturn5 as rocket}
-          <Dash start={rocket.date} color="blue" opacity="0.5" dotted={false} />
+          <Dash start={rocket.date} color="blue" opacity="0.5" />
         {/each}
       </Column>
 
-      <Column width="75px" label="Atlas">
+      <Column width="40px" label="Atlas">
         {#each atlas as rocket}
-          <Dash start={rocket.date} color="sea" opacity="0.5" dotted={false} />
+          <Dash start={rocket.date} color="sea" opacity="0.5" />
         {/each}
       </Column>
 
-      <Column width="75px" label="Shuttle">
+      <Column width="40px" label="Shuttle">
         {#each shuttle as rocket}
-          <Dash start={rocket.date} color="pink" opacity="0.7" dotted={false} />
+          <Dash start={rocket.date} color="pink" opacity="0.7" />
         {/each}
       </Column>
 
-      <Column width="75px" label="China">
+      <Column width="40px" label="China">
         {#each china as rocket}
-          <Dash start={rocket.date} color="orange" opacity="0.5" dotted={false} />
+          <Dash start={rocket.date} color="orange" opacity="0.5" />
         {/each}
       </Column>
 
-      <Column width="75px" label="Japan">
+      <Column width="40px" label="Japan">
         {#each japan as rocket}
-          <Dash start={rocket.date} color="yellow" opacity="0.5" dotted={false} />
+          <Dash start={rocket.date} color="yellow" opacity="0.5" />
         {/each}
       </Column>
 
-      <Column width="75px" label="SpaceX">
+      <Column width="40px" label="SpaceX">
         {#each spacex as rocket}
-          <Dash start={rocket.date} color="sea" opacity="0.5" dotted={false} />
+          <Dash start={rocket.date} color="sea" opacity="0.5" />
         {/each}
       </Column>
 
-      <Column width="75px" label="India">
+      <Column width="40px" label="India">
         {#each india as rocket}
-          <Dash start={rocket.date} color="suede" opacity="0.5" dotted={false} />
+          <Dash start={rocket.date} color="suede" opacity="0.5" />
         {/each}
       </Column>
 
-      <Column width="75px" label="Proton">
+      <Column width="40px" label="Proton">
         {#each proton as rocket}
-          <Dash start={rocket.date} color="red" opacity="0.5" dotted={false} />
+          <Dash start={rocket.date} color="red" opacity="0.5" />
         {/each}
       </Column>
 
-      <Column width="75px" label="Zenit" color="red">
+      <Column width="40px" label="Zenit" color="red">
         {#each zenit as rocket}
-          <Dash start={rocket.date} color="red" opacity="0.5" dotted={false} />
+          <Dash start={rocket.date} color="red" opacity="0.5" />
         {/each}
       </Column>
 
-      <Column width="75px" label="Rokot" color="red">
+      <Column width="40px" label="Rokot" color="red">
         {#each rokot as rocket}
-          <Dash start={rocket.date} color="red" opacity="0.5" dotted={false} />
+          <Dash start={rocket.date} color="red" opacity="0.5" />
         {/each}
       </Column>
 
-      <Column width="75px" label="Soyuz" color="red">
+      <Column width="40px" label="Soyuz" color="red">
         {#each soyuz as rocket}
-          <Dash start={rocket.date} color="red" opacity="0.5" dotted={false} />
+          <Dash start={rocket.date} color="red" opacity="0.5" />
         {/each}
       </Column>
     </Timeline>
   </div>
-  <Foot {title} />
-</div>
+</Page>
+
+<style>
+  .m3 {
+    margin: 2rem;
+  }
+</style>

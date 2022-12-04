@@ -1,7 +1,6 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
-  import { Sankey, Node, Col, Label } from '/Users/spencer/mountain/somehow-sankey/src/index.mjs'
+  import { Page, Label } from '../../components/index.mjs'
+  import { Sankey, Node, Col } from '/Users/spencer/mountain/somehow-sankey/src/index.mjs'
   import counts from './counts.js'
   let sum = counts.reduce((h, a) => {
     h += a.total
@@ -47,65 +46,49 @@
   let title = 'Active housing applications by Toronto ward'
 </script>
 
-<Head {title} num="06" />
-<div class="center col">
-  <div class="container">
-    <Sankey height="700" {fmt}>
-      <Col>
-        <Node name="Housing Units" value={sum} color="#2D85A8" accent="#6699cc" show_num={false} />
-      </Col>
-      <Col>
-        {#each counts as a, i}
+<Page {title}>
+  <div class="center col">
+    <div class="container">
+      <Sankey height="700" {fmt}>
+        <Col>
           <Node
-            name={a.name}
-            stroke="#d7d5d2"
-            from="Housing Units"
-            value={a.total}
-            label={'5%'}
-            accent={colors[a.name]}
-            color={colors[a.name]}
-            after={i > 6}
-            inline={i === 5 || i === 6}
-            show_percent={i < 7}
+            name="Housing Units"
+            value={sum}
+            color="#2D85A8"
+            accent="#6699cc"
             show_num={false}
-            show_label={i < 4}
           />
-        {/each}
-      </Col>
-      <Col>
-        <Label start={0} end={147720} label="7 Wards<br/>75% of applications" />
-      </Col>
-      <!-- <Col>
-        {#each counts as o, i}
-          {#if i < 6}
+        </Col>
+        <Col>
+          {#each counts as a, i}
             <Node
-              name={i <= 2 ? 'Issued' : ''}
-              from={o.name}
-              value={o.issued}
-              color="sea"
-              opacity="0.7"
-              after={i >= 2}
+              name={a.name}
+              stroke="#d7d5d2"
+              from="Housing Units"
+              value={a.total}
+              label={'5%'}
+              accent={colors[a.name]}
+              color={colors[a.name]}
+              after={i > 6}
+              inline={i === 5 || i === 6}
+              show_percent={i < 7}
+              show_num={false}
+              show_label={i < 4}
             />
-            <Node
-              name={i <= 2 ? 'Pending' : ''}
-              from={o.name}
-              value={o.pending}
-              color="#c4abab"
-              after={i >= 2}
-              opacity="0.6"
-            />
-          {/if}
-        {/each}
-      </Col> -->
-    </Sankey>
-    <div class="source">
-      <a href="https://open.toronto.ca/dataset/building-permits-active-permits/">Active permits</a>
-      - toronto.ca, Oct 2022
+          {/each}
+        </Col>
+      </Sankey>
+      <!-- <Label start={'20%'} text="7 Wards<br/>75% of applications" /> -->
     </div>
   </div>
-</div>
-<Foot {title} />
+</Page>
 
+<!-- <div class="source">
+        <a href="https://open.toronto.ca/dataset/building-permits-active-permits/">
+          Active permits
+        </a>
+        - toronto.ca, Oct 2022
+      </div> -->
 <style>
   .col {
     display: flex;
@@ -117,15 +100,7 @@
     margin: 3rem;
   }
   .container {
-    max-width: 800px;
-    min-width: 650px;
     flex-grow: 1;
     margin-top: 3rem;
-  }
-  .source {
-    margin: 1rem;
-    font-size: 12px;
-    color: grey;
-    text-align: right;
   }
 </style>

@@ -1,7 +1,6 @@
 <script>
-  import Head from '../../components/Head.svelte'
-  import Foot from '../../components/Foot.svelte'
-  import { Horizontal, Vertical, Bar } from '/Users/spencer/mountain/somehow-barchart/src'
+  import { Page } from '../../components/index.mjs'
+  import { Vertical, Bar } from '/Users/spencer/mountain/somehow-barchart/src'
   import data from './data'
   export let title = 'Snowfall in Canada'
   export let sub = ''
@@ -23,29 +22,11 @@
   ]
 </script>
 
-<style>
-  .m3 {
-    margin-left: 5rem;
-  }
-  .mt2 {
-    margin-top: 3rem;
-  }
-  .slate {
-    color: #8c8c88;
-    display: inline;
-    border-bottom: 2px solid #8c8c88;
-  }
-  .bl {
-    margin-top: 10px;
-  }
-</style>
-
-<div>
-  <Head {title} {sub} num="24" />
-  <div class="m3" style="max-width:800px;">
+<Page {title} {sub} grow={true} max={800} min={350}>
+  <div class="all" style="">
     {#each cities as k}
       <div class="mt2 ">
-        <div class="slate">{k}</div>
+        <div class="slate">{k}:</div>
         <div class="bl">
           <Vertical height="200px" max={1} axis={true}>
             {#each data[k] as num, i}
@@ -55,7 +36,25 @@
         </div>
       </div>
     {/each}
-
   </div>
-  <Foot />
-</div>
+</Page>
+
+<style>
+  .all {
+    margin: 1rem;
+  }
+  .mt2 {
+    margin-top: 1rem;
+    margin-bottom: 7rem;
+    text-align: left;
+  }
+  .slate {
+    color: #8c8c88;
+    display: inline;
+    margin-left: 1rem;
+    border-bottom: 2px solid #8c8c88;
+  }
+  .bl {
+    margin-top: 10px;
+  }
+</style>

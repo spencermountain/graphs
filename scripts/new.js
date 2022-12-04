@@ -13,3 +13,5 @@ let dir = `./drafts/${name || num}`
 // sh.mkdir(dir)
 
 sh.cp('-R', './scripts/defaults/', dir)
+
+sh.exec(`npm run watch drafts/${name}`)
