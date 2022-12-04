@@ -1,7 +1,16 @@
 <script>
   import { Page } from '../../components/index.mjs'
   import names from './colors.js'
-
+  let hover = null
+  let clicked = null
+  const toggle = function (str) {
+    if (clicked === str) {
+      clicked = null
+      hover = null
+    } else {
+      clicked = str
+    }
+  }
   import data from './data.js'
   let colors = {
     'Jennifer Keesmaat': names['pink'],
@@ -73,7 +82,12 @@
         {#each o.people as p, i}
           <div
             class="person"
+            title={p.name}
+            class:shy={(hover && hover !== p.name) || (clicked && clicked !== p.name)}
             style="width:{p.percent}; background-color:{colors[p.name] || 'steelblue'};"
+            on:click={() => toggle(p.name)}
+            on:mouseenter={() => (hover = p.name)}
+            on:mouseleave={() => (hover = null)}
           >
             <!-- {p.name} -->
           </div>
@@ -85,6 +99,9 @@
 </Page>
 
 <style>
+  .shy {
+    opacity: 0.4;
+  }
   .year {
     min-height: 90px;
   }
@@ -98,11 +115,12 @@
     color: grey;
   }
   .person {
-    height: 80%;
+    height: 75px;
     width: 500px;
     box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
     margin-right: 4px;
     border-radius: 5px;
+    transition: opacity 0.25s;
   }
   .person:hover {
     box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.4);
@@ -128,5 +146,13 @@
     text-align: left;
     flex-wrap: nowrap;
     align-self: stretch;
+  }
+  @media only screen and (max-width: 500px) {
+    .people {
+      width: 300px;
+    }
+    .person {
+      height: 60px;
+    }
   }
 </style>
