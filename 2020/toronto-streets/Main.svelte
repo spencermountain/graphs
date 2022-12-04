@@ -1,5 +1,5 @@
 <script>
-  import { Map, Shape } from 'somehow-maps'
+  import { Map, Shape } from '/Users/spencer/mountain/somehow-maps/src/index.mjs'
   import { Head, Foot } from '../../components'
   import Road from './Road.svelte'
   // import roads from './roads.geo.js'
@@ -9,13 +9,13 @@
   import { isDown } from './stores.js'
   let title = 'Custom Toronto streetmap'
 
-  let eachRoad = roads.features.map(f => {
+  let eachRoad = roads.features.map((f) => {
     return {
       type: 'FeatureCollection',
       features: [f],
     }
   })
-  let thirds = tertiary.features.map(f => {
+  let thirds = tertiary.features.map((f) => {
     return {
       type: 'FeatureCollection',
       features: [f],
