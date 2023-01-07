@@ -3,7 +3,7 @@
   import getYear from './lib/build.js'
   import spacetime from 'spacetime'
 
-  let s = spacetime.now()
+  let s = spacetime.now().startOf('year')
 
   $: dots = getYear(s.year())
 
@@ -39,7 +39,7 @@
     }
   }
   const reset = function () {
-    s = spacetime.now()
+    s = spacetime.now().startOf('year')
   }
   let title = 'Timezone offsets by date'
 </script>
@@ -50,8 +50,8 @@
     <div class="shadow container">
       <div class="rightSide">
         <input type="button" value="🔙" on:click={reset} />
-        <input type="button" value="⏸️" on:click={pause} />
         <span class="year">{s.format('{month-short} {date-ordinal} {year}')}</span>
+        <input type="button" value="⏸️" on:click={pause} />
       </div>
       <div class="col box">
         <div class="row" style="width:100%; margin-bottom:3rem;">
@@ -108,12 +108,12 @@
   .year {
     font-size: 1.5rem;
     margin: 1rem;
-    width: 200px;
+    width: 180px;
   }
   input {
     font-size: 1.4rem;
     height: 40px;
-    margin: 1rem;
+    margin: 0.5rem;
   }
   .box {
     margin: 3rem;
