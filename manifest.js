@@ -296,6 +296,11 @@ module.exports = {
   ],
   2023: [
     {
+      num: 'timezone-offsets',
+      title: 'Timezone offsets',
+      thumb: 'thumb.jpg',
+    },
+    {
       num: 'dst-changes',
       title: 'DST changes',
       thumb: 'thumb.jpg',
