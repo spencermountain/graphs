@@ -1,4 +1,4 @@
-const sh = require('shelljs')
+import sh from 'shelljs'
 let name = process.argv.slice(2).join(' ')
 // const year = new Date().getFullYear()
 

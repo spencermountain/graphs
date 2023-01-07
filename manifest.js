@@ -293,5 +293,12 @@ module.exports = {
       title: 'One of 1,000',
       thumb: 'thumb.jpg',
     },
+  ],
+  2023: [
+    {
+      num: 'dst-changes',
+      title: 'DST changes',
+      thumb: 'thumb.jpg',
+    },
   ]
 }

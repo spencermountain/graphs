@@ -1,24 +1,23 @@
-const rollup = require('rollup')
-const svelte = require('rollup-plugin-svelte')
-const { nodeResolve } = require('@rollup/plugin-node-resolve')
-const commonjs = require('@rollup/plugin-commonjs')
-const json = require('@rollup/plugin-json')
+import { rollup as _rollup } from 'rollup'
+import svelte from 'rollup-plugin-svelte'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
 
 const buildPost = function (abs) {
   abs = abs.replace(/\/$/, '')
-  return rollup
-    .rollup({
-      input: `${abs}/build/app.js`,
-      plugins: [
-        json(),
-        svelte({
-          dev: true,
-          css: true,
-        }),
-        nodeResolve(),
-        commonjs(),
-      ],
-    })
+  return _rollup({
+    input: `${abs}/build/app.js`,
+    plugins: [
+      json(),
+      svelte({
+        dev: true,
+        css: true,
+      }),
+      nodeResolve(),
+      commonjs(),
+    ],
+  })
     .then((bundle) => {
       bundle.write({
         sourcemap: false,
@@ -32,5 +31,5 @@ const buildPost = function (abs) {
     })
 }
 
-module.exports = buildPost
+export default buildPost
 // buildPost('/Users/spencer/mountain/thensome/drafts/mayors-of-toronto')

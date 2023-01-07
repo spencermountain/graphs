@@ -1,38 +1,37 @@
-const rollup = require('rollup')
-const svelte = require('rollup-plugin-svelte')
-const resolve = require('@rollup/plugin-node-resolve')
-const commonjs = require('@rollup/plugin-commonjs')
-const json = require('@rollup/plugin-json')
+import { rollup as _rollup } from 'rollup'
+import svelte from 'rollup-plugin-svelte'
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
 
-const path = require('path')
+import { join } from 'path'
 const post = process.argv[2] || ''
 
-let abs = path.join(__dirname, '../')
+let abs = join(__dirname, '../')
 if (post) {
-  abs = path.join(abs, `${post}`)
+  abs = join(abs, `${post}`)
 }
 console.log(abs)
 
 abs = abs.replace(/\/$/, '')
-rollup
-  .rollup({
-    input: `${abs}/build/app.js`,
-    plugins: [
-      json(),
-      svelte({
-        dev: true,
-        generate: 'ssr',
-        css: (css) => {
-          css.write(`${abs}/build/bundle.css`, false)
-        },
-      }),
-      resolve({
-        browser: true,
-        dedupe: ['svelte'],
-      }),
-      commonjs(),
-    ],
-  })
+_rollup({
+  input: `${abs}/build/app.js`,
+  plugins: [
+    json(),
+    svelte({
+      dev: true,
+      generate: 'ssr',
+      css: (css) => {
+        css.write(`${abs}/build/bundle.css`, false)
+      },
+    }),
+    resolve({
+      browser: true,
+      dedupe: ['svelte'],
+    }),
+    commonjs(),
+  ],
+})
   .then((bundle) => {
     bundle.write({
       sourcemap: false,

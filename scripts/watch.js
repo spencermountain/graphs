@@ -1,10 +1,13 @@
-const chokidar = require('chokidar')
-const buildOne = require('./build')
-const server = require('./server')
-const path = require('path')
+import { watch } from 'chokidar'
+import buildOne from './build.js'
+import server from './server.js'
+import path from 'path'
 const post = process.argv[2] || ''
 
-let abs = path.join(__dirname, '../')
+
+import { fileURLToPath } from 'url'
+const dir = path.dirname(fileURLToPath(import.meta.url))
+let abs = path.join(dir, '../')
 if (post) {
   abs = path.join(abs, `${post}`)
 }
@@ -16,11 +19,10 @@ const doit = function () {
   })
 }
 
-const watcher = chokidar
-  .watch(`${abs}/**/*.svelte`, {
-    ignored: [/node_modules/, /(^|[\/\\])\../],
-    persistent: true,
-  })
+const watcher = watch(`${abs}/**/*.svelte`, {
+  ignored: [/node_modules/, /(^|[\/\\])\../],
+  persistent: true,
+})
   .on('ready', () => {
     doit()
     watcher.on('add', () => {

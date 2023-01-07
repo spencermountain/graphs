@@ -3,13 +3,14 @@
   "version": "0.0.1",
   "description": "why not?",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "new": "node ./scripts/new.js",
     "bake": "node ./scripts/bake.js",
     "watch": "node ./scripts/watch.js",
     "build": "node ./scripts/build.js",
-    "home": "npm run watch drafts/home"
+    "home": "npm run build home"
   },
   "repository": {
     "type": "git",

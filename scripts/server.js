@@ -1,5 +1,8 @@
-var connect = require('connect')
-var statc = require('serve-static')
+import connect from 'connect'
+import statc from 'serve-static'
+import connectLivereload from 'connect-livereload'
+import livereload from 'livereload'
+
 var server = connect()
 const port = 5050
 
@@ -9,7 +12,7 @@ const startServer = function (abs) {
   server.use(statc(abs))
 
   server.use(
-    require('connect-livereload')({
+    connectLivereload({
       port: 35729,
     })
   )
@@ -17,8 +20,7 @@ const startServer = function (abs) {
   server.listen(port)
   console.log(`http://localhost:${port}`)
 
-  var livereload = require('livereload')
   var lrserver = livereload.createServer()
   lrserver.watch(abs + '/**')
 }
-module.exports = startServer
+export default startServer
