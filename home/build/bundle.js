@@ -630,6 +630,11 @@ var app = (function () {
           title: 'DST changes',
           thumb: 'thumb.jpg',
         },
+        {
+          num: 'canada-homeowners',
+          title: 'Canada homeowners',
+          thumb: 'thumb.jpg',
+        },
       ]
     };
 

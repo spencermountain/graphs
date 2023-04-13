@@ -37,6 +37,8 @@
     "babelify": "^10.0.0",
     "browserify": "^16.5.1",
     "cheerio": "^1.0.0-rc.3",
+    "chroma-js": "^2.4.2",
+    "d3-scale-chromatic": "^3.0.0",
     "derequire": "2.1.1",
     "got": "11.7.0",
     "htm": "^3.0.4",

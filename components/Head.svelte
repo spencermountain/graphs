@@ -47,5 +47,6 @@
   }
   .titlebox {
     width: 400px;
+    margin-left: 1rem;
   }
 </style>
