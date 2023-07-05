@@ -34,21 +34,22 @@
       above: 'hmm',
       color: '#e6d7b3',
       layer: 1,
+      nudge: true,
       height: '12',
     }, //university
-    { start: 'oct 2010', end: 'sep 2013', label: 'state.com', color: '#978BA3', layer: 1 }, //state
+    { start: 'oct 2010', end: 'sep 2013', label: 'State.com', color: '#978BA3', layer: 1 }, //state
     { start: 'sep 2013', end: 'sep 2014', label: '', color: '#6accb2', layer: 1 }, //gradschool
-    { start: 'june 2015', end: null, label: 'freelancing', color: '#cc8a66', layer: 1 },
+    { start: 'oct 10 2014', end: null, label: 'freelancing', color: '#eaa358', layer: 1 },
 
-    { start: 'may 2015', end: 'march 2017', label: 'govinvest', color: '#6699cc', layer: 4 },
-    { start: 'sep 2014', end: 'feb 2015', above: 'KMStandards', color: 'darkred', layer: 4 },
-    { start: 'dec 2015', end: 'apr 2018', label: 'smallwins', color: '#e6b3bc', layer: 3 },
-    { start: 'may 2020', end: null, label: 'fluent', color: '#735873', layer: 3 },
-    { start: 'jan 2019', end: 'july 2019', above: 'venngage', color: '#e6b3bc', layer: 3 },
+    { start: 'may 2015', end: 'march 2017', label: 'Govinvest', color: '#6699cc', layer: 2 },
+    { start: 'sep 2014', end: 'feb 2015', above: 'KMStandards', color: '#cc7066', layer: 2 },
+    { start: 'dec 2015', end: 'apr 2018', label: 'Smallwins', color: '#e6b3bc', layer: 3.2 },
+    { start: 'may 2020', end: null, label: 'Fluent', color: '#2D85A8', layer: 3.2 },
+    { start: 'jan 2019', end: 'july 2019', above: 'Venngage', color: '#e6d7b3', layer: 3.2 },
 
-    { start: 'july 2019', end: 'feb 2023', label: 'MBI', color: '#cc7066', layer: 2 },
-    { start: 'jan 2020', end: 'apr 2020', above: 'Moov', color: '#D68881', layer: 4 },
-    { start: 'mar 2021', end: 'june 2021', above: 'Newton', color: '#2D85A8', layer: 4 },
+    { start: 'july 2019', end: 'feb 2023', label: 'MBI', color: '#978BA3', layer: 2 },
+    { start: 'jan 2020', end: 'apr 2020', above: 'Moov', color: '#D68881', layer: 4.3 },
+    { start: 'mar 2021', end: 'june 2021', above: 'Newton', color: '#d8b3e6', layer: 4.3 },
   ]
 
   data.forEach((obj) => {
@@ -58,7 +59,7 @@
 
   let labels = [
     { start: 'August 2008', label: 'graduated', y: 1 },
-    { start: 'Nov 2013', label: 'grad school', y: 1 },
+    { start: 'Sep 2013', label: 'grad-school', y: 1 },
     // { start: 'Nov 2015', label: 'nlp-compromise', y: -1 },
   ]
   labels.forEach((obj) => {
@@ -93,20 +94,14 @@
         >
           {o.label || ' '}
           {#if o.above}
-            <div class="above">{o.above}</div>
+            <div class="above" class:nudge={o.nudge}>{o.above}</div>
           {/if}
         </div>
       {/each}
       {#each labels as o, i}
-        <div class="label" style="left:{o.left}%;  bottom:{o.y * 75}px; ">
+        <div class="label" style="left:{o.left}%;  bottom:{o.y * 80}px; ">
           {o.label}
-          <div class="line" style="left:{o.left}%;  bottom:{o.y * 5}px; " />
-        </div>
-      {/each}
-      {#each below as o, i}
-        <div class="label" style="left:{o.left}%;  bottom:{o.y * 10}px; ">
-          {o.label}
-          <div class="line" style="left:{o.left}%;  bottom:{o.y * 5}px; margin-top:-60px; " />
+          <div class="line" style="left:{o.left}%;  bottom:{o.y}px; " />
         </div>
       {/each}
       {#each axis as o, i}
@@ -119,13 +114,16 @@
 </div>
 
 <style>
+  .nudge {
+    left: 12px !important;
+  }
   .bar {
     position: absolute;
     border-radius: 2px;
     box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.2);
     background-color: steelblue;
     color: #f1f0ef;
-    font-size: 12px;
+    font-size: 11px;
     height: 24px;
   }
 
@@ -133,7 +131,7 @@
     position: relative;
     border-left: 1px solid grey;
     width: 2px;
-    height: 30px;
+    height: 75px;
     margin-left: 20px;
     padding-bottom: -15px;
     margin-top: 5px;
@@ -144,16 +142,17 @@
     margin-left: -20px;
     text-align: left;
     width: 10px;
-    font-size: 12px;
+    font-size: 11px;
     white-space: nowrap;
   }
   .above {
     position: absolute;
     color: grey;
-    margin-left: 5px;
+    margin-left: 0px;
     text-align: left;
     width: 10px;
     margin-top: -20px;
+    margin-left: -7px;
     font-size: 10px;
     font-style: italic;
     white-space: nowrap;
@@ -178,22 +177,7 @@
     margin-bottom: 9rem;
   }
   .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
     text-align: center;
-    flex-wrap: wrap;
-    align-self: stretch;
-  }
-  .col {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
-    flex-wrap: wrap;
-    align-self: stretch;
   }
   :global(body) {
     background-color: #f1f0ef !important;
