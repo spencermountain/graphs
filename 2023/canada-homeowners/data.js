@@ -3,7 +3,7 @@ let data = [
   { rate: 0, start: 0, label: '0 to 4', total: 1898790 },//	5.4%
   { rate: 0, start: 5, label: '5 to 9', total: 2018130 },//	5.7%
   { rate: 0, start: 10, label: '10 to 14', total: 1922645 },//	5.5%
-  { rate: 0.1, start: 15, label: '15 to 19', total: 2026160 },//	5.8%
+  { rate: 0.02, start: 15, label: '15 to 19', total: 2026160 },//	5.8%
   { rate: 0.15, start: 20, label: '20 to 24', total: 2242690 },//	6.4%
   { rate: 0.36, start: 25, label: '25 to 29', total: 2285990 },//	6.5%
   { rate: 0.52, start: 30, label: '30 to 34', total: 2329395 },//	6.6%
