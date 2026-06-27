@@ -1,6 +1,6 @@
 export default {
   2026: [
-    { id: '2026/06/sundial', label: 'Sundial' },
+    { id: '2026/dst-changes', label: 'DST Change Dates' },
   ],
   2025: [],
   2024: [],

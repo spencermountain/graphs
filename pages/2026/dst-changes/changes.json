@@ -1,0 +1,602 @@
+[
+  {
+    "offset": 9.5,
+    "dst": "04/05:03->10/04:02",
+    "name": "australia/yancowinna"
+  },
+  {
+    "offset": 9.5,
+    "dst": "04/05:03->10/04:02",
+    "name": "australia/yancowinna"
+  },
+  {
+    "offset": 9.5,
+    "dst": "04/05:03->10/04:02",
+    "name": "australia/yancowinna"
+  },
+  {
+    "offset": 9.5,
+    "dst": "04/05:03->10/04:02",
+    "name": "australia/yancowinna"
+  },
+  {
+    "offset": 8,
+    "dst": "03/13:01->10/02:00",
+    "name": "antarctica/casey"
+  },
+  {
+    "offset": 3,
+    "dst": "03/29:00->10/24:24",
+    "name": "asia/beirut"
+  },
+  {
+    "offset": 3,
+    "dst": "03/28:02->10/24:02",
+    "name": "asia/hebron"
+  },
+  {
+    "offset": 3,
+    "dst": "03/28:02->10/24:02",
+    "name": "asia/hebron"
+  },
+  {
+    "offset": 2,
+    "dst": "03/29:02->10/25:02",
+    "name": "antarctica/troll"
+  },
+  {
+    "offset": 11,
+    "dst": "04/05:03->10/04:02",
+    "name": "antarctica/macquarie"
+  },
+  {
+    "offset": 11.5,
+    "dst": "04/05:03->10/04:02",
+    "name": "pacific/norfolk"
+  },
+  {
+    "offset": 10,
+    "dst": "04/05:03->10/04:02",
+    "name": "australia/victoria"
+  },
+  {
+    "offset": 10,
+    "dst": "04/05:03->10/04:02",
+    "name": "australia/victoria"
+  },
+  {
+    "offset": 10,
+    "dst": "04/05:03->10/04:02",
+    "name": "australia/victoria"
+  },
+  {
+    "offset": 10,
+    "dst": "04/05:03->10/04:02",
+    "name": "australia/victoria"
+  },
+  {
+    "offset": 10,
+    "dst": "04/05:03->10/04:02",
+    "name": "australia/victoria"
+  },
+  {
+    "offset": 10,
+    "dst": "04/05:03->10/04:02",
+    "name": "australia/victoria"
+  },
+  {
+    "offset": 10,
+    "dst": "04/05:03->10/04:02",
+    "name": "australia/victoria"
+  },
+  {
+    "offset": 10,
+    "dst": "04/05:03->10/04:02",
+    "name": "australia/victoria"
+  },
+  {
+    "offset": 10,
+    "dst": "04/05:03->10/04:02",
+    "name": "australia/victoria"
+  },
+  {
+    "offset": 10.5,
+    "dst": "04/05:01->10/04:02",
+    "name": "australia/lhi"
+  },
+  {
+    "offset": 10.5,
+    "dst": "04/05:01->10/04:02",
+    "name": "australia/lhi"
+  },
+  {
+    "offset": 0,
+    "dst": "02/15:03->03/22:02",
+    "name": "africa/el_aaiun"
+  },
+  {
+    "offset": 0,
+    "dst": "02/15:03->03/22:02",
+    "name": "africa/el_aaiun"
+  },
+  {
+    "offset": 0,
+    "dst": "03/29:00->10/25:01",
+    "name": "atlantic/azores"
+  },
+  {
+    "offset": 0,
+    "dst": "03/29:00->10/24:24",
+    "name": "america/scoresbysund"
+  },
+  {
+    "offset": -9,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/aleutian"
+  },
+  {
+    "offset": -9,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/aleutian"
+  },
+  {
+    "offset": -9,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/aleutian"
+  },
+  {
+    "offset": -8,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/alaska"
+  },
+  {
+    "offset": -8,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/alaska"
+  },
+  {
+    "offset": -8,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/alaska"
+  },
+  {
+    "offset": -8,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/alaska"
+  },
+  {
+    "offset": -8,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/alaska"
+  },
+  {
+    "offset": -8,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/alaska"
+  },
+  {
+    "offset": -8,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/alaska"
+  },
+  {
+    "offset": -7,
+    "dst": "03/08:02->11/01:03",
+    "name": "canada/pacific"
+  },
+  {
+    "offset": -7,
+    "dst": "03/08:02->11/01:03",
+    "name": "canada/pacific"
+  },
+  {
+    "offset": -7,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/pacific"
+  },
+  {
+    "offset": -7,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/pacific"
+  },
+  {
+    "offset": -7,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/pacific"
+  },
+  {
+    "offset": -7,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/pacific"
+  },
+  {
+    "offset": -7,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/pacific"
+  },
+  {
+    "offset": -7,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/pacific"
+  },
+  {
+    "offset": -7,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/pacific"
+  },
+  {
+    "offset": -6,
+    "dst": "04/04:22->09/05:22",
+    "name": "chile/easterisland"
+  },
+  {
+    "offset": -6,
+    "dst": "04/04:22->09/05:22",
+    "name": "chile/easterisland"
+  },
+  {
+    "offset": -6,
+    "dst": "04/07:02->10/27:02",
+    "name": "america/merida"
+  },
+  {
+    "offset": -6,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/mountain"
+  },
+  {
+    "offset": -6,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/mountain"
+  },
+  {
+    "offset": -6,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/mountain"
+  },
+  {
+    "offset": -6,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/mountain"
+  },
+  {
+    "offset": -6,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/mountain"
+  },
+  {
+    "offset": -6,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/mountain"
+  },
+  {
+    "offset": -6,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/mountain"
+  },
+  {
+    "offset": -6,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/mountain"
+  },
+  {
+    "offset": -6,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/mountain"
+  },
+  {
+    "offset": -6,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/mountain"
+  },
+  {
+    "offset": -6,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/mountain"
+  },
+  {
+    "offset": -6,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/mountain"
+  },
+  {
+    "offset": -6,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/mountain"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -5,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/indiana-starke"
+  },
+  {
+    "offset": -4,
+    "dst": "04/04:24->09/06:00",
+    "name": "chile/continental"
+  },
+  {
+    "offset": -4,
+    "dst": "04/04:24->09/06:00",
+    "name": "chile/continental"
+  },
+  {
+    "offset": -4,
+    "dst": "03/22:24->10/05:00",
+    "name": "america/asuncion"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -4,
+    "dst": "03/08:02->11/01:02",
+    "name": "us/michigan"
+  },
+  {
+    "offset": -3,
+    "dst": "03/08:02->11/01:02",
+    "name": "canada/atlantic"
+  },
+  {
+    "offset": -3,
+    "dst": "03/08:02->11/01:02",
+    "name": "canada/atlantic"
+  },
+  {
+    "offset": -3,
+    "dst": "03/08:02->11/01:02",
+    "name": "canada/atlantic"
+  },
+  {
+    "offset": -3,
+    "dst": "03/08:02->11/01:02",
+    "name": "canada/atlantic"
+  },
+  {
+    "offset": -3,
+    "dst": "03/08:02->11/01:02",
+    "name": "canada/atlantic"
+  },
+  {
+    "offset": -3,
+    "dst": "03/08:02->11/01:02",
+    "name": "canada/atlantic"
+  },
+  {
+    "offset": -3,
+    "dst": "03/08:02->11/01:02",
+    "name": "canada/atlantic"
+  },
+  {
+    "offset": -2,
+    "dst": "03/08:02->11/01:02",
+    "name": "america/miquelon"
+  },
+  {
+    "offset": -2.5,
+    "dst": "03/08:02->11/01:02",
+    "name": "canada/newfoundland"
+  },
+  {
+    "offset": -2.5,
+    "dst": "03/08:02->11/01:02",
+    "name": "canada/newfoundland"
+  },
+  {
+    "offset": -1,
+    "dst": "03/29:00->10/24:24",
+    "name": "america/godthab"
+  },
+  {
+    "offset": -1,
+    "dst": "03/29:00->10/24:24",
+    "name": "america/godthab"
+  }
+]
