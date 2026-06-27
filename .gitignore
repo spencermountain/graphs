@@ -9,3 +9,6 @@ coverage.lcov
 codecov.yml
 plugins/phrases/data/
 learn/giga/result/
+.output/
+.nuxt/
+dist

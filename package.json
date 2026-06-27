@@ -1,14 +1,14 @@
 {
-  "name": "nuxt-tailwind-markdown",
+  "name": "spencer-graphs",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@11.5.0",
   "scripts": {
     "dev": "nuxt dev",
-    "build": "nuxt build",
-    "generate": "nuxt generate",
+    "build": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
+    "deploy": "rclone sync ./.output/public r2:graphs --checksum --transfers 32 --fast-list --progress",
+    "deploy:dry": "rclone sync ./.output/public r2:graphs --checksum --transfers 32 --fast-list --dry-run --progress",
     "new": "node scripts/new-post.mjs"
   },
   "dependencies": {

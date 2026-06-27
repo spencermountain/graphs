@@ -15,12 +15,15 @@ export default defineNuxtConfig({
     shim: false,
     typeCheck: false,
   },
-
-  // Only index.vue files become routes — pages can co-locate
-  // sub-components and helpers in their folder without creating routes
+  nitro: {
+    prerender: {
+      ignore: ['/2018/', '/2019/', '/2020/', '/2021/', '/2022/', '/2023/']
+    }
+  },
   pages: {
     pattern: '**/index.vue',
   },
+  routeRules: { '/pages/**': { ssr: false } },
 
   modules: [
     '@nuxtjs/tailwindcss',
