@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@theme {
+  --color-sunrise: #e1a3a3;
+  --color-sunset: #cd8a7b;
+  --color-steelblue: #356E8C;
+
+  --color-neutral: red;
+}
+
+.row {
+  @apply flex flex-row flex-nowrap justify-around items-center;
+}
+
+.row-center {
+  @apply flex flex-row flex-nowrap justify-center items-center;
+}
+
+.row-spread {
+  @apply flex flex-row flex-nowrap justify-between items-center;
+}
+
+.row-left {
+  @apply flex flex-row flex-nowrap justify-start items-center;
+}
+
+.row-right {
+  @apply flex flex-row flex-nowrap justify-end items-center;
+}
+
+.col {
+  @apply flex flex-col flex-nowrap justify-start items-center;
+}
+
+.col-left {
+  @apply flex flex-col flex-nowrap justify-start items-start;
+}
+
+.col-right {
+  @apply flex flex-col flex-nowrap justify-start items-end;
+}
+
+.col-center {
+  @apply flex flex-col flex-nowrap justify-center items-center;
+}
+
+.col-spread {
+  @apply flex flex-col flex-nowrap justify-between items-center;
+}
+
+.link {
+  @apply text-[#356E8C] underline hover:text-[#356E8C];
+}
+
+h1 {
+  @apply m-4 mt-10 text-3xl font-bold leading-none tracking-tight text-gray-600 lg:text-4xl;
+}
+
+h2 {
+  @apply m-4 mt-10 text-xl font-bold leading-none tracking-tight text-gray-600 lg:text-3xl;
+}
+
+h3 {
+  @apply m-4 mt-10 text-lg font-bold leading-none tracking-tight text-gray-600 lg:text-3xl;
+}
+
+/* bigger checkboxes */
+input[type='checkbox'] {
+  transform: scale(1.5);
+  padding: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .hide-900 {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .hide-800 {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .hide-700 {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .hide-600 {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .hide-500 {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .hide-400 {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .hide-300 {
+    display: none !important;
+  }
+}
