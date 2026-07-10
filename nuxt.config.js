@@ -15,11 +15,6 @@ export default defineNuxtConfig({
     shim: false,
     typeCheck: false,
   },
-  nitro: {
-    prerender: {
-      ignore: ['/2018/', '/2019/', '/2020/', '/2021/', '/2022/', '/2023/']
-    }
-  },
   pages: {
     pattern: '**/index.vue',
   },

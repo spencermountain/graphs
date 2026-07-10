@@ -36,7 +36,7 @@ const years = Object.keys(yearData)
   .map((y) => yearChart(yearData[y], Number(y)))
 
 // flood photos beside some years (served from public/)
-const dir = '/2019/rain-in-toronto/assets'
+const dir = 'https://snip.spencermountain.dev/2019/01'
 const pics = {
   2018: {
     src: `${dir}/2018-08-07-streetcar.jpg`,

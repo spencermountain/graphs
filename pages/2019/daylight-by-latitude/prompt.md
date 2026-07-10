@@ -1,0 +1,2 @@
+Converted from the 2019 js/browserify original in public/2019/daylight-by-latitude.
+Approximations: suncalc sunrise/sunset math and the somehow / somehow-circle / somehow-ticks svg output were ported by hand (basis-curve area, day-circle arcs, odd 1-23 y-ticks); the winter arc now uses Canada/Eastern like the summer one (original used the viewer's browser timezone); the city label is centered over the circle instead of `top:210px`; the vertical slider uses css writing-mode instead of `-webkit-appearance: slider-vertical`.
