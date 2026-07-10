@@ -1,0 +1,2 @@
+Converted from the 2020 svelte/js original in public/2020/covid-income.
+Notes: somehow-circle's arc/label layout (the 2020 build version) is ported by hand into circle.js, with the d3-shape arc() paths reimplemented. The `opacity`, `dotted` and `fill` props in Post.svelte were no-ops in the compiled build (that lib version ignored them, per build/bundle.js and thumb.jpg), so they are omitted here to match what actually rendered. The old Merriweather serif page-font is replaced by the repo's default shell styling.

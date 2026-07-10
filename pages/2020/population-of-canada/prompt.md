@@ -1,0 +1,2 @@
+Converted from the 2020 svelte/js original in public/2020/population-of-canada.
+Notes: the somehow-sankey layout was ported to `sankey.js` from the exact version compiled into build/bundle.js (straight-edged filled ribbons — the stale baked.html shows an older curved-stroke build). Unused lib features (dots pattern, braces/labels, backward links, percent/append) were dropped. 'Catamaran' font isn't loaded in this repo, so nodes fall back to sans-serif. "Nova Scota" typo kept from the original data.

@@ -1,0 +1,2 @@
+Converted from the 2019 deck.gl original in public/2019/ontario-line.
+Approximations: deck.gl GeoJsonLayers → maplibre-gl fill-extrusion/line layers on a blank style (same colors, elevations, and camera). deck.gl's 40m-wide lines (min 2px) approximated with an exponential zoom-width ramp. Added a small legend + nav control; original had neither. land.json was commented out in the original and not copied.

@@ -1,0 +1,1 @@
+Converted from the 2020 svelte/js original in public/2020/snowfall-in-canada. Ported the somehow-barchart Vertical/Bar rendering (from the built bundle's sourcemaps) into inline template + scoped css; kept the shared 0–72cm scale, native title tooltips, and steelblue hover shadow.

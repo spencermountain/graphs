@@ -1,0 +1,2 @@
+Converted from the 2018 browserify/somehow original in public/2018/lunar-astronauts.
+Notes: somehow v0.0.8 svg geometry (470x200 charts, truncating scales, translate+tspan text placement) reimplemented by hand; 'today' line/ages computed on mount for SSR safety. Data copied exactly as of 2018 — several astronauts marked alive have since died (Borman, Lovell, Anders, Collins, Stafford, Worden, Mattingly), so their rows still show a running age.

@@ -1,0 +1,2 @@
+Converted from the 2022 svelte/js original in public/2022/transit-map.
+Ported mapbox-gl → maplibre-gl: the dead mapbox base style/token were dropped in favor of a blank inline style (the original's opaque `background` layer covered the base style anyway, so the render is unchanged). `projection: 'globe'` kept via the maplibre v5 style spec; `map.loadImage` updated to the promise API. Subtitle text taken from a commented-out label in the original.

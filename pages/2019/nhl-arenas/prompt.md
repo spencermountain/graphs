@@ -1,0 +1,2 @@
+Converted from the 2019 browserify/somehow original in public/2019/nhl-arenas.
+Notes: only the 'oldest arenas' timeline is ported — the capacity bar-chart (capacity.js) was commented out in the original and never rendered. somehow's scale/tick/text-dodge math was re-implemented by hand (year ticks 1910/1942/1974/2006, Date.UTC epochs instead of local-tz spacetime). Hover `<title>` tooltips (name + city) were added — the original called .title() but somehow v0.0.16 dropped it from the svg output.

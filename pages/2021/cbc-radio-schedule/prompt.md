@@ -1,0 +1,1 @@
+Converted from the 2021 svelte/js original in public/2021/cbc-radio-schedule. Ported somehow-timeline (Timeline/Column/Line/WideLabel) as inline scoped CSS + a minutes-since-midnight scale instead of spacetime epochs; standard header/footer shell replaces the old shared Page component.

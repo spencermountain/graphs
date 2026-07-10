@@ -1,0 +1,2 @@
+Converted from the 2022 svelte/js original in public/2022/population-growth.
+Approximations: d3-shape's `area()` + `curveMonotoneX` reimplemented by hand in `shape.js` (Line.svelte/Area.svelte were commented-out and not ported); the trend line's `xScale(2000000)` (an unparsable date that fell back to epoch-0 ≈1970) is kept as an explicit `xEpoch(0)`; the old Page/Head shell replaced with the repo's standard card shell; `.all` margins approximated by `.chart-wrap`.

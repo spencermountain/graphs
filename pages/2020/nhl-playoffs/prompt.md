@@ -1,0 +1,1 @@
+Converted from the 2020 svelte/js original in public/2020/nhl-playoffs. Ported the used parts of somehow-timeline (linear scale, decade/year Ticks, Bar) inline; select gets a light border it didn't have; tick class renamed 'century' to dodge tailwind's `underline`.

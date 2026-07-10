@@ -1,0 +1,2 @@
+Converted from the 2022 svelte/js original in public/2022/missing-middle.
+Ported the somehow-sankey layout (the newer version found compiled in build/bundle.js, not the older scratchpad lib source) into sankey.js; skipped unused features (dots pattern, percent/append labels, brace labels). The data-source credit was commented-out in the original Post.svelte but is included in the footer here. scripts/ (raw 1.5MB permits data + the clustering scripts that produced counts.js) copied as-is for provenance — not imported by the page.

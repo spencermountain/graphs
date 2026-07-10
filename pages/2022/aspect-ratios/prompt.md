@@ -1,0 +1,1 @@
+Converted from the 2022 svelte/js original in public/2022/aspect-ratios. Faithful port; the svelte scoped `.row`/`.col` classes were renamed `bar-row` (to avoid the global `row` utility) and the standard header/footer shell was recreated inline. Bar colors (#6d87a5, #946da5) kept as literal hexes — they aren't in colors.js.

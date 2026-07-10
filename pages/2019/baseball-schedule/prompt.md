@@ -1,0 +1,1 @@
+Converted from the 2019 svelte/js original in public/2019/baseball-schedule. Reimplemented somehow-calendar v0.2.1 "months" mode (monday-start grids, weekend shading, 2rem cells) and its select input as plain vue; dropped the dim_past option since every 2019 date is now past (it would wash the whole calendar to 0.4 opacity); select gets a light border it didn't have.

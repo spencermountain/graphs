@@ -1,0 +1,1 @@
+Converted from the 2020 svelte original in public/2020/cerb-budget. Ported the somehow-sankey layout math into sankey.js (0-indexed cols; skipped unused dx/dy, `full`-percent dot-pattern, and `append` features — this post uses none). Added a resize re-layout the original lacked. 'Catamaran' font falls back to sans-serif.

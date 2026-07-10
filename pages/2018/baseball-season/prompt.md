@@ -1,0 +1,2 @@
+Converted from the 2018 browserify/`somehow` original in public/2018/baseball-season.
+Approximated: the `somehow` v0.0.8 chart lib (truncating linear scales, d3 curveMonotoneX paths, default 6-tick axes, text-dodge label placement) was hand-ported into `somehow.js`; dates parse as UTC instead of spacetime-in-browser-tz (identical layout, whole range is one DST offset); each 800x200 svg gets an expanded viewBox (-85 -10 985 235) instead of overflow:visible + margins, so the division label and team names that overflowed the old svg stay visible.

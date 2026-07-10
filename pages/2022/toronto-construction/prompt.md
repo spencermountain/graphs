@@ -1,0 +1,3 @@
+Converted from the 2022 svelte/js original in public/2022/toronto-construction.
+
+Notes: ported the used parts of somehow-timeline (Timeline/Column/Line/Ticks/Label) by hand, using build/bundle.js as ground truth — the deployed Label renders a 25px bar with a small rotate(270deg) label anchored at its bottom (the thumb.jpg shows an older horizontal-label version). Post.svelte props `space`, `size`, `side`, `align` were unknown props ignored by the built lib, so they're dropped here too. The WW2 dotted texture is kept but sits behind the solid band (invisible), exactly as in the original build. Old Merriweather page shell replaced with the repo's standard card shell.

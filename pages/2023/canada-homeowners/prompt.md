@@ -1,0 +1,1 @@
+Converted from the 2023 svelte original in public/2023/canada-homeowners. chroma-js aqua scale reimplemented by hand (linear RGB interpolation across the same 11 stops, with the original's 1% quantization); somehow-barchart Vertical/Bar ported as inline template + scoped css.

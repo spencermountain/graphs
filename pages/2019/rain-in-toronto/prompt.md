@@ -1,0 +1,1 @@
+Converted from the 2019 vanilla-js original in public/2019/rain-in-toronto (index.js + browserify bundle of the `somehow` chart lib — no svelte). The somehow bar/text/axis layout math is ported by hand into chart.js; flood photos are referenced from the original public/ assets folder; the unused data/rain.js (raw darksky payload) was not copied.

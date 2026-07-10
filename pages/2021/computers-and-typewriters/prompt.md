@@ -1,0 +1,2 @@
+Converted from the 2021 svelte/js original in public/2021/computers-and-typewriters.
+Ported the used parts of somehow-timeline (Timeline/Column/Ticks/Label/Text/Horizontal/Region) by hand, matching the 2021 build in public/ (which ignored the `width="8px"` prop — bars stay 25px — and rotated bar labels 270°). The three company bars ended at "today" in the original; they now end at the timeline's fixed end, Dec 30 2021.

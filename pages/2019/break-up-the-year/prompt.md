@@ -1,0 +1,1 @@
+Converted from the 2019 browserify/htm original in public/2019/break-up-the-year. The `sometime` ByQuarter calendar and `plus-minus` stepper were reimplemented as vue; the 18 piece-colors (spencer-color combos ken+dupont+bloor) are inlined; +/- buttons are lightly restyled from the native browser inputs.

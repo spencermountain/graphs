@@ -1,0 +1,2 @@
+Converted from the 2023 svelte/js original in public/2023/dst-changes.
+Notes: lib/ computation merged into one co-located build.js (zonefile.js, patterns.js, misc.js copied verbatim); the pre-extracted json in pages/2026/dst-changes was a different dataset and not reused. yearStart/yearEnd now use Date.UTC (original parsed date strings, which mixed UTC and local time) for SSR determinism. `<input type=button>` arrows became styled `<button>`s. Kept the original's misc-pattern quirk where ad-hoc years (iran/saha/isr/jord/pal) drop out of the chart.

@@ -1,0 +1,3 @@
+Converted from the 2019 browserify/somehow original in public/2019/generations-of-people.
+
+Notes: ported the `somehow` svg rendering (scales, spacetime-ticks, line/rect/text placement) by hand into an inline svg template. Used the newer `src/` code (which adds the paternal/maternal select) rather than the older compiled bundle (age + generations only). Approximations: fractional-year lifespans added via epoch math instead of spacetime `.add()`; war/event text labels are clipped to the visible range (the original never clipped text — it just rendered off-canvas); slider debounce dropped; the world-population chart (`src/world.js`, commented out in the original) was not ported.

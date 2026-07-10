@@ -1,0 +1,1 @@
+Converted from the 2020 svelte/js original in public/2020/stanley-cups-in-canada. Ported somehow-timeline's Timeline/Axis/Column/Dash inline (tiny linear scale + scoped css); the 'today' timeline end is SSR-guarded (fixed jan 2026 until mount); dropped the old Page shell (min 420px) for the standard card header/footer.
