@@ -23,5 +23,10 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.13.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "@nuxt/devtools": "3.3.1"
+    }
   }
 }
