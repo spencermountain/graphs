@@ -9,10 +9,12 @@
     "preview": "nuxt preview",
     "deploy": "rclone sync ./.output/public r2:graphs --checksum --transfers 32 --fast-list --progress",
     "deploy:dry": "rclone sync ./.output/public r2:graphs --checksum --transfers 32 --fast-list --dry-run --progress",
-    "new": "node scripts/new-post.mjs"
+    "new": "node scripts/new-post.mjs",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@lucide/vue": "^1.21.0",
+    "@nuxt/eslint": "1.17.0",
     "@turf/turf": "^7.3.5",
     "maplibre-gl": "^5.24.0",
     "nuxt": "^3.15.0",

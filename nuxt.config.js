@@ -28,9 +28,7 @@ export default defineNuxtConfig({
   },
   routeRules: { '/pages/**': { ssr: false } },
 
-  modules: [
-    '@nuxtjs/tailwindcss',
-  ],
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/eslint'],
 
   css: ['~/assets/main.css'],
 
