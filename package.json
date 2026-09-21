@@ -1,7 +1,8 @@
 {
-  "name": "spencer-graphs",
+  "name": "graphs",
   "private": true,
   "type": "module",
+  "repository": "github:spencermountain/graphs",
   "packageManager": "pnpm@11.5.0",
   "scripts": {
     "dev": "nuxt dev",
