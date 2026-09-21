@@ -1,6 +1,6 @@
 // sunrise/sunset math, ported from suncalc (github.com/mourner/suncalc, BSD-2)
 // formulas from http://aa.quae.nl/en/reken/zonpositie.html
-const { sin, cos, tan, asin, acos, atan2, PI } = Math
+const { sin, cos, asin, acos, PI } = Math
 const rad = PI / 180
 const dayMs = 1000 * 60 * 60 * 24
 const J1970 = 2440588
@@ -41,7 +41,7 @@ export const getTimes = function (date, lat, lng) {
   return {
     sunrise: fromJulian(Jrise),
     sunset: fromJulian(Jset),
-    solarNoon: fromJulian(Jnoon),
+    solarNoon: fromJulian(Jnoon)
   }
 }
 export default { getTimes }

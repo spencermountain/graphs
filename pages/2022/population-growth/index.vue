@@ -78,7 +78,7 @@ const fmt = (n) => (n / 1000000).toLocaleString() + 'm'
           <!-- dashed 'today' line -->
           <div class="today" :style="{ left: todayX + 0.3 + '%' }"></div>
           <!-- mayor names, stacked beside today at each term's mid population -->
-          <div v-for="(term, i) in terms" :key="i" v-show="term.mayor" class="mayor"
+          <div v-for="(term, i) in terms" v-show="term.mayor" :key="i" class="mayor"
             :style="{ color: term.color, left: todayX + 2 + '%', top: yScale(term.mid) + '%' }">
             {{ term.mayor }}
           </div>

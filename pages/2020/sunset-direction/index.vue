@@ -66,8 +66,8 @@ const dateLabels = computed(() =>
     <div class="bg-white rounded-xl shadow-md p-6 w-full max-w-2xl col-center">
       <!-- controls -->
       <div class="row-center gap-4 mb-2">
-        <input type="range" min="4" max="74" v-model.number="lat" @change="change" />
-        <input type="date" v-model="day" @change="change" class="text-gray-500" />
+        <input v-model.number="lat" type="range" min="4" max="74" @change="change" />
+        <input v-model="day" type="date" class="text-gray-500" @change="change" />
       </div>
 
       <!-- the compass chart -->

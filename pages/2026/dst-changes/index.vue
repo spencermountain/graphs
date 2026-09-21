@@ -81,7 +81,7 @@ const hovered = ref(null)
       </div>
 
       <!-- one group per timezone, with a stack of per-year underline rows -->
-      <div v-for="z in zones" :key="z.name" :id="z.slug" class="zone">
+      <div v-for="z in zones" :id="z.slug" :key="z.name" class="zone">
         <a :href="'#' + z.slug"
           class="text-base font-medium text-gray-700 mb-0.5 inline-block hover:text-blue-600 hover:underline">{{ z.name
           }}</a>

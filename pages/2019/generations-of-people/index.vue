@@ -128,7 +128,7 @@ const chart = computed(() => {
       <div class="row gap-8 mb-2">
         <div class="col-left flex-1">
           <div class="text-sm" :style="{ color: colors.grey }">your age:</div>
-          <input type="range" min="1" max="120" step="1" v-model.number="age" class="w-full" />
+          <input v-model.number="age" type="range" min="1" max="120" step="1" class="w-full" />
           <div class="text-sm" :style="{ color: colors.grey }">{{ age }}</div>
         </div>
         <div class="col-left">
@@ -140,7 +140,7 @@ const chart = computed(() => {
         </div>
         <div class="col-left flex-1">
           <div class="text-sm" :style="{ color: colors.grey }">generations:</div>
-          <input type="range" min="3" max="40" step="1" v-model.number="gens" class="w-full" />
+          <input v-model.number="gens" type="range" min="3" max="40" step="1" class="w-full" />
           <div class="text-sm" :style="{ color: colors.grey }">{{ gens }}</div>
         </div>
       </div>

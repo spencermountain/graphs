@@ -137,7 +137,7 @@ const sliderLabels = labels.map(([name, deg]) => ({
           <div v-for="l in sliderLabels" :key="l.label" class="whitespace-nowrap"
             :style="{ position: 'absolute', top: l.y + 'px', left: '10px', color: colors.lightgrey, fontSize: '10px' }">
             {{ l.label }}</div>
-          <input type="range" :min="MIN_LAT" :max="MAX_LAT" step="1" v-model.number="lat"
+          <input v-model.number="lat" type="range" :min="MIN_LAT" :max="MAX_LAT" step="1"
             :style="{ transform: 'rotate(90deg)', width: SLIDER_SIZE + 'px', transformOrigin: '0% 0%', margin: 0 }" />
         </div>
       </div>

@@ -4,7 +4,6 @@ import { ref, onMounted, onUnmounted } from 'vue'
 definePageMeta({ title: 'Aspect Ratios', description: 'common aspect ratios, drawn as bars' })
 
 // bar colors from the original
-const blue = '#6d87a5' // 1:1 base square
 const purple = '#946da5' // the extra width
 
 // aspect ratios as %s:
@@ -15,7 +14,7 @@ const ratios = [
   { name: '3:2', desc: '35mm film', ratio: 1.5 },
   { name: 'golden', desc: ' snails, etc.', ratio: 1.618 },
   { name: '16:9', desc: "1080p, 'widescreen'", ratio: 1.77 },
-  { name: '19.5:9', desc: 'recent iphones', ratio: 2.16 },
+  { name: '19.5:9', desc: 'recent iphones', ratio: 2.16 }
 ]
 const maxRatio = ratios[ratios.length - 1].ratio
 
@@ -48,7 +47,9 @@ onUnmounted(() => window.removeEventListener('resize', onResize))
               <div class="one" :style="{ height: '50px', width: x + 'px' }"></div>
               <!-- full-ratio bar underneath -->
               <div class="plus" :style="{ height: '50px', width: x * o.ratio + 'px' }"></div>
-              <div class="desc" :style="{ width: '100px', left: x * o.ratio + 'px' }">{{ o.desc }}</div>
+              <div class="desc" :style="{ width: '100px', left: x * o.ratio + 'px' }">
+                {{ o.desc }}
+              </div>
               <div class="below" :style="{ left: x + 'px', marginLeft: '15px', color: purple }">
                 <span style="font-size: 10px">x</span>
                 <span>{{ o.ratio }}</span>

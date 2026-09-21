@@ -136,7 +136,7 @@ const signed = (n) => (n > 0 ? '+' + n : String(n))
           </div>
           <div class="col" :style="{ color: colors.grey }">
             <div>latitude:</div>
-            <input type="range" class="vslider my-2" min="-60" max="60" step="1" v-model.number="lat" />
+            <input v-model.number="lat" type="range" class="vslider my-2" min="-60" max="60" step="1" />
             <div>{{ lat }}</div>
           </div>
         </div>
