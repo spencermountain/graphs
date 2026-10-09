@@ -3,7 +3,7 @@ import wards from './wards.js'
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon'
 
 const findWard = function (geo) {
-  let pt = {
+  const pt = {
     type: 'Feature',
     geometry: {
       type: 'Point',
@@ -11,7 +11,7 @@ const findWard = function (geo) {
     }
   }
   for (let i = 0; i < wards.features.length; i += 1) {
-    let poly = wards.features[i]
+    const poly = wards.features[i]
     if (booleanPointInPolygon(pt, poly)) {
       return poly.properties.AREA_DESC.replace(/ \(.*/, '')
     }
@@ -19,7 +19,7 @@ const findWard = function (geo) {
   return null
 }
 // console.log(findWard({ lng: -79.31569, lat: 43.79574 }))
-let json = data.map((o) => {
+const json = data.map((o) => {
   o.ward = findWard(o.geo)
   return o
 })

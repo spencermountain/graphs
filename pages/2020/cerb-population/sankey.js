@@ -10,7 +10,7 @@ const scale = ({ minmax, world }) => (num) =>
 const addLinks = (byCol) => {
   byCol.forEach((nodes, i) => {
     nodes.forEach((node) => {
-      let found = node.to && byCol[i + 1] ? byCol[i + 1].find((n) => n.name === node.to) : null
+      const found = node.to && byCol[i + 1] ? byCol[i + 1].find((n) => n.name === node.to) : null
       if (found) {
         node.tos.push(found)
         found.froms.push(node)
@@ -34,7 +34,7 @@ const addStack = (byCol) => {
 const getValues = (byCol) => {
   byCol.forEach((nodes) =>
     nodes.forEach((node) => {
-      let sum = node.froms.reduce((h, n) => h + n.value, 0)
+      const sum = node.froms.reduce((h, n) => h + n.value, 0)
       if (sum > node.value) node.value = sum
     })
   )
@@ -71,7 +71,7 @@ const byNeighbour = (byCol) => {
 
 // splay-out stacked nodes a bit
 const addMargin = (byCol) => {
-  let margin = getMax(byCol) * 0.015
+  const margin = getMax(byCol) * 0.015
   byCol.forEach((nodes) => {
     let count = 1
     nodes.forEach((node) => {
@@ -87,10 +87,10 @@ const addMargin = (byCol) => {
 
 // straight-edged ribbon between each node and its targets
 const makePaths = (nodes) => {
-  let paths = []
+  const paths = []
   nodes.forEach((node) => {
-    let x = node.x + node.width
-    let h = node.height
+    const x = node.x + node.width
+    const h = node.height
     node.tos.forEach((to) => {
       to.already = to.already || 0
       let d = `M${x},${node.y}`
@@ -105,7 +105,7 @@ const makePaths = (nodes) => {
 }
 
 const layout = function (cols, width, height, nodeWidth = 120) {
-  let byCol = cols.map((nodes) => nodes.map((n) => ({ top: 0, froms: [], tos: [], ...n })))
+  const byCol = cols.map((nodes) => nodes.map((n) => ({ top: 0, froms: [], tos: [], ...n })))
   addLinks(byCol)
   addStack(byCol)
   getValues(byCol)
@@ -115,8 +115,8 @@ const layout = function (cols, width, height, nodeWidth = 120) {
   addMargin(byCol)
   byNeighbour(byCol)
   // project to pixels
-  let yScale = scale({ minmax: [0, getMax(byCol)], world: [0, height - topRoom] })
-  let xScale = scale({ minmax: [0, byCol.length], world: [0, width] })
+  const yScale = scale({ minmax: [0, getMax(byCol)], world: [0, height - topRoom] })
+  const xScale = scale({ minmax: [0, byCol.length], world: [0, width] })
   byCol.forEach((nodes, i) => {
     nodes.forEach((node) => {
       node.y = yScale(node.top)
@@ -129,7 +129,7 @@ const layout = function (cols, width, height, nodeWidth = 120) {
       nodes[0].y += topRoom
     }
   })
-  let nodes = byCol.flat().filter((n) => n.value)
+  const nodes = byCol.flat().filter((n) => n.value)
   return { nodes, paths: makePaths(nodes) }
 }
 export default layout

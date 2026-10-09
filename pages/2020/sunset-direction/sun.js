@@ -12,9 +12,9 @@ const J2000 = 2451545
 const E = rad * 23.4397 // obliquity of the earth
 
 const sunCoords = function (d) {
-  let M = rad * (357.5291 + 0.98560028 * d) // solar mean anomaly
-  let C = rad * (1.9148 * Math.sin(M) + 0.02 * Math.sin(2 * M) + 0.0003 * Math.sin(3 * M)) // equation of center
-  let L = M + C + rad * 102.9372 + Math.PI // ecliptic longitude
+  const M = rad * (357.5291 + 0.98560028 * d) // solar mean anomaly
+  const C = rad * (1.9148 * Math.sin(M) + 0.02 * Math.sin(2 * M) + 0.0003 * Math.sin(3 * M)) // equation of center
+  const L = M + C + rad * 102.9372 + Math.PI // ecliptic longitude
   return {
     dec: Math.asin(Math.sin(E) * Math.sin(L)),
     ra: Math.atan2(Math.sin(L) * Math.cos(E), Math.cos(L)),
@@ -23,10 +23,10 @@ const sunCoords = function (d) {
 
 // azimuth + altitude in degrees. azimuth: 0=south, +90=west, -90=east
 export const sunPosition = function (epoch, lat) {
-  let d = epoch / dayMs - 0.5 + J1970 - J2000
-  let phi = rad * lat
-  let { dec, ra } = sunCoords(d)
-  let H = rad * (280.16 + 360.9856235 * d) - ra // sidereal time at lng=0
+  const d = epoch / dayMs - 0.5 + J1970 - J2000
+  const phi = rad * lat
+  const { dec, ra } = sunCoords(d)
+  const H = rad * (280.16 + 360.9856235 * d) - ra // sidereal time at lng=0
   return {
     azimuth: Math.atan2(Math.sin(H), Math.cos(H) * Math.sin(phi) - Math.tan(dec) * Math.cos(phi)) / rad,
     altitude: Math.asin(Math.sin(phi) * Math.sin(dec) + Math.cos(phi) * Math.cos(dec) * Math.cos(H)) / rad,
@@ -59,11 +59,11 @@ export const getSunRise = function (d, lat) {
 
 // sunrise/sunset azimuths for each week of the current year
 export const calcYear = function (lat) {
-  let s = spacetime.now(tz).startOf('year')
-  let weeks = s.every('week', s.endOf('year'))
+  const s = spacetime.now(tz).startOf('year')
+  const weeks = s.every('week', s.endOf('year'))
   return weeks.map((d, i) => {
-    let set = getSunSet(d, lat)
-    let rise = getSunRise(d, lat)
+    const set = getSunSet(d, lat)
+    const rise = getSunRise(d, lat)
     return {
       id: i,
       date: set.format('{month-short} {date}'),

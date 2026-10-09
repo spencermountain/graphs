@@ -15,9 +15,9 @@ const getMax = function (byCol) {
 
 // group into columns, wire-up forward links, flag stacked nodes
 const byColumn = function (items) {
-  let byCol = []
+  const byCol = []
   items.forEach((o) => {
-    let node = Object.assign({ to: '', from: null, full: 100, opacity: 1, dx: 0, dy: 0 }, o)
+    const node = Object.assign({ to: '', from: null, full: 100, opacity: 1, dx: 0, dy: 0 }, o)
     node.value = Number(node.value)
     node.top = 0
     node.froms = []
@@ -31,7 +31,7 @@ const byColumn = function (items) {
   byCol.forEach((nodes, i) => {
     nodes.forEach((node) => {
       if (node.to && byCol[i + 1]) {
-        let found = byCol[i + 1].find((n) => n.name === node.to)
+        const found = byCol[i + 1].find((n) => n.name === node.to)
         if (found) {
           node.tos.push(found)
           found.froms.push(node)
@@ -101,7 +101,7 @@ const byNeighbour = function (byCol) {
 
 // splay-out stacked nodes a bit
 const addMargin = function (byCol) {
-  let margin = getMax(byCol) * 0.015
+  const margin = getMax(byCol) * 0.015
   byCol.forEach((nodes) => {
     let count = 1
     nodes.forEach((node) => {
@@ -118,12 +118,12 @@ const addMargin = function (byCol) {
 
 // x, y, width, height in px + percent-of-column
 const makePoints = function (byCol, width, height, nodeWidth) {
-  let max = getMax(byCol)
-  let half = nodeWidth / 2
-  let yScale = linear({ minmax: [0, max], world: [0, height - topRoom] })
-  let xScale = linear({ minmax: [0, byCol.length], world: [0, width] })
+  const max = getMax(byCol)
+  const half = nodeWidth / 2
+  const yScale = linear({ minmax: [0, max], world: [0, height - topRoom] })
+  const xScale = linear({ minmax: [0, byCol.length], world: [0, width] })
   byCol.forEach((nodes) => {
-    let total = nodes.reduce((sum, n) => sum + n.value, 0)
+    const total = nodes.reduce((sum, n) => sum + n.value, 0)
     nodes.forEach((node) => {
       node.y = yScale(node.top) + node.dy
       node.percent = toPercent(node.value, total)
@@ -143,10 +143,10 @@ const makePoints = function (byCol, width, height, nodeWidth) {
 
 // polygon from a node's right edge to each of its targets
 const makePaths = function (nodes) {
-  let paths = []
+  const paths = []
   nodes.forEach((node) => {
-    let fromX = node.x + node.width
-    let h = node.height
+    const fromX = node.x + node.width
+    const h = node.height
     node.tos.forEach((to) => {
       to.already = to.already || 0
       let d = `M${fromX},${node.y}`
@@ -160,10 +160,10 @@ const makePaths = function (nodes) {
   // 'from'-declared links draw backwards, out of the source's right side
   nodes.forEach((to) => {
     if (to.from) {
-      let source = nodes.find((n) => n.name === to.from)
+      const source = nodes.find((n) => n.name === to.from)
       source.alreadyFrom = source.alreadyFrom || 0
-      let already = source.alreadyFrom
-      let x = source.x + source.width
+      const already = source.alreadyFrom
+      const x = source.x + source.width
       paths.push(`M${x},${source.y + already} L${to.x},${to.y} L${to.x},${to.y + to.height} L${x},${source.y + to.height + already} Z`)
       source.alreadyFrom += to.height
     }
@@ -179,8 +179,8 @@ const layout = function (items, { width = 500, height = 800, nodeWidth = 120 } =
   byCol = addMargin(byCol)
   byCol = byNeighbour(byCol)
   byCol = makePoints(byCol, width, height, nodeWidth)
-  let nodes = byCol.flat().filter((n) => n.value)
-  let paths = makePaths(nodes)
+  const nodes = byCol.flat().filter((n) => n.value)
+  const paths = makePaths(nodes)
   return { nodes, paths }
 }
 export default layout

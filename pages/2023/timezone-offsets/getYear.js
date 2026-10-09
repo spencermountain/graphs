@@ -15,7 +15,7 @@ const isLeap = (year) => (year % 4 === 0 && year % 100 !== 0) || year % 400 === 
 const monthLengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 // utc epoch for jan 1st of the year (memoized)
-let memo = {}
+const memo = {}
 const getStart = function (year) {
   if (memo.hasOwnProperty(year)) {
     return memo[year]
@@ -33,11 +33,11 @@ const getStart = function (year) {
 const monthCodes = [null, 0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5]
 const centuryCodes = { 17: 4, 18: 2, 19: 0, 20: 6, 21: 4, 22: 2, 23: 0 }
 const getDay = function (year, month, date) {
-  let yy = year % 100
-  let yearCode = (yy + parseInt(yy / 4, 10)) % 7
-  let c = parseInt(year / 100, 10)
-  let centuryCode = year < 1752 ? 18 - (c % 7) : centuryCodes[String(c)] || 0 // julian before 1752
-  let leapCode = isLeap(year) ? -1 : 0
+  const yy = year % 100
+  const yearCode = (yy + parseInt(yy / 4, 10)) % 7
+  const c = parseInt(year / 100, 10)
+  const centuryCode = year < 1752 ? 18 - (c % 7) : centuryCodes[String(c)] || 0 // julian before 1752
+  const leapCode = isLeap(year) ? -1 : 0
   return (yearCode + monthCodes[month] + centuryCode + date + leapCode) % 7
 }
 
@@ -74,7 +74,7 @@ const toRightWeek = function (num, day, month) {
     return 0
   }
   if (num === 'last') {
-    let max = monthLengths[month + 1] || 31
+    const max = monthLengths[month + 1] || 31
     let days = 0
     for (let i = 0; i < 5; i += 1) {
       days += 7
@@ -107,14 +107,14 @@ const hour = 1000 * 60 * -60
 
 // calculate spring + fall dst changes, for this timezone
 const getDst = function (tz, year) {
-  let { pattern, offset } = zonefile[tz] || {}
+  const { pattern, offset } = zonefile[tz] || {}
   // ad-hoc dst years (lunar-calendar zones) return raw epochs — dropped below, as in the original
   if (misc.hasOwnProperty(pattern) && misc[pattern][String(year)]) {
-    let [start, end] = misc[pattern][String(year)]
+    const [start, end] = misc[pattern][String(year)]
     return { start, end }
   }
-  let changes = []
-  let obj = patterns[pattern]
+  const changes = []
+  const obj = patterns[pattern]
   if (!obj) {
     return changes
   }
@@ -135,11 +135,11 @@ const getDst = function (tz, year) {
 
 // every dst-observing timezone, with its two change-points for the year
 const getYear = function (year) {
-  let out = []
+  const out = []
   Object.keys(zonefile).forEach((tz) => {
-    let changes = getDst(tz, year)
+    const changes = getDst(tz, year)
     if (changes[0] && changes[1]) {
-      let arr = tz.split('/')
+      const arr = tz.split('/')
       out.push({ tz, name: arr[arr.length - 1], start: changes[0].cal, end: changes[1].cal })
     }
   })

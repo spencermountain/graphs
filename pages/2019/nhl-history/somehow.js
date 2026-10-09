@@ -319,7 +319,7 @@ class Text extends Shape {
   }
   estimate() {
     // rough text metrics, same math as the original
-    let height = (this.fontSize ? this.fontSize * 1.5 : 24) * this.lines.length
+    const height = (this.fontSize ? this.fontSize * 1.5 : 24) * this.lines.length
     const width = Math.max(...this.lines.map((s) => s.length * 8), 0)
     return { height, width }
   }

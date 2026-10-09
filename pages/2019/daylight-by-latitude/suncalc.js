@@ -15,8 +15,8 @@ const toDays = (date) => toJulian(date) - J2000
 const declination = (l, b) => asin(sin(b) * cos(e) + cos(b) * sin(e) * sin(l))
 const solarMeanAnomaly = (d) => rad * (357.5291 + 0.98560028 * d)
 const eclipticLongitude = function (M) {
-  let C = rad * (1.9148 * sin(M) + 0.02 * sin(2 * M) + 0.0003 * sin(3 * M)) // equation of center
-  let P = rad * 102.9372 // perihelion of the earth
+  const C = rad * (1.9148 * sin(M) + 0.02 * sin(2 * M) + 0.0003 * sin(3 * M)) // equation of center
+  const P = rad * 102.9372 // perihelion of the earth
   return M + C + P + PI
 }
 const julianCycle = (d, lw) => Math.round(d - J0 - lw / (2 * PI))

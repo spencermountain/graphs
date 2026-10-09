@@ -5,13 +5,13 @@ const topRoom = 20
 
 // tiny scaleLinear
 const scaleLinear = ({ world, minmax }) => (num) => {
-  let percent = (num - minmax[0]) / (minmax[1] - minmax[0])
+  const percent = (num - minmax[0]) / (minmax[1] - minmax[0])
   return parseInt((world[1] - world[0]) * percent, 10)
 }
 
 // group into column arrays, by node.col
 const byColumn = (items) => {
-  let byCol = []
+  const byCol = []
   items.forEach((node) => {
     node.top = 0
     node.froms = []
@@ -29,7 +29,7 @@ const addLinks = (byCol) => {
   byCol.forEach((nodes, i) => {
     nodes.forEach((node) => {
       if (node.to && byCol[i + 1]) {
-        let found = byCol[i + 1].find((n) => n.name === node.to)
+        const found = byCol[i + 1].find((n) => n.name === node.to)
         if (found) {
           node.tos.push(found)
           found.froms.push(node)
@@ -107,7 +107,7 @@ const getMax = (byCol) => {
 
 // splay stacked nodes apart a little
 const addMargin = (byCol) => {
-  let margin = getMax(byCol) * 0.015
+  const margin = getMax(byCol) * 0.015
   byCol.forEach((nodes) => {
     let count = 1
     nodes.forEach((node) => {
@@ -123,10 +123,10 @@ const addMargin = (byCol) => {
 
 // value-space tops → pixel x/y/width/height
 const makePoints = (byCol, width, height, nodeWidth) => {
-  let max = getMax(byCol)
-  let half = nodeWidth / 2
-  let yScale = scaleLinear({ minmax: [0, max], world: [0, height - topRoom] })
-  let xScale = scaleLinear({ minmax: [0, byCol.length], world: [0, width] })
+  const max = getMax(byCol)
+  const half = nodeWidth / 2
+  const yScale = scaleLinear({ minmax: [0, max], world: [0, height - topRoom] })
+  const xScale = scaleLinear({ minmax: [0, byCol.length], world: [0, width] })
   byCol.forEach((nodes) => {
     nodes.forEach((node) => {
       node.y = yScale(node.top) + node.dy
@@ -145,14 +145,14 @@ const makePoints = (byCol, width, height, nodeWidth) => {
 
 // filled ribbon polygons between each node and its destinations
 const makePaths = (nodes) => {
-  let paths = []
+  const paths = []
   nodes.forEach((node) => {
-    let x = node.x + node.width
-    let y = node.y
-    let h = node.height
+    const x = node.x + node.width
+    const y = node.y
+    const h = node.height
     node.tos.forEach((to) => {
       to.already = to.already || 0
-      let d = `M${x},${y} L${to.x},${to.y + to.already} L${to.x},${to.y + h + to.already} L${x},${y + h} Z`
+      const d = `M${x},${y} L${to.x},${to.y + to.already} L${to.x},${to.y + h + to.already} L${x},${y + h} Z`
       to.already += h
       paths.push(d)
     })
@@ -161,7 +161,7 @@ const makePaths = (nodes) => {
 }
 
 const layout = (items, width, height, nodeWidth) => {
-  let byCol = byColumn(items)
+  const byCol = byColumn(items)
   addLinks(byCol)
   addStack(byCol)
   getValues(byCol)
@@ -172,8 +172,8 @@ const layout = (items, width, height, nodeWidth) => {
   byNeighbour(byCol)
   // pixel positions
   makePoints(byCol, width, height, nodeWidth)
-  let nodes = byCol.flat().filter((n) => n.value)
-  let paths = makePaths(nodes)
+  const nodes = byCol.flat().filter((n) => n.value)
+  const paths = makePaths(nodes)
   return { nodes, paths }
 }
 export default layout

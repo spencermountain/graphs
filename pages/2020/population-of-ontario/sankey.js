@@ -4,13 +4,13 @@ const topRoom = 20 // px reserved at the top
 
 // tiny d3-style linear scale
 const linear = ({ minmax, world }) => (num) => {
-  let percent = (num - minmax[0]) / (minmax[1] - minmax[0])
+  const percent = (num - minmax[0]) / (minmax[1] - minmax[0])
   return parseInt((world[1] - world[0]) * percent, 10)
 }
 
 // group into array-of-arrays by col, wire forward links, mark stacked runs
 const byColumn = function (items) {
-  let byCol = []
+  const byCol = []
   items.forEach((node) => {
     node.top = 0
     node.froms = []
@@ -23,7 +23,7 @@ const byColumn = function (items) {
   byCol.forEach((nodes, i) => {
     nodes.forEach((node) => {
       if (node.to && byCol[i + 1]) {
-        let found = byCol[i + 1].find((n) => n.name === node.to)
+        const found = byCol[i + 1].find((n) => n.name === node.to)
         if (found) {
           node.tos.push(found)
           found.froms.push(node)
@@ -97,7 +97,7 @@ const getTops = function (byCol) {
   })
   byNeighbour(byCol)
   // splay-out stacked nodes a bit
-  let margin = getMax(byCol) * 0.015
+  const margin = getMax(byCol) * 0.015
   byCol.forEach((nodes) => {
     let count = 1
     nodes.forEach((node) => {
@@ -114,9 +114,9 @@ const getTops = function (byCol) {
 
 // value-units → pixels
 const makePoints = function (byCol, width, height, nodeWidth) {
-  let max = getMax(byCol)
-  let yScale = linear({ minmax: [0, max], world: [0, height - topRoom] })
-  let xScale = linear({ minmax: [0, byCol.length], world: [0, width] })
+  const max = getMax(byCol)
+  const yScale = linear({ minmax: [0, max], world: [0, height - topRoom] })
+  const xScale = linear({ minmax: [0, byCol.length], world: [0, width] })
   byCol.forEach((nodes) => {
     nodes.forEach((node) => {
       node.y = yScale(node.top)
@@ -133,11 +133,11 @@ const makePoints = function (byCol, width, height, nodeWidth) {
 
 // straight-edged link polygons
 const makePaths = function (nodes) {
-  let paths = []
+  const paths = []
   // forward links
   nodes.forEach((node) => {
-    let fromX = node.x + node.width
-    let h = node.height
+    const fromX = node.x + node.width
+    const h = node.height
     node.tos.forEach((to) => {
       to.already = to.already || 0
       let d = `M${fromX},${node.y}`
@@ -152,8 +152,8 @@ const makePaths = function (nodes) {
   // backward-declared links ('from' pointing at a node in the previous col)
   nodes.forEach((to) => {
     if (to.from) {
-      let source = nodes.find((n) => n.name === to.from)
-      let already = source.alreadyFrom || 0
+      const source = nodes.find((n) => n.name === to.from)
+      const already = source.alreadyFrom || 0
       let d = `M${source.x + source.width},${source.y + already}`
       d += ` L${to.x},${to.y}`
       d += ` L${to.x},${to.y + to.height}`
@@ -168,12 +168,12 @@ const makePaths = function (nodes) {
 
 // main entry: items → { nodes, paths }. mutates items — pass a fresh copy
 const layout = function (items, width, height, nodeWidth = 120) {
-  let byCol = byColumn(items)
+  const byCol = byColumn(items)
   getValues(byCol)
   getTops(byCol)
   makePoints(byCol, width, height, nodeWidth)
-  let nodes = byCol.flat().filter((n) => n.value)
-  let paths = makePaths(nodes)
+  const nodes = byCol.flat().filter((n) => n.value)
+  const paths = makePaths(nodes)
   return { nodes, paths }
 }
 export default layout

@@ -5,7 +5,8 @@
   "type": "module",
   "packageManager": "pnpm@11.5.0",
   "scripts": {
-    "dev": "nuxt dev",
+    "dev": "nuxt dev -o",
+    "watch": "pnpm dev",
     "build": "nuxt generate",
     "preview": "nuxt preview",
     "deploy": "rclone sync ./.output/public r2:graphs --checksum --transfers 32 --fast-list --progress",

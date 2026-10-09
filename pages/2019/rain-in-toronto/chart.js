@@ -10,8 +10,8 @@ const monthDays = (y) => [31, isLeap(y) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 3
 
 // "YYYY-MM-DD" -> zero-based day of year (no Date(); SSR-safe)
 const dayOfYear = function (str) {
-  let [y, m, d] = str.split('-').map(Number)
-  let days = monthDays(y)
+  const [y, m, d] = str.split('-').map(Number)
+  const days = monthDays(y)
   let n = d - 1
   for (let i = 0; i < m - 1; i += 1) {
     n += days[i]

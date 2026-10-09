@@ -1,7 +1,7 @@
 import data from './data.js'
 
 // cluster by unit size
-let obj = {}
+const obj = {}
 data.forEach(o => {
   let size = null
   if (o.units === 1) {
@@ -14,7 +14,7 @@ data.forEach(o => {
   obj[size] = obj[size] || 0
   obj[size] += o.units
 })
-let all = Object.entries(obj).sort((a, b) => {
+const all = Object.entries(obj).sort((a, b) => {
   if (a[1] > b[1]) {
     return -1
   } else if (a[1] < b[1]) {

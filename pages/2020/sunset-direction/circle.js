@@ -16,28 +16,28 @@ export const arcPath = function ({ from, to, radius, width }) {
   if (a1 < a0) {
     ;[a0, a1] = [a1, a0]
   }
-  let r0 = rScale(radius)
-  let r1 = r0 + rScale(width)
-  let large = a1 - a0 > Math.PI ? 1 : 0
-  let [x0, y0] = pt(a0, r1)
-  let [x1, y1] = pt(a1, r1)
-  let [x2, y2] = pt(a1, r0)
-  let [x3, y3] = pt(a0, r0)
+  const r0 = rScale(radius)
+  const r1 = r0 + rScale(width)
+  const large = a1 - a0 > Math.PI ? 1 : 0
+  const [x0, y0] = pt(a0, r1)
+  const [x1, y1] = pt(a1, r1)
+  const [x2, y2] = pt(a1, r0)
+  const [x3, y3] = pt(a0, r0)
   return `M${f(x0)},${f(y0)} A${f(r1)},${f(r1)} 0 ${large} 1 ${f(x1)},${f(y1)} L${f(x2)},${f(y2)} A${f(r0)},${f(r0)} 0 ${large} 0 ${f(x3)},${f(y3)} Z`
 }
 
 // radial line from radius → radius+length (drawLines.js)
 export const linePath = function ({ angle, radius, length }) {
-  let a = theta(angle)
-  let [x0, y0] = pt(a, rScale(radius))
-  let [x1, y1] = pt(a, rScale(radius + length))
+  const a = theta(angle)
+  const [x0, y0] = pt(a, rScale(radius))
+  const [x1, y1] = pt(a, rScale(radius + length))
   return `M${f(x0)},${f(y0)} L${f(x1)},${f(y1)}`
 }
 
 // text tick: position, rotation + anchor (drawTicks.js)
 export const tick = function ({ angle, radius, rotate = 90, align }) {
   align = align || (angle < 0 ? 'left' : 'right')
-  let [x, y] = pt(theta(angle), rScale(radius))
+  const [x, y] = pt(theta(angle), rScale(radius))
   let a = angle
   // don't go upside-down
   if (a > 90) {

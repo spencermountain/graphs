@@ -20,7 +20,7 @@ const data = [
   { rate: 0.68, start: 85, label: '85+', total: 770780 } //	2.2%
 ]
 
-let sum = data.reduce((h, n) => h + n.total, 0)
+const sum = data.reduce((h, n) => h + n.total, 0)
 
 const percent = (part, total) => {
   let num = (part / total) * 100
@@ -39,7 +39,7 @@ for (let i = data.length - 1; i >= 0; i -= 1) {
 for (let i = 0; i < data.length; i += 1) {
   data[i].houses = data[i].total * data[i].rate
 }
-let houses = data.reduce((h, n) => h + n.houses, 0)
+const houses = data.reduce((h, n) => h + n.houses, 0)
 
 // cumulative % of houses owned at-or-above each age group
 run = 0

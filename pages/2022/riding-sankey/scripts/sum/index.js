@@ -1,9 +1,9 @@
 import data from './data.js'
 
 // cluster by unit size
-let obj = {}
+const obj = {}
 data.forEach(o => {
-  let ward = o.ward
+  const ward = o.ward
   obj[ward] = obj[ward] || { total: 0, pending: 0, issued: 0 }
   obj[ward].total += o.units
   if (o.issued) {
